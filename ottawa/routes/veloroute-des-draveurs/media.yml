@@ -63,6 +63,7 @@
   width: 1440
   height: 1920
   orientation: portrait
+  poster_key: e4nh8v6nc4xqtzq1up7455u9pm5h
   handle: enjoying-the-countryside
 - type: video
   key: l7ntrna5qc0ytytz04j9yytx7jgc
@@ -71,4 +72,5 @@
   width: 2160
   height: 3840
   orientation: portrait
+  poster_key: uujqeml0sksvr7txqpd21d1qrk46
   handle: whoop-whoop

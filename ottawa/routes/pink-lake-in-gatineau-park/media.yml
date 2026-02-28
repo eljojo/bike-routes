@@ -95,6 +95,7 @@
   width: 3840
   height: 2160
   orientation: landscape
+  poster_key: iyp8xo658237ge09d3s1n4klbofu
   handle: view-from-pink-lake
 - type: photo
   key: ui62o9i7x6dqe29ig5srbb79btkg
@@ -163,4 +164,5 @@
   width: 3840
   height: 2160
   orientation: landscape
+  poster_key: 0l5cakbtddhmpgxpi0yb0hacmkum
   handle: sunset-at-pink-lake

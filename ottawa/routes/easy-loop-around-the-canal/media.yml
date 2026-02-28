@@ -358,6 +358,7 @@
   width: 1440
   height: 1920
   orientation: portrait
+  poster_key: b3k1zu0lk0dv0cwcvyn3gakrydbk
   handle: sunset-at-dow-s-lake
 - type: video
   key: 120zwwbl0dvvrxzmnopb2lyky9fm
@@ -366,6 +367,7 @@
   width: 1920
   height: 1440
   orientation: landscape
+  poster_key: 0wmmugmakt03x4b926gh6rsbs9r8
   handle: riding-my-bike-next-to-the-frozen-rideau-
 - type: photo
   key: h7goikw92kx2lx2i0il34tg8vr1y
@@ -410,6 +412,7 @@
   width: 2160
   height: 3840
   orientation: portrait
+  poster_key: reksp39ui5eoaymfi309vba40s93
   handle: riding-by-the-canal-in-winter
 - type: photo
   key: eblrihtb8754zti8ufnqwt4to5d9

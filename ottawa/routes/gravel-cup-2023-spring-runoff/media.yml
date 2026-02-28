@@ -73,6 +73,7 @@
   width: 1920
   height: 1440
   orientation: landscape
+  poster_key: iuo6hxpy57o7ee2ktw4gff5j7ayo
   handle: riding-through-snow-fields
 - type: video
   key: emp15w7sy05w9e3p7cz060eb3vn4
@@ -81,6 +82,7 @@
   width: 1080
   height: 1920
   orientation: portrait
+  poster_key: b70037u4xaowin0418ko574loxpq
   handle: start-of-the-race
 - type: video
   key: bo95jxvzy9pb0szi1pwrca7upuue
@@ -89,6 +91,7 @@
   width: 1080
   height: 1920
   orientation: portrait
+  poster_key: a83rhwgcvw4yrjhzpidynh6rf8ge
   handle: gravel-descent
 - type: video
   key: w8dkt171uqzw3rvflnvjs0oqw22g
@@ -97,6 +100,7 @@
   width: 1920
   height: 1080
   orientation: landscape
+  poster_key: ypybgaaxrpn4wypa5s5u9dsr9i43
   handle: some-road
 - type: video
   key: 82ln9wj8emrb4u1djrua57jrv5l5
@@ -105,6 +109,7 @@
   width: 1080
   height: 1920
   orientation: portrait
+  poster_key: zn8yjengjpqta2iyjbpihx9a05ie
   handle: second-to-last
 - type: video
   key: v2fuwf39f5kh65f0fpv512zyh8fd
@@ -113,4 +118,5 @@
   width: 1080
   height: 1920
   orientation: portrait
+  poster_key: egcbjfvv6jpi7ggt36tvv2s6dxkp
   handle: road-racing

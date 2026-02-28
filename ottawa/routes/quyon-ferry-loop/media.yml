@@ -130,6 +130,7 @@
   width: 2160
   height: 3840
   orientation: portrait
+  poster_key: m5f78u3ko0glxkcuji0wa2cgqx9r
   handle: we-really-like-bikes
 - type: video
   key: 90110ukov6uqhuaef0yegomfi3om
@@ -138,6 +139,7 @@
   width: 2160
   height: 3840
   orientation: portrait
+  poster_key: t4cjdz5y7td71eolg50e3akpvme4
   handle: gravel-patch
 - type: photo
   key: x3j8oy81u922ivlbw76l6uhcxvv9
@@ -206,6 +208,7 @@
   width: 1920
   height: 1080
   orientation: landscape
+  poster_key: tp46a6cvyt1t74d3a9w5czv6de9q
   handle: party-ride
 - type: video
   key: 7p6sabrr2zpspe0sl2jgks3qozae
@@ -214,6 +217,7 @@
   width: 1920
   height: 1080
   orientation: landscape
+  poster_key: fu9ly5fy1pgma2gp52i0hupuyc4e
   handle: riding-in-bike-paths
 - type: video
   key: 87jj16e8gqosloiftm4jdd763d58
@@ -222,6 +226,7 @@
   width: 1920
   height: 1080
   orientation: landscape
+  poster_key: w4nongf2vl0avh35vwlljgz7cp1e
   handle: chill-ride-in-bike-paths
 - type: video
   key: yn4xl2m0enx0bphxtntx1h1savwg
@@ -230,4 +235,5 @@
   width: 1920
   height: 1080
   orientation: landscape
+  poster_key: c9kw3gxuwabtbik7so1kr7myhmn7
   handle: gravel-ride

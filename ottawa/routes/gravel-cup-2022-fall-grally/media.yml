@@ -56,6 +56,7 @@
   width: 1920
   height: 1440
   orientation: landscape
+  poster_key: 5a53eyb5j8mivh62jwvdh3849osl
   handle: whoop
 - type: video
   key: 9vf806pvogy5lap3eg56jyyjzylx
@@ -64,6 +65,7 @@
   width: 1440
   height: 1920
   orientation: portrait
+  poster_key: 5q8pum9iebmcje5e2ecxi1v5p3zl
   handle: gravel
 - type: video
   key: w373sup33z36gjnjlbttcxkah2ph
@@ -72,4 +74,5 @@
   width: 1920
   height: 1440
   orientation: landscape
+  poster_key: p15h3y40ahwk0zyymf43npi41kv9
   handle: road-time
