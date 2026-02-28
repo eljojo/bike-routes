@@ -1,0 +1,10 @@
+---
+name: Vincent Massey Park
+category: park
+lat: 45.378538
+lng: -75.698874
+status: published
+address: Heron Rd, Ottawa, ON K1V 2E4, Canada
+website: https://ccn-ncc.gc.ca/endroits/parc-vincent-massey
+phone: "(613) 239-5000"
+---

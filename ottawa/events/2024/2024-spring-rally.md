@@ -1,0 +1,11 @@
+---
+name: 2024 Spring Rally
+start_date: '2024-04-26'
+end_date: '2024-04-28'
+registration_url: https://www.logdriverswaltz.ca/spring-rally-2024.html
+distances: 150km, 180km
+location: Ottawa, Ontario
+organizer: log-driver-s-waltz
+poster_key: pv27asq1ddnzq0mcxrdxzymzmhgd
+poster_content_type: image/jpeg
+---

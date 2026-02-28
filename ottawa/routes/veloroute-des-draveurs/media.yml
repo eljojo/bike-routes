@@ -1,0 +1,74 @@
+---
+- type: photo
+  key: yzmamzj68l7smnu01ycan8kfsevb
+  caption: a path leading to the chill spot
+  score: 8.71
+  width: 1200
+  height: 1600
+  handle: a-path-leading-to-the-chill-spot
+- type: photo
+  key: 1r69ii8aq5u17sl8q46a559jz67n
+  caption: a road with trees on the side
+  score: 4.86
+  width: 1200
+  height: 1600
+  handle: a-road-with-trees-on-the-side
+- type: photo
+  key: iacraa8nla1e0iriavthgw9fizq9
+  caption: enjoying the water
+  score: 6.14
+  width: 1600
+  height: 1200
+  handle: enjoying-the-water
+- type: photo
+  key: ygy342r8ydk5g6ng882rlzas2s2i
+  caption: me enjoying the road
+  score: 10.0
+  width: 1600
+  height: 1200
+  cover: true
+  handle: cover
+- type: photo
+  key: 4qkzi1116klpb8op1v7jd25ple8n
+  caption: Kerianne loves bridges
+  score: 1.0
+  width: 1600
+  height: 1200
+  handle: kerianne-loves-bridges
+- type: photo
+  key: jtqkg0e42wfl6ftunj9zcw238z36
+  caption: a person riding a bicycle on a path by a body of water
+  score: 3.57
+  width: 3000
+  height: 2250
+  handle: a-person-riding-a-bicycle-on-a-path-by-a-
+- type: photo
+  key: owbmcf809pbij9th1bmujonbsep8
+  caption: dusty sunset
+  score: 7.43
+  width: 1600
+  height: 1200
+  handle: dusty-sunset
+- type: photo
+  key: w4ubfqapsbqhg465kwtdun9r047b
+  caption: perfect chill spot
+  score: 2.29
+  width: 1600
+  height: 1200
+  handle: perfect-chill-spot
+- type: video
+  key: vno0d04arlqe5suqm7dvrenab3ox
+  title: Enjoying the countryside
+  duration: PT17S
+  width: 1440
+  height: 1920
+  orientation: portrait
+  handle: enjoying-the-countryside
+- type: video
+  key: l7ntrna5qc0ytytz04j9yytx7jgc
+  title: whoop whoop!
+  duration: PT13S
+  width: 2160
+  height: 3840
+  orientation: portrait
+  handle: whoop-whoop

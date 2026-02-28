@@ -1,0 +1,10 @@
+---
+name: Thursday Social - Patterson Creek Park
+start_date: '2023-08-24'
+end_date: '2023-08-24'
+registration_url: https://www.instagram.com/p/CstyzAGAw52/?img_index=5
+location: Patterson Creek Park, Ottawa, Canada
+organizer: ottbikesocial
+poster_key: 1bn4bhbqvq8ljo2vq4vt50i41wvt
+poster_content_type: image/jpeg
+---

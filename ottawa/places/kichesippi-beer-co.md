@@ -1,0 +1,12 @@
+---
+name: Kichesippi Beer Co
+category: beer
+lat: 45.318088
+lng: -75.844185
+status: published
+address: 2265 Robertson Rd, Ottawa, ON K2H 5Z2, Canada
+website: http://www.kbeer.ca/
+phone: "(613) 728-7845"
+---
+
+Great stop to finish a ride, next to the rail trail that goes towards Stittsville

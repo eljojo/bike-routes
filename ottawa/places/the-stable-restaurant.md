@@ -1,0 +1,10 @@
+---
+name: The Stable Restaurant
+category: restaurant
+lat: 45.228849
+lng: -75.491293
+status: published
+address: 7905 Victoria St, Metcalfe, ON K0A 2P0, Canada
+website: http://www.thestablerestaurant.ca/
+phone: "(613) 821-0444"
+---

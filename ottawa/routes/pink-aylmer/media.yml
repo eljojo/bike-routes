@@ -1,0 +1,70 @@
+---
+- type: photo
+  key: ovyg67n5iampgtdff95as9yacx2e
+  score: 4.13
+  width: 1600
+  height: 1200
+  handle: photo
+- type: photo
+  key: lfabm2yk9fv9jsfll5ovcp8bx0d7
+  score: 6.63
+  width: 1600
+  height: 1200
+  handle: photo-2
+- type: photo
+  key: ecdc1g682m27w45b9n79aapq9k80
+  caption: selfie
+  score: 3.66
+  width: 1200
+  height: 1599
+  handle: selfie
+- type: photo
+  key: 6fp636jfyive7ogfwxfm2fo0nzje
+  caption: crazy swamp view
+  score: 9.57
+  width: 1599
+  height: 1200
+  cover: true
+  handle: cover
+- type: photo
+  key: xghct8vm8tyeq1dxy9sgug65is92
+  caption: nice bike path towards Aylmer
+  score: 3.63
+  width: 1200
+  height: 1599
+  handle: nice-bike-path-towards-aylmer
+- type: photo
+  key: 7ofvug6n18d22vtjhe58t2xm4kzp
+  caption: doesn't get better than this
+  score: 6.48
+  width: 1599
+  height: 1200
+  handle: doesn-t-get-better-than-this
+- type: photo
+  key: me4xab6h8whfp820zhkex1j4ar6y
+  caption: some rock action
+  score: 6.46
+  width: 1200
+  height: 1599
+  handle: some-rock-action
+- type: photo
+  key: 7w9e6d1n0a4gdds4drn0blpdq9a0
+  caption: a road with grass and trees on the side
+  score: 3.59
+  width: 1200
+  height: 1599
+  handle: a-road-with-grass-and-trees-on-the-side
+- type: photo
+  key: rt0f3csap1wktijtu1s8q00a0s5o
+  caption: a tree with many branches
+  score: 3.56
+  width: 1200
+  height: 1599
+  handle: a-tree-with-many-branches
+- type: photo
+  key: c0haf401kdp7te62fch6769axhg4
+  caption: river
+  score: 3.54
+  width: 1599
+  height: 1200
+  handle: river

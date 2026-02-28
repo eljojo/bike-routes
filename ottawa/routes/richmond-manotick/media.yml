@@ -1,0 +1,137 @@
+---
+- type: photo
+  key: sbnkfduzixsmyk9d2zrs5nwj9gsz
+  caption: a bear in a meadow
+  score: 6.67
+  width: 1600
+  height: 1200
+  handle: a-bear-in-a-meadow
+- type: photo
+  key: 7h9ghh14eqlq2xr6zy2bjjst7du8
+  caption: a snake in the grass
+  score: 6.65
+  width: 1687
+  height: 2999
+  handle: a-snake-in-the-grass
+- type: photo
+  key: ycgtxapy8blvxeg6qarx65pf6f0e
+  caption: a sign in a grassy area
+  score: 8.15
+  width: 1600
+  height: 1200
+  handle: a-sign-in-a-grassy-area
+- type: photo
+  key: lq4mzvjda3nrs49oq00fymoy2z0g
+  caption: a man wearing a helmet
+  score: 7.53
+  width: 1200
+  height: 1600
+  handle: a-man-wearing-a-helmet
+- type: photo
+  key: vc9u3awt9fks8v07d1hhekzc0bv8
+  caption: a path through a forest
+  score: 8.22
+  width: 1200
+  height: 1600
+  handle: a-path-through-a-forest
+- type: photo
+  key: vo7tmbn5wp4psgngvgf07oryixqk
+  caption: a grassy field with trees in the background
+  score: 7.51
+  width: 1200
+  height: 1600
+  handle: a-grassy-field-with-trees-in-the-backgrou
+- type: photo
+  key: iblo6uoivn8h5ggqngfs7m5pb6wi
+  caption: a dirt road in a forest
+  score: 6.61
+  width: 1200
+  height: 1600
+  handle: a-dirt-road-in-a-forest
+- type: photo
+  key: m0cc9mbntsu800fcc9587ebkbeor
+  caption: a sign with a picture of a horse and a dog on it
+  score: 5.63
+  width: 1600
+  height: 1200
+  handle: a-sign-with-a-picture-of-a-horse-and-a-do
+- type: photo
+  key: spkb5c1rnpdjzlkm2fbji8h5294f
+  caption: a field with trees and clouds in the sky
+  score: 4.09
+  width: 1600
+  height: 1200
+  handle: a-field-with-trees-and-clouds-in-the-sky
+- type: photo
+  key: o4wj0x047dtry2l7xbcnokz35gff
+  caption: a sunset over a field
+  score: 8.2
+  width: 1600
+  height: 1200
+  handle: a-sunset-over-a-field
+- type: photo
+  key: zkgl1v49mlgmc1dqq5o96lsbvi91
+  caption: a road with grass and trees on the side
+  score: 8.13
+  width: 1600
+  height: 1200
+  handle: a-road-with-grass-and-trees-on-the-side
+- type: photo
+  key: qfjqw658dnowk5m9esy3zvunbt15
+  caption: a bowl of soup next to a plate of food
+  score: 4.06
+  width: 1200
+  height: 1600
+  handle: a-bowl-of-soup-next-to-a-plate-of-food
+- type: photo
+  key: jimmgyqmng4g0bhsho121tcmgw26
+  caption: a road with power lines on the side
+  score: 9.74
+  width: 1200
+  height: 1600
+  cover: true
+  handle: cover
+- type: photo
+  key: mlj6ujnc9fs8rv38xv16ie530a8q
+  caption: a table with plates of food and glasses of juice
+  score: 2.88
+  width: 1600
+  height: 1200
+  handle: a-table-with-plates-of-food-and-glasses-o
+- type: photo
+  key: jdyd3azn96hs0dn29zst47cfredy
+  caption: a body of water with a city in the background
+  score: 3.8
+  width: 1600
+  height: 1200
+  handle: a-body-of-water-with-a-city-in-the-backgr
+- type: photo
+  key: nvozi9fhb5pu1n1ynn7qkzvhjebu
+  score: 1.0
+  width: 1600
+  height: 1200
+  handle: photo
+- type: photo
+  key: ky2ddb9ahaumw5h9pe3jvr9wnztq
+  score: 1.1
+  width: 1200
+  height: 1600
+  handle: photo-2
+- type: photo
+  key: ufn0v31h35stpbp5prd1oiajyamx
+  score: 1.5
+  width: 1600
+  height: 1200
+  handle: photo-3
+- type: photo
+  key: 7e1e2i4iw2okiwkgnvzeon5l972r
+  score: 1.5
+  width: 1200
+  height: 1600
+  handle: photo-4
+- type: photo
+  key: 5ekqlxypg65mhye2n5tnuqmgz6x3
+  score: 2.0
+  width: 1200
+  height: 1600
+  handle: photo-5

@@ -1,0 +1,38 @@
+---
+name: Ottawa
+display_name: Ottawa by Bike
+timezone: America/Toronto
+locale: en
+bounds:
+  north: 53.64
+  south: 44.58
+  east: -1.43
+  west: -76.74
+place_categories:
+  adventure:
+  - park
+  - beach
+  - bike-trail
+  - camping-spot
+  - water-fountain
+  - chill-spot
+  - lookout
+  - bridge
+  food:
+  - poutine
+  - beer
+  - pizza
+  - ice-cream
+  - cafe
+  - restaurant
+  utility:
+  - meeting-point
+  - bike-shop
+  - parking
+  - ferry
+  - wc
+  - bike-rental
+  - detour
+  - flooding
+  - something-interesting
+  - other

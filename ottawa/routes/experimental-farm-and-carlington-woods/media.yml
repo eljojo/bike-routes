@@ -1,0 +1,43 @@
+---
+- type: photo
+  key: 68j8vydunlgz6ltvxsabh25ij9h8
+  score: 9.15
+  width: 1599
+  height: 1200
+  handle: photo
+- type: photo
+  key: v8lfu0ufon10oyr0jdm29vjx7kt0
+  caption: sun shining through the trees
+  score: 4.7
+  width: 1599
+  height: 1200
+  handle: sun-shining-through-the-trees
+- type: photo
+  key: q4e51hlc1dpufhab115wce37xw6n
+  caption: looking up at trees and blue sky
+  score: 9.1
+  width: 1599
+  height: 1200
+  handle: looking-up-at-trees-and-blue-sky
+- type: photo
+  key: 5l099joi1njtd02mvgw56yoq4mcf
+  caption: a group of trees with pink flowers
+  score: 9.48
+  width: 1599
+  height: 1200
+  cover: true
+  handle: cover
+- type: photo
+  key: 41yshk2xhybk2jcorfbn3u8zdhhp
+  caption: a colorful sky over Ottawa
+  score: 2.8
+  width: 1599
+  height: 1200
+  handle: a-colorful-sky-over-ottawa
+- type: photo
+  key: 4vsiihnmmawsfg5oo5o4f1hj361b
+  caption: a field with trees and a colorful sky
+  score: 8.77
+  width: 1599
+  height: 1200
+  handle: a-field-with-trees-and-a-colorful-sky

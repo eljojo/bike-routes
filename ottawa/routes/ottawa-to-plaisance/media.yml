@@ -1,0 +1,87 @@
+---
+- type: photo
+  key: u5mrjgb2ax0a82vxpgpycu7v9f01
+  caption: a road with trees on either side
+  score: 6.11
+  width: 3000
+  height: 2250
+  handle: a-road-with-trees-on-either-side
+- type: photo
+  key: jlwp2vxcwd8l8pwl8ct24qr9bqil
+  caption: a Deer in the park
+  score: 9.53
+  width: 3000
+  height: 2250
+  handle: a-deer-in-the-park
+- type: photo
+  key: ptfq8hf1mnljswl1y3g9qvtzk758
+  caption: Canyon Grizl parked on a dirt path by the lake
+  score: 9.69
+  width: 1600
+  height: 1200
+  cover: true
+  handle: cover
+- type: photo
+  key: 65v3nxwyhlsfdm1fb9yjm6dcz1jr
+  caption: a grassy field with trees in the background
+  score: 6.08
+  width: 1600
+  height: 602
+  handle: a-grassy-field-with-trees-in-the-backgrou
+- type: photo
+  key: 9jvvmmjzaripb0j5o4rmlli12jto
+  caption: a street with trees on the side
+  score: 6.06
+  width: 2250
+  height: 3000
+  handle: a-street-with-trees-on-the-side
+- type: photo
+  key: cwadcabqrb2taqzfc5ahlmz02wy9
+  caption: a river with grass and trees
+  score: 7.34
+  width: 1600
+  height: 476
+  handle: a-river-with-grass-and-trees
+- type: photo
+  key: jzuwhjiemh1hr41are1nu19bdst7
+  caption: a dirt road with trees on either side of it
+  score: 7.32
+  width: 1200
+  height: 1600
+  handle: a-dirt-road-with-trees-on-either-side-of-
+- type: photo
+  key: 0k9fdooy2tm01lxpygitfjjup74o
+  caption: a dirt road in a forest
+  score: 7.75
+  width: 2250
+  height: 3000
+  handle: a-dirt-road-in-a-forest
+- type: photo
+  key: p3kb55dxo6iukr53ze2eb7kdasit
+  caption: me
+  score: 6.01
+  width: 1200
+  height: 1600
+  handle: me
+- type: photo
+  key: e5yvhm57f8eaxggsmszu8t48pnnh
+  caption: fall view
+  score: 7.31
+  width: 1600
+  height: 1200
+  handle: fall-view
+- type: photo
+  key: 8x2m9vl8qznzgfffxjubtty79w7s
+  caption: Nemo Dragonfly Bikepacking Tent
+  score: 7.29
+  width: 1600
+  height: 1200
+  handle: nemo-dragonfly-bikepacking-tent
+- type: video
+  key: 61tnwaym3bll74bdzx0fib6mfj6y
+  title: Deer at Plaisance Park
+  duration: PT6S
+  width: 1920
+  height: 1440
+  orientation: landscape
+  handle: deer-at-plaisance-park

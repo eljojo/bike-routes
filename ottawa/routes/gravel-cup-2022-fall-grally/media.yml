@@ -1,0 +1,75 @@
+---
+- type: photo
+  key: ee2iza8yinotk45cf9nopxgiuw1k
+  caption: friends enjoying gravel
+  score: 8.93
+  width: 2250
+  height: 3000
+  cover: true
+  handle: cover
+- type: photo
+  key: hslati6klpfgibybe06phkza3fr2
+  caption: enjoying the dirt
+  score: 4.11
+  width: 1600
+  height: 1200
+  handle: enjoying-the-dirt
+- type: photo
+  key: zp7l0rywpy9slfdl4ay54j1btrxp
+  caption: Kerianne riding her classic Peugeot bike
+  score: 4.07
+  width: 3000
+  height: 2250
+  handle: kerianne-riding-her-classic-peugeot-bike
+- type: photo
+  key: 4xpln2vyp14la82pb0le5y9sclr7
+  caption: bike-shop on the go
+  score: 4.04
+  width: 1200
+  height: 1600
+  handle: bike-shop-on-the-go
+- type: photo
+  key: 48jk0lrg5vbqo3pb2zbkga2v2n5c
+  caption: a group of friends riding bikes on a road
+  score: 4.02
+  width: 1200
+  height: 1600
+  handle: a-group-of-friends-riding-bikes-on-a-road
+- type: photo
+  key: u2netbufl55givkjfiw77pgrnxav
+  caption: friends riding bicycles on a road
+  score: 4.01
+  width: 1600
+  height: 1200
+  handle: friends-riding-bicycles-on-a-road
+- type: photo
+  key: o3o19f6vt7whiofzlbs9wt3iail6
+  caption: friends riding bikes
+  score: 3.99
+  width: 3000
+  height: 2250
+  handle: friends-riding-bikes
+- type: video
+  key: 71nx1hyq97av9jztsovr0s1grv26
+  title: whoop
+  duration: PT3S
+  width: 1920
+  height: 1440
+  orientation: landscape
+  handle: whoop
+- type: video
+  key: 9vf806pvogy5lap3eg56jyyjzylx
+  title: gravel
+  duration: PT6S
+  width: 1440
+  height: 1920
+  orientation: portrait
+  handle: gravel
+- type: video
+  key: w373sup33z36gjnjlbttcxkah2ph
+  title: road time
+  duration: PT8S
+  width: 1920
+  height: 1440
+  orientation: landscape
+  handle: road-time

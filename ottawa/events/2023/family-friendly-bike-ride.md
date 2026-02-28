@@ -1,0 +1,11 @@
+---
+name: Family Friendly Bike Ride
+start_date: '2023-07-23'
+end_date: '2023-07-23'
+registration_url: https://www.forourkids.ca/webikeforourkids_ottawagatineau
+distances: about 1 hour ride
+location: 11 Aviation Pkwy, Ottawa, ON K1K 2X5
+organizer: for-our-kids
+poster_key: 96lf2f1odrwqbl1vpnkj89trcyan
+poster_content_type: image/jpeg
+---

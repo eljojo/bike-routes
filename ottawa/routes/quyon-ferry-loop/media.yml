@@ -1,0 +1,233 @@
+---
+- type: photo
+  key: cobbwffx1jsvx1lj5935soaj30u1
+  score: 5.0
+  width: 1600
+  height: 1200
+  handle: photo
+- type: photo
+  key: oxytvcwm5o1n98ym4rb0judsg62p
+  score: 8.0
+  width: 2250
+  height: 3000
+  handle: photo-2
+- type: photo
+  key: t12qszxhobiu4rzq886wf2n8ghxe
+  score: 9.67
+  width: 1687
+  height: 2999
+  handle: photo-3
+- type: photo
+  key: mhj67ehx42fmu4l4iiop5uarg53y
+  caption: a road with grass and power lines on the side
+  score: 7.67
+  width: 1200
+  height: 1600
+  handle: a-road-with-grass-and-power-lines-on-the-
+- type: photo
+  key: qtgqoh7onldib37n9waw39sfh56b
+  caption: a field of grass with a house in the background
+  score: 9.0
+  width: 1600
+  height: 1200
+  handle: a-field-of-grass-with-a-house-in-the-back
+- type: photo
+  key: vd6g8o9vnfg8jyrqo5q24lzykpju
+  caption: 'hot dog: important food'
+  score: 4.67
+  width: 1200
+  height: 1600
+  handle: hot-dog-important-food
+- type: photo
+  key: v0z477585qytk9hj0vhszkhm9e9e
+  caption: a road with grass and power lines on the side
+  score: 4.33
+  width: 1200
+  height: 1600
+  handle: a-road-with-grass-and-power-lines-on-the--2
+- type: photo
+  key: u53hl98u5t0nribj26snblohlv48
+  caption: a dirt road with grass on either side of it
+  score: 7.33
+  width: 3000
+  height: 2250
+  handle: a-dirt-road-with-grass-on-either-side-of-
+- type: photo
+  key: 8rcyywraduteahrk1424hez869z5
+  caption: a bicycle parked on a fence
+  score: 4.0
+  width: 1600
+  height: 1200
+  handle: a-bicycle-parked-on-a-fence
+- type: photo
+  key: mibbj5gb9wkf4e91scpnfa2dwgtj
+  caption: a road with grass on the side
+  score: 3.67
+  width: 1200
+  height: 1600
+  handle: a-road-with-grass-on-the-side
+- type: photo
+  key: o6uzr2q240gn59hfms2lnc3ccgfg
+  caption: a road with trees on the side
+  score: 10.0
+  width: 2250
+  height: 3000
+  cover: true
+  handle: cover
+- type: photo
+  key: 6fmmjggaviy7a8b90qg9zjevie0q
+  caption: taking the ferry
+  score: 7.0
+  width: 1200
+  height: 1600
+  handle: taking-the-ferry
+- type: photo
+  key: 2urjy2ohdiuldi861771jvgvdl75
+  caption: ferry view
+  score: 3.33
+  width: 1600
+  height: 1200
+  handle: ferry-view
+- type: photo
+  key: 2sl7sjxn32tlg13ewso36u348fa0
+  caption: a road with grass on the side
+  score: 3.0
+  width: 1600
+  height: 1200
+  handle: a-road-with-grass-on-the-side-2
+- type: photo
+  key: n7mnxj0c0goisrds6e4dwfetxwkp
+  caption: a road with grass and trees on the side and a sunset in the background
+  score: 6.67
+  width: 1600
+  height: 1200
+  handle: a-road-with-grass-and-trees-on-the-side-a
+- type: photo
+  key: wqd1mgu2e3rfoh6xe2iqkyutlhua
+  caption: a road with trees on the side
+  score: 2.67
+  width: 1200
+  height: 1600
+  handle: a-road-with-trees-on-the-side
+- type: photo
+  key: wje0b1bfbrogxrfmrwjg6dnw3kb7
+  caption: a bike parked in a field
+  score: 2.33
+  width: 1600
+  height: 1200
+  handle: a-bike-parked-in-a-field
+- type: photo
+  key: 95z4xgj0zvqj81wahxszdd2fc2s8
+  caption: chilling by the water
+  score: 1.0
+  width: 1200
+  height: 1600
+  handle: chilling-by-the-water
+- type: video
+  key: l8vdm16cmty4bt25gt4d51asm0xe
+  title: We really like bikes!
+  duration: PT15S
+  width: 2160
+  height: 3840
+  orientation: portrait
+  handle: we-really-like-bikes
+- type: video
+  key: 90110ukov6uqhuaef0yegomfi3om
+  title: gravel patch
+  duration: PT21S
+  width: 2160
+  height: 3840
+  orientation: portrait
+  handle: gravel-patch
+- type: photo
+  key: x3j8oy81u922ivlbw76l6uhcxvv9
+  score: 8.67
+  width: 2999
+  height: 2250
+  handle: photo-4
+- type: photo
+  key: exsmfiy5fvfh7qf09sg8uqvx3aqd
+  score: 6.33
+  width: 1600
+  height: 1200
+  handle: photo-5
+- type: photo
+  key: ejutk6n3jym21r2xh15r64kkmddf
+  score: 6.0
+  width: 1600
+  height: 1200
+  handle: photo-6
+- type: photo
+  key: zct5abcgpzapot589b4egd290njy
+  score: 2.0
+  width: 1600
+  height: 1200
+  handle: photo-7
+- type: photo
+  key: 2siisxldvhgdin64qj3mqcfxtbpi
+  score: 5.67
+  width: 1200
+  height: 1600
+  handle: photo-8
+- type: photo
+  key: 2mfrvdurssaqy4u0gujbr6jwi597
+  score: 1.67
+  width: 1600
+  height: 1200
+  handle: photo-9
+- type: photo
+  key: r91da76xiyllatif3fzg23ybsibp
+  score: 1.33
+  width: 1600
+  height: 1200
+  handle: photo-10
+- type: photo
+  key: 0n317yktkxwx27bfhce6168iztob
+  score: 9.33
+  width: 2999
+  height: 1687
+  handle: photo-11
+- type: photo
+  key: rhrig9sr8kfjl6wcyirwij14qcq3
+  score: 5.33
+  width: 1200
+  height: 1600
+  handle: photo-12
+- type: photo
+  key: 5p3tjmlhw3f0ol4ysgxmg31yaj0y
+  score: 8.33
+  width: 1200
+  height: 1600
+  handle: photo-13
+- type: video
+  key: drv07jw6v0mo8pfcyj7hravku4h2
+  title: Party Ride!!
+  duration: PT15S
+  width: 1920
+  height: 1080
+  orientation: landscape
+  handle: party-ride
+- type: video
+  key: 7p6sabrr2zpspe0sl2jgks3qozae
+  title: Riding in bike paths
+  duration: PT35S
+  width: 1920
+  height: 1080
+  orientation: landscape
+  handle: riding-in-bike-paths
+- type: video
+  key: 87jj16e8gqosloiftm4jdd763d58
+  title: chill ride in bike paths
+  duration: PT16S
+  width: 1920
+  height: 1080
+  orientation: landscape
+  handle: chill-ride-in-bike-paths
+- type: video
+  key: yn4xl2m0enx0bphxtntx1h1savwg
+  title: Gravel Ride
+  duration: PT30S
+  width: 1920
+  height: 1080
+  orientation: landscape
+  handle: gravel-ride

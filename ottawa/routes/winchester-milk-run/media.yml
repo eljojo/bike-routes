@@ -1,0 +1,65 @@
+---
+- type: photo
+  key: adf3n76jeaozbtsa4mivk4o7n8qq
+  caption: squat pic
+  score: 8.91
+  width: 1600
+  height: 1200
+  cover: true
+  handle: cover
+- type: photo
+  key: 7xvkuaus2hwbiqo2e0wopvmpblsa
+  caption: Winchester
+  score: 6.6
+  width: 1200
+  height: 1600
+  handle: winchester
+- type: photo
+  key: s99pw0dqkdyh6yhgrzphuvvnwqxm
+  caption: enjoying the view
+  score: 3.92
+  width: 1600
+  height: 1200
+  handle: enjoying-the-view
+- type: photo
+  key: qbtk1vtcda6pjkf52sng6vpyceen
+  caption: some rowdy dirt
+  score: 6.58
+  width: 1200
+  height: 1600
+  handle: some-rowdy-dirt
+- type: photo
+  key: jnb6sgqfm4d9kiugio81j8bg4wv6
+  caption: a person riding a bicycle on a road with grass and trees on the side
+  score: 3.85
+  width: 1600
+  height: 1200
+  handle: a-person-riding-a-bicycle-on-a-road-with-
+- type: photo
+  key: 3f5pfm5synbmd22416xsq99ffh7q
+  caption: a road with windmills on the side
+  score: 7.5
+  width: 1600
+  height: 1200
+  handle: a-road-with-windmills-on-the-side
+- type: photo
+  key: 6umh1v81h4ekxezxphoa8frgqpc0
+  caption: enjoying the road
+  score: 3.82
+  width: 1600
+  height: 1200
+  handle: enjoying-the-road
+- type: photo
+  key: 7eeon7fe4w2uxv98ogbcpxoq51lr
+  caption: a road with grass on the side
+  score: 6.56
+  width: 1600
+  height: 1200
+  handle: a-road-with-grass-on-the-side
+- type: photo
+  key: enag2inh1ryi9f7c35ie60p2ygba
+  caption: a large open field with trees in the distance
+  score: 6.55
+  width: 1600
+  height: 1200
+  handle: a-large-open-field-with-trees-in-the-dist
