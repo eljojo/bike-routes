@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout data repo
+        uses: actions/checkout@v4
+
+      - name: Checkout astro repo
+        uses: actions/checkout@v4
+        with:
+          repository: eljojo/bike-app-astro
+          token: ${{ secrets.ASTRO_REPO_TOKEN }}
+          ref: main
+          path: bike-app-astro
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: bike-app-astro/package-lock.json
+
+      - name: Install dependencies
+        run: cd bike-app-astro && npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+
+      - name: Build site
+        run: cd bike-app-astro && npx astro build
+        env:
+          CONTENT_DIR: ${{ github.workspace }}
+          CITY: ottawa
