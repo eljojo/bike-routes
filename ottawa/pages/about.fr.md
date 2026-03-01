@@ -27,3 +27,11 @@ Faites-vous une idée de la balade avec des photos et des vidéos, et profitez d
   <li><a href="https://ncc-ccn.maps.arcgis.com/apps/View/index.html?appid=d69460c2d8df472db1a456183bc62fcf" target="_blank" rel="noopener">Carte officielle de vélo de la CCN</a></li>
   <li><a href="https://web.archive.org/web/20230525133452/https://www.cbc.ca/listen/live-radio/1-100-ottawa-morning/clip/15986562-cyclist-created-website-finding-bike-routes-easier" target="_blank" rel="noopener">Entrevue par CBC Ottawa Morning</a></li>
 </ul>
+
+<h3>Amis</h3>
+
+<ul>
+  <li><a href="https://cyclingguide.org" target="_blank" rel="noopener">CyclingGuide.org</a> - Installez l'application pour naviguer vos balades</li>
+  <li><a href="https://www.letsgocargo.ca" target="_blank" rel="noopener">Let's Go Cargo</a> - Vous cherchez un vélo cargo? Allez les voir!</li>
+  <li><a href="https://www.bikepackadventures.ca/summit" target="_blank" rel="noopener">2026 Canadian Shield Bikepacking Summit</a> - Par Bikepack Adventures</li>
+</ul>

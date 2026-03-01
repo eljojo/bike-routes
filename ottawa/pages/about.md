@@ -27,3 +27,11 @@ Get a feel for the ride with photos and videos, and enjoy my personal tips, like
   <li><a href="https://ncc-ccn.maps.arcgis.com/apps/View/index.html?appid=d69460c2d8df472db1a456183bc62fcf" target="_blank" rel="noopener">Official NCC Biking Map</a></li>
   <li><a href="https://web.archive.org/web/20230525133452/https://www.cbc.ca/listen/live-radio/1-100-ottawa-morning/clip/15986562-cyclist-created-website-finding-bike-routes-easier" target="_blank" rel="noopener">Interview by CBC Ottawa Morning</a></li>
 </ul>
+
+<h3>Friends</h3>
+
+<ul>
+  <li><a href="https://cyclingguide.org" target="_blank" rel="noopener">CyclingGuide.org</a> - Install the app to navigate your rides</li>
+  <li><a href="https://www.letsgocargo.ca" target="_blank" rel="noopener">Let's Go Cargo</a> - Looking for a cargo bike? Check them out!</li>
+  <li><a href="https://www.bikepackadventures.ca/summit" target="_blank" rel="noopener">2026 Canadian Shield Bikepacking Summit</a> - By Bikepack Adventures</li>
+</ul>
