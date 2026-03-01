@@ -21,6 +21,9 @@ author:
   photo_url: https://cdn.ottawabybike.ca/assets/me-8efeeb32.jpg
 plausible_domain: ottawabybike.ca
 site_title_html: <em>Ottawa</em> by <em>Bike</em>
+center:
+  lat: 45.42
+  lng: -75.69
 bounds:
   north: 53.64
   south: 44.58
