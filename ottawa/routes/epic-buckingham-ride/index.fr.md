@@ -1,4 +1,5 @@
 ---
+slug: epique-sortie-a-buckingham
 name: L'épique sortie à Buckingham!
 tagline: des côtes et descentes sans arrêt, des vues d'automne incroyables
 ---

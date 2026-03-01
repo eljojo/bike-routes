@@ -1,4 +1,5 @@
 ---
+slug: ottawa-a-plaisance
 name: Ottawa à Plaisance
 tagline: parfait pour un camping d'une nuit en automne
 ---

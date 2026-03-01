@@ -1,4 +1,5 @@
 ---
+slug: britannia-sentier-riviere-outaouais
 name: "Britannia 🌳 par le sentier de la rivière des Outaouais"
 tagline: "🏆 Parcours de l'année : 2021"
 ---
