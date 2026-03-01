@@ -1,0 +1,17 @@
+name: Notify Astro Site
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger astro rebuild
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.ASTRO_REPO_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/eljojo/bike-app-astro/dispatches \
+            -d '{"event_type": "data-updated"}'
