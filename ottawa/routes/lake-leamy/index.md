@@ -6,6 +6,7 @@ tags:
 - bike path
 - beach
 - snacks
+- chill
 created_at: '2022-11-19'
 updated_at: '2024-05-21'
 tagline: stay by the water and cool down by Lac-Leamy
