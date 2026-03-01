@@ -1,8 +1,26 @@
 ---
 name: Ottawa
 display_name: Ottawa by Bike
+tagline: Curated cycling routes in Ottawa and Gatineau
+description: >-
+  Ottawa by Bike is a curated guide to cycling routes in Ottawa and Gatineau, Canada.
+  It covers road routes, gravel routes, and multi-use pathways across the National
+  Capital Region, with GPS tracks, elevation profiles, photos, and local tips.
+url: https://ottawabybike.ca
+domain: ottawabybike.ca
+cdn_url: https://cdn.ottawabybike.ca
+videos_cdn_url: https://videos.ottawabybike.ca
+tiles_url: https://tiles.ottawabybike.ca/cycle/{z}/{x}/{y}{r}.png
 timezone: America/Toronto
 locale: en
+author:
+  name: José Albornoz
+  email: jose@ottawabybike.ca
+  url: https://ottawabybike.ca/about
+  twitter: "@eljojo"
+  photo_url: https://cdn.ottawabybike.ca/assets/me-8efeeb32.jpg
+plausible_domain: ottawabybike.ca
+site_title_html: <em>Ottawa</em> by <em>Bike</em>
 bounds:
   north: 53.64
   south: 44.58
