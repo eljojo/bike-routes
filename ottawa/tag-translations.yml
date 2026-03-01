@@ -1,0 +1,37 @@
+---
+# Optional tag translations. Tags appear in their original form by default.
+# Only add entries here when a tag needs a different label in another language.
+bike path:
+  fr: piste cyclable
+road:
+  fr: route
+long ride:
+  fr: longue sortie
+scenic:
+  fr: panoramique
+chill:
+  fr: relaxe
+beach:
+  fr: plage
+snacks:
+  fr: casse-croûte
+race:
+  fr: course
+family friendly:
+  fr: familial
+hard:
+  fr: difficile
+flat:
+  fr: plat
+elevation:
+  fr: dénivelé
+easy:
+  fr: facile
+single track:
+  fr: sentier simple
+park:
+  fr: parc
+ferry:
+  fr: traversier
+fast:
+  fr: rapide
