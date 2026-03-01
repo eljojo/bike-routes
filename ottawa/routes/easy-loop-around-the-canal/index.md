@@ -15,6 +15,7 @@ variants:
 - name: Easy Loop around the Canal
   gpx: main.gpx
   distance_km: 13.0
+  strava_url: https://www.strava.com/activities/9055038607
 ---
 
 Looking for a beginner-friendly cycling route in Ottawa? Look no further than my favourite ride - the one that got me hooked on cycling!

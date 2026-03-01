@@ -13,9 +13,12 @@ variants:
 - name: Main
   gpx: main.gpx
   distance_km: 100.0
+  strava_url: https://www.strava.com/activities/8862653634
+  rwgps_url: https://ridewithgps.com/routes/42466211
 - name: Petit Roubaix
   gpx: variants/petit-roubaix.gpx
   distance_km: 44.1
+  strava_url: https://www.strava.com/activities/8788452392
 ---
 
 These routes are Kerianne's mastermind, heavily based on [Almonte Paris Roubaix race](https://ottawabicycleclub.ca/almonte-paris-roubaix/), along with some tweaks. Very fun early spring gravel!

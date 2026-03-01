@@ -13,6 +13,7 @@ variants:
 - name: Pink Lake in Gatineau Park
   gpx: main.gpx
   distance_km: 39.7
+  strava_url: https://www.strava.com/activities/5675170136
 ---
 
 For cycling enthusiasts looking for a challenge, [Pink Lake](https://ncc-ccn.gc.ca/places/pink-lake) in [Gatineau Park](https://ncc-ccn.gc.ca/places/gatineau-park) is an absolute must-ride. This route offers a great workout with plenty of uphill sections, but the rewards are well worth it: breathtaking views and thrilling descents that can reach up to 60km/h!

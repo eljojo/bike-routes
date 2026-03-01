@@ -14,6 +14,8 @@ variants:
 - name: Epic Buckingham ride!
   gpx: main.gpx
   distance_km: 93.4
+  strava_url: https://www.strava.com/activities/8014510034
+  rwgps_url: https://ridewithgps.com/routes/41290515?privacy_code=QYzdfhB5D7M8D4qZ
 ---
 
 Are you up for a challenging day-long cycling adventure? Then you won't want to miss this route!

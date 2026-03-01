@@ -13,9 +13,11 @@ variants:
 - name: Champlain Lookout Ride
   gpx: main.gpx
   distance_km: 63.3
+  strava_url: https://www.strava.com/activities/7099681810
 - name: Only Meech Lake
   gpx: variants/only-meech.gpx
   distance_km: 67.2
+  strava_url: https://www.strava.com/activities/7138101574
 ---
 
 Visit Gatineau Park, take a dip in Meech Lake and enjoy sunset in the Champlain Lookout.

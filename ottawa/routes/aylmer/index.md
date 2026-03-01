@@ -15,9 +15,11 @@ variants:
 - name: 2024 Detour
   gpx: main.gpx
   distance_km: 34.3
+  strava_url: https://www.strava.com/activities/11458503483
 - name: Normal Route
   gpx: variants/main.gpx
   distance_km: 40.8
+  strava_url: https://www.strava.com/activities/7907456752
 ---
 
 If you're on the hunt for an amazing 40k cycling route in Ottawa, look no further than Aylmer! I kid you not, this route is absolutely fantastic. It's perfect for cyclists of all levels, thanks to its smooth, paved roads and optional parallel gravel sections.

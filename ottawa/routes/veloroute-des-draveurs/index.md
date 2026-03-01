@@ -15,6 +15,8 @@ variants:
 - name: 'Blue Sea: Véloroute des Draveurs'
   gpx: main.gpx
   distance_km: 87.7
+  strava_url: https://www.strava.com/activities/7672413288
+  rwgps_url: https://ridewithgps.com/routes/13871967
 ---
 
 This is a rare gem. Half Gravel, Half Road, with a perfect chill spot halfway thru. You **have** to take a dip at Blue Sea! there's a gazebo perfect for a picnic.

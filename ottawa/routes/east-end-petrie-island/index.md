@@ -13,6 +13,7 @@ variants:
 - name: East End ➡️ Petrie Island
   gpx: main.gpx
   distance_km: 19.6
+  strava_url: https://www.strava.com/activities/5648624316
 ---
 
 Downtown to Orléans is a beautiful ride!

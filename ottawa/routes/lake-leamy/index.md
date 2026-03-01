@@ -13,6 +13,7 @@ variants:
 - name: Main
   gpx: main.gpx
   distance_km: 24.3
+  strava_url: https://www.strava.com/activities/3942831260
 ---
 
 Following the **Voyageurs Pathway**, you can have a fantastic cycling experience and even chill by the beach at [Leamy Lake Park](https://goo.gl/maps/sCLBC9pNtW2nQVQM9). It's the perfect spot to relax and soak up some sun after a refreshing ride.

@@ -14,6 +14,7 @@ variants:
 - name: Ottawa to Carleton Place and Smith Falls
   gpx: main.gpx
   distance_km: 80.3
+  rwgps_url: https://ridewithgps.com/routes/46629322
 ---
 
 This route combines some segments of the Trans Canada Trail to provide a _very straight_ gravel experience. This is a great ride for anyone getting started with long distance gravel, since it avoids roads. It's built on previous rail roads. It can get a bit dull at times since it's so straight, so make sure to bring a podcast, some suncreen, and maybe a gatorade!

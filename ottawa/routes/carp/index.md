@@ -11,9 +11,11 @@ variants:
 - name: From Britannia
   gpx: main.gpx
   distance_km: 67.7
+  rwgps_url: https://ridewithgps.com/routes/43419268?privacy_code=zrvhMP9C1uwy1pUMbpowHHXdeQABdmdm
 - name: From Downtown
   gpx: variants/downtown.gpx
   distance_km: 103.3
+  strava_url: https://www.strava.com/activities/7727678585
 ---
 
 Carp is a rural community in the west of Ottawa. This is a fairly long road ride, but it's very entertaining and full of interesting views. You can extend it even further by heading to Dunrobin.

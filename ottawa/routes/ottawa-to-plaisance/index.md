@@ -12,6 +12,8 @@ variants:
 - name: Ottawa to Plaisance
   gpx: main.gpx
   distance_km: 70.9
+  strava_url: https://www.strava.com/activities/7917701144
+  rwgps_url: https://ridewithgps.com/routes/41120844?privacy_code=PTiJKhbqslHXdLjc
 ---
 
 If you're looking for a quick escape from the hustle and bustle of the city, look no further than this amazing overnight bike trip from Ottawa to Plaisance National Park. It's the perfect way to immerse yourself in the beauty of nature and unwind from the stresses of city life.

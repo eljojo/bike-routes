@@ -14,9 +14,12 @@ variants:
 - name: Main
   gpx: main.gpx
   distance_km: 39.6
+  strava_url: https://www.strava.com/activities/7882187088
+  rwgps_url: https://ridewithgps.com/routes/16233215
 - name: Also Lake Leamy
   gpx: variants/lake-leamy-extension.gpx
   distance_km: 43.2
+  strava_url: https://www.strava.com/activities/10120330448
 ---
 
 Looking for a relaxing cycling route with stunning views? Look no further than Vincent Massey and beyond!

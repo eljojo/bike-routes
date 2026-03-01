@@ -15,6 +15,8 @@ variants:
 - name: Quyon Ferry loop
   gpx: main.gpx
   distance_km: 131.6
+  strava_url: https://www.strava.com/activities/9122458035
+  rwgps_url: https://ridewithgps.com/routes/42987710?privacy_code=QO8G4mfNPK3Uy5FQ
 ---
 
 Get ready for an epic long ride that's nothing short of special! Starting from Québec and ending in Ontario, this ride is all about experiencing the thrill of crossing provinces via the ferry halfway through. But, that's not all - the gravel in the first half is worth the trip in itself!

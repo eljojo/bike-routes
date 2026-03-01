@@ -13,6 +13,8 @@ variants:
 - name: 'Gravel Cup: 2022 Fall Grally'
   gpx: main.gpx
   distance_km: 80.8
+  strava_url: https://www.strava.com/activities/7793227223
+  rwgps_url: https://ridewithgps.com/routes/42740396
 ---
 
 [Gravel Cup Canada](https://gravelcup.com) organizes the [Ottawa Valley Fall Grally](https://gravelcup.com/gravel-cup-events/ottawa-valley-fall-grally) in September.

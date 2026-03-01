@@ -13,6 +13,8 @@ variants:
 - name: "Greenbelt \U0001F333"
   gpx: main.gpx
   distance_km: 45.9
+  strava_url: https://www.strava.com/activities/9023908646
+  rwgps_url: https://ridewithgps.com/routes/42797389?privacy_code=JEZEcy5OoqhqRETH
 ---
 
 Discover the lush scenery of Ottawa's protected Greenbelt, a haven of green space, forests, farms, and wetlands encircling the downtown core.

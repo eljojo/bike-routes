@@ -12,6 +12,7 @@ variants:
 - name: Pink-Aylmer
   gpx: main.gpx
   distance_km: 80.1
+  strava_url: https://www.strava.com/activities/7229492269
 ---
 
 This route mixes all the rock stars [Pink Lake](/routes/17-pink-lake-in-gatineau-park) and [Aylmer](/routes/1-aylmer), if you're lucky, splash some [Lac-Leamy](/routes/26-chill-loop-to-lake-leamy) too! What could go wrong!?

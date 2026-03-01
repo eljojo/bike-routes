@@ -11,6 +11,8 @@ variants:
 - name: "Winchester Milk Run \U0001F404"
   gpx: main.gpx
   distance_km: 78.3
+  strava_url: https://www.strava.com/activities/7700708788
+  rwgps_url: https://ridewithgps.com/routes/36013850
 ---
 
 Alright, saddle up and let's hit the trail, folks! I've got the lowdown on a groovy gravel route that'll take you through a journey filled with scenic wonder and adventure! 
