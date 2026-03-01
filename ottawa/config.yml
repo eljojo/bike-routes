@@ -12,7 +12,8 @@ cdn_url: https://cdn.ottawabybike.ca
 videos_cdn_url: https://videos.ottawabybike.ca
 tiles_url: https://tiles.ottawabybike.ca/cycle/{z}/{x}/{y}{r}.png
 timezone: America/Toronto
-locale: en
+locale: en-CA
+locales: [en-CA, fr-CA]
 author:
   name: José Albornoz
   email: jose@ottawabybike.ca
