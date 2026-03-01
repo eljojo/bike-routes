@@ -7,4 +7,5 @@ status: published
 address: Arboretum, Ottawa, ON K1A 0C6, Canada
 website: https://friendsofthefarm.ca/plan-your-visit/attractions/
 phone: "(613) 759-1982"
+google_maps_url: https://goo.gl/maps/fFJEx7PADHXWSBM69
 ---

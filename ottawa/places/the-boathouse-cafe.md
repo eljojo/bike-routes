@@ -7,4 +7,5 @@ status: published
 address: 646 River Rd, Kemptville, ON K0G 1J0, Canada
 website: https://www.theboathousecafe.ca/
 phone: "(343) 306-0383"
+google_maps_url: https://maps.app.goo.gl/kWDBHh6PBtWvUR7u5
 ---

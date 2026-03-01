@@ -6,4 +6,5 @@ lng: -75.7961
 status: published
 address: 273 Britannia Rd, Ottawa, ON K2B 5X3, Canada
 website: https://www.facebook.com/thebeachconers/
+google_maps_url: https://maps.google.com/?cid=14108565727548001887
 ---

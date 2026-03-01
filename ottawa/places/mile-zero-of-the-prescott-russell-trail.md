@@ -5,4 +5,5 @@ lat: 45.413088
 lng: -75.591998
 status: published
 address: Prescott-Russell Trail Link, Orléans, ON K1C 7G4, Canada
+google_maps_url: https://goo.gl/maps/2La4EoqHGWZCDfkz8
 ---

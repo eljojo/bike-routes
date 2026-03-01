@@ -7,4 +7,5 @@ status: published
 address: 1573 Stittsville Main St, Stittsville, ON K2S 1P1, Canada
 website: https://www.facebook.com/jojoscreameria/
 phone: "(613) 836-2210"
+google_maps_url: https://maps.app.goo.gl/5aGQa5DZprihTTJY6
 ---

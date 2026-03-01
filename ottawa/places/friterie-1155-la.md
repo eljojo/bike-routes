@@ -6,4 +6,5 @@ lng: -75.494248
 status: published
 address: 1155 Chemin de Montréal O, Gatineau, QC J8M 1T2, Canada
 phone: "(819) 617-0717"
+google_maps_url: https://maps.app.goo.gl/eDeBP6LBA1HcUGZX6
 ---

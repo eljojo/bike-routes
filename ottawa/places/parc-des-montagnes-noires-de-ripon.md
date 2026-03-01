@@ -7,4 +7,5 @@ status: published
 address: 39 Chem. de la Montagne Noire, Ripon, QC J0V 1V0, Canada
 website: https://www.parcdesmontagnesnoires.ca/
 phone: "(819) 983-1087"
+google_maps_url: https://maps.app.goo.gl/GV5TNBaPGEFoGBsz8
 ---

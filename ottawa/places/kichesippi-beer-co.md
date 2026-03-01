@@ -7,6 +7,7 @@ status: published
 address: 2265 Robertson Rd, Ottawa, ON K2H 5Z2, Canada
 website: http://www.kbeer.ca/
 phone: "(613) 728-7845"
+google_maps_url: https://maps.app.goo.gl/W4Rx7dhoAatzjqJC7
 ---
 
 Great stop to finish a ride, next to the rail trail that goes towards Stittsville

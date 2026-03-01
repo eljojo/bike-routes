@@ -7,4 +7,5 @@ status: published
 address: 205B St Lawrence St, Merrickville, ON K0G 1N0, Canada
 website: https://www.thevillagebean.ca/
 phone: "(613) 269-4646"
+google_maps_url: https://maps.app.goo.gl/eQAhgMjkzaRJuG5C8
 ---

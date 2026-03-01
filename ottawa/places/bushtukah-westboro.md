@@ -7,4 +7,5 @@ status: published
 address: 203 Richmond Rd, Ottawa, ON K1Z 6W4, Canada
 website: http://bushtukah.com/
 phone: "(613) 792-1170"
+google_maps_url: https://goo.gl/maps/M1qnGGDeJ8oWNhrk9
 ---

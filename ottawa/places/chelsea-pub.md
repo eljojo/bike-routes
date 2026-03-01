@@ -7,4 +7,5 @@ status: published
 address: 238 Chem. Old Chelsea, Chelsea, QC J9B 1J3, Canada
 website: http://www.chelseapub.ca/
 phone: "(819) 827-5300"
+google_maps_url: https://goo.gl/maps/8VMEr8h35YH24JAp6
 ---

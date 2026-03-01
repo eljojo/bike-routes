@@ -7,4 +7,5 @@ status: published
 address: 1015 Rue Jacques-Cartier, Gatineau, QC J8T 2W3, Canada
 website: https://aladerivebrasserieartisanale.ca/
 phone: "(819) 568-7666"
+google_maps_url: https://goo.gl/maps/K5zwoEwVmWBhvbeD6
 ---

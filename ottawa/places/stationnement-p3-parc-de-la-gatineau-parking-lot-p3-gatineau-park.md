@@ -8,4 +8,5 @@ address: Parc de la Gatineau, Welcome Area, Prom. de la Gatineau, Gatineau, QC J
   3H6, Canada
 website: https://ncc-ccn.gc.ca/places/gatineau-park
 phone: "(819) 827-2020"
+google_maps_url: https://maps.app.goo.gl/wk9xh2uJYSXYJkGPA
 ---

@@ -7,6 +7,7 @@ status: published
 address: 42 Mnt Meunier, Ripon, QC J0V 1V0, Canada
 website: http://lafilleduboulanger.ca/
 phone: "(514) 602-5926"
+google_maps_url: https://maps.app.goo.gl/ii4heVYkNVLitjYd9
 ---
 
 only opens friday and saturday!
