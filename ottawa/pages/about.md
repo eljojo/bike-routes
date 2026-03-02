@@ -31,7 +31,7 @@ Get a feel for the ride with photos and videos, and enjoy my personal tips, like
 <h3>Friends</h3>
 
 <ul>
-  <li><a href="https://cyclingguide.org" target="_blank" rel="noopener">CyclingGuide.org</a> - Install the app to navigate your rides</li>
+  <li><a href="https://www.cyclingguide.app" target="_blank" rel="noopener">CyclingGuide.app</a> - Install the app to navigate your rides</li>
   <li><a href="https://www.letsgocargo.ca" target="_blank" rel="noopener">Let's Go Cargo</a> - Looking for a cargo bike? Check them out!</li>
   <li><a href="https://www.bikepackadventures.ca/summit" target="_blank" rel="noopener">2026 Canadian Shield Bikepacking Summit</a> - By Bikepack Adventures</li>
 </ul>
