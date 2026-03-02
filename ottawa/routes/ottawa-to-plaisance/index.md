@@ -5,6 +5,7 @@ distance_km: 70.9
 tags:
 - bikepacking
 - camping
+- road
 created_at: '2022-11-19'
 updated_at: '2025-08-11'
 tagline: perfect fall one nighter camping
