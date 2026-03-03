@@ -1,4 +1,3 @@
----
 - type: photo
   key: sbnkfduzixsmyk9d2zrs5nwj9gsz
   caption: a bear in a meadow
@@ -107,7 +106,7 @@
   handle: a-body-of-water-with-a-city-in-the-backgr
 - type: photo
   key: nvozi9fhb5pu1n1ynn7qkzvhjebu
-  score: 1.0
+  score: 1
   width: 1600
   height: 1200
   handle: photo
@@ -131,7 +130,7 @@
   handle: photo-4
 - type: photo
   key: 5ekqlxypg65mhye2n5tnuqmgz6x3
-  score: 2.0
+  score: 2
   width: 1200
   height: 1600
   handle: photo-5
