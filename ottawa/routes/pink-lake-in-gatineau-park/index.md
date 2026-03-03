@@ -23,7 +23,7 @@ For an added bonus, note that the National Capital Commission (NCC) typically cl
 While this ride can be quite demanding, even for experienced cyclists, it's certainly doable for newcomers with some training and preparation. We recommend bringing sugary snacks to avoid muscle soreness and staying away from [the bunk!](https://www.youtube.com/watch?v=sFVpUBCe9bQ).
 
 ### There's More!
-Gatineau Park itself is a world-class destination, and Pink Lake serves as an excellent starting point for exploring its many attractions!!!
+Gatineau Park itself is a world-class destination, and Pink Lake serves as an excellent starting point for exploring its many attractions!!!!!
 
 - Enjoy the [**Champlain Lookout** and **Meech Lake**](/routes/8-gatineau-meech-champlain)
 - Go camping at [**Taylor Lake**](/tours/4-taylor-lake-camping)
