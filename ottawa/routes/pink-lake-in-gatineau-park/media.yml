@@ -1,4 +1,3 @@
----
 - type: photo
   key: 9yi3dga1nhrismf8b7s1novojprn
   score: 3.86
@@ -13,7 +12,7 @@
   handle: photo-2
 - type: photo
   key: e5muiup5025zefqoh9ne1l5go0ch
-  score: 10.0
+  score: 10
   width: 1200
   height: 1599
   cover: true
@@ -40,19 +39,19 @@
   height: 1536
   handle: a-wooden-bridge-in-a-forest
 - type: photo
-  key: fx3sg1gcu4w87jctxvehha9rzy3m
-  caption: beach selfie
-  score: 3.05
-  width: 2048
-  height: 1536
-  handle: beach-selfie
-- type: photo
   key: ehepbbz4635mtsiwh3t5g8iot909
   caption: you're in gatineau now
   score: 2.64
   width: 2048
   height: 1536
   handle: you-re-in-gatineau-now
+- type: photo
+  key: fx3sg1gcu4w87jctxvehha9rzy3m
+  caption: beach selfie
+  score: 3.05
+  width: 2048
+  height: 1536
+  handle: beach-selfie
 - type: photo
   key: aargvdq0ogm9uj0da6n1jk3wd0t1
   caption: me
@@ -88,18 +87,9 @@
   width: 1200
   height: 1600
   handle: a-road-with-trees-on-either-side
-- type: video
-  key: rc80pjjcu57l0hjhnzt3rfsq9edu
-  title: View from Pink Lake
-  duration: PT1M5S
-  width: 3840
-  height: 2160
-  orientation: landscape
-  poster_key: iyp8xo658237ge09d3s1n4klbofu
-  handle: view-from-pink-lake
 - type: photo
   key: ui62o9i7x6dqe29ig5srbb79btkg
-  score: 1.0
+  score: 1
   width: 2999
   height: 1687
   handle: photo-3
@@ -157,6 +147,15 @@
   width: 1600
   height: 1200
   handle: photo-12
+- type: video
+  key: rc80pjjcu57l0hjhnzt3rfsq9edu
+  title: View from Pink Lake
+  duration: PT1M5S
+  width: 3840
+  height: 2160
+  orientation: landscape
+  poster_key: iyp8xo658237ge09d3s1n4klbofu
+  handle: view-from-pink-lake
 - type: video
   key: 3mzaailb2vgq7wcpi2ri1zasjw6u
   title: Sunset at Pink Lake
