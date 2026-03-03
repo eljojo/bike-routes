@@ -2,7 +2,7 @@ name: Notify Astro Site
 
 on:
   push:
-    branches: [main]
+    branches: [main, staging]
 
 jobs:
   notify:
@@ -10,8 +10,13 @@ jobs:
     steps:
       - name: Trigger astro rebuild
         run: |
+          if [ "${{ github.ref_name }}" = "staging" ]; then
+            EVENT_TYPE="staging-data-updated"
+          else
+            EVENT_TYPE="data-updated"
+          fi
           curl -X POST \
             -H "Authorization: token ${{ secrets.ASTRO_REPO_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/eljojo/bike-app-astro/dispatches \
-            -d '{"event_type": "data-updated"}'
+            -d "{\"event_type\": \"$EVENT_TYPE\"}"
