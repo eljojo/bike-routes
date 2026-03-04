@@ -458,6 +458,15 @@
   width: 1200
   height: 1599
   handle: photo-3
+- type: photo
+  key: t1nx9u04j1o1dn2bq74lob9jxtoi
+  score: 1
+- type: photo
+  key: 120zwwbl0dvvrxzmnopb2lyky9fm
+  score: 1
+- type: photo
+  key: wynjh1xghp2ydchwsglrt4zlehop
+  score: 1
 - type: video
   key: t1nx9u04j1o1dn2bq74lob9jxtoi
   title: Sunset at Dow's Lake
