@@ -1,19 +1,18 @@
----
-- type: photo
-  key: 8fo9wy4cbqegruqx286q0l3okts2
-  caption: enjoying some poutine
-  score: 10.0
-  width: 1600
-  height: 1200
-  cover: true
-  handle: cover
 - type: photo
   key: 5dp27sc9tr5ja584br1t9ask1zvd
-  caption: me
+  caption: me :)
   score: 8.9
   width: 1200
   height: 1600
   handle: me
+- type: photo
+  key: 8fo9wy4cbqegruqx286q0l3okts2
+  caption: enjoying some poutine
+  score: 10
+  width: 1600
+  height: 1200
+  cover: true
+  handle: cover
 - type: photo
   key: doawc1aujkho7nneme0kz9etcvj7
   caption: a body of water with a sunset
@@ -203,15 +202,6 @@
   width: 1200
   height: 1599
   handle: photo-14
-- type: video
-  key: 7tok3akxj9niqh2i8qze0k82y626
-  title: Sunset by the Aylmer Marina
-  duration: PT18S
-  width: 2160
-  height: 3840
-  orientation: portrait
-  poster_key: islc2jsz7vkb8vabgixvnkj54txy
-  handle: sunset-by-the-aylmer-marina
 - type: photo
   key: rsmcs7sp0v6k530dk4l6qyjjdxy6
   score: 7.15
@@ -256,7 +246,7 @@
   handle: photo-21
 - type: photo
   key: t5mz43drggb5kukvzxm1p9ct4tgb
-  score: 1.0
+  score: 1
   width: 1687
   height: 2999
   handle: photo-22
@@ -280,43 +270,52 @@
   handle: photo-25
 - type: photo
   key: spfmpnohe8pxpnn4xxpecva1bk9r
-  score: 1.0
+  score: 1
   width: 1200
   height: 1600
   handle: photo-26
 - type: photo
   key: qp5zsafgc3rtis8iztwwqshtj9xx
-  score: 1.0
+  score: 1
   width: 1200
   height: 1600
   handle: photo-27
 - type: photo
   key: 5qfah71m1n10uefvqiby6k3wh9rw
-  score: 1.0
+  score: 1
   width: 1200
   height: 1600
   handle: photo-28
 - type: photo
   key: df9f8vu1o3kvihqdbt3smb9shb7n
-  score: 1.0
+  score: 1
   width: 1600
   height: 1200
   handle: photo-29
 - type: photo
   key: olttpn25b4yox41n6iozm1n76di3
-  score: 1.0
+  score: 1
   width: 1600
   height: 1200
   handle: photo-30
 - type: photo
   key: bhtrfl66mnldcfmj64s5ghpviorv
-  score: 1.0
+  score: 1
   width: 1600
   height: 1200
   handle: photo-31
 - type: photo
   key: rmcsquy7gda3366h025vq96fjuuy
-  score: 1.0
+  score: 1
   width: 1600
   height: 1200
   handle: photo-32
+- type: video
+  key: 7tok3akxj9niqh2i8qze0k82y626
+  title: Sunset by the Aylmer Marina
+  duration: PT18S
+  width: 2160
+  height: 3840
+  orientation: portrait
+  poster_key: islc2jsz7vkb8vabgixvnkj54txy
+  handle: sunset-by-the-aylmer-marina
