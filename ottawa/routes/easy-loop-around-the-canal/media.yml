@@ -1,4 +1,3 @@
----
 - type: photo
   key: r0uvyajb6qam0qhx6365n59djd4f
   score: 6.4
@@ -117,7 +116,7 @@
 - type: photo
   key: hkk9lcdjbt5gegcp22auuud2zvz4
   caption: Rideau Locks
-  score: 10.0
+  score: 10
   width: 1200
   height: 1599
   cover: true
@@ -197,7 +196,7 @@
 - type: photo
   key: po2kpalfnsqnx1hf9n52cvqidyhx
   caption: Eclipse
-  score: 1.0
+  score: 1
   width: 1536
   height: 2048
   handle: eclipse
@@ -351,24 +350,6 @@
   width: 2048
   height: 1536
   handle: bank-bridge-2
-- type: video
-  key: t1nx9u04j1o1dn2bq74lob9jxtoi
-  title: Sunset at Dow's Lake
-  duration: PT11S
-  width: 1440
-  height: 1920
-  orientation: portrait
-  poster_key: b3k1zu0lk0dv0cwcvyn3gakrydbk
-  handle: sunset-at-dow-s-lake
-- type: video
-  key: 120zwwbl0dvvrxzmnopb2lyky9fm
-  title: Riding my bike next to the frozen Rideau Canal
-  duration: PT23S
-  width: 1920
-  height: 1440
-  orientation: landscape
-  poster_key: 0wmmugmakt03x4b926gh6rsbs9r8
-  handle: riding-my-bike-next-to-the-frozen-rideau-
 - type: photo
   key: h7goikw92kx2lx2i0il34tg8vr1y
   score: 7.56
@@ -405,15 +386,6 @@
   width: 1600
   height: 1200
   handle: photo-33
-- type: video
-  key: wynjh1xghp2ydchwsglrt4zlehop
-  title: Riding by the canal in winter
-  duration: PT30S
-  width: 2160
-  height: 3840
-  orientation: portrait
-  poster_key: reksp39ui5eoaymfi309vba40s93
-  handle: riding-by-the-canal-in-winter
 - type: photo
   key: eblrihtb8754zti8ufnqwt4to5d9
   score: 2.54
@@ -480,3 +452,36 @@
   width: 1200
   height: 1600
   handle: photo-44
+- type: photo
+  key: staging/60gr08s6
+  caption: tulips by the canal
+  score: 1
+  width: 6240
+  height: 4160
+- type: video
+  key: t1nx9u04j1o1dn2bq74lob9jxtoi
+  title: Sunset at Dow's Lake
+  duration: PT11S
+  width: 1440
+  height: 1920
+  orientation: portrait
+  poster_key: b3k1zu0lk0dv0cwcvyn3gakrydbk
+  handle: sunset-at-dow-s-lake
+- type: video
+  key: 120zwwbl0dvvrxzmnopb2lyky9fm
+  title: Riding my bike next to the frozen Rideau Canal
+  duration: PT23S
+  width: 1920
+  height: 1440
+  orientation: landscape
+  poster_key: 0wmmugmakt03x4b926gh6rsbs9r8
+  handle: riding-my-bike-next-to-the-frozen-rideau-
+- type: video
+  key: wynjh1xghp2ydchwsglrt4zlehop
+  title: Riding by the canal in winter
+  duration: PT30S
+  width: 2160
+  height: 3840
+  orientation: portrait
+  poster_key: reksp39ui5eoaymfi309vba40s93
+  handle: riding-by-the-canal-in-winter
