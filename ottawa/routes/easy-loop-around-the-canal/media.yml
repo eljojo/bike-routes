@@ -167,13 +167,6 @@
   height: 1200
   handle: photo-16
 - type: photo
-  key: ow3rou08is9vgahl06cumenohflh
-  caption: winter is over!
-  score: 4.73
-  width: 1200
-  height: 1599
-  handle: winter-is-over
-- type: photo
   key: udvo41wl2fhn45v25pc3rwe8g2vg
   caption: a snowy field with trees and a sunset
   score: 4.6
@@ -280,13 +273,6 @@
   width: 1599
   height: 1200
   handle: photo-21
-- type: photo
-  key: 3n01cga2in0sem540j8z7k095srj
-  caption: can't keep going
-  score: 7.69
-  width: 1200
-  height: 1599
-  handle: can-t-keep-going
 - type: photo
   key: kfhonjz2bav7915kprluz170nm7r
   caption: a bridge over a body of water
@@ -467,6 +453,13 @@
 - type: photo
   key: wynjh1xghp2ydchwsglrt4zlehop
   score: 1
+- type: photo
+  key: 3n01cga2in0sem540j8z7k095srj
+  caption: can't keep going
+  score: 7.69
+  width: 1200
+  height: 1599
+  handle: can-t-keep-going
 - type: video
   key: t1nx9u04j1o1dn2bq74lob9jxtoi
   title: Sunset at Dow's Lake
