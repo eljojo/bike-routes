@@ -17,6 +17,13 @@
   height: 1599
   handle: photo-3
 - type: photo
+  key: y1kxue5xxlne3mf2zbfj8ya0rusj
+  caption: Dow's Lake
+  score: 6.66
+  width: 2048
+  height: 1536
+  handle: dow-s-lake-2
+- type: photo
   key: o3mxhuhldi19ocjq3a6sp4zo66a0
   score: 8.33
   width: 1200
@@ -213,13 +220,6 @@
   width: 2048
   height: 1536
   handle: sunset
-- type: photo
-  key: y1kxue5xxlne3mf2zbfj8ya0rusj
-  caption: Dow's Lake
-  score: 6.66
-  width: 2048
-  height: 1536
-  handle: dow-s-lake-2
 - type: photo
   key: cuwkgrjwzqnatn5vqhtuo7mvi5oh
   caption: Dow's Lake
