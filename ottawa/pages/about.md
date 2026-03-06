@@ -4,22 +4,21 @@ title: About
 
 <h1 class="about-inline-title"><span>Heyo 👋 Welcome to </span><span class="about-inline-title-text">Ottawa by Bike!</span></h1>
 
-<h3>I'm <a href="https://eljojo.net" target="_blank" rel="noopener">José Albornoz</a>, a passionate cyclist who loves exploring new routes and discovering the world on two wheels.</h3>
-
 <img src="{author_photo_url}" alt="{author_name}" width="300" loading="lazy" />
 
-<p>I started cycling in 2019, being new to Ottawa I didn't know where to go. I took my bike and started discovering beautiful routes, but had a snag - <em>how do I share them?</em></p>
+<p>I'm <a href="https://eljojo.net" target="_blank" rel="noopener">José</a>. I started cycling in Ottawa in 2019 and had no idea where to ride. I kept discovering amazing routes — along the river, through Gatineau Park, quiet roads I didn't know existed — but there was no good way to find them. You'd hear about a route from someone or stumble onto it by accident.</p>
 
-<p>So, I created this site - a curated map of my favourite cycling paths in the National Capital Region. It's an easy-to-use guide to help everyone enjoy cycling as much as I do!</p>
+<p>So in 2022 I built this site. Each route has photos, videos, and tips — the kind of stuff you'd want to know before heading out. Where to stop for coffee, which parts are gravel, where the big hill is.</p>
 
-<p><strong>Here, you'll find routes for all - whether you're a seasoned cyclist or just starting out.</strong><br />
-Get a feel for the ride with photos and videos, and enjoy my personal tips, like the best snack spots and detour alerts.</p>
+<p><strong>Pick a route, see what it looks like, go ride it.</strong> It doesn't matter if you've never biked beyond your neighbourhood or if you ride every weekend — there's something here for you.</p>
 
-<p>So go ahead, explore, and let's make Ottawa a cycling haven together! If you want to get in touch, my email is <a href="mailto:{author_email}" class="about-contact-email">{author_email}</a>.</p>
+<p>In 2026 Ottawa by Bike went open source — the code and all the route data are on GitHub. Now it's something we build together. If you know a route that should be here, or you have better photos, or you spot a mistake — you can <a href="/admin">edit any route on the site</a>. No account needed.</p>
 
-<p><strong>Thanks for stopping by, and happy cycling!</strong></p>
+<p>Use it, share it, build on it.</p>
 
-<h3>Other useful Links</h3>
+<p>Questions? Say hi at <a href="mailto:{author_email}" class="about-contact-email">{author_email}</a>.</p>
+
+<h3>Other useful links</h3>
 
 <ul>
   <li><a href="/guides/local-communities">List of Local Cycling Communities</a></li>
@@ -31,7 +30,17 @@ Get a feel for the ride with photos and videos, and enjoy my personal tips, like
 <h3>Friends</h3>
 
 <ul>
-  <li><a href="https://www.cyclingguide.app" target="_blank" rel="noopener">CyclingGuide.app</a> - Install the app to navigate your rides</li>
-  <li><a href="https://www.letsgocargo.ca" target="_blank" rel="noopener">Let's Go Cargo</a> - Looking for a cargo bike? Check them out!</li>
-  <li><a href="https://www.bikepackadventures.ca/summit" target="_blank" rel="noopener">2026 Canadian Shield Bikepacking Summit</a> - By Bikepack Adventures</li>
+  <li><a href="https://www.cyclingguide.app" target="_blank" rel="noopener">CyclingGuide.app</a> - Safe biking routes for every day rides, it's free!</li>
+  <li><a href="https://www.letsgocargo.ca" target="_blank" rel="noopener">Let's Go Cargo</a> - Looking for a cargo bike rental?</li>
+  <li><a href="https://www.bikepackadventures.ca/summit" target="_blank" rel="noopener">2026 Canadian Shield Bikepacking Summit</a> - Learn about Bikepacking this Spring in Wakefield</li>
+</ul>
+
+<h3>Open Data</h3>
+
+<p>Everything here is freely licensed:</p>
+<ul>
+  <li>Text and descriptions: <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> (same as Wikipedia)</li>
+  <li>Route data (GPX tracks): <a href="https://opendatacommons.org/licenses/odbl/" target="_blank" rel="noopener">ODbL 1.0</a> (same as OpenStreetMap)</li>
+  <li>Website source: <a href="https://github.com/eljojo/bike-app-astro" target="_blank" rel="noopener">github.com/eljojo/bike-app-astro</a></li>
+  <li>Route data: <a href="https://github.com/eljojo/bike-routes" target="_blank" rel="noopener">github.com/eljojo/bike-routes</a></li>
 </ul>
