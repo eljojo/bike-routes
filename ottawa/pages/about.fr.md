@@ -2,7 +2,7 @@
 title: À propos
 ---
 
-<h1 style="font-size: 1.7em;"><span>Salut 👋 Bienvenue sur </span><span style="display: inline-block;">Ottawa by Bike!</span></h1>
+<h1 class="about-inline-title"><span>Salut 👋 Bienvenue sur </span><span class="about-inline-title-text">Ottawa by Bike!</span></h1>
 
 <h3>Je suis <a href="https://eljojo.net" target="_blank" rel="noopener">José Albornoz</a>, un cycliste passionné qui adore explorer de nouveaux parcours et découvrir le monde sur deux roues.</h3>
 
@@ -15,7 +15,7 @@ title: À propos
 <p><strong>Ici, vous trouverez des itinéraires pour tous - que vous soyez un cycliste chevronné ou débutant.</strong><br />
 Faites-vous une idée de la balade avec des photos et des vidéos, et profitez de mes conseils personnels, comme les meilleurs arrêts collation et les alertes de détours.</p>
 
-<p>Alors allez-y, explorez, et faisons d'Ottawa un paradis du vélo ensemble! Si vous souhaitez me contacter, mon courriel est <a href="mailto:{author_email}" style="font-weight: bold;">{author_email}</a>.</p>
+<p>Alors allez-y, explorez, et faisons d'Ottawa un paradis du vélo ensemble! Si vous souhaitez me contacter, mon courriel est <a href="mailto:{author_email}" class="about-contact-email">{author_email}</a>.</p>
 
 <p><strong>Merci de votre visite et bonne randonnée à vélo!</strong></p>
 

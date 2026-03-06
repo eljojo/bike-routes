@@ -2,7 +2,7 @@
 title: About
 ---
 
-<h1 style="font-size: 1.7em;"><span>Heyo 👋 Welcome to </span><span style="display: inline-block;">Ottawa by Bike!</span></h1>
+<h1 class="about-inline-title"><span>Heyo 👋 Welcome to </span><span class="about-inline-title-text">Ottawa by Bike!</span></h1>
 
 <h3>I'm <a href="https://eljojo.net" target="_blank" rel="noopener">José Albornoz</a>, a passionate cyclist who loves exploring new routes and discovering the world on two wheels.</h3>
 
@@ -15,7 +15,7 @@ title: About
 <p><strong>Here, you'll find routes for all - whether you're a seasoned cyclist or just starting out.</strong><br />
 Get a feel for the ride with photos and videos, and enjoy my personal tips, like the best snack spots and detour alerts.</p>
 
-<p>So go ahead, explore, and let's make Ottawa a cycling haven together! If you want to get in touch, my email is <a href="mailto:{author_email}" style="font-weight: bold;">{author_email}</a>.</p>
+<p>So go ahead, explore, and let's make Ottawa a cycling haven together! If you want to get in touch, my email is <a href="mailto:{author_email}" class="about-contact-email">{author_email}</a>.</p>
 
 <p><strong>Thanks for stopping by, and happy cycling!</strong></p>
 
