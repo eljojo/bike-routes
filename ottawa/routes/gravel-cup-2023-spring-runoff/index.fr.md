@@ -1,5 +1,5 @@
 ---
-name: 'Gravel Cup : 2023 Spring Runoff'
+name: "Gravel Cup : 2023 Spring Runoff"
 tagline: Éditions Epic et Medio
 ---
 
