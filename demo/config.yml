@@ -1,0 +1,29 @@
+name: Chillán
+display_name: Chillán en Bici
+tagline: Rutas de ciclismo en Chillán
+description: Guía comunitaria de rutas ciclistas en Chillán, Chile
+url: https://demo.whereto.bike
+domain: demo.whereto.bike
+cdn_url: https://cdn.ottawabybike.ca
+videos_cdn_url: https://videos.ottawabybike.ca
+tiles_url: https://tiles.ottawabybike.ca/cycle/{z}/{x}/{y}{r}.png
+timezone: America/Santiago
+locale: es-CL
+locales: [es-CL]
+author:
+  name: José Tomás Albornoz
+  email: bike@eljojo.net
+  url: https://eljojo.net
+  twitter: eljojo
+  photo_url: ""
+plausible_domain: demo.whereto.bike
+site_title_html: <em>Chillán</em> en <em>Bici</em>
+center:
+  lat: -36.62
+  lng: -72.10
+bounds:
+  north: -36.55
+  south: -36.70
+  east: -72.00
+  west: -72.20
+place_categories: {}
