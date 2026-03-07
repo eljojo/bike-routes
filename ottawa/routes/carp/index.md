@@ -3,19 +3,19 @@ name: Towards Carp
 status: published
 distance_km: 67.7
 tags:
-- road
-created_at: '2022-11-19'
-updated_at: '2023-06-26'
+  - road
+created_at: "2022-11-19"
+updated_at: "2023-06-26"
 tagline: Keep going west
 variants:
-- name: From Britannia
-  gpx: main.gpx
-  distance_km: 67.7
-  rwgps_url: https://ridewithgps.com/routes/43419268?privacy_code=zrvhMP9C1uwy1pUMbpowHHXdeQABdmdm
-- name: From Downtown
-  gpx: variants/downtown.gpx
-  distance_km: 103.3
-  strava_url: https://www.strava.com/activities/7727678585
+  - name: From Britannia
+    gpx: main.gpx
+    distance_km: 67.7
+    rwgps_url: https://ridewithgps.com/routes/43419268?privacy_code=zrvhMP9C1uwy1pUMbpowHHXdeQABdmdm
+  - name: From Downtown
+    gpx: variants/downtown.gpx
+    distance_km: 103.3
+    strava_url: https://www.strava.com/activities/7727678585
 ---
 
 Carp is a rural community in the west of Ottawa. This is a fairly long road ride, but it's very entertaining and full of interesting views. You can extend it even further by heading to Dunrobin.

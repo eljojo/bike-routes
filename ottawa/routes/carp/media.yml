@@ -1,4 +1,11 @@
----
+- type: photo
+  key: x3d0j8nesmni1b5fssd6e0hbghfi
+  caption: a road with trees on the side
+  score: 9.83
+  width: 1200
+  height: 1600
+  cover: true
+  handle: cover
 - type: photo
   key: 2bk018pe39ugrvvto9up91d32t9m
   caption: Canadian flag on a log in a swamp
@@ -14,34 +21,12 @@
   height: 1600
   handle: a-road-with-trees-on-the-side
 - type: photo
-  key: 1lniyvyg1l3vkfx12wqto4ij3tem
-  caption: a plate of food
-  score: 5.92
-  width: 1600
-  height: 1200
-  handle: a-plate-of-food
-- type: photo
-  key: yle20ciwha9306ayjr25mb1yf6pn
-  caption: selfie
-  score: 7.25
-  width: 1200
-  height: 1600
-  handle: selfie
-- type: photo
   key: 2jusnjouh4c01uhft8o5wavvl7f1
   caption: a dirt path through a forest
   score: 9.78
   width: 1200
   height: 1600
   handle: a-dirt-path-through-a-forest
-- type: photo
-  key: x3d0j8nesmni1b5fssd6e0hbghfi
-  caption: a road with trees on the side
-  score: 9.83
-  width: 1200
-  height: 1600
-  cover: true
-  handle: cover
 - type: photo
   key: jxvqqvzqgmoflb2veevygtja7mto
   caption: a dirt road in a forest
@@ -58,14 +43,14 @@
   handle: power-lines-and-grass-with-houses-and-tre
 - type: photo
   key: y9uhmvxzr96fwmw6hu9gm6c2mhrq
-  caption: selfie
+  caption: selfie by the road lol
   score: 4.92
   width: 1200
   height: 1599
   handle: selfie-2
 - type: photo
   key: pe01h6dxe70hebnf2qmumx6c4nho
-  caption: selfie
+  caption: enjoying some ice cream!
   score: 2.9
   width: 1200
   height: 1599
