@@ -1,6 +1,6 @@
 ---
 name: Wakefield Spring - Water Source
-category: other
+category: water-fountain
 lat: 45.629948
 lng: -75.932817
 status: published

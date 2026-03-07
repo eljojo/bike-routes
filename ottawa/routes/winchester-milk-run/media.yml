@@ -1,4 +1,3 @@
----
 - type: photo
   key: adf3n76jeaozbtsa4mivk4o7n8qq
   caption: squat pic
@@ -7,6 +6,9 @@
   height: 1200
   cover: true
   handle: cover
+  lat: 45.019931
+  lng: -75.412108
+  captured_at: '2022-08-25T16:53:16.000Z'
 - type: photo
   key: 7xvkuaus2hwbiqo2e0wopvmpblsa
   caption: Winchester
@@ -14,6 +16,9 @@
   width: 1200
   height: 1600
   handle: winchester
+  lat: 45.086625
+  lng: -75.349022
+  captured_at: '2022-08-25T15:31:22.000Z'
 - type: photo
   key: s99pw0dqkdyh6yhgrzphuvvnwqxm
   caption: enjoying the view
@@ -21,6 +26,9 @@
   width: 1600
   height: 1200
   handle: enjoying-the-view
+  lat: 45.073667
+  lng: -75.365578
+  captured_at: '2022-08-25T15:40:39.000Z'
 - type: photo
   key: qbtk1vtcda6pjkf52sng6vpyceen
   caption: some rowdy dirt
@@ -28,6 +36,9 @@
   width: 1200
   height: 1600
   handle: some-rowdy-dirt
+  lat: 45.015861
+  lng: -75.409181
+  captured_at: '2022-08-25T16:13:11.000Z'
 - type: photo
   key: jnb6sgqfm4d9kiugio81j8bg4wv6
   caption: a person riding a bicycle on a road with grass and trees on the side
@@ -35,6 +46,9 @@
   width: 1600
   height: 1200
   handle: a-person-riding-a-bicycle-on-a-road-with-
+  lat: 45.018147
+  lng: -75.383842
+  captured_at: '2022-08-25T16:23:07.000Z'
 - type: photo
   key: 3f5pfm5synbmd22416xsq99ffh7q
   caption: a road with windmills on the side
@@ -42,6 +56,9 @@
   width: 1600
   height: 1200
   handle: a-road-with-windmills-on-the-side
+  lat: 44.970567
+  lng: -75.341667
+  captured_at: '2022-08-25T17:16:46.000Z'
 - type: photo
   key: 6umh1v81h4ekxezxphoa8frgqpc0
   caption: enjoying the road
@@ -49,6 +66,9 @@
   width: 1600
   height: 1200
   handle: enjoying-the-road
+  lat: 44.988075
+  lng: -75.331056
+  captured_at: '2022-08-25T17:09:25.000Z'
 - type: photo
   key: 7eeon7fe4w2uxv98ogbcpxoq51lr
   caption: a road with grass on the side
@@ -56,6 +76,9 @@
   width: 1600
   height: 1200
   handle: a-road-with-grass-on-the-side
+  lat: 45.096111
+  lng: -75.255203
+  captured_at: '2022-08-25T19:02:20.000Z'
 - type: photo
   key: enag2inh1ryi9f7c35ie60p2ygba
   caption: a large open field with trees in the distance
@@ -63,3 +86,6 @@
   width: 1600
   height: 1200
   handle: a-large-open-field-with-trees-in-the-dist
+  lat: 45.004433
+  lng: -75.369325
+  captured_at: '2022-08-25T16:32:43.000Z'

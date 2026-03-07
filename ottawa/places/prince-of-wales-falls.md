@@ -1,6 +1,6 @@
 ---
 name: Hogs Back Falls
-category: park
+category: lookout
 lat: 45.371973
 lng: -75.699287
 status: published

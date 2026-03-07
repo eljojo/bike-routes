@@ -13,6 +13,9 @@
   width: 1600
   height: 1200
   handle: a-body-of-water-with-trees-in-the-back
+  lat: 45.456058
+  lng: -75.690964
+  captured_at: '2022-09-29T09:51:57.000Z'
 - type: photo
   key: m0jie5u597uk17trn7vtf4qtk7v8
   caption: a silhouette of a building and trees
@@ -20,6 +23,9 @@
   width: 2048
   height: 1536
   handle: a-silhouette-of-a-building-and-trees
+  lat: 45.439431
+  lng: -75.724097
+  captured_at: '2020-08-01T20:41:42.000Z'
 - type: photo
   key: a180i0528xj9xzl7vitwflklvaj2
   caption: Parliament Hill
@@ -27,6 +33,9 @@
   width: 1536
   height: 2048
   handle: parliament-hill
+  lat: 45.425419
+  lng: -75.709044
+  captured_at: '2020-05-16T16:24:44.000Z'
 - type: photo
   key: e8snkm9gkb92yfy4lsn0e7ay6wa8
   caption: a road with graffiti on the side
@@ -34,6 +43,9 @@
   width: 1536
   height: 2048
   handle: a-road-with-graffiti-on-the-side
+  lat: 45.441278
+  lng: -75.724219
+  captured_at: '2020-07-25T14:50:37.000Z'
 - type: photo
   key: nfmi7f4k8mfc3d9lo39nj376rjn4
   caption: a bridge over a river
@@ -41,6 +53,9 @@
   width: 2048
   height: 1536
   handle: a-bridge-over-a-river
+  lat: 45.429061
+  lng: -75.727067
+  captured_at: '2020-07-25T14:38:00.000Z'
 - type: photo
   key: klkm4ig2vzf2mnhpz5nsepukd3op
   caption: enjoying the water
@@ -48,6 +63,9 @@
   width: 1536
   height: 2048
   handle: enjoying-the-water
+  lat: 45.415264
+  lng: -75.758881
+  captured_at: '2020-07-25T13:55:25.000Z'
 - type: photo
   key: u2jtg47fz4xta86mnil0pw64ik0h
   caption: a bridge over a river
@@ -55,6 +73,9 @@
   width: 2048
   height: 1536
   handle: a-bridge-over-a-river-2
+  lat: 45.456347
+  lng: -75.701828
+  captured_at: '2020-08-01T20:24:48.000Z'
 - type: photo
   key: fos1uog9l4tgyskz8z72wx3te8nf
   caption: a field with houses and trees
@@ -62,6 +83,9 @@
   width: 2048
   height: 1536
   handle: a-field-with-houses-and-trees
+  lat: 45.439706
+  lng: -75.724158
+  captured_at: '2020-08-01T20:38:39.000Z'
 - type: photo
   key: sklp71c47oko8sdnuf6kz5d795b7
   caption: a body of water with trees and a sunset in the background
@@ -69,6 +93,9 @@
   width: 2048
   height: 1536
   handle: a-body-of-water-with-trees-and-a-sunset-i
+  lat: 45.448667
+  lng: -75.718764
+  captured_at: '2020-08-01T20:32:47.000Z'
 - type: photo
   key: zszgte9okrfefr5fqi9j8p89t79x
   caption: a bridge over a river
@@ -76,6 +103,9 @@
   width: 2048
   height: 1536
   handle: a-bridge-over-a-river-3
+  lat: 45.456439
+  lng: -75.701814
+  captured_at: '2020-08-01T20:24:40.000Z'
 - type: photo
   key: s08k8qjn5fd5c9mfq4e98kc0h6zx
   caption: a bridge with a road and trees
@@ -83,6 +113,9 @@
   width: 2048
   height: 1536
   handle: a-bridge-with-a-road-and-trees
+  lat: 45.417622
+  lng: -75.663881
+  captured_at: '2020-05-16T17:03:15.000Z'
 - type: photo
   key: lncjwm8sfobgx7kvyb0h60ybxza2
   caption: a bridge over a body the river
@@ -90,6 +123,9 @@
   width: 2048
   height: 1536
   handle: a-bridge-over-a-body-the-river
+  lat: 45.428531
+  lng: -75.706786
+  captured_at: '2020-05-16T16:27:07.000Z'
 - type: photo
   key: oai8x0m000w41hee90mgoip38ph1
   caption: a group of birds on a beach
@@ -97,6 +133,9 @@
   width: 2048
   height: 1536
   handle: a-group-of-birds-on-a-beach
+  lat: 45.418808
+  lng: -75.748086
+  captured_at: '2020-06-18T21:11:03.000Z'
 - type: photo
   key: 1wvc11ddbgek63um1svtx3e5awbx
   caption: my topstone
@@ -104,6 +143,9 @@
   width: 2048
   height: 1536
   handle: my-topstone
+  lat: 45.383728
+  lng: -75.700386
+  captured_at: '2020-07-25T11:49:57.000Z'
 - type: photo
   key: 0pvler1blukg2ceja2xzpugy6p2g
   caption: geese walking on grass
@@ -111,6 +153,9 @@
   width: 2048
   height: 1536
   handle: geese-walking-on-grass
+  lat: 45.40945
+  lng: -75.754381
+  captured_at: '2020-05-16T15:31:24.000Z'
 - type: photo
   key: l0gynm4cl2nk2ncc0xz13e8jc0sg
   caption: a body of water with ripples
@@ -125,6 +170,9 @@
   width: 1599
   height: 1200
   handle: a-body-of-water-with-a-city-in-the-backgr
+  lat: 45.429378
+  lng: -75.702469
+  captured_at: '2021-09-12T16:04:31.000Z'
 - type: photo
   key: lvln9hx4hc0dbxqbm1jrot2d06x4
   caption: a body of water with power lines above it
@@ -132,3 +180,6 @@
   width: 2048
   height: 1536
   handle: a-body-of-water-with-power-lines-above-it
+  lat: 45.423139
+  lng: -75.725219
+  captured_at: '2020-06-18T21:20:09.000Z'

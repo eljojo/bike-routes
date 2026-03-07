@@ -5,18 +5,27 @@
   height: 1200
   cover: true
   handle: cover
+  lat: 45.225433
+  lng: -76.199128
+  captured_at: '2023-03-27T18:14:27.000Z'
 - type: photo
   key: iatuzn8m2r3gei7h1nj7s77dzib8
   score: 3.38
   width: 1600
   height: 1200
   handle: photo
+  lat: 45.146686
+  lng: -76.297828
+  captured_at: '2023-03-27T16:51:14.000Z'
 - type: photo
   key: r1koop3hkz1ivj0fh801s00dgpfz
   score: 1.22
   width: 1200
   height: 1600
   handle: photo-16
+  lat: 45.225475
+  lng: -76.196022
+  captured_at: '2023-04-09T17:05:59.000Z'
 - type: photo
   key: ewozgh8vhqc6z025do0jnpnwo7vy
   score: 2.05
@@ -29,36 +38,54 @@
   width: 1200
   height: 1600
   handle: photo-6
+  lat: 45.117775
+  lng: -76.215317
+  captured_at: '2023-03-27T16:07:39.000Z'
 - type: photo
   key: jtqn4hxzudbcjxxdwuspayb5i9kt
   score: 2.87
   width: 1200
   height: 1600
   handle: photo-5
+  lat: 45.188903
+  lng: -76.222236
+  captured_at: '2023-03-27T15:28:52.000Z'
 - type: photo
   key: 26f1o921u3jm09o89h3it0eaqiy0
   score: 2.11
   width: 1600
   height: 1200
   handle: photo-2
+  lat: 45.114917
+  lng: -76.257903
+  captured_at: '2023-03-27T16:23:35.000Z'
 - type: photo
   key: 7dslm52ht5759vpw1rido5mzbkca
   score: 2.09
   width: 1200
   height: 1600
   handle: photo-3
+  lat: 45.117764
+  lng: -76.215264
+  captured_at: '2023-03-27T16:07:13.000Z'
 - type: photo
   key: vw57bh3yyf0sxxgmd6wnjtsjch86
   score: 2.02
   width: 1600
   height: 1200
   handle: photo-7
+  lat: 45.117775
+  lng: -76.215333
+  captured_at: '2023-03-27T16:07:30.000Z'
 - type: photo
   key: h4qn81jyztsjreuq9p8hpust1r5q
   score: 2
   width: 1600
   height: 1200
   handle: photo-8
+  lat: 45.145608
+  lng: -76.296469
+  captured_at: '2023-03-27T16:50:44.000Z'
 - type: photo
   key: 5uaeprb30vk8847lc1phbunez2yf
   score: 1.86
@@ -71,12 +98,18 @@
   width: 1600
   height: 1200
   handle: photo-9
+  lat: 45.224075
+  lng: -76.256333
+  captured_at: '2023-03-27T17:38:30.000Z'
 - type: photo
   key: 9qjqud0t0m1y4wqpjm0nmm9oorre
   score: 1.97
   width: 1600
   height: 1200
   handle: photo-10
+  lat: 45.224086
+  lng: -76.256347
+  captured_at: '2023-03-27T17:38:22.000Z'
 - type: photo
   key: na8tb941cpzgd7mb9f20d7r2679i
   score: 1.95
@@ -95,36 +128,54 @@
   width: 1600
   height: 1200
   handle: photo-13
+  lat: 45.194111
+  lng: -76.326225
+  captured_at: '2023-04-09T16:11:33.000Z'
 - type: photo
   key: d9gvherqdvl89hrpzx88nepqbepn
   score: 1.83
   width: 1600
   height: 1200
   handle: photo-17
+  lat: 45.118819
+  lng: -76.262956
+  captured_at: '2023-04-09T13:26:00.000Z'
 - type: photo
   key: gp22iu05nws25fgast3nqzi6r9j1
   score: 1.09
   width: 1600
   height: 1200
   handle: photo-19
+  lat: 45.109394
+  lng: -76.317711
+  captured_at: '2023-04-09T13:44:23.000Z'
 - type: photo
   key: my23b4zhokevnwt8a6it38jpg5lg
   score: 1.81
   width: 1600
   height: 1200
   handle: photo-18
+  lat: 45.114894
+  lng: -76.245056
+  captured_at: '2023-04-09T13:17:24.000Z'
 - type: photo
   key: wmt3g4xfaou1vgrr9bhhu0x85b1x
   score: 1.85
   width: 1600
   height: 1200
   handle: photo-15
+  lat: 45.225406
+  lng: -76.196031
+  captured_at: '2023-04-09T16:59:47.000Z'
 - type: photo
   key: hl3phqvp5mo0klpdkvubdf0cu4ad
   score: 1.79
   width: 1600
   height: 1200
   handle: photo-20
+  lat: 45.226036
+  lng: -76.196717
+  captured_at: '2023-04-09T17:17:39.000Z'
 - type: video
   key: oxk14xfu79tt3kpki495dv7gujbw
   title: Gravel Climb

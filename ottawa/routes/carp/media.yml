@@ -6,6 +6,9 @@
   height: 1600
   cover: true
   handle: cover
+  lat: 45.347478
+  lng: -75.816069
+  captured_at: '2022-08-30T15:22:58.000Z'
 - type: photo
   key: 2bk018pe39ugrvvto9up91d32t9m
   caption: Canadian flag on a log in a swamp
@@ -20,6 +23,9 @@
   width: 1200
   height: 1600
   handle: a-road-with-trees-on-the-side
+  lat: 45.384697
+  lng: -75.944572
+  captured_at: '2022-08-30T10:44:47.000Z'
 - type: photo
   key: 2jusnjouh4c01uhft8o5wavvl7f1
   caption: a dirt path through a forest
@@ -27,6 +33,9 @@
   width: 1200
   height: 1600
   handle: a-dirt-path-through-a-forest
+  lat: 45.406422
+  lng: -75.922806
+  captured_at: '2022-08-30T11:06:47.000Z'
 - type: photo
   key: jxvqqvzqgmoflb2veevygtja7mto
   caption: a dirt road in a forest
@@ -34,6 +43,9 @@
   width: 1200
   height: 1600
   handle: a-dirt-road-in-a-forest
+  lat: 45.342144
+  lng: -75.884956
+  captured_at: '2022-08-30T15:04:07.000Z'
 - type: photo
   key: l3gn09ek1qb6r6qf2gdrx7oi660u
   caption: power lines and grass with houses and trees in the background
@@ -41,6 +53,9 @@
   width: 1599
   height: 1200
   handle: power-lines-and-grass-with-houses-and-tre
+  lat: 45.343647
+  lng: -75.934831
+  captured_at: '2021-07-15T17:28:43.000Z'
 - type: photo
   key: y9uhmvxzr96fwmw6hu9gm6c2mhrq
   caption: selfie by the road lol
@@ -48,6 +63,9 @@
   width: 1200
   height: 1599
   handle: selfie-2
+  lat: 45.343206
+  lng: -75.934333
+  captured_at: '2021-07-15T17:28:51.000Z'
 - type: photo
   key: pe01h6dxe70hebnf2qmumx6c4nho
   caption: enjoying some ice cream!
@@ -62,6 +80,9 @@
   width: 1200
   height: 1599
   handle: lake-surrounded-by-trees
+  lat: 45.354839
+  lng: -76.037247
+  captured_at: '2021-07-15T18:36:06.000Z'
 - type: photo
   key: nc3hv66kew1c0smimzqwd0ww7sa2
   caption: my topstone chilling by the lake
@@ -69,3 +90,6 @@
   width: 1599
   height: 1200
   handle: my-topstone-chilling-by-the-lake
+  lat: 45.354758
+  lng: -76.037217
+  captured_at: '2021-07-15T18:52:59.000Z'

@@ -6,6 +6,9 @@
   height: 1536
   handle: a-wooden-bridge-in-a-forest
   cover: true
+  lat: 45.449508
+  lng: -75.798989
+  captured_at: '2020-08-15T09:54:00.000Z'
 - type: photo
   key: 1oej8py5qv1du3mtf5ae5frx20ie
   caption: a path through a forest
@@ -13,6 +16,9 @@
   width: 1200
   height: 1600
   handle: a-path-through-a-forest
+  lat: 45.4262
+  lng: -75.744775
+  captured_at: '2022-10-16T13:10:07.000Z'
 - type: photo
   key: vscqnfl4qpp9wp56eefiol0d4cjd
   caption: a group of people riding bikes on a road
@@ -20,6 +26,9 @@
   width: 2048
   height: 1536
   handle: a-group-of-people-riding-bikes-on-a-road
+  lat: 45.431989
+  lng: -75.749656
+  captured_at: '2020-08-27T08:23:28.000Z'
 - type: photo
   key: aargvdq0ogm9uj0da6n1jk3wd0t1
   caption: me
@@ -27,6 +36,9 @@
   width: 1200
   height: 1600
   handle: me
+  lat: 45.42615
+  lng: -75.745064
+  captured_at: '2022-10-16T13:10:14.000Z'
 - type: photo
   key: ehepbbz4635mtsiwh3t5g8iot909
   caption: you're in gatineau now
@@ -34,12 +46,18 @@
   width: 2048
   height: 1536
   handle: you-re-in-gatineau-now
+  lat: 45.487694
+  lng: -75.812942
+  captured_at: '2020-08-15T09:27:49.000Z'
 - type: photo
   key: 9yi3dga1nhrismf8b7s1novojprn
   score: 3.86
   width: 1599
   height: 1200
   handle: photo
+  lat: 45.456464
+  lng: -75.758203
+  captured_at: '2021-07-23T12:35:48.000Z'
 - type: photo
   key: fx3sg1gcu4w87jctxvehha9rzy3m
   caption: beach selfie
@@ -47,12 +65,18 @@
   width: 2048
   height: 1536
   handle: beach-selfie
+  lat: 45.419853
+  lng: -75.748794
+  captured_at: '2020-08-15T10:41:18.000Z'
 - type: photo
   key: qg8mzigcbclbzjx9so2itz9lf7ky
   score: 5.91
   width: 1599
   height: 1200
   handle: photo-2
+  lat: 45.469003
+  lng: -75.811081
+  captured_at: '2021-07-23T12:20:08.000Z'
 - type: photo
   key: ku4oiaidy5lm1njzb78i9lvvkilj
   caption: a group of trees with yellow leaves
@@ -60,6 +84,9 @@
   width: 1600
   height: 1200
   handle: a-group-of-trees-with-yellow-leaves
+  lat: 45.466717
+  lng: -75.808236
+  captured_at: '2022-10-16T13:41:29.000Z'
 - type: photo
   key: xmdt3cz2mwp9flouz7fm44t1frm6
   caption: looking up at yellow leaves on trees
@@ -67,6 +94,9 @@
   width: 1200
   height: 1600
   handle: looking-up-at-yellow-leaves-on-trees
+  lat: 45.426056
+  lng: -75.745217
+  captured_at: '2022-10-16T13:10:34.000Z'
 - type: photo
   key: qn4o1siwu6b5an10g2ycgx5bso1s
   caption: a road with trees on either side
@@ -74,30 +104,45 @@
   width: 1200
   height: 1600
   handle: a-road-with-trees-on-either-side
+  lat: 45.447722
+  lng: -75.764908
+  captured_at: '2022-10-16T13:22:39.000Z'
 - type: photo
   key: b1bjo1meei3cktwufzkvqfkkpv9y
   score: 5.5
   width: 1600
   height: 1200
   handle: photo-6
+  lat: 45.441642
+  lng: -75.761275
+  captured_at: '2023-04-28T18:11:47.000Z'
 - type: photo
   key: g27xey6y4pczr93r3gmgs2vecqfm
   score: 7.95
   width: 1600
   height: 1200
   handle: photo-4
+  lat: 45.453561
+  lng: -75.77655
+  captured_at: '2023-04-28T18:19:14.000Z'
 - type: photo
   key: yve4lmw0n0lv7gzh9bb3qcc8wr5x
   score: 8.77
   width: 1200
   height: 1600
   handle: photo-9
+  lat: 45.453475
+  lng: -75.781319
+  captured_at: '2023-05-12T19:55:11.000Z'
 - type: photo
   key: lbhcvo6rmc34d8dmm5r7z56fdj43
   score: 1.41
   width: 1600
   height: 1200
   handle: photo-12
+  lat: 45.419236
+  lng: -75.711136
+  captured_at: '2023-05-12T20:46:32.000Z'
 - type: photo
   key: gq0cizmwyuqcraf962dazllxmleg
   score: 1.82
@@ -110,6 +155,9 @@
   width: 1600
   height: 1200
   handle: photo-7
+  lat: 45.453564
+  lng: -75.776406
+  captured_at: '2023-05-12T19:54:04.000Z'
 - type: photo
   key: 03om3qoai9arn2l6tp0m0sy84w2w
   score: 6.73
@@ -122,12 +170,18 @@
   width: 1200
   height: 1600
   handle: photo-10
+  lat: 45.440017
+  lng: -75.762069
+  captured_at: '2023-05-12T20:25:03.000Z'
 - type: photo
   key: 9mlulfdq0qoaavdqc3gs98qiu3ck
   score: 4.68
   width: 1200
   height: 1600
   handle: photo-11
+  lat: 45.436253
+  lng: -75.752494
+  captured_at: '2023-05-12T20:28:36.000Z'
 - type: photo
   key: ui62o9i7x6dqe29ig5srbb79btkg
   score: 1
@@ -141,12 +195,18 @@
   width: 2048
   height: 1536
   handle: a-road-with-cars-on-it
+  lat: 45.432475
+  lng: -75.749947
+  captured_at: '2020-08-27T07:37:04.000Z'
 - type: photo
   key: e5muiup5025zefqoh9ne1l5go0ch
   score: 10
   width: 1200
   height: 1599
   handle: cover
+  lat: 45.468975
+  lng: -75.811614
+  captured_at: '2021-07-23T12:18:52.000Z'
 - type: video
   key: rc80pjjcu57l0hjhnzt3rfsq9edu
   title: View from Pink Lake

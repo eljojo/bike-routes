@@ -1,4 +1,3 @@
----
 - type: photo
   key: ee2iza8yinotk45cf9nopxgiuw1k
   caption: friends enjoying gravel
@@ -14,6 +13,9 @@
   width: 1600
   height: 1200
   handle: enjoying-the-dirt
+  lat: 45.400558
+  lng: -76.217422
+  captured_at: '2022-09-11T12:15:30.000Z'
 - type: photo
   key: zp7l0rywpy9slfdl4ay54j1btrxp
   caption: Kerianne riding her classic Peugeot bike
@@ -28,6 +30,9 @@
   width: 1200
   height: 1600
   handle: bike-shop-on-the-go
+  lat: 45.390933
+  lng: -76.212311
+  captured_at: '2022-09-11T11:47:43.000Z'
 - type: photo
   key: 48jk0lrg5vbqo3pb2zbkga2v2n5c
   caption: a group of friends riding bikes on a road
@@ -35,6 +40,9 @@
   width: 1200
   height: 1600
   handle: a-group-of-friends-riding-bikes-on-a-road
+  lat: 45.50225
+  lng: -76.189011
+  captured_at: '2022-09-11T13:03:40.000Z'
 - type: photo
   key: u2netbufl55givkjfiw77pgrnxav
   caption: friends riding bicycles on a road
@@ -42,6 +50,9 @@
   width: 1600
   height: 1200
   handle: friends-riding-bicycles-on-a-road
+  lat: 45.450292
+  lng: -76.110236
+  captured_at: '2022-09-11T13:29:11.000Z'
 - type: photo
   key: o3o19f6vt7whiofzlbs9wt3iail6
   caption: friends riding bikes

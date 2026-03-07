@@ -1,6 +1,6 @@
 ---
 name: Pink Lake Lookout
-category: something-interesting
+category: lookout
 lat: 45.466737
 lng: -75.808153
 status: published

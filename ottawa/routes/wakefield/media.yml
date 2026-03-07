@@ -6,6 +6,9 @@
   height: 1600
   cover: true
   handle: cover
+  lat: 45.511489
+  lng: -75.789239
+  captured_at: '2022-10-23T12:12:14.000Z'
 - type: photo
   key: eyielhs3dsy3fodto5eic3ebxnjx
   caption: a wooden railing overlooking a body of water
@@ -13,6 +16,9 @@
   width: 1600
   height: 1200
   handle: a-wooden-railing-overlooking-a-body-of-wa
+  lat: 45.524906
+  lng: -75.788131
+  captured_at: '2022-10-23T16:42:55.000Z'
 - type: photo
   key: tielp5poor80qjn0qzmibcq5912n
   caption: wakefield selfie!
@@ -20,6 +26,9 @@
   width: 1200
   height: 1599
   handle: wakefield-selfie
+  lat: 45.6335
+  lng: -75.927842
+  captured_at: '2022-06-03T16:28:10.000Z'
 - type: photo
   key: dktwi5ynkz4phebaog0e28spu203
   caption: Wakefield Bridge
@@ -27,12 +36,18 @@
   width: 1200
   height: 1599
   handle: wakefield-bridge
+  lat: 45.645431
+  lng: -75.919692
+  captured_at: '2022-06-03T17:18:49.000Z'
 - type: photo
   key: u827sh4ulwcu6qkeug8auqo9n9tk
   score: 7.75
   width: 1200
   height: 1600
   handle: photo-4
+  lat: 45.645833
+  lng: -75.919389
+  captured_at: '2023-05-27T15:05:40.000Z'
 - type: photo
   key: 8b8wq60e72viedizkdpmvqitt88p
   caption: beautiful red bridge
@@ -40,6 +55,9 @@
   width: 1600
   height: 1200
   handle: beautiful-red-bridge
+  lat: 45.645192
+  lng: -75.919219
+  captured_at: '2022-10-23T15:23:11.000Z'
 - type: photo
   key: iu68u1bfsxvyanoeszc7r11xuo43
   caption: Kerianne enjoying fall colours
@@ -47,6 +65,9 @@
   width: 1600
   height: 1200
   handle: kerianne-enjoying-fall-colours
+  lat: 45.481761
+  lng: -75.802147
+  captured_at: '2022-10-23T11:48:21.000Z'
 - type: photo
   key: wa0lhdyy79je2r72kqhz3s9eu777
   caption: Kerianne riding her bicycle on a path surrounded by trees
@@ -54,6 +75,9 @@
   width: 1200
   height: 1600
   handle: kerianne-riding-her-bicycle-on-a-path-sur
+  lat: 45.561408
+  lng: -75.834131
+  captured_at: '2022-10-23T16:24:10.000Z'
 - type: photo
   key: jhik6wpt7o81267ty3vgvqb5ck9q
   caption: a landscape with trees and a sunset
@@ -61,6 +85,9 @@
   width: 1200
   height: 1599
   handle: a-landscape-with-trees-and-a-sunset
+  lat: 45.508308
+  lng: -75.912994
+  captured_at: '2022-06-03T20:50:09.000Z'
 - type: photo
   key: rhqmb9b8l577tc6yrhiej8v4tin0
   score: 6.25
@@ -75,6 +102,9 @@
   width: 1200
   height: 1599
   handle: a-road-with-trees-and-a-body-of-water-in-
+  lat: 45.504781
+  lng: -75.905272
+  captured_at: '2022-06-03T20:37:39.000Z'
 - type: photo
   key: dex8vr4o03hl7tkrf5s2w3htgyoo
   caption: a road with trees on the side
@@ -82,6 +112,9 @@
   width: 1200
   height: 1599
   handle: a-road-with-trees-on-the-side
+  lat: 45.504453
+  lng: -75.903656
+  captured_at: '2022-06-03T20:37:22.000Z'
 - type: photo
   key: y129q7cx7k0w6xixggcfgeplgeqh
   caption: a river with trees and a house
@@ -89,6 +122,9 @@
   width: 1599
   height: 1200
   handle: a-river-with-trees-and-a-house
+  lat: 45.64555
+  lng: -75.919731
+  captured_at: '2022-06-03T17:20:10.000Z'
 - type: photo
   key: v8r073367baols67xz7p5iufoiqu
   caption: a road next to a body of water
@@ -96,6 +132,9 @@
   width: 1599
   height: 1200
   handle: a-road-next-to-a-body-of-water
+  lat: 45.597783
+  lng: -75.882522
+  captured_at: '2022-06-03T18:19:09.000Z'
 - type: photo
   key: 8seyd7gfwg5kfcmk0zgi993bwoem
   caption: a house in a field
@@ -103,6 +142,9 @@
   width: 1599
   height: 1200
   handle: a-house-in-a-field
+  lat: 45.575081
+  lng: -75.888144
+  captured_at: '2022-06-03T18:39:25.000Z'
 - type: photo
   key: 5r7ur295qki077vnm6xik2snqjd9
   caption: wild art
@@ -110,6 +152,9 @@
   width: 1200
   height: 1600
   handle: wild-art
+  lat: 45.564586
+  lng: -75.838067
+  captured_at: '2022-10-23T12:36:04.000Z'
 - type: photo
   key: 2lcl4tx7ii7dwgwncpd2mbz4acg9
   caption: a path in a forest
@@ -117,6 +162,9 @@
   width: 1200
   height: 1599
   handle: a-path-in-a-forest
+  lat: 45.538728
+  lng: -75.876092
+  captured_at: '2022-06-03T19:58:55.000Z'
 - type: photo
   key: 18lr9r45e15tzlvpldus5qqs2yr2
   score: 5.13
@@ -129,6 +177,9 @@
   width: 1200
   height: 1600
   handle: photo-3
+  lat: 45.508264
+  lng: -75.704011
+  captured_at: '2023-05-27T16:53:47.000Z'
 - type: photo
   key: kfn275d55r9ffyat9v0st3i3w64t
   score: 1
@@ -149,6 +200,9 @@
   width: 1600
   height: 1200
   handle: parliament-hill-during-fall
+  lat: 45.431092
+  lng: -75.706969
+  captured_at: '2022-10-23T17:45:23.000Z'
 - type: photo
   key: 2uhcob0vk3ugu1jstvgwrj97w6w7
   caption: Rideau Canal
@@ -156,3 +210,6 @@
   width: 1200
   height: 1600
   handle: rideau-canal
+  lat: 45.420611
+  lng: -75.684478
+  captured_at: '2022-10-23T18:03:01.000Z'

@@ -1,6 +1,6 @@
 ---
 name: Chief William Commanda Bridge
-category: something-interesting
+category: bridge
 lat: 45.417086
 lng: -75.728755
 status: published

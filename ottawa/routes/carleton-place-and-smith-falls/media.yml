@@ -5,102 +5,153 @@
   height: 1200
   handle: photo
   cover: true
+  lat: 44.579331
+  lng: -76.319297
+  captured_at: '2023-07-23T07:17:17.000Z'
 - type: photo
   key: pmax2tsnb1tcrjuqykdxobg6sg9y
   score: 5.24
   width: 1200
   height: 1600
   handle: photo-5
+  lat: 44.668658
+  lng: -76.228836
+  captured_at: '2023-07-22T21:12:44.000Z'
 - type: photo
   key: ulosqh832j600d7lzg4cr1q391lp
   score: 2.06
   width: 1600
   height: 1200
   handle: photo-12
+  lat: 44.887767
+  lng: -76.028961
+  captured_at: '2023-07-22T18:59:08.000Z'
 - type: photo
   key: oaholu333h5fnfd306eev3oqa3i3
   score: 8.94
   width: 1200
   height: 1600
   handle: photo-13
+  lat: 44.873978
+  lng: -76.036736
+  captured_at: '2023-07-22T19:04:52.000Z'
 - type: photo
   key: mc4b2simf6t6fu2jr53xynab41ay
   score: 6.82
   width: 1600
   height: 1200
   handle: photo-2
+  lat: 44.579372
+  lng: -76.319558
+  captured_at: '2023-07-22T22:22:17.000Z'
 - type: photo
   key: ca4i1lby8so0vqho94qhi9dh6i4s
   score: 10
   width: 1200
   height: 1600
   handle: cover
+  lat: 45.256583
+  lng: -75.918061
+  captured_at: '2023-07-22T15:41:46.000Z'
 - type: photo
   key: ce7vr34jkaxsg1nktsi2amuiwxnp
   score: 6.29
   width: 1600
   height: 1200
   handle: photo-3
+  lat: 44.635578
+  lng: -76.248056
+  captured_at: '2023-07-22T21:36:32.000Z'
 - type: photo
   key: qgibgox01suo6n6htbxj3c9214lb
   score: 5.76
   width: 1600
   height: 1200
   handle: photo-4
+  lat: 44.636239
+  lng: -76.230178
+  captured_at: '2023-07-22T21:31:15.000Z'
 - type: photo
   key: 9d54kgiwjtisk6uqy8jilaqfvyui
   score: 4.71
   width: 1600
   height: 1200
   handle: photo-6
+  lat: 44.651914
+  lng: -76.206933
+  captured_at: '2023-07-22T21:24:15.000Z'
 - type: photo
   key: xzzwizar45mae66vqpt86n20kmiw
   score: 4.18
   width: 1600
   height: 1200
   handle: photo-7
+  lat: 44.669892
+  lng: -76.230386
+  captured_at: '2023-07-22T21:10:20.000Z'
 - type: photo
   key: h8wxlj143pghs9yg5vvcw9wik6uv
   score: 8.41
   width: 1600
   height: 1200
   handle: photo-10
+  lat: 44.858814
+  lng: -76.045717
+  captured_at: '2023-07-22T19:09:31.000Z'
 - type: photo
   key: 88ggtevb94v2uv3ijzj0arlu72b5
   score: 2.59
   width: 1600
   height: 1200
   handle: photo-11
+  lat: 44.701008
+  lng: -76.184928
+  captured_at: '2023-07-22T20:10:36.000Z'
 - type: photo
   key: akw3wl90ms6u2xz2ri005cm3bkt7
   score: 7.88
   width: 1600
   height: 1200
   handle: photo-14
+  lat: 45.040744
+  lng: -76.084672
+  captured_at: '2023-07-22T17:57:29.000Z'
 - type: photo
   key: 763rox9znf9ljc8qe6r092ffkhcd
   score: 1
   width: 1600
   height: 1200
   handle: photo-16
+  lat: 45.256547
+  lng: -75.918708
+  captured_at: '2023-07-22T15:38:21.000Z'
 - type: photo
   key: 8o9h13y3pznwz6dfda1wrjh5b6xm
   score: 7.35
   width: 1200
   height: 1600
   handle: photo-17
+  lat: 45.155542
+  lng: -76.090544
+  captured_at: '2023-07-22T17:00:15.000Z'
 - type: photo
   key: vph5i84hqxa74f0b3nhodhcjod75
   score: 3.12
   width: 1200
   height: 1600
   handle: photo-9
+  lat: 44.699
+  lng: -76.192986
+  captured_at: '2023-07-22T20:30:43.000Z'
 - type: photo
   key: 5qacuj1k6ay6988m3ij12pic5tj5
   score: 3.65
   width: 1600
   height: 1200
   handle: photo-8
+  lat: 44.698994
+  lng: -76.192453
+  captured_at: '2023-07-22T20:44:28.000Z'
 - type: photo
   key: iov3x70l39jprzqba4fryplhj7by
   score: 1.53

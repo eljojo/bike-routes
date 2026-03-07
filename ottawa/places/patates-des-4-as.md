@@ -1,6 +1,6 @@
 ---
 name: Patates des 4 As
-category: restaurant
+category: poutine
 lat: 45.438848
 lng: -75.912807
 status: published

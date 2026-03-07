@@ -6,6 +6,9 @@
   height: 1599
   cover: true
   handle: cover
+  lat: 45.384358
+  lng: -75.699867
+  captured_at: '2021-06-22T20:18:54.000Z'
 - type: photo
   key: wexh0pykn1qafl37oxfrbl9iiexb
   caption: View of the Arboretum from the other side
@@ -13,18 +16,27 @@
   width: 1599
   height: 1200
   handle: view-of-the-arboretum-from-the-other-side
+  lat: 45.385975
+  lng: -75.699731
+  captured_at: '2021-06-21T20:45:30.000Z'
 - type: photo
   key: 7e6qrna1u9ah3m28h6r62xc2313k
   score: 9.1
   width: 1599
   height: 1200
   handle: photo-13
+  lat: 45.395347
+  lng: -75.699806
+  captured_at: '2021-05-25T20:26:01.000Z'
 - type: photo
   key: v01zae815fgwud37fiuz12zrfslu
   score: 9.61
   width: 1600
   height: 1200
   handle: photo-35
+  lat: 45.416794
+  lng: -75.681908
+  captured_at: '2023-05-11T20:11:39.000Z'
 - type: photo
   key: vchsb49tuq404pkaa19elr7dfofd
   score: 4.34
@@ -38,6 +50,9 @@
   width: 1200
   height: 1599
   handle: house
+  lat: 45.3834
+  lng: -75.699928
+  captured_at: '2021-03-09T17:34:27.000Z'
 - type: photo
   key: 007stjnms0443o5lu5og4ghxx3nd
   caption: a street with street lights and trees
@@ -51,18 +66,27 @@
   width: 1200
   height: 1599
   handle: photo
+  lat: 45.407914
+  lng: -75.682092
+  captured_at: '2022-05-14T22:07:06.000Z'
 - type: photo
   key: apqxshjm8qo3pfy88r3fxh63insl
   score: 6.14
   width: 1200
   height: 1599
   handle: photo-2
+  lat: 45.396928
+  lng: -75.705453
+  captured_at: '2022-05-14T22:17:00.000Z'
 - type: photo
   key: s0dlj6dmmvmhzz0n3jbj8t0skxe5
   score: 6.53
   width: 1200
   height: 1599
   handle: photo-23
+  lat: 45.395458
+  lng: -75.689103
+  captured_at: '2022-03-22T16:59:32.000Z'
 - type: photo
   key: cuwkgrjwzqnatn5vqhtuo7mvi5oh
   caption: Dow's Lake
@@ -76,12 +100,18 @@
   width: 1200
   height: 1599
   handle: photo-4
+  lat: 45.419261
+  lng: -75.682525
+  captured_at: '2022-05-14T22:39:00.000Z'
 - type: photo
   key: pta04fibtu8zkaag2mbovbu0yjcx
   score: 7.94
   width: 1200
   height: 1599
   handle: photo-22
+  lat: 45.399206
+  lng: -75.680258
+  captured_at: '2022-03-22T16:56:54.000Z'
 - type: photo
   key: 4sifwwqto90cstw7iikb63v8dlje
   caption: Bank Bridge
@@ -102,6 +132,9 @@
   width: 1200
   height: 1600
   handle: photo-39
+  lat: 45.422019
+  lng: -75.701728
+  captured_at: '2023-05-20T10:17:19.000Z'
 - type: photo
   key: 3dvfy0ddb7imjha7ks2vxu17666w
   caption: a road with a tunnel
@@ -116,18 +149,27 @@
   width: 2048
   height: 1536
   handle: sunset
+  lat: 45.395183
+  lng: -75.699739
+  captured_at: '2020-07-12T21:03:05.000Z'
 - type: photo
   key: k7jbly1f64t50hnmtk5baerfl1y1
   score: 2.67
   width: 1599
   height: 1200
   handle: photo-7
+  lat: 45.391394
+  lng: -75.700028
+  captured_at: '2022-05-08T19:42:22.000Z'
 - type: photo
   key: scxsv4grmnvmraj76g4yg1qblmrb
   score: 5.76
   width: 1200
   height: 1599
   handle: photo-9
+  lat: 45.416381
+  lng: -75.682503
+  captured_at: '2021-11-07T16:20:22.000Z'
 - type: photo
   key: szehk4u2tb5fyvo1on8h7h2ka26o
   caption: Dow's Lake
@@ -135,6 +177,9 @@
   width: 1599
   height: 1200
   handle: dow-s-lake
+  lat: 45.391475
+  lng: -75.700042
+  captured_at: '2021-06-21T20:47:46.000Z'
 - type: photo
   key: s026wj1rbdcboyll41vz2k04ax2q
   score: 6.27
@@ -142,6 +187,9 @@
   height: 1200
   handle: photo-41
   caption: critical mass ride
+  lat: 45.422358
+  lng: -75.689217
+  captured_at: '2023-05-20T10:22:48.000Z'
 - type: photo
   key: ehd82tapbgihmx7sn8zybhf503l8
   caption: Canal Locks
@@ -155,6 +203,9 @@
   width: 1200
   height: 1599
   handle: photo-6
+  lat: 45.409661
+  lng: -75.682914
+  captured_at: '2022-05-14T22:06:25.000Z'
 - type: photo
   key: uy7nbs1wzf8pel0hl40ldktqis5b
   caption: Cherry Blossom
@@ -189,24 +240,36 @@
   width: 1200
   height: 1599
   handle: photo-12
+  lat: 45.395339
+  lng: -75.699814
+  captured_at: '2021-05-25T20:25:54.000Z'
 - type: photo
   key: om3fxc2jua1bjphqv61074dbt9cl
   score: 6.91
   width: 1200
   height: 1599
   handle: photo-14
+  lat: 45.393928
+  lng: -75.703819
+  captured_at: '2021-05-25T20:36:20.000Z'
 - type: photo
   key: d2xerlrd0lpsqk6m4itbgv8j6ltx
   score: 8.59
   width: 1200
   height: 1599
   handle: photo-15
+  lat: 45.391467
+  lng: -75.700081
+  captured_at: '2021-05-25T20:43:31.000Z'
 - type: photo
   key: 8h44qpsvlembh8zgq1aefylzgljh
   score: 4.86
   width: 1599
   height: 1200
   handle: photo-16
+  lat: 45.384097
+  lng: -75.700128
+  captured_at: '2021-04-06T18:56:42.000Z'
 - type: photo
   key: ow3rou08is9vgahl06cumenohflh
   caption: winter is over!
@@ -214,6 +277,9 @@
   width: 1200
   height: 1599
   handle: winter-is-over
+  lat: 45.400458
+  lng: -75.678467
+  captured_at: '2021-03-09T17:22:13.000Z'
 - type: photo
   key: udvo41wl2fhn45v25pc3rwe8g2vg
   caption: a snowy field with trees and a sunset
@@ -221,12 +287,18 @@
   width: 1599
   height: 1200
   handle: a-snowy-field-with-trees-and-a-sunset
+  lat: 45.390536
+  lng: -75.700492
+  captured_at: '2021-03-09T17:30:33.000Z'
 - type: photo
   key: ol4ykp8dgm3ifz9j03b55feb9x56
   score: 4.47
   width: 2048
   height: 1536
   handle: photo-17
+  lat: 45.396483
+  lng: -75.7016
+  captured_at: '2020-06-22T20:16:01.000Z'
 - type: photo
   key: y1kxue5xxlne3mf2zbfj8ya0rusj
   caption: Dow's Lake
@@ -234,24 +306,36 @@
   width: 2048
   height: 1536
   handle: dow-s-lake-2
+  lat: 45.395953
+  lng: -75.699844
+  captured_at: '2020-07-12T21:11:39.000Z'
 - type: photo
   key: l2ajhbqfqja9zdf6x6si0iwftl6t
   score: 4.09
   width: 2048
   height: 1536
   handle: photo-19
+  lat: 45.3969
+  lng: -75.702492
+  captured_at: '2019-12-28T15:48:16.000Z'
 - type: photo
   key: vttdc4c4z338o6jd92qyb8a4ecsq
   score: 3.96
   width: 2048
   height: 1536
   handle: photo-20
+  lat: 45.397297
+  lng: -75.702461
+  captured_at: '2020-04-04T16:52:46.000Z'
 - type: photo
   key: 9qnvhmp360v103afb7wdbef65sgj
   score: 3.83
   width: 1599
   height: 1200
   handle: photo-21
+  lat: 45.389953
+  lng: -75.703833
+  captured_at: '2022-05-05T20:30:31.000Z'
 - type: photo
   key: x5k317ir8evqc5mbqcvy7i4co1ky
   score: 6.01
@@ -259,6 +343,9 @@
   height: 1599
   handle: photo-5
   caption: Road closures in Summer
+  lat: 45.416411
+  lng: -75.682433
+  captured_at: '2022-05-14T22:40:32.000Z'
 - type: photo
   key: 3n01cga2in0sem540j8z7k095srj
   caption: can't keep going
@@ -266,6 +353,9 @@
   width: 1200
   height: 1599
   handle: can-t-keep-going
+  lat: 45.426556
+  lng: -75.699233
+  captured_at: '2022-03-26T14:41:00.000Z'
 - type: photo
   key: kfhonjz2bav7915kprluz170nm7r
   caption: a bridge over a body of water
@@ -273,6 +363,9 @@
   width: 1599
   height: 1200
   handle: a-bridge-over-a-body-of-water
+  lat: 45.426597
+  lng: -75.699203
+  captured_at: '2022-03-26T14:42:11.000Z'
 - type: photo
   key: 3e2gbrtt6v0afvqij6442he99mo8
   caption: a frozen lake with buildings in the background
@@ -280,18 +373,27 @@
   width: 1599
   height: 1200
   handle: a-frozen-lake-with-buildings-in-the-backg
+  lat: 45.424053
+  lng: -75.702539
+  captured_at: '2022-03-26T14:47:49.000Z'
 - type: photo
   key: ckafacw54ms0bynrhq4eiqt5ovf8
   score: 7.81
   width: 1599
   height: 1200
   handle: photo-24
+  lat: 45.394111
+  lng: -75.697425
+  captured_at: '2022-03-22T17:01:41.000Z'
 - type: photo
   key: p4bh40snk5fec2g8qj8gy1a9lwfk
   score: 3.31
   width: 1599
   height: 1200
   handle: photo-25
+  lat: 45.397531
+  lng: -75.705117
+  captured_at: '2022-03-22T17:08:36.000Z'
 - type: photo
   key: 4f68dzt7x85spz6189qgehgy14aj
   caption: Bank Bridge
@@ -299,12 +401,18 @@
   width: 2048
   height: 1536
   handle: bank-bridge-2
+  lat: 45.396167
+  lng: -75.684944
+  captured_at: '2020-05-15T00:49:08.000Z'
 - type: photo
   key: f79o1qqg92jr02v1cu2rxy5q4m7h
   score: 8.97
   width: 2048
   height: 1536
   handle: photo-27
+  lat: 45.394336
+  lng: -75.698303
+  captured_at: '2020-06-15T21:48:59.000Z'
 - type: photo
   key: cmmd8d5x0e5ln0ccte1tiq7sxdtj
   caption: a body of water with a fence and trees around it
@@ -318,6 +426,9 @@
   width: 1200
   height: 1600
   handle: photo-29
+  lat: 45.395333
+  lng: -75.699914
+  captured_at: '2023-03-05T16:12:14.000Z'
 - type: photo
   key: jxailfypybbz10h2idwh5nnpoz99
   caption: a moon in the sky
@@ -325,12 +436,18 @@
   width: 1200
   height: 1599
   handle: a-moon-in-the-sky
+  lat: 45.416758
+  lng: -75.6818
+  captured_at: '2021-06-21T21:06:22.000Z'
 - type: photo
   key: imanz6tq10tymptag9hqv2kbdnp0
   score: 2.93
   width: 1600
   height: 1200
   handle: photo-30
+  lat: 45.396519
+  lng: -75.701483
+  captured_at: '2023-03-05T16:23:46.000Z'
 - type: photo
   key: o1x7ae9kr69tsqcuudh3laare2ey
   score: 2.8
@@ -343,30 +460,45 @@
   width: 1200
   height: 1600
   handle: photo-34
+  lat: 45.384697
+  lng: -75.699653
+  captured_at: '2023-05-11T19:47:23.000Z'
 - type: photo
   key: vho0m5p5j9hf2hawjbce9nhs8uwm
   score: 4.99
   width: 1599
   height: 1200
   handle: photo-11
+  lat: 45.399186
+  lng: -75.681236
+  captured_at: '2021-07-26T22:36:52.000Z'
 - type: photo
   key: 7yhvq494j2kqw519l3vwwz6k90rd
   score: 2.41
   width: 1600
   height: 1200
   handle: photo-36
+  lat: 45.416539
+  lng: -75.715242
+  captured_at: '2023-05-20T10:09:20.000Z'
 - type: photo
   key: 002g7l9bj30ng66wtlcqwo169kk2
   score: 1.39
   width: 1200
   height: 1599
   handle: photo-3
+  lat: 45.396728
+  lng: -75.706178
+  captured_at: '2022-05-14T22:17:15.000Z'
 - type: photo
   key: wrk836h9pws09tvzwe4tcvxpbo02
   score: 3.44
   width: 2048
   height: 1536
   handle: photo-26
+  lat: 45.405256
+  lng: -75.680289
+  captured_at: '2020-09-02T22:39:22.000Z'
 - type: photo
   key: 6j2nzacc2ot1j3k2aeh2cxvxzjay
   caption: Topstone
@@ -386,6 +518,9 @@
   width: 1600
   height: 1200
   handle: photo-38
+  lat: 45.419761
+  lng: -75.706856
+  captured_at: '2023-05-20T10:14:57.000Z'
 - type: photo
   key: n0lq1l15ncox0fqonjwv1637c4rb
   score: 1.9
@@ -393,24 +528,36 @@
   height: 1600
   handle: photo-40
   caption: during critical mass ride
+  lat: 45.422164
+  lng: -75.701064
+  captured_at: '2023-05-20T10:17:31.000Z'
 - type: photo
   key: 3u4x4z1otw9tveeeu1hue6cuihim
   score: 1.77
   width: 1200
   height: 1600
   handle: photo-42
+  lat: 45.395364
+  lng: -75.690308
+  captured_at: '2023-05-20T10:40:46.000Z'
 - type: photo
   key: pjblb94ulgmj01hd2cqe8sk9rco2
   score: 1.51
   width: 1600
   height: 1200
   handle: photo-43
+  lat: 45.422358
+  lng: -75.689217
+  captured_at: '2023-05-20T10:22:46.000Z'
 - type: photo
   key: h7goikw92kx2lx2i0il34tg8vr1y
   score: 7.56
   width: 1200
   height: 1600
   handle: photo-28
+  lat: 45.395347
+  lng: -75.699806
+  captured_at: '2023-03-05T16:11:34.000Z'
 - type: video
   key: t1nx9u04j1o1dn2bq74lob9jxtoi
   title: Sunset at Dow's Lake

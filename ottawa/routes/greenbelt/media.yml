@@ -5,6 +5,9 @@
   height: 1600
   cover: true
   handle: cover
+  lat: 45.371169
+  lng: -75.568092
+  captured_at: '2023-05-06T15:56:36.000Z'
 - type: photo
   key: z0d6ndrnu4wfnikxo09dwq32lo8x
   caption: a group of people on bicycles in a grassy field
@@ -32,12 +35,18 @@
   width: 1200
   height: 1599
   handle: photo
+  lat: 45.359642
+  lng: -75.601058
+  captured_at: '2022-04-11T12:54:10.000Z'
 - type: photo
   key: lr40m7mtog4s9gemv1j104nvcavs
   score: 6.18
   width: 1200
   height: 1599
   handle: photo-2
+  lat: 45.349839
+  lng: -75.605033
+  captured_at: '2022-04-11T12:44:55.000Z'
 - type: photo
   key: xmdopx1mqw67hd2b76sdq78p5qt7
   caption: squat selfie on the trail!
@@ -45,6 +54,9 @@
   width: 1599
   height: 1200
   handle: squat-selfie-on-the-trail
+  lat: 45.325522
+  lng: -75.80275
+  captured_at: '2022-05-10T17:32:05.000Z'
 - type: photo
   key: edjb0558j1lbcskr1yfoggbsi53b
   caption: Nathan riding on a dirt path in a field
@@ -52,6 +64,9 @@
   width: 1200
   height: 1599
   handle: nathan-riding-on-a-dirt-path-in-a-field
+  lat: 45.417136
+  lng: -75.591483
+  captured_at: '2022-05-10T10:57:10.000Z'
 - type: photo
   key: 5lyx7htac5uva1gi6dq5rtemd7bs
   caption: selfie! WHOOP WHOOP!
@@ -59,6 +74,9 @@
   width: 1200
   height: 1599
   handle: selfie-whoop-whoop
+  lat: 45.370675
+  lng: -75.569175
+  captured_at: '2022-05-10T11:20:26.000Z'
 - type: photo
   key: heka5ijcant98zwmkfeg3s7tv96o
   caption: riding bikes on a trail
@@ -66,6 +84,9 @@
   width: 1200
   height: 1599
   handle: riding-bikes-on-a-trail
+  lat: 45.368092
+  lng: -75.5774
+  captured_at: '2022-05-10T11:25:04.000Z'
 - type: photo
   key: 3jy4ypca53443s3q2gpbafvfthz6
   caption: riding bikes through a forest
@@ -80,6 +101,9 @@
   width: 1200
   height: 1599
   handle: a-wooden-walkway-through-a-forest
+  lat: 45.351897
+  lng: -75.588714
+  captured_at: '2022-05-10T11:36:14.000Z'
 - type: photo
   key: 2g3dvam9t2uaxsfmbkfonc8dcpi6
   caption: a group of people riding bikes on a road with trees on the side
@@ -94,6 +118,9 @@
   width: 1200
   height: 1599
   handle: off-bike-action
+  lat: 45.331539
+  lng: -75.6305
+  captured_at: '2022-05-10T12:02:23.000Z'
 - type: photo
   key: w7vr9inopsthnguqgxo5rcsfakyf
   caption: a road with power lines on the side
@@ -101,6 +128,9 @@
   width: 1200
   height: 1599
   handle: a-road-with-power-lines-on-the-side
+  lat: 45.328506
+  lng: -75.63765
+  captured_at: '2022-05-10T12:05:07.000Z'
 - type: photo
   key: ici14cigfg2hxk8b7gopvexh9sh8
   caption: wondering where to go next
@@ -108,6 +138,9 @@
   width: 1599
   height: 1200
   handle: wondering-where-to-go-next
+  lat: 45.288606
+  lng: -75.6716
+  captured_at: '2022-05-10T12:55:50.000Z'
 - type: photo
   key: hl5klj7o8uigq24qkmbs2hy1pqls
   caption: a small river in a forest
@@ -115,6 +148,9 @@
   width: 1200
   height: 1599
   handle: a-small-river-in-a-forest
+  lat: 45.287292
+  lng: -75.678169
+  captured_at: '2022-05-10T12:59:27.000Z'
 - type: photo
   key: 21nl919xwbbsb603ejoq4he529ff
   caption: a group of people riding bikes on a road with a bridge in the background
@@ -122,6 +158,9 @@
   width: 1599
   height: 1200
   handle: a-group-of-people-riding-bikes-on-a-road--2
+  lat: 45.269814
+  lng: -75.701081
+  captured_at: '2022-05-10T15:07:08.000Z'
 - type: photo
   key: 4xybw0xj6iqrf2h9nk6ydolrmf5t
   caption: a person riding a bicycle on a path with power lines above them
@@ -129,6 +168,9 @@
   width: 1200
   height: 1599
   handle: a-person-riding-a-bicycle-on-a-path-with-
+  lat: 45.333592
+  lng: -75.741028
+  captured_at: '2022-05-10T18:51:41.000Z'
 - type: photo
   key: f2nv8r3bzwjktwpz5pr53sup70pv
   caption: a tree with many branches
@@ -143,6 +185,9 @@
   width: 1200
   height: 1599
   handle: single-track-beauty
+  lat: 45.349731
+  lng: -75.688142
+  captured_at: '2022-05-04T18:23:15.000Z'
 - type: photo
   key: ws7hxn3nrym2sonjx95kmt1i3jgz
   caption: early spring is the perfect time to visit this
@@ -150,6 +195,9 @@
   width: 1200
   height: 1599
   handle: early-spring-is-the-perfect-time-to-visit
+  lat: 45.354197
+  lng: -75.677361
+  captured_at: '2022-05-04T18:33:00.000Z'
 - type: photo
   key: jubiqpd30058gdv4ehfqvfizk007
   caption: selfie
@@ -157,6 +205,9 @@
   width: 1200
   height: 1599
   handle: selfie
+  lat: 45.354203
+  lng: -75.677361
+  captured_at: '2022-05-04T18:32:54.000Z'
 - type: photo
   key: 93razpx5921unpfugjcpsfk20snd
   caption: shrooms
@@ -164,6 +215,9 @@
   width: 1200
   height: 1599
   handle: shrooms
+  lat: 45.354217
+  lng: -75.677392
+  captured_at: '2022-05-04T18:33:33.000Z'
 - type: photo
   key: 2whi1lny58eth7dopiifyq4i5ic3
   caption: a road with trees on the side
@@ -171,6 +225,9 @@
   width: 1200
   height: 1599
   handle: a-road-with-trees-on-the-side
+  lat: 45.406856
+  lng: -75.66935
+  captured_at: '2022-05-04T19:47:47.000Z'
 - type: photo
   key: 2hm3to7eapuczoa3hehiulb1ybs2
   caption: a road with trees on the side
@@ -178,6 +235,9 @@
   width: 1200
   height: 1599
   handle: a-road-with-trees-on-the-side-2
+  lat: 45.407128
+  lng: -75.669731
+  captured_at: '2022-05-04T19:47:54.000Z'
 - type: photo
   key: y66bn2ipet62kk44q5hdpy3xp2q0
   score: 1
@@ -190,12 +250,18 @@
   width: 1200
   height: 1600
   handle: photo-4
+  lat: 45.356214
+  lng: -75.607772
+  captured_at: '2023-05-06T16:19:24.000Z'
 - type: photo
   key: 3xxufjfxqe43aknxd93zi3hkl4m0
   score: 1.27
   width: 1600
   height: 1200
   handle: photo-5
+  lat: 45.350761
+  lng: -75.670119
+  captured_at: '2023-05-06T16:48:32.000Z'
 - type: photo
   key: ah2z3sxxnzdbk6pq0q0njvu8yo9c
   score: 2.09
@@ -228,6 +294,9 @@
   width: 1200
   height: 1599
   handle: a-group-of-people-riding-bikes-on-a-trail
+  lat: 45.311786
+  lng: -75.726806
+  captured_at: '2022-05-24T18:07:52.000Z'
 - type: video
   key: 1org4brid8t60s52ogajwhfrgvhx
   title: Riding on Single Track Trails

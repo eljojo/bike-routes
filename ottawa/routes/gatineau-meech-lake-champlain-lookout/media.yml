@@ -6,6 +6,9 @@
   height: 1200
   cover: true
   handle: cover
+  lat: 45.455003
+  lng: -75.715828
+  captured_at: '2021-09-10T07:54:03.000Z'
 - type: photo
   key: hbfzvih31vh8fm9gfmq5awjagjat
   caption: View from Champlain Lookout
@@ -13,6 +16,9 @@
   width: 1599
   height: 1200
   handle: view-from-champlain-lookout
+  lat: 45.508317
+  lng: -75.913147
+  captured_at: '2022-05-06T18:54:18.000Z'
 - type: photo
   key: frh5au7wc0ngvfc4tnkxw693gj7u
   caption: enjoying the lake
@@ -20,12 +26,18 @@
   width: 2048
   height: 1536
   handle: enjoying-the-lake
+  lat: 45.526664
+  lng: -75.86885
+  captured_at: '2020-09-03T15:02:22.000Z'
 - type: photo
   key: 2u106vw0rijfzxuzoax7gb1jc53p
   score: 8.36
   width: 1599
   height: 1200
   handle: photo-2
+  lat: 45.526467
+  lng: -75.869111
+  captured_at: '2022-05-13T19:19:50.000Z'
 - type: photo
   key: 7vjvb8bj0bh4wiyst4j13iiav3lp
   caption: Meech Lake
@@ -33,12 +45,18 @@
   width: 2048
   height: 1536
   handle: a-body-of-water-with-trees-and-mountains-
+  lat: 45.526561
+  lng: -75.8702
+  captured_at: '2020-09-03T14:18:51.000Z'
 - type: photo
   key: fa15tchi7svj6sy790ig8vwgzy5t
   score: 7.14
   width: 1200
   height: 1599
   handle: photo-5
+  lat: 45.4659
+  lng: -75.811883
+  captured_at: '2022-05-13T20:00:49.000Z'
 - type: photo
   key: 72477l7kg2pvl2nsi7vky25s6yy0
   caption: a deer standing on a stone wall
@@ -46,6 +64,9 @@
   width: 1599
   height: 1200
   handle: a-deer-standing-on-a-stone-wall
+  lat: 45.454975
+  lng: -75.715783
+  captured_at: '2021-09-10T07:54:17.000Z'
 - type: photo
   key: t7um2fnhncvif5ic32bdwsgc7eoz
   caption: a road with trees on the side
@@ -53,12 +74,18 @@
   width: 2048
   height: 1536
   handle: a-road-with-trees-on-the-side
+  lat: 45.521472
+  lng: -75.850189
+  captured_at: '2020-09-03T15:23:13.000Z'
 - type: photo
   key: 7rjtjflcis6dqttjlnwu5p9o03lp
   score: 7.55
   width: 1200
   height: 1599
   handle: photo-4
+  lat: 45.521361
+  lng: -75.850608
+  captured_at: '2022-05-13T19:30:40.000Z'
 - type: photo
   key: m4bfln8o5pissof5oai56vgu4sk9
   caption: a bicycle is parked on a bench
@@ -66,18 +93,27 @@
   width: 1599
   height: 1200
   handle: a-bicycle-is-parked-on-a-bench
+  lat: 45.470036
+  lng: -75.753089
+  captured_at: '2021-09-10T08:48:17.000Z'
 - type: photo
   key: q826035zvgi29ujtgdlyge76pht9
   score: 4.68
   width: 1200
   height: 1599
   handle: photo-6
+  lat: 45.526553
+  lng: -75.868889
+  captured_at: '2022-05-13T19:20:58.000Z'
 - type: photo
   key: fr9z8owekcxug3q7ugkmhfo44rtq
   score: 5.5
   width: 1200
   height: 1599
   handle: photo-7
+  lat: 45.526839
+  lng: -75.865325
+  captured_at: '2022-05-13T18:32:02.000Z'
 - type: photo
   key: d21biq0v7vcas6zka9n3afaagf25
   caption: a road with trees on the side
@@ -85,12 +121,18 @@
   width: 2048
   height: 1536
   handle: a-road-with-trees-on-the-side-2
+  lat: 45.455683
+  lng: -75.786894
+  captured_at: '2020-09-03T16:01:36.000Z'
 - type: photo
   key: 1ymzogn10yxnucza00wvf0vsdijj
   score: 5.09
   width: 1200
   height: 1599
   handle: photo-8
+  lat: 45.514336
+  lng: -75.838853
+  captured_at: '2022-05-13T18:23:55.000Z'
 - type: photo
   key: 4v3ggmfrjbo63o088412hkmvk3l6
   caption: View of the City
@@ -98,12 +140,18 @@
   width: 1599
   height: 1200
   handle: view-of-the-city
+  lat: 45.470044
+  lng: -75.752936
+  captured_at: '2021-09-10T08:47:58.000Z'
 - type: photo
   key: 1m1cb7yx48b1ypp814kocoryrixz
   score: 6.32
   width: 1200
   height: 1599
   handle: photo-3
+  lat: 45.526725
+  lng: -75.868575
+  captured_at: '2022-05-13T19:13:44.000Z'
 - type: photo
   key: 2vycrzy3bfggt4nkggle169yb9f6
   caption: latte
@@ -111,6 +159,9 @@
   width: 1200
   height: 1599
   handle: latte
+  lat: 45.506672
+  lng: -75.811517
+  captured_at: '2021-09-10T11:23:38.000Z'
 - type: photo
   key: 4dwifpntpmnwpkxwynxz7sxsxmlv
   caption: selfie
@@ -118,6 +169,9 @@
   width: 1599
   height: 1200
   handle: selfie-2
+  lat: 45.398036
+  lng: -75.860231
+  captured_at: '2021-09-10T14:05:34.000Z'
 - type: photo
   key: 5fc6ktg2bfxe03hzdavbh2s7lih2
   caption: no cars allowed
@@ -125,9 +179,15 @@
   width: 2048
   height: 1536
   handle: no-cars-allowed
+  lat: 45.521447
+  lng: -75.850289
+  captured_at: '2020-09-03T15:23:22.000Z'
 - type: photo
   key: ze58ij2azh370vdi62odtbehrpzj
   score: 8.77
   width: 1200
   height: 1599
   handle: photo
+  lat: 45.526725
+  lng: -75.868622
+  captured_at: '2022-05-13T19:18:52.000Z'

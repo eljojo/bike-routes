@@ -5,12 +5,18 @@
   height: 1200
   handle: photo-28
   cover: true
+  lat: 45.378272
+  lng: -75.698783
+  captured_at: '2022-10-14T15:51:16.000Z'
 - type: photo
   key: pu7fbk04gtzd0ypxlj40vdetprrz
   score: 1.5
   width: 1200
   height: 1600
   handle: photo-40
+  lat: 45.379936
+  lng: -75.697181
+  captured_at: '2023-10-28T10:17:44.000Z'
 - type: photo
   key: epprnvz7z415tra6l3njt3uq3yqi
   caption: Vincent Massey Park
@@ -18,24 +24,36 @@
   width: 1599
   height: 1200
   handle: vincent-massey-park
+  lat: 45.379486
+  lng: -75.697708
+  captured_at: '2022-04-12T16:40:56.000Z'
 - type: photo
   key: 036tuwe5krilekl915in1boakrmu
   score: 2.5
   width: 1200
   height: 1600
   handle: photo-36
+  lat: 45.379986
+  lng: -75.697167
+  captured_at: '2023-10-28T10:23:56.000Z'
 - type: photo
   key: t1bbqcc8ec7flqyohtw8nd74is2d
   score: 7.67
   width: 1600
   height: 1200
   handle: photo
+  lat: 45.394358
+  lng: -75.698119
+  captured_at: '2022-07-31T21:26:11.000Z'
 - type: photo
   key: 4g5sxlnz3grememlevvbuq55rhtu
   score: 5.83
   width: 1600
   height: 1200
   handle: photo-2
+  lat: 45.394333
+  lng: -75.698356
+  captured_at: '2022-07-31T21:26:19.000Z'
 - type: photo
   key: jb2ntje9jobkhjzj629a2hkmr5km
   caption: path along the Ottawa Canal
@@ -43,6 +61,9 @@
   width: 2048
   height: 1536
   handle: path-along-the-ottawa-canal
+  lat: 45.393742
+  lng: -75.6922
+  captured_at: '2020-09-23T18:44:50.000Z'
 - type: photo
   key: xd23xhles3giof0q85877r67nkyw
   caption: i joined duck fest
@@ -50,30 +71,45 @@
   width: 1200
   height: 1599
   handle: i-joined-duck-fest
+  lat: 45.389575
+  lng: -75.676589
+  captured_at: '2021-10-08T17:06:21.000Z'
 - type: photo
   key: 70bvnj64w08aptolajee2jsmf8ey
   score: 8
   width: 1200
   height: 1599
   handle: photo-9
+  lat: 45.419289
+  lng: -75.681206
+  captured_at: '2021-05-13T20:25:57.000Z'
 - type: photo
   key: zdcjsbhtjtquno73gjj3mqajk5c9
   score: 5.33
   width: 1599
   height: 1200
   handle: photo-5
+  lat: 45.446678
+  lng: -75.709817
+  captured_at: '2022-04-30T18:21:25.000Z'
 - type: photo
   key: 00zpa4618yfj86qql6vrvug11fz3
   score: 6.33
   width: 1200
   height: 1599
   handle: photo-6
+  lat: 45.450775
+  lng: -75.719239
+  captured_at: '2022-04-30T18:09:13.000Z'
 - type: photo
   key: 0gopsrnjuybz5ywxt654gho7y8ux
   score: 4.5
   width: 1599
   height: 1200
   handle: photo-7
+  lat: 45.449361
+  lng: -75.710167
+  captured_at: '2022-04-30T17:42:59.000Z'
 - type: photo
   key: qruu50ck4qp9inu9ujvz3o7aemg7
   caption: view from up above
@@ -81,6 +117,9 @@
   width: 1599
   height: 1200
   handle: view-from-up-above
+  lat: 45.368539
+  lng: -75.692214
+  captured_at: '2021-10-08T16:34:12.000Z'
 - type: photo
   key: 0ggiou4trpj86pasktpy92d7jb6b
   caption: there's a party going on
@@ -88,6 +127,9 @@
   width: 1200
   height: 1599
   handle: there-s-a-party-going-on
+  lat: 45.389583
+  lng: -75.676711
+  captured_at: '2021-10-08T17:05:06.000Z'
 - type: photo
   key: zwwsd0t70tjeh2yyh382svjakadk
   caption: selfie
@@ -95,6 +137,9 @@
   width: 1200
   height: 1599
   handle: selfie
+  lat: 45.379425
+  lng: -75.697686
+  captured_at: '2022-04-12T16:41:20.000Z'
 - type: photo
   key: zxg4gam5tyd27uj8qfpd24oajyrs
   caption: a group of geese in a park
@@ -102,6 +147,9 @@
   width: 1599
   height: 1200
   handle: a-group-of-geese-in-a-park
+  lat: 45.389739
+  lng: -75.676597
+  captured_at: '2021-10-08T17:05:21.000Z'
 - type: photo
   key: bwrswvr7fydf1dkbelxuufczxls1
   caption: duck fest
@@ -109,6 +157,9 @@
   width: 1599
   height: 1200
   handle: duck-fest
+  lat: 45.389542
+  lng: -75.676536
+  captured_at: '2021-10-08T17:06:15.000Z'
 - type: photo
   key: 0qzv2hxkm2pc47jeety3rmwshadn
   caption: sunset
@@ -116,6 +167,9 @@
   width: 1599
   height: 1200
   handle: sunset
+  lat: 45.362264
+  lng: -75.688147
+  captured_at: '2021-08-16T20:30:35.000Z'
 - type: photo
   key: 0wdcsvqz3euorgbtxeshg0uzmm8z
   caption: sunset
@@ -123,6 +177,9 @@
   width: 1599
   height: 1200
   handle: sunset-2
+  lat: 45.368061
+  lng: -75.693297
+  captured_at: '2021-08-16T20:26:55.000Z'
 - type: photo
   key: 274a22kocgtygl8myw25wbay4cuh
   caption: sunset
@@ -130,30 +187,45 @@
   width: 1600
   height: 415
   handle: sunset-3
+  lat: 45.368072
+  lng: -75.693144
+  captured_at: '2021-08-16T20:26:05.000Z'
 - type: photo
   key: tqbne9hy6cy5rsja0zu9m149cc8d
   score: 9.33
   width: 2048
   height: 1536
   handle: photo-14
+  lat: 45.384497
+  lng: -75.684539
+  captured_at: '2020-11-09T17:24:25.000Z'
 - type: photo
   key: ra04u93e6z98i67ydzutho7sbssb
   score: 7.17
   width: 2048
   height: 1536
   handle: photo-15
+  lat: 45.386361
+  lng: -75.683114
+  captured_at: '2020-11-09T17:22:39.000Z'
 - type: photo
   key: h91entaptod2w6fdff9llxy0pn0t
   score: 4.17
   width: 2048
   height: 1536
   handle: photo-16
+  lat: 45.403817
+  lng: -75.667769
+  captured_at: '2020-11-09T17:15:18.000Z'
 - type: photo
   key: 9w2z6hgy3jwvr8w4ntcu7mvii9yo
   score: 4
   width: 2048
   height: 1536
   handle: photo-17
+  lat: 45.417994
+  lng: -75.679681
+  captured_at: '2020-11-09T16:56:55.000Z'
 - type: photo
   key: qkv39ql7oaqpzzoepkbg8fjanguq
   caption: Prince of Wales Falls
@@ -161,30 +233,45 @@
   width: 2048
   height: 1536
   handle: prince-of-wales-falls
+  lat: 45.371058
+  lng: -75.696625
+  captured_at: '2020-09-23T18:56:14.000Z'
 - type: photo
   key: eou4y0bhj2zoe3hgovez6pwi1ebr
   score: 7.83
   width: 2048
   height: 1536
   handle: photo-18
+  lat: 45.403625
+  lng: -75.667656
+  captured_at: '2020-07-06T20:56:23.000Z'
 - type: photo
   key: wi2venrwrvodvb896qech8uhauay
   score: 3.67
   width: 1536
   height: 2048
   handle: photo-19
+  lat: 45.382083
+  lng: -75.690544
+  captured_at: '2020-05-01T18:17:51.000Z'
 - type: photo
   key: 1xwsza8pwg3cyxpnkh4z9gz7uou9
   score: 9.83
   width: 1600
   height: 1200
   handle: photo-20
+  lat: 45.441142
+  lng: -75.692131
+  captured_at: '2022-09-28T17:04:17.000Z'
 - type: photo
   key: hxojuzt0gc2pk6qurepo0ol7zslu
   score: 3.5
   width: 1200
   height: 1600
   handle: photo-21
+  lat: 45.379342
+  lng: -75.706269
+  captured_at: '2022-08-21T20:31:31.000Z'
 - type: photo
   key: l0phzq5a2ukh4up9xc2z3lnky8zc
   caption: a road with cars on it and a sunset in the background
@@ -192,12 +279,18 @@
   width: 1600
   height: 1200
   handle: a-road-with-cars-on-it-and-a-sunset-in-th
+  lat: 45.376361
+  lng: -75.694481
+  captured_at: '2022-07-27T20:26:48.000Z'
 - type: photo
   key: 397sbyy9hi8gpiktsryj0gy9pg3x
   score: 1.1
   width: 1200
   height: 1600
   handle: photo-39
+  lat: 45.415986
+  lng: -75.682433
+  captured_at: '2023-10-28T09:48:01.000Z'
 - type: photo
   key: 021x0y1a1w4hrruf6w1dv8ydit62
   caption: a sunset over a field
@@ -205,6 +298,9 @@
   width: 1600
   height: 1200
   handle: a-sunset-over-a-field
+  lat: 45.375728
+  lng: -75.695236
+  captured_at: '2022-07-27T20:29:04.000Z'
 - type: photo
   key: gjnm5guq8ygfa3chlfd3lj27f3kx
   caption: a park with a fence and trees
@@ -212,48 +308,72 @@
   width: 1600
   height: 1200
   handle: a-park-with-a-fence-and-trees
+  lat: 45.375725
+  lng: -75.695228
+  captured_at: '2022-07-27T20:29:09.000Z'
 - type: photo
   key: c25qyr4464u55wc8h58kcganl9vr
   score: 6.5
   width: 1200
   height: 1599
   handle: photo-22
+  lat: 45.417811
+  lng: -75.718742
+  captured_at: '2022-05-21T20:11:09.000Z'
 - type: photo
   key: 5i8uoetlbmrcrg5ear1sw0ofiawg
   score: 7
   width: 1599
   height: 1200
   handle: photo-24
+  lat: 45.376656
+  lng: -75.696892
+  captured_at: '2022-05-21T19:29:07.000Z'
 - type: photo
   key: 0ua27iih2ji4wurlnjkeal09xvsy
   score: 9.5
   width: 1200
   height: 1600
   handle: photo-25
+  lat: 45.436675
+  lng: -75.672897
+  captured_at: '2022-10-14T16:29:11.000Z'
 - type: photo
   key: 86ek2mwm3y1osvjvcqaddtku58xt
   score: 8.5
   width: 1600
   height: 1200
   handle: photo-26
+  lat: 45.380378
+  lng: -75.698792
+  captured_at: '2022-10-14T15:54:00.000Z'
 - type: photo
   key: wa2mphmgnasyre7ezhuxuohw1oyr
   score: 2.67
   width: 1600
   height: 1200
   handle: photo-27
+  lat: 45.441233
+  lng: -75.693506
+  captured_at: '2022-10-14T16:23:02.000Z'
 - type: photo
   key: gpglu4pyszbbif600vifit0as37x
   score: 2.5
   width: 1600
   height: 1200
   handle: photo-29
+  lat: 45.365669
+  lng: -75.690711
+  captured_at: '2022-10-30T17:09:38.000Z'
 - type: photo
   key: 32cs94pob4g63iz553wx2hbx7roz
   score: 2
   width: 1200
   height: 1600
   handle: photo-35
+  lat: 45.449006
+  lng: -75.707711
+  captured_at: '2023-10-28T11:46:26.000Z'
 - type: photo
   key: k3gqayeymzznflvgef3q9398ngu3
   caption: dow's lake
@@ -268,6 +388,9 @@
   width: 1200
   height: 1600
   handle: selfie-2
+  lat: 45.388742
+  lng: -75.702447
+  captured_at: '2022-11-02T12:58:59.000Z'
 - type: photo
   key: v34pa9qcjfcordq1ad3zhc3chstc
   caption: fall leaves
@@ -275,6 +398,9 @@
   width: 1200
   height: 1600
   handle: fall-leaves
+  lat: 45.388711
+  lng: -75.702378
+  captured_at: '2022-11-02T12:59:27.000Z'
 - type: photo
   key: gky7bu0gai2zsl4cy2tdi0uihwf0
   score: 1.5
@@ -287,33 +413,51 @@
   width: 1600
   height: 1200
   handle: photo-33
+  lat: 45.369842
+  lng: -75.697747
+  captured_at: '2023-05-30T20:21:31.000Z'
 - type: photo
   key: vndiuqxymoqev03pwxv0o0cclu4s
   score: 2.83
   width: 1200
   height: 1600
   handle: photo-34
+  lat: 45.380706
+  lng: -75.697892
+  captured_at: '2023-05-31T19:13:41.000Z'
 - type: photo
   key: j1h7kk9f3bkgdy5fiqeq5s8qn9nn
   score: 10
   width: 1200
   height: 1600
   handle: cover
+  lat: 45.404033
+  lng: -75.665628
+  captured_at: '2023-06-08T18:36:47.000Z'
 - type: photo
   key: lip0k9ku046rl9axwv8n22twzz3o
   score: 1.5
   width: 1200
   height: 1600
   handle: photo-37
+  lat: 45.437486
+  lng: -75.687614
+  captured_at: '2023-10-28T11:02:30.000Z'
 - type: photo
   key: xm5r9aodmdxfvd3l5uoaxuzz5pfc
   score: 1.1
   width: 1200
   height: 1600
   handle: photo-41
+  lat: 45.447614
+  lng: -75.708978
+  captured_at: '2023-10-28T11:56:37.000Z'
 - type: photo
   key: dtiyvdj9cp5ia9qmrr4a1sxdarrf
   score: 1
   width: 1200
   height: 1600
   handle: photo-42
+  lat: 45.399994
+  lng: -75.686447
+  captured_at: '2023-10-28T12:35:59.000Z'
