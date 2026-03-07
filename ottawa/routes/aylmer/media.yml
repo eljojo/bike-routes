@@ -1,26 +1,38 @@
----
 - type: photo
   key: 8fo9wy4cbqegruqx286q0l3okts2
   caption: enjoying some poutine
-  score: 10.0
+  score: 10
   width: 1600
   height: 1200
   cover: true
   handle: cover
 - type: photo
-  key: 5dp27sc9tr5ja584br1t9ask1zvd
-  caption: me
-  score: 8.9
-  width: 1200
-  height: 1600
-  handle: me
+  key: splby4j6id8lkat822c7jjh8c3ha
+  caption: a dirt road in a forest
+  score: 6.93
+  width: 1365
+  height: 2048
+  handle: a-dirt-road-in-a-forest
+- type: photo
+  key: rmcsquy7gda3366h025vq96fjuuy
+  score: 1
+  width: 1600
+  height: 1200
+  handle: photo-32
 - type: photo
   key: doawc1aujkho7nneme0kz9etcvj7
-  caption: a body of water with a sunset
+  caption: sunset near Aylmer marina
   score: 9.78
   width: 1600
   height: 1200
   handle: a-body-of-water-with-a-sunset
+- type: photo
+  key: bozvun4oaas36cktx7qu11mwb0wp
+  caption: Waiting for Poutine outside Patate Lou-Lou
+  score: 8.46
+  width: 1600
+  height: 1200
+  handle: waiting-for-poutine-outside-patate-lou-lo
 - type: photo
   key: iwmoo6pfb6ghke5t7g8i0k5pgv01
   caption: steaming poutine
@@ -29,26 +41,12 @@
   height: 1200
   handle: steaming-poutine
 - type: photo
-  key: woac4kpk1rb76n6yxg7rn72oermi
-  caption: a street sign on a sidewalk
-  score: 5.17
-  width: 1200
-  height: 1600
-  handle: a-street-sign-on-a-sidewalk
-- type: photo
   key: azwv7gy913dfycmatvzbn03d5edx
   caption: Sunset by the Ottawa Canal
   score: 2.54
   width: 1365
   height: 2048
   handle: sunset-by-the-ottawa-canal
-- type: photo
-  key: ufyymbg3cgxoo8u40lnh54ts0299
-  caption: Sunset Parliament Hill
-  score: 6.71
-  width: 2048
-  height: 1365
-  handle: sunset-parliament-hill
 - type: photo
   key: 3c05ykqpb36yr1yqqwc8vrkiv5dz
   caption: Ottawa skyline
@@ -77,19 +75,6 @@
   width: 1365
   height: 2048
   handle: the-road-is-full-of-cars-had-to-wait-for-
-- type: photo
-  key: splby4j6id8lkat822c7jjh8c3ha
-  caption: a dirt road in a forest
-  score: 6.93
-  width: 1365
-  height: 2048
-  handle: a-dirt-road-in-a-forest
-- type: photo
-  key: dqydqdy3yutgz8dl6r399o4zqseb
-  score: 4.73
-  width: 1200
-  height: 1600
-  handle: photo
 - type: photo
   key: dvjw9rutn42dvq7ihfamcil4w6pp
   score: 7.8
@@ -155,11 +140,12 @@
   height: 1600
   handle: photo-7
 - type: photo
-  key: djgnx7kq47vul8raov410ezln7fc
-  score: 3.41
+  key: 5dp27sc9tr5ja584br1t9ask1zvd
+  caption: me
+  score: 8.9
   width: 1200
   height: 1600
-  handle: photo-8
+  handle: me
 - type: photo
   key: 7uejuxshxmtzbs01zmzi1v8awp6a
   score: 7.59
@@ -179,45 +165,11 @@
   height: 1600
   handle: photo-11
 - type: photo
-  key: bozvun4oaas36cktx7qu11mwb0wp
-  caption: Waiting for Poutine outside Patate Lou-Lou
-  score: 8.46
-  width: 1600
-  height: 1200
-  handle: waiting-for-poutine-outside-patate-lou-lo
-- type: photo
-  key: 3zadmypdvzb291ynfagtmsz7j1bt
-  score: 5.61
-  width: 1200
-  height: 1599
-  handle: photo-12
-- type: photo
-  key: yt8y5gqbkgsbssiv0jzu1etlbsv6
-  score: 3.63
-  width: 1200
-  height: 1599
-  handle: photo-13
-- type: photo
   key: 9hm8gx4pw5pnq2mr2ug84pb64wod
   score: 2.32
   width: 1200
   height: 1599
   handle: photo-14
-- type: video
-  key: 7tok3akxj9niqh2i8qze0k82y626
-  title: Sunset by the Aylmer Marina
-  duration: PT18S
-  width: 2160
-  height: 3840
-  orientation: portrait
-  poster_key: islc2jsz7vkb8vabgixvnkj54txy
-  handle: sunset-by-the-aylmer-marina
-- type: photo
-  key: rsmcs7sp0v6k530dk4l6qyjjdxy6
-  score: 7.15
-  width: 1200
-  height: 1600
-  handle: photo-15
 - type: photo
   key: w1d6f3vyskj236hq3ooxz25urx0s
   score: 2.98
@@ -255,23 +207,19 @@
   height: 1200
   handle: photo-21
 - type: photo
-  key: t5mz43drggb5kukvzxm1p9ct4tgb
-  score: 1.0
-  width: 1687
-  height: 2999
-  handle: photo-22
+  key: ufyymbg3cgxoo8u40lnh54ts0299
+  caption: Sunset Parliament Hill
+  score: 6.71
+  width: 2048
+  height: 1365
+  handle: sunset-parliament-hill
 - type: photo
-  key: 33oiwwzgxttxczr8nho0fi6yetbo
-  score: 1.22
-  width: 1687
-  height: 2999
-  handle: photo-23
-- type: photo
-  key: aoi9y87bkwsdlhadc2kgbxch4u7b
-  score: 1.44
-  width: 1687
-  height: 2999
-  handle: photo-24
+  key: woac4kpk1rb76n6yxg7rn72oermi
+  caption: a street sign on a sidewalk
+  score: 5.17
+  width: 1200
+  height: 1600
+  handle: a-street-sign-on-a-sidewalk
 - type: photo
   key: f62lj2yf245df1wcwf84w9lifcrs
   score: 2.76
@@ -280,43 +228,46 @@
   handle: photo-25
 - type: photo
   key: spfmpnohe8pxpnn4xxpecva1bk9r
-  score: 1.0
+  score: 1
   width: 1200
   height: 1600
   handle: photo-26
 - type: photo
   key: qp5zsafgc3rtis8iztwwqshtj9xx
-  score: 1.0
+  score: 1
   width: 1200
   height: 1600
   handle: photo-27
 - type: photo
   key: 5qfah71m1n10uefvqiby6k3wh9rw
-  score: 1.0
+  score: 1
   width: 1200
   height: 1600
   handle: photo-28
 - type: photo
   key: df9f8vu1o3kvihqdbt3smb9shb7n
-  score: 1.0
+  score: 1
   width: 1600
   height: 1200
   handle: photo-29
 - type: photo
   key: olttpn25b4yox41n6iozm1n76di3
-  score: 1.0
+  score: 1
   width: 1600
   height: 1200
   handle: photo-30
 - type: photo
-  key: bhtrfl66mnldcfmj64s5ghpviorv
-  score: 1.0
-  width: 1600
-  height: 1200
-  handle: photo-31
-- type: photo
-  key: rmcsquy7gda3366h025vq96fjuuy
-  score: 1.0
-  width: 1600
-  height: 1200
-  handle: photo-32
+  key: dqydqdy3yutgz8dl6r399o4zqseb
+  score: 4.73
+  width: 1200
+  height: 1600
+  handle: photo
+- type: video
+  key: 7tok3akxj9niqh2i8qze0k82y626
+  title: Sunset by the Aylmer Marina
+  duration: PT18S
+  width: 2160
+  height: 3840
+  orientation: portrait
+  poster_key: islc2jsz7vkb8vabgixvnkj54txy
+  handle: sunset-by-the-aylmer-marina
