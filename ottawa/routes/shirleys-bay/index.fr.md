@@ -1,4 +1,5 @@
 ---
+slug: wesley-clover-et-baie-shirley
 name: Wesley Clover et baie Shirley
 tagline: routes tranquilles, vues de ferme et gravel léger!
 ---

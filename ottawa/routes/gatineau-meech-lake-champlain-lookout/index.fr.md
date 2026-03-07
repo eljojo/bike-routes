@@ -1,4 +1,5 @@
 ---
+slug: parc-gatineau-lac-meech-belvedere-champlain
 name: "Parc de la Gatineau : lac Meech + belvédère Champlain"
 tagline: comme 2x Pink, offrez-vous une baignade dans le lac 🏊
 ---

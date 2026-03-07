@@ -1,4 +1,5 @@
 ---
+slug: boucle-traversier-de-quyon
 name: Boucle du traversier de Quyon
 tagline: ⛴️ Traversier? Traversier!
 ---

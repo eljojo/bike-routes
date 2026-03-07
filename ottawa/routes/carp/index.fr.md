@@ -1,4 +1,5 @@
 ---
+slug: vers-carp
 name: Vers Carp
 tagline: Continuez vers l'ouest
 ---
