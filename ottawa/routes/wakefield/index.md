@@ -1,5 +1,5 @@
 ---
-name: Wakefield!
+name: Day-ride to Wakefield!
 status: published
 distance_km: 45.8
 tags:
