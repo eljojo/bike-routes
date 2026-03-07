@@ -49,19 +49,6 @@
   height: 1536
   handle: sunset
 - type: photo
-  key: evad91rivkl9ur8b70zz3k70i8k9
-  caption: street view
-  score: 4.44
-  width: 2048
-  height: 1536
-  handle: street-view
-- type: photo
-  key: etl7lxpz2n2qnlq70o2fferoj0im
-  score: 4.4
-  width: 2048
-  height: 1536
-  handle: photo
-- type: photo
   key: nbdxbx8d9atcjy8lxk0e56pq9qz3
   score: 4.35
   width: 2048
@@ -101,6 +88,13 @@
   height: 1200
   handle: a-stream-in-a-forest
 - type: photo
+  key: up5su0bp2qfmqlnvr6f9l7ethhs8
+  score: 8.6
+  width: 1600
+  height: 1200
+  handle: photo-5
+  caption: Sunset
+- type: photo
   key: 0xxgih0h1lrpr3wby8dkfqt6om1d
   caption: snowdump
   score: 2.74
@@ -115,11 +109,18 @@
   height: 1600
   handle: a-road-with-trees-on-either-side
 - type: photo
-  key: up5su0bp2qfmqlnvr6f9l7ethhs8
-  score: 8.6
-  width: 1600
-  height: 1200
-  handle: photo-5
+  key: etl7lxpz2n2qnlq70o2fferoj0im
+  score: 4.4
+  width: 2048
+  height: 1536
+  handle: photo
+- type: photo
+  key: evad91rivkl9ur8b70zz3k70i8k9
+  caption: street view
+  score: 4.44
+  width: 2048
+  height: 1536
+  handle: street-view
 - type: photo
   key: m4uux71kr49zf6w0akqbpkhpnecm
   score: 1.4
