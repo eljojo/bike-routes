@@ -1,26 +1,26 @@
 ---
-name: "Britannia \U0001F333 by Ottawa River Pathway"
+name: Britannia 🌳 by Ottawa River Pathway
 status: published
 distance_km: 30.7
 tags:
-- scenic
-- snacks
-- bike path
-- flat
-- family friendly
-created_at: '2022-10-15'
-updated_at: '2025-08-12'
-tagline: "\U0001F3C6 Ride of the Year: 2021"
+  - scenic
+  - snacks
+  - bike path
+  - flat
+  - family friendly
+created_at: "2022-10-15"
+updated_at: "2025-08-12"
+tagline: "🏆 Ride of the Year: 2021"
 variants:
-- name: Year-long Bike Path
-  gpx: main.gpx
-  distance_km: 30.7
-  strava_url: https://www.strava.com/activities/7861979521
-  rwgps_url: https://ridewithgps.com/routes/46781191
-- name: Weekend Bike Days
-  gpx: variants/bike-days.gpx
-  distance_km: 19.9
-  rwgps_url: https://ridewithgps.com/routes/46781376
+  - name: Year-long Bike Path
+    gpx: main.gpx
+    distance_km: 30.7
+    strava_url: https://www.strava.com/activities/7861979521
+    rwgps_url: https://ridewithgps.com/routes/46781191
+  - name: Weekend Bike Days
+    gpx: variants/bike-days.gpx
+    distance_km: 19.9
+    rwgps_url: https://ridewithgps.com/routes/46781376
 ---
 
 Ready to pedal your way into an **easy breezy escapade**? Buckle up for a delightful ride along the Ottawa River Pathway, a journey that caters to all. This route, hailed as the "Ride of the Year" in 2021, unfolds a 30 km scenic bike path roundtrip from downtown Ottawa. But don't worry if that sounds like a marathon - you can easily tailor the distance to your liking, making it as short and sweet as you wish.
