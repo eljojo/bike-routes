@@ -6,6 +6,9 @@
   height: 1200
   cover: true
   handle: cover
+  lat: 45.460728
+  lng: -75.603447
+  captured_at: '2022-05-31T20:35:43.000Z'
 - type: photo
   key: vhld5j20d3tdadeeosxrn34t1mi2
   caption: a person riding a bike on a grassy field
@@ -13,6 +16,9 @@
   width: 1599
   height: 1200
   handle: a-person-riding-a-bike-on-a-grassy-field
+  lat: 45.460278
+  lng: -75.58065
+  captured_at: '2022-05-31T20:25:48.000Z'
 - type: photo
   key: 6dwu0ta17lc6nflkp4dm26v4okmc
   caption: a group of people riding bikes on a path by a body of water
@@ -20,6 +26,9 @@
   width: 1200
   height: 1599
   handle: a-group-of-people-riding-bikes-on-a-path-
+  lat: 45.465408
+  lng: -75.596756
+  captured_at: '2022-05-31T20:30:55.000Z'
 - type: photo
   key: u6m2ot4pay5vy5f6gw25ha9dp95z
   caption: a person riding a bicycle on a path by a body of water
@@ -27,12 +36,18 @@
   width: 1599
   height: 1200
   handle: a-person-riding-a-bicycle-on-a-path-by-a-
+  lat: 45.465503
+  lng: -75.595161
+  captured_at: '2022-05-31T20:30:39.000Z'
 - type: photo
   key: ipnd2bgdro4r0po09whwhrwozw70
   score: 9.25
   width: 1599
   height: 1200
   handle: photo-3
+  lat: 45.469028
+  lng: -75.580506
+  captured_at: '2021-07-11T15:54:45.000Z'
 - type: photo
   key: mtp7dk4vgrcnntvjyprt7kdsxy9z
   caption: selfie!
@@ -40,6 +55,9 @@
   width: 1200
   height: 1599
   handle: selfie
+  lat: 45.465514
+  lng: -75.595725
+  captured_at: '2022-05-31T20:30:45.000Z'
 - type: photo
   key: z91vzb18mal66f5214fgeonlrll4
   caption: a road next to a field
@@ -53,6 +71,9 @@
   width: 1200
   height: 1599
   handle: photo
+  lat: 45.467556
+  lng: -75.584481
+  captured_at: '2021-07-18T18:21:03.000Z'
 - type: photo
   key: 8ar1gcyqli2pmre3avpcz5lxa6yl
   caption: a road in the woods
@@ -67,24 +88,36 @@
   width: 1599
   height: 1200
   handle: a-person-in-a-red-boat-in-a-river-with-tr
+  lat: 45.474811
+  lng: -75.56855
+  captured_at: '2021-04-24T15:03:30.000Z'
 - type: photo
   key: ad9gkib2kng3mon84efh2crp8h6m
   score: 7
   width: 1599
   height: 1200
   handle: photo-4
+  lat: 45.457764
+  lng: -75.639747
+  captured_at: '2021-07-11T16:15:55.000Z'
 - type: photo
   key: mqdvln3pmdhl8x5ggzy7c94hi5d7
   score: 5.5
   width: 1599
   height: 1200
   handle: photo-5
+  lat: 45.474547
+  lng: -75.568628
+  captured_at: '2021-07-11T14:32:04.000Z'
 - type: photo
   key: wjodnekffpeoky18bs4t1lgbmi2j
   score: 4.38
   width: 1599
   height: 1200
   handle: photo-6
+  lat: 45.474531
+  lng: -75.568633
+  captured_at: '2021-07-11T14:30:10.000Z'
 - type: photo
   key: gsfa0kcbqs8duifhdnrr6j72veme
   caption: a group of trees in a field
@@ -92,6 +125,9 @@
   width: 1599
   height: 1200
   handle: a-group-of-trees-in-a-field
+  lat: 45.456967
+  lng: -75.673278
+  captured_at: '2021-04-24T14:20:52.000Z'
 - type: photo
   key: wrjeij6rrog4gx7myaqtj2kyytet
   caption: a grassy field with trees in the background
@@ -99,6 +135,9 @@
   width: 1599
   height: 1200
   handle: a-grassy-field-with-trees-in-the-backgrou
+  lat: 45.456883
+  lng: -75.672875
+  captured_at: '2021-04-24T14:21:19.000Z'
 - type: photo
   key: o6k18puelt597xru11oazorz6v13
   caption: a body of water with trees in the back
@@ -150,6 +189,9 @@
   width: 1200
   height: 1599
   handle: photo-7
+  lat: 45.414914
+  lng: -75.669044
+  captured_at: '2021-07-18T11:46:13.000Z'
 - type: video
   key: 4yxnwy5dj6bhrsjx8bgygyvqc2zh
   title: Riding around lush trees on bike path

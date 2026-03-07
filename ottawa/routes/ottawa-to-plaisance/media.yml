@@ -6,6 +6,9 @@
   height: 1200
   cover: true
   handle: cover
+  lat: 45.602117
+  lng: -75.138022
+  captured_at: '2022-10-05T17:32:01.000Z'
 - type: photo
   key: u5mrjgb2ax0a82vxpgpycu7v9f01
   caption: a road with trees on either side
@@ -27,6 +30,9 @@
   width: 1600
   height: 602
   handle: a-grassy-field-with-trees-in-the-backgrou
+  lat: 45.5843
+  lng: -75.2769
+  captured_at: '2022-10-05T16:33:07.000Z'
 - type: photo
   key: 9jvvmmjzaripb0j5o4rmlli12jto
   caption: a street with trees on the side
@@ -41,6 +47,9 @@
   width: 1600
   height: 476
   handle: a-river-with-grass-and-trees
+  lat: 45.590739
+  lng: -75.230256
+  captured_at: '2022-10-05T16:52:08.000Z'
 - type: photo
   key: jzuwhjiemh1hr41are1nu19bdst7
   caption: a dirt road with trees on either side of it
@@ -48,6 +57,9 @@
   width: 1200
   height: 1600
   handle: a-dirt-road-with-trees-on-either-side-of-
+  lat: 45.588958
+  lng: -75.24115
+  captured_at: '2022-10-05T16:48:20.000Z'
 - type: photo
   key: 0k9fdooy2tm01lxpygitfjjup74o
   caption: a dirt road in a forest
@@ -62,6 +74,9 @@
   width: 1200
   height: 1600
   handle: me
+  lat: 45.600853
+  lng: -75.074189
+  captured_at: '2022-10-05T17:56:34.000Z'
 - type: photo
   key: e5yvhm57f8eaxggsmszu8t48pnnh
   caption: fall view
@@ -69,6 +84,9 @@
   width: 1600
   height: 1200
   handle: fall-view
+  lat: 45.602372
+  lng: -75.064317
+  captured_at: '2022-10-05T17:59:16.000Z'
 - type: photo
   key: 8x2m9vl8qznzgfffxjubtty79w7s
   caption: Nemo Dragonfly Bikepacking Tent
@@ -76,6 +94,9 @@
   width: 1600
   height: 1200
   handle: nemo-dragonfly-bikepacking-tent
+  lat: 45.601047
+  lng: -75.058297
+  captured_at: '2022-10-05T18:33:10.000Z'
 - type: video
   key: 61tnwaym3bll74bdzx0fib6mfj6y
   title: Deer at Plaisance Park

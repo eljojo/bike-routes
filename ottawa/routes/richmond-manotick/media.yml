@@ -6,6 +6,9 @@
   height: 1600
   cover: true
   handle: cover
+  lat: 45.234133
+  lng: -75.869269
+  captured_at: '2022-08-16T19:30:13.000Z'
 - type: photo
   key: iblo6uoivn8h5ggqngfs7m5pb6wi
   caption: a dirt road in a forest
@@ -13,12 +16,18 @@
   width: 1200
   height: 1600
   handle: a-dirt-road-in-a-forest
+  lat: 45.306167
+  lng: -75.840775
+  captured_at: '2022-09-26T16:19:33.000Z'
 - type: photo
   key: 5ekqlxypg65mhye2n5tnuqmgz6x3
   score: 2
   width: 1200
   height: 1600
   handle: photo-5
+  lat: 45.294811
+  lng: -75.839303
+  captured_at: '2023-09-29T15:21:50.000Z'
 - type: photo
   key: zkgl1v49mlgmc1dqq5o96lsbvi91
   caption: a road with grass and trees on the side
@@ -26,6 +35,9 @@
   width: 1600
   height: 1200
   handle: a-road-with-grass-and-trees-on-the-side
+  lat: 45.259617
+  lng: -75.825547
+  captured_at: '2022-09-26T18:40:02.000Z'
 - type: photo
   key: ycgtxapy8blvxeg6qarx65pf6f0e
   caption: a sign in a grassy area
@@ -33,6 +45,9 @@
   width: 1600
   height: 1200
   handle: a-sign-in-a-grassy-area
+  lat: 45.316161
+  lng: -75.845886
+  captured_at: '2022-09-26T15:37:33.000Z'
 - type: photo
   key: lq4mzvjda3nrs49oq00fymoy2z0g
   caption: a man wearing a helmet
@@ -40,6 +55,9 @@
   width: 1200
   height: 1600
   handle: a-man-wearing-a-helmet
+  lat: 45.313197
+  lng: -75.8461
+  captured_at: '2022-09-26T15:42:38.000Z'
 - type: photo
   key: vc9u3awt9fks8v07d1hhekzc0bv8
   caption: a path through a forest
@@ -47,6 +65,9 @@
   width: 1200
   height: 1600
   handle: a-path-through-a-forest
+  lat: 45.310714
+  lng: -75.844489
+  captured_at: '2022-09-26T16:03:19.000Z'
 - type: photo
   key: vo7tmbn5wp4psgngvgf07oryixqk
   caption: a grassy field with trees in the background
@@ -54,6 +75,9 @@
   width: 1200
   height: 1600
   handle: a-grassy-field-with-trees-in-the-backgrou
+  lat: 45.309353
+  lng: -75.842803
+  captured_at: '2022-09-26T16:09:32.000Z'
 - type: photo
   key: o4wj0x047dtry2l7xbcnokz35gff
   caption: a sunset over a field
@@ -61,6 +85,9 @@
   width: 1600
   height: 1200
   handle: a-sunset-over-a-field
+  lat: 45.268969
+  lng: -75.830611
+  captured_at: '2022-09-26T18:43:40.000Z'
 - type: photo
   key: m0cc9mbntsu800fcc9587ebkbeor
   caption: a sign with a picture of a horse and a dog on it
@@ -68,6 +95,9 @@
   width: 1600
   height: 1200
   handle: a-sign-with-a-picture-of-a-horse-and-a-do
+  lat: 45.297817
+  lng: -75.86625
+  captured_at: '2022-09-26T16:37:01.000Z'
 - type: photo
   key: spkb5c1rnpdjzlkm2fbji8h5294f
   caption: a field with trees and clouds in the sky
@@ -75,6 +105,9 @@
   width: 1600
   height: 1200
   handle: a-field-with-trees-and-clouds-in-the-sky
+  lat: 45.227967
+  lng: -75.862153
+  captured_at: '2022-09-26T17:11:09.000Z'
 - type: photo
   key: 7h9ghh14eqlq2xr6zy2bjjst7du8
   caption: a snake in the grass
@@ -89,30 +122,45 @@
   width: 1600
   height: 1200
   handle: a-body-of-water-with-a-city-in-the-backgr
+  lat: 45.370503
+  lng: -75.696564
+  captured_at: '2022-08-16T22:31:57.000Z'
 - type: photo
   key: 7e1e2i4iw2okiwkgnvzeon5l972r
   score: 1.5
   width: 1200
   height: 1600
   handle: photo-4
+  lat: 45.193275
+  lng: -75.839461
+  captured_at: '2023-09-29T14:03:54.000Z'
 - type: photo
   key: nvozi9fhb5pu1n1ynn7qkzvhjebu
   score: 1
   width: 1600
   height: 1200
   handle: photo
+  lat: 45.258064
+  lng: -75.920144
+  captured_at: '2023-09-29T12:59:44.000Z'
 - type: photo
   key: ky2ddb9ahaumw5h9pe3jvr9wnztq
   score: 1.1
   width: 1200
   height: 1600
   handle: photo-2
+  lat: 45.257958
+  lng: -75.920089
+  captured_at: '2023-09-29T12:59:19.000Z'
 - type: photo
   key: ufn0v31h35stpbp5prd1oiajyamx
   score: 1.5
   width: 1600
   height: 1200
   handle: photo-3
+  lat: 45.236892
+  lng: -75.873764
+  captured_at: '2023-09-29T13:44:52.000Z'
 - type: photo
   key: sbnkfduzixsmyk9d2zrs5nwj9gsz
   caption: a cat by the grass
@@ -120,3 +168,6 @@
   width: 1600
   height: 1200
   handle: a-bear-in-a-meadow
+  lat: 45.366108
+  lng: -75.796181
+  captured_at: '2022-09-26T15:05:48.000Z'

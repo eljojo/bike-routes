@@ -6,6 +6,9 @@
   height: 1200
   cover: true
   handle: cover
+  lat: 45.474392
+  lng: -75.798836
+  captured_at: '2022-05-30T17:09:26.000Z'
 - type: photo
   key: 7ofvug6n18d22vtjhe58t2xm4kzp
   caption: doesn't get better than this
@@ -13,6 +16,9 @@
   width: 1599
   height: 1200
   handle: doesn-t-get-better-than-this
+  lat: 45.470044
+  lng: -75.753089
+  captured_at: '2022-05-30T16:33:52.000Z'
 - type: photo
   key: xghct8vm8tyeq1dxy9sgug65is92
   caption: nice bike path towards Aylmer
@@ -20,6 +26,9 @@
   width: 1200
   height: 1599
   handle: nice-bike-path-towards-aylmer
+  lat: 45.408869
+  lng: -75.860039
+  captured_at: '2022-05-30T18:34:06.000Z'
 - type: photo
   key: me4xab6h8whfp820zhkex1j4ar6y
   caption: some rock action
@@ -27,12 +36,18 @@
   width: 1200
   height: 1599
   handle: some-rock-action
+  lat: 45.472633
+  lng: -75.794206
+  captured_at: '2022-05-30T16:58:25.000Z'
 - type: photo
   key: lfabm2yk9fv9jsfll5ovcp8bx0d7
   score: 6.63
   width: 1600
   height: 1200
   handle: photo-2
+  lat: 45.467128
+  lng: -75.808442
+  captured_at: '2022-09-23T16:19:18.000Z'
 - type: photo
   key: 7w9e6d1n0a4gdds4drn0blpdq9a0
   caption: a road with grass and trees on the side
@@ -40,6 +55,9 @@
   width: 1200
   height: 1599
   handle: a-road-with-grass-and-trees-on-the-side
+  lat: 45.469683
+  lng: -75.749725
+  captured_at: '2022-05-30T16:33:40.000Z'
 - type: photo
   key: rt0f3csap1wktijtu1s8q00a0s5o
   caption: a tree with many branches
@@ -47,6 +65,9 @@
   width: 1200
   height: 1599
   handle: a-tree-with-many-branches
+  lat: 45.399486
+  lng: -75.862214
+  captured_at: '2022-05-30T19:06:54.000Z'
 - type: photo
   key: c0haf401kdp7te62fch6769axhg4
   caption: river
@@ -54,12 +75,18 @@
   width: 1599
   height: 1200
   handle: river
+  lat: 45.379772
+  lng: -75.8031
+  captured_at: '2022-05-30T19:25:14.000Z'
 - type: photo
   key: ovyg67n5iampgtdff95as9yacx2e
   score: 4.13
   width: 1600
   height: 1200
   handle: photo
+  lat: 45.439842
+  lng: -75.761689
+  captured_at: '2022-09-23T15:44:35.000Z'
 - type: photo
   key: ecdc1g682m27w45b9n79aapq9k80
   caption: selfie
@@ -67,3 +94,6 @@
   width: 1200
   height: 1599
   handle: selfie
+  lat: 45.425033
+  lng: -75.702208
+  captured_at: '2022-05-30T20:02:04.000Z'

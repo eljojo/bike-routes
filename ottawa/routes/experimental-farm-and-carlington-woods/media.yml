@@ -6,6 +6,9 @@
   height: 1200
   cover: true
   handle: cover
+  lat: 45.384025
+  lng: -75.722808
+  captured_at: '2021-05-12T19:25:36.000Z'
 - type: photo
   key: q4e51hlc1dpufhab115wce37xw6n
   caption: looking up at trees and blue sky
@@ -13,6 +16,9 @@
   width: 1599
   height: 1200
   handle: looking-up-at-trees-and-blue-sky
+  lat: 45.368008
+  lng: -75.749625
+  captured_at: '2021-05-12T19:56:33.000Z'
 - type: photo
   key: 4vsiihnmmawsfg5oo5o4f1hj361b
   caption: a field with trees and a colorful sky
@@ -20,12 +26,18 @@
   width: 1599
   height: 1200
   handle: a-field-with-trees-and-a-colorful-sky
+  lat: 45.360069
+  lng: -75.760475
+  captured_at: '2021-06-07T21:01:24.000Z'
 - type: photo
   key: 68j8vydunlgz6ltvxsabh25ij9h8
   score: 9.15
   width: 1599
   height: 1200
   handle: photo
+  lat: 45.380836
+  lng: -75.717522
+  captured_at: '2021-05-19T20:19:45.000Z'
 - type: photo
   key: v8lfu0ufon10oyr0jdm29vjx7kt0
   caption: sun shining through the trees
@@ -33,6 +45,9 @@
   width: 1599
   height: 1200
   handle: sun-shining-through-the-trees
+  lat: 45.367794
+  lng: -75.749047
+  captured_at: '2021-05-12T19:56:10.000Z'
 - type: photo
   key: 41yshk2xhybk2jcorfbn3u8zdhhp
   caption: a colorful sky over Ottawa
@@ -40,3 +55,6 @@
   width: 1599
   height: 1200
   handle: a-colorful-sky-over-ottawa
+  lat: 45.370956
+  lng: -75.745361
+  captured_at: '2021-06-07T21:10:49.000Z'

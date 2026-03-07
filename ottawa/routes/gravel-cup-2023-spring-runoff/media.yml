@@ -5,6 +5,9 @@
   height: 1200
   cover: true
   handle: cover
+  lat: 45.385844
+  lng: -76.204972
+  captured_at: '2023-04-01T14:19:26.000Z'
 - type: photo
   key: 9bkhj2eqpvks7ioftw0646wbhjx4
   score: 7.44
@@ -23,48 +26,72 @@
   width: 1600
   height: 1200
   handle: photo-3
+  lat: 45.370786
+  lng: -76.099639
+  captured_at: '2023-04-01T16:17:04.000Z'
 - type: photo
   key: gz4nuj7rddn870wlvp63azb53qnm
   score: 8.62
   width: 1600
   height: 1200
   handle: photo-9
+  lat: 45.410592
+  lng: -76.217492
+  captured_at: '2023-04-15T09:23:46.000Z'
 - type: photo
   key: m326xjlzsnmfmpz39odfnasqat6v
   score: 1.9
   width: 1600
   height: 1200
   handle: photo-7
+  lat: 45.385922
+  lng: -76.205069
+  captured_at: '2023-04-01T14:19:29.000Z'
 - type: photo
   key: 95ozvtdxnxqxd7yp2l7gmtp881be
   score: 1.93
   width: 1200
   height: 1600
   handle: photo-4
+  lat: 45.469117
+  lng: -76.131608
+  captured_at: '2023-04-01T15:25:57.000Z'
 - type: photo
   key: 6akg5k4uwxwmb4ra20cukvsz6963
   score: 6.36
   width: 1600
   height: 1200
   handle: photo-5
+  lat: 45.400517
+  lng: -76.217736
+  captured_at: '2023-04-01T14:30:00.000Z'
 - type: photo
   key: i1cm7qv4ec33s5vflrnjqyec6wr7
   score: 6.37
   width: 1200
   height: 1600
   handle: photo
+  lat: 45.434431
+  lng: -76.111917
+  captured_at: '2023-04-01T15:43:32.000Z'
 - type: photo
   key: wht2azhmtvatdebzevleq0ixzvs2
   score: 1.92
   width: 1600
   height: 1200
   handle: photo-6
+  lat: 45.469111
+  lng: -76.1316
+  captured_at: '2023-04-01T15:26:02.000Z'
 - type: photo
   key: zr2uanc574ne4euulh90kdwht154
   score: 6.34
   width: 1600
   height: 1200
   handle: photo-8
+  lat: 45.469128
+  lng: -76.1316
+  captured_at: '2023-04-01T15:25:41.000Z'
 - type: video
   key: k2ajpk9adtffziiypnc6ukfvr0sg
   title: Riding through snow fields

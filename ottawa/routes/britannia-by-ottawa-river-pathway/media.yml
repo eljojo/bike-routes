@@ -5,6 +5,9 @@
   height: 1200
   cover: true
   handle: cover
+  lat: 45.410361
+  lng: -75.744728
+  captured_at: '2022-09-24T18:40:30.000Z'
 - type: photo
   key: sjqqyjbp8rx9hxhjy3sglgajv8ba
   caption: a sunset over a body of water
@@ -12,6 +15,9 @@
   width: 1200
   height: 1599
   handle: a-sunset-over-a-body-of-water
+  lat: 45.359489
+  lng: -75.805319
+  captured_at: '2022-04-14T19:48:24.000Z'
 - type: photo
   key: 4sxtlikybxdbn0371grh6fxxs6pt
   caption: sunset
@@ -19,6 +25,9 @@
   width: 1200
   height: 1599
   handle: sunset
+  lat: 45.355717
+  lng: -75.808783
+  captured_at: '2022-04-14T19:43:30.000Z'
 - type: photo
   key: 2evon626vyms43kr3clozhmx0vdw
   caption: Britannia Park
@@ -26,6 +35,9 @@
   width: 1599
   height: 1200
   handle: britannia-park
+  lat: 45.365372
+  lng: -75.797836
+  captured_at: '2022-04-14T19:35:43.000Z'
 - type: photo
   key: 1tsa7f4rkrt0yfy72deb0fog23px
   caption: a group of people riding bikes on a road surrounded by trees
@@ -33,6 +45,9 @@
   width: 1200
   height: 1599
   handle: a-group-of-people-riding-bikes-on-a-road-
+  lat: 45.360531
+  lng: -75.804322
+  captured_at: '2022-04-14T19:40:47.000Z'
 - type: photo
   key: 3v80aehcgsyftgqgrnez003mbene
   caption: Sunset over Westboro Beach
@@ -40,6 +55,9 @@
   width: 1599
   height: 1200
   handle: sunset-over-westboro-beach
+  lat: 45.382328
+  lng: -75.776733
+  captured_at: '2021-07-09T21:03:21.000Z'
 - type: photo
   key: v5iqa4rcmuppm5i06s1mslaaw615
   score: 8.36
@@ -53,6 +71,9 @@
   width: 1599
   height: 1200
   handle: a-field-of-trees
+  lat: 45.409775
+  lng: -75.743789
+  captured_at: '2022-04-14T19:10:22.000Z'
 - type: photo
   key: lrvczqeymoxs31d8ltqu83d6sn2h
   caption: Britannia Park
@@ -60,6 +81,9 @@
   width: 1136
   height: 1600
   handle: britannia-park-2
+  lat: 45.365361
+  lng: -75.798072
+  captured_at: '2021-11-08T14:43:27.000Z'
 - type: photo
   key: 5tgfzblow8v3skd8jxdi7nz1jgrx
   caption: Britannia Park at night
@@ -74,12 +98,18 @@
   width: 1599
   height: 1200
   handle: a-group-of-people-on-westboro-beach
+  lat: 45.395103
+  lng: -75.760636
+  captured_at: '2021-07-09T20:56:04.000Z'
 - type: photo
   key: qwmgob2m1ltzb82ggskcpbtxxbzn
   score: 4.8
   width: 1200
   height: 1599
   handle: photo
+  lat: 45.365361
+  lng: -75.798583
+  captured_at: '2021-06-04T18:43:47.000Z'
 - type: photo
   key: uuqridgwp530509kyy36cl5mg16e
   caption: a tree with the sun shining through it
@@ -87,24 +117,36 @@
   width: 1599
   height: 1200
   handle: a-tree-with-the-sun-shining-through-it
+  lat: 45.365203
+  lng: -75.798325
+  captured_at: '2021-06-30T19:35:24.000Z'
 - type: photo
   key: hd510dqg57fqcsrneisbhkl4mbwj
   score: 9.5
   width: 1200
   height: 1599
   handle: photo-2
+  lat: 45.426189
+  lng: -75.697931
+  captured_at: '2021-05-31T20:52:34.000Z'
 - type: photo
   key: jc46x3h7is78694refuqbiiuxfui
   score: 4.78
   width: 1599
   height: 1200
   handle: photo-3
+  lat: 45.426564
+  lng: -75.699233
+  captured_at: '2021-05-31T20:54:01.000Z'
 - type: photo
   key: 58kgedyawe8l9czd40lpk6nw3dq0
   score: 4.77
   width: 1599
   height: 1200
   handle: photo-4
+  lat: 45.41055
+  lng: -75.742203
+  captured_at: '2021-05-20T20:52:39.000Z'
 - type: photo
   key: gx2vwv0ce97bgmbbn6y49k6durly
   caption: a bicycle parked by a tree
@@ -112,6 +154,9 @@
   width: 1599
   height: 1200
   handle: a-bicycle-parked-by-a-tree
+  lat: 45.389153
+  lng: -75.762978
+  captured_at: '2022-04-06T19:20:07.000Z'
 - type: photo
   key: 5sznuuno783kdgenj3l0dud89988
   caption: a snowy field with trees
@@ -119,6 +164,9 @@
   width: 1599
   height: 1200
   handle: a-snowy-field-with-trees
+  lat: 45.387692
+  lng: -75.766342
+  captured_at: '2022-04-06T19:20:33.000Z'
 - type: photo
   key: 16py4ze07j786o8raxl3ioum233n
   caption: night view
@@ -126,6 +174,9 @@
   width: 1599
   height: 1200
   handle: night-view-2
+  lat: 45.410356
+  lng: -75.741386
+  captured_at: '2021-08-10T22:22:33.000Z'
 - type: photo
   key: kua5h3bd2lhr2x1c16j2y509lr27
   caption: night view
@@ -133,6 +184,9 @@
   width: 1599
   height: 1200
   handle: night-view
+  lat: 45.41035
+  lng: -75.741372
+  captured_at: '2021-08-10T22:22:17.000Z'
 - type: photo
   key: 600pc19h1vn7vg5oqqx2eqlemr5d
   caption: my topstone parked on a bench
@@ -140,3 +194,6 @@
   width: 1599
   height: 1200
   handle: my-topstone-parked-on-a-bench
+  lat: 45.365617
+  lng: -75.800147
+  captured_at: '2021-08-10T21:36:45.000Z'

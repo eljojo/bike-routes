@@ -1,4 +1,3 @@
----
 - type: photo
   key: lhlzsicnlb67i7lfhmlt0ogv221u
   caption: crazy descent
@@ -14,6 +13,9 @@
   width: 1200
   height: 1600
   handle: beautifulfall-colours
+  lat: 45.587039
+  lng: -75.670083
+  captured_at: '2022-10-24T15:13:11.000Z'
 - type: photo
   key: 4zyozgiczklno47t3angu09cxyo6
   caption: 'enjoying the speed: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHH'
@@ -21,6 +23,9 @@
   width: 1600
   height: 1200
   handle: enjoying-the-speed-aaaaaaaaaaaaaaaaaaaaaa
+  lat: 45.599678
+  lng: -75.532136
+  captured_at: '2022-10-24T16:15:35.000Z'
 - type: photo
   key: xxllx8jb1gvbv7zuwjpaleih4nao
   caption: a road with trees on the side
@@ -28,6 +33,9 @@
   width: 1200
   height: 1600
   handle: a-road-with-trees-on-the-side
+  lat: 45.599117
+  lng: -75.535064
+  captured_at: '2022-10-24T16:14:49.000Z'
 - type: photo
   key: i3qxoidzn19vwkrtizfi6fjdb2wo
   caption: a picnic table in a park
@@ -35,6 +43,9 @@
   width: 1600
   height: 1200
   handle: a-picnic-table-in-a-park
+  lat: 45.599686
+  lng: -75.61815
+  captured_at: '2022-10-24T15:48:39.000Z'
 - type: photo
   key: vzpcxd7v9oao1ksvrsyrddcg4rfj
   caption: lake view
@@ -42,6 +53,9 @@
   width: 1600
   height: 1200
   handle: lake-view
+  lat: 45.6004
+  lng: -75.528503
+  captured_at: '2022-10-24T16:16:14.000Z'
 - type: photo
   key: fewfggwqh773ydo8n55c9ysxa3rd
   caption: crazy fall
@@ -56,6 +70,9 @@
   width: 1200
   height: 1600
   handle: bridge-selfie
+  lat: 45.586747
+  lng: -75.419922
+  captured_at: '2022-10-24T16:52:10.000Z'
 - type: photo
   key: t9kd9rdnn0zeaysmhv441s6l3pkm
   caption: sunset by the water
@@ -70,6 +87,9 @@
   width: 1200
   height: 1600
   handle: bridge
+  lat: 45.589081
+  lng: -75.421936
+  captured_at: '2022-10-24T16:55:25.000Z'
 - type: photo
   key: ck29fef3qwk4h7rrxme335l6ffha
   caption: more bridge
@@ -77,6 +97,9 @@
   width: 1600
   height: 1200
   handle: more-bridge
+  lat: 45.589008
+  lng: -75.420311
+  captured_at: '2022-10-24T16:59:59.000Z'
 - type: photo
   key: 2u1bz4mgkdu957p1u3hmvz50e0l3
   caption: crazy deer image
@@ -84,6 +107,9 @@
   width: 1600
   height: 1200
   handle: crazy-deer-image
+  lat: 45.482083
+  lng: -75.545639
+  captured_at: '2022-10-24T18:45:43.000Z'
 - type: photo
   key: j16j9kyuhqmk6bh7ve9der5j28sk
   caption: 'pizza bike frame: genius idea'
@@ -91,6 +117,9 @@
   width: 1600
   height: 1200
   handle: pizza-bike-frame-genius-idea
+  lat: 45.588947
+  lng: -75.416983
+  captured_at: '2022-10-24T17:22:26.000Z'
 - type: photo
   key: dc34c9qiyads55ru30dlecuv26ju
   caption: HEXO farms

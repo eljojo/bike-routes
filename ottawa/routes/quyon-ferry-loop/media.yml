@@ -5,6 +5,9 @@
   height: 2250
   handle: photo-4
   cover: true
+  lat: 45.514664
+  lng: -76.226381
+  captured_at: '2023-05-22T17:02:45.000Z'
 - type: photo
   key: 6fmmjggaviy7a8b90qg9zjevie0q
   caption: taking the ferry
@@ -12,6 +15,9 @@
   width: 1200
   height: 1600
   handle: taking-the-ferry
+  lat: 45.515839
+  lng: -76.228242
+  captured_at: '2022-08-06T19:40:23.000Z'
 - type: photo
   key: oxytvcwm5o1n98ym4rb0judsg62p
   score: 8
@@ -24,6 +30,9 @@
   width: 1600
   height: 1200
   handle: photo-9
+  lat: 45.512353
+  lng: -76.222953
+  captured_at: '2023-05-22T17:05:17.000Z'
 - type: photo
   key: t12qszxhobiu4rzq886wf2n8ghxe
   score: 9.67
@@ -37,12 +46,18 @@
   width: 1200
   height: 1600
   handle: a-road-with-grass-and-power-lines-on-the-
+  lat: 45.500336
+  lng: -75.985886
+  captured_at: '2022-08-06T17:14:29.000Z'
 - type: photo
   key: cobbwffx1jsvx1lj5935soaj30u1
   score: 5
   width: 1600
   height: 1200
   handle: photo
+  lat: 45.551931
+  lng: -76.099525
+  captured_at: '2022-09-04T12:19:02.000Z'
 - type: photo
   key: qtgqoh7onldib37n9waw39sfh56b
   caption: a field of grass with a house in the background
@@ -50,6 +65,9 @@
   width: 1600
   height: 1200
   handle: a-field-of-grass-with-a-house-in-the-back
+  lat: 45.500361
+  lng: -75.985489
+  captured_at: '2022-08-06T17:14:25.000Z'
 - type: photo
   key: vd6g8o9vnfg8jyrqo5q24lzykpju
   caption: 'hot dog: important food'
@@ -57,6 +75,9 @@
   width: 1200
   height: 1600
   handle: hot-dog-important-food
+  lat: 45.503258
+  lng: -75.968658
+  captured_at: '2022-08-06T17:07:27.000Z'
 - type: photo
   key: v0z477585qytk9hj0vhszkhm9e9e
   caption: a road with grass and power lines on the side
@@ -64,6 +85,9 @@
   width: 1200
   height: 1600
   handle: a-road-with-grass-and-power-lines-on-the--2
+  lat: 45.500331
+  lng: -75.986022
+  captured_at: '2022-08-06T17:14:32.000Z'
 - type: photo
   key: u53hl98u5t0nribj26snblohlv48
   caption: a dirt road with grass on either side of it
@@ -78,12 +102,18 @@
   width: 1200
   height: 1600
   handle: a-road-with-grass-on-the-side
+  lat: 45.555825
+  lng: -76.149553
+  captured_at: '2022-08-06T18:53:57.000Z'
 - type: photo
   key: 5p3tjmlhw3f0ol4ysgxmg31yaj0y
   score: 8.33
   width: 1200
   height: 1600
   handle: photo-13
+  lat: 45.3848
+  lng: -75.824325
+  captured_at: '2023-05-22T12:42:22.000Z'
 - type: photo
   key: o6uzr2q240gn59hfms2lnc3ccgfg
   caption: a road with trees on the side
@@ -98,6 +128,9 @@
   width: 1600
   height: 1200
   handle: ferry-view
+  lat: 45.515544
+  lng: -76.227639
+  captured_at: '2022-08-06T19:41:57.000Z'
 - type: photo
   key: 2sl7sjxn32tlg13ewso36u348fa0
   caption: a road with grass on the side
@@ -105,6 +138,9 @@
   width: 1600
   height: 1200
   handle: a-road-with-grass-on-the-side-2
+  lat: 45.486978
+  lng: -76.188378
+  captured_at: '2022-08-06T20:01:57.000Z'
 - type: photo
   key: r91da76xiyllatif3fzg23ybsibp
   score: 1.33
@@ -112,6 +148,9 @@
   height: 1200
   handle: photo-10
   caption: grabbing a bite before the ferry
+  lat: 45.519294
+  lng: -76.228456
+  captured_at: '2023-05-22T15:55:53.000Z'
 - type: photo
   key: n7mnxj0c0goisrds6e4dwfetxwkp
   caption: a road with grass and trees on the side and a sunset in the background
@@ -119,6 +158,9 @@
   width: 1600
   height: 1200
   handle: a-road-with-grass-and-trees-on-the-side-a
+  lat: 45.476975
+  lng: -76.169883
+  captured_at: '2022-08-06T20:07:32.000Z'
 - type: photo
   key: wqd1mgu2e3rfoh6xe2iqkyutlhua
   caption: a road with trees on the side
@@ -126,6 +168,9 @@
   width: 1200
   height: 1600
   handle: a-road-with-trees-on-the-side
+  lat: 45.396569
+  lng: -76.059533
+  captured_at: '2022-08-06T20:43:09.000Z'
 - type: photo
   key: wje0b1bfbrogxrfmrwjg6dnw3kb7
   caption: a bike parked in a field
@@ -133,12 +178,18 @@
   width: 1600
   height: 1200
   handle: a-bike-parked-in-a-field
+  lat: 45.411669
+  lng: -76.034111
+  captured_at: '2022-08-06T20:52:01.000Z'
 - type: photo
   key: ejutk6n3jym21r2xh15r64kkmddf
   score: 6
   width: 1600
   height: 1200
   handle: photo-6
+  lat: 45.522656
+  lng: -76.012214
+  captured_at: '2023-05-22T14:06:57.000Z'
 - type: photo
   key: exsmfiy5fvfh7qf09sg8uqvx3aqd
   score: 6.33
@@ -146,18 +197,27 @@
   height: 1200
   handle: photo-5
   caption: we made it!
+  lat: 45.38475
+  lng: -75.699814
+  captured_at: '2023-05-22T20:26:00.000Z'
 - type: photo
   key: zct5abcgpzapot589b4egd290njy
   score: 2
   width: 1600
   height: 1200
   handle: photo-7
+  lat: 45.351647
+  lng: -75.906289
+  captured_at: '2023-05-22T18:39:54.000Z'
 - type: photo
   key: 2siisxldvhgdin64qj3mqcfxtbpi
   score: 5.67
   width: 1200
   height: 1600
   handle: photo-8
+  lat: 45.349689
+  lng: -75.901489
+  captured_at: '2023-05-22T18:46:07.000Z'
 - type: photo
   key: 0n317yktkxwx27bfhce6168iztob
   score: 9.33
@@ -170,6 +230,9 @@
   width: 1200
   height: 1600
   handle: photo-12
+  lat: 45.417869
+  lng: -75.893883
+  captured_at: '2023-05-22T13:15:14.000Z'
 - type: photo
   key: 8rcyywraduteahrk1424hez869z5
   caption: rest spot
@@ -177,6 +240,9 @@
   width: 1600
   height: 1200
   handle: a-bicycle-parked-on-a-fence
+  lat: 45.544797
+  lng: -76.054642
+  captured_at: '2022-08-06T18:19:34.000Z'
 - type: photo
   key: 95z4xgj0zvqj81wahxszdd2fc2s8
   caption: chilling by the water
@@ -184,6 +250,9 @@
   width: 1200
   height: 1600
   handle: chilling-by-the-water
+  lat: 45.397647
+  lng: -75.705064
+  captured_at: '2022-08-06T23:08:56.000Z'
 - type: video
   key: l8vdm16cmty4bt25gt4d51asm0xe
   title: We really like bikes!

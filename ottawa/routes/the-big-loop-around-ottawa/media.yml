@@ -20,6 +20,9 @@
   width: 2048
   height: 1536
   handle: rock-art
+  lat: 45.410675
+  lng: -75.741181
+  captured_at: '2020-08-22T19:59:08.000Z'
 - type: photo
   key: vff68bi79d0omga16uq5mi6djmlz
   caption: eating a hotdog with a lovely fall view
@@ -27,6 +30,9 @@
   width: 1600
   height: 1200
   handle: eating-a-hotdog-with-a-lovely-fall-view
+  lat: 45.410325
+  lng: -75.744636
+  captured_at: '2022-10-22T17:12:40.000Z'
 - type: photo
   key: 9vpecv1wxlzaidtu3nofv8aof5pv
   caption: abandoned train bridge
@@ -34,6 +40,9 @@
   width: 1599
   height: 1200
   handle: abandoned-train-bridge
+  lat: 45.412719
+  lng: -75.720833
+  captured_at: '2021-04-10T17:11:05.000Z'
 - type: photo
   key: y3bwlnt4oos14law9gomzqgzlh1c
   score: 1.1
@@ -41,6 +50,9 @@
   height: 1600
   handle: photo-6
   caption: snacks by the café @ britannia
+  lat: 45.365575
+  lng: -75.796044
+  captured_at: '2023-04-21T19:03:24.000Z'
 - type: photo
   key: lez8489uinj1ynigp1wo2dks14li
   caption: sunset
@@ -48,12 +60,18 @@
   width: 2048
   height: 1536
   handle: sunset
+  lat: 45.380269
+  lng: -75.77765
+  captured_at: '2020-08-22T19:45:33.000Z'
 - type: photo
   key: nbdxbx8d9atcjy8lxk0e56pq9qz3
   score: 4.35
   width: 2048
   height: 1536
   handle: photo-2
+  lat: 45.416653
+  lng: -75.720161
+  captured_at: '2020-07-21T20:33:37.000Z'
 - type: photo
   key: 7fmykghyn0r5x8o728ha967skxqf
   caption: Experimental Farm
@@ -61,12 +79,18 @@
   width: 1200
   height: 1600
   handle: a-road-with-trees-on-the-side
+  lat: 45.385283
+  lng: -75.703186
+  captured_at: '2022-10-22T15:33:40.000Z'
 - type: photo
   key: jbw7cdjrcggec31cm25swajxttex
   score: 4.32
   width: 2048
   height: 1536
   handle: photo-3
+  lat: 45.404094
+  lng: -75.701156
+  captured_at: '2020-07-21T20:24:51.000Z'
 - type: photo
   key: rxj0r9obh0bynp7c1pief7cqxzbd
   caption: a road with trees on either side
@@ -74,6 +98,9 @@
   width: 1200
   height: 1600
   handle: a-road-with-trees-on-either-side
+  lat: 45.370828
+  lng: -75.739083
+  captured_at: '2022-10-22T15:51:44.000Z'
 - type: photo
   key: 5wdcsogpjyfaa03n7mfikfdfpnct
   caption: the road is for bikes only!
@@ -81,6 +108,9 @@
   width: 1599
   height: 1200
   handle: the-road-is-for-bikes-only
+  lat: 45.409439
+  lng: -75.733161
+  captured_at: '2021-05-09T15:35:14.000Z'
 - type: photo
   key: o0qbzzrhyrk1j1aht25c7tztrbmf
   caption: a stream in a forest
@@ -88,6 +118,9 @@
   width: 1599
   height: 1200
   handle: a-stream-in-a-forest
+  lat: 45.359397
+  lng: -75.775397
+  captured_at: '2021-05-09T15:11:16.000Z'
 - type: photo
   key: up5su0bp2qfmqlnvr6f9l7ethhs8
   score: 8.6
@@ -95,6 +128,9 @@
   height: 1200
   handle: photo-5
   caption: Sunset
+  lat: 45.365672
+  lng: -75.800331
+  captured_at: '2023-04-21T19:08:05.000Z'
 - type: photo
   key: 0xxgih0h1lrpr3wby8dkfqt6om1d
   caption: snowdump
@@ -102,18 +138,27 @@
   width: 1200
   height: 1599
   handle: snowdump
+  lat: 45.371006
+  lng: -75.745444
+  captured_at: '2021-05-09T14:45:34.000Z'
 - type: photo
   key: awtaf7p9j7jnakvvam0m70bs47g4
   score: 9.02
   width: 2048
   height: 1536
   handle: photo-4
+  lat: 45.369958
+  lng: -75.786483
+  captured_at: '2020-07-21T21:04:24.000Z'
 - type: photo
   key: etl7lxpz2n2qnlq70o2fferoj0im
   score: 4.4
   width: 2048
   height: 1536
   handle: photo
+  lat: 45.364989
+  lng: -75.754914
+  captured_at: '2020-07-21T21:27:05.000Z'
 - type: photo
   key: evad91rivkl9ur8b70zz3k70i8k9
   caption: street view
@@ -121,18 +166,27 @@
   width: 2048
   height: 1536
   handle: street-view
+  lat: 45.346764
+  lng: -75.706
+  captured_at: '2020-08-22T19:06:21.000Z'
 - type: photo
   key: m4uux71kr49zf6w0akqbpkhpnecm
   score: 1.4
   width: 1200
   height: 1600
   handle: photo-7
+  lat: 45.365558
+  lng: -75.796075
+  captured_at: '2023-04-21T19:03:19.000Z'
 - type: photo
   key: klk1cw46fhfbqfeec7m3atu8z789
   score: 1.69
   width: 1600
   height: 1200
   handle: photo-8
+  lat: 45.412706
+  lng: -75.717133
+  captured_at: '2023-04-21T19:52:43.000Z'
 - type: video
   key: c8utp2tmfgs085wd5c6wm3ueoeqf
   title: Chasing the Orange
