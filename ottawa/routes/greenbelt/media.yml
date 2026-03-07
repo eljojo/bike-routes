@@ -1,4 +1,10 @@
----
+- type: photo
+  key: i8eo50kvc038iezvgyzgfqn0uxnj
+  score: 10
+  width: 1200
+  height: 1600
+  cover: true
+  handle: cover
 - type: photo
   key: z0d6ndrnu4wfnikxo09dwq32lo8x
   caption: a group of people on bicycles in a grassy field
@@ -7,33 +13,12 @@
   height: 1200
   handle: a-group-of-people-on-bicycles-in-a-grassy
 - type: photo
-  key: yhyyhl1zq52pquqnfarnfhwmzlk4
-  caption: some action under the power line
-  score: 6.45
-  width: 1599
-  height: 1200
-  handle: some-action-under-the-power-line
-- type: photo
-  key: 2cvm9wpfgjpnffblir6r926anp7n
-  caption: a group of people riding bikes on a trail in the woods
-  score: 5.64
-  width: 1200
-  height: 1599
-  handle: a-group-of-people-riding-bikes-on-a-trail
-- type: photo
   key: klksfvnue6z9c9yb1yic06jr4z1s
   caption: a group of people riding bikes through a forest
   score: 6.73
   width: 1599
   height: 1200
   handle: a-group-of-people-riding-bikes-through-a-
-- type: photo
-  key: 2g3dvam9t2uaxsfmbkfonc8dcpi6
-  caption: a group of people riding bikes on a road with trees on the side
-  score: 5.91
-  width: 1599
-  height: 1200
-  handle: a-group-of-people-riding-bikes-on-a-road-
 - type: photo
   key: amnp8cybgzp8bbtb2r4qkjon206j
   caption: squat pic!
@@ -96,6 +81,13 @@
   height: 1599
   handle: a-wooden-walkway-through-a-forest
 - type: photo
+  key: 2g3dvam9t2uaxsfmbkfonc8dcpi6
+  caption: a group of people riding bikes on a road with trees on the side
+  score: 5.91
+  width: 1599
+  height: 1200
+  handle: a-group-of-people-riding-bikes-on-a-road-
+- type: photo
   key: h4fkv8kuli4p35scwa1q101yu5bw
   caption: off-bike action
   score: 5.09
@@ -119,7 +111,7 @@
 - type: photo
   key: hl5klj7o8uigq24qkmbs2hy1pqls
   caption: a small river in a forest
-  score: 4.0
+  score: 4
   width: 1200
   height: 1599
   handle: a-small-river-in-a-forest
@@ -186,40 +178,15 @@
   width: 1200
   height: 1599
   handle: a-road-with-trees-on-the-side-2
-- type: video
-  key: 1org4brid8t60s52ogajwhfrgvhx
-  title: Riding on Single Track Trails
-  duration: PT31S
-  width: 2160
-  height: 3840
-  orientation: portrait
-  poster_key: o0km1ionrf5vxy9e0j2rgiccp6bt
-  handle: riding-on-single-track-trails
-- type: video
-  key: c79yu717in7661t4hv9bziqsk7oe
-  title: Riding around the Greenbelt
-  duration: PT10S
-  width: 1440
-  height: 1920
-  orientation: portrait
-  poster_key: xciu3w0obhbjajcjd33j92cwtnei
-  handle: riding-around-the-greenbelt
-- type: photo
-  key: i8eo50kvc038iezvgyzgfqn0uxnj
-  score: 10.0
-  width: 1200
-  height: 1600
-  cover: true
-  handle: cover
 - type: photo
   key: y66bn2ipet62kk44q5hdpy3xp2q0
-  score: 1.0
+  score: 1
   width: 1687
   height: 2999
   handle: photo-3
 - type: photo
   key: 16hin1dhrducpsxhjj0iwst1utud
-  score: 7.0
+  score: 7
   width: 1200
   height: 1600
   handle: photo-4
@@ -247,6 +214,38 @@
   width: 2999
   height: 1687
   handle: photo-8
+- type: photo
+  key: yhyyhl1zq52pquqnfarnfhwmzlk4
+  caption: some action under the power line
+  score: 6.45
+  width: 1599
+  height: 1200
+  handle: some-action-under-the-power-line
+- type: photo
+  key: 2cvm9wpfgjpnffblir6r926anp7n
+  caption: a group of people riding bikes on a trail in the woods
+  score: 5.64
+  width: 1200
+  height: 1599
+  handle: a-group-of-people-riding-bikes-on-a-trail
+- type: video
+  key: 1org4brid8t60s52ogajwhfrgvhx
+  title: Riding on Single Track Trails
+  duration: PT31S
+  width: 2160
+  height: 3840
+  orientation: portrait
+  poster_key: o0km1ionrf5vxy9e0j2rgiccp6bt
+  handle: riding-on-single-track-trails
+- type: video
+  key: c79yu717in7661t4hv9bziqsk7oe
+  title: Riding around the Greenbelt
+  duration: PT10S
+  width: 1440
+  height: 1920
+  orientation: portrait
+  poster_key: xciu3w0obhbjajcjd33j92cwtnei
+  handle: riding-around-the-greenbelt
 - type: video
   key: jk211jpksn51w4kxyruc9p149qr9
   title: Greenbelt Gravel

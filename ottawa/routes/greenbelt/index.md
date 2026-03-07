@@ -1,20 +1,20 @@
 ---
-name: "Greenbelt \U0001F333"
+name: Greenbelt 🌳
 status: published
 distance_km: 45.9
 tags:
-- gravel
-- single track
-- road
-created_at: '2022-10-17'
-updated_at: '2024-05-21'
+  - gravel
+  - single track
+  - road
+created_at: "2022-10-17"
+updated_at: "2024-05-21"
 tagline: escape to endless gravel and wilderness
 variants:
-- name: "Greenbelt \U0001F333"
-  gpx: main.gpx
-  distance_km: 45.9
-  strava_url: https://www.strava.com/activities/9023908646
-  rwgps_url: https://ridewithgps.com/routes/42797389?privacy_code=JEZEcy5OoqhqRETH
+  - name: Greenbelt 🌳
+    gpx: main.gpx
+    distance_km: 45.9
+    strava_url: https://www.strava.com/activities/9023908646
+    rwgps_url: https://ridewithgps.com/routes/42797389?privacy_code=JEZEcy5OoqhqRETH
 ---
 
 Discover the lush scenery of Ottawa's protected Greenbelt, a haven of green space, forests, farms, and wetlands encircling the downtown core.

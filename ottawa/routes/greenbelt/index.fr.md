@@ -1,6 +1,5 @@
 ---
-slug: ceinture-de-verdure
-name: "Ceinture de verdure 🌳"
+name: Ceinture de verdure 🌳
 tagline: évadez-vous dans un gravel et une nature sans fin
 ---
 
