@@ -1,6 +1,6 @@
 ---
 name: Flora Footbridge
-category: meeting-point
+category: bridge
 lat: 45.405126
 lng: -75.681076
 status: published
