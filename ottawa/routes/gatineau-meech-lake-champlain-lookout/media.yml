@@ -1,10 +1,25 @@
----
 - type: photo
-  key: ze58ij2azh370vdi62odtbehrpzj
-  score: 8.77
-  width: 1200
-  height: 1599
-  handle: photo
+  key: mgp5vxr3licjv6jk2tk0epkmkys4
+  caption: Deer
+  score: 10
+  width: 1599
+  height: 1200
+  cover: true
+  handle: cover
+- type: photo
+  key: hbfzvih31vh8fm9gfmq5awjagjat
+  caption: View from Champlain Lookout
+  score: 9.18
+  width: 1599
+  height: 1200
+  handle: view-from-champlain-lookout
+- type: photo
+  key: frh5au7wc0ngvfc4tnkxw693gj7u
+  caption: enjoying the lake
+  score: 9.59
+  width: 2048
+  height: 1536
+  handle: enjoying-the-lake
 - type: photo
   key: 2u106vw0rijfzxuzoax7gb1jc53p
   score: 8.36
@@ -12,11 +27,32 @@
   height: 1200
   handle: photo-2
 - type: photo
-  key: 1m1cb7yx48b1ypp814kocoryrixz
-  score: 6.32
+  key: 7vjvb8bj0bh4wiyst4j13iiav3lp
+  caption: Meech Lake
+  score: 1.82
+  width: 2048
+  height: 1536
+  handle: a-body-of-water-with-trees-and-mountains-
+- type: photo
+  key: fa15tchi7svj6sy790ig8vwgzy5t
+  score: 7.14
   width: 1200
   height: 1599
-  handle: photo-3
+  handle: photo-5
+- type: photo
+  key: 72477l7kg2pvl2nsi7vky25s6yy0
+  caption: a deer standing on a stone wall
+  score: 5.91
+  width: 1599
+  height: 1200
+  handle: a-deer-standing-on-a-stone-wall
+- type: photo
+  key: t7um2fnhncvif5ic32bdwsgc7eoz
+  caption: a road with trees on the side
+  score: 2.64
+  width: 2048
+  height: 1536
+  handle: a-road-with-trees-on-the-side
 - type: photo
   key: 7rjtjflcis6dqttjlnwu5p9o03lp
   score: 7.55
@@ -24,11 +60,12 @@
   height: 1599
   handle: photo-4
 - type: photo
-  key: fa15tchi7svj6sy790ig8vwgzy5t
-  score: 7.14
-  width: 1200
-  height: 1599
-  handle: photo-5
+  key: m4bfln8o5pissof5oai56vgu4sk9
+  caption: a bicycle is parked on a bench
+  score: 6.73
+  width: 1599
+  height: 1200
+  handle: a-bicycle-is-parked-on-a-bench
 - type: photo
   key: q826035zvgi29ujtgdlyge76pht9
   score: 4.68
@@ -42,33 +79,18 @@
   height: 1599
   handle: photo-7
 - type: photo
+  key: d21biq0v7vcas6zka9n3afaagf25
+  caption: a road with trees on the side
+  score: 7.95
+  width: 2048
+  height: 1536
+  handle: a-road-with-trees-on-the-side-2
+- type: photo
   key: 1ymzogn10yxnucza00wvf0vsdijj
   score: 5.09
   width: 1200
   height: 1599
   handle: photo-8
-- type: photo
-  key: hbfzvih31vh8fm9gfmq5awjagjat
-  caption: View from Champlain Lookout
-  score: 9.18
-  width: 1599
-  height: 1200
-  handle: view-from-champlain-lookout
-- type: photo
-  key: mgp5vxr3licjv6jk2tk0epkmkys4
-  caption: Deer
-  score: 10.0
-  width: 1599
-  height: 1200
-  cover: true
-  handle: cover
-- type: photo
-  key: 72477l7kg2pvl2nsi7vky25s6yy0
-  caption: a deer standing on a stone wall
-  score: 5.91
-  width: 1599
-  height: 1200
-  handle: a-deer-standing-on-a-stone-wall
 - type: photo
   key: 4v3ggmfrjbo63o088412hkmvk3l6
   caption: View of the City
@@ -77,26 +99,11 @@
   height: 1200
   handle: view-of-the-city
 - type: photo
-  key: m4bfln8o5pissof5oai56vgu4sk9
-  caption: a bicycle is parked on a bench
-  score: 6.73
-  width: 1599
-  height: 1200
-  handle: a-bicycle-is-parked-on-a-bench
-- type: photo
-  key: 855bddy88nmxv635f9pih8lyi6bv
-  caption: selfie - tired
-  score: 1.41
+  key: 1m1cb7yx48b1ypp814kocoryrixz
+  score: 6.32
   width: 1200
   height: 1599
-  handle: selfie-tired
-- type: photo
-  key: s6dvpj4k38nfrk7qp6afgyklefsj
-  caption: selfie
-  score: 3.05
-  width: 1200
-  height: 1599
-  handle: selfie
+  handle: photo-3
 - type: photo
   key: 2vycrzy3bfggt4nkggle169yb9f6
   caption: latte
@@ -112,44 +119,15 @@
   height: 1200
   handle: selfie-2
 - type: photo
-  key: t7um2fnhncvif5ic32bdwsgc7eoz
-  caption: a road with trees on the side
-  score: 2.64
-  width: 2048
-  height: 1536
-  handle: a-road-with-trees-on-the-side
-- type: photo
-  key: bii75jvg55viqx5dws320uukmlor
-  caption: selfie
-  score: 2.23
-  width: 1536
-  height: 2048
-  handle: selfie-3
-- type: photo
-  key: d21biq0v7vcas6zka9n3afaagf25
-  caption: a road with trees on the side
-  score: 7.95
-  width: 2048
-  height: 1536
-  handle: a-road-with-trees-on-the-side-2
-- type: photo
   key: 5fc6ktg2bfxe03hzdavbh2s7lih2
   caption: no cars allowed
-  score: 1.0
+  score: 1
   width: 2048
   height: 1536
   handle: no-cars-allowed
 - type: photo
-  key: 7vjvb8bj0bh4wiyst4j13iiav3lp
-  caption: a body of water with trees and mountains in the background
-  score: 1.82
-  width: 2048
-  height: 1536
-  handle: a-body-of-water-with-trees-and-mountains-
-- type: photo
-  key: frh5au7wc0ngvfc4tnkxw693gj7u
-  caption: enjoying the lake
-  score: 9.59
-  width: 2048
-  height: 1536
-  handle: enjoying-the-lake
+  key: ze58ij2azh370vdi62odtbehrpzj
+  score: 8.77
+  width: 1200
+  height: 1599
+  handle: photo

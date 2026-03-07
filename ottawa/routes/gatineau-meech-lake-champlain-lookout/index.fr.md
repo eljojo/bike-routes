@@ -1,7 +1,6 @@
 ---
-slug: parc-gatineau-lac-meech-belvedere-champlain
-name: 'Parc de la Gatineau : lac Meech + belvédère Champlain'
-tagline: "comme 2x Pink, offrez-vous une baignade dans le lac 🏊"
+name: "Parc de la Gatineau : lac Meech + belvédère Champlain"
+tagline: comme 2x Pink, offrez-vous une baignade dans le lac 🏊
 ---
 
 Visitez le parc de la Gatineau, plongez dans le lac Meech et profitez du coucher de soleil au belvédère Champlain.
