@@ -1,6 +1,6 @@
 ---
 name: Somewhere Inn Calabogie
-category: other
+category: motel
 lat: 45.294819
 lng: -76.744934
 status: published

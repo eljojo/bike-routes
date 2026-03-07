@@ -1,6 +1,6 @@
 ---
 name: Champlain Lookout
-category: chill-spot
+category: lookout
 lat: 45.508331
 lng: -75.912964
 status: published

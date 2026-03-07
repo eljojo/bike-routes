@@ -1,6 +1,6 @@
 ---
 name: Hartwells Locks
-category: something-interesting
+category: lookout
 lat: 45.38433
 lng: -75.700198
 status: published

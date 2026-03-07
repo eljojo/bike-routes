@@ -1,6 +1,6 @@
 ---
 name: NCC River House
-category: something-interesting
+category: chill-spot
 lat: 45.45743
 lng: -75.678291
 status: published
