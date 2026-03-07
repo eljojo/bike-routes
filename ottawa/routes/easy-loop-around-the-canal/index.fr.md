@@ -1,5 +1,4 @@
 ---
-slug: boucle-facile-autour-du-canal
 name: Boucle facile autour du canal
 tagline: "🏆 Parcours de l'année : 2020"
 ---
