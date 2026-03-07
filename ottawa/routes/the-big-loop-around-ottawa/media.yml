@@ -68,11 +68,12 @@
   height: 1536
   handle: photo-3
 - type: photo
-  key: awtaf7p9j7jnakvvam0m70bs47g4
-  score: 9.02
-  width: 2048
-  height: 1536
-  handle: photo-4
+  key: rxj0r9obh0bynp7c1pief7cqxzbd
+  caption: a road with trees on either side
+  score: 7.98
+  width: 1200
+  height: 1600
+  handle: a-road-with-trees-on-either-side
 - type: photo
   key: 5wdcsogpjyfaa03n7mfikfdfpnct
   caption: the road is for bikes only!
@@ -102,12 +103,11 @@
   height: 1599
   handle: snowdump
 - type: photo
-  key: rxj0r9obh0bynp7c1pief7cqxzbd
-  caption: a road with trees on either side
-  score: 7.98
-  width: 1200
-  height: 1600
-  handle: a-road-with-trees-on-either-side
+  key: awtaf7p9j7jnakvvam0m70bs47g4
+  score: 9.02
+  width: 2048
+  height: 1536
+  handle: photo-4
 - type: photo
   key: etl7lxpz2n2qnlq70o2fferoj0im
   score: 4.4
