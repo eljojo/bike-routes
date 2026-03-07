@@ -9,7 +9,7 @@ videos_cdn_url: https://videos.ottawabybike.ca
 tiles_url: https://tiles.ottawabybike.ca/cycle/{z}/{x}/{y}{r}.png
 timezone: America/Santiago
 locale: es-CL
-locales: [es-CL]
+locales: [es-CL, fr]
 author:
   name: José Tomás Albornoz
   email: bike@eljojo.net

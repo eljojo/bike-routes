@@ -1,0 +1,15 @@
+- type: photo
+  key: hkk9lcdjbt5gegcp22auuud2zvz4
+  caption: Río Chillán
+  score: 10
+  width: 1200
+  height: 1599
+  cover: true
+  handle: cover
+- type: video
+  key: oxk14xfu79tt3kpki495dv7gujbw
+  title: Paseo en bici
+  handle: paseo-en-bici
+  duration: PT13S
+  width: 2160
+  height: 3840

@@ -1,0 +1,15 @@
+- type: photo
+  key: wexh0pykn1qafl37oxfrbl9iiexb
+  caption: Plaza de Armas
+  score: 10
+  width: 1599
+  height: 1200
+  cover: true
+  handle: cover
+- type: photo
+  key: 7e6qrna1u9ah3m28h6r62xc2313k
+  caption: Mercado de Chillán
+  score: 8
+  width: 1599
+  height: 1200
+  handle: mercado
