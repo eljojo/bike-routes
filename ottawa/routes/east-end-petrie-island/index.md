@@ -3,17 +3,17 @@ name: East End ➡️ Petrie Island
 status: published
 distance_km: 19.6
 tags:
-- gravel
-- beach
-- poutine
-created_at: '2022-10-17'
-updated_at: '2024-05-21'
+  - gravel
+  - beach
+  - poutine
+created_at: "2022-10-17"
+updated_at: "2024-05-21"
 tagline: the gravel patch is the secret sauce
 variants:
-- name: East End ➡️ Petrie Island
-  gpx: main.gpx
-  distance_km: 19.6
-  strava_url: https://www.strava.com/activities/5648624316
+  - name: East End ➡️ Petrie Island
+    gpx: main.gpx
+    distance_km: 19.6
+    strava_url: https://www.strava.com/activities/5648624316
 ---
 
 Downtown to Orléans is a beautiful ride!

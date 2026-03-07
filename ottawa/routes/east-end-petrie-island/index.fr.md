@@ -1,5 +1,4 @@
 ---
-slug: est-de-la-ville-ile-petrie
 name: Est de la ville ➡️ Île Petrie
 tagline: la section de gravel, c'est l'ingrédient secret
 ---

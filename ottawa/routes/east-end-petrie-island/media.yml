@@ -1,4 +1,11 @@
----
+- type: photo
+  key: ud96s7crhvwytzlq4ggx51jymwvv
+  caption: a group of people riding bikes on a path in the woods
+  score: 10
+  width: 1599
+  height: 1200
+  cover: true
+  handle: cover
 - type: photo
   key: vhld5j20d3tdadeeosxrn34t1mi2
   caption: a person riding a bike on a grassy field
@@ -7,12 +14,25 @@
   height: 1200
   handle: a-person-riding-a-bike-on-a-grassy-field
 - type: photo
+  key: 6dwu0ta17lc6nflkp4dm26v4okmc
+  caption: a group of people riding bikes on a path by a body of water
+  score: 9.63
+  width: 1200
+  height: 1599
+  handle: a-group-of-people-riding-bikes-on-a-path-
+- type: photo
   key: u6m2ot4pay5vy5f6gw25ha9dp95z
   caption: a person riding a bicycle on a path by a body of water
   score: 6.25
   width: 1599
   height: 1200
   handle: a-person-riding-a-bicycle-on-a-path-by-a-
+- type: photo
+  key: ipnd2bgdro4r0po09whwhrwozw70
+  score: 9.25
+  width: 1599
+  height: 1200
+  handle: photo-3
 - type: photo
   key: mtp7dk4vgrcnntvjyprt7kdsxy9z
   caption: selfie!
@@ -21,20 +41,12 @@
   height: 1599
   handle: selfie
 - type: photo
-  key: 6dwu0ta17lc6nflkp4dm26v4okmc
-  caption: a group of people riding bikes on a path by a body of water
-  score: 9.63
-  width: 1200
-  height: 1599
-  handle: a-group-of-people-riding-bikes-on-a-path-
-- type: photo
-  key: ud96s7crhvwytzlq4ggx51jymwvv
-  caption: a group of people riding bikes on a path in the woods
-  score: 10.0
-  width: 1599
-  height: 1200
-  cover: true
-  handle: cover
+  key: z91vzb18mal66f5214fgeonlrll4
+  caption: a road next to a field
+  score: 7.38
+  width: 2048
+  height: 851
+  handle: a-road-next-to-a-field
 - type: photo
   key: w7jgy34wjqmsdogpkuhmd2r0mqwa
   score: 5.88
@@ -42,20 +54,22 @@
   height: 1599
   handle: photo
 - type: photo
-  key: ruoaulorf59ezarkv0mkm77krfdz
-  score: 2.5
-  width: 1599
-  height: 1200
-  handle: photo-2
+  key: 8ar1gcyqli2pmre3avpcz5lxa6yl
+  caption: a road in the woods
+  score: 3.25
+  width: 2048
+  height: 1365
+  handle: a-road-in-the-woods
 - type: photo
-  key: ipnd2bgdro4r0po09whwhrwozw70
-  score: 9.25
+  key: eto9qon4dj92vrk3en8upi2hhvd3
+  caption: a person in a red boat in a river with trees
+  score: 7.75
   width: 1599
   height: 1200
-  handle: photo-3
+  handle: a-person-in-a-red-boat-in-a-river-with-tr
 - type: photo
   key: ad9gkib2kng3mon84efh2crp8h6m
-  score: 7.0
+  score: 7
   width: 1599
   height: 1200
   handle: photo-4
@@ -72,16 +86,9 @@
   height: 1200
   handle: photo-6
 - type: photo
-  key: eto9qon4dj92vrk3en8upi2hhvd3
-  caption: a person in a red boat in a river with trees
-  score: 7.75
-  width: 1599
-  height: 1200
-  handle: a-person-in-a-red-boat-in-a-river-with-tr
-- type: photo
   key: gsfa0kcbqs8duifhdnrr6j72veme
   caption: a group of trees in a field
-  score: 4.0
+  score: 4
   width: 1599
   height: 1200
   handle: a-group-of-trees-in-a-field
@@ -100,20 +107,6 @@
   height: 1365
   handle: a-body-of-water-with-trees-in-the-back
 - type: photo
-  key: z91vzb18mal66f5214fgeonlrll4
-  caption: a road next to a field
-  score: 7.38
-  width: 2048
-  height: 851
-  handle: a-road-next-to-a-field
-- type: photo
-  key: 8ar1gcyqli2pmre3avpcz5lxa6yl
-  caption: a road in the woods
-  score: 3.25
-  width: 2048
-  height: 1365
-  handle: a-road-in-the-woods
-- type: photo
   key: 5kk951zvfcx8f2po9ojajs3rl0n0
   caption: a road next to a body of water
   score: 8.88
@@ -127,6 +120,30 @@
   width: 2048
   height: 1365
   handle: a-plane-flying-over-a-field
+- type: photo
+  key: i5y4iyl5gfvvdlodxx87pz25xmcu
+  score: 4.75
+  width: 1600
+  height: 1200
+  handle: photo-9
+- type: photo
+  key: fzf05na02hodea5lglia21dkbth6
+  score: 1.75
+  width: 1600
+  height: 1200
+  handle: photo-10
+- type: photo
+  key: h4pshzc0ohyic76qvlrwiillj80q
+  score: 5.13
+  width: 1600
+  height: 1200
+  handle: photo-11
+- type: photo
+  key: 0hie64q84owlgkj97nmhkmn00eyw
+  score: 1.38
+  width: 1600
+  height: 1200
+  handle: photo-12
 - type: photo
   key: gs8nnqy6wtuma9rpriy4jqjm9oc9
   score: 2.13
@@ -160,33 +177,3 @@
   orientation: landscape
   poster_key: sx05i4amcbhjn18t02yct3zo9mjt
   handle: riding-back-home
-- type: photo
-  key: zyhwkxoy8ah563km9vr4e8u4ecg3
-  score: 1.0
-  width: 1600
-  height: 1200
-  handle: photo-8
-- type: photo
-  key: i5y4iyl5gfvvdlodxx87pz25xmcu
-  score: 4.75
-  width: 1600
-  height: 1200
-  handle: photo-9
-- type: photo
-  key: fzf05na02hodea5lglia21dkbth6
-  score: 1.75
-  width: 1600
-  height: 1200
-  handle: photo-10
-- type: photo
-  key: h4pshzc0ohyic76qvlrwiillj80q
-  score: 5.13
-  width: 1600
-  height: 1200
-  handle: photo-11
-- type: photo
-  key: 0hie64q84owlgkj97nmhkmn00eyw
-  score: 1.38
-  width: 1600
-  height: 1200
-  handle: photo-12
