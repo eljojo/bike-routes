@@ -3,17 +3,17 @@ name: The Big Loop Around Ottawa
 status: published
 distance_km: 31.6
 tags:
-- chill
-- bike path
-- snacks
-created_at: '2022-10-18'
-updated_at: '2025-08-12'
+  - chill
+  - bike path
+  - snacks
+created_at: "2022-10-18"
+updated_at: "2025-08-12"
 tagline: all-star ride
 variants:
-- name: The Big Loop Around Ottawa
-  gpx: main.gpx
-  distance_km: 31.6
-  strava_url: https://www.strava.com/activities/3798658451
+  - name: The Big Loop Around Ottawa
+    gpx: main.gpx
+    distance_km: 31.6
+    strava_url: https://www.strava.com/activities/3798658451
 ---
 
 Looking for an all-star ride that showcases the best of Ottawa's natural beauty? Look no further than this loopy variation of [Britannia](/routes/3-britannia), which takes you through the Experimental Farm and Carlington Woods.

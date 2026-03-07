@@ -1,4 +1,32 @@
----
+- type: photo
+  key: przmzg5rbdmnkself9j3l719eg4g
+  caption: beautiful orange fall colors
+  score: 9.97
+  width: 2250
+  height: 3000
+  cover: true
+  handle: cover
+- type: photo
+  key: vmv4afoe1x8o1ez2pyy10qfqwg4s
+  caption: Experimental Farm in Ottawa
+  score: 9
+  width: 2048
+  height: 1365
+  handle: experimental-farm-in-ottawa
+- type: photo
+  key: z3sw95aa0upadmbax9m0rq5yltiq
+  caption: rock art
+  score: 9.65
+  width: 2048
+  height: 1536
+  handle: rock-art
+- type: photo
+  key: vff68bi79d0omga16uq5mi6djmlz
+  caption: eating a hotdog with a lovely fall view
+  score: 7.88
+  width: 1600
+  height: 1200
+  handle: eating-a-hotdog-with-a-lovely-fall-view
 - type: photo
   key: 9vpecv1wxlzaidtu3nofv8aof5pv
   caption: abandoned train bridge
@@ -7,12 +35,12 @@
   height: 1200
   handle: abandoned-train-bridge
 - type: photo
-  key: z3sw95aa0upadmbax9m0rq5yltiq
-  caption: rock art
-  score: 9.65
-  width: 2048
-  height: 1536
-  handle: rock-art
+  key: y3bwlnt4oos14law9gomzqgzlh1c
+  score: 1.1
+  width: 1200
+  height: 1600
+  handle: photo-6
+  caption: snacks by the café @ britannia
 - type: photo
   key: lez8489uinj1ynigp1wo2dks14li
   caption: sunset
@@ -40,6 +68,13 @@
   height: 1536
   handle: photo-2
 - type: photo
+  key: 7fmykghyn0r5x8o728ha967skxqf
+  caption: Experimental Farm
+  score: 8.07
+  width: 1200
+  height: 1600
+  handle: a-road-with-trees-on-the-side
+- type: photo
   key: jbw7cdjrcggec31cm25swajxttex
   score: 4.32
   width: 2048
@@ -51,13 +86,6 @@
   width: 2048
   height: 1536
   handle: photo-4
-- type: photo
-  key: vmv4afoe1x8o1ez2pyy10qfqwg4s
-  caption: Experimental Farm in Ottawa
-  score: 9.0
-  width: 2048
-  height: 1365
-  handle: experimental-farm-in-ottawa
 - type: photo
   key: 5wdcsogpjyfaa03n7mfikfdfpnct
   caption: the road is for bikes only!
@@ -80,55 +108,18 @@
   height: 1599
   handle: snowdump
 - type: photo
-  key: przmzg5rbdmnkself9j3l719eg4g
-  caption: beautiful orange fall colors
-  score: 9.97
-  width: 2250
-  height: 3000
-  cover: true
-  handle: cover
-- type: photo
-  key: vff68bi79d0omga16uq5mi6djmlz
-  caption: eating a hotdog with a lovely fall view
-  score: 7.88
-  width: 1600
-  height: 1200
-  handle: eating-a-hotdog-with-a-lovely-fall-view
-- type: photo
-  key: 7fmykghyn0r5x8o728ha967skxqf
-  caption: a road with trees on the side
-  score: 8.07
-  width: 1200
-  height: 1600
-  handle: a-road-with-trees-on-the-side
-- type: photo
   key: rxj0r9obh0bynp7c1pief7cqxzbd
   caption: a road with trees on either side
   score: 7.98
   width: 1200
   height: 1600
   handle: a-road-with-trees-on-either-side
-- type: video
-  key: c8utp2tmfgs085wd5c6wm3ueoeqf
-  title: Chasing the Orange
-  duration: PT11S
-  width: 1440
-  height: 1920
-  orientation: portrait
-  poster_key: ootev9nhufhclde8z3oy5m21mg33
-  handle: chasing-the-orange
 - type: photo
   key: up5su0bp2qfmqlnvr6f9l7ethhs8
   score: 8.6
   width: 1600
   height: 1200
   handle: photo-5
-- type: photo
-  key: y3bwlnt4oos14law9gomzqgzlh1c
-  score: 1.1
-  width: 1200
-  height: 1600
-  handle: photo-6
 - type: photo
   key: m4uux71kr49zf6w0akqbpkhpnecm
   score: 1.4
@@ -141,3 +132,12 @@
   width: 1600
   height: 1200
   handle: photo-8
+- type: video
+  key: c8utp2tmfgs085wd5c6wm3ueoeqf
+  title: Chasing the Orange
+  duration: PT11S
+  width: 1440
+  height: 1920
+  orientation: portrait
+  poster_key: ootev9nhufhclde8z3oy5m21mg33
+  handle: chasing-the-orange

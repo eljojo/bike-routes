@@ -1,5 +1,4 @@
 ---
-slug: grande-boucle-autour-d-ottawa
 name: La grande boucle autour d'Ottawa
 tagline: la balade vedette
 ---
