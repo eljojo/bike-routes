@@ -3,15 +3,15 @@ name: Wesley Clover & Shirley's Bay
 status: published
 distance_km: 52.4
 tags:
-- gravel
-created_at: '2022-10-15'
-updated_at: '2025-08-12'
+  - gravel
+created_at: "2022-10-15"
+updated_at: "2025-08-12"
 tagline: quiet roads, farm views, and light gravel!
 variants:
-- name: Wesley Clover & Shirley's Bay
-  gpx: main.gpx
-  distance_km: 52.4
-  strava_url: https://www.strava.com/activities/8068850692
+  - name: Wesley Clover & Shirley's Bay
+    gpx: main.gpx
+    distance_km: 52.4
+    strava_url: https://www.strava.com/activities/8068850692
 ---
 
 If you keep riding [past Britannia](/routes/3-britannia) there's a street light in Carling, if you keep going you'll slowly make your way to [Wesley Clover Parks](https://en.wikipedia.org/wiki/Wesley_Clover_Parks) ([Google Maps](https://goo.gl/maps/Lt4vVcAXx6VUq7eH7)), so far this is all really nice bike paths surrounded by trees on all sides.
