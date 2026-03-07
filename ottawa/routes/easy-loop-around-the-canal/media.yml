@@ -64,6 +64,13 @@
   height: 1599
   handle: photo-23
 - type: photo
+  key: cuwkgrjwzqnatn5vqhtuo7mvi5oh
+  caption: Dow's Lake
+  score: 9.36
+  width: 2048
+  height: 1365
+  handle: dow-s-lake-3
+- type: photo
   key: o3mxhuhldi19ocjq3a6sp4zo66a0
   score: 8.33
   width: 1200
@@ -116,18 +123,18 @@
   height: 1200
   handle: photo-7
 - type: photo
-  key: cuwkgrjwzqnatn5vqhtuo7mvi5oh
-  caption: Dow's Lake
-  score: 9.36
-  width: 2048
-  height: 1365
-  handle: dow-s-lake-3
-- type: photo
   key: scxsv4grmnvmraj76g4yg1qblmrb
   score: 5.76
   width: 1200
   height: 1599
   handle: photo-9
+- type: photo
+  key: szehk4u2tb5fyvo1on8h7h2ka26o
+  caption: Dow's Lake
+  score: 8.84
+  width: 1599
+  height: 1200
+  handle: dow-s-lake
 - type: photo
   key: s026wj1rbdcboyll41vz2k04ax2q
   score: 6.27
@@ -176,13 +183,6 @@
   width: 2048
   height: 1298
   handle: a-bridge-with-a-sunset
-- type: photo
-  key: szehk4u2tb5fyvo1on8h7h2ka26o
-  caption: Dow's Lake
-  score: 8.84
-  width: 1599
-  height: 1200
-  handle: dow-s-lake
 - type: photo
   key: guvlplvag41ug2erhfw2hxencbpc
   score: 7.04
