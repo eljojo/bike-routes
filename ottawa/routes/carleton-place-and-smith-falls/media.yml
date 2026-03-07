@@ -1,70 +1,16 @@
----
 - type: photo
   key: brob3h1igijgkr8ugdji8ep9miy9
   score: 9.47
   width: 1600
   height: 1200
   handle: photo
-- type: photo
-  key: mc4b2simf6t6fu2jr53xynab41ay
-  score: 6.82
-  width: 1600
-  height: 1200
-  handle: photo-2
-- type: photo
-  key: ce7vr34jkaxsg1nktsi2amuiwxnp
-  score: 6.29
-  width: 1600
-  height: 1200
-  handle: photo-3
-- type: photo
-  key: qgibgox01suo6n6htbxj3c9214lb
-  score: 5.76
-  width: 1600
-  height: 1200
-  handle: photo-4
+  cover: true
 - type: photo
   key: pmax2tsnb1tcrjuqykdxobg6sg9y
   score: 5.24
   width: 1200
   height: 1600
   handle: photo-5
-- type: photo
-  key: 9d54kgiwjtisk6uqy8jilaqfvyui
-  score: 4.71
-  width: 1600
-  height: 1200
-  handle: photo-6
-- type: photo
-  key: xzzwizar45mae66vqpt86n20kmiw
-  score: 4.18
-  width: 1600
-  height: 1200
-  handle: photo-7
-- type: photo
-  key: 5qacuj1k6ay6988m3ij12pic5tj5
-  score: 3.65
-  width: 1600
-  height: 1200
-  handle: photo-8
-- type: photo
-  key: vph5i84hqxa74f0b3nhodhcjod75
-  score: 3.12
-  width: 1200
-  height: 1600
-  handle: photo-9
-- type: photo
-  key: h8wxlj143pghs9yg5vvcw9wik6uv
-  score: 8.41
-  width: 1600
-  height: 1200
-  handle: photo-10
-- type: photo
-  key: 88ggtevb94v2uv3ijzj0arlu72b5
-  score: 2.59
-  width: 1600
-  height: 1200
-  handle: photo-11
 - type: photo
   key: ulosqh832j600d7lzg4cr1q391lp
   score: 2.06
@@ -78,27 +24,62 @@
   height: 1600
   handle: photo-13
 - type: photo
+  key: mc4b2simf6t6fu2jr53xynab41ay
+  score: 6.82
+  width: 1600
+  height: 1200
+  handle: photo-2
+- type: photo
+  key: ca4i1lby8so0vqho94qhi9dh6i4s
+  score: 10
+  width: 1200
+  height: 1600
+  handle: cover
+- type: photo
+  key: ce7vr34jkaxsg1nktsi2amuiwxnp
+  score: 6.29
+  width: 1600
+  height: 1200
+  handle: photo-3
+- type: photo
+  key: qgibgox01suo6n6htbxj3c9214lb
+  score: 5.76
+  width: 1600
+  height: 1200
+  handle: photo-4
+- type: photo
+  key: 9d54kgiwjtisk6uqy8jilaqfvyui
+  score: 4.71
+  width: 1600
+  height: 1200
+  handle: photo-6
+- type: photo
+  key: xzzwizar45mae66vqpt86n20kmiw
+  score: 4.18
+  width: 1600
+  height: 1200
+  handle: photo-7
+- type: photo
+  key: h8wxlj143pghs9yg5vvcw9wik6uv
+  score: 8.41
+  width: 1600
+  height: 1200
+  handle: photo-10
+- type: photo
+  key: 88ggtevb94v2uv3ijzj0arlu72b5
+  score: 2.59
+  width: 1600
+  height: 1200
+  handle: photo-11
+- type: photo
   key: akw3wl90ms6u2xz2ri005cm3bkt7
   score: 7.88
   width: 1600
   height: 1200
   handle: photo-14
 - type: photo
-  key: iov3x70l39jprzqba4fryplhj7by
-  score: 1.53
-  width: 1687
-  height: 2999
-  handle: photo-15
-- type: photo
-  key: ca4i1lby8so0vqho94qhi9dh6i4s
-  score: 10.0
-  width: 1200
-  height: 1600
-  cover: true
-  handle: cover
-- type: photo
   key: 763rox9znf9ljc8qe6r092ffkhcd
-  score: 1.0
+  score: 1
   width: 1600
   height: 1200
   handle: photo-16
@@ -108,3 +89,21 @@
   width: 1200
   height: 1600
   handle: photo-17
+- type: photo
+  key: vph5i84hqxa74f0b3nhodhcjod75
+  score: 3.12
+  width: 1200
+  height: 1600
+  handle: photo-9
+- type: photo
+  key: 5qacuj1k6ay6988m3ij12pic5tj5
+  score: 3.65
+  width: 1600
+  height: 1200
+  handle: photo-8
+- type: photo
+  key: iov3x70l39jprzqba4fryplhj7by
+  score: 1.53
+  width: 1687
+  height: 2999
+  handle: photo-15

@@ -1,5 +1,4 @@
 ---
-slug: ottawa-vers-carleton-place-et-smiths-falls
 name: Ottawa vers Carleton Place et Smiths Falls
 tagline: Roulez sur le gravel du Sentier Transcanadien
 ---
