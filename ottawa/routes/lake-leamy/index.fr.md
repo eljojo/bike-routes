@@ -1,5 +1,4 @@
 ---
-slug: boucle-lac-leamy
 name: Boucle tranquille vers le lac Leamy
 tagline: restez au bord de l'eau et rafraîchissez-vous au lac Leamy
 ---

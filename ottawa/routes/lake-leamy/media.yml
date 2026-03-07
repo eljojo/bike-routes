@@ -1,8 +1,7 @@
----
 - type: photo
   key: osjah94ycb5856c053p410qvx5lo
   caption: a body of water with trees and a cloudy sky
-  score: 10.0
+  score: 10
   width: 1600
   height: 1200
   cover: true
@@ -15,26 +14,33 @@
   height: 1200
   handle: a-body-of-water-with-trees-in-the-back
 - type: photo
-  key: l0gynm4cl2nk2ncc0xz13e8jc0sg
-  caption: a body of water with ripples
-  score: 6.0
-  width: 1687
-  height: 2999
-  handle: a-body-of-water-with-ripples
-- type: photo
   key: m0jie5u597uk17trn7vtf4qtk7v8
   caption: a silhouette of a building and trees
-  score: 8.0
+  score: 8
   width: 2048
   height: 1536
   handle: a-silhouette-of-a-building-and-trees
 - type: photo
-  key: 1wvc11ddbgek63um1svtx3e5awbx
-  caption: my topstone
-  score: 1.0
+  key: a180i0528xj9xzl7vitwflklvaj2
+  caption: Parliament Hill
+  score: 4.5
+  width: 1536
+  height: 2048
+  handle: parliament-hill
+- type: photo
+  key: e8snkm9gkb92yfy4lsn0e7ay6wa8
+  caption: a road with graffiti on the side
+  score: 9.5
+  width: 1536
+  height: 2048
+  handle: a-road-with-graffiti-on-the-side
+- type: photo
+  key: nfmi7f4k8mfc3d9lo39nj376rjn4
+  caption: a bridge over a river
+  score: 5
   width: 2048
   height: 1536
-  handle: my-topstone
+  handle: a-bridge-over-a-river
 - type: photo
   key: klkm4ig2vzf2mnhpz5nsepukd3op
   caption: enjoying the water
@@ -43,12 +49,12 @@
   height: 2048
   handle: enjoying-the-water
 - type: photo
-  key: nfmi7f4k8mfc3d9lo39nj376rjn4
+  key: u2jtg47fz4xta86mnil0pw64ik0h
   caption: a bridge over a river
-  score: 5.0
+  score: 6.5
   width: 2048
   height: 1536
-  handle: a-bridge-over-a-river
+  handle: a-bridge-over-a-river-2
 - type: photo
   key: fos1uog9l4tgyskz8z72wx3te8nf
   caption: a field with houses and trees
@@ -59,24 +65,10 @@
 - type: photo
   key: sklp71c47oko8sdnuf6kz5d795b7
   caption: a body of water with trees and a sunset in the background
-  score: 7.0
+  score: 7
   width: 2048
   height: 1536
   handle: a-body-of-water-with-trees-and-a-sunset-i
-- type: photo
-  key: e8snkm9gkb92yfy4lsn0e7ay6wa8
-  caption: a road with graffiti on the side
-  score: 9.5
-  width: 1536
-  height: 2048
-  handle: a-road-with-graffiti-on-the-side
-- type: photo
-  key: u2jtg47fz4xta86mnil0pw64ik0h
-  caption: a bridge over a river
-  score: 6.5
-  width: 2048
-  height: 1536
-  handle: a-bridge-over-a-river-2
 - type: photo
   key: zszgte9okrfefr5fqi9j8p89t79x
   caption: a bridge over a river
@@ -94,38 +86,45 @@
 - type: photo
   key: lncjwm8sfobgx7kvyb0h60ybxza2
   caption: a bridge over a body the river
-  score: 2.0
+  score: 2
   width: 2048
   height: 1536
   handle: a-bridge-over-a-body-the-river
 - type: photo
-  key: a180i0528xj9xzl7vitwflklvaj2
-  caption: Parliament Hill
-  score: 4.5
-  width: 1536
-  height: 2048
-  handle: parliament-hill
+  key: oai8x0m000w41hee90mgoip38ph1
+  caption: a group of birds on a beach
+  score: 9
+  width: 2048
+  height: 1536
+  handle: a-group-of-birds-on-a-beach
+- type: photo
+  key: 1wvc11ddbgek63um1svtx3e5awbx
+  caption: my topstone
+  score: 1
+  width: 2048
+  height: 1536
+  handle: my-topstone
 - type: photo
   key: 0pvler1blukg2ceja2xzpugy6p2g
   caption: geese walking on grass
-  score: 3.0
+  score: 3
   width: 2048
   height: 1536
   handle: geese-walking-on-grass
 - type: photo
+  key: l0gynm4cl2nk2ncc0xz13e8jc0sg
+  caption: a body of water with ripples
+  score: 6
+  width: 1687
+  height: 2999
+  handle: a-body-of-water-with-ripples
+- type: photo
   key: 1ozm7ok9pg1vkogpkkb1nkjocvan
   caption: a body of water with a city in the background
-  score: 4.0
+  score: 4
   width: 1599
   height: 1200
   handle: a-body-of-water-with-a-city-in-the-backgr
-- type: photo
-  key: oai8x0m000w41hee90mgoip38ph1
-  caption: a group of birds on a beach
-  score: 9.0
-  width: 2048
-  height: 1536
-  handle: a-group-of-birds-on-a-beach
 - type: photo
   key: lvln9hx4hc0dbxqbm1jrot2d06x4
   caption: a body of water with power lines above it
