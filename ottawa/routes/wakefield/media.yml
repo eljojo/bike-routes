@@ -1,11 +1,18 @@
----
 - type: photo
-  key: jhik6wpt7o81267ty3vgvqb5ck9q
-  caption: a landscape with trees and a sunset
-  score: 6.63
+  key: q5g2tombeh3ncbhgw7ryrhwi9bji
+  caption: a group of people riding bikes on a trail in the woods
+  score: 10
   width: 1200
-  height: 1599
-  handle: a-landscape-with-trees-and-a-sunset
+  height: 1600
+  cover: true
+  handle: cover
+- type: photo
+  key: eyielhs3dsy3fodto5eic3ebxnjx
+  caption: a wooden railing overlooking a body of water
+  score: 4
+  width: 1600
+  height: 1200
+  handle: a-wooden-railing-overlooking-a-body-of-wa
 - type: photo
   key: tielp5poor80qjn0qzmibcq5912n
   caption: wakefield selfie!
@@ -14,16 +21,57 @@
   height: 1599
   handle: wakefield-selfie
 - type: photo
-  key: 80fomzy8jykre0brbi169hiu2x7r
-  caption: flat tire, fixing my bike amongst the bugs
-  score: 3.25
-  width: 1599
+  key: dktwi5ynkz4phebaog0e28spu203
+  caption: Wakefield Bridge
+  score: 1.75
+  width: 1200
+  height: 1599
+  handle: wakefield-bridge
+- type: photo
+  key: u827sh4ulwcu6qkeug8auqo9n9tk
+  score: 7.75
+  width: 1200
+  height: 1600
+  handle: photo-4
+- type: photo
+  key: 8b8wq60e72viedizkdpmvqitt88p
+  caption: beautiful red bridge
+  score: 9.25
+  width: 1600
   height: 1200
-  handle: flat-tire-fixing-my-bike-amongst-the-bugs
+  handle: beautiful-red-bridge
+- type: photo
+  key: iu68u1bfsxvyanoeszc7r11xuo43
+  caption: Kerianne enjoying fall colours
+  score: 8.13
+  width: 1600
+  height: 1200
+  handle: kerianne-enjoying-fall-colours
+- type: photo
+  key: wa0lhdyy79je2r72kqhz3s9eu777
+  caption: Kerianne riding her bicycle on a path surrounded by trees
+  score: 8.88
+  width: 1200
+  height: 1600
+  handle: kerianne-riding-her-bicycle-on-a-path-sur
+- type: photo
+  key: jhik6wpt7o81267ty3vgvqb5ck9q
+  caption: a landscape with trees and a sunset
+  score: 6.63
+  width: 1200
+  height: 1599
+  handle: a-landscape-with-trees-and-a-sunset
+- type: photo
+  key: rhqmb9b8l577tc6yrhiej8v4tin0
+  score: 6.25
+  width: 1200
+  height: 1600
+  handle: photo
+  caption: cooling down by the water
 - type: photo
   key: 4ojp3jn7tpil1wx408dt5674y35t
   caption: a road with trees and a body of water in the background
-  score: 7.0
+  score: 7
   width: 1200
   height: 1599
   handle: a-road-with-trees-and-a-body-of-water-in-
@@ -35,33 +83,12 @@
   height: 1599
   handle: a-road-with-trees-on-the-side
 - type: photo
-  key: 2lcl4tx7ii7dwgwncpd2mbz4acg9
-  caption: a path in a forest
-  score: 2.88
-  width: 1200
-  height: 1599
-  handle: a-path-in-a-forest
-- type: photo
   key: y129q7cx7k0w6xixggcfgeplgeqh
   caption: a river with trees and a house
   score: 2.13
   width: 1599
   height: 1200
   handle: a-river-with-trees-and-a-house
-- type: photo
-  key: dktwi5ynkz4phebaog0e28spu203
-  caption: Wakefield Bridge
-  score: 1.75
-  width: 1200
-  height: 1599
-  handle: wakefield-bridge
-- type: photo
-  key: 90td6xd111lnc1tyxlzyeuwhqs9g
-  caption: a bicycle parked on fallen tree
-  score: 5.5
-  width: 1200
-  height: 1599
-  handle: a-bicycle-parked-on-fallen-tree
 - type: photo
   key: v8r073367baols67xz7p5iufoiqu
   caption: a road next to a body of water
@@ -77,28 +104,6 @@
   height: 1200
   handle: a-house-in-a-field
 - type: photo
-  key: iu68u1bfsxvyanoeszc7r11xuo43
-  caption: Kerianne enjoying fall colours
-  score: 8.13
-  width: 1600
-  height: 1200
-  handle: kerianne-enjoying-fall-colours
-- type: photo
-  key: 24ujaa8bcszyovn5sczr10m1qqg9
-  caption: bikes passing all the cars
-  score: 1.38
-  width: 2250
-  height: 3000
-  handle: bikes-passing-all-the-cars
-- type: photo
-  key: q5g2tombeh3ncbhgw7ryrhwi9bji
-  caption: a group of people riding bikes on a trail in the woods
-  score: 10.0
-  width: 1200
-  height: 1600
-  cover: true
-  handle: cover
-- type: photo
   key: 5r7ur295qki077vnm6xik2snqjd9
   caption: wild art
   score: 4.75
@@ -106,19 +111,37 @@
   height: 1600
   handle: wild-art
 - type: photo
-  key: 8b8wq60e72viedizkdpmvqitt88p
-  caption: beautiful red bridge
-  score: 9.25
-  width: 1600
-  height: 1200
-  handle: beautiful-red-bridge
+  key: 2lcl4tx7ii7dwgwncpd2mbz4acg9
+  caption: a path in a forest
+  score: 2.88
+  width: 1200
+  height: 1599
+  handle: a-path-in-a-forest
 - type: photo
-  key: wa0lhdyy79je2r72kqhz3s9eu777
-  caption: Kerianne riding her bicycle on a path surrounded by trees
-  score: 8.88
+  key: 18lr9r45e15tzlvpldus5qqs2yr2
+  score: 5.13
+  width: 2250
+  height: 3000
+  handle: photo-2
+- type: photo
+  key: 8vodfeiqntakc1wdutomt8gq6ch6
+  score: 8.5
   width: 1200
   height: 1600
-  handle: kerianne-riding-her-bicycle-on-a-path-sur
+  handle: photo-3
+- type: photo
+  key: kfn275d55r9ffyat9v0st3i3w64t
+  score: 1
+  width: 1200
+  height: 1600
+  handle: photo-5
+- type: photo
+  key: 24ujaa8bcszyovn5sczr10m1qqg9
+  caption: bikes passing all the cars
+  score: 1.38
+  width: 2250
+  height: 3000
+  handle: bikes-passing-all-the-cars
 - type: photo
   key: 5xw1fimnsprrsclrc9ahmtqn6nqd
   caption: Parliament Hill during fall
@@ -133,40 +156,3 @@
   width: 1200
   height: 1600
   handle: rideau-canal
-- type: photo
-  key: eyielhs3dsy3fodto5eic3ebxnjx
-  caption: a wooden railing overlooking a body of water
-  score: 4.0
-  width: 1600
-  height: 1200
-  handle: a-wooden-railing-overlooking-a-body-of-wa
-- type: photo
-  key: rhqmb9b8l577tc6yrhiej8v4tin0
-  score: 6.25
-  width: 1200
-  height: 1600
-  handle: photo
-- type: photo
-  key: 18lr9r45e15tzlvpldus5qqs2yr2
-  score: 5.13
-  width: 2250
-  height: 3000
-  handle: photo-2
-- type: photo
-  key: 8vodfeiqntakc1wdutomt8gq6ch6
-  score: 8.5
-  width: 1200
-  height: 1600
-  handle: photo-3
-- type: photo
-  key: u827sh4ulwcu6qkeug8auqo9n9tk
-  score: 7.75
-  width: 1200
-  height: 1600
-  handle: photo-4
-- type: photo
-  key: kfn275d55r9ffyat9v0st3i3w64t
-  score: 1.0
-  width: 1200
-  height: 1600
-  handle: photo-5

@@ -3,28 +3,28 @@ name: Wakefield!
 status: published
 distance_km: 45.8
 tags:
-- scenic
-- chill
-- gravel
-- long ride
-created_at: '2022-10-17'
-updated_at: '2024-06-14'
+  - scenic
+  - chill
+  - gravel
+  - long ride
+created_at: "2022-10-17"
+updated_at: "2024-06-14"
 tagline: escape the city and cool down in this scenic long ride
 variants:
-- name: From Chelsea
-  gpx: main.gpx
-  distance_km: 45.8
-  rwgps_url: https://ridewithgps.com/routes/43443195?privacy_code=9QYZuw0D7kZm6JLLfnW9JQjuvHmviwBk
-- name: From Downtown
-  gpx: variants/from-downtown.gpx
-  distance_km: 88.4
-  strava_url: https://www.strava.com/activities/8009760202
-  rwgps_url: https://ridewithgps.com/routes/41282882?privacy_code=vGzoLEJ6AswfDEDB
-- name: Cyclotour
-  gpx: variants/cyclotour.gpx
-  distance_km: 100.0
-  strava_url: https://www.strava.com/activities/9153048424
-  rwgps_url: https://ridewithgps.com/routes/39727518
+  - name: From Chelsea
+    gpx: main.gpx
+    distance_km: 45.8
+    rwgps_url: https://ridewithgps.com/routes/43443195?privacy_code=9QYZuw0D7kZm6JLLfnW9JQjuvHmviwBk
+  - name: From Downtown
+    gpx: variants/from-downtown.gpx
+    distance_km: 88.4
+    strava_url: https://www.strava.com/activities/8009760202
+    rwgps_url: https://ridewithgps.com/routes/41282882?privacy_code=vGzoLEJ6AswfDEDB
+  - name: Cyclotour
+    gpx: variants/cyclotour.gpx
+    distance_km: 100
+    strava_url: https://www.strava.com/activities/9153048424
+    rwgps_url: https://ridewithgps.com/routes/39727518
 ---
 
 Looking for a refreshing escape from the hustle and bustle of the city? Look no further than Wakefield, a charming village in Québec that's just 40KM away from downtown Ottawa. This is a day-long ride that won't disappoint.
