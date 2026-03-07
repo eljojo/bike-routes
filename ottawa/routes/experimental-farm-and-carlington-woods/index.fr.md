@@ -1,5 +1,4 @@
 ---
-slug: ferme-experimentale-et-bois-de-carlington
 name: Ferme expérimentale et bois de Carlington
 tagline: décompressez après le travail et profitez du coucher de soleil
 ---

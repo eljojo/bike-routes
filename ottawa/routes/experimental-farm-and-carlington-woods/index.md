@@ -3,15 +3,15 @@ name: Experimental Farm and Carlington Woods
 status: published
 distance_km: 25.8
 tags:
-- bike path
-created_at: '2022-11-22'
-updated_at: '2024-05-21'
+  - bike path
+created_at: "2022-11-22"
+updated_at: "2024-05-21"
 tagline: decompress after work and enjoy the sunset
 variants:
-- name: Experimental Farm and Carlington Woods
-  gpx: main.gpx
-  distance_km: 25.8
-  strava_url: https://www.strava.com/activities/5432372481
+  - name: Experimental Farm and Carlington Woods
+    gpx: main.gpx
+    distance_km: 25.8
+    strava_url: https://www.strava.com/activities/5432372481
 ---
 
 This route starts by the canal, skips the touristic area of Dow's Lake and instead cuts straight to the [Central Experimental Farm](https://en.wikipedia.org/wiki/Central_Experimental_Farm).
