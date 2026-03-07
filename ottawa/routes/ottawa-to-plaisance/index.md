@@ -3,18 +3,18 @@ name: Ottawa to Plaisance
 status: published
 distance_km: 70.9
 tags:
-- bikepacking
-- camping
-- road
-created_at: '2022-11-19'
-updated_at: '2025-08-11'
+  - bikepacking
+  - camping
+  - road
+created_at: "2022-11-19"
+updated_at: "2025-08-11"
 tagline: perfect fall one nighter camping
 variants:
-- name: Ottawa to Plaisance
-  gpx: main.gpx
-  distance_km: 70.9
-  strava_url: https://www.strava.com/activities/7917701144
-  rwgps_url: https://ridewithgps.com/routes/41120844?privacy_code=PTiJKhbqslHXdLjc
+  - name: Ottawa to Plaisance
+    gpx: main.gpx
+    distance_km: 70.9
+    strava_url: https://www.strava.com/activities/7917701144
+    rwgps_url: https://ridewithgps.com/routes/41120844?privacy_code=PTiJKhbqslHXdLjc
 ---
 
 If you're looking for a quick escape from the hustle and bustle of the city, look no further than this amazing overnight bike trip from Ottawa to Plaisance National Park. It's the perfect way to immerse yourself in the beauty of nature and unwind from the stresses of city life.

@@ -1,4 +1,11 @@
----
+- type: photo
+  key: ptfq8hf1mnljswl1y3g9qvtzk758
+  caption: Canyon Grizl parked on a dirt path by the lake
+  score: 9.69
+  width: 1600
+  height: 1200
+  cover: true
+  handle: cover
 - type: photo
   key: u5mrjgb2ax0a82vxpgpycu7v9f01
   caption: a road with trees on either side
@@ -13,14 +20,6 @@
   width: 3000
   height: 2250
   handle: a-deer-in-the-park
-- type: photo
-  key: ptfq8hf1mnljswl1y3g9qvtzk758
-  caption: Canyon Grizl parked on a dirt path by the lake
-  score: 9.69
-  width: 1600
-  height: 1200
-  cover: true
-  handle: cover
 - type: photo
   key: 65v3nxwyhlsfdm1fb9yjm6dcz1jr
   caption: a grassy field with trees in the background
