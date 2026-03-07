@@ -1,4 +1,29 @@
----
+- type: photo
+  key: ejz42zxmnnywxqqmkdc2rcj5zmnh
+  score: 8.17
+  width: 1600
+  height: 1200
+  handle: photo-28
+  cover: true
+- type: photo
+  key: pu7fbk04gtzd0ypxlj40vdetprrz
+  score: 1.5
+  width: 1200
+  height: 1600
+  handle: photo-40
+- type: photo
+  key: epprnvz7z415tra6l3njt3uq3yqi
+  caption: Vincent Massey Park
+  score: 9.67
+  width: 1599
+  height: 1200
+  handle: vincent-massey-park
+- type: photo
+  key: 036tuwe5krilekl915in1boakrmu
+  score: 2.5
+  width: 1200
+  height: 1600
+  handle: photo-36
 - type: photo
   key: t1bbqcc8ec7flqyohtw8nd74is2d
   score: 7.67
@@ -12,17 +37,25 @@
   height: 1200
   handle: photo-2
 - type: photo
-  key: rjl3hvibrje2wgmj78106mjsxcf3
-  score: 5.67
-  width: 1200
-  height: 1600
-  handle: photo-3
+  key: jb2ntje9jobkhjzj629a2hkmr5km
+  caption: path along the Ottawa Canal
+  score: 9.17
+  width: 2048
+  height: 1536
+  handle: path-along-the-ottawa-canal
 - type: photo
-  key: kz8izx3zesx8iiyip3ach6okh5m8
-  score: 3.17
+  key: xd23xhles3giof0q85877r67nkyw
+  caption: i joined duck fest
+  score: 8.67
   width: 1200
   height: 1599
-  handle: photo-4
+  handle: i-joined-duck-fest
+- type: photo
+  key: 70bvnj64w08aptolajee2jsmf8ey
+  score: 8
+  width: 1200
+  height: 1599
+  handle: photo-9
 - type: photo
   key: zdcjsbhtjtquno73gjj3mqajk5c9
   score: 5.33
@@ -42,33 +75,6 @@
   height: 1200
   handle: photo-7
 - type: photo
-  key: x92c98jexxis2lxtr5wuqvlve2gh
-  score: 5.5
-  width: 1200
-  height: 1599
-  handle: photo-8
-- type: photo
-  key: epprnvz7z415tra6l3njt3uq3yqi
-  caption: Vincent Massey Park
-  score: 9.67
-  width: 1599
-  height: 1200
-  handle: vincent-massey-park
-- type: photo
-  key: zwwsd0t70tjeh2yyh382svjakadk
-  caption: selfie
-  score: 6.17
-  width: 1200
-  height: 1599
-  handle: selfie
-- type: photo
-  key: xd23xhles3giof0q85877r67nkyw
-  caption: i joined duck fest
-  score: 8.67
-  width: 1200
-  height: 1599
-  handle: i-joined-duck-fest
-- type: photo
   key: qruu50ck4qp9inu9ujvz3o7aemg7
   caption: view from up above
   score: 8.33
@@ -78,10 +84,17 @@
 - type: photo
   key: 0ggiou4trpj86pasktpy92d7jb6b
   caption: there's a party going on
-  score: 5.0
+  score: 5
   width: 1200
   height: 1599
   handle: there-s-a-party-going-on
+- type: photo
+  key: zwwsd0t70tjeh2yyh382svjakadk
+  caption: selfie
+  score: 6.17
+  width: 1200
+  height: 1599
+  handle: selfie
 - type: photo
   key: zxg4gam5tyd27uj8qfpd24oajyrs
   caption: a group of geese in a park
@@ -118,43 +131,6 @@
   height: 415
   handle: sunset-3
 - type: photo
-  key: lz03y1744t755lk9h02zv3gh29mb
-  caption: blue tyres
-  score: 3.0
-  width: 1599
-  height: 1200
-  handle: blue-tyres
-- type: photo
-  key: 70bvnj64w08aptolajee2jsmf8ey
-  score: 8.0
-  width: 1200
-  height: 1599
-  handle: photo-9
-- type: photo
-  key: lhleosv2vd1rv00abocrndn39ulk
-  score: 1.83
-  width: 1599
-  height: 1200
-  handle: photo-10
-- type: photo
-  key: i6ibmopfc1t8yzq627gevxbu21dy
-  score: 1.33
-  width: 1599
-  height: 1200
-  handle: photo-11
-- type: photo
-  key: fxbz2h5xsv06u32ke7lu4q7qzcoh
-  score: 1.17
-  width: 1200
-  height: 1599
-  handle: photo-12
-- type: photo
-  key: nmb52k2szy7xz1djcia88tvb75jg
-  score: 1.0
-  width: 1200
-  height: 1599
-  handle: photo-13
-- type: photo
   key: tqbne9hy6cy5rsja0zu9m149cc8d
   score: 9.33
   width: 2048
@@ -173,15 +149,8 @@
   height: 1536
   handle: photo-16
 - type: photo
-  key: jb2ntje9jobkhjzj629a2hkmr5km
-  caption: path along the Ottawa Canal
-  score: 9.17
-  width: 2048
-  height: 1536
-  handle: path-along-the-ottawa-canal
-- type: photo
   key: 9w2z6hgy3jwvr8w4ntcu7mvii9yo
-  score: 4.0
+  score: 4
   width: 2048
   height: 1536
   handle: photo-17
@@ -224,6 +193,12 @@
   height: 1200
   handle: a-road-with-cars-on-it-and-a-sunset-in-th
 - type: photo
+  key: 397sbyy9hi8gpiktsryj0gy9pg3x
+  score: 1.1
+  width: 1200
+  height: 1600
+  handle: photo-39
+- type: photo
   key: 021x0y1a1w4hrruf6w1dv8ydit62
   caption: a sunset over a field
   score: 7.5
@@ -244,14 +219,8 @@
   height: 1599
   handle: photo-22
 - type: photo
-  key: gjjpw6n4x1i8wrdb1pvotctzykyx
-  score: 6.0
-  width: 1200
-  height: 1599
-  handle: photo-23
-- type: photo
   key: 5i8uoetlbmrcrg5ear1sw0ofiawg
-  score: 7.0
+  score: 7
   width: 1599
   height: 1200
   handle: photo-24
@@ -274,23 +243,17 @@
   height: 1200
   handle: photo-27
 - type: photo
-  key: ejz42zxmnnywxqqmkdc2rcj5zmnh
-  score: 8.17
-  width: 1600
-  height: 1200
-  handle: photo-28
-- type: photo
   key: gpglu4pyszbbif600vifit0as37x
   score: 2.5
   width: 1600
   height: 1200
   handle: photo-29
 - type: photo
-  key: 7vwxobpqv9se3wfji3c0x95up6t6
-  score: 6.83
+  key: 32cs94pob4g63iz553wx2hbx7roz
+  score: 2
   width: 1200
   height: 1600
-  handle: photo-30
+  handle: photo-35
 - type: photo
   key: k3gqayeymzznflvgef3q9398ngu3
   caption: dow's lake
@@ -299,32 +262,19 @@
   height: 1687
   handle: dow-s-lake
 - type: photo
-  key: 88tapv2hzkxeyernyi4q9kxvptod
-  caption: halloween spirit
-  score: 2.17
-  width: 1200
-  height: 1600
-  handle: halloween-spirit
-- type: photo
   key: k6p9gylp73tvyf354j4du4eyl1gl
   caption: selfie
-  score: 2.0
+  score: 2
   width: 1200
   height: 1600
   handle: selfie-2
 - type: photo
   key: v34pa9qcjfcordq1ad3zhc3chstc
   caption: fall leaves
-  score: 9.0
+  score: 9
   width: 1200
   height: 1600
   handle: fall-leaves
-- type: photo
-  key: cvj1h5lh7th8hck58jc5lyovfs8x
-  score: 1.67
-  width: 1687
-  height: 2999
-  handle: photo-31
 - type: photo
   key: gky7bu0gai2zsl4cy2tdi0uihwf0
   score: 1.5
@@ -345,47 +295,16 @@
   handle: photo-34
 - type: photo
   key: j1h7kk9f3bkgdy5fiqeq5s8qn9nn
-  score: 10.0
+  score: 10
   width: 1200
   height: 1600
-  cover: true
   handle: cover
-- type: photo
-  key: 32cs94pob4g63iz553wx2hbx7roz
-  score: 2.0
-  width: 1200
-  height: 1600
-  handle: photo-35
-- type: photo
-  key: 036tuwe5krilekl915in1boakrmu
-  score: 2.5
-  width: 1200
-  height: 1600
-  handle: photo-36
 - type: photo
   key: lip0k9ku046rl9axwv8n22twzz3o
   score: 1.5
   width: 1200
   height: 1600
   handle: photo-37
-- type: photo
-  key: qmn57hsxsekop42nxa5e4shylnie
-  score: 1.0
-  width: 1600
-  height: 1200
-  handle: photo-38
-- type: photo
-  key: 397sbyy9hi8gpiktsryj0gy9pg3x
-  score: 1.1
-  width: 1200
-  height: 1600
-  handle: photo-39
-- type: photo
-  key: pu7fbk04gtzd0ypxlj40vdetprrz
-  score: 1.5
-  width: 1200
-  height: 1600
-  handle: photo-40
 - type: photo
   key: xm5r9aodmdxfvd3l5uoaxuzz5pfc
   score: 1.1
@@ -394,7 +313,7 @@
   handle: photo-41
 - type: photo
   key: dtiyvdj9cp5ia9qmrr4a1sxdarrf
-  score: 1.0
+  score: 1
   width: 1200
   height: 1600
   handle: photo-42

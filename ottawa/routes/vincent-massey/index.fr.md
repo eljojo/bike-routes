@@ -1,5 +1,4 @@
 ---
-slug: vincent-massey-et-au-dela
 name: Vincent Massey et au-delà
 tagline: de belles vues pour une balade tranquille
 ---
