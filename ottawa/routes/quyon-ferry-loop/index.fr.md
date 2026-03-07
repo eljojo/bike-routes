@@ -1,7 +1,6 @@
 ---
-slug: boucle-traversier-de-quyon
 name: Boucle du traversier de Quyon
-tagline: "⛴️ Traversier? Traversier!"
+tagline: ⛴️ Traversier? Traversier!
 ---
 
 Préparez-vous pour une longue sortie épique qui est vraiment spéciale! En partant du Québec et en terminant en Ontario, cette balade est toute une expérience — traverser les provinces via le traversier à mi-chemin. Mais c'est pas tout — le gravel dans la première moitié vaut le déplacement en soi!

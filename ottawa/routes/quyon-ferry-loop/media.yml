@@ -1,16 +1,29 @@
----
 - type: photo
-  key: cobbwffx1jsvx1lj5935soaj30u1
-  score: 5.0
-  width: 1600
-  height: 1200
-  handle: photo
+  key: x3j8oy81u922ivlbw76l6uhcxvv9
+  score: 8.67
+  width: 2999
+  height: 2250
+  handle: photo-4
+  cover: true
+- type: photo
+  key: 6fmmjggaviy7a8b90qg9zjevie0q
+  caption: taking the ferry
+  score: 7
+  width: 1200
+  height: 1600
+  handle: taking-the-ferry
 - type: photo
   key: oxytvcwm5o1n98ym4rb0judsg62p
-  score: 8.0
+  score: 8
   width: 2250
   height: 3000
   handle: photo-2
+- type: photo
+  key: 2mfrvdurssaqy4u0gujbr6jwi597
+  score: 1.67
+  width: 1600
+  height: 1200
+  handle: photo-9
 - type: photo
   key: t12qszxhobiu4rzq886wf2n8ghxe
   score: 9.67
@@ -25,9 +38,15 @@
   height: 1600
   handle: a-road-with-grass-and-power-lines-on-the-
 - type: photo
+  key: cobbwffx1jsvx1lj5935soaj30u1
+  score: 5
+  width: 1600
+  height: 1200
+  handle: photo
+- type: photo
   key: qtgqoh7onldib37n9waw39sfh56b
   caption: a field of grass with a house in the background
-  score: 9.0
+  score: 9
   width: 1600
   height: 1200
   handle: a-field-of-grass-with-a-house-in-the-back
@@ -53,13 +72,6 @@
   height: 2250
   handle: a-dirt-road-with-grass-on-either-side-of-
 - type: photo
-  key: 8rcyywraduteahrk1424hez869z5
-  caption: a bicycle parked on a fence
-  score: 4.0
-  width: 1600
-  height: 1200
-  handle: a-bicycle-parked-on-a-fence
-- type: photo
   key: mibbj5gb9wkf4e91scpnfa2dwgtj
   caption: a road with grass on the side
   score: 3.67
@@ -67,20 +79,18 @@
   height: 1600
   handle: a-road-with-grass-on-the-side
 - type: photo
-  key: o6uzr2q240gn59hfms2lnc3ccgfg
-  caption: a road with trees on the side
-  score: 10.0
-  width: 2250
-  height: 3000
-  cover: true
-  handle: cover
-- type: photo
-  key: 6fmmjggaviy7a8b90qg9zjevie0q
-  caption: taking the ferry
-  score: 7.0
+  key: 5p3tjmlhw3f0ol4ysgxmg31yaj0y
+  score: 8.33
   width: 1200
   height: 1600
-  handle: taking-the-ferry
+  handle: photo-13
+- type: photo
+  key: o6uzr2q240gn59hfms2lnc3ccgfg
+  caption: a road with trees on the side
+  score: 10
+  width: 2250
+  height: 3000
+  handle: cover
 - type: photo
   key: 2urjy2ohdiuldi861771jvgvdl75
   caption: ferry view
@@ -91,10 +101,17 @@
 - type: photo
   key: 2sl7sjxn32tlg13ewso36u348fa0
   caption: a road with grass on the side
-  score: 3.0
+  score: 3
   width: 1600
   height: 1200
   handle: a-road-with-grass-on-the-side-2
+- type: photo
+  key: r91da76xiyllatif3fzg23ybsibp
+  score: 1.33
+  width: 1600
+  height: 1200
+  handle: photo-10
+  caption: grabbing a bite before the ferry
 - type: photo
   key: n7mnxj0c0goisrds6e4dwfetxwkp
   caption: a road with grass and trees on the side and a sunset in the background
@@ -117,9 +134,53 @@
   height: 1200
   handle: a-bike-parked-in-a-field
 - type: photo
+  key: ejutk6n3jym21r2xh15r64kkmddf
+  score: 6
+  width: 1600
+  height: 1200
+  handle: photo-6
+- type: photo
+  key: exsmfiy5fvfh7qf09sg8uqvx3aqd
+  score: 6.33
+  width: 1600
+  height: 1200
+  handle: photo-5
+  caption: we made it!
+- type: photo
+  key: zct5abcgpzapot589b4egd290njy
+  score: 2
+  width: 1600
+  height: 1200
+  handle: photo-7
+- type: photo
+  key: 2siisxldvhgdin64qj3mqcfxtbpi
+  score: 5.67
+  width: 1200
+  height: 1600
+  handle: photo-8
+- type: photo
+  key: 0n317yktkxwx27bfhce6168iztob
+  score: 9.33
+  width: 2999
+  height: 1687
+  handle: photo-11
+- type: photo
+  key: rhrig9sr8kfjl6wcyirwij14qcq3
+  score: 5.33
+  width: 1200
+  height: 1600
+  handle: photo-12
+- type: photo
+  key: 8rcyywraduteahrk1424hez869z5
+  caption: rest spot
+  score: 4
+  width: 1600
+  height: 1200
+  handle: a-bicycle-parked-on-a-fence
+- type: photo
   key: 95z4xgj0zvqj81wahxszdd2fc2s8
   caption: chilling by the water
-  score: 1.0
+  score: 1
   width: 1200
   height: 1600
   handle: chilling-by-the-water
@@ -141,66 +202,6 @@
   orientation: portrait
   poster_key: t4cjdz5y7td71eolg50e3akpvme4
   handle: gravel-patch
-- type: photo
-  key: x3j8oy81u922ivlbw76l6uhcxvv9
-  score: 8.67
-  width: 2999
-  height: 2250
-  handle: photo-4
-- type: photo
-  key: exsmfiy5fvfh7qf09sg8uqvx3aqd
-  score: 6.33
-  width: 1600
-  height: 1200
-  handle: photo-5
-- type: photo
-  key: ejutk6n3jym21r2xh15r64kkmddf
-  score: 6.0
-  width: 1600
-  height: 1200
-  handle: photo-6
-- type: photo
-  key: zct5abcgpzapot589b4egd290njy
-  score: 2.0
-  width: 1600
-  height: 1200
-  handle: photo-7
-- type: photo
-  key: 2siisxldvhgdin64qj3mqcfxtbpi
-  score: 5.67
-  width: 1200
-  height: 1600
-  handle: photo-8
-- type: photo
-  key: 2mfrvdurssaqy4u0gujbr6jwi597
-  score: 1.67
-  width: 1600
-  height: 1200
-  handle: photo-9
-- type: photo
-  key: r91da76xiyllatif3fzg23ybsibp
-  score: 1.33
-  width: 1600
-  height: 1200
-  handle: photo-10
-- type: photo
-  key: 0n317yktkxwx27bfhce6168iztob
-  score: 9.33
-  width: 2999
-  height: 1687
-  handle: photo-11
-- type: photo
-  key: rhrig9sr8kfjl6wcyirwij14qcq3
-  score: 5.33
-  width: 1200
-  height: 1600
-  handle: photo-12
-- type: photo
-  key: 5p3tjmlhw3f0ol4ysgxmg31yaj0y
-  score: 8.33
-  width: 1200
-  height: 1600
-  handle: photo-13
 - type: video
   key: drv07jw6v0mo8pfcyj7hravku4h2
   title: Party Ride!!
