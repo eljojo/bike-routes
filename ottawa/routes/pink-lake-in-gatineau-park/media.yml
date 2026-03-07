@@ -1,10 +1,11 @@
 - type: photo
-  key: e5muiup5025zefqoh9ne1l5go0ch
-  score: 10
-  width: 1200
-  height: 1599
+  key: 2f33lug92n33ebgy6eg9y2t9q168
+  caption: a wooden bridge in a forest
+  score: 4.27
+  width: 2048
+  height: 1536
+  handle: a-wooden-bridge-in-a-forest
   cover: true
-  handle: cover
 - type: photo
   key: 1oej8py5qv1du3mtf5ae5frx20ie
   caption: a path through a forest
@@ -52,13 +53,6 @@
   width: 1599
   height: 1200
   handle: photo-2
-- type: photo
-  key: 2f33lug92n33ebgy6eg9y2t9q168
-  caption: a wooden bridge in a forest
-  score: 4.27
-  width: 2048
-  height: 1536
-  handle: a-wooden-bridge-in-a-forest
 - type: photo
   key: ku4oiaidy5lm1njzb78i9lvvkilj
   caption: a group of trees with yellow leaves
@@ -147,6 +141,12 @@
   width: 2048
   height: 1536
   handle: a-road-with-cars-on-it
+- type: photo
+  key: e5muiup5025zefqoh9ne1l5go0ch
+  score: 10
+  width: 1200
+  height: 1599
+  handle: cover
 - type: video
   key: rc80pjjcu57l0hjhnzt3rfsq9edu
   title: View from Pink Lake
