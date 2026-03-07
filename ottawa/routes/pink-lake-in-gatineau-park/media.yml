@@ -1,23 +1,17 @@
----
-- type: photo
-  key: 9yi3dga1nhrismf8b7s1novojprn
-  score: 3.86
-  width: 1599
-  height: 1200
-  handle: photo
-- type: photo
-  key: qg8mzigcbclbzjx9so2itz9lf7ky
-  score: 5.91
-  width: 1599
-  height: 1200
-  handle: photo-2
 - type: photo
   key: e5muiup5025zefqoh9ne1l5go0ch
-  score: 10.0
+  score: 10
   width: 1200
   height: 1599
   cover: true
   handle: cover
+- type: photo
+  key: 1oej8py5qv1du3mtf5ae5frx20ie
+  caption: a path through a forest
+  score: 9.18
+  width: 1200
+  height: 1600
+  handle: a-path-through-a-forest
 - type: photo
   key: vscqnfl4qpp9wp56eefiol0d4cjd
   caption: a group of people riding bikes on a road
@@ -26,26 +20,12 @@
   height: 1536
   handle: a-group-of-people-riding-bikes-on-a-road
 - type: photo
-  key: eu0wor1vpd11lw2uegpycejmdl9n
-  caption: a road with cars on it
-  score: 3.45
-  width: 2048
-  height: 1536
-  handle: a-road-with-cars-on-it
-- type: photo
-  key: 2f33lug92n33ebgy6eg9y2t9q168
-  caption: a wooden bridge in a forest
-  score: 4.27
-  width: 2048
-  height: 1536
-  handle: a-wooden-bridge-in-a-forest
-- type: photo
-  key: fx3sg1gcu4w87jctxvehha9rzy3m
-  caption: beach selfie
-  score: 3.05
-  width: 2048
-  height: 1536
-  handle: beach-selfie
+  key: aargvdq0ogm9uj0da6n1jk3wd0t1
+  caption: me
+  score: 9.59
+  width: 1200
+  height: 1600
+  handle: me
 - type: photo
   key: ehepbbz4635mtsiwh3t5g8iot909
   caption: you're in gatineau now
@@ -54,19 +34,31 @@
   height: 1536
   handle: you-re-in-gatineau-now
 - type: photo
-  key: aargvdq0ogm9uj0da6n1jk3wd0t1
-  caption: me
-  score: 9.59
-  width: 1200
-  height: 1600
-  handle: me
+  key: 9yi3dga1nhrismf8b7s1novojprn
+  score: 3.86
+  width: 1599
+  height: 1200
+  handle: photo
 - type: photo
-  key: 1oej8py5qv1du3mtf5ae5frx20ie
-  caption: a path through a forest
-  score: 9.18
-  width: 1200
-  height: 1600
-  handle: a-path-through-a-forest
+  key: fx3sg1gcu4w87jctxvehha9rzy3m
+  caption: beach selfie
+  score: 3.05
+  width: 2048
+  height: 1536
+  handle: beach-selfie
+- type: photo
+  key: qg8mzigcbclbzjx9so2itz9lf7ky
+  score: 5.91
+  width: 1599
+  height: 1200
+  handle: photo-2
+- type: photo
+  key: 2f33lug92n33ebgy6eg9y2t9q168
+  caption: a wooden bridge in a forest
+  score: 4.27
+  width: 2048
+  height: 1536
+  handle: a-wooden-bridge-in-a-forest
 - type: photo
   key: ku4oiaidy5lm1njzb78i9lvvkilj
   caption: a group of trees with yellow leaves
@@ -88,21 +80,12 @@
   width: 1200
   height: 1600
   handle: a-road-with-trees-on-either-side
-- type: video
-  key: rc80pjjcu57l0hjhnzt3rfsq9edu
-  title: View from Pink Lake
-  duration: PT1M5S
-  width: 3840
-  height: 2160
-  orientation: landscape
-  poster_key: iyp8xo658237ge09d3s1n4klbofu
-  handle: view-from-pink-lake
 - type: photo
-  key: ui62o9i7x6dqe29ig5srbb79btkg
-  score: 1.0
-  width: 2999
-  height: 1687
-  handle: photo-3
+  key: b1bjo1meei3cktwufzkvqfkkpv9y
+  score: 5.5
+  width: 1600
+  height: 1200
+  handle: photo-6
 - type: photo
   key: g27xey6y4pczr93r3gmgs2vecqfm
   score: 7.95
@@ -110,17 +93,23 @@
   height: 1200
   handle: photo-4
 - type: photo
+  key: yve4lmw0n0lv7gzh9bb3qcc8wr5x
+  score: 8.77
+  width: 1200
+  height: 1600
+  handle: photo-9
+- type: photo
+  key: lbhcvo6rmc34d8dmm5r7z56fdj43
+  score: 1.41
+  width: 1600
+  height: 1200
+  handle: photo-12
+- type: photo
   key: gq0cizmwyuqcraf962dazllxmleg
   score: 1.82
   width: 2999
   height: 1687
   handle: photo-5
-- type: photo
-  key: b1bjo1meei3cktwufzkvqfkkpv9y
-  score: 5.5
-  width: 1600
-  height: 1200
-  handle: photo-6
 - type: photo
   key: t5aiw9qgz9hefte2t12l1q9akpcs
   score: 5.09
@@ -134,12 +123,6 @@
   height: 1687
   handle: photo-8
 - type: photo
-  key: yve4lmw0n0lv7gzh9bb3qcc8wr5x
-  score: 8.77
-  width: 1200
-  height: 1600
-  handle: photo-9
-- type: photo
   key: dzhsdx1hrundxvf8i2t9pbhg4wrx
   score: 7.55
   width: 1200
@@ -152,11 +135,27 @@
   height: 1600
   handle: photo-11
 - type: photo
-  key: lbhcvo6rmc34d8dmm5r7z56fdj43
-  score: 1.41
-  width: 1600
-  height: 1200
-  handle: photo-12
+  key: ui62o9i7x6dqe29ig5srbb79btkg
+  score: 1
+  width: 2999
+  height: 1687
+  handle: photo-3
+- type: photo
+  key: eu0wor1vpd11lw2uegpycejmdl9n
+  caption: a road with cars on it
+  score: 3.45
+  width: 2048
+  height: 1536
+  handle: a-road-with-cars-on-it
+- type: video
+  key: rc80pjjcu57l0hjhnzt3rfsq9edu
+  title: View from Pink Lake
+  duration: PT1M5S
+  width: 3840
+  height: 2160
+  orientation: landscape
+  poster_key: iyp8xo658237ge09d3s1n4klbofu
+  handle: view-from-pink-lake
 - type: video
   key: 3mzaailb2vgq7wcpi2ri1zasjw6u
   title: Sunset at Pink Lake

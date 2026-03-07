@@ -1,5 +1,4 @@
 ---
-slug: lac-pink-parc-de-la-gatineau
 name: Lac Pink au parc de la Gatineau
 tagline: une montée difficile qui récompense à la descente
 ---
