@@ -10,13 +10,25 @@ title: About
 
 <p>So in 2022 I built this site. Each route has photos, videos, and tips — the kind of stuff you'd want to know before heading out. Where to stop for coffee, which parts are gravel, where the big hill is.</p>
 
-<p><strong>Pick a route, see what it looks like, go ride it.</strong> It doesn't matter if you've never biked beyond your neighbourhood or if you ride every weekend — there's something here for you.</p>
+<p><strong>Every route has been ridden. Every photo was taken by someone who was there. Every tip comes from experience, not an algorithm.</strong></p>
 
-<p>In 2026 Ottawa by Bike went open source — the code and all the route data are on GitHub. Now it's something we build together. If you know a route that should be here, or you have better photos, or you spot a mistake — you can <a href="/admin">edit any route on the site</a>. No account needed.</p>
+<p>Pick a route, see what it looks like, go ride it. It doesn't matter if you've never biked beyond your neighbourhood or if you ride every weekend — there's something here for you.</p>
 
-<p>Use it, share it, build on it.</p>
+<h3>This is a community project — anyone can contribute</h3>
+
+<p>If you know a route that should be here, or you have better photos, or you spot a mistake — you can <a href="/admin">edit any route on the site</a>. No account needed.</p>
+
+<p>No ads. No algorithms. No paywalls. This isn't going anywhere.</p>
 
 <p>Questions? Say hi at <a href="mailto:{author_email}" class="about-contact-email">{author_email}</a>.</p>
+
+<h3>Friends</h3>
+
+<ul>
+  <li><a href="https://www.cyclingguide.app" target="_blank" rel="noopener">CyclingGuide.app</a> - Safe biking routes for every day rides, it's free!</li>
+  <li><a href="https://www.letsgocargo.ca" target="_blank" rel="noopener">Let's Go Cargo</a> - Looking for a cargo bike rental?</li>
+  <li><a href="https://www.bikepackadventures.ca/summit" target="_blank" rel="noopener">2026 Canadian Shield Bikepacking Summit</a> - Learn about Bikepacking this Spring in Wakefield</li>
+</ul>
 
 <h3>Other useful links</h3>
 
@@ -27,13 +39,11 @@ title: About
   <li><a href="https://web.archive.org/web/20230525133452/https://www.cbc.ca/listen/live-radio/1-100-ottawa-morning/clip/15986562-cyclist-created-website-finding-bike-routes-easier" target="_blank" rel="noopener">Interview by CBC Ottawa Morning</a></li>
 </ul>
 
-<h3>Friends</h3>
+<h3>Part of whereto.bike</h3>
 
-<ul>
-  <li><a href="https://www.cyclingguide.app" target="_blank" rel="noopener">CyclingGuide.app</a> - Safe biking routes for every day rides, it's free!</li>
-  <li><a href="https://www.letsgocargo.ca" target="_blank" rel="noopener">Let's Go Cargo</a> - Looking for a cargo bike rental?</li>
-  <li><a href="https://www.bikepackadventures.ca/summit" target="_blank" rel="noopener">2026 Canadian Shield Bikepacking Summit</a> - Learn about Bikepacking this Spring in Wakefield</li>
-</ul>
+<p>Ottawa by Bike is built on <a href="https://whereto.bike" target="_blank" rel="noopener">whereto.bike</a>, an open-source platform for community cycling guides. The platform is designed to help more people discover cycling in their city — whether you've never ridden beyond your neighbourhood or you ride every weekend.</p>
+
+<p>Interested in starting a cycling guide for your city? <a href="https://whereto.bike/about/bring-to-your-city/" target="_blank" rel="noopener">Learn how</a>.</p>
 
 <h3>Open Data</h3>
 
@@ -41,6 +51,6 @@ title: About
 <ul>
   <li>Text and descriptions: <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> (same as Wikipedia)</li>
   <li>Route data (GPX tracks): <a href="https://opendatacommons.org/licenses/odbl/" target="_blank" rel="noopener">ODbL 1.0</a> (same as OpenStreetMap)</li>
-  <li>Website source: <a href="https://github.com/eljojo/bike-app-astro" target="_blank" rel="noopener">github.com/eljojo/bike-app-astro</a></li>
-  <li>Route data: <a href="https://github.com/eljojo/bike-routes" target="_blank" rel="noopener">github.com/eljojo/bike-routes</a></li>
+  <li>Source code: <a href="https://github.com/eljojo/bike-app-astro" target="_blank" rel="noopener">AGPL 3.0</a></li>
+  <li>Route data repo: <a href="https://github.com/eljojo/bike-routes" target="_blank" rel="noopener">github.com/eljojo/bike-routes</a></li>
 </ul>

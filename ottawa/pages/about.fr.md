@@ -10,13 +10,25 @@ title: À propos
 
 <p>Alors en 2022, j'ai créé ce site. Chaque parcours a des photos, des vidéos et des conseils — le genre d'info qu'on veut avoir avant de partir. Où s'arrêter pour un café, quelles sections sont en gravier, où se trouve la grosse côte.</p>
 
-<p><strong>Choisis un parcours, regarde à quoi il ressemble, et vas-y à vélo.</strong> Que tu n'aies jamais fait de vélo plus loin que ton quartier ou que tu roules chaque fin de semaine — il y a quelque chose ici pour toi.</p>
+<p><strong>Chaque parcours a été roulé. Chaque photo a été prise par quelqu'un qui y était. Chaque conseil vient de l'expérience, pas d'un algorithme.</strong></p>
 
-<p>En 2026, Ottawa by Bike est devenu open source — le code et toutes les données de parcours sont sur GitHub. Maintenant, c'est quelque chose qu'on construit ensemble. Si tu connais un parcours qui devrait être ici, ou tu as de meilleures photos, ou tu repères une erreur — tu peux <a href="/fr/admin">modifier n'importe quel parcours sur le site</a>. Pas besoin de compte.</p>
+<p>Choisis un parcours, regarde à quoi il ressemble, et vas-y à vélo. Que tu n'aies jamais fait de vélo plus loin que ton quartier ou que tu roules chaque fin de semaine — il y a quelque chose ici pour toi.</p>
 
-<p>Utilisez, partagez, construisez dessus.</p>
+<h3>C'est un projet communautaire — tout le monde peut contribuer</h3>
+
+<p>Si tu connais un parcours qui devrait être ici, ou tu as de meilleures photos, ou tu repères une erreur — tu peux <a href="/fr/admin">modifier n'importe quel parcours sur le site</a>. Pas besoin de compte.</p>
+
+<p>Pas de pub. Pas d'algorithme. Pas de paywall. Ce site n'ira nulle part.</p>
 
 <p>Des questions? Écrivez-moi à <a href="mailto:{author_email}" class="about-contact-email">{author_email}</a>.</p>
+
+<h3>Amis</h3>
+
+<ul>
+  <li><a href="https://www.cyclingguide.app" target="_blank" rel="noopener">CyclingGuide.app</a> - Parcours sécuritaires pour vos balades quotidiennes, c'est gratuit!</li>
+  <li><a href="https://www.letsgocargo.ca" target="_blank" rel="noopener">Let's Go Cargo</a> - Vous cherchez un vélo cargo en location?</li>
+  <li><a href="https://www.bikepackadventures.ca/summit" target="_blank" rel="noopener">2026 Canadian Shield Bikepacking Summit</a> - Découvrez le bikepacking ce printemps à Wakefield</li>
+</ul>
 
 <h3>Autres liens utiles</h3>
 
@@ -27,13 +39,11 @@ title: À propos
   <li><a href="https://web.archive.org/web/20230525133452/https://www.cbc.ca/listen/live-radio/1-100-ottawa-morning/clip/15986562-cyclist-created-website-finding-bike-routes-easier" target="_blank" rel="noopener">Entrevue par CBC Ottawa Morning</a></li>
 </ul>
 
-<h3>Amis</h3>
+<h3>Fait partie de whereto.bike</h3>
 
-<ul>
-  <li><a href="https://www.cyclingguide.app" target="_blank" rel="noopener">CyclingGuide.app</a> - Parcours sécuritaires pour vos balades quotidiennes, c'est gratuit!</li>
-  <li><a href="https://www.letsgocargo.ca" target="_blank" rel="noopener">Let's Go Cargo</a> - Vous cherchez un vélo cargo en location?</li>
-  <li><a href="https://www.bikepackadventures.ca/summit" target="_blank" rel="noopener">2026 Canadian Shield Bikepacking Summit</a> - Découvrez le bikepacking ce printemps à Wakefield</li>
-</ul>
+<p>Ottawa by Bike est construit sur <a href="https://whereto.bike" target="_blank" rel="noopener">whereto.bike</a>, une plateforme libre pour créer des guides cyclistes communautaires. L'objectif : aider plus de gens à découvrir le vélo dans leur ville — que tu n'aies jamais fait de vélo plus loin que ton quartier ou que tu roules chaque fin de semaine.</p>
+
+<p>Envie de lancer un guide cycliste pour ta ville? <a href="https://whereto.bike/about/bring-to-your-city/" target="_blank" rel="noopener">Découvrez comment</a>.</p>
 
 <h3>Données ouvertes</h3>
 
@@ -41,6 +51,6 @@ title: À propos
 <ul>
   <li>Textes et descriptions : <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> (comme Wikipédia)</li>
   <li>Données de parcours (traces GPX) : <a href="https://opendatacommons.org/licenses/odbl/" target="_blank" rel="noopener">ODbL 1.0</a> (comme OpenStreetMap)</li>
-  <li>Code source : <a href="https://github.com/eljojo/bike-app-astro" target="_blank" rel="noopener">github.com/eljojo/bike-app-astro</a></li>
+  <li>Code source : <a href="https://github.com/eljojo/bike-app-astro" target="_blank" rel="noopener">AGPL 3.0</a></li>
   <li>Données de parcours : <a href="https://github.com/eljojo/bike-routes" target="_blank" rel="noopener">github.com/eljojo/bike-routes</a></li>
 </ul>
