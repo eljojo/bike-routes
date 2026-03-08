@@ -45,12 +45,12 @@ title: About
 
 <p>Interested in starting a cycling guide for your city? <a href="https://whereto.bike/about/bring-to-your-city/" target="_blank" rel="noopener">Learn how</a>.</p>
 
-<h3>Open Data</h3>
-
-<p>Everything here is freely licensed:</p>
+<details>
+<summary><strong>Open Data</strong> — Everything here is freely licensed</summary>
 <ul>
   <li>Text and descriptions: <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> (same as Wikipedia)</li>
   <li>Route data (GPX tracks): <a href="https://opendatacommons.org/licenses/odbl/" target="_blank" rel="noopener">ODbL 1.0</a> (same as OpenStreetMap)</li>
   <li>Source code: <a href="https://github.com/eljojo/bike-app-astro" target="_blank" rel="noopener">AGPL 3.0</a></li>
   <li>Route data repo: <a href="https://github.com/eljojo/bike-routes" target="_blank" rel="noopener">github.com/eljojo/bike-routes</a></li>
 </ul>
+</details>
