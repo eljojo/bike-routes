@@ -36,7 +36,7 @@ title: About
   <li><a href="/guides/local-communities">List of Local Cycling Communities</a></li>
   <li><a href="https://bikeottawa.ca" target="_blank" rel="noopener">Bike Ottawa</a> - Community dedicated to promoting cycling in Ottawa</li>
   <li><a href="https://ncc-ccn.maps.arcgis.com/apps/View/index.html?appid=d69460c2d8df472db1a456183bc62fcf" target="_blank" rel="noopener">Official NCC Biking Map</a></li>
-  <li><a href="https://web.archive.org/web/20230525133452/https://www.cbc.ca/listen/live-radio/1-100-ottawa-morning/clip/15986562-cyclist-created-website-finding-bike-routes-easier" target="_blank" rel="noopener">Interview by CBC Ottawa Morning</a></li>
+  <li><a href="https://web.archive.org/web/20230528221810/https://mp3.cbc.ca/radio/CBC_Radio_VMS/56/687/dave-0KadS5Zr-20230524_1684932607974.mp3" target="_blank" rel="noopener">Interview by CBC Ottawa Morning</a></li>
 </ul>
 
 <h3>Part of whereto.bike</h3>
