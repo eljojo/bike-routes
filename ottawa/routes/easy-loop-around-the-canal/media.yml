@@ -181,16 +181,6 @@
   lng: -75.700042
   captured_at: '2021-06-21T20:47:46.000Z'
 - type: photo
-  key: s026wj1rbdcboyll41vz2k04ax2q
-  score: 6.27
-  width: 1600
-  height: 1200
-  handle: photo-41
-  caption: critical mass ride
-  lat: 45.422358
-  lng: -75.689217
-  captured_at: '2023-05-20T10:22:48.000Z'
-- type: photo
   key: ehd82tapbgihmx7sn8zybhf503l8
   caption: Canal Locks
   score: 8.2
@@ -227,13 +217,6 @@
   width: 2048
   height: 1383
   handle: a-road-with-trees-on-the-side
-- type: photo
-  key: fe3n7rnd0e62q8jjg5ceeoye0p8m
-  caption: a bridge with a sunset
-  score: 5.24
-  width: 2048
-  height: 1298
-  handle: a-bridge-with-a-sunset
 - type: photo
   key: guvlplvag41ug2erhfw2hxencbpc
   score: 7.04
@@ -473,15 +456,6 @@
   lng: -75.681236
   captured_at: '2021-07-26T22:36:52.000Z'
 - type: photo
-  key: 7yhvq494j2kqw519l3vwwz6k90rd
-  score: 2.41
-  width: 1600
-  height: 1200
-  handle: photo-36
-  lat: 45.416539
-  lng: -75.715242
-  captured_at: '2023-05-20T10:09:20.000Z'
-- type: photo
   key: 002g7l9bj30ng66wtlcqwo169kk2
   score: 1.39
   width: 1200
@@ -499,56 +473,6 @@
   lat: 45.405256
   lng: -75.680289
   captured_at: '2020-09-02T22:39:22.000Z'
-- type: photo
-  key: 6j2nzacc2ot1j3k2aeh2cxvxzjay
-  caption: Topstone
-  score: 4.21
-  width: 2048
-  height: 1365
-  handle: topstone
-- type: photo
-  key: 0kljcshaxmzm2nock9mdby33vthz
-  score: 2.29
-  width: 2250
-  height: 3000
-  handle: photo-37
-- type: photo
-  key: bz5xsipwy7293t2o2syvwf1kyl2e
-  score: 2.16
-  width: 1600
-  height: 1200
-  handle: photo-38
-  lat: 45.419761
-  lng: -75.706856
-  captured_at: '2023-05-20T10:14:57.000Z'
-- type: photo
-  key: n0lq1l15ncox0fqonjwv1637c4rb
-  score: 1.9
-  width: 1200
-  height: 1600
-  handle: photo-40
-  caption: during critical mass ride
-  lat: 45.422164
-  lng: -75.701064
-  captured_at: '2023-05-20T10:17:31.000Z'
-- type: photo
-  key: 3u4x4z1otw9tveeeu1hue6cuihim
-  score: 1.77
-  width: 1200
-  height: 1600
-  handle: photo-42
-  lat: 45.395364
-  lng: -75.690308
-  captured_at: '2023-05-20T10:40:46.000Z'
-- type: photo
-  key: pjblb94ulgmj01hd2cqe8sk9rco2
-  score: 1.51
-  width: 1600
-  height: 1200
-  handle: photo-43
-  lat: 45.422358
-  lng: -75.689217
-  captured_at: '2023-05-20T10:22:46.000Z'
 - type: photo
   key: h7goikw92kx2lx2i0il34tg8vr1y
   score: 7.56
