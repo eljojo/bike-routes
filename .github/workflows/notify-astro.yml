@@ -8,6 +8,19 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout for commit message
+        if: github.ref_name == 'staging'
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Extract app branch from commit
+        if: github.ref_name == 'staging'
+        id: branch
+        run: |
+          BRANCH=$(git log -1 --format='%b' | grep -oP '^App-Branch:\s*\K.+' || echo '')
+          echo "app_branch=$BRANCH" >> "$GITHUB_OUTPUT"
+
       - name: Trigger astro rebuild
         run: |
           if [ "${{ github.ref_name }}" = "staging" ]; then
@@ -15,8 +28,16 @@ jobs:
           else
             EVENT_TYPE="data-updated"
           fi
+
+          APP_BRANCH="${{ steps.branch.outputs.app_branch }}"
+          PAYLOAD="{\"event_type\": \"$EVENT_TYPE\""
+          if [ -n "$APP_BRANCH" ]; then
+            PAYLOAD="$PAYLOAD, \"client_payload\": {\"app_branch\": \"$APP_BRANCH\"}"
+          fi
+          PAYLOAD="$PAYLOAD}"
+
           curl -X POST \
             -H "Authorization: token ${{ secrets.ASTRO_REPO_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/eljojo/bike-app-astro/dispatches \
-            -d "{\"event_type\": \"$EVENT_TYPE\"}"
+            -d "$PAYLOAD"
