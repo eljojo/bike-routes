@@ -1,5 +1,7 @@
 ---
 name: BRM 200 Vuelta San Pedro
+poster_key: ipv8f6q1tankyreekbtv1moryar0
+poster_content_type: image/jpeg
 start_date: "2099-01-17"
 start_time: "08:00"
 time_limit_hours: 13.5

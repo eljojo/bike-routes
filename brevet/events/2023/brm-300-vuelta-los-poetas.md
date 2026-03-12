@@ -1,5 +1,7 @@
 ---
 name: BRM 300 Vuelta Los Poetas
+poster_key: 6smyje2nytrfxin35y4r0txmy5jw
+poster_content_type: image/jpeg
 start_date: "2023-01-07"
 start_time: "06:00"
 end_date: "2023-01-08"

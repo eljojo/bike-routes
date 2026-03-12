@@ -1,5 +1,7 @@
 ---
 name: BRM 400 Vuelta Las Cabras
+poster_key: 655luph2u99z0zuzw0o1v5g6qplk
+poster_content_type: image/jpeg
 start_date: "2024-02-24"
 start_time: "05:00"
 end_date: "2024-02-25"
