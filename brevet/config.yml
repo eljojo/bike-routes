@@ -1,0 +1,30 @@
+name: Brevet
+display_name: Brevet Chile
+instance_type: club
+tagline: Ciclismo randonneur en Chile
+description: Club de ciclismo randonneur en Chile, representante oficial de Audax Club Parisien
+url: https://brevet.whereto.bike
+domain: brevet.whereto.bike
+cdn_url: https://cdn.ottawabybike.ca
+videos_cdn_url: https://videos.ottawabybike.ca
+timezone: America/Santiago
+locale: es-CL
+locales: [es-CL]
+author:
+  name: Brevet Chile
+  email: bike@eljojo.net
+  url: https://brevet.whereto.bike
+plausible_domain: brevet.whereto.bike
+site_title_html: <em>Brevet</em> Chile
+center:
+  lat: -33.45
+  lng: -70.65
+bounds:
+  north: -32.5
+  south: -34.5
+  east: -69.5
+  west: -72.0
+place_categories:
+  services: [cafe, restaurant]
+results_privacy: full_name
+acp_club_code: CL0001
