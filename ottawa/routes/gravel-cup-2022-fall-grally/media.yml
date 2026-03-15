@@ -61,29 +61,26 @@
   height: 2250
   handle: friends-riding-bikes
 - type: video
-  key: 71nx1hyq97av9jztsovr0s1grv26
+  key: tw3ba6pn
   title: whoop
   duration: PT3S
   width: 1920
   height: 1440
   orientation: landscape
-  poster_key: 5a53eyb5j8mivh62jwvdh3849osl
   handle: whoop
 - type: video
-  key: 9vf806pvogy5lap3eg56jyyjzylx
+  key: lewwwrvp
   title: gravel
   duration: PT6S
   width: 1440
   height: 1920
   orientation: portrait
-  poster_key: 5q8pum9iebmcje5e2ecxi1v5p3zl
   handle: gravel
 - type: video
-  key: w373sup33z36gjnjlbttcxkah2ph
+  key: mqjt8fk8
   title: road time
   duration: PT8S
   width: 1920
   height: 1440
   orientation: landscape
-  poster_key: p15h3y40ahwk0zyymf43npi41kv9
   handle: road-time

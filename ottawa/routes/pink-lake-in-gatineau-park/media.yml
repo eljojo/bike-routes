@@ -208,20 +208,18 @@
   lng: -75.811614
   captured_at: '2021-07-23T12:18:52.000Z'
 - type: video
-  key: rc80pjjcu57l0hjhnzt3rfsq9edu
+  key: zir1aw24
   title: View from Pink Lake
   duration: PT1M5S
   width: 3840
   height: 2160
   orientation: landscape
-  poster_key: iyp8xo658237ge09d3s1n4klbofu
   handle: view-from-pink-lake
 - type: video
-  key: 3mzaailb2vgq7wcpi2ri1zasjw6u
+  key: yjozwat5
   title: Sunset at Pink Lake
   duration: PT45S
   width: 3840
   height: 2160
   orientation: landscape
-  poster_key: 0l5cakbtddhmpgxpi0yb0hacmkum
   handle: sunset-at-pink-lake

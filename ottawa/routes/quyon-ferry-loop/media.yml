@@ -254,56 +254,50 @@
   lng: -75.705064
   captured_at: '2022-08-06T23:08:56.000Z'
 - type: video
-  key: l8vdm16cmty4bt25gt4d51asm0xe
+  key: syuduier
   title: We really like bikes!
   duration: PT15S
   width: 2160
   height: 3840
   orientation: portrait
-  poster_key: m5f78u3ko0glxkcuji0wa2cgqx9r
   handle: we-really-like-bikes
 - type: video
-  key: 90110ukov6uqhuaef0yegomfi3om
+  key: 5m05pek8
   title: gravel patch
   duration: PT21S
   width: 2160
   height: 3840
   orientation: portrait
-  poster_key: t4cjdz5y7td71eolg50e3akpvme4
   handle: gravel-patch
 - type: video
-  key: drv07jw6v0mo8pfcyj7hravku4h2
+  key: 68ep9lm9
   title: Party Ride!!
   duration: PT15S
   width: 1920
   height: 1080
   orientation: landscape
-  poster_key: tp46a6cvyt1t74d3a9w5czv6de9q
   handle: party-ride
 - type: video
-  key: 7p6sabrr2zpspe0sl2jgks3qozae
+  key: 3a4xslt5
   title: Riding in bike paths
   duration: PT35S
   width: 1920
   height: 1080
   orientation: landscape
-  poster_key: fu9ly5fy1pgma2gp52i0hupuyc4e
   handle: riding-in-bike-paths
 - type: video
-  key: 87jj16e8gqosloiftm4jdd763d58
+  key: 99hldqd7
   title: chill ride in bike paths
   duration: PT16S
   width: 1920
   height: 1080
   orientation: landscape
-  poster_key: w4nongf2vl0avh35vwlljgz7cp1e
   handle: chill-ride-in-bike-paths
 - type: video
-  key: yn4xl2m0enx0bphxtntx1h1savwg
+  key: 79q75q37
   title: Gravel Ride
   duration: PT30S
   width: 1920
   height: 1080
   orientation: landscape
-  poster_key: c9kw3gxuwabtbik7so1kr7myhmn7
   handle: gravel-ride

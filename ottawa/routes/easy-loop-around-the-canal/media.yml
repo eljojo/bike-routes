@@ -473,29 +473,26 @@
   lng: -75.699806
   captured_at: '2023-03-05T16:11:34.000Z'
 - type: video
-  key: t1nx9u04j1o1dn2bq74lob9jxtoi
+  key: 565knbp2
   title: Sunset at Dow's Lake
   duration: PT11S
   width: 1440
   height: 1920
   orientation: portrait
-  poster_key: b3k1zu0lk0dv0cwcvyn3gakrydbk
   handle: sunset-at-dow-s-lake
 - type: video
-  key: 120zwwbl0dvvrxzmnopb2lyky9fm
+  key: yt9p0fov
   title: Riding my bike next to the frozen Rideau Canal
   duration: PT23S
   width: 1920
   height: 1440
   orientation: landscape
-  poster_key: 0wmmugmakt03x4b926gh6rsbs9r8
   handle: riding-my-bike-next-to-the-frozen-rideau-
 - type: video
-  key: wynjh1xghp2ydchwsglrt4zlehop
+  key: lh11cx8f
   title: Riding by the canal in winter
   duration: PT30S
   width: 2160
   height: 3840
   orientation: portrait
-  poster_key: reksp39ui5eoaymfi309vba40s93
   handle: riding-by-the-canal-in-winter
