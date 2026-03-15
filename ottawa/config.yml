@@ -9,7 +9,7 @@ description: >-
 url: https://ottawabybike.ca
 domain: ottawabybike.ca
 cdn_url: https://cdn.ottawabybike.ca
-videos_cdn_url: https://videos.ottawabybike.ca
+videos_cdn_url: https://videos.whereto.bike
 tiles_url: https://tiles.ottawabybike.ca/cycle/{z}/{x}/{y}{r}.png
 timezone: America/Toronto
 locale: en-CA
