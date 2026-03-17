@@ -1,9 +1,10 @@
 ---
 name: Ottawa Terry Fox Ride of Hope - Gravel Ride
 start_date: "2026-06-13"
-registration_url: https://ride.terryfox.ca/128666
-distances: 25km, 50km, 100km
+registration_url: https://ride.terryfox.ca/128666/add/registration
+distances: 119.5 km
 location: Terry Fox Statue – Sparks Street Pedestrian Mall - 197 Sparks St., Ottawa
+event_url: https://ride.terryfox.ca/128666
 map_url: https://ridewithgps.com/routes/53764019
 previous_event: 2024/terry-fox-ride-of-hope
 poster_key: vfsv25t2
