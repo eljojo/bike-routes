@@ -5,6 +5,7 @@ end_date: "2026-06-07"
 registration_url: https://ottawabicycleclub.ca/rlct/registration
 distances: 118km to 209km
 location: Ottawa and Kingston, Ontario
+edition: 53rd edition
 event_url: https://ottawabicycleclub.ca/rlct/
 poster_key: npax77js
 poster_content_type: image/jpeg
