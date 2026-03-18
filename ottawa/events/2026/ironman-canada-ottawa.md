@@ -9,6 +9,8 @@ poster_key: p8tpoh2j
 poster_content_type: image/jpeg
 poster_width: 1080
 poster_height: 1080
+tags:
+  - triathlon
 organizer:
   name: IRONMAN
   website: https://www.ironman.com
