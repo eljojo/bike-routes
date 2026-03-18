@@ -23,4 +23,6 @@ Now in its 35th year, the Ottawa Valley's answer to the famous Paris-Roubaix. A 
 
 https://ridewithgps.com/routes/46020541
 
+https://www.youtube.com/watch?v=DGxMVIp-Ezw
+
 [Technical Guide](https://ontariocycling.org/wp-content/uploads/2026/03/APR-Tech-Guide_2026.pdf)
