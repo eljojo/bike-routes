@@ -1,7 +1,7 @@
 ---
 name: OG Classique
 start_date: "2026-06-21"
-registration_url: https://www.ogclassique.ca/
+registration_url: https://www.ms1inscription.com/ogclassique2026
 distances: 124km, 75km, 34km
 location: Wakefield, QC
 event_url: https://ucigravelworldseries.com/en/og-classique/
@@ -22,4 +22,4 @@ organizer:
   photo_height: 561
 ---
 
-UCI Official gravel race in the heart of Wakefield
+UCI Official gravel race in the heart of Wakefield - https://www.ogclassique.ca/
