@@ -1,32 +1,9 @@
 ---
 title: About
-links:
-  - name: CyclingGuide.app
-    url: https://www.cyclingguide.app
-    desc: Safe biking routes for every day rides, it's free!
-    category: friend
-  - name: Let's Go Cargo
-    url: https://www.letsgocargo.ca
-    desc: Looking for a cargo bike rental?
-    category: friend
-  - name: 2026 Canadian Shield Bikepacking Summit
-    url: https://www.bikepackadventures.ca/summit
-    desc: Learn about Bikepacking this Spring in Wakefield
-    category: friend
-  - name: List of Local Cycling Communities
-    url: /guides/local-communities
-    category: resource
-  - name: Bike Ottawa
-    url: https://bikeottawa.ca
-    desc: Community dedicated to promoting cycling in Ottawa
-    category: resource
-  - name: Official NCC Biking Map
-    url: https://ncc-ccn.maps.arcgis.com/apps/View/index.html?appid=d69460c2d8df472db1a456183bc62fcf
-    category: resource
-  - name: Interview by CBC Ottawa Morning
-    url: https://web.archive.org/web/20230528221810/https://mp3.cbc.ca/radio/CBC_Radio_VMS/56/687/dave-0KadS5Zr-20230524_1684932607974.mp3
-    category: resource
 ---
+
+## The story behind this site
+> How one rider's frustration became {display_name}'s cycling guide
 
 <img src="{author_photo_url}" alt="{author_name}" width="300" loading="lazy" />
 
@@ -37,3 +14,28 @@ So in 2022 I built this site. Each route has photos, videos, and tips — the ki
 **Every route has been ridden. Every photo was taken by someone who was there. Every tip comes from experience, not an algorithm.**
 
 Pick a route, see what it looks like, go ride it. It doesn't matter if you've never biked beyond your neighbourhood or if you ride every weekend — there's something here for you.
+
+## Anyone can contribute
+> Add a route, fix a detail, share a photo — no account needed
+
+This is a community project — anyone can contribute. If you know a cycling route that's not listed, [add a new route](/admin/routes/new). You can also [suggest edits](/admin) to existing routes and events.
+
+## Part of whereto.bike
+> Open source platform for community cycling guides
+
+{display_name} is built on [whereto.bike](https://whereto.bike), an open-source platform for community cycling guides.
+
+Interested in starting a cycling guide for your city? [Learn how](https://whereto.bike/about/bring-to-your-city/).
+
+Open data: text is [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), route data is [ODbL 1.0](https://opendatacommons.org/licenses/odbl/), source code is [AGPL 3.0](https://github.com/eljojo/bike-app-astro).
+
+## Friends & resources
+> Local communities, partners, useful links
+
+- [CyclingGuide.app](https://www.cyclingguide.app) — Safe biking routes for every day rides, it's free!
+- [Let's Go Cargo](https://www.letsgocargo.ca) — Looking for a cargo bike rental?
+- [2026 Canadian Shield Bikepacking Summit](https://www.bikepackadventures.ca/summit) — Learn about Bikepacking this Spring in Wakefield
+- [List of Local Cycling Communities](/guides/local-communities)
+- [Bike Ottawa](https://bikeottawa.ca) — Community dedicated to promoting cycling in Ottawa
+- [Official NCC Biking Map](https://ncc-ccn.maps.arcgis.com/apps/View/index.html?appid=d69460c2d8df472db1a456183bc62fcf)
+- [Interview by CBC Ottawa Morning](https://web.archive.org/web/20230528221810/https://mp3.cbc.ca/radio/CBC_Radio_VMS/56/687/dave-0KadS5Zr-20230524_1684932607974.mp3)
