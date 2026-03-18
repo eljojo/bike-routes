@@ -13,6 +13,7 @@ tagline: find people to ride your bike with!
 - [Ottawa Women's Cycling Network](https://www.facebook.com/groups/495913171101226/)
 - [Ottawa MTB Chicks](https://www.facebook.com/groups/mtbchicksottawa/)
 - [Critical Mass Ottawa](https://www.facebook.com/groups/criticalmassottawa/)
+- [Step Thru](https://stepthrucc.com/)
 
 ### Social Media
 
@@ -47,6 +48,7 @@ tagline: find people to ride your bike with!
 ### Local Cycling Clubs
 
 - [Common Empire](https://commonempire.com/group-rides/ottawa/)
+- [Nomades du Parc](https://nomadesduparc.com/)
 - [Kanata-Nepean Bicycle Club](https://www.knbc.ca/)
 - [Ottawa Bicycle Club (OBC)](https://ottawabicycleclub.ca)
 
