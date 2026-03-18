@@ -15,3 +15,5 @@ organizer:
   website: https://stepthrucc.com/
   instagram: step.thruu
 ---
+
+Used and new-old-stock bike parts, clothing, bags, camping gear, coffee — anything bike-adjacent. Free to attend, $10–15 for a table. A reason to gather, trade, and talk bikes.

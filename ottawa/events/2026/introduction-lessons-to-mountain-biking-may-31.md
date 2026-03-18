@@ -1,6 +1,6 @@
 ---
 name: Introduction Lessons to Mountain Biking
-start_date: "2026-05-17"
+start_date: "2026-05-31"
 start_time: "10:00"
 registration_url: https://nomadesduparc.com/en/products/cours-dintroduction-au-velo-de-montagne
 location: 10 Chemin Scott, Chelsea,QC.
