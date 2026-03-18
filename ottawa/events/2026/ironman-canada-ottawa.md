@@ -5,6 +5,7 @@ end_date: "2026-08-02"
 registration_url: https://www.ironman.com/races/im-canada-ottawa/register
 location: Ottawa, ON, Canada
 event_url: https://www.ironman.com/races/im-canada-ottawa
+map_url: https://www.strava.com/routes/3327386621711684388
 poster_key: p8tpoh2j
 poster_content_type: image/jpeg
 poster_width: 1080
@@ -20,3 +21,7 @@ organizer:
   photo_width: 300
   photo_height: 142
 ---
+
+https://www.youtube.com/watch?v=0fMEEJ8dKJo
+
+https://www.ironman.com/races/im-canada-ottawa/course
