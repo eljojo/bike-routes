@@ -8,12 +8,12 @@ distances: 42, 93, 168km
 location: Griffith, ON
 event_url: https://gravelcup.com/gravel-cup-events/r3g3-gravel-epic
 poster_key: e35zzihb
+poster_content_type: image/jpeg
 poster_width: 1080
 poster_height: 1350
-poster_content_type: image/jpeg
-organizer: gravel-cup
 tags:
   - gravel
+organizer: gravel-cup
 ---
 
 A proper gravel grinder through the hills of Renfrew County, organized by Gravel Cup. Three distances: 42, 93, and 168 km over some of the best terrain in the Ottawa Valley. Chip-timed with ATV support, aid stations, and post-race food and drinks.
