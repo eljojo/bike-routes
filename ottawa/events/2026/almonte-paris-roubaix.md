@@ -11,6 +11,8 @@ event_url: https://ottawabicycleclub.ca/almonte-paris-roubaix/
 map_url: https://www.ottawabicycleclub.ca/almonte-paris-roubaix-maps
 previous_event: 2024/almonte-paris-roubaix-2024
 poster_key: 59ylanxy
+poster_width: 768
+poster_height: 512
 poster_content_type: image/png
 organizer: ottawa-bicycle-club
 ---

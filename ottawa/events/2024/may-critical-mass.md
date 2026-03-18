@@ -7,6 +7,8 @@ registration_url: https://www.facebook.com/groups/criticalmassottawa/posts/10161
 location: Canadian War Museum, Ottawa, ON
 organizer: critical-mass-ride
 poster_key: aj2erk4vxh7zrfbkh6912ypgoqe0
+poster_width: 1325
+poster_height: 2048
 poster_content_type: image/jpeg
 ---
 

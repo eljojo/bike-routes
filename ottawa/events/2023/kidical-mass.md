@@ -8,5 +8,7 @@ registration_url: https://www.eventbrite.com/e/kidical-mass-ottawa-tickets-70079
 location: Sylvia Holden Park, 641 R. O'Connor St, Ottawa, ON K1S 5N5, Canada
 organizer: for-our-kids
 poster_key: fyy8bakr2orsh5c534snmqrqm1tw
+poster_width: 1546
+poster_height: 1158
 poster_content_type: image/jpeg
 ---

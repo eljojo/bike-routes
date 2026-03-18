@@ -10,5 +10,7 @@ location: Back Forty Artisan Cheese 1406 Gulley Rd, Mississippi Station, ON, K0H
 organizer: gravel-cup
 previous_event: 2023/back-forty-highlander
 poster_key: ayd288jxeznx8fji0kh49022uhto
+poster_width: 2400
+poster_height: 1800
 poster_content_type: image/jpeg
 ---

@@ -6,6 +6,8 @@ registration_url: https://ncc-ccn.gc.ca/events/weekend-bikedays
 distances: 8km
 organizer: ncc
 poster_key: yzqk8gwewin6qaj5mdgszu72gd76
+poster_width: 637
+poster_height: 362
 poster_content_type: image/jpeg
 ---
 

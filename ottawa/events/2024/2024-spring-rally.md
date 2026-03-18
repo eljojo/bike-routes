@@ -7,5 +7,7 @@ distances: 150km, 180km
 location: Ottawa, Ontario
 organizer: log-driver-s-waltz
 poster_key: pv27asq1ddnzq0mcxrdxzymzmhgd
+poster_width: 458
+poster_height: 458
 poster_content_type: image/jpeg
 ---

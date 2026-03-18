@@ -6,5 +6,7 @@ registration_url: https://www.suslukadinlarbisikletturu.com/en/etkinlik/Ottawa?l
 location: Princess Margriet Park, 265 Fairmont Avenue, Ottawa
 organizer: ottawa-fancy-women-bike-ride
 poster_key: gjybumzcvsfs3zyghfcj7bitojft
+poster_width: 1500
+poster_height: 844
 poster_content_type: image/jpeg
 ---

@@ -7,6 +7,8 @@ location: Wakefield, Quebec
 organizer: canadianshieldbikepacking
 previous_event: 2024/canadian-shield-bikepacking-summit-2024
 poster_key: om5h6cwys3ggfelhfk8aqsgpehav
+poster_width: 2600
+poster_height: 1733
 poster_content_type: image/jpeg
 ---
 

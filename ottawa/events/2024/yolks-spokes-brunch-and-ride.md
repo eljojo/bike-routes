@@ -7,6 +7,8 @@ registration_url: https://www.instagram.com/ottawafixedgear/p/C5G3zcvAfpH/
 location: Browns Crafthouse, 640 Bank, Ottawa ON
 organizer: ofg
 poster_key: 07gncnj3fw67hmmjzaruft8tus0w
+poster_width: 1080
+poster_height: 1350
 poster_content_type: image/jpeg
 ---
 

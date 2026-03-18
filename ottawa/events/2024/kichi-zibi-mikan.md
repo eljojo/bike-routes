@@ -7,6 +7,8 @@ distances: 9km
 review_url: https://ottawabybike.ca/routes/britannia-by-ottawa-river-pathway
 organizer: ncc
 poster_key: vg0lolnxvwugco5wudoqfxxe2zny
+poster_width: 2048
+poster_height: 1372
 poster_content_type: image/jpeg
 ---
 

@@ -6,6 +6,8 @@ registration_url: https://www.facebook.com/events/462055542864920
 location: 248 Old Chelsea, Chelsea, QC
 organizer: nomadesduparc
 poster_key: g34cn5si973114ync7lyt4aedj21
+poster_width: 2048
+poster_height: 1152
 poster_content_type: image/jpeg
 ---
 

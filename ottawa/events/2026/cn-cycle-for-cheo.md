@@ -8,6 +8,8 @@ location: Canadian War Museum, Ottawa
 event_url: https://cncycle.cheofoundation.com/event/
 previous_event: 2025/cheo-2025
 poster_key: 9ep7aqsa
+poster_width: 2072
+poster_height: 1834
 poster_content_type: image/png
 organizer: cn
 ---

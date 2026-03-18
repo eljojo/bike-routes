@@ -7,6 +7,8 @@ distances: 130km,129km,80km,40km
 event_url: https://nomadesduparc.com/en/pages/gravelle-du-parc
 previous_event: 2024/gravelle-du-parc
 poster_key: kw5ljgpi
+poster_width: 2410
+poster_height: 1064
 poster_content_type: image/png
 organizer: nomadesduparc
 ---

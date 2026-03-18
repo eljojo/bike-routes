@@ -8,6 +8,8 @@ distances: 10km
 location: Dow’s Lake
 organizer: queer-bike-club
 poster_key: n4pf6k5e08xcup7mhmujrh3fmdoc
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---
 

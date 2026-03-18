@@ -5,6 +5,8 @@ end_date: '2024-06-30'
 registration_url: https://letsbike.ca/
 organizer: letsbikeottawa
 poster_key: 1c2j0g6d05nuv3k3uezg82j5hkle
+poster_width: 3804
+poster_height: 1444
 poster_content_type: image/png
 ---
 

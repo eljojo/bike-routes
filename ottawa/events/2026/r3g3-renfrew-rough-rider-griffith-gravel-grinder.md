@@ -8,6 +8,8 @@ distances: 42, 93, 168km
 location: Griffith, ON
 event_url: https://gravelcup.com/gravel-cup-events/r3g3-gravel-epic
 poster_key: e35zzihb
+poster_width: 1080
+poster_height: 1350
 poster_content_type: image/jpeg
 organizer: gravel-cup
 ---

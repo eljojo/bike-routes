@@ -10,5 +10,7 @@ location: 600 Hog's Back Rd, Ottawa, ON
 organizer: navy-bike-ride
 previous_event: 2024/navy-bike-ride-2024
 poster_key: 4fs3m2djd2nt6c6jkomhxm6x5z5q
+poster_width: 2048
+poster_height: 1366
 poster_content_type: image/jpeg
 ---

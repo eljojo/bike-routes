@@ -7,5 +7,7 @@ location: Eganville, Ontario, Canada
 event_url: https://tourdebonnechere.blogspot.com
 map_url: https://tourdebonnechere.blogspot.com/p/100k-and-50k-routes.html
 poster_key: wd7rcxa8
+poster_width: 481
+poster_height: 472
 poster_content_type: image/jpeg
 ---

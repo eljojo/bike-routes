@@ -8,6 +8,8 @@ registration_url: https://www.instagram.com/queerbikeclubottawa/p/C5HRAShgjMb/
 location: Re-Cycles (445 Catherine St Unit 1)
 organizer: queer-bike-club
 poster_key: 797yt6i4uwiok64aa3b8g4lzrtwe
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---
 

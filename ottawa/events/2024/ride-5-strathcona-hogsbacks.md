@@ -7,5 +7,7 @@ registration_url: https://www.instagram.com/p/C8K5KpJhWUW/
 location: Strathcona Park
 organizer: queer-bike-club
 poster_key: snbd62qoerw7ytqbxwhmftvwrk0m
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---

@@ -6,5 +6,7 @@ registration_url: https://www.forourkids.ca/webikeforourkids_ottawagatineau
 distances: about 1 hour ride
 organizer: for-our-kids
 poster_key: 96lf2f1odrwqbl1vpnkj89trcyan
+poster_width: 940
+poster_height: 788
 poster_content_type: image/jpeg
 ---

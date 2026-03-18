@@ -8,5 +8,7 @@ registration_url: https://www.reddit.com/r/bikeinottawa/comments/171iuq8/winter_
 location: 79 Sparks St, Ottawa, Ontario
 organizer: ottawa-bike-cafe
 poster_key: 90ftf0lzs8w4fi3lqdqlm5u6jplb
+poster_width: 1170
+poster_height: 1514
 poster_content_type: image/jpeg
 ---

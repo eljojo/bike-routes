@@ -9,6 +9,8 @@ distances: 120km, 80km, 40km
 location: Calabogie Community Hall, 574 Mill St, Calabogie, ON, K0J 1H0
 organizer: gravel-cup
 poster_key: 7r43z9wf0fh0f4pjlt4xjilapc5j
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---
 

@@ -8,5 +8,7 @@ registration_url: https://www.eventbrite.ca/e/bike-maintenance-workshop-with-qui
 location: 79 Sparks Street Ottawa, ON K1P 5A5
 organizer: letsbikeottawa
 poster_key: 3qew5w1qly1e38gjopsl16vlmidt
+poster_width: 940
+poster_height: 470
 poster_content_type: image/jpeg
 ---

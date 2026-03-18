@@ -6,5 +6,7 @@ registration_url: https://bikeraceottawa.wordpress.com/preston-street-criterium/
 organizer: bike-race-ottawa
 edition: Fixed Gear (2023)
 poster_key: yj7sesfn0jibs442rjno6mufstcn
+poster_width: 1080
+poster_height: 1350
 poster_content_type: image/jpeg
 ---

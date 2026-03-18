@@ -7,5 +7,7 @@ registration_url: https://www.reddit.com/r/bikeinottawa/comments/171g9an/critica
 location: Confederation Park, Ottawa, Ontario
 organizer: critical-mass-ride
 poster_key: z695nqum5zgmlgq4yam1qeetlow7
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---

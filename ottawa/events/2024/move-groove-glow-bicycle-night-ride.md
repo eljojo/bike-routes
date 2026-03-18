@@ -8,6 +8,8 @@ registration_url: https://www.eventbrite.ca/e/move-groove-glow-bicycle-night-rid
 location: 380 Sussex Drive Ottawa, ON K1A 0G8
 organizer: bekane-cycles
 poster_key: bpbx2alc6iyjl2s7zi4t3oum1j55
+poster_width: 720
+poster_height: 1284
 poster_content_type: image/jpeg
 ---
 

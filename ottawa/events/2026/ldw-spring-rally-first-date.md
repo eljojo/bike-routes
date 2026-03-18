@@ -7,6 +7,8 @@ distances: 150-180 km
 event_url: http://www.logdriverswaltz.ca/spring-rallies-2026.html
 previous_event: 2025/2025-ldw-spring-rally
 poster_key: 4u3fzu2d
+poster_width: 2354
+poster_height: 1194
 poster_content_type: image/png
 organizer: log-driver-s-waltz
 ---

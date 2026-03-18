@@ -9,6 +9,8 @@ location: Meet at Parking Lot 26 (Corner of Bearbrook Road - Sir George-Étienne
   Parkway)
 organizer: black-girls-do-bike
 poster_key: u3oy7uu4mlcu0c5nu4ufy3dc67kn
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---
 

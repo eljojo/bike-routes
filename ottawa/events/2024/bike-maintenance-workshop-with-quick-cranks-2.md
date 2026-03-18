@@ -8,5 +8,7 @@ registration_url: https://www.eventbrite.ca/e/bike-maintenance-workshop-with-qui
 location: 320 Miwate Ottawa, ON K1R 0E1
 organizer: letsbikeottawa
 poster_key: 7wbpjgdy6fiqjpviqvv4dgrdo1ea
+poster_width: 940
+poster_height: 470
 poster_content_type: image/jpeg
 ---

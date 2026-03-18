@@ -7,6 +7,8 @@ distances: 110km, 55km, 28km
 event_url: https://ridewithrendall.wordpress.com
 map_url: https://www.strava.com/routes/3463308365094337962
 poster_key: 5w7qgmr8
+poster_width: 768
+poster_height: 960
 poster_content_type: image/png
 organizer:
   name: Ride with Rendall

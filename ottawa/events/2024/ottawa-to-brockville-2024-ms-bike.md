@@ -7,5 +7,7 @@ distances: 90km
 organizer: ms-canada
 edition: Ottawa to Brockville (2024)
 poster_key: 3m942zuj84jgsns2k1uluslei4e2
+poster_width: 5470
+poster_height: 3647
 poster_content_type: image/png
 ---

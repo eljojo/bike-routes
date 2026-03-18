@@ -7,6 +7,8 @@ distances: 380km, 800km
 location: Almonte/Mississippi Mills, Ontario
 previous_event: 2023/2023-grand-depart
 poster_key: nhdludotopppldkxa4oz80godz34
+poster_width: 1536
+poster_height: 1152
 poster_content_type: image/jpeg
 organizer: log-driver-s-waltz
 ---

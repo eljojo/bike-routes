@@ -7,6 +7,8 @@ registration_url: https://www.instagram.com/queerbikeclubottawa/p/C8M2vRsAZIH/
 location: Paterson Creek Park
 organizer: queer-bike-club
 poster_key: kdasfd1xuatrm9sg143nifn2foq5
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---
 

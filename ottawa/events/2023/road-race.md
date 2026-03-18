@@ -7,5 +7,7 @@ distances: 111km
 organizer: tour-de-gatineau
 edition: Road Race (2023)
 poster_key: xc6qdudoa0liyn1h5in3a7wl2js2
+poster_width: 800
+poster_height: 600
 poster_content_type: image/webp
 ---

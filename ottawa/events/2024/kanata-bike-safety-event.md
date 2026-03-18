@@ -8,6 +8,8 @@ registration_url: https://allevents.in/kanata/bike-safety-event/200026537837608
 location: 20 Young Rd, Kanata, ON
 organizer: khca
 poster_key: i7rozkf2bnyp7k934viw19iu2znz
+poster_width: 1200
+poster_height: 1552
 poster_content_type: image/jpeg
 ---
 

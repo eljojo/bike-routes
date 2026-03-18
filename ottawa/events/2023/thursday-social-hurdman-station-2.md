@@ -6,5 +6,7 @@ registration_url: https://www.instagram.com/p/CstyzAGAw52/?img_index=4
 location: Hurdman Station, Ottawa, Canada
 organizer: ottbikesocial
 poster_key: y47basxrtxdkhiddpbohg4lkk5cd
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---

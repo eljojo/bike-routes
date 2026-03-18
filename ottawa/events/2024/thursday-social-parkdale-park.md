@@ -7,6 +7,8 @@ registration_url: https://www.instagram.com/ottbikesocial/p/C7M7PfMRsXs/
 location: Parkdale Park
 organizer: ottbikesocial
 poster_key: n4i27gpseh3jjipcmaw7pe70gosh
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---
 

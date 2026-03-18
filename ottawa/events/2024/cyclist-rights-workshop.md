@@ -8,6 +8,8 @@ registration_url: https://www.eventbrite.ca/e/cyclist-rights-workshop-with-the-b
 location: Mill Street Brew Pub
 organizer: letsbikeottawa
 poster_key: kfhxcoapx45b6vtwpdfwvs42m12m
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---
 

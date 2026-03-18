@@ -8,5 +8,7 @@ registration_url: https://www.eventbrite.com/e/kidical-mass-ottawa-bike-ride-bor
 location: 'General Burns Park: 107 Chesterton Dr, Ottawa, ON K2E 5T6'
 organizer: for-our-kids
 poster_key: 26prf05tgbsmyq59v16m9v97czvu
+poster_width: 1680
+poster_height: 2174
 poster_content_type: image/jpeg
 ---

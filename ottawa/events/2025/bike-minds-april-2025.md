@@ -7,6 +7,8 @@ registration_url: https://www.eventbrite.com/e/bike-minds-april-2-2025-ottawa-ti
 location: Ottawa Bike Cafe - 79 Sparks Street Ottawa, ON K1P 5A5
 organizer: bike-minds
 poster_key: 9tjhae1ywby273aqsoo0kvvlqkmy
+poster_width: 1925
+poster_height: 717
 poster_content_type: image/png
 ---
 

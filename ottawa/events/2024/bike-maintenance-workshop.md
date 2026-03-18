@@ -8,5 +8,7 @@ registration_url: https://www.eventbrite.ca/e/bike-maintenance-workshop-in-colla
 location: 877a Boyd Avenue Ottawa, ON K2A 2E2
 organizer: ottawa-tool-library
 poster_key: j90s6050ux2368hyow946ks0g5rp
+poster_width: 940
+poster_height: 470
 poster_content_type: image/jpeg
 ---

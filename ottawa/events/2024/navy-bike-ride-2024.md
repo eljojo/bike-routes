@@ -9,6 +9,8 @@ distances: 5km
 location: H.M.C.S Carleton, 79 Prince of Wales Dr.
 organizer: navy-bike-ride
 poster_key: rvlxnifysd1y8uik82z15ahonepi
+poster_width: 2560
+poster_height: 1707
 poster_content_type: image/jpeg
 ---
 

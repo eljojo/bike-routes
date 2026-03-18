@@ -8,5 +8,7 @@ location: Canadian War Museum, Ottawa, Canada
 review_url: https://www.youtube.com/watch?v=C0zSsP29K2o&feature=youtu.be
 organizer: critical-mass-ride
 poster_key: nscra6lhs3jy1d9nv2or8efq4mgc
+poster_width: 2048
+poster_height: 2048
 poster_content_type: image/jpeg
 ---

@@ -8,6 +8,8 @@ distances: 11.4 km
 location: Bayview O-Train station
 organizer: queer-bike-club
 poster_key: vcvanin152puyb8c0843rc17i9p8
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---
 

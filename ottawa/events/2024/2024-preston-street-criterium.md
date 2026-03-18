@@ -9,5 +9,7 @@ location: Preston and Norman Streets, Ottawa
 organizer: bike-race-ottawa
 previous_event: 2023/preston-st-fixed-crit
 poster_key: mp6082u0kfolt8jtnwliinjwjxih
+poster_width: 1080
+poster_height: 1080
 poster_content_type: image/jpeg
 ---

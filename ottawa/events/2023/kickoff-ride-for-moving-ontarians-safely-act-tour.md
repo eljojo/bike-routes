@@ -8,5 +8,7 @@ distances: Lemieux Island to Commissioners Park
 location: Chief William Commanda Bridge
 organizer: joel-harden
 poster_key: a4ejg61p110nhd58a5jy734397ln
+poster_width: 1583
+poster_height: 1080
 poster_content_type: image/png
 ---

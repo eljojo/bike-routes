@@ -8,6 +8,8 @@ event_url: https://ride.terryfox.ca/128666
 map_url: https://ridewithgps.com/routes/53764019
 previous_event: 2024/terry-fox-ride-of-hope
 poster_key: vfsv25t2
+poster_width: 1920
+poster_height: 699
 poster_content_type: image/jpeg
 organizer:
   name: Terry Fox Ride of Hope

@@ -6,5 +6,7 @@ registration_url: https://borcatrails.com/spring-chicken-race
 distances: 60km, 32km
 organizer: borca-trails
 poster_key: fdm4swm9chxoac8fglro8cak8c13
+poster_width: 720
+poster_height: 960
 poster_content_type: image/jpeg
 ---

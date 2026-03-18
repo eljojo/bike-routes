@@ -6,5 +6,7 @@ end_date: '2024-09-28'
 registration_url: https://nomadesduparc.com/pages/gravelle-du-parc
 organizer: nomadesduparc
 poster_key: d3li07hvrjk5dz4up8kf8x5mhgia
+poster_width: 1638
+poster_height: 2048
 poster_content_type: image/jpeg
 ---

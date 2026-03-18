@@ -5,6 +5,8 @@ end_date: '2024-07-14'
 registration_url: https://www.instagram.com/queerbikeclubottawa/p/C8E8JS1ANcl/
 organizer: queer-bike-club
 poster_key: rnefscsrf8oeeltaaa74k0y24ugt
+poster_width: 1080
+poster_height: 1306
 poster_content_type: image/jpeg
 ---
 
