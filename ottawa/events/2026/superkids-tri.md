@@ -8,6 +8,8 @@ registration_url: https://www.radraces.com/c/f6a9fa07-09e2-48d6-b470-c03eea9f9a0
 distances: Varies by age group
 location: François Dupuis Recreation Centre, 2263 Portobello Blvd., Ottawa, ON K4A 0X3
 event_url: https://www.somersault.ca/event/superkids-tri
+poster_key: sxcabqb3
+poster_content_type: image/jpeg
 organizer:
   name: Somersault Events
   website: https://www.somersault.ca
