@@ -14,3 +14,5 @@ organizer: nomadesduparc
 tags:
   - gravel
 ---
+
+A gravel race weekend at the edge of Gatineau Park, organized by Nomades du Parc. Timed courses at 40, 80, and 130 km on Saturday, with trail running on Sunday. Starts and finishes at Centre Vorlage in Wakefield.

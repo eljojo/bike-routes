@@ -12,3 +12,5 @@ previous_event: 2023/criterium
 tags:
   - tour
 ---
+
+A UCI-rated professional women's cycling event featuring a time trial, road race, and criterium on the roads of Gatineau. Originally launched as the Grand Prix Cycliste de Gatineau in 2010, it returned under the Tour de Gatineau name in 2023.

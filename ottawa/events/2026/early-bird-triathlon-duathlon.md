@@ -15,3 +15,5 @@ organizer:
 tags:
   - triathlon
 ---
+
+Ottawa's season-opening triathlon and duathlon at Carleton University.

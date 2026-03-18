@@ -10,3 +10,5 @@ organizer: ottawa-bicycle-club
 tags:
   - social
 ---
+
+A relaxed evening to reconnect with riders, meet the Ottawa Bicycle Club board, and hear what's planned for the 2026 season. Open to current, former, and brand-new members. Social time from 5–7 pm, club updates and Q&A from 7–9 pm. Food and drinks available at the venue.

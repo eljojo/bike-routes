@@ -19,3 +19,5 @@ organizer:
 tags:
   - triathlon
 ---
+
+A youth triathlon for kids of all abilities, ages 4 to 12. Indoor pool swim, bike and run courses closed to traffic, and parents welcome to help in transition. All equipment welcome — training wheels, life jackets, whatever works.

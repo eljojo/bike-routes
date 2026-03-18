@@ -15,3 +15,7 @@ organizer: gravel-cup
 tags:
   - gravel
 ---
+
+A proper gravel grinder through the hills of Renfrew County, organized by Gravel Cup. Three distances: 42, 93, and 168 km over some of the best terrain in the Ottawa Valley. Chip-timed with ATV support, aid stations, and post-race food and drinks.
+
+https://www.youtube.com/watch?v=GYuqZ6uNSKw

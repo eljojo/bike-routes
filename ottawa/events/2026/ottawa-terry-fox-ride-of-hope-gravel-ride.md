@@ -17,3 +17,5 @@ organizer:
 tags:
   - gravel
 ---
+
+A 120 km gravel ride through Ottawa's greenbelt, raising funds for cancer research through the Terry Fox Foundation. Part of the national Ride of Hope program launched in 2015 to honour Terry Fox's Marathon of Hope.

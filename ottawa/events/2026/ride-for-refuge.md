@@ -13,3 +13,5 @@ organizer:
 tags:
   - charity-ride
 ---
+
+A charity ride supporting refugees and displaced people, held at locations across Canada. Ride or walk at your own pace to raise funds.

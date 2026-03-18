@@ -11,3 +11,5 @@ previous_event: 2024/ottawa-to-brockville-2024-ms-bike
 tags:
   - charity-ride
 ---
+
+A two-day charity ride for the MS Society of Canada, running for over 35 years. Distances from 45 to 190 km through eastern Ontario.

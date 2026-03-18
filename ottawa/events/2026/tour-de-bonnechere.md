@@ -13,3 +13,5 @@ poster_content_type: image/jpeg
 tags:
   - tour
 ---
+
+A timed, self-supported ride through the Ottawa Valley hills around Eganville, organized by the local Rotary Club. Now in its 15th year. The 100 km "Monarch of the Mountains" route has 1,400 metres of climbing — one of the toughest century rides in Ontario. Shorter options at 20, 50, and 65 km.

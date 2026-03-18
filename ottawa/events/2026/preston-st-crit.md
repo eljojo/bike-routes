@@ -11,3 +11,5 @@ previous_event: 2024/2024-preston-street-criterium
 tags:
   - criterium
 ---
+
+Ottawa's longest-running bike race, held every Father's Day in Little Italy since the 1970s. Street criterium racing on Preston Street with categories for all levels — from juniors to masters. Draws hundreds of racers and thousands of spectators.

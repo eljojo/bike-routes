@@ -14,3 +14,5 @@ organizer: navy-bike-ride
 tags:
   - charity-ride
 ---
+
+An official Royal Canadian Navy event, open to everyone. A supported community ride along the Rideau River and Canal pathways from Hog's Back Park, raising funds for military charities including the Navalis Foundation and Support Our Troops.

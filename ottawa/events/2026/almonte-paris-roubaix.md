@@ -19,6 +19,8 @@ tags:
   - race
 ---
 
+Now in its 35th year, the Ottawa Valley's answer to the famous Paris-Roubaix. A cyclosportif through the back roads around Almonte — mud, gravel, sand, rocks, unmaintained roads, and woodlots. Not a race, but a rite of spring. Two distances: 40 km and 80 km. Organized by the Ottawa Bicycle Club, with all proceeds supporting OBC youth programs.
+
 https://ridewithgps.com/routes/46020541
 
 [Technical Guide](https://ontariocycling.org/wp-content/uploads/2026/03/APR-Tech-Guide_2026.pdf)
