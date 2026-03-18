@@ -31,7 +31,6 @@ tagline: find people to ride your bike with!
 
 ### Cycling Blogs and Insights
 
-- [Parkways for People](https://parkwaysforpeople.ca/) - promoting active use parkways
 - [Hans on the Bike](https://hansonthebike.com/)
 - [Gene Villeneuve](https://genevilleneuve.com)
   - [500km Pollinator Series](https://ridewithgps.com/collections/1983337?privacy_code=cXNrVvz1LcMOhTZu)
@@ -57,6 +56,7 @@ tagline: find people to ride your bike with!
 - [Gravel Cup](https://gravelcup.com)
 - [Rideau Lakes Tour](https://www.ottawabicycleclub.ca/rlct/)
 - [Log Driver's Waltz](https://www.logdriverswaltz.ca) (Bikepacking challenge + community)
+- [Canadian Shield Bikepacking Summit](https://www.bikepackadventures.ca/summit) (Conference for bikepacking)
 
 ### Other links
 
@@ -64,4 +64,4 @@ tagline: find people to ride your bike with!
 - [Bikepack.ca's Routes](https://www.bikepack.ca/routes/eastern)
 - [Prescott Russel Trail](https://www.ontariotrails.on.ca/trails/view/prescott-and-russell-recreational-trail)
 - [Official NCC Cycling Map](https://ncc-ccn.maps.arcgis.com/apps/View/index.html?appid=d69460c2d8df472db1a456183bc62fcf)
-- [Let's Go Cargo Bike Rentals](https://www.letsgocargo.ca)
+- [Let's Go Cargo Bike Rentals](https://www.letsgocargo.ca) - Great for trying out cargo bikes, or for a day trip with the family!
