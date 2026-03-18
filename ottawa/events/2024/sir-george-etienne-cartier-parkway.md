@@ -10,6 +10,7 @@ poster_width: 637
 poster_height: 362
 poster_content_type: image/jpeg
 tags:
+  - seasonal
   - advocacy
 ---
 

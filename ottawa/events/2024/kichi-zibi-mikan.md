@@ -11,6 +11,7 @@ poster_width: 2048
 poster_height: 1372
 poster_content_type: image/jpeg
 tags:
+  - seasonal
   - tour
 ---
 

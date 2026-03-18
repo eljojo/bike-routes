@@ -9,5 +9,6 @@ poster_width: 1600
 poster_height: 900
 poster_content_type: image/jpeg
 tags:
-  - festival
+  - seasonal
+  - advocacy
 ---
