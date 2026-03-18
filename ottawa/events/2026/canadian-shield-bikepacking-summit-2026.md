@@ -7,6 +7,7 @@ location: Wakefield, QC
 poster_key: quv1ue35
 poster_content_type: image/png
 organizer: canadianshieldbikepacking
+previous_event: 2025/2025-bikepacking-summit
 ---
 
 https://www.bikepackadventures.ca/summit

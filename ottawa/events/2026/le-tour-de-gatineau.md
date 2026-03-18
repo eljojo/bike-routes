@@ -6,4 +6,5 @@ event_url: https://www.tourdegatineau.ca/en
 poster_key: i7o7cq4e
 poster_content_type: image/png
 organizer: tour-de-gatineau
+previous_event: 2023/criterium
 ---

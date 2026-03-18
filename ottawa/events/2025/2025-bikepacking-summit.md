@@ -5,6 +5,7 @@ end_date: '2025-05-25'
 registration_url: https://www.bikepackadventures.ca/summit
 location: Wakefield, Quebec
 organizer: canadianshieldbikepacking
+previous_event: 2024/canadian-shield-bikepacking-summit-2024
 poster_key: om5h6cwys3ggfelhfk8aqsgpehav
 poster_content_type: image/jpeg
 ---

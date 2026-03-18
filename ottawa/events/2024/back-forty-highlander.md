@@ -8,6 +8,7 @@ registration_url: https://gravelcup.com/gravel-cup-events/back-forty-highlander-
 distances: 115km, 70km, 35km
 location: Back Forty Artisan Cheese 1406 Gulley Rd, Mississippi Station, ON, K0H 2C0
 organizer: gravel-cup
+previous_event: 2023/back-forty-highlander
 poster_key: ayd288jxeznx8fji0kh49022uhto
 poster_content_type: image/jpeg
 ---
