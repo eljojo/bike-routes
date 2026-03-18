@@ -1,4 +1,4 @@
 ---
-name: 'Navy Bike Ride '
+name: "Navy Bike Ride "
 website: https://navybikeride.ca/
 ---
