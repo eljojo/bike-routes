@@ -11,4 +11,6 @@ poster_width: 400
 poster_height: 400
 poster_content_type: image/png
 organizer: navy-bike-ride
+tags:
+  - charity-ride
 ---

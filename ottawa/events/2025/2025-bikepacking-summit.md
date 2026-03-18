@@ -10,6 +10,8 @@ poster_key: om5h6cwys3ggfelhfk8aqsgpehav
 poster_width: 2600
 poster_height: 1733
 poster_content_type: image/jpeg
+tags:
+  - bikepacking
 ---
 
 Conference related to all things bikepacking. Camp with amazing riders, share your experiences, and trade gear!

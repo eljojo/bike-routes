@@ -8,4 +8,6 @@ poster_key: j90s6050ux2368hyow946ks0g5rp
 poster_width: 940
 poster_height: 470
 poster_content_type: image/jpeg
+tags:
+  - workshop
 ---

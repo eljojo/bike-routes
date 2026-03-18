@@ -10,6 +10,8 @@ poster_key: hevk2983djalfl30uwdtr01d25md
 poster_width: 6601
 poster_height: 10201
 poster_content_type: image/jpeg
+tags:
+  - critical-mass
 ---
 
 All welcome to start at 10AM at the Canadian War Museum and end at Ottawa City Hall on the second Saturday of the month. Critical mass rides are a worldwide movement, to promote safe streets and celebrate active transportation. Critical self-organizing, and all participants are responsible for their own safety.

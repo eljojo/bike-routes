@@ -9,4 +9,6 @@ poster_width: 2242
 poster_height: 1074
 poster_content_type: image/png
 organizer: nomadesduparc
+tags:
+  - workshop
 ---

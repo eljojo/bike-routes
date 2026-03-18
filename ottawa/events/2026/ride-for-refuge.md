@@ -10,4 +10,6 @@ organizer:
   name: Blue Sea Foundation
   website: https://bluesea.org
   instagram: rideforrefuge
+tags:
+  - charity-ride
 ---

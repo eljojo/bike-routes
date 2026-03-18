@@ -11,4 +11,6 @@ poster_key: porqc72rhdjds4c7m19tcdu8w6si
 poster_width: 828
 poster_height: 828
 poster_content_type: image/jpeg
+tags:
+  - group-ride
 ---

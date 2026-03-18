@@ -12,6 +12,8 @@ poster_key: rvlxnifysd1y8uik82z15ahonepi
 poster_width: 2560
 poster_height: 1707
 poster_content_type: image/jpeg
+tags:
+  - charity-ride
 ---
 
 Founded in 2016, the Navy Bike Ride (NBR) encourages the well-being of our communities and families by motivating each other to be healthy through cycling and raising money for the Canadian Armed Forces Community.

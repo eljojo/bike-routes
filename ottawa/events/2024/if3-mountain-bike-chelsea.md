@@ -9,6 +9,8 @@ poster_key: g34cn5si973114ync7lyt4aedj21
 poster_width: 2048
 poster_height: 1152
 poster_content_type: image/jpeg
+tags:
+  - festival
 ---
 
 The International Freesports Film Festival is coming on Saturday, June 15th for its mountain bike film screening tour!

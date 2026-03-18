@@ -11,6 +11,8 @@ poster_key: kfhxcoapx45b6vtwpdfwvs42m12m
 poster_width: 1080
 poster_height: 1080
 poster_content_type: image/jpeg
+tags:
+  - workshop
 ---
 
 A free presentation on your rights as a cyclist, presented by The Biking Lawyer LLP. David Shellnut LLP will lead an engaging discussion about the rules of the road and what to do if you ever get into a collision or are witness to one.

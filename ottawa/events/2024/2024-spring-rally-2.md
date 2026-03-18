@@ -10,4 +10,6 @@ poster_key: pv27asq1ddnzq0mcxrdxzymzmhgd
 poster_width: 458
 poster_height: 458
 poster_content_type: image/jpeg
+tags:
+  - gran-fondo
 ---

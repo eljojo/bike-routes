@@ -12,4 +12,6 @@ organizer:
   name: Step Thru Community Cycling
   website: https://stepthrucc.com/
   instagram: step.thruu
+tags:
+  - swap-meet
 ---

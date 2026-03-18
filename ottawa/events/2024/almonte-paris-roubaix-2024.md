@@ -12,6 +12,8 @@ poster_key: yc8vfa4kqg2f0o8gms4cu8q7jujv
 poster_width: 2090
 poster_height: 1575
 poster_content_type: image/jpeg
+tags:
+  - race
 ---
 
 This is a cyclosportif ride, not a race.

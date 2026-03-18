@@ -11,4 +11,6 @@ poster_key: oym4bbgblbi8cfwg7ngckoe54y53
 poster_width: 1440
 poster_height: 1800
 poster_content_type: image/jpeg
+tags:
+  - critical-mass
 ---

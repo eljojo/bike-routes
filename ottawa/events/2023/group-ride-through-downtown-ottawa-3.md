@@ -9,4 +9,6 @@ poster_key: fcnda4gdauza5ljkys05mam7ds4d
 poster_width: 540
 poster_height: 540
 poster_content_type: image/jpeg
+tags:
+  - group-ride
 ---

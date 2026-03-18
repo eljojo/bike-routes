@@ -13,4 +13,6 @@ poster_key: 4fs3m2djd2nt6c6jkomhxm6x5z5q
 poster_width: 2048
 poster_height: 1366
 poster_content_type: image/jpeg
+tags:
+  - charity-ride
 ---

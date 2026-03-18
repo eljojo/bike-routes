@@ -10,4 +10,6 @@ poster_key: dfaaj6ocwhjqbmk96ebc3ve9js7i
 poster_width: 800
 poster_height: 600
 poster_content_type: image/webp
+tags:
+  - race
 ---

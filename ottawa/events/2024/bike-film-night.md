@@ -9,4 +9,6 @@ poster_key: 1sh45quy8kp0omo7txhk2gvqx44q
 poster_width: 924
 poster_height: 909
 poster_content_type: image/jpeg
+tags:
+  - festival
 ---

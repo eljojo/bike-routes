@@ -8,4 +8,6 @@ poster_height: 1667
 poster_content_type: image/jpeg
 organizer: bike-race-ottawa
 previous_event: 2024/2024-preston-street-criterium
+tags:
+  - criterium
 ---

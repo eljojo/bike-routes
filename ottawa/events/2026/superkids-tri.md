@@ -16,4 +16,6 @@ organizer:
   name: Somersault Events
   website: https://www.somersault.ca
   instagram: somersault_ca
+tags:
+  - triathlon
 ---

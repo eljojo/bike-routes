@@ -8,4 +8,6 @@ location: Vernon Recreation Centre & Dev Centre
 organizer: ms-canada
 edition: Ottawa to Cornwall (2026)
 previous_event: 2024/ottawa-to-brockville-2024-ms-bike
+tags:
+  - charity-ride
 ---

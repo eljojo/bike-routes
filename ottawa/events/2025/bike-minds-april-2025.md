@@ -10,6 +10,8 @@ poster_key: 9tjhae1ywby273aqsoo0kvvlqkmy
 poster_width: 1925
 poster_height: 717
 poster_content_type: image/png
+tags:
+  - social
 ---
 
 Get ready for an evening of inspiring stories and community vibes at the Ottawa Bike Cafe!

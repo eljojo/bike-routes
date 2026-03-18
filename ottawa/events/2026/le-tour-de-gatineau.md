@@ -9,4 +9,6 @@ poster_height: 1294
 poster_content_type: image/png
 organizer: tour-de-gatineau
 previous_event: 2023/criterium
+tags:
+  - tour
 ---

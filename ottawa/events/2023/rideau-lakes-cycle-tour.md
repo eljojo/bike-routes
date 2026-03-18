@@ -10,4 +10,6 @@ poster_key: ylv54502kz0oppdc5u4o578s0rsb
 poster_width: 2048
 poster_height: 1365
 poster_content_type: image/jpeg
+tags:
+  - tour
 ---

@@ -10,4 +10,6 @@ poster_key: nhdludotopppldkxa4oz80godz34
 poster_width: 1536
 poster_height: 1152
 poster_content_type: image/jpeg
+tags:
+  - gran-fondo
 ---

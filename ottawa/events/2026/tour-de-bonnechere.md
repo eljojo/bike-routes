@@ -10,4 +10,6 @@ poster_key: wd7rcxa8
 poster_width: 481
 poster_height: 472
 poster_content_type: image/jpeg
+tags:
+  - tour
 ---

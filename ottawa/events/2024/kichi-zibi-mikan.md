@@ -10,6 +10,8 @@ poster_key: vg0lolnxvwugco5wudoqfxxe2zny
 poster_width: 2048
 poster_height: 1372
 poster_content_type: image/jpeg
+tags:
+  - tour
 ---
 
 The Kichi Zībī Mīkan runs along the south side of the Ottawa River, just west of the downtown core. It winds its way past popular shoreline destinations such as Remic Rapids Park, Bate Island, Westboro Beach, Deschênes Rapids Lookout and Mud Lake.

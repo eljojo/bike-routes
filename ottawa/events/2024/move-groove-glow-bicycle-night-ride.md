@@ -11,6 +11,8 @@ poster_key: bpbx2alc6iyjl2s7zi4t3oum1j55
 poster_width: 720
 poster_height: 1284
 poster_content_type: image/jpeg
+tags:
+  - group-ride
 ---
 
 Get ready to light up the night at the Glow Bicycle Night Ride! Join us at the National Gallery Canana for a fun-filled evening of cycling under the stars. Grab your glow sticks, deck out your bike, and let's hit the road together. Whether you're a seasoned cyclist or just looking for a good time, this event is perfect for riders of all levels. Don't miss out on this unique experience to Moove & Groove with fellow bike enthusiasts. See you there!

@@ -14,4 +14,6 @@ poster_content_type: image/jpeg
 organizer:
   name: Terry Fox Ride of Hope
   website: https://ride.terryfox.ca
+tags:
+  - gravel
 ---

@@ -9,4 +9,6 @@ poster_key: vu3oeuiqy4z7wf3cdi7chqh25rmg
 poster_width: 940
 poster_height: 470
 poster_content_type: image/jpeg
+tags:
+  - charity-ride
 ---

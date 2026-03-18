@@ -10,6 +10,8 @@ poster_height: 1952
 poster_content_type: image/png
 organizer: canadianshieldbikepacking
 previous_event: 2025/2025-bikepacking-summit
+tags:
+  - bikepacking
 ---
 
 https://www.bikepackadventures.ca/summit

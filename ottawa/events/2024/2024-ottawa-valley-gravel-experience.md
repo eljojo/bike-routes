@@ -12,6 +12,8 @@ poster_key: 7r43z9wf0fh0f4pjlt4xjilapc5j
 poster_width: 1080
 poster_height: 1080
 poster_content_type: image/jpeg
+tags:
+  - gravel
 ---
 
 Presented by Kunstadt Sports. Visit gravelcup.com for more details.

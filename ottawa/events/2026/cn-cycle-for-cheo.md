@@ -12,4 +12,6 @@ poster_width: 2072
 poster_height: 1834
 poster_content_type: image/png
 organizer: cn
+tags:
+  - charity-ride
 ---

@@ -10,4 +10,6 @@ poster_key: nmyrz2nso8btpybrtdq86n9rh79h
 poster_width: 1080
 poster_height: 1080
 poster_content_type: image/jpeg
+tags:
+  - social
 ---

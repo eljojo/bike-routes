@@ -9,6 +9,8 @@ poster_key: z4a62xcjdb3kf1zhvotj5fsr867v
 poster_width: 1600
 poster_height: 1200
 poster_content_type: image/jpeg
+tags:
+  - advocacy
 ---
 
 The Queen Elizabeth Driveway runs along the west side of the Rideau Canal. It is connected to the Capital Pathway network, which leads to nearby Patterson Creek Park and Commissioners Park.

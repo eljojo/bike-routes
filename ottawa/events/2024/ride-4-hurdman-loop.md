@@ -10,4 +10,6 @@ poster_key: xiw2f1whwc299o9nq07ra3b12xkv
 poster_width: 1080
 poster_height: 1080
 poster_content_type: image/jpeg
+tags:
+  - group-ride
 ---

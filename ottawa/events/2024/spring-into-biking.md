@@ -11,6 +11,8 @@ poster_key: 797yt6i4uwiok64aa3b8g4lzrtwe
 poster_width: 1080
 poster_height: 1080
 poster_content_type: image/jpeg
+tags:
+  - advocacy
 ---
 
 Join us for our first event of the season at Re-Cycles. Bring your bike if you can, or get tips from us on what to think about. Also bring $2 if you want a QBC sticker. The event is free and open to all.

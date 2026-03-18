@@ -11,4 +11,6 @@ poster_width: 1536
 poster_height: 1152
 poster_content_type: image/jpeg
 organizer: log-driver-s-waltz
+tags:
+  - gran-fondo
 ---

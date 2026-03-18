@@ -11,4 +11,6 @@ poster_width: 2354
 poster_height: 1194
 poster_content_type: image/png
 organizer: log-driver-s-waltz
+tags:
+  - brevet
 ---

@@ -12,4 +12,6 @@ poster_key: mp6082u0kfolt8jtnwliinjwjxih
 poster_width: 1080
 poster_height: 1080
 poster_content_type: image/jpeg
+tags:
+  - criterium
 ---

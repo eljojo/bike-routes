@@ -12,4 +12,6 @@ poster_content_type: image/jpeg
 organizer:
   name: Somersault Events
   website: https://www.somersault.ca
+tags:
+  - triathlon
 ---

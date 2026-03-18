@@ -9,4 +9,6 @@ poster_key: upew23kcdt6xdi713xxb9b8edne4
 poster_width: 863
 poster_height: 863
 poster_content_type: image/jpeg
+tags:
+  - social
 ---

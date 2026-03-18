@@ -10,6 +10,8 @@ poster_key: kdasfd1xuatrm9sg143nifn2foq5
 poster_width: 1080
 poster_height: 1080
 poster_content_type: image/jpeg
+tags:
+  - bikepacking
 ---
 
 Meet us at Paterson Creek Park for a rundown on what some of us pack for our trips, what you should think about, and ideas for how you can do it too.

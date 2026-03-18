@@ -13,4 +13,6 @@ poster_content_type: image/png
 organizer:
   name: Ride with Rendall
   website: https://ridewithrendall.wordpress.com
+tags:
+  - gran-fondo
 ---

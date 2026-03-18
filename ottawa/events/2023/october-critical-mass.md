@@ -11,4 +11,6 @@ poster_key: nscra6lhs3jy1d9nv2or8efq4mgc
 poster_width: 2048
 poster_height: 2048
 poster_content_type: image/jpeg
+tags:
+  - critical-mass
 ---

@@ -11,4 +11,6 @@ poster_key: 3qew5w1qly1e38gjopsl16vlmidt
 poster_width: 940
 poster_height: 470
 poster_content_type: image/jpeg
+tags:
+  - workshop
 ---

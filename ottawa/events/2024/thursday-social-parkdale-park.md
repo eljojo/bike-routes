@@ -10,6 +10,8 @@ poster_key: n4i27gpseh3jjipcmaw7pe70gosh
 poster_width: 1080
 poster_height: 1080
 poster_content_type: image/jpeg
+tags:
+  - social
 ---
 
 See you Thursday! We roll out from the park area of Parkdale Park at 7pm sharp-ish.

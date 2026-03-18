@@ -11,6 +11,8 @@ poster_key: xhfzmut3kdm78gqlby25ovdwsid1
 poster_width: 1170
 poster_height: 1458
 poster_content_type: image/png
+tags:
+  - advocacy
 ---
 
 Family Friendly Bike Ride

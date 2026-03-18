@@ -12,6 +12,8 @@ poster_key: qb1m1hxgz7ikxlbz6erst7c08rf7
 poster_width: 1080
 poster_height: 1080
 poster_content_type: image/jpeg
+tags:
+  - festival
 ---
 
 The Department of Modern Languages and Literatures at the University of Ottawa presents a guest

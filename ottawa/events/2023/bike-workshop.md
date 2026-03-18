@@ -9,4 +9,6 @@ poster_key: uboeip5iie7d0oo0ya6ped6javzr
 poster_width: 640
 poster_height: 640
 poster_content_type: image/jpeg
+tags:
+  - workshop
 ---

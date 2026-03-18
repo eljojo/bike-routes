@@ -10,6 +10,8 @@ poster_key: 50vsfe2y0n0vd9fhg0lmfoncmvbu
 poster_width: 1080
 poster_height: 1080
 poster_content_type: image/jpeg
+tags:
+  - social
 ---
 
 See you Thursday. We roll from Hurdman Station at 7pm sharp-ish. (Find us on the quiet path side of the station, not the noisy bus side)

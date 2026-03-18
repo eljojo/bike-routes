@@ -8,4 +8,6 @@ poster_key: l931hjpwlmggunpaictj3ut241yp
 poster_width: 4167
 poster_height: 4109
 poster_content_type: image/jpeg
+tags:
+  - advocacy
 ---

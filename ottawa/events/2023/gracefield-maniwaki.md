@@ -10,4 +10,6 @@ poster_key: ze45qz9qyimzym3vk0quyhamvlj3
 poster_width: 600
 poster_height: 338
 poster_content_type: image/webp
+tags:
+  - group-ride
 ---

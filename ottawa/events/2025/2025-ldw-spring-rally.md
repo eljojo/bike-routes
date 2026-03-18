@@ -9,4 +9,6 @@ poster_key: i193ed34f2nqu9sskhz4r4i93voe
 poster_width: 825
 poster_height: 800
 poster_content_type: image/jpeg
+tags:
+  - brevet
 ---

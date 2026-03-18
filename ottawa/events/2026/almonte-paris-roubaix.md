@@ -15,6 +15,8 @@ poster_width: 768
 poster_height: 512
 poster_content_type: image/png
 organizer: ottawa-bicycle-club
+tags:
+  - race
 ---
 
 https://ridewithgps.com/routes/46020541

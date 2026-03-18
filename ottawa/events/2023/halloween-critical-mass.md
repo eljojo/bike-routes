@@ -10,4 +10,6 @@ poster_key: z695nqum5zgmlgq4yam1qeetlow7
 poster_width: 1080
 poster_height: 1080
 poster_content_type: image/jpeg
+tags:
+  - critical-mass
 ---

@@ -7,4 +7,6 @@ end_time: "21:00"
 registration_url: https://obcrides.ca/events/3180
 location: Lone Star
 organizer: ottawa-bicycle-club
+tags:
+  - social
 ---

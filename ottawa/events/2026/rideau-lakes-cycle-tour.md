@@ -13,4 +13,6 @@ poster_height: 1473
 poster_content_type: image/jpeg
 organizer: ottawa-bicycle-club
 previous_event: 2025/2025-rideau-lakes-tour
+tags:
+  - tour
 ---

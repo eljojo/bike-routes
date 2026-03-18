@@ -10,6 +10,8 @@ poster_key: 07gncnj3fw67hmmjzaruft8tus0w
 poster_width: 1080
 poster_height: 1350
 poster_content_type: image/jpeg
+tags:
+  - group-ride
 ---
 
 Come be a part of our first group ride of the season- Meet new people and see old friends at brunch, then we’ll go for a chill ride! 👌😎🐌

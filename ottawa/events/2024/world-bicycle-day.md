@@ -10,4 +10,6 @@ poster_key: ynh9gcuor6zo83ruac25ugpg60m7
 poster_width: 1650
 poster_height: 1275
 poster_content_type: image/jpeg
+tags:
+  - advocacy
 ---

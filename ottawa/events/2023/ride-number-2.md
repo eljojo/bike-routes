@@ -8,4 +8,6 @@ poster_key: 5ntt23btaieq5acb5ahdi7enoy7c
 poster_width: 940
 poster_height: 470
 poster_content_type: image/jpeg
+tags:
+  - group-ride
 ---

@@ -9,4 +9,6 @@ poster_key: yj7sesfn0jibs442rjno6mufstcn
 poster_width: 1080
 poster_height: 1350
 poster_content_type: image/jpeg
+tags:
+  - criterium
 ---

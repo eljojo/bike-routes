@@ -11,4 +11,6 @@ poster_width: 2410
 poster_height: 1064
 poster_content_type: image/png
 organizer: nomadesduparc
+tags:
+  - gravel
 ---
