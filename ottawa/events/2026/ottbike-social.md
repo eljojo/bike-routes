@@ -1,19 +1,27 @@
 ---
-name: "#ottbikesocial March 19th"
-start_date: "2026-03-19"
+name: "#OttBike Social — Winter 2026"
+start_date: "2026-01-08"
+end_date: "2026-03-19"
 start_time: "19:00"
+meet_time: "18:45"
 distances: ~10km
-location: Ottawa South Community Centre, 260 Sunnyside
-event_url: https://www.instagram.com/ottbikesocial/p/DV_LhNHDW-y/
-poster_key: 91pzgepa
-poster_content_type: image/webp
+organizer: ottbikesocial
 tags:
   - social
-organizer:
-  name: "#OttBike Social"
-  instagram: ottbikesocial
-  photo_key: bql083nz
-  photo_content_type: image/jpeg
-  photo_width: 1080
-  photo_height: 1080
+poster_key: 91pzgepa
+poster_content_type: image/webp
+series:
+  schedule:
+    - date: "2026-01-08"
+      location: Overbrook CC, 33 Quill
+    - date: "2026-01-22"
+      location: Hintonburg CC, 1064 Wellington W.
+    - date: "2026-02-05"
+      location: Ottawa South CC, 260 Sunnyside
+    - date: "2026-02-19"
+      location: Overbrook CC, 33 Quill
+    - date: "2026-03-19"
+      location: Ottawa South CC, 260 Sunnyside
 ---
+
+Slow bike rides with nice people. 10 km, about an hour, about 10 km/h. Charge your lights.
