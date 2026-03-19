@@ -3,6 +3,7 @@ name: Ruta Río Chillán
 tagline: Un paseo junto al río Chillán
 status: published
 distance_km: 8.5
+homepage_featured: true
 tags:
   - río
   - urbano

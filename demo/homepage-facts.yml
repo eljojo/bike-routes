@@ -1,0 +1,13 @@
+# Demo homepage facts for E2E testing
+facts:
+  - template: "Hay {count} cafés cerca de las rutas"
+    query:
+      type: places
+      filter:
+        category: cafe
+  - template: "La ruta más larga tiene {distance_km} km"
+    query:
+      type: routes
+      sort: distance_km
+      direction: desc
+  - text: "Chillán está en el corazón del Valle del Ñuble — perfecto para ciclismo todo el año"
