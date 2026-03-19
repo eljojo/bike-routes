@@ -66,3 +66,8 @@ tagline: find people to ride your bike with!
 - [Prescott Russel Trail](https://www.ontariotrails.on.ca/trails/view/prescott-and-russell-recreational-trail)
 - [Official NCC Cycling Map](https://ncc-ccn.maps.arcgis.com/apps/View/index.html?appid=d69460c2d8df472db1a456183bc62fcf)
 - [Let's Go Cargo Bike Rentals](https://www.letsgocargo.ca) - Great for trying out cargo bikes, or for a day trip with the family!
+
+### Local Bikepacking Gear
+
+- [Calad](https://www.calad.ca/)
+- [Howling Huron](https://www.instagram.com/howlinghuron/)
