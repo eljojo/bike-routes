@@ -1,5 +1,5 @@
 ---
-name: Nepean BMX Local Race Night
+name: BMX Local Race Night
 start_date: "2026-05-07"
 end_date: "2026-10-31"
 start_time: "19:00"
@@ -10,6 +10,7 @@ organizer: nepean-bmx
 tags:
   - bmx
   - race
+  - family-friendly
 series:
   schedule:
     - date: "2026-05-07"

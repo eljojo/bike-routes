@@ -1,5 +1,5 @@
 ---
-name: Nepean BMX Provincial Qualifier
+name: BMX Provincial Qualifier
 start_date: "2026-07-11"
 start_time: "12:00"
 meet_time: "10:00"

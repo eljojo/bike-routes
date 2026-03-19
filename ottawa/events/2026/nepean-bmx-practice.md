@@ -1,5 +1,5 @@
 ---
-name: Nepean BMX Gate Practice
+name: BMX Gate Practice
 start_date: "2026-05-05"
 end_date: "2026-08-25"
 start_time: "18:15"
@@ -9,6 +9,7 @@ event_url: https://nepeanbmx.com
 organizer: nepean-bmx
 tags:
   - bmx
+  - family-friendly
 series:
   recurrence: weekly
   recurrence_day: tuesday

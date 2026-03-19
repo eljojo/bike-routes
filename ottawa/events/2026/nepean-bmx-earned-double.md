@@ -1,5 +1,5 @@
 ---
-name: Nepean BMX Earned Double
+name: BMX Earned Double
 start_date: "2026-07-10"
 start_time: "19:00"
 meet_time: "17:30"
