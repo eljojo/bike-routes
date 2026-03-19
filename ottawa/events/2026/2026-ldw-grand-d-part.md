@@ -13,6 +13,7 @@ poster_height: 1516
 tags:
   - bikepacking
   - gravel
+  - brevet
 organizer: log-driver-s-waltz
 ---
 
