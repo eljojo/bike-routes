@@ -7,4 +7,10 @@ status: published
 address: Municipalité De Duhamel, Duhamel, QC J0V 1G0, Canada
 website: https://www.sepaq.com/ct/sim/
 google_maps_url: https://maps.app.goo.gl/gKNdn6FNJb4dg2gS6
+vibe: Bring your towel — Duhamel swim stop
+good_for:
+  - swimming
+  - family
+  - destination
+  - picnic
 ---

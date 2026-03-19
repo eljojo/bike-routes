@@ -6,6 +6,12 @@ lng: -75.51276
 status: published
 address: Ridge Rd, Ottawa, ON K0A 1K0, Canada
 website: http://ncc-ccn.gc.ca/places/mer-bleue
-phone: "(613) 239-5000"
+phone: (613) 239-5000
 google_maps_url: https://maps.app.goo.gl/DzryCNjkeMfkF1Py9
+vibe: A good place to stretch your legs in Ottawa
+good_for:
+  - rest-stop
+  - family
+  - destination
+  - picnic
 ---

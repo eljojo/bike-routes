@@ -6,4 +6,7 @@ lng: -75.883475
 status: published
 address: Rifle Rd, Ottawa, ON K2K 2Z2, Canada
 google_maps_url: https://maps.google.com/?cid=16459800695757651160
+vibe: An easy place to start in Ottawa
+good_for:
+  - rest-stop
 ---

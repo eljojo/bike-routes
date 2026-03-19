@@ -6,4 +6,9 @@ lng: -76.319546
 status: published
 address: Chaffey's Lock, ON K0G 1E0, Canada
 google_maps_url: https://goo.gl/maps/n1rasRQS1PFFdPgdA
+vibe: Chaffey's Lock
+good_for:
+  - rest-stop
+  - destination
+  - picnic
 ---

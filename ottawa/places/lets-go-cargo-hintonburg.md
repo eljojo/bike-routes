@@ -7,4 +7,6 @@ status: published
 website: https://www.letsgocargo.ca/
 phone: 1-343-600-2453
 google_maps_url: https://maps.app.goo.gl/tgJeKgTVokMzAio97
+vibe: Let's Go Cargo - Pickup Spot
+good_for: []
 ---

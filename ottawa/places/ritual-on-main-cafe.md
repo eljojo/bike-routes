@@ -6,6 +6,11 @@ lng: -75.92104
 status: published
 address: 1510 Stittsville Main St, Stittsville, ON K2S 1N9, Canada
 website: http://www.ritualmain.com/
-phone: "(613) 294-9592"
+phone: (613) 294-9592
 google_maps_url: https://maps.app.goo.gl/9PV5mHW1T3bvhtbz5
+vibe: Coffee and a quiet pause in Stittsville
+good_for:
+  - rest-stop
+  - refuel
+  - destination
 ---

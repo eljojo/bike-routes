@@ -5,6 +5,10 @@ lat: 45.520164
 lng: -76.229919
 status: published
 address: Rue Quyon, Quyon, QC J0X 2V0, Canada
-phone: "(819) 712-8983"
+phone: (819) 712-8983
 google_maps_url: https://maps.google.com/?cid=8948029969452694591
+vibe: A place to stop for the view in Quyon
+good_for:
+  - refuel
+  - destination
 ---

@@ -6,6 +6,11 @@ lng: -76.578673
 status: published
 address: 1715 Calabogie Rd, Burnstown, ON K0J 1G0, Canada
 website: http://neatmusicandcoffee.ca/
-phone: "(613) 433-9960"
+phone: (613) 433-9960
 google_maps_url: https://maps.app.goo.gl/kXi4pYnnxnrjfUNm9
+vibe: Coffee and a quiet pause in Calabogie
+good_for:
+  - rest-stop
+  - refuel
+  - destination
 ---

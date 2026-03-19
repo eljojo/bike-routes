@@ -6,6 +6,11 @@ lng: -75.716331
 status: published
 address: 2321 Andrew St, Ottawa, ON K0A 2T0, Canada
 website: https://www.facebook.com/profile.php?id=61560905919594&mibextid=LQQJ4d
-phone: "(613) 489-3333"
+phone: (613) 489-3333
 google_maps_url: https://maps.app.goo.gl/w1YjjsKJ4XqbEwZ59
+vibe: A solid stop for something hot in Ottawa
+good_for:
+  - rest-stop
+  - refuel
+  - destination
 ---

@@ -7,4 +7,9 @@ status: published
 address: 273 Britannia Rd, Ottawa, ON K2B 5X3, Canada
 website: https://www.facebook.com/thebeachconers/
 google_maps_url: https://maps.google.com/?cid=14108565727548001887
+vibe: Ice cream in summer, hot chocolate in fall — a must-stop
+good_for:
+  - family
+  - refuel
+  - destination
 ---

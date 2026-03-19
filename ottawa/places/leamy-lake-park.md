@@ -6,6 +6,12 @@ lng: -75.719189
 status: published
 address: Prom. du Lac-Leamy, Gatineau, QC J8X 3P5, Canada
 website: https://ccn-ncc.gc.ca/endroits/parc-du-lac-leamy
-phone: "(613) 239-5000"
+phone: (613) 239-5000
 google_maps_url: https://maps.google.com/?cid=1171817757050832243
+vibe: Lake Leamy in Gatineau
+good_for:
+  - swimming
+  - family
+  - destination
+  - picnic
 ---
