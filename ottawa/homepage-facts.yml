@@ -3,6 +3,8 @@
 # Facts with queries that return zero results are silently skipped.
 
 facts:
+  # --- Query-powered (computed) ---
+
   - template: "there are {count} cafes along the routes?"
     link: "/map?category=cafe"
     query:
@@ -28,9 +30,6 @@ facts:
         category: beach
       count_as: count
 
-  - template: "the Quyon Ferry Loop crosses provinces by ferry?"
-    link: "/routes/quyon-ferry-loop"
-
   - template: "there are {count} ice cream stops mapped along the routes?"
     link: "/map?category=ice-cream"
     query:
@@ -48,3 +47,45 @@ facts:
     query:
       type: organizers
       count_as: count
+
+  - template: "{count} routes pass within reach of a swim spot?"
+    link: "/map?category=beach"
+    query:
+      type: routes_near_places
+      filter:
+        category: beach
+
+  - template: "{name} passes by {count} places to stop — the most of any route?"
+    link_from: slug
+    query:
+      type: route_place_density
+      filter:
+        category: cafe
+
+  - template: "there are {count} lookouts mapped along the routes?"
+    link: "/map?category=lookout"
+    query:
+      type: places
+      filter:
+        category: lookout
+      count_as: count
+
+  # --- Hand-written (editorial) ---
+
+  - template: "the Quyon Ferry Loop crosses provinces by ferry?"
+    link: "/routes/quyon-ferry-loop"
+
+  - template: "you can bikepack to Plaisance with the Bienvenue Cyclistes program?"
+    link: "/routes/ottawa-to-plaisance"
+
+  - template: "the descent from Pink Lake can reach 60 km/h?"
+    link: "/routes/pink-lake-in-gatineau-park"
+
+  - template: "the Rideau Lakes Cycle Tour is one of Canada's oldest cycling events?"
+    link: "/events/2024/rideau-lakes-cycle-tour"
+
+  - template: "you can ride from Ottawa to Carleton Place and Smith Falls on rail trails?"
+    link: "/routes/ottawa-to-carleton-place-and-smith-falls"
+
+  - template: "the Champlain Lookout view is best at sunset?"
+    link: "/routes/gatineau-park-meech-lake-and-champlain-lookout"
