@@ -30,6 +30,11 @@ bounds:
   south: 44.58
   east: -1.43
   west: -76.74
+page_posters:
+  home: meta/ottawa/home.png
+  about: meta/ottawa/about.png
+  calendar: meta/ottawa/calendar.png
+  map: meta/ottawa/map.png
 place_categories:
   adventure:
   - park
