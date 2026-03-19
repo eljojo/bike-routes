@@ -1,5 +1,5 @@
 ---
-name: Bike Mechanics 101 — Nomades du Parc
+name: Bike Mechanics 101
 start_date: "2026-05-06"
 start_time: "18:00"
 end_date: "2026-06-03"
