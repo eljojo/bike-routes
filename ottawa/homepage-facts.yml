@@ -1,0 +1,50 @@
+# Did-you-know facts for the Ottawa homepage
+# Templates use {placeholders} resolved against content collections at build time.
+# Facts with queries that return zero results are silently skipped.
+
+facts:
+  - template: "there are {count} cafes along the routes?"
+    link: "/map?category=cafe"
+    query:
+      type: places
+      filter:
+        category: cafe
+      count_as: count
+
+  - template: "{name} is {distance_km} km — the longest route on the site?"
+    link_from: slug
+    query:
+      type: routes
+      sort: distance_km
+      order: desc
+      pick: first
+      fields: [name, distance_km, slug]
+
+  - template: "there are {count} beaches and swimming spots along the routes?"
+    link: "/map?category=beach"
+    query:
+      type: places
+      filter:
+        category: beach
+      count_as: count
+
+  - template: "the Quyon Ferry Loop crosses provinces by ferry?"
+    link: "/routes/quyon-ferry-loop"
+
+  - template: "there are {count} ice cream stops mapped along the routes?"
+    link: "/map?category=ice-cream"
+    query:
+      type: places
+      filter:
+        category: ice-cream
+      count_as: count
+
+  - template: "Ottawa by Bike covers {total_km} km of cycling routes?"
+    query:
+      type: aggregate
+
+  - template: "there are {count} cycling communities in Ottawa?"
+    link: "/communities"
+    query:
+      type: organizers
+      count_as: count
