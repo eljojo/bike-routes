@@ -13,6 +13,7 @@ tagline: find people to ride your bike with!
 - [Ottawa Women's Cycling Network](https://www.facebook.com/groups/495913171101226/)
 - [Ottawa MTB Chicks](https://www.facebook.com/groups/mtbchicksottawa/)
 - [Critical Mass Ottawa](https://www.facebook.com/groups/criticalmassottawa/)
+- [Centretown Gravel Rides](https://rides.rafuse.dev) - a spot for organizing gravel rides in the Ottawa area
 - [Step Thru](https://stepthrucc.com/)
 
 ### Social Media
