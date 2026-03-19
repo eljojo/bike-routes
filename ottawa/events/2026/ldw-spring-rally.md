@@ -1,7 +1,15 @@
 ---
-name: LDW Spring Rally - First Date
+name: LDW Spring Rally
 start_date: "2026-04-24"
-end_date: "2026-04-26"
+end_date: "2026-05-17"
+series:
+  schedule:
+    - date: "2026-04-24"
+      end_date: "2026-04-26"
+    - date: "2026-05-01"
+      end_date: "2026-05-03"
+    - date: "2026-05-15"
+      end_date: "2026-05-17"
 registration_url: https://docs.google.com/forms/d/e/1FAIpQLSeN4OdEyE7Igpj2Bc7y9sT_D1hXUJR10SxBR4pD69r79c694Q/viewform?usp=header
 distances: 150-180 km
 event_url: http://www.logdriverswaltz.ca/spring-rallies-2026.html
