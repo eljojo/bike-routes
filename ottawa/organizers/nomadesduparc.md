@@ -6,4 +6,10 @@ photo_key: blv80287
 photo_content_type: image/jpeg
 photo_width: 320
 photo_height: 320
+tagline: Gravel, mountain biking, and hands-on bike skills
+tags:
+  - gravel
+  - mountain-biking
+  - workshop
+  - group-rides
 ---
