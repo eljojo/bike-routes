@@ -13,9 +13,12 @@ poster_key: b79rk8wc
 poster_content_type: image/png
 poster_width: 1098
 poster_height: 788
+tags:
+  - charity-ride
 organizer:
   name: Parkinson Canada
   website: https://donate.parkinson.ca
+  instagram: parkinsoncanada
 ---
 
 20km Route - https://ridewithgps.com/routes/49597710
