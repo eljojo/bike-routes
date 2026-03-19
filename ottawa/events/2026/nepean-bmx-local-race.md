@@ -1,16 +1,9 @@
 ---
 name: BMX Local Race Night
 start_date: "2026-05-07"
-end_date: "2026-10-31"
 start_time: "19:00"
 meet_time: "18:00"
-location: Nepean BMX Track, 93 Houlahan St, Barrhaven
-event_url: https://nepeanbmx.com
-organizer: nepean-bmx
-tags:
-  - bmx
-  - race
-  - family-friendly
+end_date: "2026-10-31"
 series:
   schedule:
     - date: "2026-05-07"
@@ -61,6 +54,17 @@ series:
     - date: "2026-10-31"
       start_time: "13:00"
       meet_time: "12:00"
+location: Nepean BMX Track, 93 Houlahan St, Barrhaven
+event_url: https://nepeanbmx.com
+poster_key: nls2ai3y
+poster_content_type: image/jpeg
+poster_width: 1200
+poster_height: 800
+tags:
+  - bmx
+  - race
+  - family-friendly
+organizer: nepean-bmx
 ---
 
 Race nights at the Nepean BMX track in Barrhaven, running May through October. Thursday evenings through the summer — signup from 6:00 to 6:30 pm, racing at 7:00 pm. Times shift earlier in the fall, and Saturday afternoons start in late September. All ages welcome.
