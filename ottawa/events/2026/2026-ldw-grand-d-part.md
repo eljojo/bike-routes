@@ -4,6 +4,7 @@ start_date: "2026-08-29"
 start_time: "08:00"
 registration_url: http://www.logdriverswaltz.ca/2026-grand-depart.html
 distances: 385 KM, 805KM, 1610 KM
+map_url: https://ridewithgps.com/routes/50254215
 location: ALMONTE/MISSISSIPPI MILLS, ONTARIO
 previous_event: 2025/2025-ldw
 poster_key: f3ei5gbr
