@@ -4,6 +4,8 @@ instagram: canadianshieldbikepacking
 social_links:
   - platform: linktree
     url: https://linktr.ee/canadianshieldbikepacking
+  - platform: instagram
+    url: https://instagram.com/canadianshieldbikepacking
 photo_key: lf4iloe1
 photo_content_type: image/jpeg
 photo_width: 320
@@ -13,4 +15,6 @@ tags:
   - touring
   - gravel
   - social
+featured: true
+hidden: false
 ---
