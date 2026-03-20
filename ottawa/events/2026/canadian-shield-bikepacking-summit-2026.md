@@ -15,3 +15,5 @@ organizer: canadianshieldbikepacking
 ---
 
 Canada's only bikepacking summit, now in its fourth year. Founded by Chris Panasky of Bikepack Adventures, the summit brings together experienced and aspiring bikepackers for a weekend of presentations, workshops, group rides, and a gear swap at Centre Vorlage in Wakefield, Quebec — about 40 km north of Ottawa. Open to all experience levels, with a strong focus on inclusion and growing the sport.
+
+https://www.youtube.com/watch?v=wbuzk10SfAw
