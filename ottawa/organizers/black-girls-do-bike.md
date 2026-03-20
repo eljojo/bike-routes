@@ -7,4 +7,14 @@ website: https://forms.gle/aLfPtQKWwcVqWyte8
 tags:
   - group-rides
   - social
+hidden: false
+social_links:
+  - platform: instagram
+    url: https://instagram.com/blackgirlsbiking_ncr
+  - platform: website
+    url: https://forms.gle/aLfPtQKWwcVqWyte8
+photo_key: r26yqbro
+photo_width: 1080
+photo_height: 1080
+photo_content_type: image/jpeg
 ---
