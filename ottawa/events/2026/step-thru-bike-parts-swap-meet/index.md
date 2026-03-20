@@ -2,7 +2,9 @@
 name: Step Thru Bike Parts Swap Meet
 start_date: "2026-04-19"
 registration_url: https://www.zeffy.com/en-CA/ticketing/parts-swap
-location: 715 Cooper St, Ottawa, ON K1R 5J5, Canada
+start_time: "11:00"
+end_time: "16:00"
+location: Rideau Curling Club, 715 Cooper St, Ottawa, ON K1R 5J5, Canada
 event_url: https://stepthrucc.com/events
 poster_key: 4rf759zg
 poster_content_type: image/png
