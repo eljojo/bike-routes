@@ -8,4 +8,9 @@ photo_key: lf4iloe1
 photo_content_type: image/jpeg
 photo_width: 320
 photo_height: 320
+tagline: Bikepacking stories, skills, and campfire plans
+tags:
+  - touring
+  - gravel
+  - social
 ---
