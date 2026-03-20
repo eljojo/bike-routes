@@ -1,5 +1,5 @@
 ---
-name: Cycling Guide
+name: Cycling Guide App
 website: https://cyclingguide.org
 tagline: Free app that finds low-stress cycling routes so you can ride with less traffic
 tags:
@@ -7,6 +7,14 @@ tags:
 social_links:
   - platform: mastodon
     url: https://mstdn.ca/@CyclingGuide
+  - platform: website
+    url: https://cyclingguide.org
+featured: false
+hidden: false
+photo_key: cedidg7x
+photo_width: 400
+photo_height: 400
+photo_content_type: image/png
 ---
 
 Cycling Guide is a free mobile app by the Cycling Guide Foundation that gives you cycling-friendly routes wherever you need to go in Ottawa. It uses a Level of Traffic Stress framework and OpenStreetMap data to find routes that stick to bike lanes, multi-use paths, and quieter streets — so you spend less time dealing with car traffic.
