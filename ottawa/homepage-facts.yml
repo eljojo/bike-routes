@@ -97,9 +97,9 @@ facts:
     link_text: "Rideau Lakes Cycle Tour"
 
   - template: "you can ride from Ottawa to Carleton Place and Smith Falls on rail trails?"
-    link: "/routes/ottawa-to-carleton-place-and-smith-falls"
+    link: "/routes/carleton-place-and-smith-falls"
     link_text: "Ottawa to Carleton Place and Smith Falls"
 
   - template: "the Champlain Lookout view is best at sunset?"
-    link: "/routes/gatineau-park-meech-lake-and-champlain-lookout"
+    link: "/routes/gatineau-meech-lake-champlain-lookout"
     link_text: "Champlain Lookout"
