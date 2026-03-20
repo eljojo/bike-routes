@@ -1,5 +1,5 @@
 ---
-name: "Step Thru Train Ride"
+name: Step Thru Train Ride
 start_date: "2025-07-06"
 start_time: "13:10"
 end_date: "2025-07-06"
