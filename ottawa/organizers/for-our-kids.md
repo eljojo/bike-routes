@@ -11,4 +11,9 @@ tags:
   - advocacy
   - group-rides
   - social
+featured: true
+hidden: false
+social_links:
+  - platform: instagram
+    url: https://instagram.com/for_our_kids_ottawa
 ---
