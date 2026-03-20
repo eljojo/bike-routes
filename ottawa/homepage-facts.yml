@@ -42,9 +42,9 @@ facts:
         category: ice-cream
       count_as: count
 
-  - template: "Ottawa by Bike covers {total_km} km of cycling routes?"
-    query:
-      type: aggregate
+  # - template: "Ottawa by Bike covers {total_km} km of cycling routes?"
+  #   query:
+  #     type: aggregate
 
   - template: "there are {count} cycling communities in Ottawa?"
     link: "/communities"
