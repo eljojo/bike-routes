@@ -11,6 +11,7 @@ tags:
 created_at: "2022-10-15"
 updated_at: "2024-05-21"
 tagline: "🏆 Ride of the Year: 2020"
+homepage_featured: true
 variants:
   - name: Easy Loop around the Canal
     gpx: main.gpx

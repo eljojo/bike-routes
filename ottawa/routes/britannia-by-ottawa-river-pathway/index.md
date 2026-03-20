@@ -11,6 +11,7 @@ tags:
 created_at: "2022-10-15"
 updated_at: "2025-08-12"
 tagline: "🏆 Ride of the Year: 2021"
+homepage_featured: true
 variants:
   - name: Year-long Bike Path
     gpx: main.gpx

@@ -9,6 +9,7 @@ tags:
 created_at: "2022-10-17"
 updated_at: "2024-05-21"
 tagline: escape to endless gravel and wilderness
+homepage_featured: true
 variants:
   - name: Greenbelt 🌳
     gpx: main.gpx
