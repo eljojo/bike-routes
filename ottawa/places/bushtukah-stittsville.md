@@ -8,7 +8,6 @@ address: 5607 Hazeldean Rd, Stittsville, ON K2S 0P5, Canada
 website: http://www.bushtukah.com/
 phone: (613) 831-3604
 google_maps_url: https://goo.gl/maps/fnseNJ1pP2LYEqow7
-vibe: Bushtukah - Stittsville — useful to know about before a long ride
 good_for:
   - rest-stop
   - supplies

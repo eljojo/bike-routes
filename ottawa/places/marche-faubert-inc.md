@@ -9,7 +9,6 @@ website: >-
   https://montpellier.ca/organisation/consultation/DDE031C2-EB83-4495-AEE9-CF3F90BD8808
 phone: (819) 428-3554
 google_maps_url: https://maps.app.goo.gl/s4nGKwfQaxEmWPSZA
-vibe: A solid stop for something hot
 good_for:
   - rest-stop
   - refuel

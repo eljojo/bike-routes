@@ -8,7 +8,6 @@ address: 122 Bridge St, Carleton Place, ON K7C 2V5, Canada
 website: http://foundrycollective.ca/
 phone: (613) 703-8964
 google_maps_url: https://maps.app.goo.gl/iuV8hAq3VzX6NN3w6
-vibe: Coffee and a quiet pause in Carleton Place
 good_for:
   - rest-stop
   - refuel

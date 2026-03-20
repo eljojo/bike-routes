@@ -59,6 +59,10 @@ tagline: find people to ride your bike with!
 - [Log Driver's Waltz](https://www.logdriverswaltz.ca) (Bikepacking challenge + community)
 - [Canadian Shield Bikepacking Summit](https://www.bikepackadventures.ca/summit) (Conference for bikepacking)
 
+### Lessons and Coaching
+
+- [RideOttawa](https://www.rideottawa.com) - certified mountain bike instruction and training
+
 ### Other links
 
 - [Randonneurs Ontario](https://randonneursontario.ca/routes/ottroutes.html)

@@ -8,7 +8,6 @@ address: 100 Rang Malo, Plaisance, QC J0V 1S0, Canada
 website: https://www.sepaq.com/plaisance
 phone: (819) 427-5350
 google_maps_url: https://maps.app.goo.gl/AfcUzTAb3TREmQVM9
-vibe: Patrimoine et Chutes de Plaisance in Plaisance
 good_for:
   - destination
   - view

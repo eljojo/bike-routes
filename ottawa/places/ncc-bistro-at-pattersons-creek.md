@@ -6,7 +6,7 @@ lng: -75.6935
 status: published
 address: Patterson Creek Park, Ottawa, ON, Canada
 website: https://ncc-ccn.gc.ca/projects/ncc-bistro-at-patterson-creek-park
-vibe: A summer snack stop right along the canal loop
+vibe: Deserves more attention than it gets
 good_for:
   - refuel
   - rest-stop

@@ -1,5 +1,6 @@
 ---
 name: Queer Bike Club
+featured: true
 website: https://qbcottawa.org/
 instagram: queerbikeclubottawa
 photo_key: 0h76hiy9

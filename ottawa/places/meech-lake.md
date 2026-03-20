@@ -6,7 +6,7 @@ lng: -75.868525
 status: published
 address: O’Brien Beach, Chelsea, QC J0X, Canada
 google_maps_url: https://goo.gl/maps/Ejab9xt7eMXTEuEA9
-vibe: Cool off with a swim after the Gatineau Park climb
+vibe: Perfect for hot summer days — take a rewarding dip
 good_for:
   - swimming
   - family

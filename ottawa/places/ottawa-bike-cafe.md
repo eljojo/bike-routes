@@ -8,7 +8,6 @@ address: 79 Sparks St., Ottawa, ON K1P 5A5, Canada
 website: http://ottawabikecafe.com/
 phone: (343) 996-9487
 google_maps_url: https://goo.gl/maps/9pEBJ7F1iFEcZKxX7
-vibe: Coffee and a quiet pause in Ottawa
 good_for:
   - rest-stop
   - refuel

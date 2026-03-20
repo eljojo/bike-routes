@@ -9,7 +9,6 @@ website: >-
   https://www.pc.gc.ca/en/lhn-nhs/on/rideau?utm_source=gmb&utm_medium=rideau_lock21to23
 phone: (613) 269-4787
 google_maps_url: https://maps.app.goo.gl/hKDwcTgnBx9r4tn96
-vibe: An overnight stop near Merrickville
 good_for:
   - rest-stop
   - destination

@@ -8,6 +8,5 @@ address: Prince of Wales Bridge, Ottawa, ON, Canada
 website: >-
   https://ottawa.ca/en/city-hall/public-engagement/projects/chief-william-commanda-bridge-multi-use-pathway-and-rehabilitation-project
 google_maps_url: https://goo.gl/maps/9cNaDTZdjk7U4HNw6
-vibe: Chief William Commanda Bridge in Ottawa
 good_for: []
 ---

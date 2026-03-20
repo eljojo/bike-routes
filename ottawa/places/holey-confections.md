@@ -8,7 +8,6 @@ address: 3500 Fallowfield Rd Unit 6, Ottawa, ON K2J 4B3, Canada
 website: http://www.holeyconfections.com/
 phone: (613) 825-8888
 google_maps_url: https://goo.gl/maps/t3P1jU1STak1M42fA
-vibe: Coffee and a quiet pause in Ottawa
 good_for:
   - rest-stop
   - refuel

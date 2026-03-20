@@ -7,7 +7,6 @@ status: published
 address: 94 Chem. Montpellier, Ripon, QC J0V 1V0, Canada
 phone: (819) 983-6331
 google_maps_url: https://maps.app.goo.gl/57Fw8UqhLH45PWf56
-vibe: A solid stop for something hot in Ripon
 good_for:
   - rest-stop
   - refuel

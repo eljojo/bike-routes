@@ -10,7 +10,6 @@ address: >-
 website: https://ncc-ccn.gc.ca/places/gatineau-park
 phone: (819) 827-2020
 google_maps_url: https://maps.app.goo.gl/wk9xh2uJYSXYJkGPA
-vibe: An easy place to start in Gatineau
 good_for:
   - rest-stop
 ---

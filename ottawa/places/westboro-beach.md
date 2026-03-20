@@ -6,7 +6,6 @@ lng: -75.761286
 status: published
 address: Westboro Beach, Ottawa, ON, Canada
 google_maps_url: https://goo.gl/maps/K8vYdV3ENuMzpqVW9
-vibe: A swim stop in Ottawa
 good_for:
   - swimming
   - family

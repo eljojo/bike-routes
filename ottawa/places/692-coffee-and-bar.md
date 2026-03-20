@@ -8,7 +8,6 @@ address: 5546 Manotick Main St, Manotick, ON K4M 1B3, Canada
 website: https://www.692coffeeandbar.com/
 phone: (613) 692-2322
 google_maps_url: https://goo.gl/maps/1NHMixP2McgjiqEA9
-vibe: Coffee and a quiet pause in Manotick
 good_for:
   - rest-stop
   - refuel

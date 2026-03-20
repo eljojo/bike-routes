@@ -5,7 +5,7 @@ photo_key: bql083nz
 photo_content_type: image/jpeg
 photo_width: 1080
 photo_height: 1080
-tagline: Slow social rides with nice people
+tagline: Slow bike rides with nice people
 tags:
   - social
   - group-rides

@@ -6,7 +6,6 @@ lng: -75.689873
 status: published
 address: 42 Crichton St, Ottawa, ON K1M 1V4, Canada
 google_maps_url: https://maps.app.goo.gl/oX3bCGJgVHkmbFkX6
-vibe: Coffee and a quiet pause in Ottawa
 good_for:
   - rest-stop
   - refuel

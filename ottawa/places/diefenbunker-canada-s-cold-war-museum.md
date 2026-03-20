@@ -9,6 +9,5 @@ website: >-
   https://diefenbunker.ca/?utm_source=google&utm_medium=organic&utm_campaign=gmb_listing
 phone: (613) 839-0007
 google_maps_url: https://maps.google.com/?cid=2006249020199095670
-vibe: A place to stop for the view in Ottawa
 good_for: []
 ---

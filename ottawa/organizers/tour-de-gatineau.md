@@ -6,7 +6,7 @@ photo_key: nq786ugk
 photo_content_type: image/jpeg
 photo_width: 1080
 photo_height: 1080
-tagline: Road racing weekends with deep local roots
+tagline: UCI women's road racing in Gatineau
 tags:
   - racing
   - road

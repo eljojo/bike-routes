@@ -1,6 +1,6 @@
 ---
 name: Wendigo Ultra
-tagline: A deep-winter ultra for riders who like the long way
+tagline: Winter fat bike ultra on frozen rail trails
 tags:
   - touring
   - gravel

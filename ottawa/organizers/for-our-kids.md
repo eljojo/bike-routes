@@ -5,7 +5,7 @@ photo_key: ixdgd11z
 photo_content_type: image/jpeg
 photo_width: 500
 photo_height: 500
-tagline: Family rides that make space for kids
+tagline: Climate-action family rides — the force behind Kidical Mass Ottawa
 tags:
   - family
   - advocacy

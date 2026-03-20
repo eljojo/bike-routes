@@ -7,7 +7,6 @@ status: published
 address: JW3X+39, Grande-Presqu'île, QC J0V 1S0, Canada
 website: https://www.sepaq.com/pq/pla
 google_maps_url: https://maps.app.goo.gl/gctfGtSaduWLGTcz6
-vibe: La Carapace service centre
 good_for: []
 ---
 Community Centre with Wood for fireplace, safe storage to leave your food overnight. Closes at 8:30 PM.

@@ -1,7 +1,7 @@
 ---
 name: CN
 website: https://cncycle.cheofoundation.com
-tagline: A big spring fundraiser ride with room for the whole family
+tagline: Ottawa's big spring ride for kids' cancer care at CHEO
 tags:
   - charity
   - family

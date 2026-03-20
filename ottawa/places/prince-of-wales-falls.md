@@ -7,7 +7,6 @@ status: published
 address: Prince of Wales Falls, Ottawa, ON, Canada
 website: https://ncc-ccn.gc.ca/places/hogs-back-park
 google_maps_url: https://maps.app.goo.gl/kELgP6JwSGf6XH5L6
-vibe: Hogs Back Falls in Ottawa
 good_for:
   - destination
   - view

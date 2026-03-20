@@ -10,14 +10,7 @@ poster_width: 1111
 poster_height: 1484
 tags:
   - swap-meet
-organizer:
-  name: Step Thru Community Cycling
-  website: https://stepthrucc.com/
-  instagram: step.thruu
-  photo_key: hkkj8x4w
-  photo_content_type: image/jpeg
-  photo_width: 320
-  photo_height: 320
+organizer: step-thru
 ---
 
 Used and new-old-stock bike parts, clothing, bags, camping gear, coffee — anything bike-adjacent. Free to attend, $10–15 for a table. A reason to gather, trade, and talk bikes.

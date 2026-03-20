@@ -8,7 +8,6 @@ address: 1798 QC-315, L'Ange-Gardien, QC J8L 0J8, Canada
 website: https://beau-soir.com/depanneur/depanneur-315/
 phone: (819) 281-8008
 google_maps_url: https://maps.app.goo.gl/WvE48Bh1nsJuA9ga7
-vibe: A solid stop for something hot
 good_for:
   - rest-stop
   - refuel

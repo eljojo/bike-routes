@@ -8,7 +8,6 @@ address: 2639 Alta Vista Dr, Ottawa, ON K1V 7T5, Canada
 website: http://www.rebecandkroes.com/
 phone: (613) 521-3791
 google_maps_url: https://goo.gl/maps/dRZVnvFLPs2Ln1os9
-vibe: Rebec and Kroes Cycle and Sport — useful to know about before a long ride
 good_for:
   - rest-stop
   - supplies
