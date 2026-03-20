@@ -78,6 +78,25 @@ facts:
         category: lookout
       count_as: count
 
+  - template: "there are {count} cycling events coming up this year?"
+    link: "/events"
+    link_text: "{count} cycling events"
+    query:
+      type: events
+      filter:
+        year: current
+      count_as: count
+
+  - template: "{name} is only {distance_km} km — the shortest route on the site?"
+    link_from: slug
+    link_text: "{name}"
+    query:
+      type: routes
+      sort: distance_km
+      order: asc
+      pick: first
+      fields: [name, distance_km, slug]
+
   # --- Hand-written (editorial) ---
 
   - template: "the Quyon Ferry Loop crosses provinces by ferry?"
