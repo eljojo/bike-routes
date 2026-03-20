@@ -11,4 +11,11 @@ tags:
   - touring
   - gravel
   - road
+featured: true
+hidden: false
+social_links:
+  - platform: instagram
+    url: https://instagram.com/thelogdriverswaltz
+  - platform: website
+    url: http://www.logdriverswaltz.ca/
 ---
