@@ -1,7 +1,9 @@
 ---
 name: Canadian Shield Bikepacking
-website: https://linktr.ee/canadianshieldbikepacking
 instagram: canadianshieldbikepacking
+social_links:
+  - platform: linktree
+    url: https://linktr.ee/canadianshieldbikepacking
 photo_key: lf4iloe1
 photo_content_type: image/jpeg
 photo_width: 320

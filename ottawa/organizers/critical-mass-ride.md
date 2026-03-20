@@ -1,5 +1,8 @@
 ---
 name: Critical Mass Ride
+social_links:
+  - platform: facebook
+    url: https://www.facebook.com/groups/criticalmassottawa/
 tags:
   - advocacy
   - group-rides

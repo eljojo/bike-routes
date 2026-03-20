@@ -1,6 +1,5 @@
 ---
 name: Ottawa Fixed Gear
-website: https://www.instagram.com/ottawafixedgear/
 instagram: ottawafixedgear
 tagline: Brunch rides and easy company for the fixed gear crowd
 tags:
