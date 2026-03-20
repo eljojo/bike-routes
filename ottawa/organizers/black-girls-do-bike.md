@@ -11,6 +11,8 @@ hidden: false
 social_links:
   - platform: instagram
     url: https://instagram.com/blackgirlsbiking_ncr
+  - platform: google_form
+    url: https://forms.gle/aLfPtQKWwcVqWyte8
   - platform: website
     url: https://forms.gle/aLfPtQKWwcVqWyte8
 photo_key: r26yqbro
