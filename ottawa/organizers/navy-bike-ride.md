@@ -6,4 +6,9 @@ tags:
   - charity
   - family
   - road
+featured: false
+hidden: true
+social_links:
+  - platform: website
+    url: https://navybikeride.ca/
 ---
