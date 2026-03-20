@@ -7,6 +7,7 @@ facts:
 
   - template: "there are {count} cafes along the routes?"
     link: "/map?category=cafe"
+    link_text: "{count} cafes"
     query:
       type: places
       filter:
@@ -15,6 +16,7 @@ facts:
 
   - template: "{name} is {distance_km} km — the longest route on the site?"
     link_from: slug
+    link_text: "{name}"
     query:
       type: routes
       sort: distance_km
@@ -24,6 +26,7 @@ facts:
 
   - template: "there are {count} beaches and swimming spots along the routes?"
     link: "/map?category=beach"
+    link_text: "{count} beaches and swimming spots"
     query:
       type: places
       filter:
@@ -32,6 +35,7 @@ facts:
 
   - template: "there are {count} ice cream stops mapped along the routes?"
     link: "/map?category=ice-cream"
+    link_text: "{count} ice cream stops"
     query:
       type: places
       filter:
@@ -44,12 +48,14 @@ facts:
 
   - template: "there are {count} cycling communities in Ottawa?"
     link: "/communities"
+    link_text: "{count} cycling communities"
     query:
       type: organizers
       count_as: count
 
   - template: "{count} routes pass within reach of a swim spot?"
     link: "/map?category=beach"
+    link_text: "{count} routes"
     query:
       type: routes_near_places
       filter:
@@ -57,6 +63,7 @@ facts:
 
   - template: "{name} passes by {count} places to stop — the most of any route?"
     link_from: slug
+    link_text: "{name}"
     query:
       type: route_place_density
       filter:
@@ -64,6 +71,7 @@ facts:
 
   - template: "there are {count} lookouts mapped along the routes?"
     link: "/map?category=lookout"
+    link_text: "{count} lookouts"
     query:
       type: places
       filter:
@@ -74,18 +82,24 @@ facts:
 
   - template: "the Quyon Ferry Loop crosses provinces by ferry?"
     link: "/routes/quyon-ferry-loop"
+    link_text: "Quyon Ferry Loop"
 
   - template: "you can bikepack to Plaisance with the Bienvenue Cyclistes program?"
     link: "/routes/ottawa-to-plaisance"
+    link_text: "bikepack to Plaisance"
 
   - template: "the descent from Pink Lake can reach 60 km/h?"
     link: "/routes/pink-lake-in-gatineau-park"
+    link_text: "Pink Lake"
 
   - template: "the Rideau Lakes Cycle Tour is one of Canada's oldest cycling events?"
     link: "/events/2024/rideau-lakes-cycle-tour"
+    link_text: "Rideau Lakes Cycle Tour"
 
   - template: "you can ride from Ottawa to Carleton Place and Smith Falls on rail trails?"
     link: "/routes/ottawa-to-carleton-place-and-smith-falls"
+    link_text: "Ottawa to Carleton Place and Smith Falls"
 
   - template: "the Champlain Lookout view is best at sunset?"
     link: "/routes/gatineau-park-meech-lake-and-champlain-lookout"
+    link_text: "Champlain Lookout"
