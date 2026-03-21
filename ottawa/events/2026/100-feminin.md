@@ -3,9 +3,14 @@ name: 100% Féminin
 start_date: "2026-08-16"
 start_time: "09:00"
 end_date: "2026-08-16"
+registration_url: https://ride100feminin.com/en/collections/inscriptions-2026
 distances: 64km / 120km
 location: The British, Gatineau
-registration_url: https://ride100feminin.com/en
+event_url: https://ride100feminin.com/en
+poster_key: i2v81pvv
+poster_content_type: image/jpeg
+poster_width: 3500
+poster_height: 1519
 tags:
   - road
   - gravel
