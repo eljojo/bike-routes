@@ -26,6 +26,6 @@ While this ride can be quite demanding, even for experienced cyclists, it's cert
 ### There's More!
 Gatineau Park itself is a world-class destination, and Pink Lake serves as an excellent starting point for exploring its many attractions.
 
-- Enjoy the [**Champlain Lookout** and **Meech Lake**](/routes/8-gatineau-meech-champlain)
-- Go camping at [**Taylor Lake**](/tours/4-taylor-lake-camping)
-- Have a [**fun day-trip to Wakefield**](/routes/13-wakefield)
+- Enjoy the [**Champlain Lookout** and **Meech Lake**](https://ottawabybike.ca/routes/gatineau-meech-lake-champlain-lookout/)
+- Go camping at [**Taylor Lake**](https://eljojo.bike/tours/taylor-lake-camping/)
+- Have a [**fun day-trip to Wakefield**](/routes/wakefield)
