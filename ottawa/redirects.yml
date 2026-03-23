@@ -8,9 +8,13 @@ routes:
   to: britannia-by-ottawa-river-pathway
 - from: 4-easy-loop-around-the-canal
   to: easy-loop-around-the-canal
+- from: 4-loop-around-the-canal
+  to: easy-loop-around-the-canal
 - from: 7-vincent-massey-and-beyond
   to: vincent-massey
 - from: 8-gatineau-meech-lake-champlain-lookout
+  to: gatineau-meech-lake-champlain-lookout
+- from: 8-gatineau-meech-champlain
   to: gatineau-meech-lake-champlain-lookout
 - from: 10-quyon-ferry-loop
   to: quyon-ferry-loop
@@ -31,6 +35,8 @@ routes:
 - from: 19-epic-buckingham-ride
   to: epic-buckingham-ride
 - from: 20-gravel-cup-2022-fall-grally
+  to: gravel-cup-2022-fall-grally
+- from: 20-ottawa-valley-fall-grally
   to: gravel-cup-2022-fall-grally
 - from: 21-blue-sea-veloroute-des-draveurs
   to: veloroute-des-draveurs
