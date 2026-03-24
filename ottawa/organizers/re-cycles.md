@@ -1,7 +1,7 @@
 ---
 name: re-Cycles
 tagline: Not-for-profit bicycle recycling and DIY repair shop
-tags: [workshop, social]
+tags: [bike-shop, workshop, social]
 featured: true
 social_links:
   - platform: website
