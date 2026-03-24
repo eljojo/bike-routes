@@ -12,6 +12,8 @@ social_links:
     url: +1-343-997-3729
   - platform: email
     url: info@ottawamobilebikerepair.com
+  - platform: booking
+    url: https://ottawamobilebikerepair.routezilla.com/
 featured: false
 hidden: false
 photo_key: pzztwdxo
