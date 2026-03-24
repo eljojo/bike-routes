@@ -5,6 +5,8 @@ tags: [bike-shop, repairs]
 social_links:
   - platform: website
     url: https://polovelo.ca
+  - platform: telephone
+    url: "+1-819-663-2087"
 ---
 
-Deux boutiques — Gatineau et Chelsea. Vélos de route, gravel, montagne, enfants, ski de fond. Service et réparation. Trek, Orbea, DCO, et plus.
+Deux boutiques — Gatineau et Chelsea. Vente, conseil, mise au point et réparation de vélos. Route, montagne, ville, enfants, ski de fond. Trek, Orbea, DCO, et plus.
