@@ -1,0 +1,74 @@
+---
+# Semantic tags (English keys → Spanish display)
+bike path:
+  es: ciclovía
+road:
+  es: calle
+gravel:
+  es: ripio
+single track:
+  es: sendero
+easy:
+  es: fácil
+family friendly:
+  es: familiar
+chill:
+  es: relajado
+hard:
+  es: difícil
+elevation:
+  es: desnivel
+flat:
+  es: plano
+scenic:
+  es: panorámico
+snacks:
+  es: comer algo
+# Infrastructure tags
+protected lane:
+  es: ciclovía segregada
+painted lane:
+  es: ciclobanda
+park path:
+  es: sendero en parque
+median lane:
+  es: en mediana
+commute:
+  es: para ir al trabajo
+# Comunas
+cerro navia:
+  es: Cerro Navia
+estacion central:
+  es: Estacion Central
+independencia:
+  es: Independencia
+la florida:
+  es: La Florida
+la reina:
+  es: La Reina
+las condes:
+  es: Las Condes
+lo prado:
+  es: Lo Prado
+macul:
+  es: Macul
+penalolen:
+  es: Penalolen
+providencia:
+  es: Providencia
+pudahuel:
+  es: Pudahuel
+quinta normal:
+  es: Quinta Normal
+recoleta:
+  es: Recoleta
+renca:
+  es: Renca
+san joaquin:
+  es: San Joaquin
+santiago:
+  es: Santiago Centro
+vitacura:
+  es: Vitacura
+ñuñoa:
+  es: Ñuñoa

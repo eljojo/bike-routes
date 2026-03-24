@@ -1,0 +1,50 @@
+---
+name: santiago
+display_name: Santiago en Bici
+tagline: Ciclovías y rutas para pedalear en Santiago
+description: >-
+  Guía de rutas y ciclovías en Santiago de Chile. Datos reales de
+  infraestructura, condición y conectividad de la red ciclista,
+  documentados por Corporación Pedaleable.
+url: https://santiago.whereto.bike
+domain: santiago.whereto.bike
+cdn_url: https://santiago.whereto.bike
+videos_cdn_url: https://santiago.whereto.bike
+plausible_domain: santiago.whereto.bike
+site_title_html: "<em>Santiago</em> en <em>Bici</em>"
+timezone: America/Santiago
+locale: es-CL
+locales: [es-CL]
+author:
+  name: Pedaleable
+  email: contacto@pedaleable.org
+  url: https://www.pedaleable.org
+  twitter: "@pedaleable"
+  photo_url: ""
+center:
+  lat: -33.45
+  lng: -70.65
+bounds:
+  north: -33.30
+  south: -33.65
+  east: -70.45
+  west: -70.85
+place_categories:
+  aventura:
+    - parque
+    - cerro
+    - mirador
+    - río
+    - plaza
+  comida:
+    - café
+    - restaurant
+    - panadería
+    - fuente-de-soda
+    - heladería
+  utilidad:
+    - taller-de-bicicletas
+    - estacionamiento-bici
+    - agua
+    - metro
+    - bicicletero

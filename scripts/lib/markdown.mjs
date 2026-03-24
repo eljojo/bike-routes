@@ -18,9 +18,12 @@ function fmtNum(n, decimals = 1) {
   return n.toFixed(decimals).replace('.', ',');
 }
 
-/** Capitalize first letter of each word. */
+/** Capitalize first letter of each space-separated word. */
 function titleCase(str) {
-  return str.replace(/\b\w/g, (c) => c.toUpperCase());
+  return str
+    .split(' ')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
 }
 
 /** Today's date as YYYY-MM-DD. */
@@ -52,10 +55,12 @@ export function buildMarkdown(route) {
 
   // --- Frontmatter ---
   const tags = route.suggestedTags.map((t) => `  - ${t}`).join('\n');
+  // YAML frontmatter uses period decimals (machine-readable)
+  const distYaml = distKm.toFixed(1);
   const frontmatter = `---
 name: ${yamlStr(route.name)}
 status: published
-distance_km: ${fmtNum(distKm)}
+distance_km: ${distYaml}
 tags:
 ${tags}
 created_at: "${dateStr}"
@@ -63,7 +68,7 @@ updated_at: "${dateStr}"
 variants:
   - name: ${yamlStr(route.name)}
     gpx: main.gpx
-    distance_km: ${fmtNum(distKm)}
+    distance_km: ${distYaml}
 ---`;
 
   // --- Body ---
