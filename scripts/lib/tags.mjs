@@ -1,8 +1,14 @@
 /**
  * Semantic tag assignment for route candidates.
  *
- * Derives English tag keys from route data: surface type, infrastructure
- * descriptors, terrain, difficulty, and comunas.
+ * Tags are English keys that drive app behaviour (difficulty scoring,
+ * surface classification, tag filtering). They get displayed in the
+ * user's language via tag-translations.yml.
+ *
+ * Key insight: infrastructure *condition* (mala/buena) is not the same
+ * as riding *difficulty*. A "mala" rated bike lane is still infinitely
+ * safer than no bike lane for a new rider. Difficulty comes from:
+ * gaps (forced into traffic), distance, and terrain.
  */
 
 /**
@@ -14,11 +20,9 @@
 export function assignTags(route) {
   const tags = new Set();
 
-  // Collect all segments across all axes
   const allSegments = route.axes.flatMap((a) => a.segments);
 
   // --- Surface type ---
-  // Any infrastructure at all gets 'bike path'
   if (allSegments.length > 0) {
     tags.add('bike path');
   }
@@ -33,13 +37,14 @@ export function assignTags(route) {
   // --- Terrain ---
   tags.add('flat');
 
-  // --- Difficulty ---
+  // --- Difficulty from RIDING experience, not paint quality ---
+  // What matters: how much of the ride has infrastructure (coverage),
+  // how long the gaps are (exposure to traffic), and width (comfort).
   const maxGapM =
     route.gaps.length > 0
       ? Math.max(...route.gaps.map((g) => g.distanceM))
       : 0;
 
-  // Average width across all segments that have ancho_cm
   const widths = allSegments
     .map((s) => s.ancho_cm)
     .filter((w) => w != null && w > 0);
@@ -47,17 +52,16 @@ export function assignTags(route) {
     ? widths.reduce((a, b) => a + b, 0) / widths.length
     : 0;
 
-  if (
-    route.infraPercent > 80 &&
-    route.avgConditionScore >= 5 &&
-    maxGapM < 300 &&
-    avgWidthCm >= 180
-  ) {
+  // Family friendly: high coverage, short gaps, decent width
+  // Note: condition score intentionally NOT required — a crumbling
+  // bike lane is still separated from cars
+  if (route.infraPercent > 80 && maxGapM < 300 && avgWidthCm >= 150) {
     tags.add('easy');
     tags.add('family friendly');
   }
 
-  if (route.infraPercent < 50 || maxGapM > 800) {
+  // Hard: significant gaps force riders onto busy roads
+  if (route.infraPercent < 50 || maxGapM > 1000) {
     tags.add('hard');
   }
 

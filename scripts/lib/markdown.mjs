@@ -1,8 +1,12 @@
 /**
  * Spanish markdown route description generator.
  *
- * Generates index.md content (YAML frontmatter + markdown body)
- * from a route proposal object.
+ * Voice: a friend showing you around. Lead with where you're going
+ * and what you'll see, not infrastructure metrics. The factual data
+ * (condition, width) goes in the Tramos section — useful for the
+ * person who needs reassurance, but not the opening line.
+ *
+ * See AGENTS.md § Voice & Feel.
  */
 
 // ---------------------------------------------------------------------------
@@ -24,7 +28,7 @@ function today() {
   return new Date().toISOString().slice(0, 10);
 }
 
-/** Escape YAML string value (wrap in quotes if it contains special chars). */
+/** Escape YAML string value. */
 function yamlStr(str) {
   if (/[:"'#\[\]{}|>&*!%@`]/.test(str) || str.includes('\n')) {
     return `"${str.replace(/"/g, '\\"')}"`;
@@ -65,18 +69,28 @@ variants:
   // --- Body ---
   const sections = [];
 
-  // Opening paragraph
+  // Opening — lead with where you're going, not metrics
   const allComunas = [...new Set(route.axes.flatMap((a) => a.comunas).filter(Boolean))];
-  const comunasStr = allComunas.map(titleCase).join(', ');
-  let opening = `${fmtNum(distKm)} kilómetros por ${comunasStr}.`;
+  const comunasStr = allComunas.map(titleCase).join(' y ');
 
-  if (route.infraPercent >= 80) {
-    opening += ' En su mayoría por ciclovías protegidas.';
-  } else if (route.infraPercent >= 50) {
-    opening += ` Con infraestructura ciclista en el ${route.infraPercent}% del recorrido.`;
-  } else {
-    opening += ` Solo el ${route.infraPercent}% del recorrido tiene infraestructura ciclista.`;
+  let opening = `${fmtNum(distKm)} kilómetros por ${comunasStr}`;
+
+  // Mention the destination anchors
+  if (route.startAnchor?.name && route.endAnchor?.name &&
+      route.startAnchor.name !== route.endAnchor.name) {
+    opening += `, desde ${route.startAnchor.name} hasta ${route.endAnchor.name}`;
   }
+  opening += '.';
+
+  // Infrastructure coverage as context, not headline
+  if (route.infraPercent >= 90) {
+    opening += ' Prácticamente todo el recorrido tiene ciclovía.';
+  } else if (route.infraPercent >= 70) {
+    opening += ` El ${route.infraPercent}% del recorrido tiene ciclovía.`;
+  } else if (route.infraPercent >= 50) {
+    opening += ` Alrededor de la mitad del recorrido tiene ciclovía.`;
+  }
+
   sections.push(opening);
 
   // --- Tramos section ---
@@ -116,7 +130,7 @@ variants:
       const distStr = gap.distanceM >= 1000
         ? `${fmtNum(gap.distanceM / 1000)} km`
         : `${Math.round(gap.distanceM)} m`;
-      lines.push(`**${gap.afterAxis} →** — ${distStr} sin infraestructura ciclista.`);
+      lines.push(`**${gap.from || gap.afterAxis} → ${gap.to || ''}** — ${distStr} sin infraestructura ciclista.`);
       lines.push('');
     }
     sections.push(lines.join('\n'));
