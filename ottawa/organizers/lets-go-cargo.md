@@ -17,4 +17,4 @@ social_links:
     url: info@letsgocargo.ca
 ---
 
-Electric-assist cargo bikes and trikes for carrying adults, children, pets and all your stuff. Pickup locations in Hintonburg.
+Electric-assist cargo bikes and trikes for carrying adults, children, pets and all your stuff. Three pickup spots in the Hintonburg area — Hintonburg Park, City Centre by Beyond the Pale, and Bayview LRT station. Rent for three days or more and they'll deliver within 8 km.
