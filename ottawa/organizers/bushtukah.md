@@ -1,6 +1,6 @@
 ---
 name: Bushtukah
-tagline: Ottawa owned and operated since 1994
+tagline: Ottawa owned and operated
 tags: [bike-shop, repairs]
 social_links:
   - platform: website

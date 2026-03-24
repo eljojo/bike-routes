@@ -1,6 +1,6 @@
 ---
 name: Rebec & Kroes Cycle and Sport
-tagline: Family-owned bike shop since the 1970s
+tagline: Family-owned bike shop on Alta Vista
 tags: [bike-shop, repairs]
 social_links:
   - platform: website
@@ -15,4 +15,4 @@ social_links:
     url: rebecandkroes@on.aibn.com
 ---
 
-Ottawa's longest-running independent bike shop, serving cyclists from their Alta Vista location. Bicycles, accessories, parts, service, clothing, and cross-country ski gear.
+Family-owned bike shop on Alta Vista Drive. Bicycles, accessories, parts, service, clothing, and cross-country ski gear.

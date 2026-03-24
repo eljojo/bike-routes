@@ -1,6 +1,6 @@
 ---
 name: Full Cycle
-tagline: Community bike shop since 1992
+tagline: Community bike shop with two Ottawa locations
 tags: [bike-shop, repairs]
 social_links:
   - platform: website
