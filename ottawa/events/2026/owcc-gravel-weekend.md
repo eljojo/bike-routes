@@ -4,6 +4,10 @@ start_date: "2026-06-13"
 end_date: "2026-06-14"
 distances: 75-100km per day
 event_url: https://ottawawomenscyclingclub.ca/program/special-events/
+poster_key: rpd822tv
+poster_content_type: image/jpeg
+poster_width: 1440
+poster_height: 960
 tags:
   - gravel
 organizer: ottawa-womens-cycling-club
