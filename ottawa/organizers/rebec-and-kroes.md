@@ -1,6 +1,6 @@
 ---
 name: Rebec & Kroes Cycle and Sport
-tagline: Family-owned bike shop on Alta Vista
+tagline: Family-owned bike shop since 1989
 tags: [bike-shop, repairs]
 social_links:
   - platform: website
