@@ -9,6 +9,9 @@ website: http://www.rebecandkroes.com/
 phone: (613) 521-3791
 google_maps_url: https://goo.gl/maps/dRZVnvFLPs2Ln1os9
 organizer: rebec-and-kroes
+social_links:
+  - platform: booking
+    url: https://www.rebecandkroes.com/service-shop/bicycle-services/
 good_for:
   - rest-stop
   - supplies
