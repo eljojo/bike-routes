@@ -1,6 +1,6 @@
 ---
 name: Bikemobile
-tagline: Mobile bike repair since 1981
+tagline: Mobile bike repair
 tags: [bike-shop, repairs, mobile]
 social_links:
   - platform: website
@@ -9,4 +9,4 @@ social_links:
     url: bikeman@bikemobile.ca
 ---
 
-Ottawa's original mobile bike mechanic — Peter Westaway has been bringing bike repair to your door since 1981. Tune-ups, overhauls, new bike builds, and e-bike service across Ottawa.
+Mobile bike mechanic Peter Westaway brings repair to your door. Tune-ups, overhauls, new bike builds, and e-bike service across Ottawa.
