@@ -9,6 +9,9 @@ website: https://www.bushtukah.com/
 phone: (343) 780-2070
 google_maps_url: https://goo.gl/maps/Lig1XE5uNNYp1pbx8
 organizer: bushtukah
+social_links:
+  - platform: booking
+    url: https://bushtukah.com/pages/bushtukah-orleans-service-and-repair-appointment-booking
 good_for:
   - rest-stop
   - supplies

@@ -9,6 +9,9 @@ website: http://bushtukah.com/
 phone: (613) 792-1170
 google_maps_url: https://goo.gl/maps/M1qnGGDeJ8oWNhrk9
 organizer: bushtukah
+social_links:
+  - platform: booking
+    url: https://bushtukah.com/pages/westboro-shop-booking
 good_for:
   - rest-stop
   - supplies
