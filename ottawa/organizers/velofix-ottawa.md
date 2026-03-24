@@ -11,8 +11,8 @@ social_links:
     url: https://www.facebook.com/thevelofixottawa
   - platform: booking
     url: https://www.velofix.com/locations/ottawa/
+  - platform: email
+    url: ottawa@velofix.com
 ---
 
 A complete mobile bike shop servicing Ottawa, Orleans, and surrounding areas. Road, mountain, gravel, commuter, triathlon, tandem, trikes, electric, and kids' bikes.
-
-ottawa@velofix.com

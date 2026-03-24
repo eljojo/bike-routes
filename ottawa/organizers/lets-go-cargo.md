@@ -11,8 +11,10 @@ social_links:
     url: https://bsky.app/profile/letsgocargo.bsky.social
   - platform: booking
     url: https://www.letsgocargo.ca/reserve-your-bike
+  - platform: telephone
+    url: +1-343-600-2453
+  - platform: email
+    url: info@letsgocargo.ca
 ---
 
 Electric-assist cargo bikes and trikes for carrying adults, children, pets and all your stuff. Pickup locations in Hintonburg.
-
-1-343-600-2453 / info@letsgocargo.ca

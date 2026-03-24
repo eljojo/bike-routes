@@ -9,8 +9,8 @@ social_links:
     url: https://www.instagram.com/bushtukah/
   - platform: facebook
     url: https://www.facebook.com/bushtukah/
+  - platform: telephone
+    url: "+1-888-993-9947"
 ---
 
 Cycling, running, hiking, and travel gear across three Ottawa locations — Westboro, Orleans, and Stittsville. Full bicycle service and repair, bike fitting, and the Bushtukah Bike Advantage program.
-
-1-888-993-9947

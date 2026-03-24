@@ -9,8 +9,10 @@ social_links:
     url: https://www.instagram.com/rebecandkroes/
   - platform: facebook
     url: https://www.facebook.com/pages/category/Bicycle-Shop/Rebec-Kroes-Cycle-and-Sport-142462399147023/
+  - platform: telephone
+    url: "+1-613-521-3791"
+  - platform: email
+    url: rebecandkroes@on.aibn.com
 ---
 
 Ottawa's longest-running independent bike shop, serving cyclists from their Alta Vista location. Bicycles, accessories, parts, service, clothing, and cross-country ski gear.
-
-613-521-3791 / rebecandkroes@on.aibn.com
