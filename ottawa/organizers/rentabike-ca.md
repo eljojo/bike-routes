@@ -15,10 +15,10 @@ social_links:
     url: https://www.facebook.com/RentABikeOttawa
 featured: false
 hidden: false
-photo_key: fbpgovbn
-photo_width: 2048
-photo_height: 645
-photo_content_type: image/png
+photo_key: 0fp899b7
+photo_width: 252
+photo_height: 252
+photo_content_type: image/jpeg
 ---
 
 Bike rentals beside the Rideau Canal, under Rideau Street.
