@@ -35,7 +35,7 @@ Données ouvertes: texte sous [CC BY-SA 4.0](https://creativecommons.org/license
 - [CyclingGuide.app](https://www.cyclingguide.app) — Safe biking routes for every day rides, it's free!
 - [Let's Go Cargo](https://www.letsgocargo.ca) — Looking for a cargo bike rental?
 - [2026 Canadian Shield Bikepacking Summit](https://www.bikepackadventures.ca/summit) — Learn about Bikepacking this Spring in Wakefield
-- [List of Local Cycling Communities](/guides/local-communities)
+- [Local Cycling Communities](/communities)
 - [Bike Ottawa](https://bikeottawa.ca) — Community dedicated to promoting cycling in Ottawa
 - [Official NCC Biking Map](https://ncc-ccn.maps.arcgis.com/apps/View/index.html?appid=d69460c2d8df472db1a456183bc62fcf)
 - [Interview by CBC Ottawa Morning](https://web.archive.org/web/20230528221810/https://mp3.cbc.ca/radio/CBC_Radio_VMS/56/687/dave-0KadS5Zr-20230524_1684932607974.mp3)

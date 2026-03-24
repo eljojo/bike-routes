@@ -159,3 +159,5 @@ videos:
 short_urls:
 - from: qr/card
   to: "/"
+- from: guides/local-communities
+  to: /communities
