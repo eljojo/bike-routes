@@ -1,0 +1,120 @@
+# Faits pour la page d'accueil d'Ottawa (version francaise)
+# Les gabarits utilisent des {variables} resolues a partir des collections de contenu au moment du build.
+# Les faits dont les requetes retournent zero resultats sont ignores silencieusement.
+
+facts:
+  # --- Calculees (requetes) ---
+
+  - template: "il y a {count} cafes le long des parcours?"
+    link: "/fr/carte?category=cafe"
+    link_text: "{count} cafes"
+    query:
+      type: places
+      filter:
+        category: cafe
+      count_as: count
+
+  - template: "{name} fait {distance_km} km — le plus long parcours du site?"
+    link_from: slug
+    link_text: "{name}"
+    query:
+      type: routes
+      sort: distance_km
+      order: desc
+      pick: first
+      fields: [name, distance_km, slug]
+
+  - template: "il y a {count} plages et lieux de baignade le long des parcours?"
+    link: "/fr/carte?category=beach"
+    link_text: "{count} plages et lieux de baignade"
+    query:
+      type: places
+      filter:
+        category: beach
+      count_as: count
+
+  - template: "il y a {count} arrets de creme glacee le long des parcours?"
+    link: "/fr/carte?category=ice-cream"
+    link_text: "{count} arrets de creme glacee"
+    query:
+      type: places
+      filter:
+        category: ice-cream
+      count_as: count
+
+  - template: "il y a {count} communautes cyclistes a Ottawa?"
+    link: "/fr/communautes"
+    link_text: "{count} communautes cyclistes"
+    query:
+      type: organizers
+      count_as: count
+
+  - template: "{count} parcours passent pres d'un lieu de baignade?"
+    link: "/fr/carte?category=beach"
+    link_text: "{count} parcours"
+    query:
+      type: routes_near_places
+      filter:
+        category: beach
+
+  - template: "{name} passe devant {count} endroits ou s'arreter — le plus de tous les parcours?"
+    link_from: slug
+    link_text: "{name}"
+    query:
+      type: route_place_density
+      filter:
+        category: cafe
+
+  - template: "il y a {count} belvederes le long des parcours?"
+    link: "/fr/carte?category=lookout"
+    link_text: "{count} belvederes"
+    query:
+      type: places
+      filter:
+        category: lookout
+      count_as: count
+
+  - template: "il y a {count} evenements cyclistes a venir cette annee?"
+    link: "/fr/calendrier"
+    link_text: "{count} evenements cyclistes"
+    query:
+      type: events
+      filter:
+        year: current
+      count_as: count
+
+  - template: "{name} ne fait que {distance_km} km — le plus court parcours du site?"
+    link_from: slug
+    link_text: "{name}"
+    query:
+      type: routes
+      sort: distance_km
+      order: asc
+      pick: first
+      fields: [name, distance_km, slug]
+
+  # --- Editoriaux (rediges a la main) ---
+
+  - template: "la boucle du traversier de Quyon traverse deux provinces par traversier?"
+    link: "/fr/parcours/boucle-traversier-de-quyon"
+    link_text: "boucle du traversier de Quyon"
+
+  - template: "vous pouvez faire du bikepacking jusqu'a Plaisance avec le programme Bienvenue Cyclistes?"
+    link: "/fr/parcours/ottawa-a-plaisance"
+    link_text: "bikepacking jusqu'a Plaisance"
+
+  - template: "la descente du lac Pink peut atteindre 60 km/h?"
+    link: "/fr/parcours/lac-pink-parc-de-la-gatineau"
+    link_text: "lac Pink"
+
+  - template: "le Rideau Lakes Cycle Tour est l'un des plus anciens evenements cyclistes au Canada?"
+    link: "/events/2024/rideau-lakes-cycle-tour"
+    link_text: "Rideau Lakes Cycle Tour"
+
+  - template: "vous pouvez rouler d'Ottawa a Carleton Place et Smiths Falls sur des pistes de rail-trail?"
+    link: "/fr/parcours/ottawa-vers-carleton-place-et-smiths-falls"
+    link_text: "Ottawa a Carleton Place et Smiths Falls"
+
+  - template: "le belvedere Champlain est plus beau au coucher du soleil?"
+    link: "/fr/parcours/parc-gatineau-lac-meech-belvedere-champlain"
+    link_text: "belvedere Champlain"

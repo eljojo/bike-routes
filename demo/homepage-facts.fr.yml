@@ -1,0 +1,3 @@
+# Faits pour la page d'accueil demo (version francaise, pour tests E2E)
+facts:
+  - text: "Chillán est au coeur de la vallée du Ñuble — parfait pour le vélo toute l'année"
