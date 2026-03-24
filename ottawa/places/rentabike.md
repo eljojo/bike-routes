@@ -10,5 +10,6 @@ address: >-
 website: http://www.rentabike.ca/
 phone: (613) 241-4140
 google_maps_url: https://maps.google.com/?cid=17313242443779663072
+organizer: rentabike-ca
 good_for: []
 ---

@@ -8,5 +8,6 @@ address: 65 Sparks St., Ottawa, ON K1P 5A5, Canada
 website: https://escapebicycletours.ca/
 phone: (613) 608-7407
 google_maps_url: https://maps.google.com/?cid=10802493075413357266
+organizer: escape-bicycle-tours-and-rentals
 good_for: []
 ---

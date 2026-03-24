@@ -7,5 +7,9 @@ status: published
 website: https://www.letsgocargo.ca/
 phone: 1-343-600-2453
 google_maps_url: https://maps.app.goo.gl/tgJeKgTVokMzAio97
+organizer: lets-go-cargo
+social_links:
+  - platform: booking
+    url: https://www.letsgocargo.ca/reserve-your-bike
 good_for: []
 ---
