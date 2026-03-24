@@ -1,17 +1,25 @@
 ---
 name: re-Cycles
 tagline: Not-for-profit bicycle recycling and DIY repair shop
-tags: [bike-shop, workshop, social]
+tags:
+  - bike-shop
+  - workshop
+  - social
 featured: true
 social_links:
   - platform: website
     url: https://www.re-cycles.ca/
   - platform: instagram
-    url: http://instagram.com/recyclesottawa
+    url: https://instagram.com/recyclesottawa
   - platform: facebook
     url: https://www.facebook.com/groups/reCyclesOttawa
   - platform: email
     url: questions@re-cycles.ca
+hidden: false
+photo_key: m8vttwba
+photo_width: 1080
+photo_height: 1080
+photo_content_type: image/jpeg
 ---
 
 re-Cycles is a volunteer-run bike co-op on Catherine Street, just west of the Percy Street bike path. They take in donated bicycles — any condition, even rusty — repair the ones they can, and sell them back to the community at low cost. What can't be saved gets stripped for parts and recycled as scrap. Nothing goes to waste.
