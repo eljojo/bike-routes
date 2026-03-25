@@ -531,7 +531,7 @@ const MAX_BUILT_GAP_M = 3000;
  * Build route or return null if inviable.
  * @param {Array} [allAnchors] - all scored POIs for waypoint detection
  */
-function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
+export function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
   // Detect archetype early to know if this is a loop (needed for optimization)
   const earlyArchetype = detectArchetype(axisChain, startAnchor, endAnchor);
 
@@ -719,7 +719,7 @@ function gridKey(coord) {
  *
  * Uses a spatial grid (~500m cells) for the cross-axis neighbor search.
  */
-function buildSegmentGraph(axes, maxGapM = MAX_GAP_M) {
+export function buildSegmentGraph(axes, maxGapM = MAX_GAP_M) {
   const t0 = Date.now();
 
   // Flatten all segments, track which axis each belongs to
@@ -818,7 +818,7 @@ function buildSegmentGraph(axes, maxGapM = MAX_GAP_M) {
  * Groups consecutive segments by their axis. For each group, creates a
  * "partial axis" object with only those segments and recalculated totalInfraM.
  */
-function segmentsToAxisChain(segIndices, graph, axes) {
+export function segmentsToAxisChain(segIndices, graph, axes) {
   if (segIndices.length === 0) return [];
 
   const { segments, segToAxis } = graph;
