@@ -242,7 +242,32 @@ ${trkpts.join('\n')}
 }
 
 // ---------------------------------------------------------------------------
-// Main
+// Fetch ordered ways for a bike path entry
+// ---------------------------------------------------------------------------
+
+async function fetchBikePathWays(bp) {
+  let ways = [];
+  if (bp.osm_relations?.length > 0) {
+    for (const relId of bp.osm_relations) {
+      const relWays = await fetchRelationWays(relId);
+      ways.push(...relWays);
+    }
+  } else if (bp.osm_names?.length > 0 && bp.anchors?.length >= 2) {
+    ways = await fetchNamedWays(bp.osm_names, bp.anchors);
+  } else if (bp.anchors?.length >= 2) {
+    ways = await fetchNamedWays([bp.name], bp.anchors);
+  }
+  return ways.length > 0 ? orderWays(ways) : [];
+}
+
+// Index bike paths by slug for combined route lookups
+const bpBySlug = new Map();
+for (const bp of bike_paths) {
+  bpBySlug.set(slugify(bp.name), bp);
+}
+
+// ---------------------------------------------------------------------------
+// Main — Pass 1: individual bike path routes
 // ---------------------------------------------------------------------------
 
 let generated = 0;
@@ -253,19 +278,7 @@ for (const bp of bike_paths) {
   const routeDir = path.join(routesDir, slug);
 
   try {
-    let ways = [];
-
-    if (bp.osm_relations?.length > 0) {
-      for (const relId of bp.osm_relations) {
-        const relWays = await fetchRelationWays(relId);
-        ways.push(...relWays);
-      }
-    } else if (bp.osm_names?.length > 0 && bp.anchors?.length >= 2) {
-      ways = await fetchNamedWays(bp.osm_names, bp.anchors);
-    } else if (bp.anchors?.length >= 2) {
-      // Single name = bp.name, fetch by that
-      ways = await fetchNamedWays([bp.name], bp.anchors);
-    }
+    const ways = await fetchBikePathWays(bp);
 
     if (ways.length === 0) {
       console.log(`  SKIP ${slug}: no OSM ways found`);
@@ -273,8 +286,7 @@ for (const bp of bike_paths) {
       continue;
     }
 
-    const ordered = orderWays(ways);
-    const { gpx, distanceKm } = buildGPX(bp.name, ordered);
+    const { gpx, distanceKm } = buildGPX(bp.name, ways);
 
     fs.mkdirSync(routeDir, { recursive: true });
     fs.writeFileSync(path.join(routeDir, 'main.gpx'), gpx);
@@ -320,4 +332,86 @@ for (const bp of bike_paths) {
   }
 }
 
-console.log(`\nDone. ${generated} routes generated, ${failed} failed.`);
+console.log(`\n${generated} bike path routes generated, ${failed} failed.`);
+
+// ---------------------------------------------------------------------------
+// Pass 2: combined routes (routes with bike_paths in frontmatter)
+// ---------------------------------------------------------------------------
+
+let combined = 0;
+let combinedFailed = 0;
+
+if (fs.existsSync(routesDir)) {
+  for (const slug of fs.readdirSync(routesDir)) {
+    const mdPath = path.join(routesDir, slug, 'index.md');
+    if (!fs.existsSync(mdPath)) continue;
+    const raw = fs.readFileSync(mdPath, 'utf8');
+    const fmMatch = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)/);
+    if (!fmMatch) continue;
+    const fm = yaml.load(fmMatch[1]);
+    if (!fm.bike_paths || !Array.isArray(fm.bike_paths) || fm.bike_paths.length === 0) continue;
+
+    try {
+      // Fetch and chain each bike path's ways in order
+      const allWays = [];
+      const resolved = [];
+      for (const bpSlug of fm.bike_paths) {
+        const bp = bpBySlug.get(bpSlug);
+        if (!bp) {
+          console.log(`  WARN ${slug}: bike path "${bpSlug}" not found in bikepaths.yml`);
+          continue;
+        }
+        const ways = await fetchBikePathWays(bp);
+        if (ways.length === 0) {
+          console.log(`  WARN ${slug}: bike path "${bpSlug}" has no OSM ways`);
+          continue;
+        }
+
+        // Orient this bike path's ways relative to previous:
+        // if the last point of previous ways is closer to this path's
+        // end than its start, reverse the whole path.
+        if (allWays.length > 0) {
+          const lastWay = allWays[allWays.length - 1];
+          const lastGeom = lastWay.geometry;
+          const lastCoord = [lastGeom[lastGeom.length - 1].lon, lastGeom[lastGeom.length - 1].lat];
+          const firstWay = ways[0];
+          const firstStart = [firstWay.geometry[0].lon, firstWay.geometry[0].lat];
+          const lastWayOfPath = ways[ways.length - 1];
+          const pathEnd = [lastWayOfPath.geometry[lastWayOfPath.geometry.length - 1].lon, lastWayOfPath.geometry[lastWayOfPath.geometry.length - 1].lat];
+          if (haversineM(lastCoord, pathEnd) < haversineM(lastCoord, firstStart)) {
+            ways.reverse();
+          }
+        }
+
+        allWays.push(...ways);
+        resolved.push(bpSlug);
+      }
+
+      if (allWays.length === 0) {
+        console.log(`  SKIP combined ${slug}: no ways resolved`);
+        combinedFailed++;
+        continue;
+      }
+
+      const { gpx, distanceKm } = buildGPX(fm.name || slug, allWays);
+      const routeDir = path.join(routesDir, slug);
+      fs.writeFileSync(path.join(routeDir, 'main.gpx'), gpx);
+
+      // Update distance in frontmatter
+      fm.distance_km = distanceKm;
+      fm.updated_at = new Date().toISOString().split('T')[0];
+      if (fm.variants?.[0]) fm.variants[0].distance_km = distanceKm;
+      const md = `---\n${yaml.dump(fm, { lineWidth: -1 })}---\n${fmMatch[2] || ''}`;
+      fs.writeFileSync(mdPath, md);
+
+      console.log(`  COMBINED ${slug} (${distanceKm} km, ${resolved.join(' + ')})`);
+      combined++;
+    } catch (err) {
+      console.error(`  FAIL combined ${slug}: ${err.message}`);
+      combinedFailed++;
+    }
+  }
+}
+
+console.log(`${combined} combined routes generated, ${combinedFailed} failed.`);
+console.log(`\nDone.`);
