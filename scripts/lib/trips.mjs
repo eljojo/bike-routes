@@ -236,8 +236,22 @@ function generateName(archetype, axisChain, startAnchor, endAnchor) {
 }
 
 /** Build the route output object from axes and anchors. */
+/** Max gap in the actual built route (not connection graph). */
+const MAX_BUILT_GAP_M = 3000;
+
+/**
+ * Build route or return null if inviable.
+ */
 function buildRoute(axisChain, startAnchor, endAnchor) {
   const gaps = computeGaps(axisChain);
+
+  // Reject routes with any single gap too large in the actual trace.
+  // The connection graph links axes within 3km of ANY endpoint pair,
+  // but the built route traces segments in order — the actual gap
+  // between consecutive axes can be much larger than the connection distance.
+  const maxGap = gaps.length > 0 ? Math.max(...gaps.map((g) => g.distanceM)) : 0;
+  if (maxGap > MAX_BUILT_GAP_M) return null;
+
   const infraDistanceM = axisChain.reduce((s, a) => s + a.totalInfraM, 0);
   const gapDistanceM = gaps.reduce((s, g) => s + g.distanceM, 0);
   const totalDistanceM = infraDistanceM + gapDistanceM;
@@ -520,7 +534,8 @@ export function stitchTrips(axes, anchors, options = {}) {
       const startAnchor = startAnchors[0];
       const endAnchor = endAnchors.find((a) => a.name !== startAnchor.name) || endAnchors[0];
 
-      candidates.push(buildRoute(axisChain, startAnchor, endAnchor));
+      const route = buildRoute(axisChain, startAnchor, endAnchor);
+      if (route) candidates.push(route);
     }
   }
 
@@ -556,7 +571,8 @@ export function stitchTrips(axes, anchors, options = {}) {
       if (maxLoopGap > 2000) continue;
 
       const anchor = startAnchors[0];
-      candidates.push(buildRoute(axisChain, anchor, anchor));
+      const loopRoute = buildRoute(axisChain, anchor, anchor);
+      if (loopRoute) candidates.push(loopRoute);
       loopCount++;
     }
   }
@@ -571,9 +587,11 @@ export function stitchTrips(axes, anchors, options = {}) {
     if (!nearAnchors || nearAnchors.length === 0) continue;
 
     if (nearAnchors.length >= 2) {
-      candidates.push(buildRoute([axis], nearAnchors[0], nearAnchors[1]));
+      const oab = buildRoute([axis], nearAnchors[0], nearAnchors[1]);
+      if (oab) candidates.push(oab);
     } else {
-      candidates.push(buildRoute([axis], nearAnchors[0], nearAnchors[0]));
+      const oab = buildRoute([axis], nearAnchors[0], nearAnchors[0]);
+      if (oab) candidates.push(oab);
     }
   }
 
