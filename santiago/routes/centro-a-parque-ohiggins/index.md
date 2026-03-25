@@ -1,6 +1,7 @@
 ---
 name: Centro a Parque O'Higgins
 status: published
+homepage_featured: true
 distance_km: 5.2
 tags:
   - bike path

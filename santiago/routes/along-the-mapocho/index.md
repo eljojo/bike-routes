@@ -1,6 +1,7 @@
 ---
 name: Along the Mapocho
 status: published
+homepage_featured: true
 distance_km: 15.2
 tags:
   - bike path

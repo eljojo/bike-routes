@@ -1,6 +1,7 @@
 ---
 name: Tobalaba
 status: published
+homepage_featured: true
 distance_km: 36.1
 tags:
   - bike path

@@ -1,6 +1,7 @@
 ---
 name: Ciclovía de la Infancia
 status: published
+homepage_featured: true
 distance_km: 16.8
 tags:
   - bike path

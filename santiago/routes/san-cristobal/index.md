@@ -1,6 +1,7 @@
 ---
 name: San Cristóbal
 status: published
+homepage_featured: true
 distance_km: 55.1
 tags:
   - bike path

@@ -1,6 +1,7 @@
 ---
 name: Circuito Dominical Combinado
 status: published
+homepage_featured: true
 distance_km: 40.3
 tags:
   - bike path

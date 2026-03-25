@@ -1,6 +1,7 @@
 ---
 name: La Reina a Quinta Normal
 status: published
+homepage_featured: true
 distance_km: 16.9
 tags:
   - bike path

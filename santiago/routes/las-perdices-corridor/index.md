@@ -1,6 +1,7 @@
 ---
 name: Las Perdices
 status: published
+homepage_featured: true
 distance_km: 26.3
 tags:
   - bike path

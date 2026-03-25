@@ -30,8 +30,8 @@ function resolveToSegments(waypoint, graph, axes, anchors, zones) {
     // 1. Match axis by name — returns the full corridor
     for (let ai = 0; ai < axes.length; ai++) {
       const axisN = normalize(axes[ai].name || '');
-      if (!axisN) continue;
-      if (axisN.includes(n) || n.includes(axisN)) {
+      if (!axisN || axisN.length < 3) continue; // skip unnamed/tiny axes
+      if (axisN.includes(n) || (n.length >= 4 && n.includes(axisN))) {
         const segIndices = [];
         for (let si = 0; si < segments.length; si++) {
           if (segToAxis.get(si) === ai) segIndices.push(si);
@@ -46,7 +46,7 @@ function resolveToSegments(waypoint, graph, axes, anchors, zones) {
     if (zones) {
       for (const z of zones) {
         const zn = normalize(z.name);
-        if (zn && (zn.includes(n) || n.includes(zn))) {
+        if (zn && zn.length >= 3 && (zn.includes(n) || (n.length >= 4 && n.includes(zn)))) {
           const nearest = findNearestSeg(z.centerCoord, segments);
           return { type: 'zone', name: z.name, segIndices: [], entryIdx: nearest, exitIdx: nearest };
         }
@@ -57,7 +57,7 @@ function resolveToSegments(waypoint, graph, axes, anchors, zones) {
     if (anchors) {
       for (const a of anchors) {
         const an = normalize(a.name || '');
-        if (an && (an.includes(n) || n.includes(an))) {
+        if (an && an.length >= 3 && (an.includes(n) || (n.length >= 4 && n.includes(an)))) {
           const nearest = findNearestSeg([a.lng, a.lat], segments);
           return { type: 'poi', name: a.name, segIndices: [], entryIdx: nearest, exitIdx: nearest };
         }

@@ -1,6 +1,7 @@
 ---
 name: Forestal a Quinta Normal
 status: published
+homepage_featured: true
 distance_km: 17.3
 tags:
   - bike path

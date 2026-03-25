@@ -1,6 +1,7 @@
 ---
 name: San Cristóbal por La Pirámide
 status: published
+homepage_featured: true
 distance_km: 23.3
 tags:
   - bike path

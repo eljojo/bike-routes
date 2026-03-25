@@ -1,6 +1,7 @@
 ---
 name: San Cristóbal por Pedro de Valdivia
 status: published
+homepage_featured: true
 distance_km: 17.8
 tags:
   - bike path

@@ -1,6 +1,7 @@
 ---
 name: Gran Mapocho
 status: published
+homepage_featured: true
 distance_km: 52.9
 tags:
   - bike path

@@ -1,6 +1,7 @@
 ---
 name: Pocuro a Parque Forestal
 status: published
+homepage_featured: true
 distance_km: 14.4
 tags:
   - bike path

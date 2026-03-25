@@ -1,6 +1,7 @@
 ---
 name: Mapocho 42K Tramo Central
 status: published
+homepage_featured: true
 distance_km: 53.6
 tags:
   - bike path

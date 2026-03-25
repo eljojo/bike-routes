@@ -1,6 +1,7 @@
 ---
 name: San Cristóbal por Pío Nono
 status: published
+homepage_featured: true
 distance_km: 20.5
 tags:
   - bike path

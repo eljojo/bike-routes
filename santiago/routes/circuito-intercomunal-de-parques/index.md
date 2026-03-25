@@ -1,6 +1,7 @@
 ---
 name: Circuito Intercomunal de Parques
 status: published
+homepage_featured: true
 distance_km: 24.7
 tags:
   - bike path
