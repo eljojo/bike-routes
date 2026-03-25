@@ -252,9 +252,34 @@ function loopShape(axisChain, totalDistanceM) {
   const overlapFraction = sampledPoints > 0 ? overlapCount / sampledPoints : 0;
   const isPaperclip = overlapFraction > 0.4; // >40% of outbound overlaps with return
 
-  const isOval = aspect < 2.5 && perimEff > 0.55 && !isPaperclip;
+  // Hub/star detection: the GPX trace should not return to the SAME point
+  // mid-route. A star pattern returns to the hub between each spoke.
+  // Check axis connection points — if any two gaps lead back to the same area,
+  // the route revisits a hub.
+  let hasHubRevisit = false;
+  if (axisChain.length >= 3) {
+    // Collect the connection points between axes (where gaps happen)
+    const junctionPoints = [];
+    for (let i = 0; i < axisChain.length; i++) {
+      const segs = axisChain[i].segments;
+      junctionPoints.push(segs[0].start);
+      junctionPoints.push(segs[segs.length - 1].end);
+    }
+    // Check if any non-adjacent junction points are within 200m (same hub)
+    for (let i = 0; i < junctionPoints.length; i++) {
+      for (let j = i + 3; j < junctionPoints.length; j++) { // skip adjacent
+        if (haversineM(junctionPoints[i], junctionPoints[j]) < 200) {
+          hasHubRevisit = true;
+          break;
+        }
+      }
+      if (hasHubRevisit) break;
+    }
+  }
 
-  return { aspect, perimEff, isOval, isPaperclip };
+  const isOval = aspect < 2.5 && perimEff > 0.55 && !isPaperclip && !hasHubRevisit;
+
+  return { aspect, perimEff, isOval, isPaperclip, hasHubRevisit };
 }
 
 /** Title-case a string (handles ñ, lowercases first). */
@@ -691,7 +716,7 @@ export function stitchTrips(axes, anchors, options = {}) {
       // Reject paperclip loops — riding both sides of the same avenue is not a loop
       const infraM = axisChain.reduce((s, a) => s + a.totalInfraM, 0);
       const shape = loopShape(axisChain, infraM);
-      if (shape.isPaperclip) continue;
+      if (shape.isPaperclip || shape.hasHubRevisit) continue;
 
       const anchor = startAnchors[0];
       const loopRoute = buildRoute(axisChain, anchor, anchor, usableAnchors);
