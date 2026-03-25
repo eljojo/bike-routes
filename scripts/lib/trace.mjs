@@ -192,7 +192,7 @@ export function validateTrace(segments, archetype, opts = {}) {
   let backtrackCount = 0;
   if (archetype === 'loop') {
     backtrackCount = checkLoopBacktracking(segments);
-    if (backtrackCount > 3) {
+    if (backtrackCount > 2) {
       return { valid: false, reason: `loop zigzag: ${backtrackCount} direction reversals`, worstGapM, backtrackCount };
     }
   } else {

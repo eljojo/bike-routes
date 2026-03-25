@@ -153,11 +153,12 @@ export async function buildGPX(route, opts = {}) {
 
   for (const axis of route.axes) {
     // Determine if this axis should be traversed in reverse order.
-    // Compare distance from lastCoord to the axis's "natural start"
-    // (first segment's first coord) vs its "natural end" (last segment's
-    // last coord). If we're closer to the end, reverse segment order.
+    // If the optimizer set _reversed, use that (it knows the loop direction).
+    // Otherwise, compare distance from lastCoord to axis endpoints.
     let segments = axis.segments;
-    if (lastCoord && segments.length >= 2) {
+    if (axis._reversed != null) {
+      if (axis._reversed) segments = [...segments].reverse();
+    } else if (lastCoord && segments.length >= 2) {
       const firstCoords = extractCoords(segments[0].geometry);
       const lastSegCoords = extractCoords(segments[segments.length - 1].geometry);
       if (firstCoords.length > 0 && lastSegCoords.length > 0) {

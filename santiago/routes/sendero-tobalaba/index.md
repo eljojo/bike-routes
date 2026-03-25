@@ -18,7 +18,7 @@ variants:
     distance_km: 4.7
 ---
 
-4,7 kilómetros por La Reina, desde Parque Canal San Carlos hasta Parque República de Ecuador. Prácticamente todo el recorrido tiene ciclovía.
+4,7 kilómetros por La Reina, desde Cerro Navidad hasta Parque Canal San Carlos. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

@@ -345,16 +345,15 @@ function optimizeAxisOrder(axisChain, isLoop = false) {
   const eps = axisChain.map((a) => ({
     start: a.segments[0].start,
     end: a.segments[a.segments.length - 1].end,
+    centroid: axisCentroid(a),
   }));
 
   /** Compute total gap for a given order + direction assignment. */
   function totalGapForOrder(order, dirs) {
     let total = 0;
     for (let i = 1; i < order.length; i++) {
-      const prevIdx = order[i - 1];
-      const currIdx = order[i];
-      const prevExit = dirs[i - 1] ? eps[prevIdx].start : eps[prevIdx].end;
-      const currEntry = dirs[i] ? eps[currIdx].end : eps[currIdx].start;
+      const prevExit = dirs[i - 1] ? eps[order[i - 1]].start : eps[order[i - 1]].end;
+      const currEntry = dirs[i] ? eps[order[i]].end : eps[order[i]].start;
       total += haversineM(prevExit, currEntry);
     }
     if (isLoop && order.length >= 2) {
@@ -374,13 +373,78 @@ function optimizeAxisOrder(axisChain, isLoop = false) {
       const idx = order[i];
       const dS = haversineM(pos, eps[idx].start);
       const dE = haversineM(pos, eps[idx].end);
-      dirs[i] = dE < dS; // reversed = enter from end
+      dirs[i] = dE < dS;
       pos = dirs[i] ? eps[idx].start : eps[idx].end;
     }
     return dirs;
   }
 
-  /** Nearest-neighbor construction. */
+  // --- For loops: angular ordering around centroid ---
+  // Sort axes by the angle from the loop's centroid to each axis's centroid.
+  // This traces a circle: NE → SE → SW → NW → back to NE.
+  // Try both clockwise and counterclockwise, pick the one with less total gap.
+  if (isLoop) {
+    // Compute centroid of all axes
+    let cx = 0, cy = 0;
+    for (const e of eps) { cx += e.centroid[0]; cy += e.centroid[1]; }
+    cx /= eps.length; cy /= eps.length;
+
+    // Compute angle from centroid for each axis
+    const withAngle = eps.map((e, i) => ({
+      idx: i,
+      angle: Math.atan2(e.centroid[0] - cx, e.centroid[1] - cy),
+    }));
+
+    // Sort by angle (counterclockwise)
+    const ccw = [...withAngle].sort((a, b) => a.angle - b.angle).map((a) => a.idx);
+    // Clockwise = reversed
+    const cw = [...ccw].reverse();
+
+    let best = { order: ccw, dirs: [], totalGap: Infinity };
+
+    // Try both directions, starting from each axis
+    for (const baseOrder of [ccw, cw]) {
+      for (let offset = 0; offset < baseOrder.length; offset++) {
+        // Rotate: start from different axis
+        const order = [...baseOrder.slice(offset), ...baseOrder.slice(0, offset)];
+        for (const startRev of [false, true]) {
+          const dirs = assignDirections(order, startRev);
+          const gap = totalGapForOrder(order, dirs);
+          if (gap < best.totalGap) {
+            best = { order, dirs, totalGap: gap };
+          }
+        }
+      }
+    }
+
+    // 2-opt improvement on the angular order
+    let improved = true;
+    while (improved) {
+      improved = false;
+      for (let i = 0; i < best.order.length - 1; i++) {
+        for (let j = i + 1; j < best.order.length; j++) {
+          const newOrder = [...best.order];
+          [newOrder[i], newOrder[j]] = [newOrder[j], newOrder[i]];
+          for (const startRev of [false, true]) {
+            const newDirs = assignDirections(newOrder, startRev);
+            const newGap = totalGapForOrder(newOrder, newDirs);
+            if (newGap < best.totalGap) {
+              best = { order: newOrder, dirs: newDirs, totalGap: newGap };
+              improved = true;
+            }
+          }
+        }
+      }
+    }
+
+    return best.order.map((i, pos) => {
+      const axis = axisChain[i];
+      axis._reversed = best.dirs[pos];
+      return axis;
+    });
+  }
+
+  // --- For one-way: nearest-neighbor + 2-opt ---
   function nnFrom(startIdx, startReversed) {
     const remaining = new Set(axisChain.map((_, i) => i));
     const order = [startIdx];
@@ -404,17 +468,13 @@ function optimizeAxisOrder(axisChain, isLoop = false) {
     return { order, dirs, totalGap: totalGapForOrder(order, dirs) };
   }
 
-  // Phase 1: nearest-neighbor from all starting axes/directions
   let best = { order: axisChain.map((_, i) => i), dirs: new Array(axisChain.length).fill(false), totalGap: Infinity };
-  const startIndices = isLoop ? axisChain.map((_, i) => i) : [0];
-  for (const si of startIndices) {
-    for (const rev of [false, true]) {
-      const result = nnFrom(si, rev);
-      if (result.totalGap < best.totalGap) best = result;
-    }
+  for (const rev of [false, true]) {
+    const result = nnFrom(0, rev);
+    if (result.totalGap < best.totalGap) best = result;
   }
 
-  // Phase 2: 2-opt improvement
+  // 2-opt improvement
   let improved = true;
   while (improved) {
     improved = false;
@@ -434,7 +494,11 @@ function optimizeAxisOrder(axisChain, isLoop = false) {
     }
   }
 
-  return best.order.map((i) => axisChain[i]);
+  return best.order.map((i, pos) => {
+    const axis = axisChain[i];
+    axis._reversed = best.dirs[pos];
+    return axis;
+  });
 }
 
 /** Generate a name based on route archetype. */
@@ -544,6 +608,7 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
       })),
       comunas: a.comunas,
       totalInfraM: a.totalInfraM,
+      _reversed: a._reversed,
     })),
     gaps,
     totalDistanceM: Math.round(totalDistanceM),

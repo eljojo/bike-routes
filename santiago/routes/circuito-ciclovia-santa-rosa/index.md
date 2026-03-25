@@ -1,7 +1,7 @@
 ---
 name: "Circuito Ciclovía Santa Rosa"
 status: published
-distance_km: 21.4
+distance_km: 19.0
 tags:
   - bike path
   - park path
@@ -14,10 +14,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Circuito Ciclovía Santa Rosa"
     gpx: main.gpx
-    distance_km: 21.4
+    distance_km: 19.0
 ---
 
-Un circuito de 21,4 kilómetros por La Pintana y Puente Alto, saliendo desde Plaza Población Marta Brunet. Prácticamente todo el recorrido tiene ciclovía.
+Un circuito de 19,0 kilómetros por La Pintana y Puente Alto, saliendo desde Plaza Población Marta Brunet. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

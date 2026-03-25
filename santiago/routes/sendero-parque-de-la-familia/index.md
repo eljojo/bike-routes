@@ -18,7 +18,7 @@ variants:
     distance_km: 2.6
 ---
 
-2,6 kilómetros por Quinta Normal, desde Parque Central Alameda Bernardo O'Higgins hasta Parque Gómez Rojas. Prácticamente todo el recorrido tiene ciclovía.
+2,6 kilómetros por Quinta Normal, desde Cerro Santa Lucía hasta Parque Central Alameda Bernardo O'Higgins. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

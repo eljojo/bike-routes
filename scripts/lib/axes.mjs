@@ -315,7 +315,7 @@ export function detectAxes(segments) {
   const MERGE_ENDPOINT_M = 300;   // max gap between axes to consider merging
   const SMALL_AXIS_M = 1000;      // axes shorter than this are merge candidates
   const MIN_BEARING_COMPAT = 30;  // max bearing difference to merge (degrees)
-  const MAX_NAMES_PER_AXIS = 4;   // don't merge if result would have too many street names
+  const MAX_NAMES_PER_AXIS = 10;  // one road can have many names across comunas (e.g. Alameda)
 
   function bearingDiff(a, b) {
     const diff = Math.abs(a - b) % 360;
