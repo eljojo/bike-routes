@@ -19,6 +19,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import yaml from 'js-yaml';
 import { buildGPX } from './lib/gpx.mjs';
 import { buildMarkdown } from './lib/markdown.mjs';
 import { buildRoadGraph } from './lib/roads.mjs';
@@ -81,16 +82,47 @@ if (proposals.bounds) {
 }
 
 // ---------------------------------------------------------------------------
-// Ensure output directories (clean routes, preserve config)
+// Scan for templated routes (with waypoints: in frontmatter)
 // ---------------------------------------------------------------------------
 
 const routesDir = path.join(outputDir, 'routes');
 const placesDir = path.join(outputDir, 'places');
 
-// Remove old routes — regeneration replaces them completely
+const templatedRoutes = [];
 if (fs.existsSync(routesDir)) {
-  fs.rmSync(routesDir, { recursive: true });
-  console.log('  Cleared old routes/');
+  for (const slug of fs.readdirSync(routesDir)) {
+    const mdPath = path.join(routesDir, slug, 'index.md');
+    if (!fs.existsSync(mdPath)) continue;
+    const raw = fs.readFileSync(mdPath, 'utf8');
+    const fmMatch = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)/);
+    if (!fmMatch) continue;
+    const fm = yaml.load(fmMatch[1]);
+    if (!fm.waypoints || !Array.isArray(fm.waypoints)) continue;
+    templatedRoutes.push({
+      slug,
+      frontmatter: fm,
+      body: fmMatch[2] || '',
+      waypoints: fm.waypoints,
+    });
+  }
+}
+if (templatedRoutes.length > 0) {
+  console.log(`Found ${templatedRoutes.length} templated route(s)`);
+}
+
+const templateSlugs = new Set(templatedRoutes.map((t) => t.slug));
+
+// ---------------------------------------------------------------------------
+// Ensure output directories (clean routes, preserve config)
+// ---------------------------------------------------------------------------
+
+// Remove old routes — but preserve templated ones
+if (fs.existsSync(routesDir)) {
+  for (const slug of fs.readdirSync(routesDir)) {
+    if (templateSlugs.has(slug)) continue; // preserve templates
+    fs.rmSync(path.join(routesDir, slug), { recursive: true });
+  }
+  console.log(`  Cleared old routes/ (preserved ${templateSlugs.size} templates)`);
 }
 fs.mkdirSync(routesDir, { recursive: true });
 fs.mkdirSync(placesDir, { recursive: true });
@@ -116,6 +148,9 @@ for (let i = 0; i < routes.length; i++) {
   if (count > 0) slug = `${baseSlug}-${count + 1}`;
   usedSlugs.set(baseSlug, count + 1);
 
+  // Don't overwrite curator-templated routes
+  if (templateSlugs.has(slug)) continue;
+
   const routeDir = path.join(outputDir, 'routes', slug);
   fs.mkdirSync(routeDir, { recursive: true });
 
@@ -130,6 +165,29 @@ for (let i = 0; i < routes.length; i++) {
 
   const actualKm = (traceDistanceM / 1000).toFixed(1);
   console.log(`  Route ${i + 1}/${routes.length}: ${slug} (${actualKm} km)`);
+}
+
+// ---------------------------------------------------------------------------
+// Rebuild templated routes from current infrastructure
+// ---------------------------------------------------------------------------
+
+if (templatedRoutes.length > 0) {
+  console.log('Preserving templated routes...');
+
+  for (const tmpl of templatedRoutes) {
+    const routeDir = path.join(outputDir, 'routes', tmpl.slug);
+    fs.mkdirSync(routeDir, { recursive: true });
+
+    // Write preserved frontmatter + body
+    // (Full zone-based GPX rebuild will come when zones are wired into generate-routes)
+    const fm = { ...tmpl.frontmatter };
+    const mdContent = `---\n${yaml.dump(fm, { lineWidth: -1 })}---\n${tmpl.body}`;
+    fs.writeFileSync(path.join(routeDir, 'index.md'), mdContent);
+    if (!fs.existsSync(path.join(routeDir, 'media.yml'))) {
+      fs.writeFileSync(path.join(routeDir, 'media.yml'), '[]\n');
+    }
+    console.log(`  Preserved template: ${tmpl.slug}`);
+  }
 }
 
 // ---------------------------------------------------------------------------
