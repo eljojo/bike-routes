@@ -23,7 +23,7 @@ Un circuito de 14,8 kilómetros por Providencia, Recoleta y Santiago, saliendo d
 
 ### Tramos
 
-**Esmeralda** (Providencia, Recoleta y Santiago) — 1,0 km, bidireccional, 180 cm de ancho.
+**Mapocho Expreso** (Providencia, Recoleta y Santiago) — 1,0 km, bidireccional, 180 cm de ancho.
 
 **Eliodoro Yáñez** (Providencia) — 3,2 km, unidireccional, en calzada, 130–260 cm de ancho.
 Evaluación Pedaleable: "buena".
@@ -37,7 +37,7 @@ Evaluación Pedaleable: "mala".
 
 ### Tramos sin infraestructura
 
-Entre **Esmeralda** y **Eliodoro Yáñez** — 430 m sin infraestructura ciclista.
+Entre **Mapocho Expreso** y **Eliodoro Yáñez** — 430 m sin infraestructura ciclista.
 
 Entre **Eliodoro Yáñez** y **Miguel Claro** — 402 m sin infraestructura ciclista.
 

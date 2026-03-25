@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Claudio Gay a Plaza Cívica de La Florida"
 status: published
-distance_km: 11.5
+distance_km: 10.9
 tags:
   - bike path
   - median lane
@@ -13,10 +13,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Claudio Gay a Plaza Cívica de La Florida"
     gpx: main.gpx
-    distance_km: 11.5
+    distance_km: 10.9
 ---
 
-11,5 kilómetros por Puente Alto y La Florida, desde Plaza Claudio Gay hasta Plaza Cívica de La Florida. El 83% del recorrido tiene ciclovía.
+10,9 kilómetros por Puente Alto y La Florida, desde Plaza Claudio Gay hasta Plaza Cívica de La Florida. El 83% del recorrido tiene ciclovía.
 
 ### Tramos
 

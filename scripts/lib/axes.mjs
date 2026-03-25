@@ -412,6 +412,33 @@ export function detectAxes(segments) {
         const combinedNames = new Set([...existingNames, ...smallNames]);
         if (combinedNames.size > MAX_NAMES_PER_AXIS) continue;
 
+        // Don't merge unnamed road segments into named bike infrastructure.
+        // An unnamed calzada diagonal through a neighborhood is not part of
+        // a named cycleway corridor — it's a shortcut the algorithm shouldn't take.
+        const targetHasName = target.segments.some((s) => s.normalizedName);
+        const smallIsUnnamedRoad = !small.segments.some((s) => s.normalizedName) &&
+          small.segments.some((s) => s.emplazamiento === 'calzada');
+        if (targetHasName && smallIsUnnamedRoad) continue;
+
+        // Collinearity check: the small axis should follow the same line as
+        // the target, not cut diagonally across it. Compare the bearing of
+        // the gap (target end → small start) with the target's bearing.
+        // A diagonal shortcut has a gap bearing ~45°+ off the axis bearing.
+        const gapBearingA = Math.atan2(
+          smallFirst.centroid[0] - bigLast.centroid[0],
+          smallFirst.centroid[1] - bigLast.centroid[1],
+        ) * 180 / Math.PI;
+        const gapBearingB = Math.atan2(
+          bigFirst.centroid[0] - smallLast.centroid[0],
+          bigFirst.centroid[1] - smallLast.centroid[1],
+        ) * 180 / Math.PI;
+        const targetBearing = axisBearing(target);
+        const gapAlignA = bearingDiff(((gapBearingA % 360) + 360) % 360, targetBearing);
+        const gapAlignB = bearingDiff(((gapBearingB % 360) + 360) % 360, targetBearing);
+        const gapAlign = Math.min(gapAlignA, gapAlignB);
+        // Allow some tolerance (45°) but reject clearly diagonal connections
+        if (gapAlign > 45 && bestDist > 100) continue;
+
         // Merge small into target: append segments and rebuild
         const allSegs = [...target.segments, ...small.segments];
         // Re-sort by position along dominant orientation
@@ -486,6 +513,13 @@ export function detectAxes(segments) {
         const namesB = new Set(axisB.segments.map((s) => s.normalizedName).filter(Boolean));
         const combined = new Set([...namesA, ...namesB]);
         if (combined.size > MAX_NAMES_PER_AXIS) continue;
+
+        // Don't merge unnamed road segments into named bike infrastructure
+        const aHasName = axisA.segments.some((s) => s.normalizedName);
+        const bHasName = axisB.segments.some((s) => s.normalizedName);
+        const aIsUnnamedRoad = !aHasName && axisA.segments.some((s) => s.emplazamiento === 'calzada');
+        const bIsUnnamedRoad = !bHasName && axisB.segments.some((s) => s.emplazamiento === 'calzada');
+        if ((aHasName && bIsUnnamedRoad) || (bHasName && aIsUnnamedRoad)) continue;
 
         // Merge: combine segments and rebuild
         const allSegs = [...axisA.segments, ...axisB.segments];

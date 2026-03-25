@@ -18,7 +18,7 @@ variants:
     distance_km: 11.4
 ---
 
-11,4 kilómetros por Conchali, Recoleta, Independencia y Santiago, desde Parque Vespucio Norte hasta Cerro Santa Lucía. El 87% del recorrido tiene ciclovía.
+11,4 kilómetros por Conchali, Recoleta, Independencia y Santiago, desde Parque Vespucio Norte hasta Cerro Santa Lucía. El 83% del recorrido tiene ciclovía.
 
 ### Tramos
 
@@ -33,7 +33,10 @@ Evaluación Pedaleable: "mala".
 **Avenida Independencia** (Independencia) — 2,9 km, bidireccional, en calzada, 210 cm de ancho.
 Evaluación Pedaleable: "regular".
 
-**Teatinos** (Independencia y Santiago) — 1,3 km, unidireccional/bidireccional/secondary, en calzada, 180–300 cm de ancho.
+**Escanilla** (Independencia) — 0,4 km, unidireccional, en calzada, 180 cm de ancho.
+Evaluación Pedaleable: "buena".
+
+**Teatinos** (Santiago) — 1,0 km, bidireccional/secondary, en calzada, 250–300 cm de ancho.
 Evaluación Pedaleable: "buena".
 
 
@@ -43,7 +46,9 @@ Entre **El Guanaco** y **Ciclovía Guanaco** — 79 m sin infraestructura ciclis
 
 Entre **Ciclovía Guanaco** y **Roma-dorsal** — 434 m sin infraestructura ciclista.
 
-Entre **Avenida Independencia** y **Teatinos** — 697 m sin infraestructura ciclista.
+Entre **Avenida Independencia** y **Escanilla** — 697 m sin infraestructura ciclista.
+
+Entre **Escanilla** y **Teatinos** — 372 m sin infraestructura ciclista.
 
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:

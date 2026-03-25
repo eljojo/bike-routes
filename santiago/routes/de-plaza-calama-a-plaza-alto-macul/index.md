@@ -23,7 +23,7 @@ variants:
 
 ### Tramos
 
-**Sin Nombre** (Ñuñoa) — 0,3 km, bidireccional, en acera, 200 cm de ancho.
+**Avenida Capitán Ignacio Carrera Pinto** (Ñuñoa) — 0,3 km, bidireccional, en acera, 200 cm de ancho.
 Evaluación Pedaleable: "mala".
 
 **Grecia** (Ñuñoa) — 1,7 km, bidireccional, en acera, 205 cm de ancho.

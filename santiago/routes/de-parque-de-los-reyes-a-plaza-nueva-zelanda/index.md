@@ -25,7 +25,7 @@ variants:
 **Avenida Costanera Sur** (Quinta Normal y Santiago) — 1,2 km, bidireccional, en parque y acera, 240 cm de ancho.
 Evaluación Pedaleable: "mala".
 
-**José Miguel De La Barra** (Santiago) — 0,7 km, bidireccional, en parque, 180 cm de ancho.
+**Esmeralda** (Santiago) — 0,7 km, bidireccional, en parque, 180 cm de ancho.
 Evaluación Pedaleable: "muy mala".
 
 **Ciclovía Píno Nono** (Providencia y Recoleta) — 3,7 km, bidireccional, en acera, 250 cm de ancho.
@@ -34,9 +34,9 @@ Evaluación Pedaleable: "mala".
 
 ### Tramos sin infraestructura
 
-Entre **Avenida Costanera Sur** y **José Miguel De La Barra** — 481 m sin infraestructura ciclista.
+Entre **Avenida Costanera Sur** y **Esmeralda** — 481 m sin infraestructura ciclista.
 
-Entre **José Miguel De La Barra** y **Ciclovía Píno Nono** — 59 m sin infraestructura ciclista.
+Entre **Esmeralda** y **Ciclovía Píno Nono** — 59 m sin infraestructura ciclista.
 
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
