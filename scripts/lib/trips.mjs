@@ -11,6 +11,7 @@
 import { haversineM, minEndpointDistance } from './geo.mjs';
 import { slugify } from './slugify.mjs';
 import { assignTags } from './tags.mjs';
+import { validateTrace } from './trace.mjs';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -317,12 +318,17 @@ function loopShape(axisChain, totalDistanceM) {
   const mid = Math.floor(coords.length / 2);
   const firstHalf = coords.slice(0, mid);
   const secondHalf = coords.slice(mid);
+  // Overlap radius scales with route size: short loops use 300m (same-avenue
+  // paperclips), longer loops use up to 1500m (parallel-corridor detection).
+  // Santa Rosa (12km) and La Serena (9km) are ~1.5km apart — the old 300m
+  // fixed radius couldn't catch them as overlapping.
+  const overlapRadius = Math.min(300 + totalDistanceM / 20, 1500);
   let overlapCount = 0;
   const sampleStep = Math.max(1, Math.floor(firstHalf.length / 20)); // sample ~20 points
   for (let i = 0; i < firstHalf.length; i += sampleStep) {
     const pt = firstHalf[i];
     for (let j = 0; j < secondHalf.length; j += sampleStep) {
-      if (haversineM(pt, secondHalf[j]) < 300) {
+      if (haversineM(pt, secondHalf[j]) < overlapRadius) {
         overlapCount++;
         break;
       }
@@ -373,9 +379,14 @@ function titleCase(str) {
 }
 
 /**
- * Reorder axes to minimize total gap distance (nearest-neighbor heuristic).
- * For loops, tries all starting axes. For one-way, tries both orientations
- * of the first axis. The GPX builder handles per-axis direction reversal.
+ * Reorder axes to minimize total gap distance (nearest-neighbor + 2-opt).
+ *
+ * Direction-aware: each axis has a start and end, and entering from one end
+ * means you exit from the other. A 12km axis going north means you exit at
+ * the north end — the optimizer tracks this to avoid backtracking.
+ *
+ * For loops, tries all starting axes and directions, then applies 2-opt
+ * improvement swaps to reduce the worst gaps.
  */
 function optimizeAxisOrder(axisChain, isLoop = false) {
   if (axisChain.length <= 2) return axisChain;
@@ -385,43 +396,95 @@ function optimizeAxisOrder(axisChain, isLoop = false) {
     end: a.segments[a.segments.length - 1].end,
   }));
 
-  function traceFrom(startIdx, startFromEnd) {
+  /** Compute total gap for a given order + direction assignment. */
+  function totalGapForOrder(order, dirs) {
+    let total = 0;
+    for (let i = 1; i < order.length; i++) {
+      const prevIdx = order[i - 1];
+      const currIdx = order[i];
+      // Exit point of previous axis depends on its direction
+      const prevExit = dirs[i - 1] ? eps[prevIdx].start : eps[prevIdx].end;
+      // Entry point of current axis
+      const currEntry = dirs[i] ? eps[currIdx].end : eps[currIdx].start;
+      total += haversineM(prevExit, currEntry);
+    }
+    if (isLoop && order.length >= 2) {
+      const lastExit = dirs[order.length - 1] ? eps[order[order.length - 1]].start : eps[order[order.length - 1]].end;
+      const firstEntry = dirs[0] ? eps[order[0]].end : eps[order[0]].start;
+      total += haversineM(lastExit, firstEntry);
+    }
+    return total;
+  }
+
+  /** Determine optimal directions for a given order using greedy forward pass. */
+  function assignDirections(order, startReversed) {
+    const dirs = new Array(order.length).fill(false);
+    dirs[0] = startReversed;
+    let pos = startReversed ? eps[order[0]].start : eps[order[0]].end;
+    for (let i = 1; i < order.length; i++) {
+      const idx = order[i];
+      const dS = haversineM(pos, eps[idx].start);
+      const dE = haversineM(pos, eps[idx].end);
+      dirs[i] = dE < dS; // reversed = enter from end
+      pos = dirs[i] ? eps[idx].start : eps[idx].end;
+    }
+    return dirs;
+  }
+
+  /** Nearest-neighbor construction. */
+  function nnFrom(startIdx, startReversed) {
     const remaining = new Set(axisChain.map((_, i) => i));
     const order = [startIdx];
     remaining.delete(startIdx);
-    let pos = startFromEnd ? eps[startIdx].start : eps[startIdx].end;
-    let totalGap = 0;
+    let pos = startReversed ? eps[startIdx].start : eps[startIdx].end;
 
     while (remaining.size > 0) {
-      let bestIdx = -1, bestDist = Infinity, bestEntry = 'start';
+      let bestIdx = -1, bestDist = Infinity, bestReversed = false;
       for (const idx of remaining) {
         const dS = haversineM(pos, eps[idx].start);
         const dE = haversineM(pos, eps[idx].end);
-        if (dS < bestDist) { bestDist = dS; bestIdx = idx; bestEntry = 'start'; }
-        if (dE < bestDist) { bestDist = dE; bestIdx = idx; bestEntry = 'end'; }
+        if (dS < bestDist) { bestDist = dS; bestIdx = idx; bestReversed = false; }
+        if (dE < bestDist) { bestDist = dE; bestIdx = idx; bestReversed = true; }
       }
       if (bestIdx < 0) break;
       order.push(bestIdx);
       remaining.delete(bestIdx);
-      totalGap += bestDist;
-      pos = bestEntry === 'start' ? eps[bestIdx].end : eps[bestIdx].start;
+      pos = bestReversed ? eps[bestIdx].start : eps[bestIdx].end;
     }
-    // For loops, add closure gap back to start
-    if (isLoop) {
-      const startPos = startFromEnd ? eps[startIdx].end : eps[startIdx].start;
-      totalGap += haversineM(pos, startPos);
-    }
-    return { order, totalGap };
+    const dirs = assignDirections(order, startReversed);
+    return { order, dirs, totalGap: totalGapForOrder(order, dirs) };
   }
 
-  let best = { order: axisChain.map((_, i) => i), totalGap: Infinity };
-
-  // For loops, try starting from each axis
+  // Phase 1: nearest-neighbor from all starting axes/directions
+  let best = { order: axisChain.map((_, i) => i), dirs: new Array(axisChain.length).fill(false), totalGap: Infinity };
   const startIndices = isLoop ? axisChain.map((_, i) => i) : [0];
   for (const si of startIndices) {
-    for (const fromEnd of [false, true]) {
-      const result = traceFrom(si, fromEnd);
+    for (const rev of [false, true]) {
+      const result = nnFrom(si, rev);
       if (result.totalGap < best.totalGap) best = result;
+    }
+  }
+
+  // Phase 2: 2-opt improvement — swap pairs and re-check.
+  // For N<=8 axes this is fast (28 pairs × 2 directions = 112 checks).
+  let improved = true;
+  while (improved) {
+    improved = false;
+    for (let i = 0; i < best.order.length - 1; i++) {
+      for (let j = i + 1; j < best.order.length; j++) {
+        // Try swapping positions i and j
+        const newOrder = [...best.order];
+        [newOrder[i], newOrder[j]] = [newOrder[j], newOrder[i]];
+        // Try both direction assignments
+        for (const startRev of [false, true]) {
+          const newDirs = assignDirections(newOrder, startRev);
+          const newGap = totalGapForOrder(newOrder, newDirs);
+          if (newGap < best.totalGap) {
+            best = { order: newOrder, dirs: newDirs, totalGap: newGap };
+            improved = true;
+          }
+        }
+      }
     }
   }
 
@@ -470,6 +533,18 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
   // between consecutive axes can be much larger than the connection distance.
   const maxGap = gaps.length > 0 ? Math.max(...gaps.map((g) => g.distanceM)) : 0;
   if (maxGap > MAX_BUILT_GAP_M) return null;
+
+  // For loops, also check the closure gap (last axis → first axis).
+  // A loop where you have to ride 7km on roads to get back to the start is not a loop.
+  if (earlyArchetype === 'loop' && axisChain.length >= 2) {
+    const closureGap = minAxesGap(axisChain[axisChain.length - 1], axisChain[0]);
+    if (closureGap.distance > MAX_BUILT_GAP_M) return null;
+  }
+
+  // Reject routes with bad traces (teleporting, backtracking, zigzag)
+  const traceSegs = axisChain.flatMap(a => a.segments);
+  const traceCheck = validateTrace(traceSegs, earlyArchetype);
+  if (!traceCheck.valid) return null;
 
   const infraDistanceM = axisChain.reduce((s, a) => s + a.totalInfraM, 0);
   const gapDistanceM = gaps.reduce((s, g) => s + g.distanceM, 0);
