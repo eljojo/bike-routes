@@ -102,12 +102,16 @@ export function curateLaunchSet(proposals, opts = {}) {
   for (const route of scored) {
     if (selected.length >= target) break;
 
-    // Skip duplicates — same start+end anchor pair
-    const pairKey = [route.startAnchor.name, route.endAnchor.name].sort().join('|');
-    if (selected.some((s) => {
-      const k = [s.startAnchor.name, s.endAnchor.name].sort().join('|');
-      return k === pairKey;
-    })) continue;
+    // Skip duplicates — same start+end anchor pair (but not loops,
+    // since different loops can share the same start/end anchor)
+    if (route.archetype !== 'loop') {
+      const pairKey = [route.startAnchor.name, route.endAnchor.name].sort().join('|');
+      if (selected.some((s) => {
+        if (s.archetype === 'loop') return false;
+        const k = [s.startAnchor.name, s.endAnchor.name].sort().join('|');
+        return k === pairKey;
+      })) continue;
+    }
 
     // Geographic spread — per-comuna cap, not per-pair.
     // A route spanning 4 comunas shouldn't be blocked because two of those
@@ -115,12 +119,12 @@ export function curateLaunchSet(proposals, opts = {}) {
     // comuna should dominate (max 4 routes touching it).
     const comunas = [...new Set(route.axes.flatMap((a) => a.comunas || []))];
     const maxComunaHits = Math.max(...comunas.map((c) => comunaUsed.get(c) || 0));
-    if (maxComunaHits >= 4) continue;
+    if (maxComunaHits >= 8) continue;
 
     // Anchor spread — don't overuse the same POI
     const startCount = anchorUsed.get(route.startAnchor.name) || 0;
     const endCount = anchorUsed.get(route.endAnchor.name) || 0;
-    if (startCount >= 3 || endCount >= 3) continue;
+    if (startCount >= 5 || endCount >= 5) continue;
 
     selected.push(route);
     for (const c of comunas) {

@@ -70,6 +70,11 @@ async function fetchElevations(coords) {
  * Downsample coords, fetch elevations, interpolate back to full resolution.
  */
 async function enrichWithElevation(coords) {
+  // Temporarily disabled — Open-Meteo rate limits after ~20 routes,
+  // adding 30s+ delay per route. Re-enable with --elevation flag.
+  if (!process.argv.includes('--elevation')) {
+    return coords.map((c) => [...c]);
+  }
   const maxSamples = 100;
   if (coords.length <= maxSamples) {
     const elevations = await fetchElevations(coords);
