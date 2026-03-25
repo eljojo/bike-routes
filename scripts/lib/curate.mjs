@@ -77,7 +77,7 @@ export function curateLaunchSet(proposals, opts = {}) {
     const gapPenalty = infraPenalty + singleGapPenalty;
 
     // Zone interest — routes through interesting zones score higher
-    const zoneBonus = route.zoneInterest || 0;
+    const zoneBonus = r.zoneInterest || 0;
 
     const interestScore =
       destinationScore * 1.5 +
