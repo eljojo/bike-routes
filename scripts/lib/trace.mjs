@@ -1,6 +1,10 @@
 /**
- * Trace validator — walks a segment chain and rejects routes with
- * teleporting, backtracking, or zigzag traces.
+ * Trace validator — walks a segment chain and rejects routes that
+ * retrace their own path or teleport between disconnected areas.
+ *
+ * Key concept: RETRACING, not backtracking. A zigzag through new
+ * interesting areas is fine. Going back to where you already were is not.
+ * "Have I been here before?" — not "am I going backwards."
  *
  * All coordinates are [lng, lat] (GeoJSON order).
  */
@@ -66,7 +70,6 @@ function checkTeleporting(segments, maxGapM) {
   for (let i = 0; i < segments.length - 1; i++) {
     const a = segments[i];
     const b = segments[i + 1];
-    // Check all four endpoint combos, take the minimum
     const gap = Math.min(
       haversineM(a.end, b.start),
       haversineM(a.end, b.end),
@@ -80,213 +83,122 @@ function checkTeleporting(segments, maxGapM) {
 }
 
 /**
- * Backtracking detection for one-way routes.
- * Projects sampled points onto the start→end direction vector.
- * A drop of more than maxBacktrackM from the running max means backtracking.
- */
-function checkOneWayBacktracking(segments, maxBacktrackM) {
-  const points = sampleTracePoints(segments);
-  if (points.length < 3) return 0;
-
-  const first = points[0];
-  const last = points[points.length - 1];
-
-  // Direction vector (in degrees, good enough for projection at city scale)
-  const dx = last[0] - first[0];
-  const dy = last[1] - first[1];
-  const lenSq = dx * dx + dy * dy;
-  if (lenSq < 1e-12) return 0; // degenerate route
-
-  let maxProj = -Infinity;
-  let backtrackCount = 0;
-
-  for (const pt of points) {
-    const px = pt[0] - first[0];
-    const py = pt[1] - first[1];
-    const proj = (px * dx + py * dy) / Math.sqrt(lenSq);
-    // Convert projection from degrees to approximate metres
-    const projM = proj * 111_320;
-
-    if (projM > maxProj) maxProj = projM;
-    if (maxProj - projM > maxBacktrackM) backtrackCount++;
-  }
-  return backtrackCount;
-}
-
-/**
- * Backtracking detection for loop routes.
- * Computes angle from route centroid to each sampled point.
- * Counts significant direction reversals (>15 degrees of arc each).
- */
-function checkLoopBacktracking(segments) {
-  const points = sampleTracePoints(segments);
-  if (points.length < 5) return 0;
-
-  // Compute centroid of all sampled points
-  let cx = 0, cy = 0;
-  for (const [x, y] of points) { cx += x; cy += y; }
-  cx /= points.length;
-  cy /= points.length;
-
-  // Compute angles from centroid
-  const angles = points.map(([x, y]) => Math.atan2(y - cy, x - cx) * (180 / Math.PI));
-
-  // Determine initial direction (CW or CCW)
-  let reversals = 0;
-  let currentDir = 0; // +1 = increasing angle, -1 = decreasing
-  let arcSinceReversal = 0;
-  const MIN_ARC = 15; // degrees
-
-  for (let i = 1; i < angles.length; i++) {
-    let delta = angles[i] - angles[i - 1];
-    // Normalize to [-180, 180]
-    if (delta > 180) delta -= 360;
-    if (delta < -180) delta += 360;
-    if (Math.abs(delta) < 0.5) continue; // skip negligible movement
-
-    const dir = delta > 0 ? 1 : -1;
-    if (currentDir === 0) {
-      currentDir = dir;
-      arcSinceReversal = Math.abs(delta);
-    } else if (dir === currentDir) {
-      arcSinceReversal += Math.abs(delta);
-    } else {
-      // Direction changed — only count if previous arc was significant
-      if (arcSinceReversal > MIN_ARC) {
-        reversals++;
-      }
-      currentDir = dir;
-      arcSinceReversal = Math.abs(delta);
-    }
-  }
-  return reversals;
-}
-
-/**
- * Rideability score: "does this route make sense for a human to ride?"
- * Measures what fraction of the route makes forward progress vs wasting
- * distance on backtracking.
+ * Retracing detection: "have I been within 200m of this spot before?"
  *
- * For one-way: projects points onto start→end line. Backward movement = waste.
- * For loops: measures angular monotonicity around centroid.
+ * Walks the sampled trace. For each point, checks if any EARLIER point
+ * (at least 500m back in trace distance) is within the retrace radius.
+ * This catches routes that go somewhere and come back, but allows
+ * normal curves and small wiggles.
  *
- * @returns {number} 0-100 (100 = every meter is forward progress)
+ * Returns the fraction of the route that retraces previously-visited ground.
+ * 0.0 = all new territory, 1.0 = completely retracing.
+ *
+ * @param {Array<[number, number]>} points - sampled trace points
+ * @param {number} radiusM - how close counts as "same place" (default 200m)
+ * @param {number} minSepM - minimum trace distance before a point can be
+ *   considered retracing (prevents flagging normal curves). Default 500m.
+ * @returns {{ retracingFraction: number, retracedDistM: number, totalDistM: number }}
  */
-function computeRideability(points, isLoop) {
-  if (points.length < 3) return 100;
+function checkRetracing(points, radiusM = 200, minSepM = 500) {
+  if (points.length < 5) return { retracingFraction: 0, retracedDistM: 0, totalDistM: 0 };
 
-  if (isLoop) {
-    let cx = 0, cy = 0;
-    for (const [x, y] of points) { cx += x; cy += y; }
-    cx /= points.length; cy /= points.length;
+  // Build cumulative distance array
+  const cumDist = [0];
+  for (let i = 1; i < points.length; i++) {
+    cumDist.push(cumDist[i - 1] + haversineM(points[i - 1], points[i]));
+  }
+  const totalDistM = cumDist[cumDist.length - 1];
 
-    const step = Math.max(1, Math.floor(points.length / 100));
-    let dominant = 0, prevAngle = null;
+  // Spatial grid for fast "have I been here?" lookups
+  const GRID = 0.002; // ~200m cells
+  const visited = new Map(); // gridKey → [{ pointIdx, cumDist }]
 
-    // Determine dominant rotation direction
-    for (let i = 0; i < points.length; i += step) {
-      const angle = Math.atan2(points[i][0] - cx, points[i][1] - cy) * 180 / Math.PI;
-      if (prevAngle !== null) {
-        let delta = angle - prevAngle;
-        if (delta > 180) delta -= 360;
-        if (delta < -180) delta += 360;
-        dominant += delta > 0 ? 1 : -1;
-      }
-      prevAngle = angle;
-    }
-    const expectedDir = dominant >= 0 ? 1 : -1;
+  let retracedDist = 0;
 
-    // Measure forward vs backward arc
-    let forwardArc = 0, backwardArc = 0;
-    prevAngle = null;
-    for (let i = 0; i < points.length; i += step) {
-      const angle = Math.atan2(points[i][0] - cx, points[i][1] - cy) * 180 / Math.PI;
-      if (prevAngle !== null) {
-        let delta = angle - prevAngle;
-        if (delta > 180) delta -= 360;
-        if (delta < -180) delta += 360;
-        if (Math.abs(delta) > 2) {
-          if ((delta > 0 ? 1 : -1) === expectedDir) forwardArc += Math.abs(delta);
-          else backwardArc += Math.abs(delta);
+  for (let i = 0; i < points.length; i++) {
+    const [lng, lat] = points[i];
+    const gx = Math.floor(lng / GRID);
+    const gy = Math.floor(lat / GRID);
+    const key = `${gx},${gy}`;
+
+    // Check if any earlier point (far enough back in trace distance) is nearby
+    let isRetracing = false;
+    outer:
+    for (let dx = -1; dx <= 1; dx++) {
+      for (let dy = -1; dy <= 1; dy++) {
+        const neighborKey = `${gx + dx},${gy + dy}`;
+        const cell = visited.get(neighborKey);
+        if (!cell) continue;
+        for (const prev of cell) {
+          // Must be at least minSepM back along the trace
+          if (cumDist[i] - prev.cumDist < minSepM) continue;
+          if (haversineM(points[i], points[prev.pointIdx]) < radiusM) {
+            isRetracing = true;
+            break outer;
+          }
         }
       }
-      prevAngle = angle;
     }
 
-    const totalArc = forwardArc + backwardArc;
-    return totalArc > 0 ? Math.round((forwardArc / totalArc) * 100) : 100;
+    if (isRetracing && i > 0) {
+      retracedDist += haversineM(points[i - 1], points[i]);
+    }
+
+    // Add to spatial grid
+    if (!visited.has(key)) visited.set(key, []);
+    visited.get(key).push({ pointIdx: i, cumDist: cumDist[i] });
   }
 
-  // One-way: project onto start→end direction
-  const first = points[0], last = points[points.length - 1];
-  const ox = last[0] - first[0], oy = last[1] - first[1];
-  const lenSq = ox * ox + oy * oy;
-  if (lenSq < 1e-12) return 0;
-
-  let totalDist = 0, wastedDist = 0, prevProj = 0;
-  for (let i = 1; i < points.length; i++) {
-    const d = haversineM(points[i - 1], points[i]);
-    totalDist += d;
-    const dx = points[i][0] - first[0], dy = points[i][1] - first[1];
-    const proj = (dx * ox + dy * oy) / Math.sqrt(lenSq) * 111320;
-    if (proj < prevProj) wastedDist += d;
-    prevProj = proj;
-  }
-
-  return totalDist > 0 ? Math.round(Math.max(0, 1 - (wastedDist * 2 / totalDist)) * 100) : 100;
+  const retracingFraction = totalDistM > 0 ? retracedDist / totalDistM : 0;
+  return {
+    retracingFraction: Math.round(retracingFraction * 100) / 100,
+    retracedDistM: Math.round(retracedDist),
+    totalDistM: Math.round(totalDistM),
+  };
 }
 
 /**
  * Validate a segment chain for trace quality.
+ *
+ * Checks ALL archetypes (including mountain) for retracing.
+ * A route that visits the same place twice is bad regardless of archetype.
+ *
  * @param {Array} segments - ordered segments with .start, .end, .geometry, .lengthM
  * @param {string} archetype - 'one-way', 'loop', or 'mountain'
- * @param {object} [opts] - { maxGapM: 3000, maxBacktrackM: 300, minRideability: 60 }
- * @returns {{ valid: boolean, reason?: string, worstGapM: number, backtrackCount: number, rideability: number }}
+ * @param {object} [opts]
+ * @param {number} [opts.maxGapM=3000] - max gap between consecutive segments
+ * @param {number} [opts.maxRetracingFraction=0.15] - max fraction of route that retraces
+ * @returns {{ valid: boolean, reason?: string, worstGapM: number, retracingFraction: number, retracedDistM: number }}
  */
 export function validateTrace(segments, archetype, opts = {}) {
   const maxGapM = opts.maxGapM ?? 3000;
-  const maxBacktrackM = opts.maxBacktrackM ?? 300;
-  const minRideability = opts.minRideability ?? 65;
+  const maxRetracing = opts.maxRetracingFraction ?? 0.15;
 
   if (!segments || segments.length === 0) {
-    return { valid: false, reason: 'no segments', worstGapM: 0, backtrackCount: 0, rideability: 0 };
+    return { valid: false, reason: 'no segments', worstGapM: 0, retracingFraction: 1, retracedDistM: 0 };
   }
 
   // 1. Teleporting check (all archetypes)
   const { worst: worstGapM, teleports } = checkTeleporting(segments, maxGapM);
   if (teleports > 0) {
-    return { valid: false, reason: `teleport: ${teleports} gap(s) > ${maxGapM}m (worst: ${Math.round(worstGapM)}m)`, worstGapM, backtrackCount: 0, rideability: 0 };
+    return {
+      valid: false,
+      reason: `teleport: ${teleports} gap(s) > ${maxGapM}m (worst: ${Math.round(worstGapM)}m)`,
+      worstGapM, retracingFraction: 0, retracedDistM: 0,
+    };
   }
 
-  // 2. Rideability check (all archetypes except mountain)
-  const isLoop = archetype === 'loop';
-  let rideability = 100;
-  if (archetype !== 'mountain') {
-    const points = sampleTracePoints(segments);
-    rideability = computeRideability(points, isLoop);
-    if (rideability < minRideability) {
-      return { valid: false, reason: `low rideability: ${rideability}% (min ${minRideability}%)`, worstGapM, backtrackCount: 0, rideability };
-    }
+  // 2. Retracing check (ALL archetypes — no exemptions)
+  const points = sampleTracePoints(segments);
+  const { retracingFraction, retracedDistM, totalDistM } = checkRetracing(points);
+
+  if (retracingFraction > maxRetracing) {
+    return {
+      valid: false,
+      reason: `retracing: ${Math.round(retracingFraction * 100)}% of route revisits same area (${(retracedDistM / 1000).toFixed(1)}km of ${(totalDistM / 1000).toFixed(1)}km)`,
+      worstGapM, retracingFraction, retracedDistM,
+    };
   }
 
-  // 3. Mountain routes — skip backtracking checks
-  if (archetype === 'mountain') {
-    return { valid: true, worstGapM, backtrackCount: 0, rideability: 100 };
-  }
-
-  // 4. Backtracking check
-  let backtrackCount = 0;
-  if (isLoop) {
-    backtrackCount = checkLoopBacktracking(segments);
-    if (backtrackCount > 2) {
-      return { valid: false, reason: `loop zigzag: ${backtrackCount} direction reversals`, worstGapM, backtrackCount, rideability };
-    }
-  } else {
-    backtrackCount = checkOneWayBacktracking(segments, maxBacktrackM);
-    if (backtrackCount > 0) {
-      return { valid: false, reason: `backtracking: ${backtrackCount} point(s) regressed > ${maxBacktrackM}m`, worstGapM, backtrackCount, rideability };
-    }
-  }
-
-  return { valid: true, worstGapM, backtrackCount, rideability };
+  return { valid: true, worstGapM, retracingFraction, retracedDistM };
 }

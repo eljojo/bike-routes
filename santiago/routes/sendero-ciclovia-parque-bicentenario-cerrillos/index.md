@@ -1,13 +1,12 @@
 ---
 name: "Sendero Ciclovia Parque Bicentenario Cerrillos"
 status: published
-distance_km: 5.7
+distance_km: 4.9
 tags:
   - bike path
   - park path
   - mountain
   - flat
-  - maipu
   - cerrillos
   - estacion central
 created_at: "2026-03-25"
@@ -15,29 +14,29 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Ciclovia Parque Bicentenario Cerrillos"
     gpx: main.gpx
-    distance_km: 5.7
+    distance_km: 4.9
 ---
 
-5,7 kilómetros por Maipu, Cerrillos y Estacion Central, desde Plaza Arica hasta Plaza Pedro Aguirre Cerda. El 79% del recorrido tiene ciclovía.
+4,9 kilómetros por Cerrillos y Estacion Central, desde Plaza Melipilla hasta Plaza Pedro Aguirre Cerda. El 83% del recorrido tiene ciclovía.
 
 ### Tramos
 
-**Camino A Melipilla** (Maipu) — 0,3 km, bidireccional, en acera, 140 cm de ancho.
-Evaluación Pedaleable: "mala".
+**Ciclovia Parque Bicentenario Cerrillos** — 2,0 km, cycleway, en parque.
 
-**Ciclovía Pedro Aguirre Cerda** (Cerrillos y Estacion Central) — 1,0 km, bidireccional, en acera, 140 cm de ancho.
-Evaluación Pedaleable: "mala".
+**Sin Nombre** — 0,7 km, cycleway.
 
-**Ciclovia Parque Bicentenario Cerrillos** — 2,5 km, cycleway, en parque.
+**Ciclovía Pedro Aguirre Cerda** (Cerrillos y Estacion Central) — 1,2 km, bidireccional, en calzada, 180 cm de ancho.
+Evaluación Pedaleable: "mala".
 
 
 ### Tramos sin infraestructura
 
-Entre **Ciclovía Pedro Aguirre Cerda** y **Ciclovia Parque Bicentenario Cerrillos** — 941 m sin infraestructura ciclista.
+Entre **Ciclovia Parque Bicentenario Cerrillos** y **Siguiente Tramo** — 90 m sin infraestructura ciclista.
+
+Entre **Tramo Anterior** y **Ciclovía Pedro Aguirre Cerda** — 696 m sin infraestructura ciclista.
 
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-https://youtu.be/-Yr2Jq4P_94
-https://youtu.be/g1gSFMKfITc
+https://youtu.be/M9ESitw1tdo
 

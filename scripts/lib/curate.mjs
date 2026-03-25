@@ -95,15 +95,32 @@ export function curateLaunchSet(proposals, opts = {}) {
   scored.sort((a, b) => b.interestScore - a.interestScore);
 
   // Greedy selection with diversity constraints
+  // Pre-compute geographic footprint for each route (200m grid cells).
+  // Used to detect overlapping routes covering the same ground.
+  const FOOTPRINT_GRID = 0.002; // ~200m
+  function routeFootprint(route) {
+    const cells = new Set();
+    for (const axis of route.axes) {
+      for (const seg of axis.segments) {
+        const coords = seg.geometry.type === 'MultiLineString'
+          ? seg.geometry.coordinates.flat() : seg.geometry.coordinates;
+        for (const c of coords) {
+          cells.add(`${Math.floor(c[0] / FOOTPRINT_GRID)},${Math.floor(c[1] / FOOTPRINT_GRID)}`);
+        }
+      }
+    }
+    return cells;
+  }
+
   const selected = [];
-  const anchorUsed = new Map();       // max 3 routes per anchor name
-  const comunaUsed = new Map();       // per-comuna count (not per-pair)
+  const selectedFootprints = [];
+  const anchorUsed = new Map();
+  const comunaUsed = new Map();
 
   for (const route of scored) {
     if (selected.length >= target) break;
 
-    // Skip duplicates — same start+end anchor pair (but not loops,
-    // since different loops can share the same start/end anchor)
+    // Skip duplicates — same start+end anchor pair (but not loops)
     if (route.archetype !== 'loop') {
       const pairKey = [route.startAnchor.name, route.endAnchor.name].sort().join('|');
       if (selected.some((s) => {
@@ -113,20 +130,35 @@ export function curateLaunchSet(proposals, opts = {}) {
       })) continue;
     }
 
-    // Geographic spread — per-comuna cap, not per-pair.
-    // A route spanning 4 comunas shouldn't be blocked because two of those
-    // comunas appeared in separate routes. The constraint is: no single
-    // comuna should dominate (max 4 routes touching it).
+    // Geographic overlap — reject routes covering >50% same ground
+    // as an already-selected route. Kills "three overlapping Mapocho routes."
+    const footprint = routeFootprint(route);
+    let tooMuchOverlap = false;
+    for (const existingFP of selectedFootprints) {
+      let overlap = 0;
+      for (const cell of footprint) {
+        if (existingFP.has(cell)) overlap++;
+      }
+      const overlapRatio = overlap / Math.min(footprint.size, existingFP.size);
+      if (overlapRatio > 0.5) {
+        tooMuchOverlap = true;
+        break;
+      }
+    }
+    if (tooMuchOverlap) continue;
+
+    // Geographic spread — per-comuna cap
     const comunas = [...new Set(route.axes.flatMap((a) => a.comunas || []))];
     const maxComunaHits = Math.max(...comunas.map((c) => comunaUsed.get(c) || 0));
     if (maxComunaHits >= 8) continue;
 
-    // Anchor spread — don't overuse the same POI
+    // Anchor spread
     const startCount = anchorUsed.get(route.startAnchor.name) || 0;
     const endCount = anchorUsed.get(route.endAnchor.name) || 0;
     if (startCount >= 5 || endCount >= 5) continue;
 
     selected.push(route);
+    selectedFootprints.push(footprint);
     for (const c of comunas) {
       comunaUsed.set(c, (comunaUsed.get(c) || 0) + 1);
     }
