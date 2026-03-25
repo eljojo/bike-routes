@@ -2,7 +2,7 @@
 name: San Cristóbal por La Pirámide
 status: published
 homepage_featured: true
-distance_km: 33.3
+distance_km: 21.9
 tags:
   - bike path
   - park path
@@ -21,7 +21,7 @@ updated_at: '2026-03-25'
 variants:
   - name: San Cristóbal por La Pirámide
     gpx: main.gpx
-    distance_km: 33.3
+    distance_km: 21.9
 ---
 
 The gentler climb up San Cristóbal from the Vitacura side. Longer but more gradual than Pío Nono or Pedro de Valdivia.
