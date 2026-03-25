@@ -11,6 +11,7 @@
 
 import { haversineM } from './geo.mjs';
 import { routeGap } from './routing.mjs';
+import { shortestPath } from './roads.mjs';
 
 // ---------------------------------------------------------------------------
 // Elevation enrichment via Open-Meteo API
@@ -122,9 +123,11 @@ function extractCoords(geometry) {
  * Build a GPX 1.1 XML string from a route object.
  *
  * @param {object} route - route object from stitchTrips()
+ * @param {object} [opts] - options
+ * @param {object} [opts.roadGraph] - road graph from buildRoadGraph(), for gap routing
  * @returns {string} valid GPX XML
  */
-export async function buildGPX(route) {
+export async function buildGPX(route, opts = {}) {
   const useGoogleRouting = !process.argv.includes('--no-google-routing') && !!process.env.GOOGLE_DIRECTIONS_API_KEY;
   const name = escapeXML(route.name);
   const allCoords = [];
@@ -165,16 +168,27 @@ export async function buildGPX(route) {
       if (lastCoord) {
         const gapDist = haversineM(lastCoord, coords[0]);
         if (gapDist > 50) {
-          // Try Google bike routing for significant gaps
-          if (gapDist > 200 && useGoogleRouting) {
+          let gapFilled = false;
+          // Try road graph routing first
+          if (gapDist > 100 && opts.roadGraph) {
+            const roadResult = shortestPath(opts.roadGraph, lastCoord, coords[0], gapDist * 2);
+            if (roadResult && roadResult.path.length > 2) {
+              for (let k = 1; k < roadResult.path.length - 1; k++) {
+                allCoords.push(roadResult.path[k]);
+              }
+              gapFilled = true;
+            }
+          }
+          // Try Google routing
+          if (!gapFilled && gapDist > 200 && useGoogleRouting) {
             const gapRoute = await routeGap(lastCoord, coords[0]);
             if (gapRoute && gapRoute.length > 0) {
               for (const pt of gapRoute) allCoords.push(pt);
-            } else {
-              allCoords.push(lastCoord);
-              allCoords.push(coords[0]);
+              gapFilled = true;
             }
-          } else {
+          }
+          // Fallback: straight line
+          if (!gapFilled) {
             allCoords.push(lastCoord);
             allCoords.push(coords[0]);
           }
@@ -188,11 +202,14 @@ export async function buildGPX(route) {
     }
   }
 
-  // Close loop routes: append first point to create a closed circuit
+  // Close loop routes: append first point only if the trace endpoints
+  // are reasonably close. A 7km straight line across the map is not a
+  // loop closure — it's a bug. The 2km threshold matches loop detection.
   if (route.archetype === 'loop' && allCoords.length > 2) {
     const first = allCoords[0];
     const last = allCoords[allCoords.length - 1];
-    if (haversineM(first, last) > 50) {
+    const closureDist = haversineM(first, last);
+    if (closureDist > 50 && closureDist < 2000) {
       allCoords.push(first);
     }
   }

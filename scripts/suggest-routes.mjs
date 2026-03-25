@@ -16,7 +16,7 @@ import { join } from 'node:path';
 import yaml from 'js-yaml';
 import { parseCatastroFeature, parseOverpassWay } from './lib/segments.mjs';
 import { detectAxes } from './lib/axes.mjs';
-import { fetchPOIs, fetchCyclingWays, fetchMetroStations, fetchWaterways, fetchMotorways } from './lib/overpass.mjs';
+import { fetchPOIs, fetchCyclingWays, fetchMetroStations, fetchWaterways, fetchMotorways, fetchRoadNetwork } from './lib/overpass.mjs';
 import { haversineM, allCoords } from './lib/geo.mjs';
 
 /** Sample N evenly-spaced points along a coordinate array. */
@@ -29,6 +29,7 @@ function samplePoints(coords, n) {
 }
 import { scoreAnchors, clusterDestinationZones } from './lib/anchors.mjs';
 import { stitchTrips } from './lib/trips.mjs';
+import { buildRoadGraph } from './lib/roads.mjs';
 import { buildGPX } from './lib/gpx.mjs';
 import { buildMarkdown } from './lib/markdown.mjs';
 
@@ -291,6 +292,12 @@ async function main() {
   const motorways = await fetchMotorways(bounds);
   console.log(`[pipeline] ${motorways.length} motorway segments found`);
 
+  // Fetch road network for gap routing
+  console.log('[pipeline] Fetching road network...');
+  const roadWays = await fetchRoadNetwork(bounds);
+  console.log(`[pipeline] ${roadWays.length} road segments found`);
+  const roadGraph = buildRoadGraph(roadWays);
+
   // Add metro stations as bailout-type POIs
   for (const station of metroStations) {
     pois.push(station);
@@ -315,7 +322,7 @@ async function main() {
 
   // --- Pass 3: Stitch trips ---
   console.log('[pipeline] Stitching routes...');
-  const routes = stitchTrips(axes, anchors);
+  const routes = stitchTrips(axes, anchors, { roadGraph });
   console.log(`[pipeline] ${routes.length} routes generated`);
 
   // --- Print summary ---

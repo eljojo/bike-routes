@@ -21,6 +21,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { buildGPX } from './lib/gpx.mjs';
 import { buildMarkdown } from './lib/markdown.mjs';
+import { buildRoadGraph } from './lib/roads.mjs';
+import { fetchRoadNetwork } from './lib/overpass.mjs';
 import { slugify } from './lib/slugify.mjs';
 import { curateLaunchSet } from './lib/curate.mjs';
 
@@ -68,6 +70,17 @@ if (args.limit && args.limit > 0) {
 console.log(`Generating bike-routes for ${proposals.city}...`);
 
 // ---------------------------------------------------------------------------
+// Build road graph for gap routing in GPX
+// ---------------------------------------------------------------------------
+
+let roadGraph = null;
+if (proposals.bounds) {
+  console.log('Building road graph for gap routing...');
+  const roadWays = await fetchRoadNetwork(proposals.bounds);
+  roadGraph = buildRoadGraph(roadWays);
+}
+
+// ---------------------------------------------------------------------------
 // Ensure output directories (clean routes, preserve config)
 // ---------------------------------------------------------------------------
 
@@ -106,7 +119,7 @@ for (let i = 0; i < routes.length; i++) {
   const routeDir = path.join(outputDir, 'routes', slug);
   fs.mkdirSync(routeDir, { recursive: true });
 
-  fs.writeFileSync(path.join(routeDir, 'main.gpx'), await buildGPX(route));
+  fs.writeFileSync(path.join(routeDir, 'main.gpx'), await buildGPX(route, { roadGraph }));
   fs.writeFileSync(path.join(routeDir, 'index.md'), buildMarkdown(route));
   fs.writeFileSync(path.join(routeDir, 'media.yml'), '[]\n');
 

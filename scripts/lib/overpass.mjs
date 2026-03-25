@@ -253,6 +253,27 @@ out geom tags;
 }
 
 /**
+ * Fetch all rideable roads within a bounding box for gap routing.
+ * @param {[number, number, number, number]} bounds - [south, west, north, east]
+ * @returns {Array} OSM way elements with geometry
+ */
+export async function fetchRoadNetwork(bounds) {
+  const [s, w, n, e] = bounds;
+  const bbox = `${s},${w},${n},${e}`;
+  const query = `
+[out:json][timeout:90];
+(
+  way["highway"~"cycleway|path|footway|residential|tertiary|secondary|living_street|pedestrian|service"](${bbox});
+);
+out geom;
+`.trim();
+
+  const data = await queryOverpass(query);
+  return (data.elements ?? [])
+    .filter(el => Array.isArray(el.geometry) && el.geometry.length >= 2);
+}
+
+/**
  * Fetch motorway/trunk/motorway_link ways within a bounding box.
  * @param {[number, number, number, number]} bounds - [south, west, north, east]
  * @returns {Array<Array<[number, number]>>} array of coordinate arrays ([lon, lat] pairs)
