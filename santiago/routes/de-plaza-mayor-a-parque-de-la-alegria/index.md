@@ -1,5 +1,5 @@
 ---
-name: "De Plaza Mayor a Parque Mapocho Río Tramo 3"
+name: "De Plaza Mayor a Parque de la Alegría"
 status: published
 distance_km: 2.1
 tags:
@@ -12,12 +12,12 @@ tags:
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
-  - name: "De Plaza Mayor a Parque Mapocho Río Tramo 3"
+  - name: "De Plaza Mayor a Parque de la Alegría"
     gpx: main.gpx
     distance_km: 2.1
 ---
 
-2,1 kilómetros por Renca, desde Plaza Mayor hasta Parque Mapocho Río Tramo 3. Prácticamente todo el recorrido tiene ciclovía.
+2,1 kilómetros por Renca, desde Plaza Mayor hasta Parque de la Alegría. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

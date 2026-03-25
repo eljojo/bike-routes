@@ -252,29 +252,30 @@ function loopShape(axisChain, totalDistanceM) {
   const overlapFraction = sampledPoints > 0 ? overlapCount / sampledPoints : 0;
   const isPaperclip = overlapFraction > 0.4; // >40% of outbound overlaps with return
 
-  // Hub/star detection: the GPX trace should not return to the SAME point
-  // mid-route. A star pattern returns to the hub between each spoke.
-  // Check axis connection points — if any two gaps lead back to the same area,
-  // the route revisits a hub.
+  // Hub/star detection: a star pattern has multiple spokes from one hub,
+  // where the GPX returns to the hub between spokes. Detect by checking
+  // if junction points revisit the same area AND the route has low area
+  // coverage (perimEff < 0.6 means the route doesn't trace a real perimeter).
   let hasHubRevisit = false;
   if (axisChain.length >= 3) {
-    // Collect the connection points between axes (where gaps happen)
     const junctionPoints = [];
     for (let i = 0; i < axisChain.length; i++) {
       const segs = axisChain[i].segments;
       junctionPoints.push(segs[0].start);
       junctionPoints.push(segs[segs.length - 1].end);
     }
-    // Check if any non-adjacent junction points are within 200m (same hub)
+    let hubCount = 0;
     for (let i = 0; i < junctionPoints.length; i++) {
-      for (let j = i + 3; j < junctionPoints.length; j++) { // skip adjacent
+      for (let j = i + 3; j < junctionPoints.length; j++) {
         if (haversineM(junctionPoints[i], junctionPoints[j]) < 200) {
-          hasHubRevisit = true;
-          break;
+          hubCount++;
         }
       }
-      if (hasHubRevisit) break;
     }
+    // Only flag as star if there are multiple hub revisits AND the route
+    // doesn't trace a real perimeter. A single hub revisit in an otherwise
+    // good loop (like a trail network) is OK.
+    hasHubRevisit = hubCount >= 2 || (hubCount >= 1 && perimEff < 0.5);
   }
 
   const isOval = aspect < 2.5 && perimEff > 0.55 && !isPaperclip && !hasHubRevisit;

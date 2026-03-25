@@ -1,5 +1,5 @@
 ---
-name: "De Plaza Mafalda a Parque Mapocho Río Tramo 3"
+name: "De Plaza Mafalda a Parque de la Alegría"
 status: published
 distance_km: 5.9
 tags:
@@ -10,12 +10,12 @@ tags:
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
-  - name: "De Plaza Mafalda a Parque Mapocho Río Tramo 3"
+  - name: "De Plaza Mafalda a Parque de la Alegría"
     gpx: main.gpx
     distance_km: 5.9
 ---
 
-5,9 kilómetros por Renca, desde Plaza Mafalda hasta Parque Mapocho Río Tramo 3. El 71% del recorrido tiene ciclovía.
+5,9 kilómetros por Renca, desde Plaza Mafalda hasta Parque de la Alegría. El 71% del recorrido tiene ciclovía.
 
 ### Tramos
 
