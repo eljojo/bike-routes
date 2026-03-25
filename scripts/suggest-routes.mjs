@@ -17,6 +17,7 @@ import yaml from 'js-yaml';
 import { parseCatastroFeature, parseOverpassWay } from './lib/segments.mjs';
 import { detectAxes } from './lib/axes.mjs';
 import { fetchPOIs, fetchCyclingWays } from './lib/overpass.mjs';
+import { haversineM } from './lib/geo.mjs';
 import { scoreAnchors, clusterDestinationZones } from './lib/anchors.mjs';
 import { stitchTrips } from './lib/trips.mjs';
 import { buildGPX } from './lib/gpx.mjs';
@@ -154,8 +155,39 @@ async function main() {
   }
 
   // --- Pass 0: Load segments ---
-  const segments = await loadSegments(source, bounds);
-  console.log(`[pipeline] ${segments.length} segments loaded`);
+  const primarySegments = await loadSegments(source, bounds);
+  console.log(`[pipeline] ${primarySegments.length} primary segments loaded`);
+
+  // Supplement with Overpass cycling ways — the primary source (e.g. catastro)
+  // may not cover all bike infrastructure. OSM often has paths the catastro missed.
+  let segments = primarySegments;
+  if (source !== 'overpass' && bounds) {
+    console.log('[pipeline] Fetching supplementary cycling ways from Overpass...');
+    const osmWays = await fetchCyclingWays(bounds);
+    const osmSegments = osmWays.map((el, i) => parseOverpassWay(el, primarySegments.length + i));
+    console.log(`[pipeline] ${osmSegments.length} OSM cycling ways fetched`);
+
+    // Deduplicate: skip OSM segments whose centroid is within 50m of a primary segment
+    // (they're the same path, catastro version is more detailed)
+    const primaryCentroids = primarySegments.map((s) => s.centroid);
+    let added = 0;
+    for (const osm of osmSegments) {
+      let duplicate = false;
+      for (const pc of primaryCentroids) {
+        if (Math.abs(osm.centroid[0] - pc[0]) < 0.001 && Math.abs(osm.centroid[1] - pc[1]) < 0.001) {
+          // Quick bounding box check before haversine
+          const d = haversineM(osm.centroid, pc);
+          if (d < 50) { duplicate = true; break; }
+        }
+      }
+      if (!duplicate) {
+        segments.push(osm);
+        added++;
+      }
+    }
+    console.log(`[pipeline] ${added} new OSM segments added (${osmSegments.length - added} duplicates skipped)`);
+  }
+  console.log(`[pipeline] ${segments.length} total segments`);
 
   // --- Pass 1: Detect axes ---
   console.log('[pipeline] Detecting axes...');

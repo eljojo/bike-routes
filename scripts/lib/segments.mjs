@@ -89,7 +89,9 @@ export function parseOverpassWay(element, index) {
   const geo = { type: 'LineString', coordinates };
 
   const tags = element.tags || {};
-  const nombre = tags.name || tags['name:es'] || `osm-way-${element.id ?? index}`;
+  // Use name if available; unnamed cycleways stay unnamed (will be
+  // handled as individual axes and merged by geometric continuity)
+  const nombre = tags.name || tags['name:es'] || '';
   const tipo = tags.cycleway || tags.highway || null;
 
   // Overpass width tags are in metres; convert to cm to match catastro units

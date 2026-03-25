@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Pilcomayo a Plaza Vicuña Mackenna"
 status: published
-distance_km: 3.1
+distance_km: 5.7
 tags:
   - bike path
   - flat
@@ -14,14 +14,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Pilcomayo a Plaza Vicuña Mackenna"
     gpx: main.gpx
-    distance_km: 3.1
+    distance_km: 5.7
 ---
 
-3,1 kilómetros por La Cisterna y San Ramon, desde Plaza Pilcomayo hasta Plaza Vicuña Mackenna. Prácticamente todo el recorrido tiene ciclovía.
+5,7 kilómetros por La Cisterna y San Ramon, desde Plaza Pilcomayo hasta Plaza Vicuña Mackenna. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Vicuna Mackenna** (La Cisterna y San Ramon) — 3,1 km, bidireccional, en calzada, 240 cm de ancho.
+**Vicuña Mackenna** (La Cisterna y San Ramon) — 5,7 km, secondary/bidireccional/cycleway, en calzada, 240 cm de ancho.
 Evaluación Pedaleable: "buena".
 
 
