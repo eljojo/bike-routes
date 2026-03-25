@@ -41,12 +41,20 @@ median lane:
 commute:
   es: para ir al trabajo
 # Comunas
+cerrillos:
+  es: Cerrillos
 cerro navia:
   es: Cerro Navia
+conchali:
+  es: Conchalí
 estacion central:
-  es: Estacion Central
+  es: Estación Central
+huechuraba:
+  es: Huechuraba
 independencia:
   es: Independencia
+la cisterna:
+  es: La Cisterna
 la florida:
   es: La Florida
 la reina:
@@ -57,8 +65,10 @@ lo prado:
   es: Lo Prado
 macul:
   es: Macul
+maipu:
+  es: Maipú
 penalolen:
-  es: Penalolen
+  es: Peñalolén
 providencia:
   es: Providencia
 pudahuel:
@@ -70,7 +80,9 @@ recoleta:
 renca:
   es: Renca
 san joaquin:
-  es: San Joaquin
+  es: San Joaquín
+san ramon:
+  es: San Ramón
 santiago:
   es: Santiago Centro
 vitacura:

@@ -68,148 +68,23 @@ if (args.limit && args.limit > 0) {
 console.log(`Generating bike-routes for ${proposals.city}...`);
 
 // ---------------------------------------------------------------------------
-// Ensure output directories
+// Ensure output directories (clean routes, preserve config)
 // ---------------------------------------------------------------------------
 
-fs.mkdirSync(path.join(outputDir, 'routes'), { recursive: true });
-fs.mkdirSync(path.join(outputDir, 'places'), { recursive: true });
+const routesDir = path.join(outputDir, 'routes');
+const placesDir = path.join(outputDir, 'places');
 
-// ---------------------------------------------------------------------------
-// config.yml
-// ---------------------------------------------------------------------------
-
-const cityName = proposals.city;
-
-const configYml = `---
-name: ${cityName}
-display_name: Santiago en Bici
-tagline: Ciclovías y rutas para pedalear en Santiago
-description: >-
-  Guía de rutas y ciclovías en Santiago de Chile. Datos reales de
-  infraestructura, condición y conectividad de la red ciclista,
-  documentados por Corporación Pedaleable.
-domain: santiago.whereto.bike
-timezone: America/Santiago
-locale: es-CL
-locales: [es-CL]
-author:
-  name: Pedaleable
-  email: contacto@pedaleable.org
-  url: https://www.pedaleable.org
-  twitter: "@pedaleable"
-  photo_url: ""
-center:
-  lat: -33.45
-  lng: -70.65
-bounds:
-  north: -33.30
-  south: -33.65
-  east: -70.45
-  west: -70.85
-place_categories:
-  aventura:
-    - parque
-    - cerro
-    - mirador
-    - río
-    - plaza
-  comida:
-    - café
-    - restaurant
-    - panadería
-    - fuente-de-soda
-    - heladería
-  utilidad:
-    - taller-de-bicicletas
-    - estacionamiento-bici
-    - agua
-    - metro
-    - bicicletero
-`;
-
-fs.writeFileSync(path.join(outputDir, 'config.yml'), configYml);
-console.log('  config.yml');
-
-// ---------------------------------------------------------------------------
-// tag-translations.yml
-// ---------------------------------------------------------------------------
-
-// Collect unique comunas from the selected routes
-const allComunas = new Set();
-for (const route of routes) {
-  for (const axis of route.axes) {
-    for (const comuna of (axis.comunas || [])) {
-      if (comuna) allComunas.add(comuna.toLowerCase().trim());
-    }
-  }
+// Remove old routes — regeneration replaces them completely
+if (fs.existsSync(routesDir)) {
+  fs.rmSync(routesDir, { recursive: true });
+  console.log('  Cleared old routes/');
 }
+fs.mkdirSync(routesDir, { recursive: true });
+fs.mkdirSync(placesDir, { recursive: true });
 
-/**
- * Capitalize each word of a string, with special handling for common
- * Spanish prepositions/articles that should stay lowercase mid-phrase.
- */
-function titleCaseEs(str) {
-  const lower = ['de', 'del', 'la', 'las', 'los', 'el', 'y', 'e', 'o', 'u'];
-  return str
-    .split(' ')
-    .map((word, i) => {
-      if (i > 0 && lower.includes(word.toLowerCase())) return word.toLowerCase();
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    })
-    .join(' ');
-}
-
-// Build comuna translation lines
-const comunaLines = [];
-for (const comuna of [...allComunas].sort()) {
-  // Special case: "santiago" → "Santiago Centro"
-  const display = comuna === 'santiago' ? 'Santiago Centro' : titleCaseEs(comuna);
-  comunaLines.push(`${comuna}:\n  es: ${display}`);
-}
-
-const tagTranslationsYml = `---
-# Semantic tags (English keys → Spanish display)
-bike path:
-  es: ciclovía
-road:
-  es: calle
-gravel:
-  es: ripio
-single track:
-  es: sendero
-easy:
-  es: fácil
-family friendly:
-  es: familiar
-chill:
-  es: relajado
-hard:
-  es: difícil
-elevation:
-  es: desnivel
-flat:
-  es: plano
-scenic:
-  es: panorámico
-snacks:
-  es: comer algo
-# Infrastructure tags
-protected lane:
-  es: ciclovía segregada
-painted lane:
-  es: ciclobanda
-park path:
-  es: sendero en parque
-median lane:
-  es: en mediana
-commute:
-  es: para ir al trabajo
-# Comunas
-${comunaLines.join('\n')}
-`;
-
-fs.writeFileSync(path.join(outputDir, 'tag-translations.yml'), tagTranslationsYml);
-console.log('  tag-translations.yml');
+// config.yml and tag-translations.yml are NOT generated here.
+// They're maintained by hand (config has url, cdn, etc.) and the
+// setup-city script. Only routes and places are generated.
 
 // ---------------------------------------------------------------------------
 // Routes
@@ -284,8 +159,17 @@ for (const route of routes) {
 }
 
 let placesWritten = 0;
+let placesSkipped = 0;
 for (const place of placesMap.values()) {
   const slug = slugify(place.name);
+  const placePath = path.join(outputDir, 'places', `${slug}.md`);
+
+  // Don't overwrite hand-curated places
+  if (fs.existsSync(placePath)) {
+    placesSkipped++;
+    continue;
+  }
+
   const content = `---
 name: "${place.name.replace(/"/g, '\\"')}"
 category: ${place.category}
@@ -296,9 +180,9 @@ good_for:
   - destination
 ---
 `;
-  fs.writeFileSync(path.join(outputDir, 'places', `${slug}.md`), content);
+  fs.writeFileSync(placePath, content);
   placesWritten++;
 }
 
-console.log(`  ${placesWritten} places generated`);
+console.log(`  ${placesWritten} places generated${placesSkipped > 0 ? `, ${placesSkipped} existing kept` : ''}`);
 console.log(`Done! ${routes.length} routes in ${args.output}/`);
