@@ -10,7 +10,13 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CACHE_DIR = join(__dirname, '..', '.cache');
 
-const OVERPASS_URL = 'https://overpass-api.de/api/interpreter';
+// Try alternative servers if main is rate-limited.
+// private.coffee has no rate limit and 4 servers with 256GB RAM each.
+const OVERPASS_SERVERS = [
+  'https://overpass.private.coffee/api/interpreter',
+  'https://overpass-api.de/api/interpreter',
+];
+const OVERPASS_URL = process.env.OVERPASS_URL || OVERPASS_SERVERS[0];
 
 function cacheKey(query) {
   const hash = createHash('sha256').update(query).digest('base64url');
