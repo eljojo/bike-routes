@@ -21,6 +21,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
 import { buildGPX } from './lib/gpx.mjs';
+import { haversineM } from './lib/geo.mjs';
 import { buildMarkdown } from './lib/markdown.mjs';
 import { buildRoadGraph } from './lib/roads.mjs';
 import { fetchRoadNetwork, fetchCyclingWays, fetchWaterways, fetchMotorways, fetchMetroStations, fetchZonePOIs, fetchBikeParking } from './lib/overpass.mjs';
@@ -29,7 +30,7 @@ import { detectAxes } from './lib/axes.mjs';
 import { buildSegmentGraph, buildRoute, segmentsToAxisChain } from './lib/trips.mjs';
 import { detectZones } from './lib/zones.mjs';
 import { buildZoneGraph, nearestSegmentToZone, aStarSegments } from './lib/zone-graph.mjs';
-import { resolveWaypoints } from './lib/waypoints.mjs';
+import { buildTemplatePath } from './lib/template-routes.mjs';
 import { slugify } from './lib/slugify.mjs';
 import { curateLaunchSet } from './lib/curate.mjs';
 import { scoreAnchors, clusterDestinationZones } from './lib/anchors.mjs';
@@ -206,92 +207,57 @@ if (templatedRoutes.length > 0 && proposals.bounds) {
     const routeDir = path.join(outputDir, 'routes', tmpl.slug);
     fs.mkdirSync(routeDir, { recursive: true });
 
-    // Resolve waypoints to zones
-    const { resolved, unresolved } = resolveWaypoints(tmpl.waypoints, zones, { anchors, axes });
-    if (unresolved.length > 0) {
-      console.log(`  ${tmpl.slug}: could not resolve waypoints: ${unresolved.join(', ')}`);
-    }
+    // Build route from waypoints using segment-level A*
+    const result = buildTemplatePath(tmpl.waypoints, graph, axes, anchors, zones);
 
     let gpxBuilt = false;
-    if (resolved.length >= 2) {
-      // Route between consecutive zones via zone graph
-      const fullSegPath = [];
-      let pathComplete = true;
+    if (result && result.segPath.length >= 2) {
+      console.log(`  ${tmpl.slug}: resolved ${result.resolvedNames.join(' → ')}`);
 
-      for (let i = 0; i < resolved.length - 1; i++) {
-        const fromZone = resolved[i];
-        const toZone = resolved[i + 1];
-
-        // Find zone graph edge connecting these zones
-        let edge = null;
-        for (const [, e] of zoneEdges) {
-          if (!e.segPath || e.segPath.length === 0) continue;
-          const pathStart = graph.segments[e.segPath[0]].centroid;
-          const pathEnd = graph.segments[e.segPath[e.segPath.length - 1]].centroid;
-          const fwdMatch = Math.sqrt(((fromZone.centerCoord[1]-pathStart[1])*111320)**2+((fromZone.centerCoord[0]-pathStart[0])*111320*Math.cos(pathStart[1]*Math.PI/180))**2) < 3000 &&
-                           Math.sqrt(((toZone.centerCoord[1]-pathEnd[1])*111320)**2+((toZone.centerCoord[0]-pathEnd[0])*111320*Math.cos(pathEnd[1]*Math.PI/180))**2) < 3000;
-          const revMatch = Math.sqrt(((toZone.centerCoord[1]-pathStart[1])*111320)**2+((toZone.centerCoord[0]-pathStart[0])*111320*Math.cos(pathStart[1]*Math.PI/180))**2) < 3000 &&
-                           Math.sqrt(((fromZone.centerCoord[1]-pathEnd[1])*111320)**2+((fromZone.centerCoord[0]-pathEnd[0])*111320*Math.cos(pathEnd[1]*Math.PI/180))**2) < 3000;
-          if (fwdMatch) { edge = e; break; }
-          if (revMatch) { edge = { ...e, segPath: [...e.segPath].reverse() }; break; }
+      const axisChain = segmentsToAxisChain(result.segPath, graph, axes);
+      if (axisChain.length > 0) {
+        // Find anchors near first/last segment
+        const firstSeg = graph.segments[result.segPath[0]];
+        const lastSeg = graph.segments[result.segPath[result.segPath.length - 1]];
+        let startAnchor = null, endAnchor = null, bestSD = 5000, bestED = 5000;
+        for (const a of anchors) {
+          const ds = haversineM([a.lng, a.lat], firstSeg.centroid);
+          const de = haversineM([a.lng, a.lat], lastSeg.centroid);
+          if (ds < bestSD) { bestSD = ds; startAnchor = a; }
+          if (de < bestED) { bestED = de; endAnchor = a; }
         }
 
-        if (edge) {
-          fullSegPath.push(...edge.segPath);
-        } else {
-          console.log(`  ${tmpl.slug}: no path between "${fromZone.name}" and "${toZone.name}"`);
-          pathComplete = false;
-          break;
-        }
-      }
+        if (startAnchor && endAnchor) {
+          const route = buildRoute(axisChain, startAnchor, endAnchor, anchors);
+          if (route) {
+            const { gpx, traceDistanceM } = await buildGPX(route, { roadGraph });
+            fs.writeFileSync(path.join(routeDir, 'main.gpx'), gpx);
 
-      if (pathComplete && fullSegPath.length > 0) {
-        const axisChain = segmentsToAxisChain(fullSegPath, graph, axes);
-        if (axisChain.length > 0) {
-          // Find anchors near first/last zone
-          let startAnchor = null, endAnchor = null, bestSD = 3000, bestED = 3000;
-          for (const a of anchors) {
-            const coord = [a.lng, a.lat];
-            const ds = Math.sqrt(((resolved[0].centerCoord[1]-a.lat)*111320)**2+((resolved[0].centerCoord[0]-a.lng)*111320*Math.cos(a.lat*Math.PI/180))**2);
-            const de = Math.sqrt(((resolved[resolved.length-1].centerCoord[1]-a.lat)*111320)**2+((resolved[resolved.length-1].centerCoord[0]-a.lng)*111320*Math.cos(a.lat*Math.PI/180))**2);
-            if (ds < bestSD) { bestSD = ds; startAnchor = a; }
-            if (de < bestED) { bestED = de; endAnchor = a; }
-          }
-
-          if (startAnchor && endAnchor) {
-            const route = buildRoute(axisChain, startAnchor, endAnchor, anchors);
-            if (route) {
-              const { gpx, traceDistanceM } = await buildGPX(route, { roadGraph });
-              fs.writeFileSync(path.join(routeDir, 'main.gpx'), gpx);
-
-              // Update frontmatter with actual distance but preserve everything else
-              const fm = { ...tmpl.frontmatter };
-              fm.distance_km = Math.round(traceDistanceM / 100) / 10;
-              if (fm.variants && fm.variants[0]) {
-                fm.variants[0].distance_km = fm.distance_km;
-              }
-              const mdContent = `---\n${yaml.dump(fm, { lineWidth: -1 })}---\n${tmpl.body}`;
-              fs.writeFileSync(path.join(routeDir, 'index.md'), mdContent);
-              if (!fs.existsSync(path.join(routeDir, 'media.yml'))) {
-                fs.writeFileSync(path.join(routeDir, 'media.yml'), '[]\n');
-              }
-              gpxBuilt = true;
-              console.log(`  Template rebuilt: ${tmpl.slug} (${fm.distance_km} km, ${resolved.length} waypoints)`);
+            const fm = { ...tmpl.frontmatter };
+            fm.distance_km = Math.round(traceDistanceM / 100) / 10;
+            if (fm.variants && fm.variants[0]) fm.variants[0].distance_km = fm.distance_km;
+            const mdContent = `---\n${yaml.dump(fm, { lineWidth: -1 })}---\n${tmpl.body}`;
+            fs.writeFileSync(path.join(routeDir, 'index.md'), mdContent);
+            if (!fs.existsSync(path.join(routeDir, 'media.yml'))) {
+              fs.writeFileSync(path.join(routeDir, 'media.yml'), '[]\n');
             }
+            gpxBuilt = true;
+            console.log(`  Template rebuilt: ${tmpl.slug} (${fm.distance_km} km)`);
+          } else {
+            console.log(`  ${tmpl.slug}: buildRoute rejected the path`);
           }
         }
       }
     }
 
     if (!gpxBuilt) {
-      // Preserve as-is if we couldn't rebuild
       const fm = { ...tmpl.frontmatter };
       const mdContent = `---\n${yaml.dump(fm, { lineWidth: -1 })}---\n${tmpl.body}`;
       fs.writeFileSync(path.join(routeDir, 'index.md'), mdContent);
       if (!fs.existsSync(path.join(routeDir, 'media.yml'))) {
         fs.writeFileSync(path.join(routeDir, 'media.yml'), '[]\n');
       }
-      console.log(`  Template preserved (no GPX rebuild): ${tmpl.slug}`);
+      console.log(`  Template preserved (no GPX): ${tmpl.slug}`);
     }
   }
 }

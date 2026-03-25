@@ -1,120 +1,155 @@
 /**
- * Template route builder — constructs routes from curator-defined zone sequences.
+ * Template route builder — builds routes from curator-defined waypoints.
  *
- * For each consecutive zone pair, finds the path via the zone graph.
- * Falls back to reverse-direction lookup if the forward edge isn't found.
+ * Waypoints resolve to axes (corridors), zones, or POIs. The route
+ * chains through them using A* on the segment graph.
  *
- * All coordinates are [lng, lat] (GeoJSON order).
+ * Key insight: a waypoint like "Ciclovía Costanera Sur" is an AXIS
+ * (13km of segments), not a point. The route follows that axis's
+ * segments, then bridges to the next waypoint via A*.
  */
 
 import { haversineM } from './geo.mjs';
-import { buildRoute, segmentsToAxisChain } from './trips.mjs';
+import { aStarSegments } from './zone-graph.mjs';
 
-/**
- * Build a route from a curator's waypoint zone sequence.
- *
- * @param {Zone[]} zoneSequence - ordered zones from resolved waypoints
- * @param {Map} zoneEdges - from buildZoneGraph
- * @param {object} graph - segment graph (with .segments, .edges)
- * @param {Axis[]} axes
- * @param {Anchor[]} anchors
- * @param {object} opts - { routeName }
- * @returns {{ route: Route, segPath: number[] } | null}
- */
-export function buildTemplateRoute(
-  zoneSequence,
-  zoneEdges,
-  graph,
-  axes,
-  anchors,
-  opts = {},
-) {
-  if (zoneSequence.length < 2) return null;
-
-  const fullSegPath = [];
-
-  for (let i = 0; i < zoneSequence.length - 1; i++) {
-    const fromZone = zoneSequence[i];
-    const toZone = zoneSequence[i + 1];
-
-    // Find an edge whose segment path connects these two zones.
-    // Zone graph edges are keyed by index pairs — we match by checking
-    // whether the path's start/end segments are near the zone centers.
-    let edge = findEdgeBetween(fromZone, toZone, zoneEdges, graph);
-
-    if (edge && edge.segPath) {
-      fullSegPath.push(...edge.segPath);
-    } else {
-      console.warn(
-        `[template] No path between "${fromZone.name}" and "${toZone.name}"`,
-      );
-      return null;
-    }
-  }
-
-  if (fullSegPath.length === 0) return null;
-
-  // Convert to axis chain
-  const axisChain = segmentsToAxisChain(fullSegPath, graph, axes);
-  if (axisChain.length === 0) return null;
-
-  // Find anchors near first/last zone
-  const startAnchor = findNearestAnchor(
-    zoneSequence[0].centerCoord,
-    anchors,
-  );
-  const endAnchor = findNearestAnchor(
-    zoneSequence[zoneSequence.length - 1].centerCoord,
-    anchors,
-  );
-  if (!startAnchor || !endAnchor) return null;
-
-  const route = buildRoute(axisChain, startAnchor, endAnchor, anchors);
-  return route ? { route, segPath: fullSegPath } : null;
+function normalize(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().replace(/\s+/g, ' ');
 }
 
 /**
- * Search zone edges for a path connecting two zones.
- * Checks forward and reverse directions.
+ * Resolve a waypoint to segment indices in the graph.
+ *
+ * Returns { type, name, segIndices (for axes), entryIdx, exitIdx }
  */
-function findEdgeBetween(fromZone, toZone, zoneEdges, graph) {
-  for (const [, e] of zoneEdges) {
-    if (!e.segPath || e.segPath.length === 0) continue;
+function resolveToSegments(waypoint, graph, axes, anchors, zones) {
+  const { segments, segToAxis } = graph;
+  const name = typeof waypoint === 'string' ? waypoint : waypoint?.name || '';
+  const n = normalize(name);
 
-    const pathStart = graph.segments[e.segPath[0]].centroid;
-    const pathEnd = graph.segments[e.segPath[e.segPath.length - 1]].centroid;
-
-    // Forward: path goes from fromZone to toZone
-    if (
-      haversineM(fromZone.centerCoord, pathStart) < 2000 &&
-      haversineM(toZone.centerCoord, pathEnd) < 2000
-    ) {
-      return e;
+  if (n) {
+    // 1. Match axis by name — returns the full corridor
+    for (let ai = 0; ai < axes.length; ai++) {
+      const axisN = normalize(axes[ai].name || '');
+      if (!axisN) continue;
+      if (axisN.includes(n) || n.includes(axisN)) {
+        const segIndices = [];
+        for (let si = 0; si < segments.length; si++) {
+          if (segToAxis.get(si) === ai) segIndices.push(si);
+        }
+        if (segIndices.length > 0) {
+          return { type: 'axis', name: axes[ai].name, segIndices, entryIdx: segIndices[0], exitIdx: segIndices[segIndices.length - 1] };
+        }
+      }
     }
 
-    // Reverse: path goes from toZone to fromZone — reverse the segment path
-    if (
-      haversineM(toZone.centerCoord, pathStart) < 2000 &&
-      haversineM(fromZone.centerCoord, pathEnd) < 2000
-    ) {
-      return { ...e, segPath: [...e.segPath].reverse() };
+    // 2. Match zone by name
+    if (zones) {
+      for (const z of zones) {
+        const zn = normalize(z.name);
+        if (zn && (zn.includes(n) || n.includes(zn))) {
+          const nearest = findNearestSeg(z.centerCoord, segments);
+          return { type: 'zone', name: z.name, segIndices: [], entryIdx: nearest, exitIdx: nearest };
+        }
+      }
+    }
+
+    // 3. Match anchor/POI by name
+    if (anchors) {
+      for (const a of anchors) {
+        const an = normalize(a.name || '');
+        if (an && (an.includes(n) || n.includes(an))) {
+          const nearest = findNearestSeg([a.lng, a.lat], segments);
+          return { type: 'poi', name: a.name, segIndices: [], entryIdx: nearest, exitIdx: nearest };
+        }
+      }
     }
   }
+
+  // 4. Coordinate
+  let coord = null;
+  if (Array.isArray(waypoint) && waypoint.length === 2) coord = waypoint;
+  else if (waypoint?.lat != null && waypoint?.lng != null) coord = [waypoint.lng, waypoint.lat];
+  if (coord) {
+    const nearest = findNearestSeg(coord, segments);
+    return { type: 'coord', name: name || 'waypoint', segIndices: [], entryIdx: nearest, exitIdx: nearest };
+  }
+
   return null;
 }
 
-/**
- * Find the nearest anchor to a coordinate, within 3km.
- */
-function findNearestAnchor(coord, anchors) {
-  let best = null;
-  let bestDist = 3000;
-  for (const a of anchors) {
-    const d = haversineM(coord, [a.lng, a.lat]);
-    if (d < bestDist) {
-      bestDist = d;
-      best = a;
-    }
+function findNearestSeg(coord, segments) {
+  let best = 0, bestDist = Infinity;
+  for (let i = 0; i < segments.length; i++) {
+    const d = haversineM(coord, segments[i].centroid);
+    if (d < bestDist) { bestDist = d; best = i; }
   }
   return best;
+}
+
+/**
+ * Build a segment path from curator waypoints.
+ *
+ * For each waypoint:
+ * - If it's an axis: include all its segments in the path
+ * - Bridge gaps between consecutive waypoints with A*
+ *
+ * @returns {{ segPath: number[], resolvedNames: string[] } | null}
+ */
+export function buildTemplatePath(waypoints, graph, axes, anchors, zones) {
+  const { segments, edges } = graph;
+
+  const resolved = [];
+  const unresolved = [];
+  for (const wp of waypoints) {
+    const r = resolveToSegments(wp, graph, axes, anchors, zones);
+    if (r) {
+      resolved.push(r);
+    } else {
+      unresolved.push(typeof wp === 'string' ? wp : JSON.stringify(wp));
+    }
+  }
+
+  if (unresolved.length > 0) {
+    console.log(`[template] Unresolved: ${unresolved.join(', ')}`);
+  }
+  if (resolved.length < 2) return null;
+
+  const fullPath = [];
+  const resolvedNames = resolved.map(r => `${r.name} (${r.type}${r.segIndices.length > 0 ? ', ' + r.segIndices.length + ' segs' : ''})`);
+
+  for (let i = 0; i < resolved.length; i++) {
+    const curr = resolved[i];
+
+    // Bridge from previous endpoint to this waypoint's entry
+    if (fullPath.length > 0) {
+      const from = fullPath[fullPath.length - 1];
+      const to = curr.entryIdx;
+      if (from !== to) {
+        const bridge = aStarSegments(from, to, segments, edges);
+        if (bridge && bridge.path.length > 1) {
+          for (let j = 1; j < bridge.path.length; j++) {
+            if (bridge.path[j] !== fullPath[fullPath.length - 1]) {
+              fullPath.push(bridge.path[j]);
+            }
+          }
+        } else {
+          console.log(`[template] No A* path from seg ${from} to seg ${to} (${resolved[i - 1]?.name} → ${curr.name})`);
+        }
+      }
+    }
+
+    // Include axis segments
+    if (curr.segIndices.length > 0) {
+      for (const si of curr.segIndices) {
+        if (fullPath.length === 0 || si !== fullPath[fullPath.length - 1]) {
+          fullPath.push(si);
+        }
+      }
+    } else if (fullPath.length === 0) {
+      fullPath.push(curr.entryIdx);
+    }
+  }
+
+  if (fullPath.length < 2) return null;
+  return { segPath: fullPath, resolvedNames };
 }
