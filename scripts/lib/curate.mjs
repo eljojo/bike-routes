@@ -40,10 +40,7 @@ export function curateLaunchSet(proposals, opts = {}) {
       distKm >= 2 && distKm <= 40 ? 3 : 0;
 
     // Safety — high infrastructure coverage means fewer scary moments
-    const safetyScore =
-      r.infraPercent >= 90 ? 5 :
-      r.infraPercent >= 70 ? 3 :
-      r.infraPercent >= 50 ? 1 : 0;
+    const safetyScore = Math.min(r.infraPercent / 20, 5);
 
     // Condition — good infrastructure vs crumbling paint
     const conditionScore = r.avgConditionScore || 0;
@@ -57,8 +54,9 @@ export function curateLaunchSet(proposals, opts = {}) {
 
     // Greenery — routes through parks and along rivers are where joy lives
     const allSegs = r.axes.flatMap((a) => a.segments);
-    const parkSegs = allSegs.filter((s) => s.emplazamiento === 'parque');
-    const parkFraction = allSegs.length > 0 ? parkSegs.length / allSegs.length : 0;
+    const totalLengthM = allSegs.reduce((s, seg) => s + (seg.lengthM || 0), 0);
+    const parkLengthM = allSegs.filter((s) => s.emplazamiento === 'parque').reduce((s, seg) => s + (seg.lengthM || 0), 0);
+    const parkFraction = totalLengthM > 0 ? parkLengthM / totalLengthM : 0;
     // Smooth scale: no cliff edges. 17% park gets 3.4 instead of jumping from 2 to 5 at 20%.
     const greenScore = Math.min(parkFraction * 20, 6);
 
@@ -72,7 +70,11 @@ export function curateLaunchSet(proposals, opts = {}) {
     const corridorBonus = comunaCount >= 4 ? 6 : comunaCount >= 3 ? 3 : 0;
 
     // Routes with lots of gaps are not real routes
-    const gapPenalty = r.infraPercent < 70 ? 5 : r.infraPercent < 80 ? 2 : 0;
+    // Penalize both low overall infra AND single large exposed gaps
+    const maxGapM = r.gaps.length > 0 ? Math.max(...r.gaps.map(g => g.distanceM)) : 0;
+    const infraPenalty = r.infraPercent < 70 ? 5 : r.infraPercent < 80 ? 2 : 0;
+    const singleGapPenalty = maxGapM > 1000 ? 3 : maxGapM > 500 ? 1 : 0;
+    const gapPenalty = infraPenalty + singleGapPenalty;
 
     const interestScore =
       destinationScore * 1.5 +

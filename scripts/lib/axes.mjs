@@ -113,11 +113,46 @@ function buildAxis(rawSegments, bearing) {
     }
   }
 
-  // Re-sort by position along dominant orientation
-  if (bearing === 'north-south') {
-    segments.sort((a, b) => a.centroid[1] - b.centroid[1]);
-  } else {
-    segments.sort((a, b) => a.centroid[0] - b.centroid[0]);
+  // Greedy nearest-endpoint chaining: start from the segment with the
+  // most extreme position, always pick the closest unused segment.
+  // This produces ride-order instead of centroid-order, avoiding
+  // mini-loops and backtracking.
+  if (segments.length > 1) {
+    // Start from the segment with the lowest centroid (south-most or west-most)
+    const startIdx = segments.reduce((best, seg, i) => {
+      const val = bearing === 'north-south' ? seg.centroid[1] : seg.centroid[0];
+      const bestVal = bearing === 'north-south' ? segments[best].centroid[1] : segments[best].centroid[0];
+      return val < bestVal ? i : best;
+    }, 0);
+
+    const ordered = [segments[startIdx]];
+    const used = new Set([startIdx]);
+
+    while (ordered.length < segments.length) {
+      const last = ordered[ordered.length - 1];
+      const lastEnd = last.end;
+      let bestIdx = -1;
+      let bestDist = Infinity;
+
+      for (let k = 0; k < segments.length; k++) {
+        if (used.has(k)) continue;
+        // Check distance from last segment's end to this segment's start and end
+        const dStart = haversineM(lastEnd, segments[k].start);
+        const dEnd = haversineM(lastEnd, segments[k].end);
+        const d = Math.min(dStart, dEnd);
+        if (d < bestDist) {
+          bestDist = d;
+          bestIdx = k;
+        }
+      }
+
+      if (bestIdx === -1) break;
+      used.add(bestIdx);
+      ordered.push(segments[bestIdx]);
+    }
+
+    segments.length = 0;
+    segments.push(...ordered);
   }
 
   const name = segments[0].nombre;

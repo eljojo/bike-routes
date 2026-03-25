@@ -150,6 +150,15 @@ export async function buildGPX(route) {
     }
   }
 
+  // Close loop routes: append first point to create a closed circuit
+  if (route.archetype === 'loop' && allCoords.length > 2) {
+    const first = allCoords[0];
+    const last = allCoords[allCoords.length - 1];
+    if (haversineM(first, last) > 50) {
+      allCoords.push(first);
+    }
+  }
+
   // Enrich with elevation from Open-Meteo
   const enriched = await enrichWithElevation(allCoords);
 

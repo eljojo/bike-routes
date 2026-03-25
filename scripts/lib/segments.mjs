@@ -112,8 +112,10 @@ export function parseOverpassWay(element, index) {
   // Infer emplazamiento from OSM tags and name — this drives the greenery
   // scoring. A cycleway through Parque Metropolitano should score as 'parque'.
   let emplazamiento = null;
-  if (tags.highway === 'path' || tags.highway === 'footway') {
-    emplazamiento = 'parque'; // paths/footways in OSM are typically in parks
+  if ((tags.highway === 'path' || tags.highway === 'footway') &&
+      (tags.leisure === 'park' || tags.landuse === 'recreation_ground' ||
+       tags.route === 'mtb' || tags.sac_scale)) {
+    emplazamiento = 'parque';
   } else if (nombre.toLowerCase().includes('parque') || nombre.toLowerCase().includes('sendero')) {
     emplazamiento = 'parque';
   }

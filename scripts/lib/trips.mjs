@@ -420,6 +420,8 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
         clasificacion: s.clasificacion,
         score: s.score,
         video: s.video,
+        surface: s.surface,
+        lit: s.lit,
         geometry: s.geometry,
       })),
       comunas: a.comunas,
@@ -445,16 +447,12 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
   const distKm = totalDistanceM / 1000;
   const distBonus = distKm >= 5 && distKm <= 15 ? 1 : distKm >= 15 && distKm <= 40 ? 2 : 0;
   // Loops get a bonus, oval loops get a bigger bonus — they're the signature rides
-  let archetypeBonus = 0;
-  if (archetype === 'loop') {
-    const shape = loopShape(axisChain, totalDistanceM);
-    archetypeBonus = shape.isOval ? 5 : 2; // oval loops are gold
-  }
-
   // Coherence bonus: straighter paths look better on the map and are more rideable
+  let archetypeBonus = 0;
   let coherenceBonus;
   if (archetype === 'loop') {
     const shape = loopShape(axisChain, totalDistanceM);
+    archetypeBonus = shape.isOval ? 5 : 2;
     coherenceBonus = shape.perimEff > 0.7 ? 2 : shape.perimEff > 0.5 ? 1 : 0;
   } else {
     const ratio = detourRatio(axisChain, totalDistanceM);
@@ -476,14 +474,18 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
   const oasisSegs = allSegs.filter((s) =>
     s.emplazamiento === 'parque' || s.emplazamiento === 'mediana' || s.emplazamiento === 'bandejón');
   const exposedSegs = allSegs.filter((s) => s.emplazamiento === 'calzada');
-  const oasisFraction = allSegs.length > 0 ? oasisSegs.length / allSegs.length : 0;
-  const exposedFraction = allSegs.length > 0 ? exposedSegs.length / allSegs.length : 0;
+  const totalLengthM = allSegs.reduce((s, seg) => s + (seg.lengthM || 0), 0);
+  const oasisLengthM = oasisSegs.reduce((s, seg) => s + (seg.lengthM || 0), 0);
+  const exposedLengthM = exposedSegs.reduce((s, seg) => s + (seg.lengthM || 0), 0);
+  const oasisFraction = totalLengthM > 0 ? oasisLengthM / totalLengthM : 0;
+  const exposedFraction = totalLengthM > 0 ? exposedLengthM / totalLengthM : 0;
   // Reward oasis, penalize exposed riding
-  const segregationScore = oasisFraction * 5 - exposedFraction * 3;
+  const segregationScore = oasisFraction * 5 - exposedFraction * 5;
 
   // 2. Greenery: parks, rivers, shade
   const parkSegs = allSegs.filter((s) => s.emplazamiento === 'parque');
-  const parkFraction = allSegs.length > 0 ? parkSegs.length / allSegs.length : 0;
+  const parkLengthM = parkSegs.reduce((s, seg) => s + (seg.lengthM || 0), 0);
+  const parkFraction = totalLengthM > 0 ? parkLengthM / totalLengthM : 0;
   const greenBonus = Math.min(parkFraction * 8, 4);
 
   // 3. Route richness: "Can I stop here?"
@@ -491,7 +493,7 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
   //    A route that passes cafes, parks, water fountains is alive.
   //    A route along a highway service road with nothing around is dead.
   let waypointBonus = 0;
-  if (allAnchors.length > 0) {
+  if (allAnchors.length > 0 && infraPercent >= 70) {
     const waypointTypes = new Set();
     const routeWaypoints = [];
     for (const anchor of allAnchors) {
@@ -660,12 +662,12 @@ export function stitchTrips(axes, anchors, options = {}) {
       const endpointsJ = [segsJ[0], segsJ[segsJ.length - 1]];
       for (const ei of endpointsI) {
         for (const ej of endpointsJ) {
-          const { distance } = minEndpointDistance(ei, ej);
+          const { distance, fromEnd, toEnd } = minEndpointDistance(ei, ej);
           if (distance <= MAX_GAP_M) {
             // Check gap feasibility: is there infrastructure along the gap?
             // Short gaps (<500m) skip the check — you can walk/ride anything that short.
-            const from = ei.end || ei.start;
-            const to = ej.start || ej.end;
+            const from = ei[fromEnd];
+            const to = ej[toEnd];
             if (distance < 500 || isGapFeasible(from, to, axes, [i, j])) {
               connections.add(j);
             }
