@@ -1,7 +1,7 @@
 ---
 name: Pocuro a Parque Forestal
 status: published
-distance_km: 39.1
+distance_km: 39.2
 tags:
   - bike path
   - flat
@@ -14,7 +14,7 @@ updated_at: '2026-03-25'
 variants:
   - name: Pocuro a Parque Forestal
     gpx: main.gpx
-    distance_km: 39.1
+    distance_km: 39.2
 ---
 
 From the Pocuro corridor in Providencia west along the Costanera to Parque Forestal.

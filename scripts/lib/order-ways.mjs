@@ -110,9 +110,8 @@ export function orderWays(ways) {
     if (seg.lengthM < SNAP_M) dropped.add(seg.i);
   }
 
-  // Fix #1: sort by geometric length in metres, not point count
-  // Fix #2: only dedup ways with similar midpoints (true overlaps),
-  // not all same-cluster-pair edges
+  // Same-cluster-pair dedup: if multiple ways connect the same two
+  // clusters, keep only the longest by metres
   const byPair = new Map();
   for (const seg of segs) {
     if (dropped.has(seg.i)) continue;
@@ -124,15 +123,68 @@ export function orderWays(ways) {
   }
   for (const group of byPair.values()) {
     if (group.length <= 1) continue;
-    group.sort((a, b) => b.lengthM - a.lengthM); // longest by metres first
+    group.sort((a, b) => b.lengthM - a.lengthM);
     const kept = [group[0]];
     for (let k = 1; k < group.length; k++) {
-      // Only drop if midpoints are within 80m (true geometric overlap)
       if (kept.some(o => haversineM(group[k].mid, o.mid) < 80)) {
         dropped.add(group[k].i);
       } else {
-        kept.push(group[k]); // legitimate parallel segment, keep it
+        kept.push(group[k]);
       }
+    }
+  }
+
+  // Parallel-overlap dedup: detect ways that cover the same corridor
+  // but are in DIFFERENT clusters (e.g. 100m apart along a river).
+  // Two ways are parallel overlaps if:
+  //   - similar bearing (within 30°)
+  //   - their along-axis projections overlap by > 50%
+  //   - perpendicular distance < 150m
+  const remaining = segs.filter(s => !dropped.has(s.i));
+  remaining.sort((a, b) => b.lengthM - a.lengthM); // process longest first
+
+  for (let i = 0; i < remaining.length; i++) {
+    if (dropped.has(remaining[i].i)) continue;
+    const a = remaining[i];
+    const aB = bearing(a.start, a.end);
+
+    for (let j = i + 1; j < remaining.length; j++) {
+      if (dropped.has(remaining[j].i)) continue;
+      const b = remaining[j];
+
+      // Quick distance filter — midpoints must be within 200m
+      if (haversineM(a.mid, b.mid) > 200) continue;
+
+      // Similar bearing?
+      const bB = bearing(b.start, b.end);
+      let bDiff = angleDiff(aB, bB);
+      // Also check anti-parallel (same corridor, opposite direction)
+      const antiDiff = angleDiff(aB, bB + Math.PI);
+      bDiff = Math.min(bDiff, antiDiff);
+      if (bDiff > Math.PI / 6) continue; // > 30°
+
+      // Project both ways onto their shared axis direction.
+      // Check if their 1D extents overlap.
+      const axDir = [Math.cos(aB), Math.sin(aB)];
+      const projA1 = a.start[0] * axDir[0] + a.start[1] * axDir[1];
+      const projA2 = a.end[0] * axDir[0] + a.end[1] * axDir[1];
+      const projB1 = b.start[0] * axDir[0] + b.start[1] * axDir[1];
+      const projB2 = b.end[0] * axDir[0] + b.end[1] * axDir[1];
+      const aMin = Math.min(projA1, projA2), aMax = Math.max(projA1, projA2);
+      const bMin = Math.min(projB1, projB2), bMax = Math.max(projB1, projB2);
+      const overlap = Math.max(0, Math.min(aMax, bMax) - Math.max(aMin, bMin));
+      const bSpan = bMax - bMin;
+      if (bSpan > 0 && overlap / bSpan < 0.5) continue; // <50% overlap
+
+      // Perpendicular distance: distance from b's midpoint to line through a
+      const perpDir = [-axDir[1], axDir[0]]; // 90° rotation
+      const perpDist = Math.abs((b.mid[0] - a.mid[0]) * perpDir[0] + (b.mid[1] - a.mid[1]) * perpDir[1]);
+      // Convert from degrees to rough metres
+      const perpDistM = perpDist * 100000; // ~1° ≈ 100km
+      if (perpDistM > 150) continue;
+
+      // b is a parallel overlap of a — drop the shorter one (b, since sorted)
+      dropped.add(b.i);
     }
   }
 
