@@ -16,7 +16,7 @@ import { join } from 'node:path';
 import yaml from 'js-yaml';
 import { parseCatastroFeature, parseOverpassWay } from './lib/segments.mjs';
 import { detectAxes } from './lib/axes.mjs';
-import { fetchPOIs, fetchCyclingWays } from './lib/overpass.mjs';
+import { fetchPOIs, fetchCyclingWays, fetchMetroStations, fetchWaterways, fetchMotorways } from './lib/overpass.mjs';
 import { haversineM, allCoords } from './lib/geo.mjs';
 
 /** Sample N evenly-spaced points along a coordinate array. */
@@ -262,6 +262,26 @@ async function main() {
   console.log('[pipeline] Fetching POIs...');
   const pois = await fetchPOIs(bounds);
   console.log(`[pipeline] ${pois.length} POIs fetched`);
+
+  // Fetch metro stations as bailout anchors
+  console.log('[pipeline] Fetching metro stations...');
+  const metroStations = await fetchMetroStations(bounds);
+  console.log(`[pipeline] ${metroStations.length} metro stations found`);
+
+  // Fetch waterways for river corridor bonus
+  console.log('[pipeline] Fetching waterways...');
+  const waterways = await fetchWaterways(bounds);
+  console.log(`[pipeline] ${waterways.length} waterways found`);
+
+  // Fetch motorways for adjacency penalty
+  console.log('[pipeline] Fetching motorways...');
+  const motorways = await fetchMotorways(bounds);
+  console.log(`[pipeline] ${motorways.length} motorway segments found`);
+
+  // Add metro stations as bailout-type POIs
+  for (const station of metroStations) {
+    pois.push(station);
+  }
 
   // Load curated places from the data repo if available
   const contentDir = args['content-dir'] || '.';

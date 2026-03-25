@@ -25,6 +25,7 @@ const ANCHOR_SCORES = {
   square: 7,
   marketplace: 7,
   station: 6,
+  metro: 5,
   museum: 6,
   ferry_terminal: 6,
   // Stops along the way — not destinations, but nice to pass
