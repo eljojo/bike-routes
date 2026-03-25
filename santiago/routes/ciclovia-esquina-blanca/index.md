@@ -1,7 +1,7 @@
 ---
 name: Ciclovía Esquina Blanca
 status: published
-distance_km: 5.6
+distance_km: 3.3
 tags:
   - bike path
 created_at: '2026-03-25'
@@ -9,5 +9,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Ciclovía Esquina Blanca
     gpx: main.gpx
-    distance_km: 5.6
+    distance_km: 3.3
 ---

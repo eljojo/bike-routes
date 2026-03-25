@@ -95,10 +95,12 @@ function buildGPX(name, orderedWays) {
 
   for (const way of orderedWays) {
     let coords = way.geometry.map(p => [p.lon, p.lat]);
-    if (way._reversed) coords = [...coords].reverse();
 
-    // Orient to flow from previous
-    if (lastCoord && coords.length >= 2) {
+    if (way._reversed != null) {
+      // Walk already determined orientation — trust it
+      if (way._reversed) coords = [...coords].reverse();
+    } else if (lastCoord && coords.length >= 2) {
+      // Fallback: orient to flow from previous (for ways without walk info)
       const dFirst = haversineM(lastCoord, coords[0]);
       const dLast = haversineM(lastCoord, coords[coords.length - 1]);
       if (dLast < dFirst) coords = [...coords].reverse();
@@ -291,6 +293,9 @@ if (fs.existsSync(routesDir)) {
           }
         }
 
+        // Strip _reversed from individual walk — combined route orientation
+        // is determined by buildGPX based on trace continuity, not per-path walks
+        for (const w of ways) delete w._reversed;
         allWays.push(...ways);
         resolved.push(bpSlug);
       }

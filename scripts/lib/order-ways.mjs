@@ -1,84 +1,118 @@
 /**
  * Order OSM ways into a continuous trace using endpoint graph traversal.
  *
- * Each way has a start and end point. Connected ways share endpoints
- * (within ~50m). This is a graph traversal problem:
- * - Cluster nearby endpoints into junctions
- * - Each way is an edge connecting two junctions
- * - Walk from one terminus to the other
- *
- * For a linear bike path, there are exactly 2 junctions with degree 1
- * (the termini). The ordered trace is an Euler trail.
+ * Algorithm:
+ * 1. Compute geometric length per way
+ * 2. Cluster nearby endpoints into junctions (direct distance, no transitive chain)
+ * 3. Drop self-loops and tiny fragments
+ * 4. Dedup: same cluster pair + similar geometry → keep longest by metres
+ * 5. Build adjacency graph, find connected components
+ * 6. Walk each component from terminus, preferring straight continuation at junctions
+ * 7. Return ways with _reversed flag so buildGPX doesn't re-guess orientation
  */
 
 import { haversineM } from './geo.mjs';
 
-const SNAP_M = 50;
+const SNAP_M = 40; // slightly tighter than 50m to avoid merging distinct junctions
+
+// ---------------------------------------------------------------------------
+// Geometric length of a way in metres
+// ---------------------------------------------------------------------------
+
+function wayLengthM(way) {
+  let len = 0;
+  for (let j = 1; j < way.geometry.length; j++) {
+    len += haversineM(
+      [way.geometry[j - 1].lon, way.geometry[j - 1].lat],
+      [way.geometry[j].lon, way.geometry[j].lat],
+    );
+  }
+  return len;
+}
+
+// ---------------------------------------------------------------------------
+// Bearing from coord A to coord B in radians
+// ---------------------------------------------------------------------------
+
+function bearing(a, b) {
+  return Math.atan2(b[0] - a[0], b[1] - a[1]);
+}
+
+function angleDiff(a, b) {
+  let d = Math.abs(a - b);
+  if (d > Math.PI) d = 2 * Math.PI - d;
+  return d;
+}
 
 /**
  * @param {Array<{id: number, geometry: Array<{lon: number, lat: number}>}>} ways
- * @returns {Array} ordered ways
+ * @returns {Array} ordered ways (with _reversed: boolean added)
  */
 export function orderWays(ways) {
   if (ways.length <= 1) return ways;
 
-  // Extract endpoints
+  // --- Precompute per-way data ---
   const segs = ways.map((way, i) => {
     const g = way.geometry;
+    const start = [g[0].lon, g[0].lat];
+    const end = [g[g.length - 1].lon, g[g.length - 1].lat];
     return {
-      i,
-      way,
-      start: [g[0].lon, g[0].lat],
-      end: [g[g.length - 1].lon, g[g.length - 1].lat],
-      mid: [(g[0].lon + g[g.length - 1].lon) / 2, (g[0].lat + g[g.length - 1].lat) / 2],
+      i, way, start, end,
+      mid: [(start[0] + end[0]) / 2, (start[1] + end[1]) / 2],
+      lengthM: wayLengthM(way),
     };
   });
 
-  // --- Cluster endpoints within SNAP_M ---
-  // All endpoints in a flat array: [seg0.start, seg0.end, seg1.start, seg1.end, ...]
+  // --- Cluster endpoints (fix #4: direct distance only, no transitive chain) ---
+  // Instead of union-find which creates transitive chains (A↔B↔C merges A+C
+  // even if A-C > SNAP_M), use a greedy approach: each endpoint joins the
+  // nearest existing cluster within SNAP_M, or starts a new cluster.
   const allEps = segs.flatMap(s => [s.start, s.end]);
-  const parent = allEps.map((_, i) => i);
-  function find(x) { while (parent[x] !== x) { parent[x] = parent[parent[x]]; x = parent[x]; } return x; }
-  function union(a, b) { const ra = find(a), rb = find(b); if (ra !== rb) parent[rb] = ra; }
+  const epCluster = new Array(allEps.length).fill(-1);
+  const clusters = []; // [{coord: [lng, lat], members: [epIdx...]}]
 
   for (let i = 0; i < allEps.length; i++) {
-    for (let j = i + 1; j < allEps.length; j++) {
-      if (haversineM(allEps[i], allEps[j]) <= SNAP_M) union(i, j);
+    let bestCl = -1, bestD = SNAP_M;
+    for (let c = 0; c < clusters.length; c++) {
+      const d = haversineM(allEps[i], clusters[c].coord);
+      if (d < bestD) { bestD = d; bestCl = c; }
+    }
+    if (bestCl >= 0) {
+      epCluster[i] = bestCl;
+      // Update cluster centroid
+      const cl = clusters[bestCl];
+      cl.members.push(i);
+      cl.coord = [
+        cl.members.reduce((s, j) => s + allEps[j][0], 0) / cl.members.length,
+        cl.members.reduce((s, j) => s + allEps[j][1], 0) / cl.members.length,
+      ];
+    } else {
+      epCluster[i] = clusters.length;
+      clusters.push({ coord: [...allEps[i]], members: [i] });
     }
   }
 
-  // Assign cluster IDs
-  const rootToCluster = new Map();
-  let nextCluster = 0;
-  function clusterId(epIdx) {
-    const root = find(epIdx);
-    if (!rootToCluster.has(root)) rootToCluster.set(root, nextCluster++);
-    return rootToCluster.get(root);
-  }
-
   for (const seg of segs) {
-    seg.startCluster = clusterId(seg.i * 2);
-    seg.endCluster = clusterId(seg.i * 2 + 1);
+    seg.startCluster = epCluster[seg.i * 2];
+    seg.endCluster = epCluster[seg.i * 2 + 1];
   }
 
-  // --- Dedup ---
+  // --- Dedup (fixes #1 and #2) ---
   const dropped = new Set();
 
-  // Drop self-loops (start and end in same cluster) — these are noise
+  // Drop self-loops
   for (const seg of segs) {
     if (seg.startCluster === seg.endCluster) dropped.add(seg.i);
   }
 
-  // Drop ways shorter than snap distance — OSM fragments
+  // Drop tiny fragments
   for (const seg of segs) {
-    let len = 0;
-    const g = seg.way.geometry;
-    for (let j = 1; j < g.length; j++) len += haversineM([g[j - 1].lon, g[j - 1].lat], [g[j].lon, g[j].lat]);
-    if (len < SNAP_M) dropped.add(seg.i);
+    if (seg.lengthM < SNAP_M) dropped.add(seg.i);
   }
 
-  // Group by cluster pair — if multiple ways connect the same two
-  // clusters, keep only the longest
+  // Fix #1: sort by geometric length in metres, not point count
+  // Fix #2: only dedup ways with similar midpoints (true overlaps),
+  // not all same-cluster-pair edges
   const byPair = new Map();
   for (const seg of segs) {
     if (dropped.has(seg.i)) continue;
@@ -90,30 +124,23 @@ export function orderWays(ways) {
   }
   for (const group of byPair.values()) {
     if (group.length <= 1) continue;
-    group.sort((a, b) => b.way.geometry.length - a.way.geometry.length);
-    // Keep the longest, drop the rest
-    for (let k = 1; k < group.length; k++) dropped.add(group[k].i);
+    group.sort((a, b) => b.lengthM - a.lengthM); // longest by metres first
+    const kept = [group[0]];
+    for (let k = 1; k < group.length; k++) {
+      // Only drop if midpoints are within 80m (true geometric overlap)
+      if (kept.some(o => haversineM(group[k].mid, o.mid) < 80)) {
+        dropped.add(group[k].i);
+      } else {
+        kept.push(group[k]); // legitimate parallel segment, keep it
+      }
+    }
   }
 
   const active = segs.filter(s => !dropped.has(s.i));
   if (active.length <= 1) return active.map(s => s.way);
 
-  // Precompute cluster center coordinates
-  const clusterMembers = new Map(); // clusterId → [coords]
-  for (let i = 0; i < allEps.length; i++) {
-    const cid = clusterId(i);
-    if (!clusterMembers.has(cid)) clusterMembers.set(cid, []);
-    clusterMembers.get(cid).push(allEps[i]);
-  }
-  const clusterCoords = new Map();
-  for (const [cid, members] of clusterMembers) {
-    clusterCoords.set(cid, [
-      members.reduce((s, c) => s + c[0], 0) / members.length,
-      members.reduce((s, c) => s + c[1], 0) / members.length,
-    ]);
-  }
-
-  // --- Build adjacency: cluster → [seg indices] ---
+  // --- Build adjacency ---
+  const segMap = new Map(active.map(s => [s.i, s]));
   const adj = new Map();
   for (const seg of active) {
     if (!adj.has(seg.startCluster)) adj.set(seg.startCluster, []);
@@ -122,11 +149,13 @@ export function orderWays(ways) {
     adj.get(seg.endCluster).push(seg.i);
   }
 
-  // --- Find connected components ---
-  const segMap = new Map(active.map(s => [s.i, s]));
+  function clusterCoord(cid) {
+    return clusters[cid]?.coord || [0, 0];
+  }
+
+  // --- Connected components ---
   const seen = new Set();
   const components = [];
-
   for (const seg of active) {
     if (seen.has(seg.i)) continue;
     const comp = [];
@@ -138,23 +167,27 @@ export function orderWays(ways) {
       comp.push(si);
       const s = segMap.get(si);
       for (const cl of [s.startCluster, s.endCluster]) {
-        for (const ni of adj.get(cl) || []) {
-          if (!seen.has(ni)) stack.push(ni);
-        }
+        for (const ni of adj.get(cl) || []) if (!seen.has(ni)) stack.push(ni);
       }
     }
     components.push(comp);
   }
 
-  // --- Walk each component ---
-  // Try starting from each odd-degree vertex, pick the walk with fewest reversals.
+  // --- Walk (fixes #3 and #5) ---
+  // Fix #3: at junctions, prefer edge with smallest turn angle from current heading
+  // Fix #5: track orientation, return {way, _reversed} so buildGPX doesn't re-guess
+
   function doWalk(segIds, startV) {
     const unused = new Set(segIds);
     let cur = startV;
+    let lastBearing = null; // track heading for direction-aware junction choice
     const result = [];
+
     while (unused.size > 0) {
       const incident = (adj.get(cur) || []).filter(si => unused.has(si));
+
       if (incident.length === 0) {
+        // Dead end — jump to nearest unused cluster
         let bestCl = null, bestD = Infinity;
         const cc = clusterCoord(cur);
         for (const si of unused) {
@@ -165,37 +198,73 @@ export function orderWays(ways) {
           }
         }
         cur = bestCl;
+        lastBearing = null; // lost heading after jump
         continue;
       }
-      const nextSi = incident[0];
+
+      // Fix #3: pick the edge with smallest turn angle from current heading
+      let nextSi;
+      if (incident.length === 1 || lastBearing === null) {
+        nextSi = incident[0];
+      } else {
+        let bestTurn = Infinity;
+        nextSi = incident[0];
+        for (const si of incident) {
+          const s = segMap.get(si);
+          const otherCluster = s.startCluster === cur ? s.endCluster : s.startCluster;
+          const edgeBearing = bearing(clusterCoord(cur), clusterCoord(otherCluster));
+          const turn = angleDiff(lastBearing, edgeBearing);
+          if (turn < bestTurn) { bestTurn = turn; nextSi = si; }
+        }
+      }
+
       unused.delete(nextSi);
       const seg = segMap.get(nextSi);
-      result.push(seg.way);
+
+      // Determine traversal direction: enter from cur cluster
+      const reversed = seg.endCluster === cur;
+      const entryCoord = reversed ? seg.end : seg.start;
+      const exitCoord = reversed ? seg.start : seg.end;
+
+      // Fix #5: attach _reversed flag to the way
+      result.push({ ...seg.way, _reversed: reversed });
+
+      // Update heading
+      lastBearing = bearing(entryCoord, exitCoord);
+
+      // Move to exit cluster
       cur = seg.startCluster === cur ? seg.endCluster : seg.startCluster;
     }
     return result;
   }
 
   function countReversals(orderedWays) {
-    let revs = 0, lastB = null, prev = null;
+    let revs = 0, lastB = null;
     for (const w of orderedWays) {
       const coords = w.geometry.map(p => [p.lon, p.lat]);
-      let trace = coords;
-      if (prev) {
-        if (haversineM(prev, coords[coords.length - 1]) < haversineM(prev, coords[0]))
-          trace = [...coords].reverse();
-      }
+      const trace = w._reversed ? [...coords].reverse() : coords;
       if (trace.length >= 2) {
-        const b = Math.atan2(trace[trace.length - 1][0] - trace[0][0], trace[trace.length - 1][1] - trace[0][1]);
-        if (lastB !== null) {
-          let df = Math.abs(b - lastB); if (df > Math.PI) df = 2 * Math.PI - df;
-          if (df > 2 * Math.PI / 3) revs++;
-        }
+        const b = bearing(trace[0], trace[trace.length - 1]);
+        if (lastB !== null && angleDiff(lastB, b) > 2 * Math.PI / 3) revs++;
         lastB = b;
       }
-      prev = trace[trace.length - 1];
     }
     return revs;
+  }
+
+  function firstReversalIndex(orderedWays) {
+    let lastB = null;
+    for (let k = 0; k < orderedWays.length; k++) {
+      const w = orderedWays[k];
+      const coords = w.geometry.map(p => [p.lon, p.lat]);
+      const trace = w._reversed ? [...coords].reverse() : coords;
+      if (trace.length >= 2) {
+        const b = bearing(trace[0], trace[trace.length - 1]);
+        if (lastB !== null && angleDiff(lastB, b) > 2 * Math.PI / 3) return k;
+        lastB = b;
+      }
+    }
+    return orderedWays.length;
   }
 
   function walkComponent(segIds) {
@@ -212,47 +281,30 @@ export function orderWays(ways) {
     for (const startV of candidates) {
       const result = doWalk(segIds, startV);
       const revs = countReversals(result);
-      // On tie, prefer walk where first reversal is later (spur at end)
-      let firstRev = result.length;
-      if (revs > 0) {
-        let lb = null, prev = null;
-        for (let k = 0; k < result.length; k++) {
-          const coords = result[k].geometry.map(p => [p.lon, p.lat]);
-          let trace = coords;
-          if (prev && haversineM(prev, coords[coords.length - 1]) < haversineM(prev, coords[0]))
-            trace = [...coords].reverse();
-          if (trace.length >= 2) {
-            const b = Math.atan2(trace[trace.length - 1][0] - trace[0][0], trace[trace.length - 1][1] - trace[0][1]);
-            if (lb !== null) { let df = Math.abs(b - lb); if (df > Math.PI) df = 2 * Math.PI - df; if (df > 2 * Math.PI / 3) { firstRev = k; break; } }
-            lb = b;
-          }
-          prev = trace[trace.length - 1];
-        }
-      }
-      if (revs < bestRevs || (revs === bestRevs && firstRev > bestFirstRev)) {
-        bestRevs = revs; bestResult = result; bestFirstRev = firstRev;
+      const fr = firstReversalIndex(result);
+      if (revs < bestRevs || (revs === bestRevs && fr > bestFirstRev)) {
+        bestRevs = revs; bestResult = result; bestFirstRev = fr;
       }
     }
     return bestResult;
   }
 
-  function clusterCoord(cid) {
-    return clusterCoords.get(cid) || [0, 0];
-  }
-
-  // Walk each component, stitch by nearest endpoints
+  // --- Walk components, stitch by nearest endpoints ---
   const walked = components.map(comp => {
     const ordered = walkComponent(comp);
-    if (ordered.length === 0) return { ways: [], start: [0, 0], end: [0, 0] };
+    if (ordered.length === 0) return null;
     const first = ordered[0], last = ordered[ordered.length - 1];
+    const fCoords = first.geometry.map(p => [p.lon, p.lat]);
+    const lCoords = last.geometry.map(p => [p.lon, p.lat]);
+    const fTrace = first._reversed ? [...fCoords].reverse() : fCoords;
+    const lTrace = last._reversed ? [...lCoords].reverse() : lCoords;
     return {
       ways: ordered,
-      start: [first.geometry[0].lon, first.geometry[0].lat],
-      end: [last.geometry[last.geometry.length - 1].lon, last.geometry[last.geometry.length - 1].lat],
+      start: fTrace[0],
+      end: lTrace[lTrace.length - 1],
     };
-  }).filter(c => c.ways.length > 0);
+  }).filter(Boolean);
 
-  // Sort components by size (largest first), stitch by nearest endpoints
   walked.sort((a, b) => b.ways.length - a.ways.length);
   if (walked.length === 1) return walked[0].ways;
 
@@ -275,7 +327,11 @@ export function orderWays(ways) {
     }
     const comp = rest.splice(best.i, 1)[0];
     const norm = best.rev
-      ? { ways: [...comp.ways].reverse(), start: comp.end, end: comp.start }
+      ? {
+          ways: [...comp.ways].reverse().map(w => ({ ...w, _reversed: !w._reversed })),
+          start: comp.end,
+          end: comp.start,
+        }
       : comp;
     if (best.place === 'append') chain.push(norm);
     else chain.unshift(norm);
