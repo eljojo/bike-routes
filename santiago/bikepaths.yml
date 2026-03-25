@@ -1,0 +1,2627 @@
+bike_paths:
+  - name: Mapocho 42k
+    osm_relations:
+      - 4565440
+  - name: Ruta de la Infancia
+    osm_relations:
+      - 10909268
+  - name: Ciclovía Parque Vespucio
+    osm_relations:
+      - 14774537
+  - name: Ciclovia Maipu - Cerrillos
+    osm_relations:
+      - 15073801
+  - name: Ciclovía Alameda
+    osm_relations:
+      - 19923606
+  - name: Camino a Lonquén
+    anchors:
+      - - -70.8182
+        - -33.6423
+      - - -70.7728
+        - -33.5782
+  - name: Ciclovìa La Serena
+    anchors:
+      - - -70.6163
+        - -33.6329
+      - - -70.6142
+        - -33.5639
+    segments:
+      - osm_way: 1455718652
+        quality: 3.5
+        video: https://youtu.be/9mE3PSPMjyY
+        surface_type: acera
+        width_cm: 230
+      - osm_way: 1033895612
+        quality: 4
+        video: https://youtu.be/TpJp994P9lc
+        surface_type: acera
+        width_cm: 240
+      - osm_way: 1315516329
+        quality: 4
+        video: https://youtu.be/TpJp994P9lc
+        surface_type: acera
+        width_cm: 240
+      - osm_way: 1315516330
+        quality: 4
+        video: https://youtu.be/TpJp994P9lc
+        surface_type: acera
+        width_cm: 240
+  - name: Ciclovía Los Pajaritos
+    osm_names:
+      - Ciclovía Los Pajaritos
+      - Avenida Los Pajaritos
+    anchors:
+      - - -70.7576
+        - -33.4963
+      - - -70.7574
+        - -33.4962
+    segments:
+      - osm_way: 91338116
+        quality: 2.5
+        video: https://youtu.be/NsuoffRsfCc
+        surface_type: mediana
+        width_cm: 210
+      - osm_way: 1232739220
+        quality: 2.5
+        video: https://youtu.be/NsuoffRsfCc
+        surface_type: mediana
+        width_cm: 210
+      - osm_way: 1198871164
+        quality: 2.5
+        video: https://youtu.be/i2U1zZL_QoY
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 1263096994
+        quality: 2.5
+        video: https://youtu.be/i2U1zZL_QoY
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 1263096990
+        quality: 2.5
+        video: https://youtu.be/i2U1zZL_QoY
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 448720535
+        quality: 2.5
+        video: https://youtu.be/NsuoffRsfCc
+        surface_type: mediana
+        width_cm: 210
+      - osm_way: 856984382
+        quality: 2.5
+        video: https://youtu.be/NsuoffRsfCc
+        surface_type: mediana
+        width_cm: 210
+      - osm_way: 1470276905
+        quality: 2.5
+        video: https://youtu.be/NsuoffRsfCc
+        surface_type: mediana
+        width_cm: 210
+  - name: Ciclovía Alameda
+    anchors:
+      - - -70.6787
+        - -33.4507
+      - - -70.6352
+        - -33.4372
+    segments:
+      - osm_way: 1456371860
+        quality: 1.5
+        video: https://youtu.be/7QvhVMrxe1U
+        surface_type: mediana
+        width_cm: 200
+  - name: Santa Inés
+    anchors:
+      - - -70.8047
+        - -33.6294
+      - - -70.736
+        - -33.649
+  - name: Avenida San Carlos de Apoquindo
+    anchors:
+      - - -70.5059
+        - -33.4112
+      - - -70.5061
+        - -33.4112
+    segments:
+      - osm_way: 790920254
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 790920257
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1228115818
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1341925104
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1228115815
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 23168141
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 858217199
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1262274963
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1262274964
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 858217200
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 253029329
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 23168391
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1228115816
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 925034829
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1228115817
+        quality: 6
+        video: https://youtu.be/j1MLXusjIfo
+        surface_type: calzada
+        width_cm: 100
+  - name: Avenida Marathon Oriente
+    anchors:
+      - - -70.6118
+        - -33.4914
+      - - -70.6074
+        - -33.4626
+    segments:
+      - osm_way: 398966265
+        quality: 10
+        video: "https://youtu.be/li3HGMpxgio "
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 926073353
+        quality: 10
+        video: "https://youtu.be/li3HGMpxgio "
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 1191517426
+        quality: 10
+        video: "https://youtu.be/li3HGMpxgio "
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 445992387
+        quality: 10
+        video: "https://youtu.be/li3HGMpxgio "
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 1191517427
+        quality: 10
+        video: "https://youtu.be/li3HGMpxgio "
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 447314430
+        quality: 10
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 447621269
+        quality: 10
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 879054349
+        quality: 10
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 664730402
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 664730399
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 447341453
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1356962643
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1356962644
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1356962647
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1356962650
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 447346260
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 447346263
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 41766613
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 447346258
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 447346255
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 447341455
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1280808701
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1356942828
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 561915956
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 447621272
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 447621271
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 664730400
+        quality: 9.5
+        video: https://youtu.be/XZ6bBcaBXoY
+        surface_type: calzada
+        width_cm: 150
+  - name: Avenida Calera de Tango
+    anchors:
+      - - -70.8234
+        - -33.6102
+      - - -70.7719
+        - -33.6265
+  - name: Ciclovía Las Perdices (Avenida José Arrieta - Avenida Departamental)
+    anchors:
+      - - -70.5347
+        - -33.4774
+      - - -70.5313
+        - -33.4658
+    segments:
+      - osm_way: 450518744
+        quality: 2.5
+        video: https://youtu.be/534dB8sPXfk
+        surface_type: acera
+        width_cm: 200
+  - name: Ciclovía Pedro Aguirre Cerda
+    osm_names:
+      - Ciclovía Pedro Aguirre Cerda
+      - Avenida Pedro Aguirre Cerda
+    anchors:
+      - - -70.7135
+        - -33.5058
+      - - -70.6825
+        - -33.4719
+    segments:
+      - osm_way: 94451922
+        quality: 4
+        video: https://youtu.be/g1gSFMKfITc
+        surface_type: acera
+        width_cm: 140
+      - osm_way: 1229175961
+      - osm_way: 1389952706
+      - osm_way: 441711261
+        quality: 3
+        video: https://youtu.be/M9ESitw1tdo
+        surface_type: calzada
+        width_cm: 180
+      - osm_way: 441711262
+        quality: 3
+        video: https://youtu.be/M9ESitw1tdo
+        surface_type: calzada
+        width_cm: 180
+      - osm_way: 179550839
+        quality: 3
+        video: https://youtu.be/M9ESitw1tdo
+        surface_type: calzada
+        width_cm: 180
+      - osm_way: 1161511038
+        quality: 3
+        video: https://youtu.be/M9ESitw1tdo
+        surface_type: calzada
+        width_cm: 180
+      - osm_way: 856680158
+        quality: 3
+        video: https://youtu.be/M9ESitw1tdo
+        surface_type: calzada
+        width_cm: 180
+  - name: Ciclovia Vicuña Mackenna
+    osm_names:
+      - Ciclovia Vicuña Mackenna
+      - Ciclovía Vicuña Mackenna
+    anchors:
+      - - -70.5842
+        - -33.5689
+      - - -70.6022
+        - -33.52
+    segments:
+      - osm_way: 40478008
+        quality: 2.5
+        video: https://youtu.be/kFhkh0hFFhs
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 246243084
+        quality: 2.5
+        video: https://youtu.be/kFhkh0hFFhs
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 1238763488
+        quality: 2.5
+        video: https://youtu.be/CDLA0o2UNlo
+        surface_type: acera
+        width_cm: 200
+  - name: Ciclovía Camino a Melipilla
+    anchors:
+      - - -70.7698
+        - -33.5364
+      - - -70.7231
+        - -33.5107
+  - name: Avenida Presidente Riesco
+    osm_names:
+      - Avenida Presidente Riesco
+      - Ciclovía Presidente Riesco
+    anchors:
+      - - -70.6052
+        - -33.4109
+      - - -70.5665
+        - -33.3986
+    segments:
+      - osm_way: 453336462
+        quality: 4
+        video: https://youtu.be/-JUyafsUmrI
+        surface_type: acera
+        width_cm: 250
+      - osm_way: 1047129402
+        quality: 4
+        video: https://youtu.be/-JUyafsUmrI
+        surface_type: acera
+        width_cm: 250
+      - osm_way: 1215192816
+        quality: 4
+        video: https://youtu.be/-JUyafsUmrI
+        surface_type: acera
+        width_cm: 250
+      - osm_way: 910125136
+        quality: 4
+        video: https://youtu.be/-JUyafsUmrI
+        surface_type: acera
+        width_cm: 250
+      - osm_way: 445973275
+        quality: 8
+        video: https://youtu.be/TORAW-Fu81g
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 22348043
+        quality: 8
+        video: https://youtu.be/TORAW-Fu81g
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 455303384
+        quality: 8
+        video: https://youtu.be/TORAW-Fu81g
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 237589521
+        quality: 8
+        video: https://youtu.be/TORAW-Fu81g
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 1345169725
+        quality: 8
+        video: https://youtu.be/TORAW-Fu81g
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 238955166
+        quality: 8
+        video: https://youtu.be/TORAW-Fu81g
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 242942441
+        quality: 2.5
+        video: https://youtu.be/TORAW-Fu81g
+        surface_type: acera
+        width_cm: 205
+      - osm_way: 235748219
+        quality: 2.5
+        video: https://youtu.be/TORAW-Fu81g
+        surface_type: acera
+        width_cm: 205
+      - osm_way: 1355355640
+        quality: 6
+        video: https://youtu.be/cogz0fKRu40
+        surface_type: calzada
+        width_cm: 330
+      - osm_way: 224496812
+        quality: 6
+        video: https://youtu.be/cogz0fKRu40
+        surface_type: calzada
+        width_cm: 330
+      - osm_way: 774715018
+        quality: 6
+        video: https://youtu.be/cogz0fKRu40
+        surface_type: calzada
+        width_cm: 330
+      - osm_way: 252215630
+        quality: 6
+        video: https://youtu.be/sUP6eQ3HUdE
+        surface_type: calzada
+        width_cm: 270
+      - osm_way: 852565055
+        quality: 6
+        video: https://youtu.be/cogz0fKRu40
+        surface_type: calzada
+        width_cm: 330
+      - osm_way: 269863545
+        quality: 6
+        video: https://youtu.be/cogz0fKRu40
+        surface_type: calzada
+        width_cm: 330
+      - osm_way: 51188654
+        quality: 2
+        video: https://youtu.be/Ae2FyunvB6I
+        surface_type: acera
+        width_cm: 170
+      - osm_way: 450601783
+        quality: 2
+        video: https://youtu.be/Ae2FyunvB6I
+        surface_type: acera
+        width_cm: 170
+      - osm_way: 450444413
+        quality: 6
+        video: https://youtu.be/cogz0fKRu40
+        surface_type: calzada
+        width_cm: 330
+      - osm_way: 1145467002
+        quality: 6
+        video: https://youtu.be/cogz0fKRu40
+        surface_type: calzada
+        width_cm: 330
+      - osm_way: 821532760
+        quality: 10
+        video: https://youtu.be/TORAW-Fu81g
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 1355355639
+        quality: 6
+        video: https://youtu.be/cogz0fKRu40
+        surface_type: calzada
+        width_cm: 330
+  - name: Ciclovia Grecia
+    anchors:
+      - - -70.5748
+        - -33.4693
+      - - -70.5246
+        - -33.4795
+    segments:
+      - osm_way: 91328836
+        quality: 4
+        video: https://youtu.be/nEh8DJc0r-k
+        surface_type: acera
+        width_cm: 250
+      - osm_way: 1300921154
+        quality: 4
+        video: https://youtu.be/nEh8DJc0r-k
+        surface_type: acera
+        width_cm: 250
+      - osm_way: 1300921155
+        video: https://youtu.be/sMPwm7LiX8g
+      - osm_way: 40471501
+        video: https://youtu.be/sMPwm7LiX8g
+      - osm_way: 1457855137
+        video: https://youtu.be/sMPwm7LiX8g
+      - osm_way: 40471502
+        quality: 4
+        video: https://youtu.be/nEh8DJc0r-k
+        surface_type: mediana
+        width_cm: 250
+      - osm_way: 1228112815
+        quality: 4
+        video: https://youtu.be/nEh8DJc0r-k
+        surface_type: acera
+        width_cm: 250
+      - osm_way: 1228112814
+        quality: 4
+        video: https://youtu.be/nEh8DJc0r-k
+        surface_type: acera
+        width_cm: 250
+  - name: Ciclovia El Noviciado
+    anchors:
+      - - -70.825
+        - -33.4365
+      - - -70.8524
+        - -33.4047
+  - name: Ciclovía Concha y Toro
+    anchors:
+      - - -70.5764
+        - -33.6058
+      - - -70.5834
+        - -33.5715
+    segments:
+      - osm_way: 1458844840
+        quality: 2.5
+        video: https://youtu.be/b0YYBrcYSGY
+        surface_type: bandejón
+        width_cm: 200
+      - osm_way: 1458844839
+        quality: 2.5
+        video: https://youtu.be/b0YYBrcYSGY
+        surface_type: bandejón
+        width_cm: 200
+      - osm_way: 289937513
+        quality: 2.5
+        video: https://youtu.be/b0YYBrcYSGY
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 108292365
+        quality: 2.5
+        video: https://youtu.be/b0YYBrcYSGY
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 1285402244
+        quality: 2.5
+        video: https://youtu.be/b0YYBrcYSGY
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 108292364
+        quality: 2.5
+        video: https://youtu.be/b0YYBrcYSGY
+        surface_type: acera
+        width_cm: 200
+  - name: Avenida Independencia
+    anchors:
+      - - -70.6531
+        - -33.4308
+      - - -70.6517
+        - -33.4318
+    segments:
+      - osm_way: 1290585393
+        quality: 6
+        video: https://youtu.be/ydGfOLWUkDs
+        surface_type: calzada
+        width_cm: 170
+      - osm_way: 1290406025
+        quality: 6.5
+        video: https://youtu.be/EwLyVnZYq1s
+        surface_type: calzada
+        width_cm: 210
+      - osm_way: 1290569457
+        quality: 6.5
+        video: https://youtu.be/EwLyVnZYq1s
+        surface_type: calzada
+        width_cm: 210
+      - osm_way: 638018766
+        quality: 6.5
+        video: https://youtu.be/EwLyVnZYq1s
+        surface_type: calzada
+        width_cm: 210
+      - osm_way: 209291869
+        quality: 6.5
+        video: https://youtu.be/EwLyVnZYq1s
+        surface_type: calzada
+        width_cm: 210
+      - osm_way: 446156810
+        quality: 2.5
+        video: https://youtu.be/6drCqSnk2oY
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 984802297
+        quality: 4
+        video: https://youtu.be/4umrez2IfHU
+        surface_type: acera
+        width_cm: 240
+      - osm_way: 1290575133
+        quality: 6.5
+        video: https://youtu.be/GSVs3kE5Pbc
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 1290575132
+        quality: 6.5
+        video: https://youtu.be/GSVs3kE5Pbc
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 1290575131
+        quality: 6.5
+        video: https://youtu.be/GSVs3kE5Pbc
+        surface_type: calzada
+        width_cm: 200
+  - name: Antumalén
+    anchors:
+      - - -70.6589
+        - -33.5716
+      - - -70.6599
+        - -33.5737
+    segments:
+      - osm_way: 1124350220
+  - name: Camino La Pirámide
+    anchors:
+      - - -70.6174
+        - -33.3776
+      - - -70.6018
+        - -33.3864
+  - name: Ciclovía Libertador Bernardo O'Higgins
+    anchors:
+      - - -70.7058
+        - -33.4576
+      - - -70.6787
+        - -33.4507
+    segments:
+      - osm_way: 1183591627
+        quality: 1
+        video: https://youtu.be/sGYGncr4P5o
+        surface_type: acera
+        width_cm: 160
+      - osm_way: 1263863557
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 1263863558
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 1353207216
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 1353207217
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 1183591628
+        quality: 1.5
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 263369118
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 320
+      - osm_way: 1210562042
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 320
+      - osm_way: 1210562043
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 320
+      - osm_way: 1210562045
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 320
+      - osm_way: 1210562046
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 320
+      - osm_way: 1210562044
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 320
+      - osm_way: 1210562049
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 320
+      - osm_way: 1210562041
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 320
+      - osm_way: 1210562047
+        quality: 3
+        video: https://youtu.be/tbFfPJ_JHf4
+        surface_type: mediana
+        width_cm: 320
+  - name: Avenida El Valle
+    anchors:
+      - - -70.5565
+        - -33.4794
+      - - -70.5412
+        - -33.4854
+    segments:
+      - osm_way: 1260879654
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1260879653
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 24589940
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 237051934
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1343855298
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 859049456
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 859049457
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 614268301
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 859049453
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 771878999
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1343855297
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 614268296
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1260769495
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1260769497
+        quality: 5
+        video: https://youtu.be/pYU0_qfjk3I
+        surface_type: calzada
+        width_cm: 100
+  - name: Salvador Gutiérrez
+    anchors:
+      - - -70.7321
+        - -33.4194
+      - - -70.6926
+        - -33.4268
+    segments:
+      - osm_way: 628109194
+        quality: 8.5
+        video: https://www.youtube.com/watch?v=TyYUi_NK-vc
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 449890424
+        quality: 8.5
+        video: https://www.youtube.com/watch?v=TyYUi_NK-vc
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 932766257
+        quality: 8.5
+        video: https://www.youtube.com/watch?v=TyYUi_NK-vc
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 996463593
+        quality: 8.5
+        video: https://www.youtube.com/watch?v=TyYUi_NK-vc
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 448839125
+        quality: 8.5
+        video: https://www.youtube.com/watch?v=TyYUi_NK-vc
+        surface_type: calzada
+        width_cm: 200
+  - name: Avenida Vicuña Mackenna
+    anchors:
+      - - -70.7456
+        - -33.4057
+      - - -70.7454
+        - -33.4057
+  - name: Pista Recreativa Simón Bolívar
+    anchors:
+      - - -70.6098
+        - -33.4509
+      - - -70.5979
+        - -33.4491
+    segments:
+      - osm_way: 1457771758
+        quality: 2
+        video: https://youtu.be/huzbpNKVjbg
+        surface_type: acera
+        width_cm: 180
+      - osm_way: 1457771756
+        quality: 4
+        video: https://youtu.be/Tsc3Fsu1Kg0
+        surface_type: calzada
+        width_cm: 160
+      - osm_way: 1457771755
+        quality: 4
+        video: https://youtu.be/Tsc3Fsu1Kg0
+        surface_type: calzada
+        width_cm: 160
+  - name: Avenida José Miguel Infante
+    anchors:
+      - - -70.7454
+        - -33.4057
+      - - -70.7279
+        - -33.4065
+    segments:
+      - osm_way: 859128917
+        video: https://youtu.be/LGGnCTZ79VM
+      - osm_way: 1000372616
+        video: https://youtu.be/LGGnCTZ79VM
+      - osm_way: 1390207828
+        video: https://youtu.be/LGGnCTZ79VM
+      - osm_way: 1390207827
+        video: https://youtu.be/LGGnCTZ79VM
+      - osm_way: 25291628
+        quality: 2.5
+        video: https://youtu.be/VcXo3aUjCaA
+        surface_type: parque
+        width_cm: 200
+      - osm_way: 1390207823
+        video: https://youtu.be/LGGnCTZ79VM
+      - osm_way: 1390207824
+        video: https://youtu.be/LGGnCTZ79VM
+      - osm_way: 859128914
+        video: https://youtu.be/LGGnCTZ79VM
+      - osm_way: 859128916
+        video: https://youtu.be/LGGnCTZ79VM
+      - osm_way: 860266529
+        quality: 5.5
+        video: https://youtu.be/LGGnCTZ79VM
+        surface_type: calzada
+        width_cm: 150
+  - name: Ciclovía Las Torres
+    anchors:
+      - - -70.7312
+        - -33.454
+      - - -70.7307
+        - -33.4236
+    segments:
+      - osm_way: 156725014
+        quality: 2
+        video: https://youtu.be/iHN3aOwV1NQ
+        surface_type: acera
+        width_cm: 90
+      - osm_way: 93411061
+        quality: 2.5
+        video: https://youtu.be/E1Ip6s_Gopg
+        surface_type: acera
+        width_cm: 200
+  - name: Martín de Zamora
+    anchors:
+      - - -70.5926
+        - -33.4245
+      - - -70.5596
+        - -33.4153
+    segments:
+      - osm_way: 442613731
+        quality: 7
+        video: https://youtu.be/ycDhH88kqlM
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 240169914
+        quality: 6
+        video: https://youtu.be/ZND7DVPa9yc
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 858537775
+        quality: 6
+        video: https://youtu.be/Sd4FovWncY0
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 701911212
+        quality: 6
+        video: https://youtu.be/Sd4FovWncY0
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1108450521
+        quality: 6
+        video: https://youtu.be/KddymI0Ya9I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 701911213
+        quality: 6
+        video: https://youtu.be/KddymI0Ya9I
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 590220072
+        video: https://youtu.be/t96OaKvFdp0
+  - name: Ciclovía Los Morros
+    anchors:
+      - - -70.6757
+        - -33.5794
+      - - -70.6657
+        - -33.5428
+    segments:
+      - osm_way: 222403422
+        quality: 2
+        video: https://youtu.be/S3k-ulqi3QE
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 95127284
+        quality: 2
+        video: https://youtu.be/S3k-ulqi3QE
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1073701110
+        quality: 2
+        video: https://youtu.be/S3k-ulqi3QE
+        surface_type: acera
+        width_cm: 150
+  - name: Eliodoro Yáñez
+    anchors:
+      - - -70.6244
+        - -33.433
+      - - -70.594
+        - -33.4281
+    segments:
+      - osm_way: 448598516
+        quality: 8.5
+        video: https://youtu.be/3vv5d0QT_Zw
+        surface_type: calzada
+        width_cm: 130
+      - osm_way: 448598512
+        quality: 8.5
+        video: https://youtu.be/3vv5d0QT_Zw
+        surface_type: calzada
+        width_cm: 130
+      - osm_way: 450117031
+        quality: 8.5
+        video: https://youtu.be/3vv5d0QT_Zw
+        surface_type: calzada
+        width_cm: 130
+      - osm_way: 929803608
+        quality: 10
+        video: https://youtu.be/3vv5d0QT_Zw
+        surface_type: calzada
+        width_cm: 260
+      - osm_way: 621650801
+        quality: 10
+        video: https://youtu.be/3vv5d0QT_Zw
+        surface_type: calzada
+        width_cm: 260
+      - osm_way: 1019606071
+        quality: 6.5
+        video: https://youtu.be/hoikFttQvAE
+        surface_type: calzada
+        width_cm: 140
+      - osm_way: 188494130
+        quality: 10
+        video: https://youtu.be/3vv5d0QT_Zw
+        surface_type: calzada
+        width_cm: 260
+      - osm_way: 442613725
+        quality: 10
+        video: https://youtu.be/3vv5d0QT_Zw
+        surface_type: calzada
+        width_cm: 260
+  - name: Ciclovía Sánchez Fontecilla
+    anchors:
+      - - -70.5514
+        - -33.4626
+      - - -70.5725
+        - -33.4389
+    segments:
+      - osm_way: 1372050779
+        quality: 2.5
+        video: https://youtu.be/EtsaK4ehRP8
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 1457591733
+        quality: 2.5
+        video: https://youtu.be/quvYAMUvJqs
+        surface_type: acera
+        width_cm: 210
+      - osm_way: 1457591737
+        quality: 6.5
+        video: https://youtu.be/UojFP4KcpKM
+        surface_type: calzada
+        width_cm: 140
+      - osm_way: 787015435
+        quality: 6.5
+        video: https://youtu.be/UojFP4KcpKM
+        surface_type: calzada
+        width_cm: 140
+      - osm_way: 787015436
+        quality: 6.5
+        video: https://youtu.be/UojFP4KcpKM
+        surface_type: calzada
+        width_cm: 140
+      - osm_way: 787015433
+        quality: 6.5
+        video: https://youtu.be/UojFP4KcpKM
+        surface_type: calzada
+        width_cm: 140
+  - name: Avenida Clotario Blest
+    anchors:
+      - - -70.681
+        - -33.5026
+      - - -70.6691
+        - -33.4788
+    segments:
+      - osm_way: 608797412
+        quality: 2.5
+        video: https://youtu.be/YAmrphx2w98
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 610098952
+        quality: 2.5
+        video: https://youtu.be/YAmrphx2w98
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 610098951
+        quality: 2.5
+        video: https://youtu.be/YAmrphx2w98
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 1355411503
+        quality: 2.5
+        video: https://youtu.be/YAmrphx2w98
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 1112004181
+        quality: 2.5
+        video: https://youtu.be/YAmrphx2w98
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 1355411502
+        quality: 2.5
+        video: https://youtu.be/YAmrphx2w98
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 445736401
+        quality: 2.5
+        video: https://youtu.be/YAmrphx2w98
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 321558571
+        quality: 2.5
+        video: https://youtu.be/YAmrphx2w98
+        surface_type: acera
+        width_cm: 200
+  - name: General Bulnes
+    osm_names:
+      - General Bulnes
+      - Ciclovia General Bulnes
+    anchors:
+      - - -70.6697
+        - -33.4441
+      - - -70.6684
+        - -33.4155
+    segments:
+      - osm_way: 981887001
+        quality: 6
+        video: https://youtu.be/R4fdAFSjp2A
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 447766844
+        video: https://youtu.be/X40sy8Fij_E
+      - osm_way: 984963681
+        quality: 6
+        video: https://youtu.be/R4fdAFSjp2A
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 223877454
+        quality: 6
+        video: https://youtu.be/R4fdAFSjp2A
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 650268673
+        quality: 6
+        video: https://youtu.be/R4fdAFSjp2A
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 1354733628
+        quality: 6
+        video: https://youtu.be/R4fdAFSjp2A
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 323913765
+        quality: 4
+        video: https://youtu.be/LKmLXYIb1bc
+        surface_type: parque
+        width_cm: 240
+      - osm_way: 746506737
+        quality: 3.5
+        video: https://youtu.be/VxV0myyfmNo
+        surface_type: calzada
+        width_cm: 200
+  - name: Ciclovía Esquina Blanca
+    anchors:
+      - - -70.7438
+        - -33.5108
+      - - -70.7276
+        - -33.5118
+    segments:
+      - osm_way: 316972465
+        quality: 2
+        video: https://youtu.be/rpe4dKkmBsw
+        surface_type: parque
+        width_cm: 180
+      - osm_way: 1456400191
+        quality: 2
+        video: https://youtu.be/rpe4dKkmBsw
+        surface_type: parque
+        width_cm: 180
+      - osm_way: 1186134474
+        quality: 2
+        video: https://youtu.be/5JfHlhmgCcw
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1216889088
+        quality: 2
+        video: https://youtu.be/5JfHlhmgCcw
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1099389346
+        quality: 2
+        video: https://youtu.be/5JfHlhmgCcw
+        surface_type: acera
+        width_cm: 90
+      - osm_way: 1216889087
+        quality: 2
+        video: https://youtu.be/5JfHlhmgCcw
+        surface_type: acera
+        width_cm: 90
+      - osm_way: 1186134475
+        quality: 2
+        video: https://youtu.be/5JfHlhmgCcw
+        surface_type: acera
+        width_cm: 90
+      - osm_way: 1186134476
+        quality: 4
+        video: https://youtu.be/-Yr2Jq4P_94
+        surface_type: acera
+        width_cm: 140
+  - name: Avenida Antonio Varas
+    osm_names:
+      - Avenida Antonio Varas
+      - Ciclovía Antonio Varas
+    anchors:
+      - - -70.6089
+        - -33.4537
+      - - -70.609
+        - -33.4543
+    segments:
+      - osm_way: 1010079692
+        quality: 5
+        video: https://youtu.be/q4_8Jm9zPu0
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 77924932
+        quality: 5
+        video: https://youtu.be/q4_8Jm9zPu0
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 570565883
+        quality: 2.5
+        video: https://youtu.be/NxQZvKGsmJE
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 1022641713
+        quality: 2.5
+        video: https://youtu.be/NxQZvKGsmJE
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 1189847116
+        quality: 9
+        video: https://youtu.be/5IT00lIO0RU
+        surface_type: calzada
+        width_cm: 180
+      - osm_way: 1462688698
+        quality: 9
+        video: https://youtu.be/5IT00lIO0RU
+        surface_type: calzada
+        width_cm: 180
+      - osm_way: 327424245
+        quality: 9
+        video: https://youtu.be/5IT00lIO0RU
+        surface_type: calzada
+        width_cm: 180
+      - osm_way: 1280808696
+        quality: 5
+        video: https://youtu.be/q4_8Jm9zPu0
+        surface_type: calzada
+        width_cm: 150
+  - name: Avenida Santa Isabel
+    anchors:
+      - - -70.6598
+        - -33.4523
+      - - -70.6274
+        - -33.4467
+    segments:
+      - osm_way: 483731558
+        quality: 6.5
+        video: https://youtu.be/D3ZRBoEBLR8
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 1036898326
+        quality: 6.5
+        video: https://youtu.be/D3ZRBoEBLR8
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 32840233
+        quality: 6
+        video: https://youtu.be/oFY1ahaBqgA
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 1036898325
+        quality: 6
+        video: https://youtu.be/oFY1ahaBqgA
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 669870425
+        quality: 6
+        video: https://youtu.be/oFY1ahaBqgA
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 669870426
+        quality: 6
+        video: https://youtu.be/oFY1ahaBqgA
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 32840236
+        quality: 6
+        video: https://youtu.be/oFY1ahaBqgA
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 447770575
+        quality: 6
+        video: https://youtu.be/oFY1ahaBqgA
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 8000329
+        quality: 2
+        video: https://youtu.be/z1VtLVfLmcc
+        surface_type: acera
+        width_cm: 190
+      - osm_way: 338566197
+        quality: 10
+        video: https://youtu.be/elx4Qtq4mVg
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 649268044
+        quality: 10
+        video: https://youtu.be/elx4Qtq4mVg
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 627916822
+        quality: 10
+        video: https://youtu.be/elx4Qtq4mVg
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 925034529
+        quality: 10
+        video: https://youtu.be/elx4Qtq4mVg
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 925338877
+        quality: 10
+        video: https://youtu.be/elx4Qtq4mVg
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 92190162
+        quality: 10
+        video: https://youtu.be/elx4Qtq4mVg
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 449485951
+        quality: 10
+        video: https://youtu.be/elx4Qtq4mVg
+        surface_type: calzada
+        width_cm: 200
+  - name: Arturo Prat
+    anchors:
+      - - -70.6466
+        - -33.4732
+      - - -70.6475
+        - -33.4578
+    segments:
+      - osm_way: 1463531423
+        quality: 5.5
+        video: https://youtu.be/yCHV1JZKoj8
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 293727760
+        quality: 5.5
+        video: https://youtu.be/yCHV1JZKoj8
+        surface_type: calzada
+        width_cm: 200
+  - name: Avenida El Carmen
+    anchors:
+      - - -70.6627
+        - -33.3544
+      - - -70.675
+        - -33.3428
+  - name: Alcalde Hernán Prieto
+    anchors:
+      - - -70.5849
+        - -33.6693
+      - - -70.588
+        - -33.6415
+  - name: Vicuña Mackenna
+    osm_names:
+      - Vicuña Mackenna
+      - Ciclovía Vicuña Mackenna
+    anchors:
+      - - -70.6367
+        - -33.5471
+      - - -70.6656
+        - -33.5426
+    segments:
+      - osm_way: 541386027
+        quality: 9
+        video: https://youtu.be/7l_Hb8vgupA
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 157098026
+        quality: 9
+        video: https://youtu.be/7l_Hb8vgupA
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 598425244
+        quality: 9
+        video: https://youtu.be/7l_Hb8vgupA
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 1289786796
+        quality: 9
+        video: https://youtu.be/7l_Hb8vgupA
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 1289786801
+        quality: 10
+        video: https://youtu.be/T0Wd9w2naXc
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 1065383670
+        quality: 10
+        video: https://youtu.be/T0Wd9w2naXc
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 294198701
+        video: https://youtu.be/IVgy14O5dVw
+      - osm_way: 1289786811
+        video: https://youtu.be/IVgy14O5dVw
+  - name: Pista recreativa Dublé Almeyda
+    osm_names:
+      - Pista recreativa Dublé Almeyda
+      - Pista Recreativa Dublé Almeyda
+    anchors:
+      - - -70.6192
+        - -33.4544
+      - - -70.5836
+        - -33.4584
+    segments:
+      - osm_way: 92658659
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1464448135
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1464448136
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1307993783
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1307993784
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1295150817
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1307993782
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1308554148
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1308554151
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1308554152
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1308554159
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 292075629
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1305648223
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1305648222
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1304933586
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1328046802
+        quality: 3.5
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1328046803
+        quality: 2
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1304933585
+        quality: 2
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1328046805
+        quality: 2
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+      - osm_way: 1328046804
+        quality: 2
+        video: https://youtu.be/hcqPN3NIsSk
+        surface_type: acera
+        width_cm: 150
+  - name: Avenida Alberto Mackenna
+    anchors:
+      - - -70.6363
+        - -33.4307
+      - - -70.6229
+        - -33.4162
+    segments:
+      - osm_way: 919288128
+        quality: 8
+        video: https://youtu.be/pJ9AhqcMhs0
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 922756659
+        quality: 8
+        video: https://youtu.be/pJ9AhqcMhs0
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 442629926
+  - name: Avenida Suecia
+    anchors:
+      - - -70.6023
+        - -33.4373
+      - - -70.6094
+        - -33.4189
+    segments:
+      - osm_way: 188238589
+        quality: 9.5
+        video: https://youtu.be/zrp8o0JxfPE
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 293132066
+        quality: 9.5
+        video: https://youtu.be/zrp8o0JxfPE
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 77891193
+        quality: 9.5
+        video: https://youtu.be/zrp8o0JxfPE
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1347392744
+        quality: 9.5
+        video: https://youtu.be/zrp8o0JxfPE
+        surface_type: calzada
+        width_cm: 150
+  - name: Ciclovía Las Perdices (Avenida Bilbao - Avenida José Arrieta)
+    anchors:
+      - - -70.5308
+        - -33.4656
+      - - -70.5312
+        - -33.4453
+    segments:
+      - osm_way: 1342906279
+        quality: 2.5
+        video: https://youtu.be/534dB8sPXfk
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 91330300
+        quality: 2.5
+        video: https://youtu.be/534dB8sPXfk
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 1301780335
+        quality: 2.5
+        video: https://youtu.be/534dB8sPXfk
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 1421355729
+        quality: 6.5
+        video: https://youtu.be/t6NNMtvmWzM
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 1421355728
+        quality: 6.5
+        video: https://youtu.be/t6NNMtvmWzM
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 156878097
+        quality: 1.5
+        video: https://youtu.be/DKePoVjTqcwhttps://youtu.be/DKePoVjTqcw
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 174857910
+        quality: 2.5
+        video: https://youtu.be/DKePoVjTqcwhttps://youtu.be/DKePoVjTqcw
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 174857917
+        quality: 1.5
+        video: https://youtu.be/DKePoVjTqcwhttps://youtu.be/DKePoVjTqcw
+        surface_type: mediana
+        width_cm: 200
+  - name: Juan Martínez de Rozas
+    anchors:
+      - - -70.6898
+        - -33.4351
+      - - -70.6664
+        - -33.4336
+    segments:
+      - osm_way: 671178317
+        quality: 5
+        video: https://youtu.be/hRHa0tdFzvE
+        surface_type: calzada
+        width_cm: 165
+      - osm_way: 293790208
+        quality: 5
+        video: https://youtu.be/hRHa0tdFzvE
+        surface_type: calzada
+        width_cm: 165
+      - osm_way: 238513520
+        quality: 5
+        video: https://youtu.be/hRHa0tdFzvE
+        surface_type: calzada
+        width_cm: 165
+      - osm_way: 24358742
+        quality: 7.5
+        video: https://youtu.be/9yxtcY7-eBw
+        surface_type: calzada
+        width_cm: 200
+  - name: Avenida La Montaña
+    anchors:
+      - - -70.6173
+        - -33.4053
+      - - -70.6201
+        - -33.3999
+  - name: Avenida Lo Errázuriz
+    anchors:
+      - - -70.7089
+        - -33.5014
+      - - -70.7021
+        - -33.5047
+  - name: Ciclovia La Plaza
+    anchors:
+      - - -70.5005
+        - -33.3907
+      - - -70.5005
+        - -33.3907
+  - name: Ciclovía Avenida Alcalde Fernando Castillo Velasco
+    anchors:
+      - - -70.5585
+        - -33.452
+      - - -70.5585
+        - -33.452
+    segments:
+      - osm_way: 1371902640
+        quality: 2.5
+        video: https://youtu.be/EtsaK4ehRP8
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 144918595
+        quality: 2.5
+        video: https://youtu.be/EtsaK4ehRP8
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 1370960386
+        quality: 1
+        video: https://youtu.be/EtsaK4ehRP8
+        surface_type: acera
+        width_cm: 180
+      - osm_way: 1371186895
+        quality: 1
+        video: https://youtu.be/EtsaK4ehRP8
+        surface_type: acera
+        width_cm: 180
+      - osm_way: 451120624
+        quality: 1
+        video: https://youtu.be/EtsaK4ehRP8
+        surface_type: acera
+        width_cm: 180
+      - osm_way: 144918594
+        quality: 2.5
+        video: https://youtu.be/EtsaK4ehRP8
+        surface_type: mediana
+        width_cm: 200
+      - osm_way: 1342498096
+        quality: 2.5
+        video: https://youtu.be/EtsaK4ehRP8
+        surface_type: mediana
+        width_cm: 200
+  - name: Ciclovía Dorsal
+    anchors:
+      - - -70.6813
+        - -33.4021
+      - - -70.6574
+        - -33.3958
+    segments:
+      - osm_way: 95135495
+        quality: 1.5
+        video: https://youtu.be/6ZVq03mfU1Q
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 1475030611
+        quality: 1.5
+        video: https://youtu.be/6ZVq03mfU1Q
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 1475030610
+        quality: 1.5
+        video: https://youtu.be/6ZVq03mfU1Q
+        surface_type: acera
+        width_cm: 200
+  - name: Ciclovía Pocuro
+    osm_names:
+      - Ciclovía Pocuro
+      - Avenida Pocuro
+    anchors:
+      - - -70.586
+        - -33.4308
+      - - -70.5858
+        - -33.4307
+    segments:
+      - osm_way: 648459649
+        quality: 2.5
+        video: https://youtu.be/Ptiu6mUq02Q
+        surface_type: parque
+        width_cm: 200
+      - osm_way: 648459658
+        quality: 3.5
+        video: https://youtu.be/H9XIzDvX3dI
+        surface_type: parque
+        width_cm: 230
+      - osm_way: 278277094
+        quality: 3.5
+        video: https://youtu.be/H9XIzDvX3dI
+        surface_type: parque
+        width_cm: 230
+  - name: Avenida Francisco Bulnes Correa
+    anchors:
+      - - -70.5127
+        - -33.4127
+      - - -70.5131
+        - -33.4126
+    segments:
+      - osm_way: 1347355774
+        quality: 5.5
+        video: https://youtu.be/tjLqtvKEeSM
+        surface_type: calzada
+        width_cm: 130
+      - osm_way: 1347355773
+        quality: 5.5
+        video: https://youtu.be/tjLqtvKEeSM
+        surface_type: calzada
+        width_cm: 130
+      - osm_way: 254653006
+        quality: 5.5
+        video: https://youtu.be/tjLqtvKEeSM
+        surface_type: calzada
+        width_cm: 130
+      - osm_way: 928659624
+        quality: 5.5
+        video: https://youtu.be/tjLqtvKEeSM
+        surface_type: calzada
+        width_cm: 130
+      - osm_way: 654731317
+        quality: 5.5
+        video: https://youtu.be/tjLqtvKEeSM
+        surface_type: calzada
+        width_cm: 130
+      - osm_way: 663909349
+        quality: 5.5
+        video: https://youtu.be/tjLqtvKEeSM
+        surface_type: calzada
+        width_cm: 130
+  - name: Ciclovía Andrés Bello
+    anchors:
+      - - -70.6261
+        - -33.4319
+      - - -70.6259
+        - -33.4317
+    segments:
+      - osm_way: 1309987168
+        quality: 4
+        surface_type: acera
+        width_cm: 250
+      - osm_way: 988091316
+        quality: 4
+        surface_type: acera
+        width_cm: 250
+      - osm_way: 988091315
+        quality: 4
+        surface_type: acera
+        width_cm: 250
+  - name: Avenida Ricardo Lyon
+    anchors:
+      - - -70.6029
+        - -33.445
+      - - -70.6099
+        - -33.4218
+    segments:
+      - osm_way: 1356770339
+        quality: 10
+        video: https://youtu.be/3TCBuRfmmJ4
+        surface_type: calzada
+        width_cm: 230
+      - osm_way: 442335112
+        quality: 10
+        video: https://youtu.be/3TCBuRfmmJ4
+        surface_type: calzada
+        width_cm: 230
+  - name: Ciclovia Parque Bicentenario Cerrillos
+    anchors:
+      - - -70.7045
+        - -33.501
+      - - -70.6909
+        - -33.4853
+  - name: Avenida Mapocho
+    anchors:
+      - - -70.6924
+        - -33.4315
+      - - -70.6651
+        - -33.4321
+    segments:
+      - osm_way: 685925302
+        quality: 5.5
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 220
+      - osm_way: 47470452
+        quality: 5.5
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 220
+      - osm_way: 852599085
+        quality: 5.5
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 220
+      - osm_way: 852599086
+        quality: 5.5
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 220
+      - osm_way: 1354674296
+        quality: 9
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 922549753
+        quality: 9
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 922549752
+        quality: 9.5
+        video: https://youtu.be/NQNu4m6lAos
+        surface_type: calzada
+        width_cm: 230
+      - osm_way: 1082997526
+        quality: 8.5
+        video: https://youtu.be/sGA0XO4uRuo
+        surface_type: calzada
+        width_cm: 230
+      - osm_way: 1354674295
+        quality: 8.5
+        video: https://youtu.be/sGA0XO4uRuo
+        surface_type: calzada
+        width_cm: 230
+      - osm_way: 1354674294
+        quality: 9
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 997620629
+        quality: 9
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 27989202
+        quality: 5.5
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 1295178462
+        quality: 5.5
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 144917235
+        quality: 5.5
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 671178316
+        quality: 5.5
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 200
+  - name: Rosas
+    anchors:
+      - - -70.6801
+        - -33.4374
+      - - -70.6543
+        - -33.4354
+    segments:
+      - osm_way: 981878096
+        quality: 7
+        video: https://youtu.be/jUkVT3BP-4I
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 981870046
+        quality: 8
+        video: https://youtu.be/8W-stRc6fm4
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 448544764
+        quality: 8
+        video: https://youtu.be/8W-stRc6fm4
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 7981160
+        quality: 8
+        video: https://youtu.be/8W-stRc6fm4
+        surface_type: calzada
+        width_cm: 250
+  - name: Avenida Brasil
+    anchors:
+      - - -70.6648
+        - -33.4473
+      - - -70.665
+        - -33.4328
+    segments:
+      - osm_way: 557381884
+        quality: 5.5
+        video: https://youtu.be/s1izo_6v2gE
+        surface_type: calzada
+        width_cm: 210
+      - osm_way: 1194202088
+        quality: 5.5
+        video: https://youtu.be/s1izo_6v2gE
+        surface_type: calzada
+        width_cm: 210
+      - osm_way: 1354688878
+        quality: 5.5
+        video: https://youtu.be/s1izo_6v2gE
+        surface_type: calzada
+        width_cm: 210
+      - osm_way: 196772150
+        quality: 5
+        video: https://youtu.be/9yxtcY7-eBw
+        surface_type: calzada
+        width_cm: 110
+      - osm_way: 92360830
+        quality: 5
+        video: https://youtu.be/9yxtcY7-eBw
+        surface_type: calzada
+        width_cm: 110
+      - osm_way: 508533725
+        video: https://youtu.be/X40sy8Fij_E
+      - osm_way: 1360951829
+        quality: 5
+        video: https://youtu.be/9yxtcY7-eBw
+        surface_type: calzada
+        width_cm: 110
+      - osm_way: 1360951830
+        quality: 5
+        video: https://youtu.be/9yxtcY7-eBw
+        surface_type: calzada
+        width_cm: 110
+      - osm_way: 447781291
+        video: https://youtu.be/X40sy8Fij_E
+      - osm_way: 860911767
+        quality: 5
+        video: https://youtu.be/9yxtcY7-eBw
+        surface_type: calzada
+        width_cm: 110
+      - osm_way: 43704635
+        quality: 5.5
+        video: https://youtu.be/s1izo_6v2gE
+        surface_type: calzada
+        width_cm: 210
+      - osm_way: 445511083
+        quality: 5.5
+        video: https://youtu.be/s1izo_6v2gE
+        surface_type: calzada
+        width_cm: 210
+      - osm_way: 860911766
+        quality: 5
+        video: https://youtu.be/9yxtcY7-eBw
+        surface_type: calzada
+        width_cm: 110
+      - osm_way: 92360510
+        quality: 7.5
+        video: https://youtu.be/9yxtcY7-eBw
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 1461665688
+        quality: 8
+        video: https://youtu.be/8W-stRc6fm4
+        surface_type: calzada
+        width_cm: 250
+      - osm_way: 39505780
+        quality: 7.5
+        video: https://youtu.be/9yxtcY7-eBw
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 508533723
+        quality: 5.5
+        video: https://youtu.be/5Aid1Ureb8M
+        surface_type: calzada
+        width_cm: 200
+  - name: Condell
+    osm_names:
+      - Condell
+      - Avenida Condell
+    anchors:
+      - - -70.7229
+        - -33.4113
+      - - -70.7228
+        - -33.4112
+    segments:
+      - osm_way: 447279284
+        quality: 5.5
+        video: https://youtu.be/LGGnCTZ79VM
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 860266528
+        quality: 5.5
+        video: https://youtu.be/LGGnCTZ79VM
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 447743816
+        quality: 5.5
+        video: https://youtu.be/LGGnCTZ79VM
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 446906515
+        quality: 3
+        video: https://youtu.be/VBfc02nqMEo
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1173472286
+        quality: 3
+        video: https://youtu.be/VBfc02nqMEo
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1173472288
+        quality: 5.5
+        video: https://youtu.be/LGGnCTZ79VM
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1288838729
+        quality: 5.5
+        video: https://youtu.be/LGGnCTZ79VM
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1035836508
+        quality: 5.5
+        video: https://youtu.be/LGGnCTZ79VM
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1332079395
+        quality: 5.5
+        video: https://youtu.be/LGGnCTZ79VM
+        surface_type: calzada
+        width_cm: 150
+  - name: MTB Clásico
+    anchors:
+      - - -70.573
+        - -33.3554
+      - - -70.5779
+        - -33.3611
+  - name: Avenida Jorge Hirmas
+    anchors:
+      - - -70.6918
+        - -33.4152
+      - - -70.6772
+        - -33.4203
+  - name: Avenida Observatorio
+    anchors:
+      - - -70.6569
+        - -33.5624
+      - - -70.6306
+        - -33.5658
+  - name: Club Hípico
+    anchors:
+      - - -70.6649
+        - -33.4721
+      - - -70.6651
+        - -33.4541
+    segments:
+      - osm_way: 645052891
+        quality: 5
+        video: https://youtu.be/ltamSfHQvdY
+        surface_type: calzada
+        width_cm: 160
+      - osm_way: 441510940
+        quality: 5
+        video: https://youtu.be/ltamSfHQvdY
+        surface_type: calzada
+        width_cm: 160
+      - osm_way: 482138641
+        quality: 5
+        video: https://youtu.be/ltamSfHQvdY
+        surface_type: calzada
+        width_cm: 160
+      - osm_way: 23402152
+        quality: 5.5
+        video: https://youtu.be/JarUlUwlRqM
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 850714882
+        quality: 5
+        video: https://youtu.be/ltamSfHQvdY
+        surface_type: calzada
+        width_cm: 160
+      - osm_way: 441510939
+        quality: 5.5
+        video: https://youtu.be/s1izo_6v2gE
+        surface_type: calzada
+        width_cm: 210
+  - name: Avenida Costanera Sur
+    anchors:
+      - - -70.7806
+        - -33.4154
+      - - -70.7588
+        - -33.4137
+  - name: Ciclovia Hamilton
+    anchors:
+      - - -70.53
+        - -33.3913
+      - - -70.53
+        - -33.3913
+    segments:
+      - osm_way: 1177991778
+        quality: 6.5
+        video: https://youtu.be/iOQezyivKSs
+        surface_type: calzada
+        width_cm: 130
+  - name: Avenida Sargento Menadier
+    anchors:
+      - - -70.6277
+        - -33.6235
+      - - -70.6033
+        - -33.62
+    segments:
+      - osm_way: 1281322467
+        quality: 2.5
+        video: https://youtu.be/8s3kxEiTH58
+        surface_type: parque
+        width_cm: 200
+      - osm_way: 1281305069
+        quality: 2.5
+        video: https://youtu.be/8s3kxEiTH58
+        surface_type: parque
+        width_cm: 200
+      - osm_way: 1281322469
+        quality: 7.5
+        video: https://youtu.be/_yBpLfpEaOk
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 1033108554
+        quality: 7.5
+        video: https://youtu.be/_yBpLfpEaOk
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 551088249
+        quality: 7.5
+        video: https://youtu.be/_yBpLfpEaOk
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 551088247
+        quality: 7.5
+        video: https://youtu.be/_yBpLfpEaOk
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 98724983
+        quality: 7.5
+        video: https://youtu.be/_yBpLfpEaOk
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 47546622
+        quality: 7.5
+        video: https://youtu.be/_yBpLfpEaOk
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 1033355835
+        quality: 7.5
+        video: https://youtu.be/_yBpLfpEaOk
+        surface_type: calzada
+        width_cm: 200
+  - name: Avenida Pedro Bannen
+    anchors:
+      - - -70.6326
+        - -33.4237
+      - - -70.623
+        - -33.4161
+  - name: Ciclovía Dorsal
+    anchors:
+      - - -70.6304
+        - -33.4009
+      - - -70.6528
+        - -33.3955
+    segments:
+      - osm_way: 1103682963
+        quality: 4
+        video: https://youtu.be/6drCqSnk2oY
+        surface_type: acera
+        width_cm: 250
+      - osm_way: 1103682964
+        quality: 4
+        video: https://youtu.be/6drCqSnk2oY
+        surface_type: acera
+        width_cm: 250
+  - name: Carlos Antúnez
+    anchors:
+      - - -70.6146
+        - -33.4258
+      - - -70.5932
+        - -33.4247
+    segments:
+      - osm_way: 1217130791
+        quality: 6.5
+        video: https://youtu.be/hoikFttQvAE
+        surface_type: calzada
+        width_cm: 140
+      - osm_way: 448522187
+        quality: 6.5
+        video: https://youtu.be/hoikFttQvAE
+        surface_type: calzada
+        width_cm: 140
+      - osm_way: 1461515922
+        quality: 10
+        video: https://youtu.be/3TCBuRfmmJ4
+        surface_type: calzada
+        width_cm: 230
+      - osm_way: 1020364844
+        quality: 7
+        video: https://youtu.be/ycDhH88kqlM
+        surface_type: calzada
+        width_cm: 100
+  - name: Mapocho Expreso
+    anchors:
+      - - -70.6453
+        - -33.4338
+      - - -70.626
+        - -33.4317
+    segments:
+      - osm_way: 988405442
+        quality: 1
+        video: https://youtu.be/CaVO1ELVAb4
+        surface_type: parque
+        width_cm: 180
+      - osm_way: 988405438
+        quality: 5
+        video: https://youtu.be/9rNRFI9nwu8
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 988405439
+        quality: 5
+        video: https://youtu.be/9rNRFI9nwu8
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 988405436
+        quality: 1
+        video: https://youtu.be/CaVO1ELVAb4
+        surface_type: parque
+        width_cm: 180
+      - osm_way: 988405437
+        quality: 1
+        video: https://youtu.be/CaVO1ELVAb4
+        surface_type: parque
+        width_cm: 180
+      - osm_way: 988341161
+        quality: 1
+        video: https://youtu.be/CaVO1ELVAb4
+        surface_type: parque
+        width_cm: 180
+      - osm_way: 988341169
+        video: https://youtu.be/hLIhoLirtts
+        width_cm: 180
+      - osm_way: 988341168
+        quality: 8
+        video: https://youtu.be/pJ9AhqcMhs0
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 988341162
+        quality: 8
+        video: https://youtu.be/pJ9AhqcMhs0
+        surface_type: calzada
+        width_cm: 190
+      - osm_way: 895297049
+        video: https://youtu.be/hLIhoLirtts
+        width_cm: 180
+      - osm_way: 895297051
+        quality: 4
+        surface_type: acera
+        width_cm: 250
+      - osm_way: 895297050
+        video: https://youtu.be/hLIhoLirtts
+        width_cm: 180
+  - name: Libertad
+    anchors:
+      - - -70.673
+        - -33.4491
+      - - -70.6753
+        - -33.4291
+    segments:
+      - osm_way: 103686426
+        quality: 1.5
+        video: https://youtu.be/7QvhVMrxe1U
+        surface_type: mediana
+        width_cm: 200
+  - name: Ciclovía Carlos Valdovinos
+    anchors:
+      - - -70.6416
+        - -33.481
+      - - -70.6189
+        - -33.4875
+    segments:
+      - osm_way: 300381866
+        quality: 1
+        video: https://youtu.be/aLewv34bqYE
+        surface_type: acera
+        width_cm: 180
+  - name: Ciclovía Parque Víctor Jara
+    anchors:
+      - - -70.654
+        - -33.4766
+      - - -70.6334
+        - -33.4798
+    segments:
+      - osm_way: 1178494524
+        quality: 2.5
+        video: https://youtu.be/xoxJD25C5v0
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 1262736731
+        video: https://youtu.be/6ojMtDBQU9Ehttps://youtu.be/6ojMtDBQU9E
+      - osm_way: 1262736724
+        video: https://youtu.be/6ojMtDBQU9Ehttps://youtu.be/6ojMtDBQU9E
+      - osm_way: 908847247
+        quality: 2.5
+        video: https://youtu.be/gJWVK1zHrIQ
+        surface_type: acera
+        width_cm: 200
+  - name: Avenida Capitán Ignacio Carrera Pinto
+    anchors:
+      - - -70.5882
+        - -33.4732
+      - - -70.5943
+        - -33.4652
+    segments:
+      - osm_way: 23591940
+        quality: 8
+        video: https://youtu.be/-fB0ZBmsn74
+        surface_type: calzada
+        width_cm: 180
+      - osm_way: 879472757
+        quality: 2.5
+        video: https://youtu.be/TIMlVrjpeBI
+        surface_type: acera
+        width_cm: 205
+      - osm_way: 879472758
+        quality: 2.5
+        video: https://youtu.be/TIMlVrjpeBI
+        surface_type: acera
+        width_cm: 205
+  - name: Ciclovia 5 de Abril
+    anchors:
+      - - -70.7213
+        - -33.4727
+      - - -70.7016
+        - -33.4633
+  - name: Avenida José Miguel Claro
+    anchors:
+      - - -70.6165
+        - -33.448
+      - - -70.6222
+        - -33.4299
+    segments:
+      - osm_way: 472215997
+        quality: 8.5
+        video: https://youtu.be/s_oBLAbOvnc
+        surface_type: calzada
+        width_cm: 200
+      - osm_way: 449950266
+        quality: 8.5
+        video: https://youtu.be/s_oBLAbOvnc
+        surface_type: calzada
+        width_cm: 200
+  - name: Marín
+    anchors:
+      - - -70.6423
+        - -33.4475
+      - - -70.6236
+        - -33.4436
+    segments:
+      - osm_way: 447075646
+        quality: 6.5
+        video: https://youtu.be/oAoflpv5FcA
+        surface_type: calzada
+        width_cm: 150
+      - osm_way: 1167740498
+        quality: 6
+        video: https://youtu.be/MLJLd-Qw2KQ
+        surface_type: calzada
+        width_cm: 180
+      - osm_way: 625500130
+        quality: 6
+        video: https://youtu.be/MLJLd-Qw2KQ
+        surface_type: calzada
+        width_cm: 180
+      - osm_way: 366862517
+        quality: 2.5
+        video: https://youtu.be/Acpmm-9fHT0
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 447235821
+        quality: 4.5
+        video: https://youtu.be/9THTv3njnOA
+        surface_type: acera
+        width_cm: 200
+      - osm_way: 985673796
+        quality: 4.5
+        video: https://youtu.be/9THTv3njnOA
+        surface_type: acera
+        width_cm: 200
+  - name: Enrique Olivares
+    anchors:
+      - - -70.5883
+        - -33.5397
+      - - -70.5728
+        - -33.5397
+    segments:
+      - osm_way: 109791006
+        quality: 5
+        video: "https://youtu.be/cndKnyVJH98 "
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1004120592
+        quality: 5
+        video: "https://youtu.be/cndKnyVJH98 "
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1004120597
+        quality: 5
+        video: "https://youtu.be/cndKnyVJH98 "
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 438205727
+        quality: 5
+        video: "https://youtu.be/cndKnyVJH98 "
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 205945152
+        quality: 5
+        video: "https://youtu.be/cndKnyVJH98 "
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1453500574
+        quality: 5
+        video: "https://youtu.be/cndKnyVJH98 "
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1453500575
+        quality: 5
+        video: "https://youtu.be/cndKnyVJH98 "
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 126104129
+        quality: 5
+        video: "https://youtu.be/cndKnyVJH98 "
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 198019608
+        quality: 5
+        video: "https://youtu.be/cndKnyVJH98 "
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 1459131465
+        quality: 5
+        video: "https://youtu.be/cndKnyVJH98 "
+        surface_type: calzada
+        width_cm: 100
+      - osm_way: 453820986
+        quality: 5
+        video: "https://youtu.be/cndKnyVJH98 "
+        surface_type: calzada
+        width_cm: 100
+  - name: Avenida Sur
+    anchors:
+      - - -70.7781
+        - -33.5216
+      - - -70.7595
+        - -33.5209
+    segments:
+      - osm_way: 239330449
+        quality: 8.5
+        video: https://youtu.be/Z2hWokhYj6Q
+        surface_type: calzada
+        width_cm: 220
+      - osm_way: 622575334
+        quality: 8.5
+        video: https://youtu.be/Z2hWokhYj6Q
+        surface_type: calzada
+        width_cm: 220
+      - osm_way: 449605440
+        quality: 8.5
+        video: https://youtu.be/Z2hWokhYj6Q
+        surface_type: calzada
+        width_cm: 220
+  - name: Avenida Federico Haydn
+    anchors:
+      - - -70.62
+        - -33.5136
+      - - -70.6234
+        - -33.4963
+    segments:
+      - osm_way: 1197566820
+        quality: 9
+        video: https://youtu.be/vDwTXTBfH9s
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 448833762
+        quality: 9
+        video: https://youtu.be/vDwTXTBfH9s
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 601883532
+        quality: 9
+        video: https://youtu.be/vDwTXTBfH9s
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 1124340786
+        quality: 2.5
+        video: https://youtu.be/fguL7lTCxuU
+        surface_type: acera
+        width_cm: 215
+      - osm_way: 441507534
+        quality: 9
+        video: https://youtu.be/vDwTXTBfH9s
+        surface_type: calzada
+        width_cm: 240
+      - osm_way: 978577088
+        quality: 9
+        video: https://youtu.be/vDwTXTBfH9s
+        surface_type: calzada
+        width_cm: 240
