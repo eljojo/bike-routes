@@ -68,6 +68,56 @@ function maxJump(pts) {
 }
 
 describe('chaining bike paths', () => {
+  it('should chain two perpendicular paths at a junction (La Reina pattern)', () => {
+    // Path 1 goes north-south: -33.46 to -33.43 (northward)
+    // Path 2 goes east-west: -70.60 to -70.68 (westward)
+    // They share a junction near -33.43, -70.60
+    //
+    // The combined route should go: south→north on path 1,
+    // then east→west on path 2. No reversals.
+    // The turn at the junction is ~90°, not a reversal.
+
+    const path1 = [];
+    for (let i = 0; i < 4; i++) {
+      path1.push(makeWay(100 + i, [
+        [-70.555, -33.46 + i * 0.008],
+        [-70.555, -33.46 + (i + 1) * 0.008],
+      ]));
+    }
+    // Path 1 ends at -33.428
+
+    const path2 = [];
+    for (let i = 0; i < 6; i++) {
+      path2.push(makeWay(200 + i, [
+        [-70.56 - i * 0.02, -33.425],
+        [-70.56 - (i + 1) * 0.02, -33.425],
+      ]));
+    }
+    // Path 2 goes from -70.56 to -70.68
+
+    const chained = chainBikePaths([path1, path2]);
+    const chainedPts = [];
+    for (const w of chained) {
+      const coords = w.geometry.map(p => [p.lon, p.lat]);
+      if (chainedPts.length > 0) {
+        const prev = chainedPts[chainedPts.length - 1];
+        const dFirst = haversineM(prev, coords[0]);
+        const dLast = haversineM(prev, coords[coords.length - 1]);
+        if (dLast < dFirst) coords.reverse();
+      }
+      for (const c of coords) chainedPts.push(c);
+    }
+
+    // Should be ~3.2km (path1) + ~10km (path2) ≈ 13km, not 2x that
+    let totalDist = 0;
+    for (let i = 1; i < chainedPts.length; i++) totalDist += haversineM(chainedPts[i-1], chainedPts[i]);
+    expect(totalDist).toBeLessThan(20000); // not inflated by backtracking
+
+    expect(maxJump(chainedPts)).toBeLessThan(2000);
+    expect(countReversals(chainedPts)).toBe(0);
+  });
+
+
   it('should chain two end-to-end paths without reversals (Las Perdices pattern)', () => {
     // Two north-south paths that connect at a shared junction.
     // Path 1 runs from -33.44 to -33.46 (north to south)
