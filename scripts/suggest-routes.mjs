@@ -170,46 +170,83 @@ async function main() {
   const validSegments = primarySegments.filter(s => !s.invalida);
   console.log(`[pipeline] ${primarySegments.length - validSegments.length} invalid segments filtered`);
 
-  // Supplement with Overpass cycling ways — the primary source (e.g. catastro)
-  // may not cover all bike infrastructure. OSM often has paths the catastro missed.
-  let segments = validSegments;
+  // OSM is the geometry source of truth (continuously updated).
+  // Catastro enriches with metadata (condition, emplazamiento, width, video)
+  // where both cover the same path.
+  let segments;
   if (source !== 'overpass' && bounds) {
-    console.log('[pipeline] Fetching supplementary cycling ways from Overpass...');
+    console.log('[pipeline] Fetching cycling ways from Overpass (primary geometry)...');
     const osmWays = await fetchCyclingWays(bounds);
-    const osmSegments = osmWays.map((el, i) => parseOverpassWay(el, primarySegments.length + i));
+    const osmSegments = osmWays.map((el, i) => parseOverpassWay(el, i));
     console.log(`[pipeline] ${osmSegments.length} OSM cycling ways fetched`);
 
-    // Deduplicate: skip OSM segments that trace the same path as a catastro segment.
-    // Sample points along both and check overlap, not just centroid proximity.
-    let added = 0;
+    // For each OSM segment, find overlapping catastro and merge metadata
+    let enriched = 0;
     for (const osm of osmSegments) {
       const osmCoords = osm.geometry.type === 'MultiLineString'
         ? osm.geometry.coordinates.flat() : osm.geometry.coordinates;
       const osmSample = samplePoints(osmCoords, 5);
-      let duplicate = false;
-      for (const primary of validSegments) {
-        // Quick distance pre-filter
-        if (haversineM(osm.centroid, primary.centroid) > osm.lengthM + primary.lengthM) continue;
-        const priCoords = primary.geometry.type === 'MultiLineString'
-          ? primary.geometry.coordinates.flat() : primary.geometry.coordinates;
-        const priSample = samplePoints(priCoords, 5);
+      for (const cat of validSegments) {
+        if (haversineM(osm.centroid, cat.centroid) > osm.lengthM + cat.lengthM) continue;
+        const catCoords = cat.geometry.type === 'MultiLineString'
+          ? cat.geometry.coordinates.flat() : cat.geometry.coordinates;
+        const catSample = samplePoints(catCoords, 5);
         let near = 0;
         for (const op of osmSample) {
-          for (const pp of priSample) {
-            if (haversineM(op, pp) < 80) { near++; break; }
+          for (const cp of catSample) {
+            if (haversineM(op, cp) < 80) { near++; break; }
           }
         }
         if (osmSample.length > 0 && near / osmSample.length > 0.4) {
-          duplicate = true;
+          // Merge catastro metadata onto OSM geometry
+          if (cat.emplazamiento) osm.emplazamiento = cat.emplazamiento;
+          if (cat.clasificacion) osm.clasificacion = cat.clasificacion;
+          if (cat.score != null) osm.score = cat.score;
+          if (cat.ancho_cm) osm.ancho_cm = cat.ancho_cm;
+          if (cat.video) osm.video = cat.video;
+          if (cat.videoId) osm.videoId = cat.videoId;
+          if (cat.tipo) osm.tipo = cat.tipo;
+          if (cat.comuna) osm.comuna = cat.comuna;
+          enriched++;
+          break; // one catastro match per OSM segment
+        }
+      }
+    }
+
+    // Add catastro-only segments (not covered by any OSM way)
+    let catastroOnly = 0;
+    for (const cat of validSegments) {
+      const catCoords = cat.geometry.type === 'MultiLineString'
+        ? cat.geometry.coordinates.flat() : cat.geometry.coordinates;
+      const catSample = samplePoints(catCoords, 5);
+      let covered = false;
+      for (const osm of osmSegments) {
+        if (haversineM(cat.centroid, osm.centroid) > cat.lengthM + osm.lengthM) continue;
+        const osmCoords = osm.geometry.type === 'MultiLineString'
+          ? osm.geometry.coordinates.flat() : osm.geometry.coordinates;
+        const osmSample = samplePoints(osmCoords, 5);
+        let near = 0;
+        for (const cp of catSample) {
+          for (const op of osmSample) {
+            if (haversineM(cp, op) < 80) { near++; break; }
+          }
+        }
+        if (catSample.length > 0 && near / catSample.length > 0.4) {
+          covered = true;
           break;
         }
       }
-      if (!duplicate) {
-        segments.push(osm);
-        added++;
+      if (!covered) {
+        osmSegments.push(cat);
+        catastroOnly++;
       }
     }
-    console.log(`[pipeline] ${added} new OSM segments added (${osmSegments.length - added} duplicates skipped)`);
+
+    segments = osmSegments;
+    console.log(`[pipeline] ${enriched} OSM segments enriched with catastro metadata`);
+    console.log(`[pipeline] ${catastroOnly} catastro-only segments added`);
+  } else {
+    segments = validSegments;
   }
   console.log(`[pipeline] ${segments.length} total segments`);
 

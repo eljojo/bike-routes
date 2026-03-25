@@ -1,7 +1,7 @@
 ---
 name: "De Parque Avenida Quilin a Paseo Villa Naciones Unidas"
 status: published
-distance_km: 2.1
+distance_km: 2.7
 tags:
   - bike path
   - protected lane
@@ -12,14 +12,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Avenida Quilin a Paseo Villa Naciones Unidas"
     gpx: main.gpx
-    distance_km: 2.1
+    distance_km: 2.7
 ---
 
-2,1 kilómetros por Penalolen, desde Parque Avenida Quilin hasta Paseo Villa Naciones Unidas. Prácticamente todo el recorrido tiene ciclovía.
+2,7 kilómetros por Penalolen, desde Parque Avenida Quilin hasta Paseo Villa Naciones Unidas. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**El Valle** (Penalolen) — 2,1 km, unidireccional/residential, en calzada, 100 cm de ancho.
+**Avenida El Valle** (Penalolen) — 2,7 km, tertiary/unidireccional/residential, en calzada, 100 cm de ancho.
 Evaluación Pedaleable: "regular".
 
 
