@@ -249,44 +249,21 @@ async function main() {
   if (!bounds) {
     throw new Error('--bounds is required for POI fetching');
   }
-  console.log('[pipeline] Fetching POIs...');
-  const pois = await fetchPOIs(bounds);
-  console.log(`[pipeline] ${pois.length} POIs fetched`);
-
-  // Fetch metro stations as bailout anchors
-  console.log('[pipeline] Fetching metro stations...');
-  const metroStations = await fetchMetroStations(bounds);
-  console.log(`[pipeline] ${metroStations.length} metro stations found`);
-
-  // Fetch waterways for river corridor bonus
-  console.log('[pipeline] Fetching waterways...');
-  const waterways = await fetchWaterways(bounds);
-  console.log(`[pipeline] ${waterways.length} waterways found`);
-
-  // Fetch motorways for adjacency penalty
-  console.log('[pipeline] Fetching motorways...');
-  const motorways = await fetchMotorways(bounds);
-  console.log(`[pipeline] ${motorways.length} motorway segments found`);
-
-  // Fetch road network for gap routing
-  console.log('[pipeline] Fetching road network...');
-  const roadWays = await fetchRoadNetwork(bounds);
-  console.log(`[pipeline] ${roadWays.length} road segments found`);
+  // Fetch all Overpass data in parallel — these are independent queries
+  console.log('[pipeline] Fetching Overpass data (parallel)...');
+  const [pois, metroStations, waterways, motorways, roadWays, zonePOIs, treeRows, bikeParking, parkAreas] = await Promise.all([
+    fetchPOIs(bounds),
+    fetchMetroStations(bounds),
+    fetchWaterways(bounds),
+    fetchMotorways(bounds),
+    fetchRoadNetwork(bounds),
+    fetchZonePOIs(bounds),
+    fetchTreeRows(bounds),
+    fetchBikeParking(bounds),
+    fetchParkAreas(bounds),
+  ]);
+  console.log(`[pipeline] ${pois.length} POIs, ${metroStations.length} metro, ${waterways.length} waterways, ${motorways.length} motorways, ${roadWays.length} roads, ${zonePOIs.length} zone POIs, ${treeRows.length} trees, ${bikeParking.length} bike parking, ${parkAreas.length} park areas`);
   const roadGraph = buildRoadGraph(roadWays);
-
-  // Fetch zone data
-  console.log('[pipeline] Fetching zone data...');
-  const zonePOIs = await fetchZonePOIs(bounds);
-  console.log(`[pipeline] ${zonePOIs.length} zone POIs fetched`);
-
-  const treeRows = await fetchTreeRows(bounds);
-  console.log(`[pipeline] ${treeRows.length} tree rows fetched`);
-
-  const bikeParking = await fetchBikeParking(bounds);
-  console.log(`[pipeline] ${bikeParking.length} bike parking points fetched`);
-
-  const parkAreas = await fetchParkAreas(bounds);
-  console.log(`[pipeline] ${parkAreas.length} park areas fetched`);
 
   // Detect zones
   const { zones, repulsionCells, treeCells } = detectZones({

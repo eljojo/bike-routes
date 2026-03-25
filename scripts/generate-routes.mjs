@@ -183,19 +183,17 @@ for (let i = 0; i < routes.length; i++) {
 if (templatedRoutes.length > 0 && proposals.bounds) {
   console.log('Rebuilding templated routes from current infrastructure...');
 
-  // Build the infrastructure needed for zone-graph routing
-  console.log('  Fetching cycling ways...');
-  const ways = await fetchCyclingWays(proposals.bounds);
-  const segs = ways.map((el, i) => parseOverpassWay(el, i));
-  const axes = detectAxes(segs);
-  const graph = buildSegmentGraph(axes);
-
-  console.log('  Detecting zones...');
-  const [waterways, motorways, metro, zonePOIs, bikeParking, parkAreas] = await Promise.all([
+  // Build the infrastructure needed for zone-graph routing — all fetches in parallel
+  console.log('  Fetching infrastructure data (parallel)...');
+  const [ways, waterways, motorways, metro, zonePOIs, bikeParking, parkAreas] = await Promise.all([
+    fetchCyclingWays(proposals.bounds),
     fetchWaterways(proposals.bounds), fetchMotorways(proposals.bounds),
     fetchMetroStations(proposals.bounds), fetchZonePOIs(proposals.bounds),
     fetchBikeParking(proposals.bounds), fetchParkAreas(proposals.bounds),
   ]);
+  const segs = ways.map((el, i) => parseOverpassWay(el, i));
+  const axes = detectAxes(segs);
+  const graph = buildSegmentGraph(axes);
   const { zones } = detectZones({ waterways, pois: zonePOIs, motorways, metroStations: metro, bikeParking, treeRows: [], parkAreas });
 
   console.log('  Building zone graph...');

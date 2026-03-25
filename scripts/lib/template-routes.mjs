@@ -7,6 +7,11 @@
  * Key insight: a waypoint like "Ciclovía Costanera Sur" is an AXIS
  * (13km of segments), not a point. The route follows that axis's
  * segments, then bridges to the next waypoint via A*.
+ *
+ * Geographic coherence: when a waypoint name matches multiple locations,
+ * pick the one closest to the neighboring waypoints. "Laguna Poniente"
+ * near the Mapocho beats "Laguna Poniente" in Maipú when the next
+ * waypoint is "Ciclovía Mapocho 42k".
  */
 
 import { haversineM } from './geo.mjs';
@@ -16,53 +21,37 @@ function normalize(s) {
   return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().replace(/\s+/g, ' ');
 }
 
-// Common prefixes that don't carry distinctive meaning.
-// "Parque Forestal" and "Ciclovía Parque Forestal" are the same place.
-const STRIP_PREFIXES = /^(parque|plaza|ciclovia|avenida|calle|rotonda|camino|estadio|jardin|paseo|ciclo ?recreovia|mirador|puente|entrada|acceso|museo|centro cultural|bandejón central|barrio|piscina|mural|laguna|cerro|rio|subida|empalme|conexion|estacionamientos)\s+/i;
+const STRIP_PREFIXES = /^(parque|plaza|ciclovia|avenida|calle|rotonda|camino|estadio|jardin|paseo|ciclo ?recreovia|mirador|puente|entrada|acceso|museo|centro cultural|bandejon central|barrio|piscina|mural|laguna|cerro|rio|subida|empalme|conexion|estacionamientos)\s+/i;
 
-/**
- * Extract the distinctive part of a name — strip common type prefixes.
- * "Parque Sánchez Fontecilla" → "sanchez fontecilla"
- * "Ciclovía Andrés Bello" → "andres bello"
- */
 function distinctive(s) {
   let d = normalize(s);
-  // Strip prefixes repeatedly (handles "Parque Intercomunal Padre Hurtado")
   for (let i = 0; i < 3; i++) {
     const before = d;
     d = d.replace(STRIP_PREFIXES, '').trim();
     if (d === before) break;
   }
-  return d || normalize(s); // fallback to full name if stripping removed everything
+  return d || normalize(s);
 }
 
-/**
- * Match two names by their distinctive parts.
- * "Rotonda Pérez Zujovic" matches "Plaza Pérez Zujovic" because
- * both have distinctive part "perez zujovic".
- */
 function namesMatch(a, b) {
   const na = normalize(a), nb = normalize(b);
-  // Direct substring
   if (na.length >= 4 && nb.length >= 4 && (na.includes(nb) || nb.includes(na))) return true;
-  // Distinctive part match
   const da = distinctive(a), db = distinctive(b);
   if (da.length >= 4 && db.length >= 4 && (da.includes(db) || db.includes(da))) return true;
   return false;
 }
 
 /**
- * Resolve a waypoint to segment indices in the graph.
- *
- * Returns { type, name, segIndices (for axes), entryIdx, exitIdx }
+ * Find ALL matches for a waypoint — not just the first.
+ * Returns array of { type, name, coord, segIndices, entryIdx, exitIdx }
  */
-function resolveToSegments(waypoint, graph, axes, anchors, zones) {
+function findAllMatches(waypoint, graph, axes, anchors, zones) {
   const { segments, segToAxis } = graph;
   const name = typeof waypoint === 'string' ? waypoint : waypoint?.name || '';
-  const n = normalize(name);
+  const matches = [];
 
-  if (n) {
-    // 1. Match axis by name — returns the full corridor
+  if (name) {
+    // 1. Match axes by name
     for (let ai = 0; ai < axes.length; ai++) {
       const axisName = axes[ai].name || '';
       if (!axisName || axisName.length < 3) continue;
@@ -72,42 +61,49 @@ function resolveToSegments(waypoint, graph, axes, anchors, zones) {
           if (segToAxis.get(si) === ai) segIndices.push(si);
         }
         if (segIndices.length > 0) {
-          return { type: 'axis', name: axes[ai].name, segIndices, entryIdx: segIndices[0], exitIdx: segIndices[segIndices.length - 1] };
+          // Compute center of this axis
+          let cx = 0, cy = 0;
+          for (const si of segIndices) { cx += segments[si].centroid[0]; cy += segments[si].centroid[1]; }
+          cx /= segIndices.length; cy /= segIndices.length;
+          matches.push({ type: 'axis', name: axisName, coord: [cx, cy], segIndices, entryIdx: segIndices[0], exitIdx: segIndices[segIndices.length - 1] });
         }
       }
     }
 
-    // 2. Match zone by name
+    // 2. Match zones
     if (zones) {
       for (const z of zones) {
         if (z.name && namesMatch(name, z.name)) {
           const nearest = findNearestSeg(z.centerCoord, segments);
-          return { type: 'zone', name: z.name, segIndices: [], entryIdx: nearest, exitIdx: nearest };
+          matches.push({ type: 'zone', name: z.name, coord: z.centerCoord, segIndices: [], entryIdx: nearest, exitIdx: nearest });
         }
       }
     }
 
-    // 3. Match anchor/POI by name
+    // 3. Match POIs/anchors — collect ALL matches, not just first
     if (anchors) {
       for (const a of anchors) {
         if (a.name && namesMatch(name, a.name)) {
-          const nearest = findNearestSeg([a.lng, a.lat], segments);
-          return { type: 'poi', name: a.name, segIndices: [], entryIdx: nearest, exitIdx: nearest };
+          const coord = [a.lng, a.lat];
+          const nearest = findNearestSeg(coord, segments);
+          matches.push({ type: 'poi', name: a.name, coord, segIndices: [], entryIdx: nearest, exitIdx: nearest });
         }
       }
     }
   }
 
   // 4. Coordinate
-  let coord = null;
-  if (Array.isArray(waypoint) && waypoint.length === 2) coord = waypoint;
-  else if (waypoint?.lat != null && waypoint?.lng != null) coord = [waypoint.lng, waypoint.lat];
-  if (coord) {
-    const nearest = findNearestSeg(coord, segments);
-    return { type: 'coord', name: name || 'waypoint', segIndices: [], entryIdx: nearest, exitIdx: nearest };
+  if (matches.length === 0) {
+    let coord = null;
+    if (Array.isArray(waypoint) && waypoint.length === 2) coord = waypoint;
+    else if (waypoint?.lat != null && waypoint?.lng != null) coord = [waypoint.lng, waypoint.lat];
+    if (coord) {
+      const nearest = findNearestSeg(coord, segments);
+      matches.push({ type: 'coord', name: name || 'waypoint', coord, segIndices: [], entryIdx: nearest, exitIdx: nearest });
+    }
   }
 
-  return null;
+  return matches;
 }
 
 function findNearestSeg(coord, segments) {
@@ -120,24 +116,78 @@ function findNearestSeg(coord, segments) {
 }
 
 /**
+ * Pick the geographically coherent match for each waypoint.
+ *
+ * For waypoints with multiple matches, pick the one that minimizes
+ * total distance to neighboring waypoints. This ensures "Laguna Poniente"
+ * near the Mapocho beats "Laguna Poniente" in Maipú when surrounded
+ * by river waypoints.
+ */
+function pickCoherentMatches(allMatches) {
+  // First pass: for waypoints with exactly 1 match, lock them in
+  const locked = allMatches.map(m => m.length === 1 ? m[0] : null);
+
+  // Compute rough center from locked matches
+  let cx = 0, cy = 0, count = 0;
+  for (const m of locked) {
+    if (m) { cx += m.coord[0]; cy += m.coord[1]; count++; }
+  }
+  if (count > 0) { cx /= count; cy /= count; }
+
+  // Second pass: for multi-match waypoints, pick closest to center
+  // Then recompute center and repeat
+  for (let iter = 0; iter < 3; iter++) {
+    for (let i = 0; i < allMatches.length; i++) {
+      if (locked[i]) continue;
+      if (allMatches[i].length === 0) continue;
+
+      // Score each match by distance to neighbors + distance to center
+      let bestMatch = allMatches[i][0];
+      let bestScore = Infinity;
+
+      for (const m of allMatches[i]) {
+        let score = 0;
+        // Distance to route center
+        if (count > 0) score += haversineM(m.coord, [cx, cy]);
+        // Distance to previous locked waypoint
+        if (i > 0 && locked[i - 1]) {
+          score += haversineM(m.coord, locked[i - 1].coord) * 2; // weight neighbors heavily
+        }
+        // Distance to next locked waypoint
+        if (i < allMatches.length - 1 && locked[i + 1]) {
+          score += haversineM(m.coord, locked[i + 1].coord) * 2;
+        }
+        if (score < bestScore) { bestScore = score; bestMatch = m; }
+      }
+
+      locked[i] = bestMatch;
+    }
+
+    // Recompute center
+    cx = 0; cy = 0; count = 0;
+    for (const m of locked) {
+      if (m) { cx += m.coord[0]; cy += m.coord[1]; count++; }
+    }
+    if (count > 0) { cx /= count; cy /= count; }
+  }
+
+  return locked;
+}
+
+/**
  * Build a segment path from curator waypoints.
- *
- * For each waypoint:
- * - If it's an axis: include all its segments in the path
- * - Bridge gaps between consecutive waypoints with A*
- *
  * @returns {{ segPath: number[], resolvedNames: string[] } | null}
  */
 export function buildTemplatePath(waypoints, graph, axes, anchors, zones) {
   const { segments, edges } = graph;
 
-  const resolved = [];
+  // Phase 1: find ALL matches for each waypoint
+  const allMatches = [];
   const unresolved = [];
   for (const wp of waypoints) {
-    const r = resolveToSegments(wp, graph, axes, anchors, zones);
-    if (r) {
-      resolved.push(r);
-    } else {
+    const matches = findAllMatches(wp, graph, axes, anchors, zones);
+    allMatches.push(matches);
+    if (matches.length === 0) {
       unresolved.push(typeof wp === 'string' ? wp : JSON.stringify(wp));
     }
   }
@@ -145,15 +195,23 @@ export function buildTemplatePath(waypoints, graph, axes, anchors, zones) {
   if (unresolved.length > 0) {
     console.log(`[template] Unresolved: ${unresolved.join(', ')}`);
   }
-  if (resolved.length < 2) return null;
 
+  // Phase 2: pick geographically coherent matches
+  const resolved = pickCoherentMatches(allMatches);
+  const validResolved = resolved.filter(Boolean);
+  if (validResolved.length < 2) return null;
+
+  const resolvedNames = resolved.map(r =>
+    r ? `${r.name} (${r.type}${r.segIndices.length > 0 ? ', ' + r.segIndices.length + ' segs' : ''})` : '?'
+  );
+
+  // Phase 3: chain waypoints via A*
   const fullPath = [];
-  const resolvedNames = resolved.map(r => `${r.name} (${r.type}${r.segIndices.length > 0 ? ', ' + r.segIndices.length + ' segs' : ''})`);
-
   for (let i = 0; i < resolved.length; i++) {
     const curr = resolved[i];
+    if (!curr) continue;
 
-    // Bridge from previous endpoint to this waypoint's entry
+    // Bridge from previous
     if (fullPath.length > 0) {
       const from = fullPath[fullPath.length - 1];
       const to = curr.entryIdx;
