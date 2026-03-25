@@ -69,11 +69,44 @@ function worstOfTwo(a, b) {
 // Build one axis object from an ordered array of segments
 // ---------------------------------------------------------------------------
 
-function buildAxis(segments, bearing) {
+function buildAxis(rawSegments, bearing) {
+  // Deduplicate overlapping segments: if two segments have centroids within
+  // 100m AND similar start/end points, they cover the same ground. Keep the
+  // longer one (more detailed geometry).
+  const segments = [];
+  const used = new Set();
+  // Sort by length descending so we keep the longest version
+  const byLength = [...rawSegments].sort((a, b) => b.lengthM - a.lengthM);
+  for (let i = 0; i < byLength.length; i++) {
+    if (used.has(i)) continue;
+    const a = byLength[i];
+    segments.push(a);
+    // Mark shorter overlapping segments as used
+    for (let j = i + 1; j < byLength.length; j++) {
+      if (used.has(j)) continue;
+      const b = byLength[j];
+      const centroidDist = haversineM(a.centroid, b.centroid);
+      if (centroidDist > 150) continue;
+      // Check if they cover similar ground
+      const ssD = haversineM(a.start, b.start);
+      const eeD = haversineM(a.end, b.end);
+      const seD = haversineM(a.start, b.end);
+      const esD = haversineM(a.end, b.start);
+      const overlaps = (ssD < 200 && eeD < 200) || (seD < 200 && esD < 200) ||
+                        ssD < 100 || eeD < 100 || seD < 100 || esD < 100;
+      if (overlaps) used.add(j);
+    }
+  }
+  // Re-sort by position (centroid along dominant orientation)
+  if (bearing === 'north-south') {
+    segments.sort((a, b) => a.centroid[1] - b.centroid[1]);
+  } else {
+    segments.sort((a, b) => a.centroid[0] - b.centroid[0]);
+  }
+
   const name = segments[0].nombre;
   const comunas = [...new Set(segments.map((s) => s.comuna).filter(Boolean))].sort();
 
-  // Slug: name + up to 2 comunas
   const slugParts = [name, ...(comunas.length <= 2 ? comunas : [comunas[0]])];
   const slug = slugify(slugParts.join(' '));
 

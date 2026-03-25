@@ -1,7 +1,7 @@
 ---
 name: "De Parque de los Reyes a Parque Mapocho Río Tramo 3"
 status: published
-distance_km: 5.3
+distance_km: 5.1
 tags:
   - bike path
   - flat
@@ -14,14 +14,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque de los Reyes a Parque Mapocho Río Tramo 3"
     gpx: main.gpx
-    distance_km: 5.3
+    distance_km: 5.1
 ---
 
-5,3 kilómetros por Cerro Navia y Quinta Normal, desde Parque de los Reyes hasta Parque Mapocho Río Tramo 3. Prácticamente todo el recorrido tiene ciclovía.
+5,1 kilómetros por Cerro Navia y Quinta Normal, desde Parque de los Reyes hasta Parque Mapocho Río Tramo 3. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Salvador Gutiérrez** (Cerro Navia y Quinta Normal) — 5,3 km, secondary/bidireccional, en calzada, 200–800 cm de ancho.
+**Salvador Gutiérrez** (Cerro Navia y Quinta Normal) — 5,1 km, secondary/bidireccional, en calzada, 200–800 cm de ancho.
 Evaluación Pedaleable: de "regular" a "buena".
 
 

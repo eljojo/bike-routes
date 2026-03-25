@@ -1,36 +1,42 @@
 ---
 name: "De Plaza Monumento Maipú a Parque del Cristo"
 status: published
-distance_km: 14.1
+distance_km: 10.6
 tags:
   - bike path
+  - median lane
   - flat
-  - hard
+  - easy
+  - family friendly
   - maipu
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Monumento Maipú a Parque del Cristo"
     gpx: main.gpx
-    distance_km: 14.1
+    distance_km: 10.6
 ---
 
-14,1 kilómetros por Maipu, desde Plaza Monumento Maipú hasta Parque del Cristo. Prácticamente todo el recorrido tiene ciclovía.
+10,6 kilómetros por Maipu, desde Plaza Monumento Maipú hasta Parque del Cristo. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Avenida Sur** (Maipu) — 4,0 km, tertiary/bidireccional, en calzada, 220 cm de ancho.
-Evaluación Pedaleable: "buena".
+**Alberto Llona** (Maipu) — 1,8 km, bidireccional/cycleway, en acera, 160 cm de ancho.
+Evaluación Pedaleable: "muy mala".
 
-**Ciclovía Los Pajaritos** — 8,7 km, cycleway/primary.
+**Pajaritos** (Maipu) — 1,4 km, bidireccional, en mediana, 210 cm de ancho.
+Evaluación Pedaleable: "mala".
+
+**Ciclovía Los Pajaritos** — 7,1 km, cycleway/primary.
 
 
 ### Tramos sin infraestructura
 
-Entre **Avenida Sur** y **Ciclovía Los Pajaritos** — 1,3 km sin infraestructura ciclista.
+Entre **Alberto Llona** y **Pajaritos** — 245 m sin infraestructura ciclista.
 
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-https://youtu.be/Z2hWokhYj6Q
+https://youtu.be/TFqdyd9JeEk
+https://youtu.be/NsuoffRsfCc
 

@@ -1,7 +1,7 @@
 ---
 name: "De Parque Central Alameda Bernardo O'Higgins a Parque de los Reyes"
 status: published
-distance_km: 5.6
+distance_km: 5.3
 tags:
   - bike path
   - protected lane
@@ -14,14 +14,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Central Alameda Bernardo O'Higgins a Parque de los Reyes"
     gpx: main.gpx
-    distance_km: 5.6
+    distance_km: 5.3
 ---
 
-5,6 kilómetros por Santiago, desde Parque Central Alameda Bernardo O'Higgins hasta Parque de los Reyes. Prácticamente todo el recorrido tiene ciclovía.
+5,3 kilómetros por Santiago, desde Parque Central Alameda Bernardo O'Higgins hasta Parque de los Reyes. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Avenida Santa Isabel** (Santiago) — 5,6 km, tertiary/secondary/unidireccional, en calzada, 200 cm de ancho.
+**Avenida Santa Isabel** (Santiago) — 5,3 km, tertiary/secondary/unidireccional, en calzada, 200 cm de ancho.
 Evaluación Pedaleable: "buena".
 
 

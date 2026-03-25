@@ -1,7 +1,7 @@
 ---
 name: "De Parque Avenida Quilin a Plaza Cívica de La Florida"
 status: published
-distance_km: 9.2
+distance_km: 8.7
 tags:
   - bike path
   - median lane
@@ -16,14 +16,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Avenida Quilin a Plaza Cívica de La Florida"
     gpx: main.gpx
-    distance_km: 9.2
+    distance_km: 8.7
 ---
 
-9,2 kilómetros por La Florida, Penalolen y San Joaquin, desde Parque Avenida Quilin hasta Plaza Cívica de La Florida. Prácticamente todo el recorrido tiene ciclovía.
+8,7 kilómetros por La Florida, Penalolen y San Joaquin, desde Parque Avenida Quilin hasta Plaza Cívica de La Florida. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Departamental** (La Florida, Penalolen y San Joaquin) — 9,2 km, bidireccional/cycleway/primary, en acera y mediana, 140–215 cm de ancho.
+**Departamental** (La Florida, Penalolen y San Joaquin) — 8,7 km, bidireccional/cycleway/primary, en acera y mediana, 140–215 cm de ancho.
 Evaluación Pedaleable: de "muy mala" a "mala".
 
 

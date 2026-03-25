@@ -229,10 +229,32 @@ function loopShape(axisChain, totalDistanceM) {
 
   const aspect = Math.max(width, height) / Math.min(width, height);
   const perimEff = totalDistanceM / (2 * (width + height));
-  // An oval loop: reasonable aspect ratio and traces the perimeter
-  const isOval = aspect < 2.5 && perimEff > 0.55;
 
-  return { aspect, perimEff, isOval };
+  // Paperclip detection: a real O-shaped loop has outbound and return
+  // legs on different corridors. A paperclip rides up one side of an
+  // avenue and back down the other — the two halves overlap.
+  // Split coordinates in half and check if the halves are separated.
+  const mid = Math.floor(coords.length / 2);
+  const firstHalf = coords.slice(0, mid);
+  const secondHalf = coords.slice(mid);
+  let overlapCount = 0;
+  const sampleStep = Math.max(1, Math.floor(firstHalf.length / 20)); // sample ~20 points
+  for (let i = 0; i < firstHalf.length; i += sampleStep) {
+    const pt = firstHalf[i];
+    for (let j = 0; j < secondHalf.length; j += sampleStep) {
+      if (haversineM(pt, secondHalf[j]) < 300) {
+        overlapCount++;
+        break;
+      }
+    }
+  }
+  const sampledPoints = Math.ceil(firstHalf.length / sampleStep);
+  const overlapFraction = sampledPoints > 0 ? overlapCount / sampledPoints : 0;
+  const isPaperclip = overlapFraction > 0.4; // >40% of outbound overlaps with return
+
+  const isOval = aspect < 2.5 && perimEff > 0.55 && !isPaperclip;
+
+  return { aspect, perimEff, isOval, isPaperclip };
 }
 
 /** Title-case a string (handles ñ, lowercases first). */
@@ -654,10 +676,15 @@ export function stitchTrips(axes, anchors, options = {}) {
 
       const axisChain = chain.map((xi) => axes[xi]);
 
-      // Reject loops with large gaps — a 3km gap means it's not a real loop
+      // Reject loops with large gaps
       const loopGaps = computeGaps(axisChain);
       const maxLoopGap = loopGaps.length > 0 ? Math.max(...loopGaps.map((g) => g.distanceM)) : 0;
       if (maxLoopGap > 2000) continue;
+
+      // Reject paperclip loops — riding both sides of the same avenue is not a loop
+      const infraM = axisChain.reduce((s, a) => s + a.totalInfraM, 0);
+      const shape = loopShape(axisChain, infraM);
+      if (shape.isPaperclip) continue;
 
       const anchor = startAnchors[0];
       const loopRoute = buildRoute(axisChain, anchor, anchor, usableAnchors);

@@ -1,0 +1,9 @@
+---
+name: "Plaza San Esteban"
+category: parque
+lat: -33.4537706
+lng: -70.6283483
+status: published
+good_for:
+  - destination
+---
