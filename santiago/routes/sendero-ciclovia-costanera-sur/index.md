@@ -1,7 +1,7 @@
 ---
 name: "Sendero Ciclovía Costanera Sur"
 status: published
-distance_km: 25.8
+distance_km: 26.1
 tags:
   - bike path
   - protected lane
@@ -17,10 +17,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Ciclovía Costanera Sur"
     gpx: main.gpx
-    distance_km: 25.8
+    distance_km: 26.1
 ---
 
-25,8 kilómetros por Las Condes, Providencia, Recoleta y Vitacura. El 86% del recorrido tiene ciclovía.
+26,1 kilómetros por Las Condes, Providencia, Recoleta y Vitacura. El 86% del recorrido tiene ciclovía.
 
 ### Tramos
 

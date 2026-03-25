@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Centenario a Parque Gómez Rojas"
 status: published
-distance_km: 4.5
+distance_km: 4.8
 tags:
   - bike path
   - protected lane
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Centenario a Parque Gómez Rojas"
     gpx: main.gpx
-    distance_km: 4.5
+    distance_km: 4.8
 ---
 
-4,5 kilómetros por Providencia, Recoleta y Santiago, desde Plaza Centenario hasta Parque Gómez Rojas. Prácticamente todo el recorrido tiene ciclovía.
+4,8 kilómetros por Providencia, Recoleta y Santiago, desde Plaza Centenario hasta Parque Gómez Rojas. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

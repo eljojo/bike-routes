@@ -1,7 +1,7 @@
 ---
 name: "De Parque de los Reyes a Plaza Nueva Zelanda"
 status: published
-distance_km: 5.6
+distance_km: 6.4
 tags:
   - bike path
   - park path
@@ -15,10 +15,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque de los Reyes a Plaza Nueva Zelanda"
     gpx: main.gpx
-    distance_km: 5.6
+    distance_km: 6.4
 ---
 
-5,6 kilómetros por Quinta Normal, Santiago, Providencia y Recoleta, desde Parque de los Reyes hasta Plaza Nueva Zelanda. El 85% del recorrido tiene ciclovía.
+6,4 kilómetros por Quinta Normal, Santiago, Providencia y Recoleta, desde Parque de los Reyes hasta Plaza Nueva Zelanda. El 85% del recorrido tiene ciclovía.
 
 ### Tramos
 

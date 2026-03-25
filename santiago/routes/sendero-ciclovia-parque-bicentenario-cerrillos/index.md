@@ -1,7 +1,7 @@
 ---
 name: "Sendero Ciclovia Parque Bicentenario Cerrillos"
 status: published
-distance_km: 4.8
+distance_km: 5.7
 tags:
   - bike path
   - park path
@@ -15,10 +15,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Ciclovia Parque Bicentenario Cerrillos"
     gpx: main.gpx
-    distance_km: 4.8
+    distance_km: 5.7
 ---
 
-4,8 kilómetros por Maipu, Cerrillos y Estacion Central, desde Plaza Arica hasta Plaza Pedro Aguirre Cerda. El 79% del recorrido tiene ciclovía.
+5,7 kilómetros por Maipu, Cerrillos y Estacion Central, desde Plaza Arica hasta Plaza Pedro Aguirre Cerda. El 79% del recorrido tiene ciclovía.
 
 ### Tramos
 

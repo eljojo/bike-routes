@@ -1,7 +1,7 @@
 ---
 name: "Sendero Avenida La Montaña"
 status: published
-distance_km: 13.2
+distance_km: 14.1
 tags:
   - bike path
   - mountain
@@ -13,10 +13,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Avenida La Montaña"
     gpx: main.gpx
-    distance_km: 13.2
+    distance_km: 14.1
 ---
 
-13,2 kilómetros por Huechuraba y Recoleta, desde Plaza Centro Ciudad Empresarial hasta Plaza Peñihue. Prácticamente todo el recorrido tiene ciclovía.
+14,1 kilómetros por Huechuraba y Recoleta, desde Plaza Centro Ciudad Empresarial hasta Plaza Peñihue. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

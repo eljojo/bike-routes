@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Avenida Juanita a Plaza Vicuña Mackenna"
 status: published
-distance_km: 5.6
+distance_km: 6.6
 tags:
   - bike path
   - flat
@@ -11,10 +11,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Avenida Juanita a Plaza Vicuña Mackenna"
     gpx: main.gpx
-    distance_km: 5.6
+    distance_km: 6.6
 ---
 
-5,6 kilómetros por La Pintana, desde Plaza Avenida Juanita hasta Plaza Vicuña Mackenna. El 84% del recorrido tiene ciclovía.
+6,6 kilómetros por La Pintana, desde Plaza Avenida Juanita hasta Plaza Vicuña Mackenna. El 84% del recorrido tiene ciclovía.
 
 ### Tramos
 

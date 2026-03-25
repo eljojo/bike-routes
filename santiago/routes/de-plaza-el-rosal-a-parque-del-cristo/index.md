@@ -1,7 +1,7 @@
 ---
 name: "De Plaza El Rosal a Parque del Cristo"
 status: published
-distance_km: 5.6
+distance_km: 6.1
 tags:
   - bike path
   - median lane
@@ -14,10 +14,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza El Rosal a Parque del Cristo"
     gpx: main.gpx
-    distance_km: 5.6
+    distance_km: 6.1
 ---
 
-5,6 kilómetros por Maipu, desde Plaza El Rosal hasta Parque del Cristo. Prácticamente todo el recorrido tiene ciclovía.
+6,1 kilómetros por Maipu, desde Plaza El Rosal hasta Parque del Cristo. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

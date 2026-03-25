@@ -1,7 +1,7 @@
 ---
 name: "Sendero Ciclovía Píno Nono"
 status: published
-distance_km: 16.2
+distance_km: 17.2
 tags:
   - bike path
   - protected lane
@@ -17,10 +17,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Ciclovía Píno Nono"
     gpx: main.gpx
-    distance_km: 16.2
+    distance_km: 17.2
 ---
 
-16,2 kilómetros por Providencia, Recoleta, Las Condes y Vitacura. El 84% del recorrido tiene ciclovía.
+17,2 kilómetros por Providencia, Recoleta, Las Condes y Vitacura. El 84% del recorrido tiene ciclovía.
 
 ### Tramos
 
