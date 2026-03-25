@@ -120,9 +120,20 @@ export function curateLaunchSet(proposals, opts = {}) {
   const selectedFootprints = [];
   const anchorUsed = new Map();
   const comunaUsed = new Map();
+  const nameUsed = new Map();       // "Sendero Tobalaba" → count (max 1)
+  let mountainCount = 0;
+  const MAX_MOUNTAIN_ROUTES = 8;    // don't let senderos dominate the catalog
 
   for (const route of scored) {
     if (selected.length >= target) break;
+
+    // Name dedup — only one route per base name.
+    // "Sendero Tobalaba", "Sendero Tobalaba 2" → same base name.
+    const baseName = route.name.replace(/\s+\d+$/, '');
+    if ((nameUsed.get(baseName) || 0) >= 1) continue;
+
+    // Mountain route cap — max 8 senderos in the catalog
+    if (route.archetype === 'mountain' && mountainCount >= MAX_MOUNTAIN_ROUTES) continue;
 
     // Skip duplicates — same start+end anchor pair (but not loops)
     if (route.archetype !== 'loop') {
@@ -163,6 +174,8 @@ export function curateLaunchSet(proposals, opts = {}) {
 
     selected.push(route);
     selectedFootprints.push(footprint);
+    nameUsed.set(baseName, (nameUsed.get(baseName) || 0) + 1);
+    if (route.archetype === 'mountain') mountainCount++;
     for (const c of comunas) {
       comunaUsed.set(c, (comunaUsed.get(c) || 0) + 1);
     }

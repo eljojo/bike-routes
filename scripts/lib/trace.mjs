@@ -172,7 +172,7 @@ function checkRetracing(points, radiusM = 200, minSepM = 500) {
  */
 export function validateTrace(segments, archetype, opts = {}) {
   const maxGapM = opts.maxGapM ?? 3000;
-  const maxRetracing = opts.maxRetracingFraction ?? 0.15;
+  const maxRetracing = opts.maxRetracingFraction ?? 0.10;
 
   if (!segments || segments.length === 0) {
     return { valid: false, reason: 'no segments', worstGapM: 0, retracingFraction: 1, retracedDistM: 0 };
