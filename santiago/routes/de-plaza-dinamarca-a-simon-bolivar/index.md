@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Dinamarca a Simón Bolívar"
 status: published
-distance_km: 4.8
+distance_km: 5.0
 tags:
   - bike path
   - protected lane
@@ -14,14 +14,15 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Dinamarca a Simón Bolívar"
     gpx: main.gpx
-    distance_km: 4.8
+    distance_km: 5.0
 ---
 
-4,8 kilómetros por Ñuñoa, desde Plaza Dinamarca hasta Simón Bolívar. Prácticamente todo el recorrido tiene ciclovía.
+5,0 kilómetros por Ñuñoa, desde Plaza Dinamarca hasta Simón Bolívar. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Avenida Alcalde Eliecer Parada Pacheco** (Ñuñoa) — 0,4 km, secondary.
+**Avenida Alcalde Eliecer Parada Pacheco** (Ñuñoa) — 0,7 km, secondary/unidireccional, en calzada, 170 cm de ancho.
+Evaluación Pedaleable: "regular".
 
 **Simon Bolivar** (Ñuñoa) — 3,7 km, unidireccional/bidireccional, en calzada y acera, 170–180 cm de ancho.
 Evaluación Pedaleable: de "muy mala" a "regular".

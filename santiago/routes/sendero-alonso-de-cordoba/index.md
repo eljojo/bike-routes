@@ -1,7 +1,7 @@
 ---
 name: "Sendero Alonso De Cordoba"
 status: published
-distance_km: 2.8
+distance_km: 3.1
 tags:
   - bike path
   - protected lane
@@ -15,17 +15,17 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Alonso De Cordoba"
     gpx: main.gpx
-    distance_km: 2.8
+    distance_km: 3.1
 ---
 
-2,8 kilómetros por Vitacura, desde Plaza Turquía hasta Mirador Atardecer. El 73% del recorrido tiene ciclovía.
+3,1 kilómetros por Vitacura, desde Parque Vespucio Oriente hasta Mirador Atardecer. El 75% del recorrido tiene ciclovía.
 
 ### Tramos
 
 **Alonso De Cordoba** (Vitacura) — 1,4 km, unidireccional, en calzada, 200 cm de ancho.
 Evaluación Pedaleable: "regular".
 
-**Sendero Ciclista Anfiteatro** — 0,6 km, cycleway, en parque.
+**Sendero Ciclista Anfiteatro** — 0,8 km, cycleway, en parque.
 
 
 ### Tramos sin infraestructura

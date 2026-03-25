@@ -25,7 +25,7 @@ const MAX_ROUTE_KM = 80;
 const MAX_GAP_M = 2000;
 const AXIS_TO_ANCHOR_THRESHOLD_M = 3000;
 const MIN_ANCHOR_SCORE = 5;
-const MAX_CHAIN_AXES = 8;
+const MAX_CHAIN_AXES = 12;
 const DEDUP_OVERLAP_THRESHOLD = 0.6;
 // Point-to-point: total distance / crow-flies. A straight line = 1.0.
 // Urban cycling typically 1.5–3.0. Above 3.5 means zigzag garbage.
@@ -36,7 +36,7 @@ const MAX_LOOP_DETOUR_RATIO = 5;
 // Segment graph constants
 const GRID_CELL_DEG = 0.005; // ~500m cells for spatial index
 const SAME_AXIS_COST = 0;
-const MAX_SEG_SEARCH_STEPS = 300; // greedy search budget per start
+const MAX_SEG_SEARCH_STEPS = 1000; // greedy search budget per start
 const MIN_LOOP_SEGS = 6;
 
 // ---------------------------------------------------------------------------
@@ -981,18 +981,24 @@ function searchOneWayRoutes(graph, anchors, axes, usableAnchors) {
         const totalM = state.infraM + state.gapM;
         const totalKm = totalM / 1000;
 
-        // Check termination: reached an anchor far from start, route long enough
+        // Record route if we've reached an anchor far from start.
+        // Don't stop searching — keep going to find longer corridors.
+        // Record at each anchor but only stop after finding enough
+        // routes at different distances.
         if (totalKm >= MIN_ROUTE_KM) {
           const endAnchor = nearestAnchor(state.lastCoord, 2000);
           if (endAnchor && endAnchor.name !== startAnchor.name &&
               haversineM(startCoord, [endAnchor.lng, endAnchor.lat]) > 1500) {
-            // Build axis chain and validate
             const axisChain = segmentsToAxisChain(state.path, graph, axes);
             if (axisChain.length <= MAX_CHAIN_AXES) {
               const route = buildRoute(axisChain, startAnchor, endAnchor, usableAnchors);
               if (route) {
                 routesFromHere.push(route);
-                if (routesFromHere.length >= 3) break; // enough from this start
+                // Only stop after finding routes at 3+ different distances.
+                // This ensures we get both the 2km and the 7km route along
+                // the same corridor, not just the first short one.
+                const distBuckets = new Set(routesFromHere.map(r => Math.floor(r.totalDistanceM / 3000)));
+                if (distBuckets.size >= 3) break;
               }
             }
           }
@@ -1000,7 +1006,7 @@ function searchOneWayRoutes(graph, anchors, axes, usableAnchors) {
 
         // Prune: too long
         if (totalKm > MAX_ROUTE_KM) continue;
-        if (state.visited.size > 60) continue;
+        if (state.visited.size > 120) continue;
 
         // Expand neighbors
         const neighborEdges = edges[state.segIdx];
@@ -1177,7 +1183,7 @@ function searchLoopRoutes(graph, anchors, axes, usableAnchors) {
 
           // Prune
           if (totalKm > MAX_ROUTE_KM) continue;
-          if (state.visited.size > 60) continue;
+          if (state.visited.size > 120) continue;
 
           // Expand
           const neighborEdges = edges[state.segIdx];
@@ -1349,7 +1355,14 @@ export function stitchTrips(axes, anchors, options = {}) {
   const candidates = [...oneWayCandidates, ...loopCandidates, ...oabCandidates];
   console.log(`[trips] ${candidates.length} total candidates`);
 
-  candidates.sort((a, b) => b.compositeScore - a.compositeScore);
+  // Sort by composite score, but boost longer routes so corridors
+  // like the Mapocho aren't killed by their shorter fragments.
+  // A 7km route that scores 25 should beat a 2km fragment that scores 27.
+  candidates.sort((a, b) => {
+    const aScore = a.compositeScore + Math.min(a.totalDistanceM / 2000, 5);
+    const bScore = b.compositeScore + Math.min(b.totalDistanceM / 2000, 5);
+    return bScore - aScore;
+  });
 
   const kept = [];
   for (const route of candidates) {

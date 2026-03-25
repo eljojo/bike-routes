@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Villa La Primavera a Plaza Pilcomayo"
 status: published
-distance_km: 5.1
+distance_km: 6.0
 tags:
   - bike path
   - protected lane
@@ -14,14 +14,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Villa La Primavera a Plaza Pilcomayo"
     gpx: main.gpx
-    distance_km: 5.1
+    distance_km: 6.0
 ---
 
-5,1 kilómetros por Puente Alto y La Granja, desde Plaza Villa La Primavera hasta Plaza Pilcomayo. El 84% del recorrido tiene ciclovía.
+6,0 kilómetros por Puente Alto y La Granja, desde Plaza Villa La Primavera hasta Plaza Pilcomayo. El 86% del recorrido tiene ciclovía.
 
 ### Tramos
 
-**Ciclovìa La Serena** (Puente Alto) — 3,1 km, cycleway.
+**Ciclovìa La Serena** (Puente Alto) — 4,0 km, cycleway.
 
 **Cardenal Raul Silva Henriquez** (La Granja) — 1,2 km, unidireccional, en mediana, 140 cm de ancho.
 Evaluación Pedaleable: "mala".

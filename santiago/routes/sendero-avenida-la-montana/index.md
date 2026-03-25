@@ -16,7 +16,7 @@ variants:
     distance_km: 14.1
 ---
 
-14,1 kilómetros por Huechuraba y Recoleta, desde Plaza Centro Ciudad Empresarial hasta Plaza Peñihue. Prácticamente todo el recorrido tiene ciclovía.
+14,1 kilómetros por Huechuraba y Recoleta, desde Parque del Recuerdo hasta Plaza Peñihue. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

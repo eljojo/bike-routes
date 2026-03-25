@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Calama a Parque Canal San Carlos"
 status: published
-distance_km: 4.9
+distance_km: 5.2
 tags:
   - bike path
   - protected lane
@@ -12,17 +12,17 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Calama a Parque Canal San Carlos"
     gpx: main.gpx
-    distance_km: 4.9
+    distance_km: 5.2
 ---
 
-4,9 kilómetros por Ñuñoa, desde Plaza Calama hasta Parque Canal San Carlos. El 89% del recorrido tiene ciclovía.
+5,2 kilómetros por Ñuñoa, desde Plaza Calama hasta Parque Canal San Carlos. El 89% del recorrido tiene ciclovía.
 
 ### Tramos
 
 **Avenida Capitán Ignacio Carrera Pinto** (Ñuñoa) — 1,1 km, unidireccional, en calzada, 180 cm de ancho.
 Evaluación Pedaleable: "buena".
 
-**Juan Moya Morales** (Ñuñoa) — 3,3 km, bidireccional/tertiary, en acera, 200–215 cm de ancho.
+**Juan Moya Morales** (Ñuñoa) — 3,4 km, bidireccional/tertiary, en acera, 200–215 cm de ancho.
 Evaluación Pedaleable: "mala".
 
 

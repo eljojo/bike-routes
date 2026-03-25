@@ -1,7 +1,7 @@
 ---
 name: "De Parque de los Reyes a Plaza Nueva Zelanda"
 status: published
-distance_km: 6.4
+distance_km: 6.7
 tags:
   - bike path
   - park path
@@ -10,37 +10,44 @@ tags:
   - santiago
   - providencia
   - recoleta
+  - las condes
+  - vitacura
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
   - name: "De Parque de los Reyes a Plaza Nueva Zelanda"
     gpx: main.gpx
-    distance_km: 6.4
+    distance_km: 6.7
 ---
 
-6,4 kilómetros por Quinta Normal, Santiago, Providencia y Recoleta, desde Parque de los Reyes hasta Plaza Nueva Zelanda. El 85% del recorrido tiene ciclovía.
+6,7 kilómetros por Quinta Normal, Santiago, Providencia, Recoleta, Las Condes y Vitacura, desde Parque de los Reyes hasta Plaza Nueva Zelanda. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Avenida Costanera Sur** (Quinta Normal y Santiago) — 0,7 km, bidireccional, en acera, 240 cm de ancho.
+**Avenida Costanera Sur** (Quinta Normal y Santiago) — 1,2 km, bidireccional, en parque y acera, 240 cm de ancho.
 Evaluación Pedaleable: "mala".
 
-**Esmeralda** (Providencia, Recoleta y Santiago) — 0,3 km, bidireccional, en parque, 180 cm de ancho.
+**José Miguel De La Barra** (Santiago) — 0,7 km, bidireccional, en parque, 180 cm de ancho.
 Evaluación Pedaleable: "muy mala".
 
 **Ciclovía Píno Nono** (Providencia y Recoleta) — 3,7 km, bidireccional, en acera, 250 cm de ancho.
 Evaluación Pedaleable: "mala".
 
+**Ciclovía Costanera Sur** (Las Condes y Vitacura) — 0,6 km, bidireccional, en acera, 250 cm de ancho.
+Evaluación Pedaleable: "mala".
+
 
 ### Tramos sin infraestructura
 
-Entre **Avenida Costanera Sur** y **Esmeralda** — 511 m sin infraestructura ciclista.
+Entre **Avenida Costanera Sur** y **José Miguel De La Barra** — 481 m sin infraestructura ciclista.
 
-Entre **Esmeralda** y **Ciclovía Píno Nono** — 342 m sin infraestructura ciclista.
+Entre **José Miguel De La Barra** y **Ciclovía Píno Nono** — 59 m sin infraestructura ciclista.
 
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
+https://youtu.be/vSkOMUVDnVo
 https://youtu.be/4umrez2IfHU
 https://youtu.be/CaVO1ELVAb4
+https://youtu.be/-JUyafsUmrI
 
