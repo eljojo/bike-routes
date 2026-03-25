@@ -10,11 +10,14 @@ import { endpoints, lineLength, centroid, bearing, orientation } from './geo.mjs
 // Name normalisation
 // ---------------------------------------------------------------------------
 
-const STRIP_PREFIXES = /^(AV\.|AVENIDA|CALLE|PASEO)\s+/;
+const STRIP_PREFIXES = /^(AV\.|AVENIDA|CALLE|PASEO|CICLOVIA|CICLOVÍA|CICLOBANDA|SENDERO)\s+/;
 
 /**
  * Normalise a segment name for comparison:
- * uppercase, strip accents, trim, remove common street prefixes, collapse spaces.
+ * uppercase, strip accents, trim, remove common street/bike prefixes, collapse spaces.
+ *
+ * "Ciclovía Vicuña Mackenna", "Avenida Vicuña Mackenna", and "VICUNA MACKENNA"
+ * all normalize to "VICUNA MACKENNA" so they group into one corridor.
  */
 export function normalizeName(name) {
   if (!name) return '';

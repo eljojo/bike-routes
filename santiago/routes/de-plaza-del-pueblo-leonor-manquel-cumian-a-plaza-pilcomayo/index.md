@@ -1,7 +1,7 @@
 ---
 name: "De Plaza del Pueblo Leonor Manquel Cumian a Plaza Pilcomayo"
 status: published
-distance_km: 5.7
+distance_km: 6.2
 tags:
   - bike path
   - flat
@@ -14,14 +14,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza del Pueblo Leonor Manquel Cumian a Plaza Pilcomayo"
     gpx: main.gpx
-    distance_km: 5.7
+    distance_km: 6.2
 ---
 
-5,7 kilómetros por La Cisterna y San Ramon, desde Plaza del Pueblo Leonor Manquel Cumian hasta Plaza Pilcomayo. Prácticamente todo el recorrido tiene ciclovía.
+6,2 kilómetros por La Cisterna y San Ramon, desde Plaza del Pueblo Leonor Manquel Cumian hasta Plaza Pilcomayo. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Vicuña Mackenna** (La Cisterna y San Ramon) — 5,7 km, secondary/bidireccional/cycleway, en calzada, 240 cm de ancho.
+**Vicuña Mackenna** (La Cisterna y San Ramon) — 6,2 km, secondary/bidireccional/cycleway, en calzada, 240 cm de ancho.
 Evaluación Pedaleable: "buena".
 
 

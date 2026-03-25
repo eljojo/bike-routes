@@ -1,7 +1,7 @@
 ---
 name: "De Parque Bicentenario a Parque República de Ecuador"
 status: published
-distance_km: 8.6
+distance_km: 9.5
 tags:
   - bike path
   - flat
@@ -13,14 +13,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Bicentenario a Parque República de Ecuador"
     gpx: main.gpx
-    distance_km: 8.6
+    distance_km: 9.5
 ---
 
-8,6 kilómetros por Las Condes, desde Parque Bicentenario hasta Parque República de Ecuador. Prácticamente todo el recorrido tiene ciclovía.
+9,5 kilómetros por Las Condes, desde Parque Bicentenario hasta Parque República de Ecuador. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Avenida Presidente Riesco** (Las Condes) — 8,6 km, secondary/bidireccional/cycleway, en calzada y acera, 205–330 cm de ancho.
+**Avenida Presidente Riesco** (Las Condes) — 9,5 km, secondary/bidireccional/cycleway, en calzada y acera, 205–330 cm de ancho.
 Evaluación Pedaleable: de "regular" a "buena".
 
 

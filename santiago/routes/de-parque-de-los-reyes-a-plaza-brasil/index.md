@@ -1,10 +1,9 @@
 ---
 name: "De Parque de los Reyes a Plaza Brasil"
 status: published
-distance_km: 5.1
+distance_km: 5.3
 tags:
   - bike path
-  - park path
   - flat
   - easy
   - family friendly
@@ -15,21 +14,20 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque de los Reyes a Plaza Brasil"
     gpx: main.gpx
-    distance_km: 5.1
+    distance_km: 5.3
 ---
 
-5,1 kilómetros por Cerro Navia y Quinta Normal, desde Parque de los Reyes hasta Plaza Brasil. Prácticamente todo el recorrido tiene ciclovía.
+5,3 kilómetros por Cerro Navia y Quinta Normal, desde Parque de los Reyes hasta Plaza Brasil. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Costanera Sur** (Cerro Navia y Quinta Normal) — 5,1 km, bidireccional, en parque, 350 cm de ancho.
-Evaluación Pedaleable: "mala".
+**Salvador Gutiérrez** (Cerro Navia y Quinta Normal) — 5,3 km, secondary/bidireccional, en calzada, 200–800 cm de ancho.
+Evaluación Pedaleable: de "regular" a "buena".
 
 
 ### Video
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Costanera Sur (Cerro Navia)](https://youtu.be/FP4eWB3aLfQ)
-- [Costanera Sur (Quinta Normal)](https://youtu.be/1inO9nbH4NE)
+- [Salvador Gutierrez (Cerro Navia)](https://www.youtube.com/watch?v=TyYUi_NK-vc)
 
