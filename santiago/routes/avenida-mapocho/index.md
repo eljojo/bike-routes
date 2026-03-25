@@ -1,7 +1,7 @@
 ---
 name: Avenida Mapocho
 status: published
-distance_km: 6.1
+distance_km: 5.9
 bike_path: avenida-mapocho
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Avenida Mapocho
     gpx: main.gpx
-    distance_km: 6.1
+    distance_km: 5.9
 ---

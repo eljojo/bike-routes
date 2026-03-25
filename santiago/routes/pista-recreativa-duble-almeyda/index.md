@@ -1,7 +1,7 @@
 ---
 name: Pista recreativa Dublé Almeyda
 status: published
-distance_km: 3.4
+distance_km: 3.3
 bike_path: pista-recreativa-duble-almeyda
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Pista recreativa Dublé Almeyda
     gpx: main.gpx
-    distance_km: 3.4
+    distance_km: 3.3
 ---

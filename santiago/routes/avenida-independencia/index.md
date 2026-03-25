@@ -1,7 +1,7 @@
 ---
 name: Avenida Independencia
 status: published
-distance_km: 6.6
+distance_km: 5.1
 bike_path: avenida-independencia
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Avenida Independencia
     gpx: main.gpx
-    distance_km: 6.6
+    distance_km: 5.1
 ---

@@ -1,7 +1,7 @@
 ---
 name: Avenida Lo Errázuriz
 status: published
-distance_km: 10.6
+distance_km: 7.9
 bike_path: avenida-lo-errazuriz
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Avenida Lo Errázuriz
     gpx: main.gpx
-    distance_km: 10.6
+    distance_km: 7.9
 ---

@@ -1,7 +1,7 @@
 ---
 name: Condell
 status: published
-distance_km: 3.3
+distance_km: 3
 bike_path: condell
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Condell
     gpx: main.gpx
-    distance_km: 3.3
+    distance_km: 3
 ---

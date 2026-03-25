@@ -1,7 +1,7 @@
 ---
 name: Avenida Calera de Tango
 status: published
-distance_km: 10.4
+distance_km: 7.5
 bike_path: avenida-calera-de-tango
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Avenida Calera de Tango
     gpx: main.gpx
-    distance_km: 10.4
+    distance_km: 7.5
 ---

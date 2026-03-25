@@ -90,58 +90,90 @@ out geom;`;
 function orderWays(ways) {
   if (ways.length <= 1) return ways;
 
-  // Extract endpoint coords for each way
-  const endpoints = ways.map(w => ({
+  const eps = ways.map(w => ({
     start: [w.geometry[0].lon, w.geometry[0].lat],
     end: [w.geometry[w.geometry.length - 1].lon, w.geometry[w.geometry.length - 1].lat],
+    mid: [
+      (w.geometry[0].lon + w.geometry[w.geometry.length - 1].lon) / 2,
+      (w.geometry[0].lat + w.geometry[w.geometry.length - 1].lat) / 2,
+    ],
   }));
 
-  // Start from the westmost way (for east-west paths) or southmost
-  let startIdx = 0;
-  let startVal = endpoints[0].start[0]; // westmost longitude
-  for (let i = 1; i < endpoints.length; i++) {
-    const val = Math.min(endpoints[i].start[0], endpoints[i].end[0]);
-    if (val < startVal) { startVal = val; startIdx = i; }
+  // Deduplicate overlapping ways: if two ways cover the same ground
+  // (midpoints within 100m), keep the longer one.
+  const dominated = new Set();
+  for (let i = 0; i < ways.length; i++) {
+    if (dominated.has(i)) continue;
+    for (let j = i + 1; j < ways.length; j++) {
+      if (dominated.has(j)) continue;
+      if (haversineM(eps[i].mid, eps[j].mid) < 100) {
+        const lenI = ways[i].geometry.length;
+        const lenJ = ways[j].geometry.length;
+        dominated.add(lenI >= lenJ ? j : i);
+      }
+    }
   }
 
-  const ordered = [startIdx];
-  const used = new Set([startIdx]);
-  // Determine which end we exit from
-  let frontier = endpoints[startIdx].start[0] < endpoints[startIdx].end[0]
-    ? endpoints[startIdx].end : endpoints[startIdx].start;
+  const active = ways.map((_, i) => i).filter(i => !dominated.has(i));
+  if (active.length <= 1) return active.map(i => ways[i]);
 
-  while (ordered.length < ways.length) {
+  // Find the true endpoint: the way whose start or end is furthest
+  // from any other way's endpoints. This is a path terminus, not a
+  // middle segment.
+  let bestStart = active[0];
+  let bestIsolation = 0;
+  for (const i of active) {
+    for (const coord of [eps[i].start, eps[i].end]) {
+      let minDist = Infinity;
+      for (const j of active) {
+        if (j === i) continue;
+        minDist = Math.min(minDist,
+          haversineM(coord, eps[j].start),
+          haversineM(coord, eps[j].end),
+          haversineM(coord, eps[j].mid),
+        );
+      }
+      if (minDist > bestIsolation) {
+        bestIsolation = minDist;
+        bestStart = i;
+      }
+    }
+  }
+
+  // Chain from the most isolated endpoint
+  const startEp = haversineM(eps[bestStart].start, eps[active.find(j => j !== bestStart)].mid) >
+                   haversineM(eps[bestStart].end, eps[active.find(j => j !== bestStart)].mid)
+    ? eps[bestStart].start : eps[bestStart].end;
+  // We enter from the isolated end, exit from the other
+  let frontier = startEp === eps[bestStart].start ? eps[bestStart].end : eps[bestStart].start;
+
+  const ordered = [bestStart];
+  const used = new Set([bestStart]);
+
+  while (ordered.length < active.length) {
     let bestIdx = -1;
     let bestDist = Infinity;
-    let bestReversed = false;
 
-    for (let i = 0; i < ways.length; i++) {
+    for (const i of active) {
       if (used.has(i)) continue;
-      const dStart = haversineM(frontier, endpoints[i].start);
-      const dEnd = haversineM(frontier, endpoints[i].end);
-      if (dStart < bestDist) { bestDist = dStart; bestIdx = i; bestReversed = false; }
-      if (dEnd < bestDist) { bestDist = dEnd; bestIdx = i; bestReversed = true; }
+      const dStart = haversineM(frontier, eps[i].start);
+      const dEnd = haversineM(frontier, eps[i].end);
+      const d = Math.min(dStart, dEnd);
+      if (d < bestDist) { bestDist = d; bestIdx = i; }
     }
 
     if (bestIdx < 0) break;
+    // Stop if next segment is far away (>2km gap = probably wrong)
+    if (bestDist > 2000) break;
+
     ordered.push(bestIdx);
     used.add(bestIdx);
-    frontier = bestReversed ? endpoints[bestIdx].start : endpoints[bestIdx].end;
+    const dS = haversineM(frontier, eps[bestIdx].start);
+    const dE = haversineM(frontier, eps[bestIdx].end);
+    frontier = dS < dE ? eps[bestIdx].end : eps[bestIdx].start;
   }
 
-  return ordered.map(i => ({
-    ...ways[i],
-    _reversed: (() => {
-      // Check if this way needs reversing based on the chain order
-      const idx = ordered.indexOf(i);
-      if (idx === 0) return false;
-      const prevIdx = ordered[idx - 1];
-      const prevEnd = endpoints[prevIdx]._exitEnd || endpoints[prevIdx].end;
-      const dStart = haversineM(prevEnd, endpoints[i].start);
-      const dEnd = haversineM(prevEnd, endpoints[i].end);
-      return dEnd < dStart;
-    })(),
-  }));
+  return ordered.map(i => ways[i]);
 }
 
 // ---------------------------------------------------------------------------

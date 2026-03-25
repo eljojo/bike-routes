@@ -1,7 +1,7 @@
 ---
 name: Avenida Alberto Mackenna
 status: published
-distance_km: 5
+distance_km: 3
 bike_path: avenida-alberto-mackenna
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Avenida Alberto Mackenna
     gpx: main.gpx
-    distance_km: 5
+    distance_km: 3
 ---

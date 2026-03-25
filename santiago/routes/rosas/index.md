@@ -1,7 +1,7 @@
 ---
 name: Rosas
 status: published
-distance_km: 3.6
+distance_km: 2.8
 bike_path: rosas
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Rosas
     gpx: main.gpx
-    distance_km: 3.6
+    distance_km: 2.8
 ---

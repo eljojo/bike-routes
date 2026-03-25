@@ -1,7 +1,7 @@
 ---
 name: Camino a Lonquén
 status: published
-distance_km: 28.8
+distance_km: 16.5
 bike_path: camino-a-lonquen
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Camino a Lonquén
     gpx: main.gpx
-    distance_km: 28.8
+    distance_km: 16.5
 ---

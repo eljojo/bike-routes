@@ -1,7 +1,7 @@
 ---
 name: Ciclovía Los Pajaritos
 status: published
-distance_km: 16.1
+distance_km: 13.9
 bike_path: ciclovia-los-pajaritos
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Ciclovía Los Pajaritos
     gpx: main.gpx
-    distance_km: 16.1
+    distance_km: 13.9
 ---

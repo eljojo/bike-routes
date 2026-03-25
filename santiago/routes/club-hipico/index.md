@@ -1,7 +1,7 @@
 ---
 name: Club Hípico
 status: published
-distance_km: 2.5
+distance_km: 2.4
 bike_path: club-hipico
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Club Hípico
     gpx: main.gpx
-    distance_km: 2.5
+    distance_km: 2.4
 ---

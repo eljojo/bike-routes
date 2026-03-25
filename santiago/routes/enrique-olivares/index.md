@@ -1,7 +1,7 @@
 ---
 name: Enrique Olivares
 status: published
-distance_km: 5.7
+distance_km: 3.3
 bike_path: enrique-olivares
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Enrique Olivares
     gpx: main.gpx
-    distance_km: 5.7
+    distance_km: 3.3
 ---

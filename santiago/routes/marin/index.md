@@ -1,7 +1,7 @@
 ---
 name: Marín
 status: published
-distance_km: 2.3
+distance_km: 2
 bike_path: marin
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Marín
     gpx: main.gpx
-    distance_km: 2.3
+    distance_km: 2
 ---

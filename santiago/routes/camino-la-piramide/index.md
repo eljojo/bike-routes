@@ -1,7 +1,7 @@
 ---
 name: Camino La Pirámide
 status: published
-distance_km: 7.7
+distance_km: 6.1
 bike_path: camino-la-piramide
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Camino La Pirámide
     gpx: main.gpx
-    distance_km: 7.7
+    distance_km: 6.1
 ---

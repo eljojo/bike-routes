@@ -1,7 +1,7 @@
 ---
 name: Pista Recreativa Simón Bolívar
 status: published
-distance_km: 3.6
+distance_km: 6
 bike_path: pista-recreativa-simon-bolivar
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Pista Recreativa Simón Bolívar
     gpx: main.gpx
-    distance_km: 3.6
+    distance_km: 6
 ---

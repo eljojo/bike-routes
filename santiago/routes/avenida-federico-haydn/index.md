@@ -1,7 +1,7 @@
 ---
 name: Avenida Federico Haydn
 status: published
-distance_km: 2.7
+distance_km: 2.5
 bike_path: avenida-federico-haydn
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Avenida Federico Haydn
     gpx: main.gpx
-    distance_km: 2.7
+    distance_km: 2.5
 ---

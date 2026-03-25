@@ -1,7 +1,7 @@
 ---
 name: Avenida Sargento Menadier
 status: published
-distance_km: 9.4
+distance_km: 8.1
 bike_path: avenida-sargento-menadier
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Avenida Sargento Menadier
     gpx: main.gpx
-    distance_km: 9.4
+    distance_km: 8.1
 ---

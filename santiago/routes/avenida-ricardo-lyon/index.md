@@ -1,7 +1,7 @@
 ---
 name: Avenida Ricardo Lyon
 status: published
-distance_km: 3.9
+distance_km: 3.7
 bike_path: avenida-ricardo-lyon
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Avenida Ricardo Lyon
     gpx: main.gpx
-    distance_km: 3.9
+    distance_km: 3.7
 ---

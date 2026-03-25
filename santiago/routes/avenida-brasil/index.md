@@ -1,7 +1,7 @@
 ---
 name: Avenida Brasil
 status: published
-distance_km: 3.9
+distance_km: 1.9
 bike_path: avenida-brasil
 tags:
   - bike path
@@ -10,5 +10,5 @@ updated_at: '2026-03-25'
 variants:
   - name: Avenida Brasil
     gpx: main.gpx
-    distance_km: 3.9
+    distance_km: 1.9
 ---
