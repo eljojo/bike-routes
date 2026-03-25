@@ -57,11 +57,12 @@ function findAllMatches(waypoint, graph, axes, anchors, zones) {
           if (segToAxis.get(si) === ai) segIndices.push(si);
         }
         if (segIndices.length > 0) {
-          // Compute center of this axis
           let cx = 0, cy = 0;
           for (const si of segIndices) { cx += segments[si].centroid[0]; cy += segments[si].centroid[1]; }
           cx /= segIndices.length; cy /= segIndices.length;
-          matches.push({ type: 'axis', name: axisName, coord: [cx, cy], segIndices, entryIdx: segIndices[0], exitIdx: segIndices[segIndices.length - 1] });
+          // Entry/exit are the geographic endpoints (westmost/eastmost)
+          const sorted = [...segIndices].sort((a, b) => segments[a].centroid[0] - segments[b].centroid[0]);
+          matches.push({ type: 'axis', name: axisName, coord: [cx, cy], segIndices, entryIdx: sorted[0], exitIdx: sorted[sorted.length - 1] });
         }
       }
     }
@@ -247,9 +248,31 @@ export function buildTemplatePath(waypoints, graph, axes, anchors, zones) {
       }
     }
 
-    // Include axis segments
+    // Include axis segments in geographic order.
+    // Determine entry direction: which end of the axis is closest to
+    // where we are now? Then traverse segments in that direction.
     if (curr.segIndices.length > 0) {
-      for (const si of curr.segIndices) {
+      // Sort axis segments by centroid longitude (west→east for ew axes)
+      const sorted = [...curr.segIndices].sort((a, b) => {
+        const sa = segments[a], sb = segments[b];
+        return sa.centroid[0] - sb.centroid[0];
+      });
+
+      // Decide traversal direction: enter from the end nearest to
+      // previous position or next waypoint
+      let reversed = false;
+      if (fullPath.length > 0) {
+        const lastSeg = segments[fullPath[fullPath.length - 1]];
+        const lastCoord = lastSeg.end || lastSeg.centroid;
+        const firstAxis = segments[sorted[0]];
+        const lastAxis = segments[sorted[sorted.length - 1]];
+        const dFirst = haversineM(lastCoord, firstAxis.centroid);
+        const dLast = haversineM(lastCoord, lastAxis.centroid);
+        if (dLast < dFirst) reversed = true;
+      }
+
+      const ordered = reversed ? [...sorted].reverse() : sorted;
+      for (const si of ordered) {
         if (fullPath.length === 0 || si !== fullPath[fullPath.length - 1]) {
           fullPath.push(si);
         }
@@ -260,5 +283,6 @@ export function buildTemplatePath(waypoints, graph, axes, anchors, zones) {
   }
 
   if (fullPath.length < 2) return null;
+
   return { segPath: fullPath, resolvedNames };
 }
