@@ -7,7 +7,7 @@ NODE := node --max-old-space-size=16384
 # Santiago — OSM geometry + Pedaleable catastro metadata (videos, condition ratings)
 SANTIAGO_SOURCE := https://raw.githubusercontent.com/pedaleable/mapa-catastro/refs/heads/gh-pages/datos/catastro.geojson
 SANTIAGO_BOUNDS := -33.66,-70.83,-33.30,-70.48
-SANTIAGO_LIMIT := 75
+SANTIAGO_LIMIT := 10
 
 .PHONY: santiago santiago-propose santiago-generate
 

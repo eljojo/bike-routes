@@ -27,7 +27,7 @@ import { buildRoadGraph } from './lib/roads.mjs';
 import { fetchRoadNetwork, fetchCyclingWays, fetchWaterways, fetchMotorways, fetchMetroStations, fetchZonePOIs, fetchBikeParking, fetchParkAreas } from './lib/overpass.mjs';
 import { parseOverpassWay } from './lib/segments.mjs';
 import { detectAxes } from './lib/axes.mjs';
-import { buildSegmentGraph, buildRoute, segmentsToAxisChain } from './lib/trips.mjs';
+import { buildSegmentGraph, segmentsToAxisChain } from './lib/trips.mjs';
 import { detectZones } from './lib/zones.mjs';
 import { buildZoneGraph, nearestSegmentToZone, aStarSegments } from './lib/zone-graph.mjs';
 import { buildTemplatePath } from './lib/template-routes.mjs';
@@ -230,37 +230,33 @@ if (templatedRoutes.length > 0 && proposals.bounds) {
 
       const axisChain = segmentsToAxisChain(result.segPath, graph, axes);
       if (axisChain.length > 0) {
-        // Find anchors near first/last segment
-        const firstSeg = graph.segments[result.segPath[0]];
-        const lastSeg = graph.segments[result.segPath[result.segPath.length - 1]];
-        let startAnchor = null, endAnchor = null, bestSD = 5000, bestED = 5000;
-        for (const a of anchors) {
-          const ds = haversineM([a.lng, a.lat], firstSeg.centroid);
-          const de = haversineM([a.lng, a.lat], lastSeg.centroid);
-          if (ds < bestSD) { bestSD = ds; startAnchor = a; }
-          if (de < bestED) { bestED = de; endAnchor = a; }
-        }
+        // Build a minimal route object directly from the segment path.
+        // The template's name and frontmatter are the source of truth —
+        // no anchor search, no buildRoute(), no name regeneration.
+        const templateRoute = {
+          name: tmpl.frontmatter.name || tmpl.slug,
+          axes: axisChain.map((a) => ({
+            name: a.name,
+            slug: a.slug,
+            segments: a.segments,
+            _reversed: a._reversed,
+          })),
+          archetype: 'one-way',
+        };
 
-        if (startAnchor && endAnchor) {
-          const route = buildRoute(axisChain, startAnchor, endAnchor, anchors, { skipQualityGates: true });
-          if (route) {
-            const { gpx, traceDistanceM } = await buildGPX(route, { roadGraph });
-            fs.writeFileSync(path.join(routeDir, 'main.gpx'), gpx);
+        const { gpx, traceDistanceM } = await buildGPX(templateRoute, { roadGraph });
+        fs.writeFileSync(path.join(routeDir, 'main.gpx'), gpx);
 
-            const fm = { ...tmpl.frontmatter };
-            fm.distance_km = Math.round(traceDistanceM / 100) / 10;
-            if (fm.variants && fm.variants[0]) fm.variants[0].distance_km = fm.distance_km;
-            const mdContent = `---\n${yaml.dump(fm, { lineWidth: -1 })}---\n${tmpl.body}`;
-            fs.writeFileSync(path.join(routeDir, 'index.md'), mdContent);
-            if (!fs.existsSync(path.join(routeDir, 'media.yml'))) {
-              fs.writeFileSync(path.join(routeDir, 'media.yml'), '[]\n');
-            }
-            gpxBuilt = true;
-            console.log(`  Template rebuilt: ${tmpl.slug} (${fm.distance_km} km)`);
-          } else {
-            console.log(`  ${tmpl.slug}: buildRoute rejected the path`);
-          }
+        const fm = { ...tmpl.frontmatter };
+        fm.distance_km = Math.round(traceDistanceM / 100) / 10;
+        if (fm.variants && fm.variants[0]) fm.variants[0].distance_km = fm.distance_km;
+        const mdContent = `---\n${yaml.dump(fm, { lineWidth: -1 })}---\n${tmpl.body}`;
+        fs.writeFileSync(path.join(routeDir, 'index.md'), mdContent);
+        if (!fs.existsSync(path.join(routeDir, 'media.yml'))) {
+          fs.writeFileSync(path.join(routeDir, 'media.yml'), '[]\n');
         }
+        gpxBuilt = true;
+        console.log(`  Template rebuilt: ${tmpl.slug} (${fm.distance_km} km)`);
       }
     }
 

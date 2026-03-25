@@ -21,23 +21,19 @@ function normalize(s) {
   return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().replace(/\s+/g, ' ');
 }
 
-const STRIP_PREFIXES = /^(parque|plaza|ciclovia|avenida|calle|rotonda|camino|estadio|jardin|paseo|ciclo ?recreovia|mirador|puente|entrada|acceso|museo|centro cultural|bandejon central|barrio|piscina|mural|laguna|cerro|rio|subida|empalme|conexion|estacionamientos)\s+/i;
-
-function distinctive(s) {
-  let d = normalize(s);
-  for (let i = 0; i < 3; i++) {
-    const before = d;
-    d = d.replace(STRIP_PREFIXES, '').trim();
-    if (d === before) break;
-  }
-  return d || normalize(s);
-}
 
 function namesMatch(a, b) {
   const na = normalize(a), nb = normalize(b);
-  if (na.length >= 4 && nb.length >= 4 && (na.includes(nb) || nb.includes(na))) return true;
-  const da = distinctive(a), db = distinctive(b);
-  if (da.length >= 4 && db.length >= 4 && (da.includes(db) || db.includes(da))) return true;
+  if (na === nb) return true;
+  // Substring: the shorter must be at least 8 chars and cover at least
+  // 50% of the longer. This handles "Costanera Sur" matching
+  // "Ciclovía Costanera Sur" but rejects "Nacional" matching
+  // "Librería Nacional" (8/19 = 42%).
+  if (na.length >= 8 && nb.length >= 8) {
+    const shorter = na.length <= nb.length ? na : nb;
+    const longer = na.length <= nb.length ? nb : na;
+    if (longer.includes(shorter) && shorter.length / longer.length >= 0.5) return true;
+  }
   return false;
 }
 
@@ -123,7 +119,7 @@ function findNearestSeg(coord, segments) {
  * near the Mapocho beats "Laguna Poniente" in Maipú when surrounded
  * by river waypoints.
  */
-function pickCoherentMatches(allMatches) {
+function pickCoherentMatches(allMatches, segments) {
   // First pass: for waypoints with exactly 1 match, lock them in
   const locked = allMatches.map(m => m.length === 1 ? m[0] : null);
 
@@ -146,17 +142,39 @@ function pickCoherentMatches(allMatches) {
       let bestScore = Infinity;
 
       for (const m of allMatches[i]) {
+        // For axis matches, use the nearest segment endpoint to each
+        // reference point, not the axis center. A 10km corridor is
+        // "near" anything along its length, not just its midpoint.
+        const distTo = (refCoord) => {
+          if (m.type !== 'axis' || m.segIndices.length === 0) {
+            return haversineM(m.coord, refCoord);
+          }
+          let minD = Infinity;
+          for (const si of m.segIndices) {
+            const seg = segments[si];
+            const d = Math.min(
+              haversineM(seg.centroid, refCoord),
+              haversineM(seg.start || seg.centroid, refCoord),
+              haversineM(seg.end || seg.centroid, refCoord),
+            );
+            if (d < minD) minD = d;
+          }
+          return minD;
+        };
+
         let score = 0;
-        // Distance to route center
-        if (count > 0) score += haversineM(m.coord, [cx, cy]);
-        // Distance to previous locked waypoint
+        if (count > 0) score += distTo([cx, cy]);
         if (i > 0 && locked[i - 1]) {
-          score += haversineM(m.coord, locked[i - 1].coord) * 2; // weight neighbors heavily
+          score += distTo(locked[i - 1].coord) * 2;
         }
-        // Distance to next locked waypoint
         if (i < allMatches.length - 1 && locked[i + 1]) {
-          score += haversineM(m.coord, locked[i + 1].coord) * 2;
+          score += distTo(locked[i + 1].coord) * 2;
         }
+        // Prefer axis > zone > POI. An axis match means "follow this
+        // corridor," which is what waypoints like "Ciclovía Mapocho 42k"
+        // intend. A POI with the same name is just a nearby point.
+        const typeBonus = m.type === 'axis' ? -5000 : m.type === 'zone' ? -2000 : 0;
+        score += typeBonus;
         if (score < bestScore) { bestScore = score; bestMatch = m; }
       }
 
@@ -197,7 +215,7 @@ export function buildTemplatePath(waypoints, graph, axes, anchors, zones) {
   }
 
   // Phase 2: pick geographically coherent matches
-  const resolved = pickCoherentMatches(allMatches);
+  const resolved = pickCoherentMatches(allMatches, segments);
   const validResolved = resolved.filter(Boolean);
   if (validResolved.length < 2) return null;
 

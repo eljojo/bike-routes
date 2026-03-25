@@ -9,7 +9,7 @@
  *   5. Each chain = one axis
  */
 
-import { haversineM, minEndpointDistance, allCoords } from './geo.mjs';
+import { haversineM, minEndpointDistance } from './geo.mjs';
 import { slugify } from './slugify.mjs';
 
 const CHAIN_THRESHOLD_M = 200;
@@ -70,48 +70,10 @@ function worstOfTwo(a, b) {
 // ---------------------------------------------------------------------------
 
 function buildAxis(rawSegments, bearing) {
-  // Deduplicate overlapping segments by tracing actual path geometry.
-  // Sample points along each segment and check if another segment covers
-  // the same ground. If >40% of a shorter segment's sampled points are
-  // within 80m of a longer segment's path, it's a duplicate — drop it.
-  const segments = [];
-  const used = new Set();
-  const byLength = [...rawSegments].sort((a, b) => b.lengthM - a.lengthM);
-
-  // Pre-compute sampled points for each segment (every ~100m)
-  const sampledPoints = byLength.map((seg) => {
-    const coords = allCoords(seg.geometry);
-    if (coords.length <= 3) return coords;
-    const step = Math.max(1, Math.floor(coords.length / Math.ceil(seg.lengthM / 100)));
-    const pts = [];
-    for (let k = 0; k < coords.length; k += step) pts.push(coords[k]);
-    if (pts[pts.length - 1] !== coords[coords.length - 1]) pts.push(coords[coords.length - 1]);
-    return pts;
-  });
-
-  for (let i = 0; i < byLength.length; i++) {
-    if (used.has(i)) continue;
-    segments.push(byLength[i]);
-
-    const aPts = sampledPoints[i];
-    for (let j = i + 1; j < byLength.length; j++) {
-      if (used.has(j)) continue;
-      // Quick bounding box pre-filter
-      if (haversineM(byLength[i].centroid, byLength[j].centroid) > byLength[i].lengthM + 500) continue;
-
-      const bPts = sampledPoints[j];
-      // Check how many of b's points are near a's path
-      let nearCount = 0;
-      for (const bp of bPts) {
-        for (const ap of aPts) {
-          if (haversineM(bp, ap) < 80) { nearCount++; break; }
-        }
-      }
-      if (bPts.length > 0 && nearCount / bPts.length > 0.4) {
-        used.add(j); // b is covered by a — drop it
-      }
-    }
-  }
+  // No geometry dedup needed — OSM is the sole geometry source, so each
+  // way is unique. The old dedup was for catastro+OSM overlap which no
+  // longer exists in the pipeline.
+  const segments = [...rawSegments];
 
   // Greedy nearest-endpoint chaining: start from the segment with the
   // most extreme position, always pick the closest unused segment.
@@ -412,11 +374,21 @@ export function detectAxes(segments) {
         const combinedNames = new Set([...existingNames, ...smallNames]);
         if (combinedNames.size > MAX_NAMES_PER_AXIS) continue;
 
-        // Don't merge unnamed road segments into named bike infrastructure.
-        // An unnamed calzada diagonal through a neighborhood is not part of
-        // a named cycleway corridor — it's a shortcut the algorithm shouldn't take.
+        // Don't merge a named axis into a differently-named axis.
+        // "MAPOCHO 42K" should not be absorbed into "COSTANERA SUR"
+        // just because they run parallel along the same river.
+        const smallHasName = small.segments.some((s) => s.normalizedName);
         const targetHasName = target.segments.some((s) => s.normalizedName);
-        const smallIsUnnamedRoad = !small.segments.some((s) => s.normalizedName) &&
+        if (smallHasName && targetHasName) {
+          const smallMainName = small.segments.find((s) => s.normalizedName)?.normalizedName;
+          const targetMainName = target.segments.find((s) => s.normalizedName)?.normalizedName;
+          if (smallMainName && targetMainName && smallMainName !== targetMainName) {
+              continue;
+          }
+        }
+
+        // Don't merge unnamed road segments into named bike infrastructure.
+        const smallIsUnnamedRoad = !smallHasName &&
           small.segments.some((s) => s.emplazamiento === 'calzada');
         if (targetHasName && smallIsUnnamedRoad) continue;
 
@@ -440,6 +412,8 @@ export function detectAxes(segments) {
         if (gapAlign > 45 && bestDist > 100) continue;
 
         // Merge small into target: append segments and rebuild
+        const hasM42 = small.segments.some(s => s.normalizedName === 'MAPOCHO 42K') || target.segments.some(s => s.normalizedName === 'MAPOCHO 42K');
+        if (hasM42) console.log(`[axes] MERGE: "${small.name}" (${Math.round(small.totalInfraM)}m) INTO "${target.name}" (${Math.round(target.totalInfraM)}m)`);
         const allSegs = [...target.segments, ...small.segments];
         // Re-sort by position along dominant orientation
         const dom = target.bearing === 'north-south' ? 'ns' : 'ew';
@@ -448,7 +422,13 @@ export function detectAxes(segments) {
             ? a.centroid[1] - b.centroid[1]
             : a.centroid[0] - b.centroid[0],
         );
-        axes[bestTarget] = buildAxis(allSegs, target.bearing);
+        // Append small's segments to target without full rebuild.
+        for (const seg of small.segments) {
+          target.segments.push(seg);
+          target.totalInfraM += seg.lengthM || 0;
+        }
+        target.comunas = [...new Set(target.segments.map(s => s.comuna).filter(Boolean))].sort();
+        axes[bestTarget] = target;
         axes.splice(i, 1);
         merged = true;
         break; // restart from end after each merge
@@ -514,9 +494,16 @@ export function detectAxes(segments) {
         const combined = new Set([...namesA, ...namesB]);
         if (combined.size > MAX_NAMES_PER_AXIS) continue;
 
-        // Don't merge unnamed road segments into named bike infrastructure
+        // Don't merge differently-named axes — "MAPOCHO 42K" should not
+        // be absorbed into "COSTANERA SUR" just because they run parallel.
         const aHasName = axisA.segments.some((s) => s.normalizedName);
         const bHasName = axisB.segments.some((s) => s.normalizedName);
+        if (aHasName && bHasName) {
+          const aMainName = axisA.segments.find((s) => s.normalizedName)?.normalizedName;
+          const bMainName = axisB.segments.find((s) => s.normalizedName)?.normalizedName;
+          if (aMainName && bMainName && aMainName !== bMainName) continue;
+        }
+
         const aIsUnnamedRoad = !aHasName && axisA.segments.some((s) => s.emplazamiento === 'calzada');
         const bIsUnnamedRoad = !bHasName && axisB.segments.some((s) => s.emplazamiento === 'calzada');
         if ((aHasName && bIsUnnamedRoad) || (bHasName && aIsUnnamedRoad)) continue;
