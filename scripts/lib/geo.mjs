@@ -124,3 +124,68 @@ export function formatDistance(metres) {
     ? `${(metres / 1000).toFixed(1)} km`
     : `${Math.round(metres)} m`;
 }
+
+const AREA_GRID = 0.002; // ~200m cells, matches zone grid
+
+/**
+ * Convert a polygon to a set of grid cell keys.
+ * Fills the interior using ray-casting point-in-polygon.
+ * @param {Array<[number,number]>} coords - polygon vertices [lng, lat]
+ * @param {number} [gridSize=0.002] - grid cell size in degrees
+ * @returns {Set<string>} grid cell keys
+ */
+export function polygonToGridCells(coords, gridSize = AREA_GRID) {
+  if (coords.length < 3) return new Set();
+
+  const lats = coords.map((c) => c[1]);
+  const lngs = coords.map((c) => c[0]);
+  const minLat = Math.min(...lats), maxLat = Math.max(...lats);
+  const minLng = Math.min(...lngs), maxLng = Math.max(...lngs);
+
+  const cells = new Set();
+  const minGy = Math.floor(minLat / gridSize);
+  const maxGy = Math.floor(maxLat / gridSize);
+  const minGx = Math.floor(minLng / gridSize);
+  const maxGx = Math.floor(maxLng / gridSize);
+
+  for (let gy = minGy; gy <= maxGy; gy++) {
+    for (let gx = minGx; gx <= maxGx; gx++) {
+      const testLng = (gx + 0.5) * gridSize;
+      const testLat = (gy + 0.5) * gridSize;
+      if (pointInPolygon(testLng, testLat, coords)) {
+        cells.add(`${gx},${gy}`);
+      }
+    }
+  }
+
+  // Also add boundary cells
+  for (const [lng, lat] of coords) {
+    cells.add(`${Math.floor(lng / gridSize)},${Math.floor(lat / gridSize)}`);
+  }
+
+  return cells;
+}
+
+/**
+ * Ray-casting point-in-polygon test.
+ */
+function pointInPolygon(x, y, polygon) {
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const xi = polygon[i][0], yi = polygon[i][1];
+    const xj = polygon[j][0], yj = polygon[j][1];
+    if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
+      inside = !inside;
+    }
+  }
+  return inside;
+}
+
+/**
+ * Check if a [lng, lat] coordinate is inside a set of grid cells.
+ * @returns {boolean}
+ */
+export function isPointInCells(coord, cells, gridSize = AREA_GRID) {
+  const key = `${Math.floor(coord[0] / gridSize)},${Math.floor(coord[1] / gridSize)}`;
+  return cells.has(key);
+}

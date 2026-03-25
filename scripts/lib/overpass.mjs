@@ -371,3 +371,80 @@ out;
     .filter((el) => el.lat != null)
     .map((el) => ({ lat: el.lat, lng: el.lon, type: el.tags?.amenity }));
 }
+
+/**
+ * Fetch park/plaza/garden areas with polygon geometry.
+ * Ways get geometry directly; relations have member geometry.
+ * @param {[number,number,number,number]} bounds - [south, west, north, east]
+ * @returns {Array<{ name, type, lat, lng, geometry, extent, osmType, osmId, tags }>}
+ */
+export async function fetchParkAreas(bounds) {
+  const [s, w, n, e] = bounds;
+  const bbox = `${s},${w},${n},${e}`;
+  const query = `
+[out:json][timeout:90];
+(
+  way["leisure"~"park|garden"]["name"](${bbox});
+  way["place"="square"]["name"](${bbox});
+  way["landuse"="recreation_ground"]["name"](${bbox});
+  rel["leisure"~"park|garden"]["name"](${bbox});
+);
+out geom tags;
+`.trim();
+
+  const data = await queryOverpass(query);
+  const results = [];
+
+  for (const el of data.elements ?? []) {
+    const tags = el.tags ?? {};
+    const name = tags.name;
+    if (!name) continue;
+
+    let coords = [];
+
+    if (el.type === 'way' && Array.isArray(el.geometry)) {
+      coords = el.geometry.map((p) => [p.lon, p.lat]);
+    } else if (el.type === 'relation' && Array.isArray(el.members)) {
+      for (const member of el.members) {
+        if (member.role === 'outer' && Array.isArray(member.geometry)) {
+          coords.push(...member.geometry.map((p) => [p.lon, p.lat]));
+        }
+      }
+      if (coords.length === 0) {
+        for (const member of el.members) {
+          if (Array.isArray(member.geometry)) {
+            coords.push(...member.geometry.map((p) => [p.lon, p.lat]));
+          }
+        }
+      }
+    }
+
+    if (coords.length < 3) continue;
+
+    let sumLng = 0, sumLat = 0;
+    for (const [lng, lat] of coords) { sumLng += lng; sumLat += lat; }
+    const centerLng = sumLng / coords.length;
+    const centerLat = sumLat / coords.length;
+
+    const lats = coords.map((c) => c[1]);
+    const lngs = coords.map((c) => c[0]);
+    const heightM = (Math.max(...lats) - Math.min(...lats)) * 111320;
+    const widthM = (Math.max(...lngs) - Math.min(...lngs)) * 111320 * Math.cos(centerLat * Math.PI / 180);
+    const extent = Math.max(widthM, heightM);
+
+    results.push({
+      name,
+      type: tags.leisure || tags.place || tags.landuse || 'park',
+      lat: centerLat,
+      lng: centerLng,
+      geometry: coords,
+      extent: Math.round(extent),
+      osmType: el.type,
+      osmId: el.id,
+      tags,
+    });
+  }
+
+  console.log(`[overpass] ${results.length} park areas (${results.filter((r) => r.osmType === 'relation').length} relations)`);
+  return results;
+}
