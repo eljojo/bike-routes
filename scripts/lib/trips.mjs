@@ -18,7 +18,7 @@ import { assignTags } from './tags.mjs';
 
 const MIN_ROUTE_KM = 2;
 const MAX_ROUTE_KM = 80;
-const MAX_GAP_M = 3000;
+const MAX_GAP_M = 2000;
 const AXIS_TO_ANCHOR_THRESHOLD_M = 3000;
 const MIN_ANCHOR_SCORE = 5;
 const MAX_CHAIN_AXES = 8;
@@ -142,6 +142,50 @@ function anchorToAxisDist(anchor, axis) {
     if (de < minDist) minDist = de;
   }
   return minDist;
+}
+
+/**
+ * Check if a gap is feasible to ride through.
+ * Samples points along the gap line and checks if there's infrastructure
+ * nearby. A gap through a city (segments everywhere) is rideable.
+ * A gap across a mountain/highway/river (no segments) is not.
+ *
+ * @param {Array} from - [lng, lat] gap start
+ * @param {Array} to - [lng, lat] gap end
+ * @param {Array} allAxes - all detected axes for density check
+ * @returns {boolean} true if the gap appears rideable
+ */
+function isGapFeasible(from, to, allAxes, excludeAxisIndices = []) {
+  const dist = haversineM(from, to);
+  if (dist < 150) return true; // very short gaps are always fine
+
+  // Sample 5 points along the gap line
+  const samples = [0.1, 0.3, 0.5, 0.7, 0.9].map((t) => [
+    from[0] + (to[0] - from[0]) * t,
+    from[1] + (to[1] - from[1]) * t,
+  ]);
+
+  // Every sample point must have cycling infrastructure within 500m.
+  // If ANY point is in an infrastructure desert (mountain, highway,
+  // river, industrial zone), the gap is not rideable.
+  // Also scale the threshold: longer gaps need denser coverage.
+  const radius = dist > 1000 ? 400 : 500;
+  const excludeSet = new Set(excludeAxisIndices);
+  for (const pt of samples) {
+    let hasNearby = false;
+    for (let ai = 0; ai < allAxes.length; ai++) {
+      if (excludeSet.has(ai)) continue; // don't count the axes being connected
+      for (const seg of allAxes[ai].segments) {
+        if (haversineM(pt, seg.centroid) < radius) {
+          hasNearby = true;
+          break;
+        }
+      }
+      if (hasNearby) break;
+    }
+    if (!hasNearby) return false;
+  }
+  return true;
 }
 
 /** Compute gaps between consecutive axes in a chain. */
@@ -614,17 +658,22 @@ export function stitchTrips(axes, anchors, options = {}) {
       if (i === j) continue;
       const segsJ = axes[j].segments;
       const endpointsJ = [segsJ[0], segsJ[segsJ.length - 1]];
-      let connected = false;
       for (const ei of endpointsI) {
         for (const ej of endpointsJ) {
-          if (minEndpointDistance(ei, ej).distance <= MAX_GAP_M) {
-            connected = true;
+          const { distance } = minEndpointDistance(ei, ej);
+          if (distance <= MAX_GAP_M) {
+            // Check gap feasibility: is there infrastructure along the gap?
+            // Short gaps (<500m) skip the check — you can walk/ride anything that short.
+            const from = ei.end || ei.start;
+            const to = ej.start || ej.end;
+            if (distance < 500 || isGapFeasible(from, to, axes, [i, j])) {
+              connections.add(j);
+            }
             break;
           }
         }
-        if (connected) break;
+        if (connections.has(j)) break;
       }
-      if (connected) connections.add(j);
     }
     axisConnections.set(i, connections);
     return connections;
