@@ -263,26 +263,41 @@ export function detectAxes(segments) {
         // Check bearing compatibility
         if (bearingDiff(smallBearing, axisBearing(big)) > MIN_BEARING_COMPAT) continue;
 
-        // Check endpoint proximity
+        // Check sequential endpoint proximity (end→start or start→end only)
+        // Reject start→start (forking) and end→end (converging)
         const smallSegs = small.segments;
         const bigSegs = big.segments;
-        const pairs = [
-          [smallSegs[0], bigSegs[0]],
-          [smallSegs[0], bigSegs[bigSegs.length - 1]],
-          [smallSegs[smallSegs.length - 1], bigSegs[0]],
-          [smallSegs[smallSegs.length - 1], bigSegs[bigSegs.length - 1]],
-        ];
-        for (const [a, b] of pairs) {
-          const d = minEndpointDistance(a, b).distance;
-          if (d < bestDist) {
-            bestDist = d;
-            bestTarget = j;
-          }
+        const smallStart = smallSegs[0];
+        const smallEnd = smallSegs[smallSegs.length - 1];
+        const bigStart = bigSegs[0];
+        const bigEnd = bigSegs[bigSegs.length - 1];
+        // small flows into big start, or big end flows into small
+        const seBs = minEndpointDistance(smallEnd, bigStart).distance;
+        const beSs = minEndpointDistance(bigEnd, smallStart).distance;
+        const seqDist = Math.min(seBs, beSs);
+        if (seqDist < bestDist) {
+          bestDist = seqDist;
+          bestTarget = j;
         }
       }
 
       if (bestTarget >= 0 && bestDist <= MERGE_ENDPOINT_M) {
         const target = axes[bestTarget];
+
+        // Direction suffix check: never merge poniente↔oriente or norte↔sur
+        // These are opposite sides of the same road, not continuous paths.
+        const DIRECTION_PAIRS = [['PONIENTE', 'ORIENTE'], ['NORTE', 'SUR']];
+        const smallName = (small.name || '').toUpperCase();
+        const targetName = (target.name || '').toUpperCase();
+        let directionConflict = false;
+        for (const [a, b] of DIRECTION_PAIRS) {
+          if ((smallName.includes(a) && targetName.includes(b)) ||
+              (smallName.includes(b) && targetName.includes(a))) {
+            directionConflict = true;
+            break;
+          }
+        }
+        if (directionConflict) continue;
 
         // Parallel check: if start-start AND end-end of the two axes are
         // both close, they run side-by-side (e.g. highway service roads).

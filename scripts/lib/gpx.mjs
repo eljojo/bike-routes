@@ -3,7 +3,13 @@
  *
  * Converts a route object (from trips.mjs) into valid GPX XML
  * with a single track containing all axis segments plus gap connections.
+ *
+ * Segments are oriented to flow continuously — if a segment's end is
+ * closer to the previous segment's end than its start, the coordinates
+ * are reversed so the GPX trace doesn't jump back and forth.
  */
+
+import { haversineM } from './geo.mjs';
 
 // ---------------------------------------------------------------------------
 // XML escaping
@@ -21,10 +27,6 @@ function escapeXML(str) {
 // Coordinate extraction
 // ---------------------------------------------------------------------------
 
-/**
- * Extract all [lng, lat, ele?] coordinates from a geometry object.
- * Handles both LineString and MultiLineString.
- */
 function extractCoords(geometry) {
   if (geometry.type === 'LineString') {
     return geometry.coordinates;
@@ -48,33 +50,43 @@ function extractCoords(geometry) {
 export function buildGPX(route) {
   const name = escapeXML(route.name);
   const trkpts = [];
+  let lastCoord = null; // track the end of the previous segment
 
   for (let ai = 0; ai < route.axes.length; ai++) {
     const axis = route.axes[ai];
 
-    // Add gap connection from previous axis (straight line)
-    if (ai > 0) {
-      const prevAxis = route.axes[ai - 1];
-      const prevSegs = prevAxis.segments;
-      const prevLastSeg = prevSegs[prevSegs.length - 1];
-      const prevCoords = extractCoords(prevLastSeg.geometry);
-      const lastPt = prevCoords[prevCoords.length - 1];
+    for (let si = 0; si < axis.segments.length; si++) {
+      const seg = axis.segments[si];
+      let coords = extractCoords(seg.geometry);
+      if (coords.length === 0) continue;
 
-      const currFirstSeg = axis.segments[0];
-      const currCoords = extractCoords(currFirstSeg.geometry);
-      const firstPt = currCoords[0];
+      // Orient segment to flow continuously from previous
+      if (lastCoord && coords.length >= 2) {
+        const firstPt = coords[0];
+        const lastPt = coords[coords.length - 1];
+        const distToFirst = haversineM(lastCoord, firstPt);
+        const distToLast = haversineM(lastCoord, lastPt);
+        if (distToLast < distToFirst) {
+          // Segment is backwards — reverse it
+          coords = [...coords].reverse();
+        }
+      }
 
-      // Add the two gap points (last of prev, first of current)
-      trkpts.push(formatTrkpt(lastPt));
-      trkpts.push(formatTrkpt(firstPt));
-    }
+      // Add gap connection point if there's a jump
+      if (lastCoord) {
+        const firstPt = coords[0];
+        const gapDist = haversineM(lastCoord, firstPt);
+        if (gapDist > 50) {
+          // Gap larger than 50m — add explicit gap points
+          trkpts.push(formatTrkpt(lastCoord));
+          trkpts.push(formatTrkpt(firstPt));
+        }
+      }
 
-    // Add all coordinates from each segment in this axis
-    for (const seg of axis.segments) {
-      const coords = extractCoords(seg.geometry);
       for (const coord of coords) {
         trkpts.push(formatTrkpt(coord));
       }
+      lastCoord = coords[coords.length - 1];
     }
   }
 
