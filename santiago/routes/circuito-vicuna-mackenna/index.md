@@ -4,6 +4,7 @@ status: published
 distance_km: 6.0
 tags:
   - bike path
+  - lit
   - loop
   - flat
   - san ramon

@@ -4,6 +4,7 @@ status: published
 distance_km: 4.2
 tags:
   - bike path
+  - lit
   - flat
   - easy
   - family friendly

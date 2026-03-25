@@ -1,35 +1,35 @@
 ---
 name: "De Plaza Cívica de La Florida a Parque Bicentenario"
 status: published
-distance_km: 24.4
+distance_km: 19.6
 tags:
   - bike path
-  - park path
   - flat
-  - la granja
+  - la florida
+  - macul
   - san joaquin
   - providencia
-  - las condes
-  - vitacura
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Cívica de La Florida a Parque Bicentenario"
     gpx: main.gpx
-    distance_km: 24.4
+    distance_km: 19.6
 ---
 
-24,4 kilómetros por La Granja, San Joaquin, Providencia, Las Condes y Vitacura, desde Plaza Cívica de La Florida hasta Parque Bicentenario. Prácticamente todo el recorrido tiene ciclovía.
+19,6 kilómetros por La Florida, Macul, San Joaquin y Providencia, desde Plaza Cívica de La Florida hasta Parque Bicentenario. El 84% del recorrido tiene ciclovía.
 
 ### Tramos
 
-**Sin Nombre** (La Granja) — 0,9 km, bidireccional, en parque, 150 cm de ancho.
-Evaluación Pedaleable: "muy mala".
+**Varas Mena** — 0,7 km, tertiary, 850 cm de ancho.
 
-**Sin Nombre** (La Granja y San Joaquin) — 2,9 km, bidireccional, en acera y parque, 140–150 cm de ancho.
-Evaluación Pedaleable: "muy mala".
+**Avenida Marathon** (La Florida y Macul) — 0,5 km, bidireccional, en calzada, 220 cm de ancho.
+Evaluación Pedaleable: "buena".
 
-**Sin Nombre** (San Joaquin) — 1,7 km, cycleway/bidireccional, en acera, 75 cm de ancho.
+**Avenida Marathon** (Macul) — 1,3 km, bidireccional, en calzada, 250 cm de ancho.
+Evaluación Pedaleable: "buena".
+
+**Ciclovía Carlos Valdovinos** (San Joaquin) — 2,2 km, bidireccional, en acera, 180 cm de ancho.
 Evaluación Pedaleable: "muy mala".
 
 **Sin Nombre** — 3,8 km, cycleway.
@@ -39,31 +39,25 @@ Evaluación Pedaleable: "muy mala".
 **Andres Bello** (Providencia) — 3,7 km, bidireccional, en acera, 250 cm de ancho.
 Evaluación Pedaleable: "mala".
 
-**Ciclovía Costanera Sur** (Las Condes y Vitacura) — 3,4 km, bidireccional, en acera, 250 cm de ancho.
-Evaluación Pedaleable: "mala".
-
-**Avenida Manuel Zañartu** — 1,6 km, lane/shared_lane.
-
 
 ### Tramos sin infraestructura
 
-Entre **Tramo Anterior** y **Siguiente Tramo** — 468 m sin infraestructura ciclista.
+Entre **Varas Mena** y **Avenida Marathon** — 675 m sin infraestructura ciclista.
 
-Entre **Tramo Anterior** y **Siguiente Tramo** — 447 m sin infraestructura ciclista.
+Entre **Avenida Marathon** y **Avenida Marathon** — 341 m sin infraestructura ciclista.
 
-Entre **Tramo Anterior** y **Siguiente Tramo** — 95 m sin infraestructura ciclista.
+Entre **Avenida Marathon** y **Ciclovía Carlos Valdovinos** — 800 m sin infraestructura ciclista.
+
+Entre **Ciclovía Carlos Valdovinos** y **Siguiente Tramo** — 749 m sin infraestructura ciclista.
 
 Entre **Tramo Anterior** y **Ciclovía Alameda** — 457 m sin infraestructura ciclista.
 
 Entre **Ciclovía Alameda** y **Andres Bello** — 164 m sin infraestructura ciclista.
 
-Entre **Ciclovía Costanera Sur** y **Avenida Manuel Zañartu** — 551 m sin infraestructura ciclista.
-
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-https://youtu.be/h4OmNA5Qxzo
-https://youtu.be/9cnMVaHVGEU
-https://youtu.be/LB5CjDfIoE8
-https://youtu.be/-JUyafsUmrI
+https://youtu.be/AslONM70Z_M
+https://youtu.be/li3HGMpxgio
+https://youtu.be/aLewv34bqYE
 

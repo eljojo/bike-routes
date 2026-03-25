@@ -4,6 +4,7 @@ status: published
 distance_km: 2.9
 tags:
   - bike path
+  - lit
   - flat
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
