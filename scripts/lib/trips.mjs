@@ -228,8 +228,22 @@ function computeGapPenalty(gaps) {
   return Math.min(penalty, 8);
 }
 
-/** Detect route archetype: loop or one-way. */
+/** Detect route archetype: mountain, loop, or one-way. */
 function detectArchetype(axisChain, startAnchor, endAnchor) {
+  // Mountain/trail detection — different scoring regime
+  const allSegs = axisChain.flatMap((a) => a.segments);
+  const totalLen = allSegs.reduce((s, seg) => s + (seg.lengthM || 0), 0);
+  const parkLen = allSegs.filter((s) => s.emplazamiento === 'parque').reduce((s, seg) => s + (seg.lengthM || 0), 0);
+  const parkFrac = totalLen > 0 ? parkLen / totalLen : 0;
+
+  const mountainNames = ['cerro', 'sendero', 'mtb', 'trail', 'mahuida', 'manquehue'];
+  const hasTrailName = axisChain.some((a) => {
+    const n = (a.name || '').toLowerCase();
+    return mountainNames.some((m) => n.includes(m));
+  });
+
+  if (parkFrac > 0.5 || hasTrailName) return 'mountain';
+
   const sameAnchor =
     startAnchor.name === endAnchor.name ||
     haversineM([startAnchor.lng, startAnchor.lat], [endAnchor.lng, endAnchor.lat]) < 500;
@@ -345,6 +359,9 @@ function generateName(archetype, axisChain, startAnchor, endAnchor) {
     ? titleCase(longestAxis.name)
     : null;
 
+  if (archetype === 'mountain') {
+    return axisName ? `Sendero ${axisName}` : `Sendero ${startAnchor.name}`;
+  }
   if (archetype === 'loop') {
     return axisName ? `Circuito ${axisName}` : `Circuito ${startAnchor.name}`;
   }
@@ -457,6 +474,14 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
   } else {
     const ratio = detourRatio(axisChain, totalDistanceM);
     coherenceBonus = ratio < 1.5 ? 2 : ratio < 2.0 ? 1 : ratio < 2.5 ? 0 : -1;
+  }
+
+  // Mountain routes: different scoring — nature IS the infra
+  if (archetype === 'mountain') {
+    // Override: don't penalize low infra% for trail routes
+    // Trails are the infrastructure, they just aren't tagged as 'cycleway'
+    archetypeBonus = 3;
+    // The green bonus already rewards park paths, so mountain routes benefit
   }
 
   // --- "Oasis in the Desert" scoring ---

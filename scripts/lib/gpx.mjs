@@ -10,6 +10,7 @@
  */
 
 import { haversineM } from './geo.mjs';
+import { routeGap } from './routing.mjs';
 
 // ---------------------------------------------------------------------------
 // Elevation enrichment via Open-Meteo API
@@ -116,6 +117,7 @@ function extractCoords(geometry) {
  * @returns {string} valid GPX XML
  */
 export async function buildGPX(route) {
+  const useGoogleRouting = !process.argv.includes('--no-google-routing') && !!process.env.GOOGLE_DIRECTIONS_API_KEY;
   const name = escapeXML(route.name);
   const allCoords = [];
   let lastCoord = null;
@@ -138,8 +140,19 @@ export async function buildGPX(route) {
       if (lastCoord) {
         const gapDist = haversineM(lastCoord, coords[0]);
         if (gapDist > 50) {
-          allCoords.push(lastCoord);
-          allCoords.push(coords[0]);
+          // Try Google bike routing for significant gaps
+          if (gapDist > 200 && useGoogleRouting) {
+            const gapRoute = await routeGap(lastCoord, coords[0]);
+            if (gapRoute && gapRoute.length > 0) {
+              for (const pt of gapRoute) allCoords.push(pt);
+            } else {
+              allCoords.push(lastCoord);
+              allCoords.push(coords[0]);
+            }
+          } else {
+            allCoords.push(lastCoord);
+            allCoords.push(coords[0]);
+          }
         }
       }
 

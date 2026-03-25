@@ -48,6 +48,7 @@ export function assignTags(route) {
 
   // --- Route archetype ---
   if (route.archetype === 'loop') tags.add('loop');
+  if (route.archetype === 'mountain') tags.add('mountain');
 
   // --- Terrain ---
   tags.add('flat');
