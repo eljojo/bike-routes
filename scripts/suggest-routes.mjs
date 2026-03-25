@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --max-old-space-size=16384
 
 /**
  * Route suggestion CLI — orchestrates the full pipeline.
@@ -254,7 +254,7 @@ async function main() {
         : null,
       videos: a.videos,
     })),
-    anchors: anchors.slice(0, 100).map((a) => ({
+    anchors: anchors.map((a) => ({
       name: a.name,
       lat: a.lat,
       lng: a.lng,

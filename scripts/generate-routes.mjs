@@ -117,37 +117,40 @@ for (let i = 0; i < routes.length; i++) {
 // Places — deduplicated anchor POIs
 // ---------------------------------------------------------------------------
 
-// Category mapping from Overpass POI type
+// Category mapping from POI type → app place category
 const TYPE_TO_CATEGORY = {
   park: 'parque',
-  square: 'plaza',
-  marketplace: 'restaurant',
-  station: 'metro',
-  museum: 'mirador',
-  viewpoint: 'mirador',
-  water: 'río',
-  bicycle_rental: 'bicicletero',
+  parque: 'parque',
   garden: 'parque',
+  square: 'plaza',
+  beach: 'parque',
+  viewpoint: 'mirador',
+  museum: 'mirador',
+  bridge: 'mirador',
+  water: 'río',
+  marketplace: 'restaurant',
   cafe: 'café',
+  ice_cream: 'heladería',
+  pub: 'restaurant',
+  station: 'metro',
+  bicycle_rental: 'bicicletero',
+  bicycle: 'taller-de-bicicletas',
+  camp_site: 'parque',
+  ferry_terminal: 'mirador',
+  curated: 'parque',
 };
 
-// Build a lookup map from the proposals.anchors array
-const anchorsByName = new Map();
-for (const anchor of (proposals.anchors || [])) {
-  anchorsByName.set(anchor.name, anchor);
-}
-
 // Collect all start/end anchors from selected routes, dedup by name
-const placesMap = new Map(); // name → anchor data
+const placesMap = new Map();
 
 for (const route of routes) {
   for (const anchor of [route.startAnchor, route.endAnchor]) {
     if (!anchor || placesMap.has(anchor.name)) continue;
 
-    // Look up type from proposals.anchors
-    const anchorData = anchorsByName.get(anchor.name);
-    const type = anchorData ? anchorData.type : null;
-    const category = TYPE_TO_CATEGORY[type] || 'parque';
+    // Type comes from the route anchor (set by trips.mjs from scored anchors)
+    // But OSM types are often wrong (plazas tagged as parks). Name is more reliable
+    // for distinguishing parks from plazas.
+    const category = inferCategoryFromName(anchor.name) || TYPE_TO_CATEGORY[anchor.type] || 'parque';
 
     placesMap.set(anchor.name, {
       name: anchor.name,
@@ -156,6 +159,18 @@ for (const route of routes) {
       category,
     });
   }
+}
+
+/** Infer category from place name. Returns null if no strong signal. */
+function inferCategoryFromName(name) {
+  const lower = name.toLowerCase();
+  if (lower.includes('parque')) return 'parque';
+  if (lower.includes('plaza') || lower.includes('plazoleta')) return 'parque'; // plazas in Chile are green spaces
+  if (lower.includes('mercado')) return 'restaurant';
+  if (lower.includes('museo')) return 'mirador';
+  if (lower.includes('río') || lower.includes('lago')) return 'río';
+  if (lower.includes('cerro') || lower.includes('mirador')) return 'mirador';
+  return null;
 }
 
 let placesWritten = 0;

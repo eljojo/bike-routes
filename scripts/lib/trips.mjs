@@ -21,8 +21,8 @@ const MAX_ROUTE_KM = 50;
 const MAX_GAP_M = 3000;
 const AXIS_TO_ANCHOR_THRESHOLD_M = 3000;
 const MIN_ANCHOR_SCORE = 5;
-const MAX_CHAIN_AXES = 5;
-const MAX_STATES_PER_START = 2000;
+const MAX_CHAIN_AXES = 8;
+const MAX_STATES_PER_START = 5000;
 const DEDUP_OVERLAP_THRESHOLD = 0.6;
 // Point-to-point: total distance / crow-flies. A straight line = 1.0.
 // Urban cycling typically 1.5–3.0. Above 3.5 means zigzag garbage.
@@ -285,8 +285,8 @@ function buildRoute(axisChain, startAnchor, endAnchor) {
     name,
     slug: slugify(name),
     archetype,
-    startAnchor: { name: startAnchor.name, lat: startAnchor.lat, lng: startAnchor.lng },
-    endAnchor: { name: endAnchor.name, lat: endAnchor.lat, lng: endAnchor.lng },
+    startAnchor: { name: startAnchor.name, lat: startAnchor.lat, lng: startAnchor.lng, type: startAnchor.type },
+    endAnchor: { name: endAnchor.name, lat: endAnchor.lat, lng: endAnchor.lng, type: endAnchor.type },
     axes: axisChain.map((a) => ({
       name: a.name,
       slug: a.slug,
