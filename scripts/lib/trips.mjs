@@ -266,8 +266,9 @@ const MAX_BUILT_GAP_M = 3000;
 
 /**
  * Build route or return null if inviable.
+ * @param {Array} [allAnchors] - all scored POIs for waypoint detection
  */
-function buildRoute(axisChain, startAnchor, endAnchor) {
+function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
   const gaps = computeGaps(axisChain);
 
   // Reject routes with any single gap too large in the actual trace.
@@ -368,17 +369,59 @@ function buildRoute(axisChain, startAnchor, endAnchor) {
     coherenceBonus = ratio < 1.5 ? 2 : ratio < 2.0 ? 1 : ratio < 2.5 ? 0 : -1;
   }
 
-  // Greenery & water bonus: routes through parks, along rivers, or with tree cover
-  // are the ones people remember. A bike path through a park is infinitely better
-  // than the same distance along a busy road.
+  // --- "Oasis in the Desert" scoring ---
+  // The city is car infrastructure desert. We're looking for oases:
+  // places where you can ride with headphones on, and where there's
+  // something worth stopping for along the way.
+
   const allSegs = axisChain.flatMap((a) => a.segments);
+
+  // 1. Segregation quality: "Can I ride here with headphones on?"
+  //    parque/mediana/bandejón = oasis (fully separated from cars)
+  //    acera = decent (sidewalk, separated but shared with pedestrians)
+  //    calzada = exposed (on the road with cars)
+  //    null (OSM) = unknown, assume decent
+  const oasisSegs = allSegs.filter((s) =>
+    s.emplazamiento === 'parque' || s.emplazamiento === 'mediana' || s.emplazamiento === 'bandejón');
+  const exposedSegs = allSegs.filter((s) => s.emplazamiento === 'calzada');
+  const oasisFraction = allSegs.length > 0 ? oasisSegs.length / allSegs.length : 0;
+  const exposedFraction = allSegs.length > 0 ? exposedSegs.length / allSegs.length : 0;
+  // Reward oasis, penalize exposed riding
+  const segregationScore = oasisFraction * 5 - exposedFraction * 3;
+
+  // 2. Greenery: parks, rivers, shade
   const parkSegs = allSegs.filter((s) => s.emplazamiento === 'parque');
   const parkFraction = allSegs.length > 0 ? parkSegs.length / allSegs.length : 0;
-  // Smooth scale: 0% = 0, 10% = 1, 25% = 2, 50% = 3, 100% = 4
   const greenBonus = Math.min(parkFraction * 8, 4);
 
+  // 3. Route richness: "Can I stop here?"
+  //    Find POIs within 300m of any segment along the route.
+  //    A route that passes cafes, parks, water fountains is alive.
+  //    A route along a highway service road with nothing around is dead.
+  let waypointBonus = 0;
+  if (allAnchors.length > 0) {
+    const waypointTypes = new Set();
+    const routeWaypoints = [];
+    for (const anchor of allAnchors) {
+      // Skip the start/end anchors
+      if (anchor.name === startAnchor.name || anchor.name === endAnchor.name) continue;
+      const anchorCoord = [anchor.lng, anchor.lat];
+      for (const seg of allSegs) {
+        if (haversineM(anchorCoord, seg.centroid) < 300) {
+          waypointTypes.add(anchor.type);
+          routeWaypoints.push({ name: anchor.name, type: anchor.type, lat: anchor.lat, lng: anchor.lng });
+          break;
+        }
+      }
+    }
+    // Diversity of stops matters more than quantity
+    waypointBonus = Math.min(waypointTypes.size * 1.5, 6);
+    // Store for use in markdown/description
+    route.waypointPOIs = routeWaypoints.slice(0, 10);
+  }
+
   route.compositeScore = Math.round(
-    (infraScore + condScore + anchorScoreVal + signatureBonus + distBonus + archetypeBonus + coherenceBonus + greenBonus - gapPenalty) * 10,
+    (infraScore + condScore + anchorScoreVal + signatureBonus + distBonus + archetypeBonus + coherenceBonus + greenBonus + segregationScore + waypointBonus - gapPenalty) * 10,
   ) / 10;
 
   route.suggestedTags = assignTags(route);
@@ -575,7 +618,7 @@ export function stitchTrips(axes, anchors, options = {}) {
       const startAnchor = startAnchors[0];
       const endAnchor = endAnchors.find((a) => a.name !== startAnchor.name) || endAnchors[0];
 
-      const route = buildRoute(axisChain, startAnchor, endAnchor);
+      const route = buildRoute(axisChain, startAnchor, endAnchor, usableAnchors);
       if (route) candidates.push(route);
     }
   }
@@ -617,7 +660,7 @@ export function stitchTrips(axes, anchors, options = {}) {
       if (maxLoopGap > 2000) continue;
 
       const anchor = startAnchors[0];
-      const loopRoute = buildRoute(axisChain, anchor, anchor);
+      const loopRoute = buildRoute(axisChain, anchor, anchor, usableAnchors);
       if (loopRoute) candidates.push(loopRoute);
       loopCount++;
     }
@@ -633,10 +676,10 @@ export function stitchTrips(axes, anchors, options = {}) {
     if (!nearAnchors || nearAnchors.length === 0) continue;
 
     if (nearAnchors.length >= 2) {
-      const oab = buildRoute([axis], nearAnchors[0], nearAnchors[1]);
+      const oab = buildRoute([axis], nearAnchors[0], nearAnchors[1], usableAnchors);
       if (oab) candidates.push(oab);
     } else {
-      const oab = buildRoute([axis], nearAnchors[0], nearAnchors[0]);
+      const oab = buildRoute([axis], nearAnchors[0], nearAnchors[0], usableAnchors);
       if (oab) candidates.push(oab);
     }
   }
