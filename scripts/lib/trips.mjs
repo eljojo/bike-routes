@@ -340,7 +340,10 @@ function titleCase(str) {
  * improvement swaps to reduce the worst gaps.
  */
 function optimizeAxisOrder(axisChain, isLoop = false) {
-  if (axisChain.length <= 2) return axisChain;
+  if (axisChain.length <= 1) return axisChain;
+
+  // For 2-axis routes, still need to determine direction for each axis
+  // (critical for loops where one axis goes CW and the other CCW)
 
   const eps = axisChain.map((a) => ({
     start: a.segments[0].start,

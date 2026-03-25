@@ -22,16 +22,16 @@ variants:
 **Alonso De Cordoba** (Vitacura) — 1,4 km, unidireccional, en calzada, 200 cm de ancho.
 Evaluación Pedaleable: "regular".
 
-**Antilen** — 1,2 km, lane.
+**Avenida Carlos Martner** — 1,2 km, lane.
 
 **Avenida La Montaña** — 2,0 km, lane.
 
 
 ### Tramos sin infraestructura
 
-Entre **Alonso De Cordoba** y **Antilen** — 677 m sin infraestructura ciclista.
+Entre **Alonso De Cordoba** y **Avenida Carlos Martner** — 677 m sin infraestructura ciclista.
 
-Entre **Antilen** y **Avenida La Montaña** — 613 m sin infraestructura ciclista.
+Entre **Avenida Carlos Martner** y **Avenida La Montaña** — 613 m sin infraestructura ciclista.
 
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:

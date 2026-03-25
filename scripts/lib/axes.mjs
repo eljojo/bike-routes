@@ -128,27 +128,37 @@ function buildAxis(rawSegments, bearing) {
     const ordered = [segments[startIdx]];
     const used = new Set([startIdx]);
 
+    // Track which endpoint we exit from — the "frontier" of the chain.
+    // Start from whichever endpoint of the first segment is most extreme.
+    let frontier = bearing === 'north-south'
+      ? (segments[startIdx].start[1] < segments[startIdx].end[1] ? segments[startIdx].start : segments[startIdx].end)
+      : (segments[startIdx].start[0] < segments[startIdx].end[0] ? segments[startIdx].start : segments[startIdx].end);
+    // We enter from the extreme end, so we exit from the OTHER end
+    frontier = frontier === segments[startIdx].start ? segments[startIdx].end : segments[startIdx].start;
+
     while (ordered.length < segments.length) {
-      const last = ordered[ordered.length - 1];
-      const lastEnd = last.end;
       let bestIdx = -1;
       let bestDist = Infinity;
+      let bestExit = null;
 
       for (let k = 0; k < segments.length; k++) {
         if (used.has(k)) continue;
-        // Check distance from last segment's end to this segment's start and end
-        const dStart = haversineM(lastEnd, segments[k].start);
-        const dEnd = haversineM(lastEnd, segments[k].end);
+        // Check distance from frontier to both endpoints of candidate
+        const dStart = haversineM(frontier, segments[k].start);
+        const dEnd = haversineM(frontier, segments[k].end);
         const d = Math.min(dStart, dEnd);
         if (d < bestDist) {
           bestDist = d;
           bestIdx = k;
+          // We enter from the closer end, so we exit from the other
+          bestExit = dStart <= dEnd ? segments[k].end : segments[k].start;
         }
       }
 
       if (bestIdx === -1) break;
       used.add(bestIdx);
       ordered.push(segments[bestIdx]);
+      frontier = bestExit;
     }
 
     segments.length = 0;
