@@ -184,20 +184,55 @@ function computeGapPenalty(gaps) {
   return Math.min(penalty, 8);
 }
 
-/** Detect route archetype from structure. */
+/** Detect route archetype: loop or one-way. */
 function detectArchetype(axisChain, startAnchor, endAnchor) {
   const sameAnchor =
     startAnchor.name === endAnchor.name ||
     haversineM([startAnchor.lng, startAnchor.lat], [endAnchor.lng, endAnchor.lat]) < 500;
 
   if (sameAnchor && axisChain.length >= 2) return 'loop';
-  if (sameAnchor && axisChain.length === 1) return 'out-and-back';
+  return 'one-way';
+}
 
-  const totalInfra = axisChain.reduce((s, a) => s + a.totalInfraM, 0);
-  const longest = Math.max(...axisChain.map((a) => a.totalInfraM));
-  if (axisChain.length >= 2 && longest / totalInfra > 0.6) return 'spine';
+/**
+ * Loop shape quality: how round/oval is this loop?
+ *
+ * Measures two things:
+ * - Aspect ratio: bounding box width/height (1.0 = square, >3 = narrow slit)
+ * - Perimeter efficiency: route distance / (2 * (width + height))
+ *   (0.8-1.0 = traces the perimeter cleanly, <0.5 = zigzag or narrow)
+ *
+ * The Big Loop Around Ottawa scores: aspect 1.2, perimEff 0.89.
+ * A narrow out-and-back-disguised-as-loop scores: aspect >3, perimEff <0.5.
+ *
+ * Returns { aspect, perimEff, isOval }
+ */
+function loopShape(axisChain, totalDistanceM) {
+  const coords = [];
+  for (const ax of axisChain) {
+    for (const seg of ax.segments) {
+      const geo = seg.geometry;
+      const c = geo.type === 'MultiLineString' ? geo.coordinates.flat() : geo.coordinates;
+      coords.push(...c);
+    }
+  }
+  if (coords.length < 4) return { aspect: 99, perimEff: 0, isOval: false };
 
-  return 'point-to-point';
+  const lats = coords.map((c) => c[1]);
+  const lngs = coords.map((c) => c[0]);
+  const minLat = Math.min(...lats), maxLat = Math.max(...lats);
+  const minLng = Math.min(...lngs), maxLng = Math.max(...lngs);
+  const width = haversineM([minLng, (minLat + maxLat) / 2], [maxLng, (minLat + maxLat) / 2]);
+  const height = haversineM([(minLng + maxLng) / 2, minLat], [(minLng + maxLng) / 2, maxLat]);
+
+  if (width < 100 || height < 100) return { aspect: 99, perimEff: 0, isOval: false };
+
+  const aspect = Math.max(width, height) / Math.min(width, height);
+  const perimEff = totalDistanceM / (2 * (width + height));
+  // An oval loop: reasonable aspect ratio and traces the perimeter
+  const isOval = aspect < 2.5 && perimEff > 0.55;
+
+  return { aspect, perimEff, isOval };
 }
 
 /** Title-case a string (handles ñ, lowercases first). */
@@ -218,21 +253,11 @@ function generateName(archetype, axisChain, startAnchor, endAnchor) {
     ? titleCase(longestAxis.name)
     : null;
 
-  switch (archetype) {
-    case 'loop':
-      return axisName ? `Circuito ${axisName}` : `Circuito ${startAnchor.name}`;
-
-    case 'out-and-back':
-      return axisName || `Hacia ${startAnchor.name}`;
-
-    case 'spine':
-      return axisName
-        ? `${axisName} a ${endAnchor.name}`
-        : `De ${startAnchor.name} a ${endAnchor.name}`;
-
-    default:
-      return `De ${startAnchor.name} a ${endAnchor.name}`;
+  if (archetype === 'loop') {
+    return axisName ? `Circuito ${axisName}` : `Circuito ${startAnchor.name}`;
   }
+  // One-way: "De X a Y"
+  return `De ${startAnchor.name} a ${endAnchor.name}`;
 }
 
 /** Build the route output object from axes and anchors. */
@@ -324,7 +349,12 @@ function buildRoute(axisChain, startAnchor, endAnchor) {
   const signatureBonus = longestAxis > 5000 ? 3 : longestAxis > 3000 ? 1.5 : 0;
   const distKm = totalDistanceM / 1000;
   const distBonus = distKm >= 5 && distKm <= 15 ? 1 : distKm >= 15 && distKm <= 40 ? 2 : 0;
-  const archetypeBonus = archetype === 'loop' ? 2 : archetype === 'spine' ? 1 : 0;
+  // Loops get a bonus, oval loops get a bigger bonus — they're the signature rides
+  let archetypeBonus = 0;
+  if (archetype === 'loop') {
+    const shape = loopShape(axisChain, totalDistanceM);
+    archetypeBonus = shape.isOval ? 5 : 2; // oval loops are gold
+  }
 
   // Coherence bonus: straighter paths look better on the map and are more rideable
   const ratio = detourRatio(axisChain, totalDistanceM);

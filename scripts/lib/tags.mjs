@@ -36,7 +36,6 @@ export function assignTags(route) {
 
   // --- Route archetype ---
   if (route.archetype === 'loop') tags.add('loop');
-  if (route.archetype === 'out-and-back') tags.add('out and back');
 
   // --- Terrain ---
   tags.add('flat');

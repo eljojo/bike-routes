@@ -62,7 +62,7 @@ export function curateLaunchSet(proposals, opts = {}) {
     const greenScore = parkFraction > 0.5 ? 10 : parkFraction > 0.2 ? 5 : parkFraction > 0 ? 2 : 0;
 
     // Archetype variety — loops and spines are more interesting
-    const archetypeScore = r.archetype === 'loop' ? 3 : r.archetype === 'spine' ? 1 : 0;
+    const archetypeScore = r.archetype === 'loop' ? 5 : 0;
 
     // Corridor bonus — routes that span 3+ comunas are corridor rides
     // (along a river, through a park chain, across the city). These are

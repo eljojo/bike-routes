@@ -100,12 +100,6 @@ variants:
       opening += `, saliendo desde ${route.startAnchor.name}`;
     }
     opening += '.';
-  } else if (archetype === 'out-and-back') {
-    opening = `${fmtNum(distKm)} kilómetros de ida y vuelta por ${comunasStr}`;
-    if (route.startAnchor?.name) {
-      opening += `, hacia ${route.startAnchor.name}`;
-    }
-    opening += '.';
   } else {
     opening = `${fmtNum(distKm)} kilómetros por ${comunasStr}`;
     if (route.startAnchor?.name && route.endAnchor?.name &&
