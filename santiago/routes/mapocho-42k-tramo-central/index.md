@@ -2,7 +2,7 @@
 name: Mapocho 42K Tramo Central
 status: published
 homepage_featured: true
-distance_km: 53.6
+distance_km: 60.5
 tags:
   - bike path
   - scenic
@@ -23,7 +23,7 @@ updated_at: '2026-03-25'
 variants:
   - name: Mapocho 42K Tramo Central
     gpx: main.gpx
-    distance_km: 53.6
+    distance_km: 60.5
 ---
 
 The heart of the Mapocho river ride. From Quinta Normal east through the Parque Forestal, past the sculpture park, to Parque Bicentenario. Parks the entire way.

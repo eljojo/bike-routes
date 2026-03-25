@@ -2,7 +2,7 @@
 name: San Cristóbal por Pío Nono
 status: published
 homepage_featured: true
-distance_km: 20.5
+distance_km: 61.9
 tags:
   - bike path
   - park path
@@ -21,7 +21,7 @@ updated_at: '2026-03-25'
 variants:
   - name: San Cristóbal por Pío Nono
     gpx: main.gpx
-    distance_km: 20.5
+    distance_km: 61.9
 ---
 
 The steep one. From Bellavista up through the zoo entrance, tight switchbacks, and straight to the top. Short but intense.

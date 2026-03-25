@@ -208,7 +208,13 @@ if (templatedRoutes.length > 0 && proposals.bounds) {
     fs.mkdirSync(routeDir, { recursive: true });
 
     // Build route from waypoints using segment-level A*
-    const result = buildTemplatePath(tmpl.waypoints, graph, axes, anchors, zones);
+    // Pass ALL named data for waypoint matching: axes, zones, anchors, metro, zone POIs
+    const allPOIs = [
+      ...anchors,
+      ...metro.map(s => ({ name: s.name, lat: s.lat, lng: s.lng })),
+      ...zonePOIs.filter(p => p.tags?.name).map(p => ({ name: p.tags.name, lat: p.lat, lng: p.lng })),
+    ];
+    const result = buildTemplatePath(tmpl.waypoints, graph, axes, allPOIs, zones);
 
     let gpxBuilt = false;
     if (result && result.segPath.length >= 2) {
