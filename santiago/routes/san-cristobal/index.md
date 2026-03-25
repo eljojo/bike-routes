@@ -1,7 +1,7 @@
 ---
 name: San Cristóbal
 status: published
-distance_km: 12
+distance_km: 55.1
 tags:
   - bike path
   - park path
@@ -24,7 +24,7 @@ updated_at: '2026-03-25'
 variants:
   - name: San Cristóbal
     gpx: main.gpx
-    distance_km: 12
+    distance_km: 55.1
 ---
 
 Climb Cerro San Cristóbal — the big hill in the middle of Santiago. The route winds up from the south side through a series of miradores with views over the entire city, reaching the summit at Paseo Peatonal Cumbre before descending along Avenida Abate Molina.

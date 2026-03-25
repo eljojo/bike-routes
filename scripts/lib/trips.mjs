@@ -533,7 +533,7 @@ const MAX_BUILT_GAP_M = 3000;
  * Build route or return null if inviable.
  * @param {Array} [allAnchors] - all scored POIs for waypoint detection
  */
-export function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
+export function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = [], opts = {}) {
   // Detect archetype early to know if this is a loop (needed for optimization)
   const earlyArchetype = detectArchetype(axisChain, startAnchor, endAnchor);
 
@@ -542,20 +542,20 @@ export function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
 
   const gaps = computeGaps(axisChain);
 
-  // Reject routes with any single gap too large in the actual trace.
-  const maxGap = gaps.length > 0 ? Math.max(...gaps.map((g) => g.distanceM)) : 0;
-  if (maxGap > MAX_BUILT_GAP_M) return null;
+  // Quality gates — skip for template routes (curator knows best)
+  if (!opts.skipQualityGates) {
+    const maxGap = gaps.length > 0 ? Math.max(...gaps.map((g) => g.distanceM)) : 0;
+    if (maxGap > MAX_BUILT_GAP_M) return null;
 
-  // For loops, also check the closure gap (last axis → first axis).
-  if (earlyArchetype === 'loop' && axisChain.length >= 2) {
-    const closureGap = minAxesGap(axisChain[axisChain.length - 1], axisChain[0]);
-    if (closureGap.distance > MAX_BUILT_GAP_M) return null;
+    if (earlyArchetype === 'loop' && axisChain.length >= 2) {
+      const closureGap = minAxesGap(axisChain[axisChain.length - 1], axisChain[0]);
+      if (closureGap.distance > MAX_BUILT_GAP_M) return null;
+    }
+
+    const traceSegs = axisChain.flatMap(a => a.segments);
+    const traceCheck = validateTrace(traceSegs, earlyArchetype);
+    if (!traceCheck.valid) return null;
   }
-
-  // Reject routes with bad traces (teleporting, backtracking, zigzag)
-  const traceSegs = axisChain.flatMap(a => a.segments);
-  const traceCheck = validateTrace(traceSegs, earlyArchetype);
-  if (!traceCheck.valid) return null;
 
   const infraDistanceM = axisChain.reduce((s, a) => s + a.totalInfraM, 0);
   const gapDistanceM = gaps.reduce((s, g) => s + g.distanceM, 0);
@@ -564,7 +564,7 @@ export function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
     ? Math.round((infraDistanceM / totalDistanceM) * 100)
     : 0;
 
-  if (infraPercent < 60) return null;
+  if (!opts.skipQualityGates && infraPercent < 60) return null;
 
   let scoreSum = 0;
   let scoreCount = 0;

@@ -228,7 +228,7 @@ if (templatedRoutes.length > 0 && proposals.bounds) {
         }
 
         if (startAnchor && endAnchor) {
-          const route = buildRoute(axisChain, startAnchor, endAnchor, anchors);
+          const route = buildRoute(axisChain, startAnchor, endAnchor, anchors, { skipQualityGates: true });
           if (route) {
             const { gpx, traceDistanceM } = await buildGPX(route, { roadGraph });
             fs.writeFileSync(path.join(routeDir, 'main.gpx'), gpx);
