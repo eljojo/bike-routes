@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Blest Gana a Parque Intercomunal Victor Jara"
 status: published
-distance_km: 11.1
+distance_km: 11.7
 tags:
   - bike path
   - protected lane
@@ -15,10 +15,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Blest Gana a Parque Intercomunal Victor Jara"
     gpx: main.gpx
-    distance_km: 11.1
+    distance_km: 11.7
 ---
 
-11,1 kilómetros por Independencia, Conchali, Santiago y San Joaquin, desde Plaza Blest Gana hasta Parque Intercomunal Victor Jara. Alrededor de la mitad del recorrido tiene ciclovía.
+11,7 kilómetros por Independencia, Conchali, Santiago y San Joaquin, desde Plaza Blest Gana hasta Parque Intercomunal Victor Jara. Alrededor de la mitad del recorrido tiene ciclovía.
 
 ### Tramos
 

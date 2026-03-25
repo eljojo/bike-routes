@@ -2,7 +2,7 @@
 name: San Cristóbal por Pedro de Valdivia
 status: published
 homepage_featured: true
-distance_km: 94.5
+distance_km: 94.6
 tags:
   - bike path
   - park path
@@ -23,7 +23,7 @@ updated_at: '2026-03-25'
 variants:
   - name: San Cristóbal por Pedro de Valdivia
     gpx: main.gpx
-    distance_km: 94.5
+    distance_km: 94.6
 ---
 
 The classic climb up San Cristóbal from the Pedro de Valdivia entrance. Through the Japanese garden and Mapulemu, past the pool at Tupahue, to the summit.

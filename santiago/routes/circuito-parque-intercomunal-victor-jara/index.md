@@ -1,7 +1,7 @@
 ---
 name: "Circuito Parque Intercomunal Victor Jara"
 status: published
-distance_km: 25.8
+distance_km: 25.3
 tags:
   - bike path
   - park path
@@ -15,10 +15,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Circuito Parque Intercomunal Victor Jara"
     gpx: main.gpx
-    distance_km: 25.8
+    distance_km: 25.3
 ---
 
-Un circuito de 25,8 kilómetros por Santiago, San Joaquin y San Miguel, saliendo desde Parque Intercomunal Victor Jara. El 80% del recorrido tiene ciclovía.
+Un circuito de 25,3 kilómetros por Santiago, San Joaquin y San Miguel, saliendo desde Parque Intercomunal Victor Jara. El 80% del recorrido tiene ciclovía.
 
 ### Tramos
 
