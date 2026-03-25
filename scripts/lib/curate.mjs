@@ -60,7 +60,7 @@ export function curateLaunchSet(proposals, opts = {}) {
     const parkSegs = allSegs.filter((s) => s.emplazamiento === 'parque');
     const parkFraction = allSegs.length > 0 ? parkSegs.length / allSegs.length : 0;
     // Smooth scale: no cliff edges. 17% park gets 3.4 instead of jumping from 2 to 5 at 20%.
-    const greenScore = Math.min(parkFraction * 20, 10);
+    const greenScore = Math.min(parkFraction * 20, 6);
 
     // Archetype variety — loops and spines are more interesting
     const archetypeScore = r.archetype === 'loop' ? 5 : 0;
@@ -71,16 +71,20 @@ export function curateLaunchSet(proposals, opts = {}) {
     const comunaCount = new Set(r.axes.flatMap((a) => a.comunas || [])).size;
     const corridorBonus = comunaCount >= 4 ? 6 : comunaCount >= 3 ? 3 : 0;
 
+    // Routes with lots of gaps are not real routes
+    const gapPenalty = r.infraPercent < 70 ? 5 : r.infraPercent < 80 ? 2 : 0;
+
     const interestScore =
       destinationScore * 1.5 +
       distScore * 2 +
-      safetyScore * 2 +
+      safetyScore * 3 +
       conditionScore +
       videoScore +
-      nameScore * 3 +
+      nameScore * 1.5 +
       greenScore +
       archetypeScore +
-      corridorBonus;
+      corridorBonus -
+      gapPenalty;
 
     return { ...r, interestScore, distKm };
   });

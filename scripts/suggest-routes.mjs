@@ -158,9 +158,12 @@ async function main() {
   const primarySegments = await loadSegments(source, bounds);
   console.log(`[pipeline] ${primarySegments.length} primary segments loaded`);
 
+  const validSegments = primarySegments.filter(s => !s.invalida);
+  console.log(`[pipeline] ${primarySegments.length - validSegments.length} invalid segments filtered`);
+
   // Supplement with Overpass cycling ways — the primary source (e.g. catastro)
   // may not cover all bike infrastructure. OSM often has paths the catastro missed.
-  let segments = primarySegments;
+  let segments = validSegments;
   if (source !== 'overpass' && bounds) {
     console.log('[pipeline] Fetching supplementary cycling ways from Overpass...');
     const osmWays = await fetchCyclingWays(bounds);
@@ -169,7 +172,7 @@ async function main() {
 
     // Deduplicate: skip OSM segments whose centroid is within 50m of a primary segment
     // (they're the same path, catastro version is more detailed)
-    const primaryCentroids = primarySegments.map((s) => s.centroid);
+    const primaryCentroids = validSegments.map((s) => s.centroid);
     let added = 0;
     for (const osm of osmSegments) {
       let duplicate = false;

@@ -34,6 +34,18 @@ export function assignTags(route) {
     if (seg.emplazamiento === 'mediana') tags.add('median lane');
   }
 
+  // --- Surface from OSM ---
+  const surfaces = allSegments.map(s => s.surface).filter(Boolean);
+  if (surfaces.length > 0) {
+    const dominant = surfaces.sort((a,b) => surfaces.filter(s=>s===b).length - surfaces.filter(s=>s===a).length)[0];
+    if (dominant === 'gravel' || dominant === 'unpaved' || dominant === 'dirt') tags.add('gravel');
+    if (dominant === 'cobblestone' || dominant === 'sett') tags.add('cobblestone');
+  }
+
+  // --- Lit from OSM ---
+  const litSegs = allSegments.filter(s => s.lit);
+  if (litSegs.length > allSegments.length * 0.7) tags.add('lit');
+
   // --- Route archetype ---
   if (route.archetype === 'loop') tags.add('loop');
 

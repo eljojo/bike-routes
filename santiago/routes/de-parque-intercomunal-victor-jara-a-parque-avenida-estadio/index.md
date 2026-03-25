@@ -1,38 +1,39 @@
 ---
 name: "De Parque Intercomunal Victor Jara a Parque Avenida Estadio"
 status: published
-distance_km: 4.3
+distance_km: 4.1
 tags:
   - bike path
   - park path
   - flat
-  - san joaquin
   - san miguel
+  - san joaquin
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
   - name: "De Parque Intercomunal Victor Jara a Parque Avenida Estadio"
     gpx: main.gpx
-    distance_km: 4.3
+    distance_km: 4.1
 ---
 
-4,3 kilómetros por San Joaquin y San Miguel, desde Parque Intercomunal Victor Jara hasta Parque Avenida Estadio. El 88% del recorrido tiene ciclovía.
+4,1 kilómetros por San Miguel y San Joaquin, desde Parque Intercomunal Victor Jara hasta Parque Avenida Estadio. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Parque Victor Jara** (San Joaquin y San Miguel) — 1,6 km, bidireccional/cycleway, en parque y acera, 200 cm de ancho.
+**Ciclovía Parque Víctor Jara** (San Miguel) — 1,4 km, cycleway/bidireccional, en parque, 200 cm de ancho.
 Evaluación Pedaleable: "mala".
 
-**Ciclovía Carlos Valdovinos** — 2,2 km, cycleway.
+**Carlos Valdovinos** (San Joaquin) — 2,3 km, bidireccional, en acera, 180 cm de ancho.
+Evaluación Pedaleable: "muy mala".
 
 
 ### Tramos sin infraestructura
 
-Entre **Parque Victor Jara** y **Ciclovía Carlos Valdovinos** — 509 m sin infraestructura ciclista.
+Entre **Ciclovía Parque Víctor Jara** y **Carlos Valdovinos** — 400 m sin infraestructura ciclista.
 
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
 https://youtu.be/4gz8EJoAOMs
-https://youtu.be/gJWVK1zHrIQ
+https://youtu.be/aLewv34bqYE
 

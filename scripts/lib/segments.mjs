@@ -62,6 +62,8 @@ export function parseCatastroFeature(feature, index) {
     tipo: p._tipo || null,
     emplazamiento: p._emplazamiento || null,
     ancho_cm: p._ancho_cm || null,
+    surface: null,
+    lit: false,
     clasificacion: p._eval_graduada_pedal_clasif || null,
     score: p._eval_graduada_pedal || null,
     invalida: p['_inválida'] === '1',
@@ -104,6 +106,9 @@ export function parseOverpassWay(element, index) {
     if (!Number.isNaN(w)) ancho_cm = Math.round(w * 100);
   }
 
+  const surface = tags.surface || null;
+  const lit = tags.lit === 'yes';
+
   // Infer emplazamiento from OSM tags and name — this drives the greenery
   // scoring. A cycleway through Parque Metropolitano should score as 'parque'.
   let emplazamiento = null;
@@ -126,6 +131,8 @@ export function parseOverpassWay(element, index) {
     tipo,
     emplazamiento,
     ancho_cm,
+    surface,
+    lit,
     clasificacion: null,
     score: null,
     invalida: false,

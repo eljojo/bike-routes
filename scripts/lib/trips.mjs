@@ -284,6 +284,8 @@ function buildRoute(axisChain, startAnchor, endAnchor) {
     ? Math.round((infraDistanceM / totalDistanceM) * 100)
     : 0;
 
+  if (infraPercent < 60) return null;
+
   let scoreSum = 0;
   let scoreCount = 0;
   for (const axis of axisChain) {
@@ -342,7 +344,7 @@ function buildRoute(axisChain, startAnchor, endAnchor) {
   };
 
   const infraScore = infraPercent / 10;
-  const condScore = avgConditionScore;
+  const condScore = Math.min(avgConditionScore, 10);
   const gapPenalty = computeGapPenalty(gaps);
   const anchorScoreVal = (startAnchor.anchorScore + endAnchor.anchorScore) / 4;
   const longestAxis = Math.max(...axisChain.map((a) => a.totalInfraM));
@@ -357,8 +359,14 @@ function buildRoute(axisChain, startAnchor, endAnchor) {
   }
 
   // Coherence bonus: straighter paths look better on the map and are more rideable
-  const ratio = detourRatio(axisChain, totalDistanceM);
-  const coherenceBonus = ratio < 1.5 ? 2 : ratio < 2.0 ? 1 : ratio < 2.5 ? 0 : -1;
+  let coherenceBonus;
+  if (archetype === 'loop') {
+    const shape = loopShape(axisChain, totalDistanceM);
+    coherenceBonus = shape.perimEff > 0.7 ? 2 : shape.perimEff > 0.5 ? 1 : 0;
+  } else {
+    const ratio = detourRatio(axisChain, totalDistanceM);
+    coherenceBonus = ratio < 1.5 ? 2 : ratio < 2.0 ? 1 : ratio < 2.5 ? 0 : -1;
+  }
 
   // Greenery & water bonus: routes through parks, along rivers, or with tree cover
   // are the ones people remember. A bike path through a park is infinitely better
@@ -536,12 +544,14 @@ export function stitchTrips(axes, anchors, options = {}) {
   console.log('[trips] Discovering axis chains...');
   const candidates = [];
   const chainsSeen = new Set(); // dedup chain fingerprints
+  const chainsByStart = new Map(); // startXi → chains (reused for loop search)
 
   for (const startXi of axisAnchors.keys()) {
     const startAnchors = axisAnchors.get(startXi);
     if (!startAnchors || startAnchors.length === 0) continue;
 
     const chains = discoverChains(startXi, axisConnections, axes);
+    chainsByStart.set(startXi, chains);
 
     for (const { chain } of chains) {
       // Dedup by sorted axis indices
@@ -572,23 +582,28 @@ export function stitchTrips(axes, anchors, options = {}) {
 
   console.log(`[trips] ${candidates.length} chain candidates`);
 
-  // --- Step 4: Loop routes (chains where last axis connects back to first) ---
+  // --- Step 4: Loop routes (reuse chains from step 3, distance-based closure) ---
   console.log('[trips] Searching loop routes...');
   let loopCount = 0;
   const loopsSeen = new Set();
 
-  for (const startXi of axisAnchors.keys()) {
+  for (const [startXi, chains] of chainsByStart) {
     const startAnchors = axisAnchors.get(startXi);
     if (!startAnchors || startAnchors.length === 0) continue;
 
-    const chains = discoverChains(startXi, axisConnections, axes);
     for (const { chain } of chains) {
       if (chain.length < 3) continue;
 
       const endXi = chain[chain.length - 1];
-      // Check if end connects back to start
-      const endConns = connectionsFor(endXi);
-      if (!endConns.has(startXi)) continue;
+
+      // Distance-based closure: check if the last axis's endpoint is
+      // within 2km of the first axis's startpoint
+      const endAxis = axes[endXi];
+      const startAxis = axes[startXi];
+      const endPoint = endAxis.segments[endAxis.segments.length - 1].end;
+      const startPoint = startAxis.segments[0].start;
+      const closureDist = haversineM(endPoint, startPoint);
+      if (closureDist >= 2000) continue;
 
       const fingerprint = 'loop:' + [...chain].sort().join(',');
       if (loopsSeen.has(fingerprint)) continue;
