@@ -1,49 +1,40 @@
 ---
 name: "Andres Bello a Parque Bicentenario"
 status: published
-distance_km: 12.6
+distance_km: 7.2
 tags:
   - bike path
   - park path
-  - median lane
   - flat
-  - hard
-  - independencia
-  - las condes
+  - easy
+  - family friendly
+  - santiago
   - providencia
-  - vitacura
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
   - name: "Andres Bello a Parque Bicentenario"
     gpx: main.gpx
-    distance_km: 12.6
+    distance_km: 7.2
 ---
 
-12,6 kilómetros por Independencia, Las Condes, Providencia y Vitacura, desde Plaza Brasil hasta Parque Bicentenario. El 79% del recorrido tiene ciclovía.
+7,2 kilómetros por Santiago y Providencia, desde Parque Central Alameda Bernardo O'Higgins hasta Parque Bicentenario. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**El Molino** (Independencia) — 1,4 km, bidireccional, en calzada, 180–200 cm de ancho.
-Evaluación Pedaleable: de "buena" a "regular".
+**Cardenal Jose Maria Caro-parque De Los Reyes** (Santiago) — 2,5 km, bidireccional, en parque y acera, 180–240 cm de ancho.
+Evaluación Pedaleable: de "muy mala" a "mala".
 
-**Andres Bello** (Las Condes, Providencia y Vitacura) — 8,6 km, bidireccional, en parque, acera, mediana y calzada, 180–260 cm de ancho.
-Evaluación Pedaleable: de "regular" a "muy mala".
-
-
-### Tramos sin infraestructura
-
-Entre **El Molino** y **Andres Bello** — 2,6 km sin infraestructura ciclista.
+**Andres Bello** (Providencia) — 4,7 km, bidireccional, en parque y acera, 250 cm de ancho.
+Evaluación Pedaleable: de "mala" a "muy mala".
 
 
 ### Video
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [El Molino (Independencia)](https://youtu.be/6VKBvzvXurc)
-- [Bezanilla-profesor Alberto Zañartu (Independencia)](https://youtu.be/8_8c6cdyHOU)
+- [Cardenal Jose Maria Caro-parque De Los Reyes (Santiago)](https://youtu.be/vSkOMUVDnVo)
+- [Cardenal Jose Maria Caro-parque De Los Reyes (Santiago)](https://youtu.be/4umrez2IfHU)
+- [Cardenal Jose Maria Caro-parque De Los Reyes (Santiago)](https://youtu.be/CaVO1ELVAb4)
 - [Andres Bello (Providencia)](https://youtu.be/a_WVSEEiG_w)
-- [Nueva Tajamar (Providencia)](https://youtu.be/HB5AHoz3nJA)
-- [Costanera Sur (Las Condes)](https://youtu.be/-JUyafsUmrI)
-- [Vitacura (Vitacura)](https://youtu.be/Ziv-TWM-si0)
 

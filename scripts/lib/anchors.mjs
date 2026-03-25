@@ -19,6 +19,7 @@ const ANCHOR_SCORES = {
   park: 9,
   garden: 8,
   water: 8,        // rivers, lakes — ride along them
+  bridge: 7,       // river crossings are fun landmarks
   viewpoint: 8,
   camp_site: 7,
   square: 7,

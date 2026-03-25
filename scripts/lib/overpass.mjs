@@ -113,6 +113,10 @@ export async function fetchPOIs(bounds) {
   node["tourism"="museum"]["name"](${bbox});
   way["tourism"="museum"]["name"](${bbox});
   way["natural"="water"]["name"](${bbox});
+
+  // Bridges — river crossings make rides memorable
+  way["bridge"="yes"]["name"]["highway"~"cycleway|path|footway|pedestrian"](${bbox});
+  way["man_made"="bridge"]["name"](${bbox});
 );
 out center tags;
 `.trim();
@@ -139,7 +143,8 @@ out center tags;
 
     // Determine type from first matching tag
     let type = null;
-    if (tags.leisure) type = tags.leisure;
+    if (tags.bridge || tags.man_made === 'bridge') type = 'bridge';
+    else if (tags.leisure) type = tags.leisure;
     else if (tags.tourism) type = tags.tourism;
     else if (tags.amenity) type = tags.amenity;
     else if (tags.place) type = tags.place;

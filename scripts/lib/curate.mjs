@@ -32,11 +32,11 @@ export function curateLaunchSet(proposals, opts = {}) {
     // Destination quality — parks and plazas are why people ride
     const destinationScore = (startData?.anchorScore || 0) + (endData?.anchorScore || 0);
 
-    // Distance: the sweet spot is broad — 4-20km covers everything from
-    // a Saturday spin to a proper destination ride. Don't punish long routes.
+    // Distance: the sweet spot is broad. Don't punish long routes —
+    // a 25km river corridor is exactly what experienced riders want to find.
     const distKm = r.totalDistanceM / 1000;
     const distScore =
-      distKm >= 4 && distKm <= 20 ? 5 :
+      distKm >= 5 && distKm <= 30 ? 5 :
       distKm >= 2 && distKm <= 40 ? 3 : 0;
 
     // Safety — high infrastructure coverage means fewer scary moments

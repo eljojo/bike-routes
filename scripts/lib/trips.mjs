@@ -533,6 +533,12 @@ export function stitchTrips(axes, anchors, options = {}) {
       loopsSeen.add(fingerprint);
 
       const axisChain = chain.map((xi) => axes[xi]);
+
+      // Reject loops with large gaps — a 3km gap means it's not a real loop
+      const loopGaps = computeGaps(axisChain);
+      const maxLoopGap = loopGaps.length > 0 ? Math.max(...loopGaps.map((g) => g.distanceM)) : 0;
+      if (maxLoopGap > 2000) continue;
+
       const anchor = startAnchors[0];
       candidates.push(buildRoute(axisChain, anchor, anchor));
       loopCount++;

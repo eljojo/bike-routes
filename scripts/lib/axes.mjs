@@ -175,16 +175,29 @@ export function detectAxes(segments) {
       }
     });
 
-    // --- Union-Find: chain segments whose endpoints are ≤ 200 m apart ---
+    // --- Union-Find: chain segments that connect end-to-end (≤ 200m) ---
+    // Important: reject parallel segments (both start-start AND end-end are close).
+    // Two lanes of a highway have close endpoints but run side-by-side, not in series.
     const n = sorted.length;
     const uf = makeUF(n);
 
     for (let i = 0; i < n; i++) {
       for (let j = i + 1; j < n; j++) {
         const { distance } = minEndpointDistance(sorted[i], sorted[j]);
-        if (distance <= CHAIN_THRESHOLD_M) {
-          uf.union(i, j);
-        }
+        if (distance > CHAIN_THRESHOLD_M) continue;
+
+        // Parallel check: if BOTH start-start and end-end are close,
+        // these are parallel paths, not a continuous chain.
+        const ssD = haversineM(sorted[i].start, sorted[j].start);
+        const eeD = haversineM(sorted[i].end, sorted[j].end);
+        const seD = haversineM(sorted[i].start, sorted[j].end);
+        const esD = haversineM(sorted[i].end, sorted[j].start);
+        const bothEndsClose = (ssD < CHAIN_THRESHOLD_M && eeD < CHAIN_THRESHOLD_M) ||
+                              (seD < CHAIN_THRESHOLD_M && esD < CHAIN_THRESHOLD_M);
+        // Only reject if segments are long enough that parallel matters (>200m)
+        if (bothEndsClose && sorted[i].lengthM > 200 && sorted[j].lengthM > 200) continue;
+
+        uf.union(i, j);
       }
     }
 
@@ -231,7 +244,7 @@ export function detectAxes(segments) {
     merged = false;
     for (let i = axes.length - 1; i >= 0; i--) {
       const small = axes[i];
-      if (small.totalInfraM > SMALL_AXIS_M && small.segments.length > 2) continue;
+      if (small.totalInfraM > SMALL_AXIS_M) continue;
 
       const smallBearing = axisBearing(small);
       let bestTarget = -1;
@@ -262,8 +275,22 @@ export function detectAxes(segments) {
       }
 
       if (bestTarget >= 0 && bestDist <= MERGE_ENDPOINT_M) {
-        // Check name diversity — don't create Frankenstein axes
         const target = axes[bestTarget];
+
+        // Parallel check: if start-start AND end-end of the two axes are
+        // both close, they run side-by-side (e.g. highway service roads).
+        const smallFirst = small.segments[0];
+        const smallLast = small.segments[small.segments.length - 1];
+        const bigFirst = target.segments[0];
+        const bigLast = target.segments[target.segments.length - 1];
+        const ssD = haversineM(smallFirst.centroid, bigFirst.centroid);
+        const eeD = haversineM(smallLast.centroid, bigLast.centroid);
+        const seD = haversineM(smallFirst.centroid, bigLast.centroid);
+        const esD = haversineM(smallLast.centroid, bigFirst.centroid);
+        const bothClose = (ssD < 500 && eeD < 500) || (seD < 500 && esD < 500);
+        if (bothClose && small.totalInfraM > 500 && target.totalInfraM > 500) continue;
+
+        // Check name diversity — don't create Frankenstein axes
         const existingNames = new Set(target.segments.map((s) => s.normalizedName).filter(Boolean));
         const smallNames = new Set(small.segments.map((s) => s.normalizedName).filter(Boolean));
         const combinedNames = new Set([...existingNames, ...smallNames]);
