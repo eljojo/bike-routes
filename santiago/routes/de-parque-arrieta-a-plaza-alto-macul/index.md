@@ -1,7 +1,7 @@
 ---
 name: "De Parque Arrieta a Plaza Alto Macul"
 status: published
-distance_km: 5.9
+distance_km: 6.0
 tags:
   - bike path
   - park path
@@ -14,10 +14,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Arrieta a Plaza Alto Macul"
     gpx: main.gpx
-    distance_km: 5.9
+    distance_km: 6.0
 ---
 
-5,9 kilómetros por La Florida, desde Parque Arrieta hasta Plaza Alto Macul. Prácticamente todo el recorrido tiene ciclovía.
+6,0 kilómetros por La Florida, desde Parque Arrieta hasta Plaza Alto Macul. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

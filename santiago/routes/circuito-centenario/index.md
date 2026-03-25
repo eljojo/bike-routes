@@ -1,7 +1,7 @@
 ---
 name: "Circuito Centenario"
 status: published
-distance_km: 9.0
+distance_km: 19.4
 tags:
   - bike path
   - park path
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Circuito Centenario"
     gpx: main.gpx
-    distance_km: 9.0
+    distance_km: 19.4
 ---
 
-Un circuito de 9,0 kilómetros por Santiago, San Joaquin, San Miguel y Macul, saliendo desde Parque Llano Subercaseaux. El 86% del recorrido tiene ciclovía.
+Un circuito de 19,4 kilómetros por Santiago, San Joaquin, San Miguel y Macul, saliendo desde Parque Llano Subercaseaux. El 86% del recorrido tiene ciclovía.
 
 ### Tramos
 

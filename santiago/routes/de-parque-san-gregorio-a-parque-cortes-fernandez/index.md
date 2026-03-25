@@ -1,7 +1,7 @@
 ---
 name: "De Parque San Gregorio a Parque Cortés-Fernández"
 status: published
-distance_km: 5.3
+distance_km: 5.6
 tags:
   - bike path
   - protected lane
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque San Gregorio a Parque Cortés-Fernández"
     gpx: main.gpx
-    distance_km: 5.3
+    distance_km: 5.6
 ---
 
-5,3 kilómetros por La Pintana, Puente Alto y La Granja, desde Parque San Gregorio hasta Parque Cortés-Fernández. El 83% del recorrido tiene ciclovía.
+5,6 kilómetros por La Pintana, Puente Alto y La Granja, desde Parque San Gregorio hasta Parque Cortés-Fernández. El 83% del recorrido tiene ciclovía.
 
 ### Tramos
 

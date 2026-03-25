@@ -1,7 +1,7 @@
 ---
 name: "Circuito Avenida Costanera Sur"
 status: published
-distance_km: 5.7
+distance_km: 12.8
 tags:
   - bike path
   - protected lane
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Circuito Avenida Costanera Sur"
     gpx: main.gpx
-    distance_km: 5.7
+    distance_km: 12.8
 ---
 
-Un circuito de 5,7 kilómetros por Santiago, Quinta Normal y Independencia, saliendo desde Plaza Brasil. El 84% del recorrido tiene ciclovía.
+Un circuito de 12,8 kilómetros por Santiago, Quinta Normal y Independencia, saliendo desde Plaza Brasil. El 84% del recorrido tiene ciclovía.
 
 ### Tramos
 

@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Ismael Pardo a Plaza Brasilia"
 status: published
-distance_km: 5.4
+distance_km: 5.8
 tags:
   - bike path
   - flat
@@ -12,10 +12,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Ismael Pardo a Plaza Brasilia"
     gpx: main.gpx
-    distance_km: 5.4
+    distance_km: 5.8
 ---
 
-5,4 kilómetros por Lo Espejo y Pedro Aguirre Cerda, desde Plaza Ismael Pardo hasta Plaza Brasilia. El 88% del recorrido tiene ciclovía.
+5,8 kilómetros por Lo Espejo y Pedro Aguirre Cerda, desde Plaza Ismael Pardo hasta Plaza Brasilia. El 88% del recorrido tiene ciclovía.
 
 ### Tramos
 

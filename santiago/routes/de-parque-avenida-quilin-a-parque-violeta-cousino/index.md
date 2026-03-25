@@ -1,7 +1,7 @@
 ---
 name: "De Parque Avenida Quilin a Parque Violeta Cousiño"
 status: published
-distance_km: 4.3
+distance_km: 4.0
 tags:
   - bike path
   - gravel
@@ -13,10 +13,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Avenida Quilin a Parque Violeta Cousiño"
     gpx: main.gpx
-    distance_km: 4.3
+    distance_km: 4.0
 ---
 
-4,3 kilómetros por Penalolen, desde Parque Avenida Quilin hasta Parque Violeta Cousiño. El 76% del recorrido tiene ciclovía.
+4,0 kilómetros por Penalolen, desde Parque Avenida Quilin hasta Parque Violeta Cousiño. El 76% del recorrido tiene ciclovía.
 
 ### Tramos
 

@@ -1,7 +1,7 @@
 ---
 name: "De Plaza San Luis a Plaza Bicentenario"
 status: published
-distance_km: 4.5
+distance_km: 4.9
 tags:
   - bike path
   - flat
@@ -11,10 +11,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza San Luis a Plaza Bicentenario"
     gpx: main.gpx
-    distance_km: 4.5
+    distance_km: 4.9
 ---
 
-4,5 kilómetros por Independencia, desde Plaza San Luis hasta Plaza Bicentenario. Prácticamente todo el recorrido tiene ciclovía.
+4,9 kilómetros por Independencia, desde Plaza San Luis hasta Plaza Bicentenario. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

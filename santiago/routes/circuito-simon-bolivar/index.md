@@ -1,7 +1,7 @@
 ---
 name: "Circuito Simon Bolivar"
 status: published
-distance_km: 9.1
+distance_km: 16.1
 tags:
   - bike path
   - protected lane
@@ -15,10 +15,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Circuito Simon Bolivar"
     gpx: main.gpx
-    distance_km: 9.1
+    distance_km: 16.1
 ---
 
-Un circuito de 9,1 kilómetros por Ñuñoa y La Reina, saliendo desde Parque Casa de la Cultura. El 81% del recorrido tiene ciclovía.
+Un circuito de 16,1 kilómetros por Ñuñoa y La Reina, saliendo desde Parque Casa de la Cultura. El 81% del recorrido tiene ciclovía.
 
 ### Tramos
 

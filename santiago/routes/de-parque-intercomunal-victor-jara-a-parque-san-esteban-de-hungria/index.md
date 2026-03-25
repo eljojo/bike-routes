@@ -1,7 +1,7 @@
 ---
 name: "De Parque Intercomunal Victor Jara a Parque San Esteban De Hungría"
 status: published
-distance_km: 4.4
+distance_km: 5.8
 tags:
   - bike path
   - protected lane
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Intercomunal Victor Jara a Parque San Esteban De Hungría"
     gpx: main.gpx
-    distance_km: 4.4
+    distance_km: 5.8
 ---
 
-4,4 kilómetros por Macul y Ñuñoa, desde Parque Intercomunal Victor Jara hasta Parque San Esteban De Hungría. Prácticamente todo el recorrido tiene ciclovía.
+5,8 kilómetros por Macul y Ñuñoa, desde Parque Intercomunal Victor Jara hasta Parque San Esteban De Hungría. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

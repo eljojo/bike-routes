@@ -1,7 +1,7 @@
 ---
 name: "Circuito Roma-dorsal"
 status: published
-distance_km: 12.4
+distance_km: 16.6
 tags:
   - bike path
   - loop
@@ -14,10 +14,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Circuito Roma-dorsal"
     gpx: main.gpx
-    distance_km: 12.4
+    distance_km: 16.6
 ---
 
-Un circuito de 12,4 kilómetros por Huechuraba, Recoleta y Conchali, saliendo desde Parque del Recuerdo. El 85% del recorrido tiene ciclovía.
+Un circuito de 16,6 kilómetros por Huechuraba, Recoleta y Conchali, saliendo desde Parque del Recuerdo. El 85% del recorrido tiene ciclovía.
 
 ### Tramos
 

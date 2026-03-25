@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Calama a Parque Canal San Carlos"
 status: published
-distance_km: 4.8
+distance_km: 4.9
 tags:
   - bike path
   - protected lane
@@ -12,10 +12,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Calama a Parque Canal San Carlos"
     gpx: main.gpx
-    distance_km: 4.8
+    distance_km: 4.9
 ---
 
-4,8 kilómetros por Ñuñoa, desde Plaza Calama hasta Parque Canal San Carlos. El 89% del recorrido tiene ciclovía.
+4,9 kilómetros por Ñuñoa, desde Plaza Calama hasta Parque Canal San Carlos. El 89% del recorrido tiene ciclovía.
 
 ### Tramos
 

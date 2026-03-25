@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Egaña a Plaza Chile-Perú"
 status: published
-distance_km: 4.3
+distance_km: 4.5
 tags:
   - bike path
   - flat
@@ -12,10 +12,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Egaña a Plaza Chile-Perú"
     gpx: main.gpx
-    distance_km: 4.3
+    distance_km: 4.5
 ---
 
-4,3 kilómetros por Ñuñoa y La Reina, desde Plaza Egaña hasta Plaza Chile-Perú. El 84% del recorrido tiene ciclovía.
+4,5 kilómetros por Ñuñoa y La Reina, desde Plaza Egaña hasta Plaza Chile-Perú. El 84% del recorrido tiene ciclovía.
 
 ### Tramos
 

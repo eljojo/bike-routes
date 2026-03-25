@@ -1,7 +1,7 @@
 ---
 name: "De Parque Araucano a Parque Bicentenario"
 status: published
-distance_km: 2.8
+distance_km: 3.0
 tags:
   - bike path
   - protected lane
@@ -13,10 +13,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Araucano a Parque Bicentenario"
     gpx: main.gpx
-    distance_km: 2.8
+    distance_km: 3.0
 ---
 
-2,8 kilómetros por Las Condes y Vitacura, desde Parque Araucano hasta Parque Bicentenario. El 82% del recorrido tiene ciclovía.
+3,0 kilómetros por Las Condes y Vitacura, desde Parque Araucano hasta Parque Bicentenario. El 82% del recorrido tiene ciclovía.
 
 ### Tramos
 

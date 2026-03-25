@@ -1,7 +1,7 @@
 ---
 name: "Sendero Las Perdices"
 status: published
-distance_km: 6.3
+distance_km: 6.8
 tags:
   - bike path
   - park path
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Las Perdices"
     gpx: main.gpx
-    distance_km: 6.3
+    distance_km: 6.8
 ---
 
-6,3 kilómetros por La Reina y Penalolen, desde Parque Mahuida hasta Plaza Quebrada de Vitor. Prácticamente todo el recorrido tiene ciclovía.
+6,8 kilómetros por La Reina y Penalolen, desde Parque Mahuida hasta Plaza Quebrada de Vitor. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

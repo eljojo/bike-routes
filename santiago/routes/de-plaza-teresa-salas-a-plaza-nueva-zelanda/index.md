@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Teresa Salas a Plaza Nueva Zelanda"
 status: published
-distance_km: 5.6
+distance_km: 6.6
 tags:
   - bike path
   - park path
@@ -15,10 +15,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Teresa Salas a Plaza Nueva Zelanda"
     gpx: main.gpx
-    distance_km: 5.6
+    distance_km: 6.6
 ---
 
-5,6 kilómetros por Providencia y Recoleta, desde Plaza Teresa Salas hasta Plaza Nueva Zelanda. Prácticamente todo el recorrido tiene ciclovía.
+6,6 kilómetros por Providencia y Recoleta, desde Plaza Teresa Salas hasta Plaza Nueva Zelanda. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

@@ -1,7 +1,7 @@
 ---
 name: "De Puente Los Álamos a Plaza El Salto"
 status: published
-distance_km: 2.7
+distance_km: 3.5
 tags:
   - bike path
   - flat
@@ -11,10 +11,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Puente Los Álamos a Plaza El Salto"
     gpx: main.gpx
-    distance_km: 2.7
+    distance_km: 3.5
 ---
 
-2,7 kilómetros por Huechuraba, desde Puente Los Álamos hasta Plaza El Salto. El 75% del recorrido tiene ciclovía.
+3,5 kilómetros por Huechuraba, desde Puente Los Álamos hasta Plaza El Salto. El 75% del recorrido tiene ciclovía.
 
 ### Tramos
 

@@ -1,7 +1,7 @@
 ---
 name: "Circuito Ciclovía Píno Nono"
 status: published
-distance_km: 15.2
+distance_km: 23.4
 tags:
   - bike path
   - protected lane
@@ -17,10 +17,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Circuito Ciclovía Píno Nono"
     gpx: main.gpx
-    distance_km: 15.2
+    distance_km: 23.4
 ---
 
-Un circuito de 15,2 kilómetros por Las Condes, Vitacura, Providencia y Recoleta, saliendo desde Plaza Jaime Guzmán Errázuriz. El 85% del recorrido tiene ciclovía.
+Un circuito de 23,4 kilómetros por Las Condes, Vitacura, Providencia y Recoleta, saliendo desde Plaza Jaime Guzmán Errázuriz. El 85% del recorrido tiene ciclovía.
 
 ### Tramos
 

@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Loreto Cousiño a Parque Gómez Rojas"
 status: published
-distance_km: 4.5
+distance_km: 5.6
 tags:
   - bike path
   - protected lane
@@ -14,10 +14,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Loreto Cousiño a Parque Gómez Rojas"
     gpx: main.gpx
-    distance_km: 4.5
+    distance_km: 5.6
 ---
 
-4,5 kilómetros por Providencia, Recoleta y Santiago, desde Plaza Loreto Cousiño hasta Parque Gómez Rojas. El 88% del recorrido tiene ciclovía.
+5,6 kilómetros por Providencia, Recoleta y Santiago, desde Plaza Loreto Cousiño hasta Parque Gómez Rojas. El 88% del recorrido tiene ciclovía.
 
 ### Tramos
 

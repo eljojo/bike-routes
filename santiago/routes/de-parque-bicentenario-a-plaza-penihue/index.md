@@ -1,7 +1,7 @@
 ---
 name: "De Parque Bicentenario a Plaza Peñihue"
 status: published
-distance_km: 5.9
+distance_km: 9.7
 tags:
   - bike path
   - protected lane
@@ -12,10 +12,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Bicentenario a Plaza Peñihue"
     gpx: main.gpx
-    distance_km: 5.9
+    distance_km: 9.7
 ---
 
-5,9 kilómetros por Vitacura, desde Parque Bicentenario hasta Plaza Peñihue. El 78% del recorrido tiene ciclovía.
+9,7 kilómetros por Vitacura, desde Parque Bicentenario hasta Plaza Peñihue. El 78% del recorrido tiene ciclovía.
 
 ### Tramos
 

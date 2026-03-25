@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Tezcuco a Parque Los Dominicos"
 status: published
-distance_km: 2.3
+distance_km: 3.8
 tags:
   - bike path
   - flat
@@ -10,10 +10,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Tezcuco a Parque Los Dominicos"
     gpx: main.gpx
-    distance_km: 2.3
+    distance_km: 3.8
 ---
 
-2,3 kilómetros por , desde Plaza Tezcuco hasta Parque Los Dominicos. Prácticamente todo el recorrido tiene ciclovía.
+3,8 kilómetros por , desde Plaza Tezcuco hasta Parque Los Dominicos. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

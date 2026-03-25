@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Calama a Plaza Egaña"
 status: published
-distance_km: 4.6
+distance_km: 4.8
 tags:
   - bike path
   - median lane
@@ -14,10 +14,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Calama a Plaza Egaña"
     gpx: main.gpx
-    distance_km: 4.6
+    distance_km: 4.8
 ---
 
-4,6 kilómetros por Penalolen, desde Plaza Calama hasta Plaza Egaña. Prácticamente todo el recorrido tiene ciclovía.
+4,8 kilómetros por Penalolen, desde Plaza Calama hasta Plaza Egaña. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

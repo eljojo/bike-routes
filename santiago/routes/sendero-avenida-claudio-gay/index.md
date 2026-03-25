@@ -1,7 +1,7 @@
 ---
 name: "Sendero Avenida Claudio Gay"
 status: published
-distance_km: 2.8
+distance_km: 3.0
 tags:
   - bike path
   - park path
@@ -12,10 +12,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Avenida Claudio Gay"
     gpx: main.gpx
-    distance_km: 2.8
+    distance_km: 3.0
 ---
 
-2,8 kilómetros por , desde Mirador Atardecer hasta Mirador La Pirámide. Prácticamente todo el recorrido tiene ciclovía.
+3,0 kilómetros por , desde Mirador Atardecer hasta Mirador La Pirámide. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

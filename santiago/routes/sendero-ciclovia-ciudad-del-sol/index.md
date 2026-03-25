@@ -1,7 +1,7 @@
 ---
 name: "Sendero Ciclovía Ciudad Del Sol"
 status: published
-distance_km: 2.7
+distance_km: 4.8
 tags:
   - bike path
   - park path
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Ciclovía Ciudad Del Sol"
     gpx: main.gpx
-    distance_km: 2.7
+    distance_km: 4.8
 ---
 
-2,7 kilómetros por Puente Alto, desde Plaza Claudio Gay hasta Plaza Cristóbal Colón. Prácticamente todo el recorrido tiene ciclovía.
+4,8 kilómetros por Puente Alto, desde Plaza Claudio Gay hasta Plaza Cristóbal Colón. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

@@ -1,7 +1,7 @@
 ---
 name: "Sendero Parque Intercomunal Victor Jara"
 status: published
-distance_km: 2.9
+distance_km: 3.9
 tags:
   - bike path
   - park path
@@ -14,10 +14,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Parque Intercomunal Victor Jara"
     gpx: main.gpx
-    distance_km: 2.9
+    distance_km: 3.9
 ---
 
-2,9 kilómetros por La Granja y San Joaquin, desde Parque Intercomunal Victor Jara hasta Parque Llano Subercaseaux. Prácticamente todo el recorrido tiene ciclovía.
+3,9 kilómetros por La Granja y San Joaquin, desde Parque Intercomunal Victor Jara hasta Parque Llano Subercaseaux. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

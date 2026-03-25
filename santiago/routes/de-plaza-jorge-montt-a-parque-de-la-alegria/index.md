@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Jorge Montt a Parque de la Alegría"
 status: published
-distance_km: 3.1
+distance_km: 4.1
 tags:
   - bike path
   - flat
@@ -11,10 +11,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Jorge Montt a Parque de la Alegría"
     gpx: main.gpx
-    distance_km: 3.1
+    distance_km: 4.1
 ---
 
-3,1 kilómetros por Cerro Navia, desde Plaza Jorge Montt hasta Parque de la Alegría. El 71% del recorrido tiene ciclovía.
+4,1 kilómetros por Cerro Navia, desde Plaza Jorge Montt hasta Parque de la Alegría. El 71% del recorrido tiene ciclovía.
 
 ### Tramos
 

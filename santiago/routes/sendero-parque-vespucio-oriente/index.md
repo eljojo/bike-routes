@@ -1,7 +1,7 @@
 ---
 name: "Sendero Parque Vespucio Oriente"
 status: published
-distance_km: 4.4
+distance_km: 4.6
 tags:
   - bike path
   - park path
@@ -12,10 +12,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Parque Vespucio Oriente"
     gpx: main.gpx
-    distance_km: 4.4
+    distance_km: 4.6
 ---
 
-4,4 kilómetros por , desde Parque Vespucio Oriente hasta Mirador La Pirámide. El 85% del recorrido tiene ciclovía.
+4,6 kilómetros por , desde Parque Vespucio Oriente hasta Mirador La Pirámide. El 85% del recorrido tiene ciclovía.
 
 ### Tramos
 

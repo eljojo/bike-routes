@@ -1,7 +1,7 @@
 ---
 name: "Sendero Ciclovía Pedro León Gallo"
 status: published
-distance_km: 3.2
+distance_km: 6.0
 tags:
   - bike path
   - park path
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Ciclovía Pedro León Gallo"
     gpx: main.gpx
-    distance_km: 3.2
+    distance_km: 6.0
 ---
 
-3,2 kilómetros por Las Condes y Providencia, desde Plaza Patricio Aylwin Azócar hasta Plaza Juan Pablo II. Prácticamente todo el recorrido tiene ciclovía.
+6,0 kilómetros por Las Condes y Providencia, desde Plaza Patricio Aylwin Azócar hasta Plaza Juan Pablo II. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

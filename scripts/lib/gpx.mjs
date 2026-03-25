@@ -138,7 +138,7 @@ function extractCoords(geometry) {
  * @param {object} route - route object from stitchTrips()
  * @param {object} [opts] - options
  * @param {object} [opts.roadGraph] - road graph from buildRoadGraph(), for gap routing
- * @returns {string} valid GPX XML
+ * @returns {{ gpx: string, traceDistanceM: number }}
  */
 export async function buildGPX(route, opts = {}) {
   const useGoogleRouting = !process.argv.includes('--no-google-routing') && !!process.env.GOOGLE_DIRECTIONS_API_KEY;
@@ -227,12 +227,37 @@ export async function buildGPX(route, opts = {}) {
     }
   }
 
+  // Densify sparse segments: OSM cycling ways often have very few nodes
+  // for straight roads (18 nodes for 3km). Insert intermediate points
+  // every ~50m so the trace looks smooth on GPS devices and map renderers.
+  const densified = [allCoords[0]];
+  for (let i = 1; i < allCoords.length; i++) {
+    const gap = haversineM(allCoords[i - 1], allCoords[i]);
+    if (gap > 80) {
+      const steps = Math.ceil(gap / 50);
+      for (let s = 1; s < steps; s++) {
+        const t = s / steps;
+        densified.push([
+          allCoords[i - 1][0] + (allCoords[i][0] - allCoords[i - 1][0]) * t,
+          allCoords[i - 1][1] + (allCoords[i][1] - allCoords[i - 1][1]) * t,
+        ]);
+      }
+    }
+    densified.push(allCoords[i]);
+  }
+
+  // Compute actual trace distance (what the cyclist rides)
+  let traceDistanceM = 0;
+  for (let i = 1; i < densified.length; i++) {
+    traceDistanceM += haversineM(densified[i - 1], densified[i]);
+  }
+
   // Enrich with elevation from Open-Meteo
-  const enriched = await enrichWithElevation(allCoords);
+  const enriched = await enrichWithElevation(densified);
 
   const trkpts = enriched.map((c) => formatTrkpt(c));
 
-  return `<?xml version="1.0" encoding="UTF-8"?>
+  const gpx = `<?xml version="1.0" encoding="UTF-8"?>
 <gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1" creator="whereto.bike">
   <metadata><name>${name}</name></metadata>
   <trk>
@@ -242,6 +267,8 @@ ${trkpts.join('\n')}
     </trkseg>
   </trk>
 </gpx>`;
+
+  return { gpx, traceDistanceM: Math.round(traceDistanceM) };
 }
 
 /**

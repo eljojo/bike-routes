@@ -1,7 +1,7 @@
 ---
 name: "Circuito Plaza Los Sauces"
 status: published
-distance_km: 12.1
+distance_km: 15.1
 tags:
   - bike path
   - lit
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Circuito Plaza Los Sauces"
     gpx: main.gpx
-    distance_km: 12.1
+    distance_km: 15.1
 ---
 
-Un circuito de 12,1 kilómetros por El Bosque, La Cisterna, San Ramon y La Pintana, saliendo desde Plaza Los Sauces. El 89% del recorrido tiene ciclovía.
+Un circuito de 15,1 kilómetros por El Bosque, La Cisterna, San Ramon y La Pintana, saliendo desde Plaza Los Sauces. El 89% del recorrido tiene ciclovía.
 
 ### Tramos
 

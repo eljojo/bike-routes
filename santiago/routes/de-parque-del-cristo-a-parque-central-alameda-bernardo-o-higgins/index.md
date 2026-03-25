@@ -1,7 +1,7 @@
 ---
 name: "De Parque del Cristo a Parque Central Alameda Bernardo O'Higgins"
 status: published
-distance_km: 2.9
+distance_km: 3.2
 tags:
   - bike path
   - park path
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque del Cristo a Parque Central Alameda Bernardo O'Higgins"
     gpx: main.gpx
-    distance_km: 2.9
+    distance_km: 3.2
 ---
 
-2,9 kilómetros por Estacion Central y Pudahuel, desde Parque del Cristo hasta Parque Central Alameda Bernardo O'Higgins. Prácticamente todo el recorrido tiene ciclovía.
+3,2 kilómetros por Estacion Central y Pudahuel, desde Parque del Cristo hasta Parque Central Alameda Bernardo O'Higgins. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Cívica de La Florida a Biblioteca Municipal de La Florida"
 status: published
-distance_km: 4.8
+distance_km: 4.9
 tags:
   - bike path
   - flat
@@ -13,10 +13,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Cívica de La Florida a Biblioteca Municipal de La Florida"
     gpx: main.gpx
-    distance_km: 4.8
+    distance_km: 4.9
 ---
 
-4,8 kilómetros por La Florida, desde Plaza Cívica de La Florida hasta Biblioteca Municipal de La Florida. Prácticamente todo el recorrido tiene ciclovía.
+4,9 kilómetros por La Florida, desde Plaza Cívica de La Florida hasta Biblioteca Municipal de La Florida. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

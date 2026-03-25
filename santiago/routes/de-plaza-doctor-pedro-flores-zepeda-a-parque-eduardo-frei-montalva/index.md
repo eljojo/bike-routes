@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Doctor Pedro Flores Zepeda a Parque Eduardo Frei Montalva"
 status: published
-distance_km: 2.6
+distance_km: 2.8
 tags:
   - bike path
   - park path
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Doctor Pedro Flores Zepeda a Parque Eduardo Frei Montalva"
     gpx: main.gpx
-    distance_km: 2.6
+    distance_km: 2.8
 ---
 
-2,6 kilómetros por La Florida, Macul y San Joaquin, desde Plaza Doctor Pedro Flores Zepeda hasta Parque Eduardo Frei Montalva. Prácticamente todo el recorrido tiene ciclovía.
+2,8 kilómetros por La Florida, Macul y San Joaquin, desde Plaza Doctor Pedro Flores Zepeda hasta Parque Eduardo Frei Montalva. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

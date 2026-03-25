@@ -119,11 +119,17 @@ for (let i = 0; i < routes.length; i++) {
   const routeDir = path.join(outputDir, 'routes', slug);
   fs.mkdirSync(routeDir, { recursive: true });
 
-  fs.writeFileSync(path.join(routeDir, 'main.gpx'), await buildGPX(route, { roadGraph }));
+  const { gpx, traceDistanceM } = await buildGPX(route, { roadGraph });
+  // Use actual trace distance (includes road-routed gaps) instead of
+  // infra+crow-flies which undercounts what the cyclist actually rides.
+  route.totalDistanceM = traceDistanceM;
+
+  fs.writeFileSync(path.join(routeDir, 'main.gpx'), gpx);
   fs.writeFileSync(path.join(routeDir, 'index.md'), buildMarkdown(route));
   fs.writeFileSync(path.join(routeDir, 'media.yml'), '[]\n');
 
-  console.log(`  Route ${i + 1}/${routes.length}: ${slug} (${distKm} km)`);
+  const actualKm = (traceDistanceM / 1000).toFixed(1);
+  console.log(`  Route ${i + 1}/${routes.length}: ${slug} (${actualKm} km)`);
 }
 
 // ---------------------------------------------------------------------------

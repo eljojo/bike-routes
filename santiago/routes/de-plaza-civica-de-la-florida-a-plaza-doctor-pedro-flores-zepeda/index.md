@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Cívica de La Florida a Plaza Doctor Pedro Flores Zepeda"
 status: published
-distance_km: 3.2
+distance_km: 5.3
 tags:
   - bike path
   - flat
@@ -12,10 +12,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Cívica de La Florida a Plaza Doctor Pedro Flores Zepeda"
     gpx: main.gpx
-    distance_km: 3.2
+    distance_km: 5.3
 ---
 
-3,2 kilómetros por La Florida y Macul, desde Plaza Cívica de La Florida hasta Plaza Doctor Pedro Flores Zepeda. El 73% del recorrido tiene ciclovía.
+5,3 kilómetros por La Florida y Macul, desde Plaza Cívica de La Florida hasta Plaza Doctor Pedro Flores Zepeda. El 73% del recorrido tiene ciclovía.
 
 ### Tramos
 

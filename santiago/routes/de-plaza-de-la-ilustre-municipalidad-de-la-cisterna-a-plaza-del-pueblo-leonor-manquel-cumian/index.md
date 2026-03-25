@@ -1,7 +1,7 @@
 ---
 name: "De Plaza de la Ilustre Municipalidad de la Cisterna a Plaza del Pueblo Leonor Manquel Cumian"
 status: published
-distance_km: 2.1
+distance_km: 2.6
 tags:
   - bike path
   - lit
@@ -15,10 +15,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza de la Ilustre Municipalidad de la Cisterna a Plaza del Pueblo Leonor Manquel Cumian"
     gpx: main.gpx
-    distance_km: 2.1
+    distance_km: 2.6
 ---
 
-2,1 kilómetros por La Cisterna y San Ramon, desde Plaza de la Ilustre Municipalidad de la Cisterna hasta Plaza del Pueblo Leonor Manquel Cumian. Prácticamente todo el recorrido tiene ciclovía.
+2,6 kilómetros por La Cisterna y San Ramon, desde Plaza de la Ilustre Municipalidad de la Cisterna hasta Plaza del Pueblo Leonor Manquel Cumian. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

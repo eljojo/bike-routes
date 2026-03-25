@@ -1,7 +1,7 @@
 ---
 name: "De Parque Derechos Humanos a Plaza Los Sauces"
 status: published
-distance_km: 2.9
+distance_km: 4.4
 tags:
   - bike path
   - flat
@@ -13,10 +13,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Derechos Humanos a Plaza Los Sauces"
     gpx: main.gpx
-    distance_km: 2.9
+    distance_km: 4.4
 ---
 
-2,9 kilómetros por El Bosque, desde Parque Derechos Humanos hasta Plaza Los Sauces. Prácticamente todo el recorrido tiene ciclovía.
+4,4 kilómetros por El Bosque, desde Parque Derechos Humanos hasta Plaza Los Sauces. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

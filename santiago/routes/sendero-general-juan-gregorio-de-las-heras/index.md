@@ -1,7 +1,7 @@
 ---
 name: "Sendero General Juan Gregorio de Las Heras"
 status: published
-distance_km: 2.5
+distance_km: 2.6
 tags:
   - bike path
   - park path
@@ -16,10 +16,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero General Juan Gregorio de Las Heras"
     gpx: main.gpx
-    distance_km: 2.5
+    distance_km: 2.6
 ---
 
-2,5 kilómetros por Vitacura, desde General Juan Gregorio de Las Heras hasta Plaza de la Sustentabilidad. Prácticamente todo el recorrido tiene ciclovía.
+2,6 kilómetros por Vitacura, desde General Juan Gregorio de Las Heras hasta Plaza de la Sustentabilidad. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

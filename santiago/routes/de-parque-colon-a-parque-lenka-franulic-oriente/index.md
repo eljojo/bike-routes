@@ -1,7 +1,7 @@
 ---
 name: "De Parque Colón a Parque Lenka Franulic Oriente"
 status: published
-distance_km: 5.6
+distance_km: 5.7
 tags:
   - bike path
   - median lane
@@ -12,10 +12,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Colón a Parque Lenka Franulic Oriente"
     gpx: main.gpx
-    distance_km: 5.6
+    distance_km: 5.7
 ---
 
-5,6 kilómetros por San Bernardo, desde Parque Colón hasta Parque Lenka Franulic Oriente. Prácticamente todo el recorrido tiene ciclovía.
+5,7 kilómetros por San Bernardo, desde Parque Colón hasta Parque Lenka Franulic Oriente. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
