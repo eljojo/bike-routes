@@ -80,57 +80,72 @@ function totalDistance(pts) {
 
 describe('chainBikePaths', () => {
   // ---------------------------------------------------------------
-  // Lastarria → Ñuñoa: the reference route
+  // Emporio La Rosa → Plaza Ñuñoa
   //
-  // Waypoints: Parque Forestal → Costanera Sur (east) → Sánchez Fontecilla (south) → Plaza Ñuñoa
+  // The real ride: start at Emporio La Rosa on Merced, ride east
+  // along Andrés Bello (parallel to the Mapocho), turn south on
+  // Av Suecia, arrive at Plaza Ñuñoa.
   //
-  // Costanera Sur is a 10km east-west path along the river.
-  // Sánchez Fontecilla is a 4km north-south path.
-  // They intersect near -70.575, -33.43.
+  // Waypoints:
+  //   { name: "Emporio La Rosa (Merced)", lat: -33.4369, lng: -70.6407 }
+  //   ciclovia-andres-bello (bike path, ~2.7km east-west)
+  //   avenida-suecia (bike path, ~3km north-south)
+  //   { name: "Plaza Ñuñoa", lat: -33.4527, lng: -70.5972 }
   //
-  // The route should ONLY use:
-  //   - Costanera Sur from Parque Forestal (-70.64) EAST to the junction (-70.575)
-  //   - Sánchez Fontecilla from the junction SOUTH to Plaza Ñuñoa (-33.46)
+  // The system should:
+  //   1. Find Andrés Bello near Emporio La Rosa
+  //   2. Ride it EAST (toward Suecia, not west)
+  //   3. At the Bello/Suecia junction, switch to Suecia
+  //   4. Ride Suecia SOUTH toward Plaza Ñuñoa
   //
-  // It should NOT ride all 10km of Costanera Sur — just the ~5.5km
-  // from Forestal to the junction.
+  // Only use the sections of each bike path between the anchors.
+  // Not the full paths.
   // ---------------------------------------------------------------
-  it('Lastarria→Ñuñoa: uses only the relevant section of each bike path', () => {
-    // Costanera Sur: 10km east-west path (-70.69 to -70.55)
-    const costanera = makeLinearPath(-70.69, -70.55, -33.425, 8);
+  it('Emporio La Rosa → Plaza Ñuñoa via Andrés Bello + Suecia', () => {
+    // Andrés Bello: east-west along the river
+    // From -70.6260 to -70.6090, at lat -33.4200
+    const andresBello = makeLinearPath(-70.6260, -70.6090, -33.4200, 5);
 
-    // Sánchez Fontecilla: 4km north-south path, intersects Costanera near -70.575
-    const sanchez = makeNSPath(-70.575, -33.425, -33.465, 5);
+    // Suecia: north-south, meets Andrés Bello at its east end
+    // From lat -33.4190 (north, near Bello junction) to -33.4450 (south)
+    const suecia = makeNSPath(-70.6094, -33.4190, -33.4450, 5);
 
-    // Start point: Parque Forestal at -70.64 (on Costanera, ~4km from west end)
-    // End point: Plaza Ñuñoa at -33.46 (on Sánchez Fontecilla, near south end)
-    const startPoint = [-70.64, -33.425];
-    const endPoint = [-70.575, -33.46];
+    // Waypoints: place → bike path → bike path → place
+    const waypoints = [
+      { name: 'Emporio La Rosa (Merced)', lng: -70.6407, lat: -33.4369 },
+      andresBello,  // bike path ways
+      suecia,       // bike path ways
+      { name: 'Plaza Ñuñoa', lng: -70.5972, lat: -33.4527 },
+    ];
 
-    // Chain: the system gets [costanera, sanchez] as waypoints.
-    // It should figure out to ride Costanera EAST from -70.64 to -70.575,
-    // then Sánchez Fontecilla SOUTH from -33.425 to -33.46.
-    const chained = chainBikePaths([costanera, sanchez]);
+    const chained = chainBikePaths(waypoints);
     const pts = renderTrace(chained);
 
-    // The ride should be ~5.5km (Costanera section) + ~4km (Sánchez) ≈ 9.5km
-    // NOT 10km + 4km = 14km (full paths)
-    // And definitely not 20km+ (full paths with backtracking)
+    // The ride:
+    //   Emporio → nearest point on Bello (~1.5km walk/unlisted road)
+    //   Bello east section (~1.7km, from near Emporio to Suecia junction)
+    //   Suecia south (~2.9km, from junction to near Plaza Ñuñoa)
+    //   Total bike path distance: ~4.6km
+    //
+    // Should NOT ride ALL of Andrés Bello (2.7km) — only from the
+    // Emporio-nearest point eastward to Suecia.
     const dist = totalDistance(pts);
-    expect(dist).toBeLessThan(12000); // not inflated
-    expect(dist).toBeGreaterThan(7000); // covers the actual ride
+    expect(dist).toBeLessThan(8000);   // not inflated by full paths
+    expect(dist).toBeGreaterThan(3000); // covers the actual ride
 
-    expect(maxJump(pts)).toBeLessThan(1500); // no huge gaps
-    expect(countReversals(pts)).toBe(0); // no backtracking
+    expect(maxJump(pts)).toBeLessThan(2000); // no huge gaps
+    expect(countReversals(pts)).toBe(0);     // no backtracking
   });
 
   // ---------------------------------------------------------------
   // Las Perdices: two end-to-end north-south paths
+  //
+  // No place waypoints — just two bike paths that connect at a
+  // shared junction. The system should use all of both paths,
+  // oriented continuously south.
   // ---------------------------------------------------------------
   it('Las Perdices: two consecutive paths without reversals', () => {
-    // Path 1: -33.44 to -33.46 (north to south)
     const path1 = makeNSPath(-70.533, -33.44, -33.461, 3);
-    // Path 2: -33.461 to -33.51 (continuing south)
     const path2 = makeNSPath(-70.534, -33.461, -33.51, 5);
 
     const chained = chainBikePaths([path1, path2]);
@@ -139,7 +154,6 @@ describe('chainBikePaths', () => {
     expect(maxJump(pts)).toBeLessThan(1500);
     expect(countReversals(pts)).toBe(0);
 
-    // Should cover full extent: ~2.3km + ~5.4km ≈ 7.7km
     const dist = totalDistance(pts);
     expect(dist).toBeGreaterThan(5000);
     expect(dist).toBeLessThan(12000);
@@ -147,13 +161,14 @@ describe('chainBikePaths', () => {
 
   // ---------------------------------------------------------------
   // Gran Mapocho: three overlapping east-west river paths
+  //
+  // No place waypoints — three bike paths that overlap along the
+  // same corridor. The system should produce one clean east-west
+  // trace, deduplicating the overlap.
   // ---------------------------------------------------------------
   it('Gran Mapocho: overlapping river paths produce a single clean corridor', () => {
-    // Mapocho 42k: full corridor (-70.76 to -70.57)
     const mapocho = makeLinearPath(-70.76, -70.57, -33.42, 10);
-    // Andrés Bello: short middle section (-70.63 to -70.61)
     const andresBello = makeLinearPath(-70.63, -70.61, -33.421, 3);
-    // Costanera Sur: east-middle section (-70.69 to -70.60)
     const costanera = makeLinearPath(-70.69, -70.60, -33.419, 5);
 
     const chained = chainBikePaths([mapocho, andresBello, costanera]);
