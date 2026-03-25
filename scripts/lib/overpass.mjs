@@ -296,3 +296,72 @@ out geom;
     .filter((el) => Array.isArray(el.geometry) && el.geometry.length >= 2)
     .map((el) => el.geometry.map(({ lat, lon }) => [lon, lat]));
 }
+
+/**
+ * Fetch all "interesting things" for zone clustering — cast a wide net.
+ * @param {[number, number, number, number]} bounds - [south, west, north, east]
+ * @returns {Array<{ lat, lng, tags }>}
+ */
+export async function fetchZonePOIs(bounds) {
+  const [s, w, n, e] = bounds;
+  const bbox = `${s},${w},${n},${e}`;
+  const query = `
+[out:json][timeout:120];
+(
+  node["amenity"~"cafe|restaurant|bar|pub|fast_food|ice_cream|food_court|marketplace|theatre|cinema|arts_centre|biergarten"](${bbox});
+  node["shop"~"bakery|deli|wine|chocolate|books"](${bbox});
+  node["tourism"~"museum|gallery|viewpoint|attraction|artwork"](${bbox});
+  node["leisure"~"beer_garden|playground|swimming_pool"](${bbox});
+  node["historic"~"monument|memorial|castle"](${bbox});
+);
+out;
+`.trim();
+
+  const data = await queryOverpass(query);
+  return (data.elements ?? [])
+    .filter((el) => el.lat != null && el.lon != null)
+    .map((el) => ({ lat: el.lat, lng: el.lon, tags: el.tags ?? {} }));
+}
+
+/**
+ * Fetch tree rows for shade/canopy scoring.
+ * @param {[number, number, number, number]} bounds
+ * @returns {Array<Array<[number, number]>>} array of coordinate arrays [lon, lat]
+ */
+export async function fetchTreeRows(bounds) {
+  const [s, w, n, e] = bounds;
+  const bbox = `${s},${w},${n},${e}`;
+  const query = `
+[out:json][timeout:30];
+way["natural"="tree_row"](${bbox});
+out geom;
+`.trim();
+
+  const data = await queryOverpass(query);
+  return (data.elements ?? [])
+    .filter((el) => Array.isArray(el.geometry) && el.geometry.length >= 2)
+    .map((el) => el.geometry.map(({ lat, lon }) => [lon, lat]));
+}
+
+/**
+ * Fetch bike parking racks and rental stations.
+ * @param {[number, number, number, number]} bounds
+ * @returns {Array<{ lat, lng, type }>}
+ */
+export async function fetchBikeParking(bounds) {
+  const [s, w, n, e] = bounds;
+  const bbox = `${s},${w},${n},${e}`;
+  const query = `
+[out:json][timeout:30];
+(
+  node["amenity"="bicycle_parking"](${bbox});
+  node["amenity"="bicycle_rental"](${bbox});
+);
+out;
+`.trim();
+
+  const data = await queryOverpass(query);
+  return (data.elements ?? [])
+    .filter((el) => el.lat != null)
+    .map((el) => ({ lat: el.lat, lng: el.lon, type: el.tags?.amenity }));
+}
