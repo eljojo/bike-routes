@@ -7,8 +7,8 @@
 
 import { haversineM } from './geo.mjs';
 
-const MAX_ZONE_CROW_M = 15000;
-const MAX_ASTAR_DIST_M = 20000;
+const MAX_ZONE_CROW_M = 10000;  // tighter filter = fewer A* runs
+const MAX_ASTAR_DIST_M = 15000;
 const ZONE_GRID = 0.002;
 
 function gridKey(lng, lat) {

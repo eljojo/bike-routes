@@ -419,8 +419,18 @@ export function detectZones({ waterways, pois, motorways, metroStations, bikePar
   const vibe = detectVibeZones(pois);
   const repulsion = detectRepulsionZones(motorways);
 
-  const zones = [...sensory, ...vibe];
+  let zones = [...sensory, ...vibe];
   applyAccessibilityBoosters(zones, metroStations, bikeParking);
+
+  // Cap total zones to keep the zone graph build tractable.
+  // 186 zones = 17k A* pairs = 20+ minutes. 80 zones = 3k pairs = ~30 seconds.
+  const MAX_ZONES = 80;
+  if (zones.length > MAX_ZONES) {
+    zones.sort((a, b) => b.magnetism - a.magnetism || b.cells.size - a.cells.size);
+    const dropped = zones.length - MAX_ZONES;
+    zones = zones.slice(0, MAX_ZONES);
+    console.log(`[zones] Capped to ${MAX_ZONES} zones (dropped ${dropped} lowest-magnetism)`);
+  }
 
   const repulsionCells = new Set();
   for (const rz of repulsion) for (const cell of rz.cells) repulsionCells.add(cell);
@@ -432,7 +442,7 @@ export function detectZones({ waterways, pois, motorways, metroStations, bikePar
     }
   }
 
-  console.log(`[zones] ${sensory.length} sensory + ${vibe.length} vibe = ${zones.length} zones`);
+  console.log(`[zones] ${sensory.length} sensory + ${vibe.length} vibe → ${zones.length} zones (after cap)`);
   console.log(`[zones] ${repulsion.length} repulsion zones, ${treeCells.size} tree cells`);
 
   return { zones, repulsionCells, treeCells };

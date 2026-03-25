@@ -2,7 +2,7 @@
 name: Tobalaba
 status: published
 homepage_featured: true
-distance_km: 47.3
+distance_km: 13.1
 tags:
   - bike path
   - park path
@@ -23,7 +23,7 @@ updated_at: '2026-03-25'
 variants:
   - name: Tobalaba
     gpx: main.gpx
-    distance_km: 47.3
+    distance_km: 13.1
 ---
 
 South from Providencia along the Tobalaba corridor through a chain of parks. The route follows Canal San Carlos for much of its length — the parks along the canal are connected by bike paths and form a continuous green corridor through the eastern suburbs.
