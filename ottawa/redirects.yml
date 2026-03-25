@@ -156,6 +156,30 @@ videos:
   to: riding-in-bike-paths
 - from: 68-chill-ride-in-bike-paths
   to: chill-ride-in-bike-paths
+- from: 45-whoop-whoop
+  to: whoop-whoop
+- from: 47-gravel-patch
+  to: gravel-patch
+- from: 48-whoop
+  to: whoop
+- from: 49-gravel
+  to: gravel
+- from: 51-road-time
+  to: road-time
+- from: 55-gravel-climb
+  to: gravel-climb
+- from: 58-gravel-descent
+  to: gravel-descent
+- from: 59-some-road
+  to: some-road
+- from: 61-road-racing
+  to: road-racing
+- from: 62-greenbelt-gravel
+  to: greenbelt-gravel
+- from: 66-party-ride
+  to: party-ride
+- from: 69-gravel-ride
+  to: gravel-ride
 short_urls:
 - from: qr/card
   to: "/"
