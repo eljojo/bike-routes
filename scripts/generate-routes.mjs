@@ -24,7 +24,7 @@ import { buildGPX } from './lib/gpx.mjs';
 import { haversineM } from './lib/geo.mjs';
 import { buildMarkdown } from './lib/markdown.mjs';
 import { buildRoadGraph } from './lib/roads.mjs';
-import { fetchRoadNetwork, fetchCyclingWays, fetchWaterways, fetchMotorways, fetchMetroStations, fetchZonePOIs, fetchBikeParking } from './lib/overpass.mjs';
+import { fetchRoadNetwork, fetchCyclingWays, fetchWaterways, fetchMotorways, fetchMetroStations, fetchZonePOIs, fetchBikeParking, fetchParkAreas } from './lib/overpass.mjs';
 import { parseOverpassWay } from './lib/segments.mjs';
 import { detectAxes } from './lib/axes.mjs';
 import { buildSegmentGraph, buildRoute, segmentsToAxisChain } from './lib/trips.mjs';
@@ -190,12 +190,12 @@ if (templatedRoutes.length > 0 && proposals.bounds) {
   const graph = buildSegmentGraph(axes);
 
   console.log('  Detecting zones...');
-  const [waterways, motorways, metro, zonePOIs, bikeParking] = await Promise.all([
+  const [waterways, motorways, metro, zonePOIs, bikeParking, parkAreas] = await Promise.all([
     fetchWaterways(proposals.bounds), fetchMotorways(proposals.bounds),
     fetchMetroStations(proposals.bounds), fetchZonePOIs(proposals.bounds),
-    fetchBikeParking(proposals.bounds),
+    fetchBikeParking(proposals.bounds), fetchParkAreas(proposals.bounds),
   ]);
-  const { zones } = detectZones({ waterways, pois: zonePOIs, motorways, metroStations: metro, bikeParking, treeRows: [], parkPOIs: [] });
+  const { zones } = detectZones({ waterways, pois: zonePOIs, motorways, metroStations: metro, bikeParking, treeRows: [], parkAreas });
 
   console.log('  Building zone graph...');
   const zoneEdges = buildZoneGraph(zones, graph);
@@ -213,6 +213,7 @@ if (templatedRoutes.length > 0 && proposals.bounds) {
       ...anchors,
       ...metro.map(s => ({ name: s.name, lat: s.lat, lng: s.lng })),
       ...zonePOIs.filter(p => p.tags?.name).map(p => ({ name: p.tags.name, lat: p.lat, lng: p.lng })),
+      ...parkAreas.map(p => ({ name: p.name, lat: p.lat, lng: p.lng })),
     ];
     const result = buildTemplatePath(tmpl.waypoints, graph, axes, allPOIs, zones);
 

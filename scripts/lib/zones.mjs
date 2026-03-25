@@ -7,7 +7,7 @@
  * All coordinates are [lng, lat] (GeoJSON order).
  */
 
-import { haversineM } from './geo.mjs';
+import { haversineM, polygonToGridCells } from './geo.mjs';
 
 // 0.002° ≈ 200m — the universal zone cell grid
 const ZONE_GRID = 0.002;
@@ -96,10 +96,10 @@ function cellSetCenter(cells) {
  * Park POIs with anchorScore >= 7 become zones (buffered 300m, magnetism 8).
  *
  * @param {Array<{ name: string, geometry: Array<[number, number]> }>} waterways
- * @param {Array<{ name: string, lat: number, lng: number, anchorScore?: number }>} parkPOIs
+ * @param {Array<{ name: string, lat: number, lng: number, extent?: number, geometry?: Array<[number, number]> }>} parkAreas
  * @returns {Array} zones
  */
-export function detectSensoryZones(waterways, parkPOIs) {
+export function detectSensoryZones(waterways, parkAreas) {
   const zones = [];
 
   // Group waterway segments by name so the same river is one zone
@@ -126,18 +126,25 @@ export function detectSensoryZones(waterways, parkPOIs) {
     });
   }
 
-  // Large parks from scored POIs
-  for (const poi of parkPOIs) {
-    if ((poi.anchorScore ?? 0) < 7) continue;
-    const coord = [poi.lng, poi.lat];
-    const cells = bufferPointToGrid(coord, 300);
+  // Parks with polygon geometry → area zones
+  for (const park of parkAreas) {
+    if (park.extent < 200) continue; // skip tiny plazas
+
+    let cells;
+    if (park.geometry && park.geometry.length >= 3) {
+      cells = polygonToGridCells(park.geometry);
+    } else {
+      // Fallback: buffer center point
+      cells = bufferPointToGrid([park.lng, park.lat], 300);
+    }
     if (cells.size === 0) continue;
 
+    const magnetism = park.extent > 1000 ? 9 : park.extent > 500 ? 8 : 7;
     zones.push({
-      name: poi.name,
-      type: 'sensory',
-      magnetism: 8,
-      centerCoord: coord,
+      name: park.name,
+      type: 'park',
+      magnetism,
+      centerCoord: [park.lng, park.lat],
       cells,
     });
   }
@@ -404,11 +411,11 @@ export function applyAccessibilityBoosters(zones, metroStations, bikeParking) {
  * @param {Array} data.metroStations - from fetchMetroStations()
  * @param {Array} data.bikeParking - from fetchBikeParking()
  * @param {Array} [data.treeRows] - from fetchTreeRows()
- * @param {Array} [data.parkPOIs] - scored park POIs (type === 'park', with anchorScore)
+ * @param {Array} [data.parkAreas] - park areas with polygon geometry from fetchParkAreas()
  * @returns {{ zones: Array, repulsionCells: Set<string>, treeCells: Set<string> }}
  */
-export function detectZones({ waterways, pois, motorways, metroStations, bikeParking, treeRows, parkPOIs }) {
-  const sensory = detectSensoryZones(waterways, parkPOIs ?? []);
+export function detectZones({ waterways, pois, motorways, metroStations, bikeParking, treeRows, parkAreas }) {
+  const sensory = detectSensoryZones(waterways, parkAreas || []);
   const vibe = detectVibeZones(pois);
   const repulsion = detectRepulsionZones(motorways);
 

@@ -16,7 +16,7 @@ import { join } from 'node:path';
 import yaml from 'js-yaml';
 import { parseCatastroFeature, parseOverpassWay } from './lib/segments.mjs';
 import { detectAxes } from './lib/axes.mjs';
-import { fetchPOIs, fetchCyclingWays, fetchMetroStations, fetchWaterways, fetchMotorways, fetchRoadNetwork, fetchZonePOIs, fetchTreeRows, fetchBikeParking } from './lib/overpass.mjs';
+import { fetchPOIs, fetchCyclingWays, fetchMetroStations, fetchWaterways, fetchMotorways, fetchRoadNetwork, fetchZonePOIs, fetchTreeRows, fetchBikeParking, fetchParkAreas } from './lib/overpass.mjs';
 import { detectZones } from './lib/zones.mjs';
 import { haversineM, allCoords } from './lib/geo.mjs';
 
@@ -285,11 +285,14 @@ async function main() {
   const bikeParking = await fetchBikeParking(bounds);
   console.log(`[pipeline] ${bikeParking.length} bike parking points fetched`);
 
+  const parkAreas = await fetchParkAreas(bounds);
+  console.log(`[pipeline] ${parkAreas.length} park areas fetched`);
+
   // Detect zones
   const { zones, repulsionCells, treeCells } = detectZones({
     waterways, pois: zonePOIs, motorways,
     metroStations, bikeParking, treeRows,
-    parkPOIs: [],
+    parkAreas,
   });
 
   // Add metro stations as bailout-type POIs
