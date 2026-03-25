@@ -76,6 +76,9 @@ export function curateLaunchSet(proposals, opts = {}) {
     const singleGapPenalty = maxGapM > 1000 ? 3 : maxGapM > 500 ? 1 : 0;
     const gapPenalty = infraPenalty + singleGapPenalty;
 
+    // Zone interest — routes through interesting zones score higher
+    const zoneBonus = route.zoneInterest || 0;
+
     const interestScore =
       destinationScore * 1.5 +
       distScore * 2 +
@@ -85,7 +88,8 @@ export function curateLaunchSet(proposals, opts = {}) {
       nameScore * 1.5 +
       greenScore +
       archetypeScore +
-      corridorBonus -
+      corridorBonus +
+      zoneBonus * 2 -
       gapPenalty;
 
     return { ...r, interestScore, distKm };

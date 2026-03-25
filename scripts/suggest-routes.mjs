@@ -16,7 +16,8 @@ import { join } from 'node:path';
 import yaml from 'js-yaml';
 import { parseCatastroFeature, parseOverpassWay } from './lib/segments.mjs';
 import { detectAxes } from './lib/axes.mjs';
-import { fetchPOIs, fetchCyclingWays, fetchMetroStations, fetchWaterways, fetchMotorways, fetchRoadNetwork } from './lib/overpass.mjs';
+import { fetchPOIs, fetchCyclingWays, fetchMetroStations, fetchWaterways, fetchMotorways, fetchRoadNetwork, fetchZonePOIs, fetchTreeRows, fetchBikeParking } from './lib/overpass.mjs';
+import { detectZones } from './lib/zones.mjs';
 import { haversineM, allCoords } from './lib/geo.mjs';
 
 /** Sample N evenly-spaced points along a coordinate array. */
@@ -298,6 +299,24 @@ async function main() {
   console.log(`[pipeline] ${roadWays.length} road segments found`);
   const roadGraph = buildRoadGraph(roadWays);
 
+  // Fetch zone data
+  console.log('[pipeline] Fetching zone data...');
+  const zonePOIs = await fetchZonePOIs(bounds);
+  console.log(`[pipeline] ${zonePOIs.length} zone POIs fetched`);
+
+  const treeRows = await fetchTreeRows(bounds);
+  console.log(`[pipeline] ${treeRows.length} tree rows fetched`);
+
+  const bikeParking = await fetchBikeParking(bounds);
+  console.log(`[pipeline] ${bikeParking.length} bike parking points fetched`);
+
+  // Detect zones
+  const { zones, repulsionCells, treeCells } = detectZones({
+    waterways, pois: zonePOIs, motorways,
+    metroStations, bikeParking, treeRows,
+    parkPOIs: [],
+  });
+
   // Add metro stations as bailout-type POIs
   for (const station of metroStations) {
     pois.push(station);
@@ -322,7 +341,7 @@ async function main() {
 
   // --- Pass 3: Stitch trips ---
   console.log('[pipeline] Stitching routes...');
-  const routes = stitchTrips(axes, anchors, { roadGraph });
+  const routes = stitchTrips(axes, anchors, { roadGraph, zones, repulsionCells, treeCells });
   console.log(`[pipeline] ${routes.length} routes generated`);
 
   // --- Print summary ---

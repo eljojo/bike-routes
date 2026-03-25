@@ -15,6 +15,8 @@ import { haversineM, minEndpointDistance } from './geo.mjs';
 import { slugify } from './slugify.mjs';
 import { assignTags } from './tags.mjs';
 import { validateTrace } from './trace.mjs';
+import { buildZoneGraph } from './zone-graph.mjs';
+import { generateZoneRoutes } from './zone-routes.mjs';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -1324,6 +1326,24 @@ export function stitchTrips(axes, anchors, options = {}) {
   console.log('[trips] Building segment graph...');
   const graph = buildSegmentGraph(axes);
 
+  // --- Step 2b: Zone-to-zone routes ---
+  let zoneCandidates = [];
+  if (options.zones && options.zones.length > 0) {
+    console.log('[trips] Building zone graph...');
+    const zoneEdges = buildZoneGraph(options.zones, graph);
+
+    console.log('[trips] Generating zone routes...');
+    const zoneData = {
+      repulsionCells: options.repulsionCells || new Set(),
+      treeCells: options.treeCells || new Set(),
+      segments: graph.segments,
+    };
+    zoneCandidates = generateZoneRoutes(
+      options.zones, zoneEdges, zoneData, graph, axes, usableAnchors
+    );
+    console.log(`[trips] ${zoneCandidates.length} zone route candidates`);
+  }
+
   // --- Step 3: One-way search via greedy best-first ---
   console.log('[trips] Searching one-way routes...');
   const oneWayCandidates = searchOneWayRoutes(graph, anchors, axes, usableAnchors);
@@ -1352,7 +1372,7 @@ export function stitchTrips(axes, anchors, options = {}) {
   console.log(`[trips] ${oabCandidates.length} out-and-back candidates`);
 
   // --- Step 6: Combine and deduplicate ---
-  const candidates = [...oneWayCandidates, ...loopCandidates, ...oabCandidates];
+  const candidates = [...zoneCandidates, ...oneWayCandidates, ...loopCandidates, ...oabCandidates];
   console.log(`[trips] ${candidates.length} total candidates`);
 
   // Sort by composite score, but boost longer routes so corridors
