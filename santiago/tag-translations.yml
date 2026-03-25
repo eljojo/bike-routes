@@ -47,6 +47,8 @@ cerro navia:
   es: Cerro Navia
 conchali:
   es: Conchalí
+el bosque:
+  es: El Bosque
 estacion central:
   es: Estación Central
 huechuraba:
@@ -57,10 +59,16 @@ la cisterna:
   es: La Cisterna
 la florida:
   es: La Florida
+la granja:
+  es: La Granja
+la pintana:
+  es: La Pintana
 la reina:
   es: La Reina
 las condes:
   es: Las Condes
+lo espejo:
+  es: Lo Espejo
 lo prado:
   es: Lo Prado
 macul:
@@ -73,12 +81,16 @@ providencia:
   es: Providencia
 pudahuel:
   es: Pudahuel
+quilicura:
+  es: Quilicura
 quinta normal:
   es: Quinta Normal
 recoleta:
   es: Recoleta
 renca:
   es: Renca
+san bernardo:
+  es: San Bernardo
 san joaquin:
   es: San Joaquín
 san ramon:

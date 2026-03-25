@@ -75,6 +75,48 @@ function directionScore(axisA, axisB) {
 }
 
 /**
+ * Check if gaps go roughly along the route direction, not sideways.
+ * A gap that goes perpendicular to the overall route is a red flag —
+ * it means the route jumps to a parallel corridor.
+ *
+ * Returns true if all gaps are directionally coherent.
+ */
+function gapsAreCoherent(axisChain) {
+  if (axisChain.length < 2) return true;
+
+  // Overall route direction: first axis start → last axis end
+  const firstSegs = axisChain[0].segments;
+  const lastSegs = axisChain[axisChain.length - 1].segments;
+  const routeDir = [
+    lastSegs[lastSegs.length - 1].centroid[0] - firstSegs[0].centroid[0],
+    lastSegs[lastSegs.length - 1].centroid[1] - firstSegs[0].centroid[1],
+  ];
+  const routeMag = Math.sqrt(dot(routeDir, routeDir));
+  if (routeMag < 1e-10) return true; // essentially same point (loop)
+
+  for (let i = 1; i < axisChain.length; i++) {
+    const prevSegs = axisChain[i - 1].segments;
+    const currSegs = axisChain[i].segments;
+    const prevEnd = prevSegs[prevSegs.length - 1].centroid;
+    const currStart = currSegs[0].centroid;
+    const gapDir = [currStart[0] - prevEnd[0], currStart[1] - prevEnd[1]];
+    const gapMag = Math.sqrt(dot(gapDir, gapDir));
+
+    // Only check gaps that are significant (>300m)
+    const gapDist = haversineM(prevEnd, currStart);
+    if (gapDist < 300) continue;
+
+    if (gapMag < 1e-10) continue;
+    const cosAngle = dot(routeDir, gapDir) / (routeMag * gapMag);
+    // cos(70°) ≈ 0.34 — reject gaps more than 70° off the route direction
+    if (cosAngle < -0.17) return false; // gap goes backwards
+    // Also check if gap is purely sideways (|cos| < 0.34 means >70° off)
+    if (Math.abs(cosAngle) < 0.34 && gapDist > 500) return false;
+  }
+  return true;
+}
+
+/**
  * Detour ratio: total path distance / crow-flies distance between endpoints.
  * Lower is more coherent. A straight line = 1.0.
  */
@@ -327,12 +369,14 @@ function discoverChains(startXi, connections, axes) {
     // direction of travel. This prevents zigzag routes that look nonsensical.
     const candidates = [...conns].filter((n) => !visited.has(n));
 
-    // Score each candidate by direction continuity + axis length
+    // Score each candidate by direction continuity + axis length + name affinity
+    const currentName = currentAxis.name;
     const scored = candidates.map((n) => {
       const ds = directionScore(currentAxis, axes[n]);
       const lengthBonus = Math.min(axes[n].totalInfraM / 5000, 1); // 0-1
-      // Only allow axes continuing forward (ds > -0.3) to prevent backtracking
-      return { xi: n, score: ds * 2 + lengthBonus, ds };
+      // Same-name affinity: strongly prefer chaining COSTANERA SUR → COSTANERA SUR
+      const nameBonus = (currentName && axes[n].name === currentName) ? 3 : 0;
+      return { xi: n, score: ds * 2 + lengthBonus + nameBonus, ds };
     });
 
     // Filter out backtracking (ds < -0.3) and sort by score
@@ -450,10 +494,11 @@ export function stitchTrips(axes, anchors, options = {}) {
 
       const axisChain = chain.map((xi) => axes[xi]);
 
-      // Reject geographically incoherent chains (zigzags)
+      // Reject geographically incoherent chains
       const infraM = axisChain.reduce((s, a) => s + a.totalInfraM, 0);
       const ratio = detourRatio(axisChain, infraM);
       if (ratio > MAX_DETOUR_RATIO) continue;
+      if (!gapsAreCoherent(axisChain)) continue;
 
       // Best anchor near start, best different anchor near end
       const startAnchor = startAnchors[0];

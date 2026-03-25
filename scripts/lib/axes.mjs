@@ -210,7 +210,8 @@ export function detectAxes(segments) {
 
   const MERGE_ENDPOINT_M = 300;   // max gap between axes to consider merging
   const SMALL_AXIS_M = 1000;      // axes shorter than this are merge candidates
-  const MIN_BEARING_COMPAT = 60;  // max bearing difference to merge (degrees)
+  const MIN_BEARING_COMPAT = 30;  // max bearing difference to merge (degrees)
+  const MAX_NAMES_PER_AXIS = 4;   // don't merge if result would have too many street names
 
   function bearingDiff(a, b) {
     const diff = Math.abs(a - b) % 360;
@@ -261,8 +262,14 @@ export function detectAxes(segments) {
       }
 
       if (bestTarget >= 0 && bestDist <= MERGE_ENDPOINT_M) {
-        // Merge small into target: append segments and rebuild
+        // Check name diversity — don't create Frankenstein axes
         const target = axes[bestTarget];
+        const existingNames = new Set(target.segments.map((s) => s.normalizedName).filter(Boolean));
+        const smallNames = new Set(small.segments.map((s) => s.normalizedName).filter(Boolean));
+        const combinedNames = new Set([...existingNames, ...smallNames]);
+        if (combinedNames.size > MAX_NAMES_PER_AXIS) continue;
+
+        // Merge small into target: append segments and rebuild
         const allSegs = [...target.segments, ...small.segments];
         // Re-sort by position along dominant orientation
         const dom = target.bearing === 'north-south' ? 'ns' : 'ew';
