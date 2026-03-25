@@ -1,6 +1,6 @@
 ---
 name: "Parque Gorostiaga"
-category: parque
+category: park
 lat: -33.4489925
 lng: -70.5829653
 status: published

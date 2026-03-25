@@ -1,6 +1,6 @@
 ---
 name: "Parque Centenario"
-category: parque
+category: park
 lat: -33.4760818
 lng: -70.6682538
 status: published

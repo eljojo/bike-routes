@@ -1,6 +1,6 @@
 ---
 name: "Plaza Cívica de La Florida"
-category: parque
+category: park
 lat: -33.5200351
 lng: -70.6013055
 status: published

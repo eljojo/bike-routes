@@ -1,6 +1,6 @@
 ---
 name: "Parque Vespucio Norte"
-category: parque
+category: park
 lat: -33.375378
 lng: -70.6609231
 status: published

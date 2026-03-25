@@ -117,27 +117,28 @@ for (let i = 0; i < routes.length; i++) {
 // Places — deduplicated anchor POIs
 // ---------------------------------------------------------------------------
 
-// Category mapping from POI type → app place category
+// Category mapping from POI type → app place category.
+// Keys must match categoryEmoji in src/lib/geo/place-categories.ts
 const TYPE_TO_CATEGORY = {
-  park: 'parque',
-  parque: 'parque',
-  garden: 'parque',
-  square: 'plaza',
-  beach: 'parque',
-  viewpoint: 'mirador',
-  museum: 'mirador',
-  bridge: 'mirador',
-  water: 'río',
+  park: 'park',
+  parque: 'park',
+  garden: 'park',
+  square: 'park',       // plazas in Chile are green spaces
+  beach: 'beach',
+  viewpoint: 'lookout',
+  museum: 'something-interesting',
+  bridge: 'bridge',
+  water: 'chill-spot',
   marketplace: 'restaurant',
-  cafe: 'café',
-  ice_cream: 'heladería',
-  pub: 'restaurant',
-  station: 'metro',
-  bicycle_rental: 'bicicletero',
-  bicycle: 'taller-de-bicicletas',
-  camp_site: 'parque',
-  ferry_terminal: 'mirador',
-  curated: 'parque',
+  cafe: 'cafe',
+  ice_cream: 'ice-cream',
+  pub: 'beer',
+  station: 'meeting-point',
+  bicycle_rental: 'bike-rental',
+  bicycle: 'bike-shop',
+  camp_site: 'camping-spot',
+  ferry_terminal: 'ferry',
+  curated: 'park',
 };
 
 // Collect all start/end anchors from selected routes, dedup by name
@@ -150,7 +151,7 @@ for (const route of routes) {
     // Type comes from the route anchor (set by trips.mjs from scored anchors)
     // But OSM types are often wrong (plazas tagged as parks). Name is more reliable
     // for distinguishing parks from plazas.
-    const category = inferCategoryFromName(anchor.name) || TYPE_TO_CATEGORY[anchor.type] || 'parque';
+    const category = inferCategoryFromName(anchor.name) || TYPE_TO_CATEGORY[anchor.type] || 'park';
 
     placesMap.set(anchor.name, {
       name: anchor.name,
@@ -164,12 +165,12 @@ for (const route of routes) {
 /** Infer category from place name. Returns null if no strong signal. */
 function inferCategoryFromName(name) {
   const lower = name.toLowerCase();
-  if (lower.includes('parque')) return 'parque';
-  if (lower.includes('plaza') || lower.includes('plazoleta')) return 'parque'; // plazas in Chile are green spaces
+  if (lower.includes('parque')) return 'park';
+  if (lower.includes('plaza') || lower.includes('plazoleta')) return 'park';
   if (lower.includes('mercado')) return 'restaurant';
-  if (lower.includes('museo')) return 'mirador';
-  if (lower.includes('río') || lower.includes('lago')) return 'río';
-  if (lower.includes('cerro') || lower.includes('mirador')) return 'mirador';
+  if (lower.includes('museo')) return 'something-interesting';
+  if (lower.includes('río') || lower.includes('lago')) return 'chill-spot';
+  if (lower.includes('cerro') || lower.includes('mirador')) return 'lookout';
   return null;
 }
 

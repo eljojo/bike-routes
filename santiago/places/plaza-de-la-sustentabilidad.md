@@ -1,6 +1,6 @@
 ---
 name: "Plaza de la Sustentabilidad"
-category: parque
+category: park
 lat: -33.3909818
 lng: -70.5976109
 status: published

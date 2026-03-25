@@ -1,6 +1,6 @@
 ---
 name: "Parque El Pelicano"
-category: parque
+category: park
 lat: -33.5488065
 lng: -70.57551
 status: published

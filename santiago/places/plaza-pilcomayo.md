@@ -1,6 +1,6 @@
 ---
 name: "Plaza Pilcomayo"
-category: parque
+category: park
 lat: -33.5429393
 lng: -70.6187469
 status: published

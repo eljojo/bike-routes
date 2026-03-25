@@ -1,6 +1,6 @@
 ---
 name: "Plaza El Salto"
-category: parque
+category: park
 lat: -33.3966959
 lng: -70.6264592
 status: published

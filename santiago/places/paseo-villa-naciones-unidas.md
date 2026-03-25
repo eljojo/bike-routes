@@ -1,6 +1,6 @@
 ---
 name: "Paseo Villa Naciones Unidas"
-category: parque
+category: park
 lat: -33.4630056
 lng: -70.5525229
 status: published

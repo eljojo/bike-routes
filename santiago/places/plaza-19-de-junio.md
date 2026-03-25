@@ -1,6 +1,6 @@
 ---
 name: "Plaza 19 de Junio"
-category: parque
+category: park
 lat: -33.4016216
 lng: -70.5602691
 status: published

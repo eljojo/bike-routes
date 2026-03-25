@@ -1,6 +1,6 @@
 ---
 name: "Plaza Mayor"
-category: parque
+category: park
 lat: -33.4043671
 lng: -70.7050155
 status: published

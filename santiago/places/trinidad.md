@@ -1,6 +1,6 @@
 ---
 name: "Trinidad"
-category: metro
+category: park
 lat: -33.5462943
 lng: -70.5881027
 status: published

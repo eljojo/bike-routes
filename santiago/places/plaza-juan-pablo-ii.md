@@ -1,8 +1,8 @@
 ---
 name: "Plaza Juan Pablo II"
-category: parque
-lat: -33.4269254
-lng: -70.5788834
+category: park
+lat: -33.5148131
+lng: -70.7669659
 status: published
 good_for:
   - destination
