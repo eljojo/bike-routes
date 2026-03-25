@@ -100,12 +100,25 @@ async function loadSegments(source, bounds) {
     return ways.map((el, i) => parseOverpassWay(el, i));
   }
 
-  // URL source
+  // URL source — cache to .cache/ so we don't re-fetch every run
   if (source.startsWith('http://') || source.startsWith('https://')) {
-    console.log(`[source] Fetching GeoJSON from ${source}...`);
-    const res = await fetch(source);
-    if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${res.statusText}`);
-    const geojson = await res.json();
+    const __scriptDir = new URL('.', import.meta.url).pathname;
+    const cacheDir = join(__scriptDir, '.cache');
+    const hash = source.replace(/[^a-zA-Z0-9]/g, '_').slice(-60);
+    const cachePath = join(cacheDir, `source-${hash}.json`);
+
+    let geojson;
+    if (existsSync(cachePath)) {
+      console.log(`[source] Using cached GeoJSON from ${cachePath}`);
+      geojson = JSON.parse(readFileSync(cachePath, 'utf8'));
+    } else {
+      console.log(`[source] Fetching GeoJSON from ${source}...`);
+      const res = await fetch(source);
+      if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${res.statusText}`);
+      geojson = await res.json();
+      writeFileSync(cachePath, JSON.stringify(geojson), 'utf8');
+      console.log(`[source] Cached to ${cachePath}`);
+    }
     console.log(`[source] ${geojson.features.length} features`);
     return geojson.features.map((f, i) => parseCatastroFeature(f, i));
   }

@@ -188,24 +188,46 @@ function isGapFeasible(from, to, allAxes, excludeAxisIndices = []) {
   return true;
 }
 
+/**
+ * Find the minimum gap between two axes, considering both orientations.
+ * Returns { distance, from, to } where from/to are [lng, lat] coords.
+ */
+function minAxesGap(prev, curr) {
+  const prevFirst = prev.segments[0];
+  const prevLast = prev.segments[prev.segments.length - 1];
+  const currFirst = curr.segments[0];
+  const currLast = curr.segments[curr.segments.length - 1];
+
+  // Check all 4 endpoint pairs (prev can exit from either end,
+  // curr can be entered from either end)
+  const pairs = [
+    { from: prevLast.end, to: currFirst.start },
+    { from: prevLast.end, to: currLast.end },
+    { from: prevFirst.start, to: currFirst.start },
+    { from: prevFirst.start, to: currLast.end },
+  ];
+
+  let best = { distance: Infinity, from: null, to: null };
+  for (const p of pairs) {
+    const d = haversineM(p.from, p.to);
+    if (d < best.distance) best = { distance: d, from: p.from, to: p.to };
+  }
+  return best;
+}
+
 /** Compute gaps between consecutive axes in a chain. */
 function computeGaps(axisChain) {
   const gaps = [];
   for (let i = 1; i < axisChain.length; i++) {
     const prev = axisChain[i - 1];
     const curr = axisChain[i];
-    const prevSegs = prev.segments;
-    const currSegs = curr.segments;
-    const { distance, fromEnd, toEnd } = minEndpointDistance(
-      prevSegs[prevSegs.length - 1],
-      currSegs[0],
-    );
+    const { distance, from, to } = minAxesGap(prev, curr);
     if (distance > 10) {
       gaps.push({
         afterAxis: prev.slug,
         distanceM: Math.round(distance),
-        from: prevSegs[prevSegs.length - 1][fromEnd],
-        to: currSegs[0][toEnd],
+        from,
+        to,
       });
     }
   }
@@ -350,6 +372,62 @@ function titleCase(str) {
     .join(' ');
 }
 
+/**
+ * Reorder axes to minimize total gap distance (nearest-neighbor heuristic).
+ * For loops, tries all starting axes. For one-way, tries both orientations
+ * of the first axis. The GPX builder handles per-axis direction reversal.
+ */
+function optimizeAxisOrder(axisChain, isLoop = false) {
+  if (axisChain.length <= 2) return axisChain;
+
+  const eps = axisChain.map((a) => ({
+    start: a.segments[0].start,
+    end: a.segments[a.segments.length - 1].end,
+  }));
+
+  function traceFrom(startIdx, startFromEnd) {
+    const remaining = new Set(axisChain.map((_, i) => i));
+    const order = [startIdx];
+    remaining.delete(startIdx);
+    let pos = startFromEnd ? eps[startIdx].start : eps[startIdx].end;
+    let totalGap = 0;
+
+    while (remaining.size > 0) {
+      let bestIdx = -1, bestDist = Infinity, bestEntry = 'start';
+      for (const idx of remaining) {
+        const dS = haversineM(pos, eps[idx].start);
+        const dE = haversineM(pos, eps[idx].end);
+        if (dS < bestDist) { bestDist = dS; bestIdx = idx; bestEntry = 'start'; }
+        if (dE < bestDist) { bestDist = dE; bestIdx = idx; bestEntry = 'end'; }
+      }
+      if (bestIdx < 0) break;
+      order.push(bestIdx);
+      remaining.delete(bestIdx);
+      totalGap += bestDist;
+      pos = bestEntry === 'start' ? eps[bestIdx].end : eps[bestIdx].start;
+    }
+    // For loops, add closure gap back to start
+    if (isLoop) {
+      const startPos = startFromEnd ? eps[startIdx].end : eps[startIdx].start;
+      totalGap += haversineM(pos, startPos);
+    }
+    return { order, totalGap };
+  }
+
+  let best = { order: axisChain.map((_, i) => i), totalGap: Infinity };
+
+  // For loops, try starting from each axis
+  const startIndices = isLoop ? axisChain.map((_, i) => i) : [0];
+  for (const si of startIndices) {
+    for (const fromEnd of [false, true]) {
+      const result = traceFrom(si, fromEnd);
+      if (result.totalGap < best.totalGap) best = result;
+    }
+  }
+
+  return best.order.map((i) => axisChain[i]);
+}
+
 /** Generate a name based on route archetype. */
 function generateName(archetype, axisChain, startAnchor, endAnchor) {
   const longestAxis = axisChain.reduce((best, a) =>
@@ -378,6 +456,12 @@ const MAX_BUILT_GAP_M = 3000;
  * @param {Array} [allAnchors] - all scored POIs for waypoint detection
  */
 function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
+  // Detect archetype early to know if this is a loop (needed for optimization)
+  const earlyArchetype = detectArchetype(axisChain, startAnchor, endAnchor);
+
+  // Optimize axis order to minimize gap distances
+  axisChain = optimizeAxisOrder(axisChain, earlyArchetype === 'loop');
+
   const gaps = computeGaps(axisChain);
 
   // Reject routes with any single gap too large in the actual trace.
@@ -462,7 +546,10 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
   const longestAxis = Math.max(...axisChain.map((a) => a.totalInfraM));
   const signatureBonus = longestAxis > 5000 ? 3 : longestAxis > 3000 ? 1.5 : 0;
   const distKm = totalDistanceM / 1000;
-  const distBonus = distKm >= 5 && distKm <= 15 ? 1 : distKm >= 15 && distKm <= 40 ? 2 : 0;
+  // Penalize very short routes — prefer combining into longer ones.
+  // 5-15km is the sweet spot, 15-40km is great for experienced riders.
+  // Under 4km is too short to be a proper route.
+  const distBonus = distKm < 4 ? -2 : distKm >= 5 && distKm <= 15 ? 1 : distKm >= 15 && distKm <= 40 ? 2 : 0;
   // Loops get a bonus, oval loops get a bigger bonus — they're the signature rides
   // Coherence bonus: straighter paths look better on the map and are more rideable
   let archetypeBonus = 0;

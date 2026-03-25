@@ -419,6 +419,81 @@ export function detectAxes(segments) {
     }
   }
 
+  // --- Corridor continuation pass ---
+  // Merge axes of any size when they clearly continue the same corridor:
+  // sequential endpoints close together, compatible bearing, and the axes
+  // don't run side-by-side. This catches cases like Concha y Toro → Vicuña
+  // Mackenna where the street changes name at a comuna boundary.
+  const CORRIDOR_ENDPOINT_M = 400;
+  const CORRIDOR_BEARING_COMPAT = 25;
+
+  merged = true;
+  while (merged) {
+    merged = false;
+    for (let i = 0; i < axes.length; i++) {
+      const axisA = axes[i];
+      const bearingA = axisBearing(axisA);
+      const aFirst = axisA.segments[0];
+      const aLast = axisA.segments[axisA.segments.length - 1];
+
+      for (let j = i + 1; j < axes.length; j++) {
+        const axisB = axes[j];
+        if (bearingDiff(bearingA, axisBearing(axisB)) > CORRIDOR_BEARING_COMPAT) continue;
+
+        const bFirst = axisB.segments[0];
+        const bLast = axisB.segments[axisB.segments.length - 1];
+
+        // Only sequential: A's end → B's start or B's end → A's start
+        const abDist = haversineM(aLast.end, bFirst.start);
+        const baDist = haversineM(bLast.end, aFirst.start);
+        const seqDist = Math.min(abDist, baDist);
+        if (seqDist > CORRIDOR_ENDPOINT_M) continue;
+
+        // Reject parallel (both ends close)
+        const ssD = haversineM(aFirst.centroid, bFirst.centroid);
+        const eeD = haversineM(aLast.centroid, bLast.centroid);
+        const seD = haversineM(aFirst.centroid, bLast.centroid);
+        const esD = haversineM(aLast.centroid, bFirst.centroid);
+        const bothClose = (ssD < 500 && eeD < 500) || (seD < 500 && esD < 500);
+        if (bothClose && axisA.totalInfraM > 500 && axisB.totalInfraM > 500) continue;
+
+        // Direction suffix check
+        const DIRECTION_PAIRS = [['PONIENTE', 'ORIENTE'], ['NORTE', 'SUR']];
+        const nameA = (axisA.name || '').toUpperCase();
+        const nameB = (axisB.name || '').toUpperCase();
+        let dirConflict = false;
+        for (const [da, db] of DIRECTION_PAIRS) {
+          if ((nameA.includes(da) && nameB.includes(db)) ||
+              (nameA.includes(db) && nameB.includes(da))) {
+            dirConflict = true;
+            break;
+          }
+        }
+        if (dirConflict) continue;
+
+        // Name diversity cap
+        const namesA = new Set(axisA.segments.map((s) => s.normalizedName).filter(Boolean));
+        const namesB = new Set(axisB.segments.map((s) => s.normalizedName).filter(Boolean));
+        const combined = new Set([...namesA, ...namesB]);
+        if (combined.size > MAX_NAMES_PER_AXIS) continue;
+
+        // Merge: combine segments and rebuild
+        const allSegs = [...axisA.segments, ...axisB.segments];
+        const dom = axisA.bearing === 'north-south' ? 'ns' : 'ew';
+        allSegs.sort((a, b) =>
+          dom === 'ns'
+            ? a.centroid[1] - b.centroid[1]
+            : a.centroid[0] - b.centroid[0],
+        );
+        axes[i] = buildAxis(allSegs, axisA.bearing);
+        axes.splice(j, 1);
+        merged = true;
+        break;
+      }
+      if (merged) break;
+    }
+  }
+
   // --- Sort axes by totalInfraM descending ---
   axes.sort((a, b) => b.totalInfraM - a.totalInfraM);
 

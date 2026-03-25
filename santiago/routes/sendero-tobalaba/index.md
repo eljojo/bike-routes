@@ -1,7 +1,7 @@
 ---
 name: "Sendero Tobalaba"
 status: published
-distance_km: 3.5
+distance_km: 4.7
 tags:
   - bike path
   - park path
@@ -15,14 +15,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "Sendero Tobalaba"
     gpx: main.gpx
-    distance_km: 3.5
+    distance_km: 4.7
 ---
 
-3,5 kilómetros por La Reina, desde Bandejón Central Las Perdices hasta Parque Gorostiaga. Prácticamente todo el recorrido tiene ciclovía.
+4,7 kilómetros por La Reina, desde Parque República de Ecuador hasta Bandejón Central Las Perdices. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Tobalaba** (La Reina) — 3,5 km, bidireccional, en parque, 230 cm de ancho.
+**Tobalaba** (La Reina) — 4,7 km, bidireccional/cycleway, en parque, 230 cm de ancho.
 Evaluación Pedaleable: "mala".
 
 

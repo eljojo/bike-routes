@@ -10,8 +10,8 @@ tags:
   - flat
   - easy
   - family friendly
-  - penalolen
   - la reina
+  - penalolen
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
@@ -20,14 +20,11 @@ variants:
     distance_km: 8.5
 ---
 
-8,5 kilómetros por Penalolen y La Reina, desde Bandejón Central Las Perdices hasta Parque Mahuida. Prácticamente todo el recorrido tiene ciclovía.
+8,5 kilómetros por La Reina y Penalolen, desde Bandejón Central Las Perdices hasta Parque Mahuida. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Las Perdices** (Penalolen) — 5,6 km, bidireccional, en parque, 200 cm de ancho.
-Evaluación Pedaleable: "mala".
-
-**Ciclovía Las Perdices (avenida Bilbao - Avenida José Arrieta)** (La Reina y Penalolen) — 2,9 km, bidireccional/cycleway, en acera y mediana, 200 cm de ancho.
+**Las Perdices** (La Reina y Penalolen) — 8,5 km, bidireccional/cycleway, en parque, acera y mediana, 200 cm de ancho.
 Evaluación Pedaleable: de "muy mala" a "mala".
 
 

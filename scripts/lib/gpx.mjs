@@ -31,15 +31,23 @@ async function fetchElevations(coords) {
       const lats = batch.map((c) => c[1]).join(',');
       const lons = batch.map((c) => c[0]).join(',');
       const res = await fetch(`${OPEN_METEO_URL}?latitude=${lats}&longitude=${lons}`, {
-        signal: AbortSignal.timeout(10000),
+        signal: AbortSignal.timeout(30000),
       });
-      if (!res.ok) return null;
+      if (!res.ok) {
+        console.warn(`[gpx] elevation API returned ${res.status}`);
+        return null;
+      }
       const data = await res.json();
       const elev = Array.isArray(data.elevation) ? data.elevation : [data.elevation];
       all.push(...elev);
+      // Rate-limit: small delay between batches to avoid throttling
+      if (i + BATCH_SIZE < coords.length) {
+        await new Promise((r) => setTimeout(r, 200));
+      }
     }
     return all;
-  } catch {
+  } catch (err) {
+    console.warn(`[gpx] elevation fetch failed: ${err.message || err}`);
     return null;
   }
 }
@@ -48,7 +56,7 @@ async function fetchElevations(coords) {
  * Downsample coords, fetch elevations, interpolate back to full resolution.
  */
 async function enrichWithElevation(coords) {
-  const maxSamples = 200;
+  const maxSamples = 100;
   if (coords.length <= maxSamples) {
     const elevations = await fetchElevations(coords);
     if (!elevations) return coords.map((c) => [...c]);
@@ -123,7 +131,24 @@ export async function buildGPX(route) {
   let lastCoord = null;
 
   for (const axis of route.axes) {
-    for (const seg of axis.segments) {
+    // Determine if this axis should be traversed in reverse order.
+    // Compare distance from lastCoord to the axis's "natural start"
+    // (first segment's first coord) vs its "natural end" (last segment's
+    // last coord). If we're closer to the end, reverse segment order.
+    let segments = axis.segments;
+    if (lastCoord && segments.length >= 2) {
+      const firstCoords = extractCoords(segments[0].geometry);
+      const lastSegCoords = extractCoords(segments[segments.length - 1].geometry);
+      if (firstCoords.length > 0 && lastSegCoords.length > 0) {
+        const axisStart = firstCoords[0];
+        const axisEnd = lastSegCoords[lastSegCoords.length - 1];
+        if (haversineM(lastCoord, axisEnd) < haversineM(lastCoord, axisStart)) {
+          segments = [...segments].reverse();
+        }
+      }
+    }
+
+    for (const seg of segments) {
       let coords = extractCoords(seg.geometry);
       if (coords.length === 0) continue;
 
