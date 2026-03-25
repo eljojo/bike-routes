@@ -228,38 +228,13 @@ async function main() {
       }
     }
 
-    // Add catastro-only segments (not covered by any OSM way)
-    let catastroOnly = 0;
-    for (const cat of validSegments) {
-      const catCoords = cat.geometry.type === 'MultiLineString'
-        ? cat.geometry.coordinates.flat() : cat.geometry.coordinates;
-      const catSample = samplePoints(catCoords, 5);
-      let covered = false;
-      for (const osm of osmSegments) {
-        if (haversineM(cat.centroid, osm.centroid) > cat.lengthM + osm.lengthM) continue;
-        const osmCoords = osm.geometry.type === 'MultiLineString'
-          ? osm.geometry.coordinates.flat() : osm.geometry.coordinates;
-        const osmSample = samplePoints(osmCoords, 5);
-        let near = 0;
-        for (const cp of catSample) {
-          for (const op of osmSample) {
-            if (haversineM(cp, op) < 80) { near++; break; }
-          }
-        }
-        if (catSample.length > 0 && near / catSample.length > 0.4) {
-          covered = true;
-          break;
-        }
-      }
-      if (!covered) {
-        osmSegments.push(cat);
-        catastroOnly++;
-      }
-    }
+    // Catastro geometry is NOT used as fallback — only OSM geometry is
+    // trusted for routing. Catastro provides metadata only (videos,
+    // condition ratings, emplazamiento). Per Pedaleable: catastro geo
+    // shapes are not accurate enough for routing.
 
     segments = osmSegments;
     console.log(`[pipeline] ${enriched} OSM segments enriched with catastro metadata`);
-    console.log(`[pipeline] ${catastroOnly} catastro-only segments added`);
   } else {
     segments = validSegments;
   }
