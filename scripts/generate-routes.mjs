@@ -106,7 +106,7 @@ for (let i = 0; i < routes.length; i++) {
   const routeDir = path.join(outputDir, 'routes', slug);
   fs.mkdirSync(routeDir, { recursive: true });
 
-  fs.writeFileSync(path.join(routeDir, 'main.gpx'), buildGPX(route));
+  fs.writeFileSync(path.join(routeDir, 'main.gpx'), await buildGPX(route));
   fs.writeFileSync(path.join(routeDir, 'index.md'), buildMarkdown(route));
   fs.writeFileSync(path.join(routeDir, 'media.yml'), '[]\n');
 

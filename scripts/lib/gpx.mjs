@@ -12,6 +12,74 @@
 import { haversineM } from './geo.mjs';
 
 // ---------------------------------------------------------------------------
+// Elevation enrichment via Open-Meteo API
+// ---------------------------------------------------------------------------
+
+const OPEN_METEO_URL = 'https://api.open-meteo.com/v1/elevation';
+const BATCH_SIZE = 100;
+
+/**
+ * Fetch elevation for an array of [lng, lat] coordinates.
+ * Batches into groups of 100 (API limit). Returns null on error.
+ */
+async function fetchElevations(coords) {
+  try {
+    const all = [];
+    for (let i = 0; i < coords.length; i += BATCH_SIZE) {
+      const batch = coords.slice(i, i + BATCH_SIZE);
+      const lats = batch.map((c) => c[1]).join(',');
+      const lons = batch.map((c) => c[0]).join(',');
+      const res = await fetch(`${OPEN_METEO_URL}?latitude=${lats}&longitude=${lons}`, {
+        signal: AbortSignal.timeout(10000),
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      const elev = Array.isArray(data.elevation) ? data.elevation : [data.elevation];
+      all.push(...elev);
+    }
+    return all;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Downsample coords, fetch elevations, interpolate back to full resolution.
+ */
+async function enrichWithElevation(coords) {
+  const maxSamples = 200;
+  if (coords.length <= maxSamples) {
+    const elevations = await fetchElevations(coords);
+    if (!elevations) return coords.map((c) => [...c]);
+    return coords.map((c, i) => [c[0], c[1], elevations[i]]);
+  }
+
+  // Downsample
+  const indices = [];
+  for (let i = 0; i < maxSamples; i++) {
+    indices.push(Math.round((i * (coords.length - 1)) / (maxSamples - 1)));
+  }
+  const sampled = indices.map((i) => coords[i]);
+  const elevations = await fetchElevations(sampled);
+  if (!elevations) return coords.map((c) => [...c]);
+
+  // Interpolate
+  const result = coords.map((c) => [c[0], c[1], 0]);
+  for (let i = 0; i < indices.length; i++) {
+    result[indices[i]][2] = elevations[i];
+  }
+  for (let s = 0; s < indices.length - 1; s++) {
+    const startIdx = indices[s], endIdx = indices[s + 1];
+    const startEle = elevations[s], endEle = elevations[s + 1];
+    const span = endIdx - startIdx;
+    for (let i = startIdx + 1; i < endIdx; i++) {
+      result[i][2] = startEle + ((i - startIdx) / span) * (endEle - startEle);
+    }
+  }
+  return result;
+}
+
+// ---------------------------------------------------------------------------
 // XML escaping
 // ---------------------------------------------------------------------------
 
@@ -47,48 +115,45 @@ function extractCoords(geometry) {
  * @param {object} route - route object from stitchTrips()
  * @returns {string} valid GPX XML
  */
-export function buildGPX(route) {
+export async function buildGPX(route) {
   const name = escapeXML(route.name);
-  const trkpts = [];
-  let lastCoord = null; // track the end of the previous segment
+  const allCoords = [];
+  let lastCoord = null;
 
-  for (let ai = 0; ai < route.axes.length; ai++) {
-    const axis = route.axes[ai];
-
-    for (let si = 0; si < axis.segments.length; si++) {
-      const seg = axis.segments[si];
+  for (const axis of route.axes) {
+    for (const seg of axis.segments) {
       let coords = extractCoords(seg.geometry);
       if (coords.length === 0) continue;
 
       // Orient segment to flow continuously from previous
       if (lastCoord && coords.length >= 2) {
-        const firstPt = coords[0];
-        const lastPt = coords[coords.length - 1];
-        const distToFirst = haversineM(lastCoord, firstPt);
-        const distToLast = haversineM(lastCoord, lastPt);
+        const distToFirst = haversineM(lastCoord, coords[0]);
+        const distToLast = haversineM(lastCoord, coords[coords.length - 1]);
         if (distToLast < distToFirst) {
-          // Segment is backwards — reverse it
           coords = [...coords].reverse();
         }
       }
 
-      // Add gap connection point if there's a jump
+      // Add gap connection points if there's a jump
       if (lastCoord) {
-        const firstPt = coords[0];
-        const gapDist = haversineM(lastCoord, firstPt);
+        const gapDist = haversineM(lastCoord, coords[0]);
         if (gapDist > 50) {
-          // Gap larger than 50m — add explicit gap points
-          trkpts.push(formatTrkpt(lastCoord));
-          trkpts.push(formatTrkpt(firstPt));
+          allCoords.push(lastCoord);
+          allCoords.push(coords[0]);
         }
       }
 
       for (const coord of coords) {
-        trkpts.push(formatTrkpt(coord));
+        allCoords.push(coord);
       }
       lastCoord = coords[coords.length - 1];
     }
   }
+
+  // Enrich with elevation from Open-Meteo
+  const enriched = await enrichWithElevation(allCoords);
+
+  const trkpts = enriched.map((c) => formatTrkpt(c));
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1" creator="whereto.bike">
