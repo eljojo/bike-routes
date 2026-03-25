@@ -18,9 +18,10 @@ function fmtNum(n, decimals = 1) {
   return n.toFixed(decimals).replace('.', ',');
 }
 
-/** Capitalize first letter of each space-separated word. */
+/** Capitalize first letter of each space-separated word (handles ñ). */
 function titleCase(str) {
   return str
+    .toLowerCase()
     .split(' ')
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(' ');
@@ -37,6 +38,18 @@ function yamlStr(str) {
     return `"${str.replace(/"/g, '\\"')}"`;
   }
   return `"${str}"`;
+}
+
+/** Natural list: "A, B y C". */
+function naturalList(items) {
+  if (items.length <= 1) return items[0] || '';
+  return items.slice(0, -1).join(', ') + ' y ' + items[items.length - 1];
+}
+
+/** Format condition, filtering out "nan" and null. */
+function fmtCondition(clasificacion) {
+  if (!clasificacion || clasificacion === 'nan' || clasificacion === 'NaN') return null;
+  return clasificacion.toLowerCase();
 }
 
 // ---------------------------------------------------------------------------
@@ -76,16 +89,31 @@ variants:
 
   // Opening — lead with where you're going, not metrics
   const allComunas = [...new Set(route.axes.flatMap((a) => a.comunas).filter(Boolean))];
-  const comunasStr = allComunas.map(titleCase).join(' y ');
+  const comunasStr = naturalList(allComunas.map(titleCase));
 
-  let opening = `${fmtNum(distKm)} kilómetros por ${comunasStr}`;
+  const archetype = route.archetype || 'point-to-point';
+  let opening;
 
-  // Mention the destination anchors
-  if (route.startAnchor?.name && route.endAnchor?.name &&
-      route.startAnchor.name !== route.endAnchor.name) {
-    opening += `, desde ${route.startAnchor.name} hasta ${route.endAnchor.name}`;
+  if (archetype === 'loop') {
+    opening = `Un circuito de ${fmtNum(distKm)} kilómetros por ${comunasStr}`;
+    if (route.startAnchor?.name) {
+      opening += `, saliendo desde ${route.startAnchor.name}`;
+    }
+    opening += '.';
+  } else if (archetype === 'out-and-back') {
+    opening = `${fmtNum(distKm)} kilómetros de ida y vuelta por ${comunasStr}`;
+    if (route.startAnchor?.name) {
+      opening += `, hacia ${route.startAnchor.name}`;
+    }
+    opening += '.';
+  } else {
+    opening = `${fmtNum(distKm)} kilómetros por ${comunasStr}`;
+    if (route.startAnchor?.name && route.endAnchor?.name &&
+        route.startAnchor.name !== route.endAnchor.name) {
+      opening += `, desde ${route.startAnchor.name} hasta ${route.endAnchor.name}`;
+    }
+    opening += '.';
   }
-  opening += '.';
 
   // Infrastructure coverage as context, not headline
   if (route.infraPercent >= 90) {
@@ -98,27 +126,48 @@ variants:
 
   sections.push(opening);
 
-  // --- Tramos section ---
-  const allSegments = route.axes.flatMap((a) => a.segments);
-  if (allSegments.length > 0) {
+  // --- Tramos section: consolidate by axis, not individual segments ---
+  if (route.axes.length > 0) {
     const lines = ['### Tramos', ''];
-    for (const seg of allSegments) {
-      const comuna = seg.comuna ? titleCase(seg.comuna) : '';
-      const km = fmtNum(seg.lengthM / 1000);
-      const parts = [`**${seg.nombre}**`];
-      if (comuna) parts[0] += ` (${comuna})`;
-      parts[0] += ` — ${km} km`;
-      if (seg.tipo) parts.push(seg.tipo);
-      if (seg.emplazamiento) parts.push(`en ${seg.emplazamiento}`);
-      if (seg.ancho_cm) parts.push(`${seg.ancho_cm} cm de ancho`);
+    for (const axis of route.axes) {
+      const axisName = titleCase(axis.name || 'Sin nombre');
+      const axisComunas = (axis.comunas || []).filter(Boolean).map(titleCase);
+      const axisKm = fmtNum(axis.totalInfraM / 1000);
 
-      let line = parts.join(', ') + '.';
+      // Summarize the axis as one entry
+      let line = `**${axisName}**`;
+      if (axisComunas.length > 0) line += ` (${naturalList(axisComunas)})`;
+      line += ` — ${axisKm} km`;
 
-      if (seg.clasificacion) {
-        line += `\nEvaluación Pedaleable (2022): "${seg.clasificacion}".`;
+      // Collect unique infrastructure properties across segments
+      const tipos = [...new Set(axis.segments.map((s) => s.tipo).filter(Boolean))];
+      if (tipos.length > 0) line += `, ${tipos.join('/')}`;
+
+      const emplazamientos = [...new Set(axis.segments.map((s) => s.emplazamiento).filter(Boolean))];
+      if (emplazamientos.length > 0) line += `, en ${naturalList(emplazamientos)}`;
+
+      const widths = axis.segments.map((s) => s.ancho_cm).filter((w) => w != null && w > 0);
+      if (widths.length > 0) {
+        const minW = Math.min(...widths);
+        const maxW = Math.max(...widths);
+        if (minW === maxW) {
+          line += `, ${minW} cm de ancho`;
+        } else {
+          line += `, ${minW}–${maxW} cm de ancho`;
+        }
       }
-      if (seg.video) {
-        line += `\n[Video de este tramo](${seg.video})`;
+
+      line += '.';
+
+      // Condition summary — show range if varied, skip "nan"
+      const conditions = axis.segments
+        .map((s) => fmtCondition(s.clasificacion))
+        .filter(Boolean);
+      const uniqueConditions = [...new Set(conditions)];
+      if (uniqueConditions.length === 1) {
+        line += `\nEvaluación Pedaleable: "${uniqueConditions[0]}".`;
+      } else if (uniqueConditions.length > 1) {
+        line += `\nEvaluación Pedaleable: de "${uniqueConditions[uniqueConditions.length - 1]}" a "${uniqueConditions[0]}".`;
       }
 
       lines.push(line);
@@ -127,31 +176,54 @@ variants:
     sections.push(lines.join('\n'));
   }
 
-  // --- Tramos sin infraestructura ---
+  // --- Tramos sin infraestructura: use axis names instead of coordinates ---
   const significantGaps = route.gaps.filter((g) => g.distanceM > 50);
   if (significantGaps.length > 0) {
     const lines = ['### Tramos sin infraestructura', ''];
-    for (const gap of significantGaps) {
+    for (let gi = 0; gi < significantGaps.length; gi++) {
+      const gap = significantGaps[gi];
       const distStr = gap.distanceM >= 1000
         ? `${fmtNum(gap.distanceM / 1000)} km`
         : `${Math.round(gap.distanceM)} m`;
-      lines.push(`**${gap.from || gap.afterAxis} → ${gap.to || ''}** — ${distStr} sin infraestructura ciclista.`);
+
+      // Find the axis before and after this gap
+      const beforeAxis = route.axes.find((a) => a.slug === gap.afterAxis);
+      const afterAxisIdx = route.axes.findIndex((a) => a.slug === gap.afterAxis);
+      const afterAxis = afterAxisIdx >= 0 && afterAxisIdx + 1 < route.axes.length
+        ? route.axes[afterAxisIdx + 1]
+        : null;
+
+      const fromName = beforeAxis ? titleCase(beforeAxis.name || 'tramo anterior') : 'tramo anterior';
+      const toName = afterAxis ? titleCase(afterAxis.name || 'siguiente tramo') : 'siguiente tramo';
+
+      lines.push(`Entre **${fromName}** y **${toName}** — ${distStr} sin infraestructura ciclista.`);
       lines.push('');
     }
     sections.push(lines.join('\n'));
   }
 
-  // --- Video section ---
-  const segmentsWithVideo = allSegments.filter((s) => s.video);
-  if (segmentsWithVideo.length > 0) {
+  // --- Video section: deduplicate by URL ---
+  const allSegments = route.axes.flatMap((a) => a.segments);
+  const seenVideos = new Set();
+  const uniqueVideoSegments = [];
+  for (const seg of allSegments) {
+    if (seg.video && !seenVideos.has(seg.video.trim())) {
+      seenVideos.add(seg.video.trim());
+      uniqueVideoSegments.push(seg);
+    }
+  }
+
+  if (uniqueVideoSegments.length > 0) {
     const lines = [
       '### Video',
       '',
       'Videos a nivel de calle de cada tramo, grabados por Pedaleable:',
       '',
     ];
-    for (const seg of segmentsWithVideo) {
-      lines.push(`- [${seg.nombre}](${seg.video})`);
+    for (const seg of uniqueVideoSegments) {
+      const name = titleCase(seg.nombre || 'Tramo');
+      const comuna = seg.comuna ? ` (${titleCase(seg.comuna)})` : '';
+      lines.push(`- [${name}${comuna}](${seg.video.trim()})`);
     }
     lines.push('');
     sections.push(lines.join('\n'));

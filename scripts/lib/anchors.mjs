@@ -37,6 +37,12 @@ const ANCHOR_SCORES = {
 
 // A destination 2km past the bike path endpoint is still a great ride goal.
 // The old 500m filter killed places like Britannia Beach and Petrie Island.
+// Categories that are useful waypoints but not ride destinations
+const UTILITY_CATEGORIES = new Set([
+  'wc', 'parking', 'utility', 'detour', 'flooding',
+  'toilets', 'bicycle_parking', 'waste_basket',
+]);
+
 const MAX_INFRA_DIST_M = 3000;
 const PROXIMITY_BONUS_CLOSE_M = 200;
 const PROXIMITY_BONUS_NEAR_M = 800;
@@ -80,6 +86,9 @@ export function scoreAnchors(pois, axes, curatedPlaces = []) {
   // Score and filter each POI
   const scored = [];
   for (const poi of pois) {
+    // Skip utility POIs — they're useful stops but not ride destinations
+    if (UTILITY_CATEGORIES.has(poi.type)) continue;
+
     const poiCoord = [poi.lng, poi.lat]; // [lng, lat] for haversineM
 
     // Find minimum distance to any infrastructure point
@@ -107,6 +116,7 @@ export function scoreAnchors(pois, axes, curatedPlaces = []) {
   // Add curated places — these bypass the proximity filter because they're
   // hand-picked destinations. They get the highest base score.
   for (const place of curatedPlaces) {
+    if (UTILITY_CATEGORIES.has(place.type)) continue;
     const poiCoord = [place.lng, place.lat];
     let minDist = Infinity;
     for (const pt of points) {

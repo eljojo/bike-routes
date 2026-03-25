@@ -202,6 +202,83 @@ export function detectAxes(segments) {
     }
   }
 
+  // --- Geometric continuity pass ---
+  // Merge small axes (unnamed or short) into nearby larger axes when their
+  // endpoints connect, forming continuous corridors regardless of naming.
+  // This catches cases like Ottawa's Canal where OSM segment names vary.
+  axes.sort((a, b) => b.totalInfraM - a.totalInfraM);
+
+  const MERGE_ENDPOINT_M = 300;   // max gap between axes to consider merging
+  const SMALL_AXIS_M = 1000;      // axes shorter than this are merge candidates
+  const MIN_BEARING_COMPAT = 60;  // max bearing difference to merge (degrees)
+
+  function bearingDiff(a, b) {
+    const diff = Math.abs(a - b) % 360;
+    return Math.min(diff, 360 - diff);
+  }
+
+  function axisBearing(axis) {
+    const first = axis.segments[0];
+    const last = axis.segments[axis.segments.length - 1];
+    const dx = last.centroid[0] - first.centroid[0];
+    const dy = last.centroid[1] - first.centroid[1];
+    return ((Math.atan2(dx, dy) * 180) / Math.PI + 360) % 360;
+  }
+
+  let merged = true;
+  while (merged) {
+    merged = false;
+    for (let i = axes.length - 1; i >= 0; i--) {
+      const small = axes[i];
+      if (small.totalInfraM > SMALL_AXIS_M && small.segments.length > 2) continue;
+
+      const smallBearing = axisBearing(small);
+      let bestTarget = -1;
+      let bestDist = Infinity;
+
+      for (let j = 0; j < axes.length; j++) {
+        if (j === i) continue;
+        const big = axes[j];
+        // Check bearing compatibility
+        if (bearingDiff(smallBearing, axisBearing(big)) > MIN_BEARING_COMPAT) continue;
+
+        // Check endpoint proximity
+        const smallSegs = small.segments;
+        const bigSegs = big.segments;
+        const pairs = [
+          [smallSegs[0], bigSegs[0]],
+          [smallSegs[0], bigSegs[bigSegs.length - 1]],
+          [smallSegs[smallSegs.length - 1], bigSegs[0]],
+          [smallSegs[smallSegs.length - 1], bigSegs[bigSegs.length - 1]],
+        ];
+        for (const [a, b] of pairs) {
+          const d = minEndpointDistance(a, b).distance;
+          if (d < bestDist) {
+            bestDist = d;
+            bestTarget = j;
+          }
+        }
+      }
+
+      if (bestTarget >= 0 && bestDist <= MERGE_ENDPOINT_M) {
+        // Merge small into target: append segments and rebuild
+        const target = axes[bestTarget];
+        const allSegs = [...target.segments, ...small.segments];
+        // Re-sort by position along dominant orientation
+        const dom = target.bearing === 'north-south' ? 'ns' : 'ew';
+        allSegs.sort((a, b) =>
+          dom === 'ns'
+            ? a.centroid[1] - b.centroid[1]
+            : a.centroid[0] - b.centroid[0],
+        );
+        axes[bestTarget] = buildAxis(allSegs, target.bearing);
+        axes.splice(i, 1);
+        merged = true;
+        break; // restart from end after each merge
+      }
+    }
+  }
+
   // --- Sort axes by totalInfraM descending ---
   axes.sort((a, b) => b.totalInfraM - a.totalInfraM);
 

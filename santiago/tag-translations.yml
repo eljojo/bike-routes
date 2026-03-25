@@ -24,6 +24,11 @@ scenic:
   es: panorámico
 snacks:
   es: comer algo
+# Route shape
+loop:
+  es: circuito
+out and back:
+  es: ida y vuelta
 # Infrastructure tags
 protected lane:
   es: ciclovía segregada
