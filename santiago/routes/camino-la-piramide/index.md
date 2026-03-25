@@ -2,7 +2,6 @@
 name: Camino La Pirámide
 status: published
 distance_km: 6.1
-bike_path: camino-la-piramide
 tags:
   - bike path
 created_at: '2026-03-25'

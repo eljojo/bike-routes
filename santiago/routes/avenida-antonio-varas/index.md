@@ -2,7 +2,6 @@
 name: Avenida Antonio Varas
 status: published
 distance_km: 5.1
-bike_path: avenida-antonio-varas
 tags:
   - bike path
 created_at: '2026-03-25'

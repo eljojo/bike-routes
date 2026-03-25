@@ -2,7 +2,6 @@
 name: Avenida Vicuña Mackenna
 status: published
 distance_km: 1.9
-bike_path: avenida-vicuna-mackenna
 tags:
   - bike path
 created_at: '2026-03-25'

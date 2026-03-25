@@ -2,7 +2,6 @@
 name: Ciclovía Sánchez Fontecilla
 status: published
 distance_km: 3.4
-bike_path: ciclovia-sanchez-fontecilla
 tags:
   - bike path
 created_at: '2026-03-25'

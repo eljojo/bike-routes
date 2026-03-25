@@ -2,7 +2,6 @@
 name: Avenida Sur
 status: published
 distance_km: 3.7
-bike_path: avenida-sur
 tags:
   - bike path
 created_at: '2026-03-25'

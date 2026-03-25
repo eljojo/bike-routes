@@ -2,7 +2,6 @@
 name: Ciclovía Parque Vespucio
 status: published
 distance_km: 7.3
-bike_path: ciclovia-parque-vespucio
 tags:
   - bike path
 created_at: '2026-03-25'

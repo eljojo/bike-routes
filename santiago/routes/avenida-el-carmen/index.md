@@ -2,7 +2,6 @@
 name: Avenida El Carmen
 status: published
 distance_km: 3.4
-bike_path: avenida-el-carmen
 tags:
   - bike path
 created_at: '2026-03-25'

@@ -2,7 +2,6 @@
 name: Ciclovía Parque Víctor Jara
 status: published
 distance_km: 3
-bike_path: ciclovia-parque-victor-jara
 tags:
   - bike path
 created_at: '2026-03-25'

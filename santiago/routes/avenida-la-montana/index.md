@@ -2,7 +2,6 @@
 name: Avenida La Montaña
 status: published
 distance_km: 3
-bike_path: avenida-la-montana
 tags:
   - bike path
 created_at: '2026-03-25'

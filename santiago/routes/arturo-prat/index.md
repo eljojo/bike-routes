@@ -2,7 +2,6 @@
 name: Arturo Prat
 status: published
 distance_km: 5.6
-bike_path: arturo-prat
 tags:
   - bike path
 created_at: '2026-03-25'

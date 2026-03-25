@@ -2,7 +2,6 @@
 name: Ciclovía Alameda
 status: published
 distance_km: 5.4
-bike_path: ciclovia-alameda
 tags:
   - bike path
 created_at: '2026-03-25'

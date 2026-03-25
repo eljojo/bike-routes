@@ -2,7 +2,6 @@
 name: Club Hípico
 status: published
 distance_km: 2.4
-bike_path: club-hipico
 tags:
   - bike path
 created_at: '2026-03-25'

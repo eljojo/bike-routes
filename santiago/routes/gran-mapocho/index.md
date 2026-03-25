@@ -8,7 +8,7 @@ tags:
   - scenic
   - flat
   - river
-bike_paths:
+waypoints:
   - mapocho-42k
   - ciclovia-andres-bello
   - avenida-costanera-sur

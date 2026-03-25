@@ -5,7 +5,7 @@ distance_km: 44
 tags:
   - bike path
   - flat
-bike_paths:
+waypoints:
   - mapocho-42k
   - rosas
   - avenida-mapocho

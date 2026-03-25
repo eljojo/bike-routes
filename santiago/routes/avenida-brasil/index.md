@@ -2,7 +2,6 @@
 name: Avenida Brasil
 status: published
 distance_km: 1.9
-bike_path: avenida-brasil
 tags:
   - bike path
 created_at: '2026-03-25'

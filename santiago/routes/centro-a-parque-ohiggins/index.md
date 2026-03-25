@@ -5,7 +5,7 @@ distance_km: 9
 tags:
   - bike path
   - flat
-bike_paths:
+waypoints:
   - general-bulnes
   - ciclovia-libertador-bernardo-o-higgins
 created_at: '2026-03-25'

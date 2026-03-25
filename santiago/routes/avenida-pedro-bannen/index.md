@@ -2,7 +2,6 @@
 name: Avenida Pedro Bannen
 status: published
 distance_km: 2.2
-bike_path: avenida-pedro-bannen
 tags:
   - bike path
 created_at: '2026-03-25'

@@ -2,7 +2,6 @@
 name: Avenida José Miguel Claro
 status: published
 distance_km: 2.6
-bike_path: avenida-jose-miguel-claro
 tags:
   - bike path
 created_at: '2026-03-25'

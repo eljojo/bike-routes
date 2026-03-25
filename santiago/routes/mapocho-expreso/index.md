@@ -2,7 +2,6 @@
 name: Mapocho Expreso
 status: published
 distance_km: 2.3
-bike_path: mapocho-expreso
 tags:
   - bike path
 created_at: '2026-03-25'

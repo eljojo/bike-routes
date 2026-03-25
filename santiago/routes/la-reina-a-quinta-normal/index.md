@@ -7,7 +7,7 @@ tags:
   - bike path
   - flat
   - river
-bike_paths:
+waypoints:
   - ciclovia-sanchez-fontecilla
   - avenida-costanera-sur
   - mapocho-42k

@@ -2,7 +2,6 @@
 name: Enrique Olivares
 status: published
 distance_km: 3.3
-bike_path: enrique-olivares
 tags:
   - bike path
 created_at: '2026-03-25'

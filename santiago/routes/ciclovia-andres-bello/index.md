@@ -2,7 +2,6 @@
 name: Ciclovía Andrés Bello
 status: published
 distance_km: 4.2
-bike_path: ciclovia-andres-bello
 tags:
   - bike path
 created_at: '2026-03-25'

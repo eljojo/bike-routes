@@ -7,7 +7,7 @@ tags:
   - bike path
   - flat
   - park
-bike_paths:
+waypoints:
   - ciclovia-parque-vespucio
   - ciclovia-sanchez-fontecilla
 created_at: '2026-03-25'

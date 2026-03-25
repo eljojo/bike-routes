@@ -6,7 +6,7 @@ tags:
   - bike path
   - loop
   - scenic
-bike_paths:
+waypoints:
   - ciclovia-andres-bello
   - mapocho-42k
   - ciclovia-alameda

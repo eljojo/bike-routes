@@ -2,7 +2,6 @@
 name: Avenida Suecia
 status: published
 distance_km: 4.9
-bike_path: avenida-suecia
 tags:
   - bike path
 created_at: '2026-03-25'

@@ -2,7 +2,6 @@
 name: Ciclovía Pocuro
 status: published
 distance_km: 10.7
-bike_path: ciclovia-pocuro
 tags:
   - bike path
 created_at: '2026-03-25'

@@ -2,7 +2,6 @@
 name: Ciclovia Grecia
 status: published
 distance_km: 7.6
-bike_path: ciclovia-grecia
 tags:
   - bike path
 created_at: '2026-03-25'

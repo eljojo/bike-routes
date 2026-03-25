@@ -2,7 +2,6 @@
 name: Martín de Zamora
 status: published
 distance_km: 4.4
-bike_path: martin-de-zamora
 tags:
   - bike path
 created_at: '2026-03-25'

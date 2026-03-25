@@ -8,7 +8,7 @@ tags:
   - scenic
   - flat
   - foothills
-bike_paths:
+waypoints:
   - ciclovia-las-perdices-avenida-bilbao-avenida-jose-arrieta
   - ciclovia-las-perdices-avenida-jose-arrieta-avenida-departamental
 created_at: '2026-03-25'

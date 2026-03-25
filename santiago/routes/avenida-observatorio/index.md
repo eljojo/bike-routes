@@ -2,7 +2,6 @@
 name: Avenida Observatorio
 status: published
 distance_km: 12.5
-bike_path: avenida-observatorio
 tags:
   - bike path
 created_at: '2026-03-25'

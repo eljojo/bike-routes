@@ -311,7 +311,6 @@ for (const bp of bike_paths) {
         name: bp.name,
         status: 'published',
         distance_km: distanceKm,
-        bike_path: slug,
         tags: ['bike path'],
         created_at: new Date().toISOString().split('T')[0],
         updated_at: new Date().toISOString().split('T')[0],
@@ -335,7 +334,7 @@ for (const bp of bike_paths) {
 console.log(`\n${generated} bike path routes generated, ${failed} failed.`);
 
 // ---------------------------------------------------------------------------
-// Pass 2: combined routes (routes with bike_paths in frontmatter)
+// Pass 2: combined routes (routes with waypoints in frontmatter)
 // ---------------------------------------------------------------------------
 
 let combined = 0;
@@ -349,13 +348,13 @@ if (fs.existsSync(routesDir)) {
     const fmMatch = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)/);
     if (!fmMatch) continue;
     const fm = yaml.load(fmMatch[1]);
-    if (!fm.bike_paths || !Array.isArray(fm.bike_paths) || fm.bike_paths.length === 0) continue;
+    if (!fm.waypoints || !Array.isArray(fm.waypoints) || fm.waypoints.length === 0) continue;
 
     try {
       // Fetch and chain each bike path's ways in order
       const allWays = [];
       const resolved = [];
-      for (const bpSlug of fm.bike_paths) {
+      for (const bpSlug of fm.waypoints) {
         const bp = bpBySlug.get(bpSlug);
         if (!bp) {
           console.log(`  WARN ${slug}: bike path "${bpSlug}" not found in bikepaths.yml`);

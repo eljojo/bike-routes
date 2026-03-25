@@ -2,7 +2,6 @@
 name: Marín
 status: published
 distance_km: 2
-bike_path: marin
 tags:
   - bike path
 created_at: '2026-03-25'

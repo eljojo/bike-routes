@@ -5,7 +5,7 @@ distance_km: 35.8
 tags:
   - bike path
   - flat
-bike_paths:
+waypoints:
   - ciclovia-pocuro
   - avenida-antonio-varas
   - avenida-costanera-sur
