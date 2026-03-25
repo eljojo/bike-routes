@@ -3,5 +3,8 @@
   "type": "module",
   "dependencies": {
     "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.1"
   }
 }
