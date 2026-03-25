@@ -1,7 +1,7 @@
 ---
 name: "De Parque Mapocho Río Tramo 3 a Parque Metropolitano Cerros de Renca"
 status: published
-distance_km: 2.9
+distance_km: 2.8
 tags:
   - bike path
   - protected lane
@@ -14,10 +14,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Mapocho Río Tramo 3 a Parque Metropolitano Cerros de Renca"
     gpx: main.gpx
-    distance_km: 2.9
+    distance_km: 2.8
 ---
 
-2,9 kilómetros por Renca, desde Parque Mapocho Río Tramo 3 hasta Parque Metropolitano Cerros de Renca. Prácticamente todo el recorrido tiene ciclovía.
+2,8 kilómetros por Renca, desde Parque Mapocho Río Tramo 3 hasta Parque Metropolitano Cerros de Renca. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

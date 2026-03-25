@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Gertrudis Echeñique a Parque República de Ecuador"
 status: published
-distance_km: 7.3
+distance_km: 6.7
 tags:
   - bike path
   - protected lane
@@ -14,10 +14,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Gertrudis Echeñique a Parque República de Ecuador"
     gpx: main.gpx
-    distance_km: 7.3
+    distance_km: 6.7
 ---
 
-7,3 kilómetros por Providencia, Recoleta y Las Condes, desde Plaza Gertrudis Echeñique hasta Parque República de Ecuador. El 75% del recorrido tiene ciclovía.
+6,7 kilómetros por Providencia, Recoleta y Las Condes, desde Plaza Gertrudis Echeñique hasta Parque República de Ecuador. El 75% del recorrido tiene ciclovía.
 
 ### Tramos
 

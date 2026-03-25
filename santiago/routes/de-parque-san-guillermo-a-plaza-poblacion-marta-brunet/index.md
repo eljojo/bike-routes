@@ -1,7 +1,7 @@
 ---
 name: "De Parque San Guillermo a Plaza Población Marta Brunet"
 status: published
-distance_km: 8.3
+distance_km: 6.2
 tags:
   - bike path
   - park path
@@ -13,10 +13,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque San Guillermo a Plaza Población Marta Brunet"
     gpx: main.gpx
-    distance_km: 8.3
+    distance_km: 6.2
 ---
 
-8,3 kilómetros por Puente Alto y La Pintana, desde Parque San Guillermo hasta Plaza Población Marta Brunet. El 80% del recorrido tiene ciclovía.
+6,2 kilómetros por Puente Alto y La Pintana, desde Parque San Guillermo hasta Plaza Población Marta Brunet. El 80% del recorrido tiene ciclovía.
 
 ### Tramos
 

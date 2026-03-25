@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Guillermo Franke a Plaza Los Molinos"
 status: published
-distance_km: 2.9
+distance_km: 2.7
 tags:
   - bike path
   - flat
@@ -13,10 +13,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Guillermo Franke a Plaza Los Molinos"
     gpx: main.gpx
-    distance_km: 2.9
+    distance_km: 2.7
 ---
 
-2,9 kilómetros por Providencia, desde Plaza Guillermo Franke hasta Plaza Los Molinos. Prácticamente todo el recorrido tiene ciclovía.
+2,7 kilómetros por Providencia, desde Plaza Guillermo Franke hasta Plaza Los Molinos. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

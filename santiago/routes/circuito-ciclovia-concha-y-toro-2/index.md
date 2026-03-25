@@ -1,7 +1,7 @@
 ---
 name: "Circuito Ciclovía Concha Y Toro"
 status: published
-distance_km: 8.2
+distance_km: 7.6
 tags:
   - bike path
   - median lane
@@ -13,10 +13,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "Circuito Ciclovía Concha Y Toro"
     gpx: main.gpx
-    distance_km: 8.2
+    distance_km: 7.6
 ---
 
-Un circuito de 8,2 kilómetros por Puente Alto, saliendo desde Parque Europa. El 87% del recorrido tiene ciclovía.
+Un circuito de 7,6 kilómetros por Puente Alto, saliendo desde Parque Europa. El 87% del recorrido tiene ciclovía.
 
 ### Tramos
 

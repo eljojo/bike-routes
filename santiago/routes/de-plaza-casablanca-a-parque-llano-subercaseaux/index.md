@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Casablanca a Parque Llano Subercaseaux"
 status: published
-distance_km: 7.8
+distance_km: 7.4
 tags:
   - bike path
   - flat
@@ -11,10 +11,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Casablanca a Parque Llano Subercaseaux"
     gpx: main.gpx
-    distance_km: 7.8
+    distance_km: 7.4
 ---
 
-7,8 kilómetros por San Joaquin, desde Plaza Casablanca hasta Parque Llano Subercaseaux. Prácticamente todo el recorrido tiene ciclovía.
+7,4 kilómetros por San Joaquin, desde Plaza Casablanca hasta Parque Llano Subercaseaux. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

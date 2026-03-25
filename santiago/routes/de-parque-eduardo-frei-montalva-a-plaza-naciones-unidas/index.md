@@ -1,7 +1,7 @@
 ---
 name: "De Parque Eduardo Frei Montalva a Plaza Naciones Unidas"
 status: published
-distance_km: 4.3
+distance_km: 3.9
 tags:
   - bike path
   - park path
@@ -13,10 +13,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Eduardo Frei Montalva a Plaza Naciones Unidas"
     gpx: main.gpx
-    distance_km: 4.3
+    distance_km: 3.9
 ---
 
-4,3 kilómetros por La Florida y San Joaquin, desde Parque Eduardo Frei Montalva hasta Plaza Naciones Unidas. El 75% del recorrido tiene ciclovía.
+3,9 kilómetros por La Florida y San Joaquin, desde Parque Eduardo Frei Montalva hasta Plaza Naciones Unidas. El 75% del recorrido tiene ciclovía.
 
 ### Tramos
 

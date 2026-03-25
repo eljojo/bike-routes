@@ -1,7 +1,7 @@
 ---
 name: "De Las 4 Plazas a Plaza Naciones Unidas"
 status: published
-distance_km: 12.6
+distance_km: 8.7
 tags:
   - bike path
   - flat
@@ -15,10 +15,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Las 4 Plazas a Plaza Naciones Unidas"
     gpx: main.gpx
-    distance_km: 12.6
+    distance_km: 8.7
 ---
 
-12,6 kilómetros por Macul, San Joaquin y La Florida, desde Las 4 Plazas hasta Plaza Naciones Unidas. Prácticamente todo el recorrido tiene ciclovía.
+8,7 kilómetros por Macul, San Joaquin y La Florida, desde Las 4 Plazas hasta Plaza Naciones Unidas. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

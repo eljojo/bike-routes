@@ -191,7 +191,10 @@ export async function buildGPX(route, opts = {}) {
           // Try road graph routing first
           if (gapDist > 100 && opts.roadGraph) {
             const roadResult = shortestPath(opts.roadGraph, lastCoord, coords[0], gapDist * 2);
-            if (roadResult && roadResult.path.length > 2) {
+            // Accept road path only if it's reasonable: not too long (detour)
+            // and doesn't backtrack. A path 2x the crow-flies distance is
+            // going around the block instead of through it.
+            if (roadResult && roadResult.path.length > 2 && roadResult.distM < gapDist * 1.8) {
               for (let k = 1; k < roadResult.path.length - 1; k++) {
                 allCoords.push(roadResult.path[k]);
               }

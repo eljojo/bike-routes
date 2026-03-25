@@ -1,7 +1,7 @@
 ---
 name: "De Parque Germán Picó Cañas a Parque Intercomunal Victor Jara"
 status: published
-distance_km: 8.0
+distance_km: 7.7
 tags:
   - bike path
   - park path
@@ -15,10 +15,10 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Germán Picó Cañas a Parque Intercomunal Victor Jara"
     gpx: main.gpx
-    distance_km: 8.0
+    distance_km: 7.7
 ---
 
-8,0 kilómetros por Santiago, San Joaquin y San Miguel, desde Parque Germán Picó Cañas hasta Parque Intercomunal Victor Jara. El 81% del recorrido tiene ciclovía.
+7,7 kilómetros por Santiago, San Joaquin y San Miguel, desde Parque Germán Picó Cañas hasta Parque Intercomunal Victor Jara. El 81% del recorrido tiene ciclovía.
 
 ### Tramos
 
