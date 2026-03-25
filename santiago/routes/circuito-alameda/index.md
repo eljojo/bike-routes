@@ -36,12 +36,10 @@ Evaluación Pedaleable: de "muy mala" a "mala".
 Entre **Ciclovia 5 De Abril** y **Alameda** — 746 m sin infraestructura ciclista.
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [5 De Abril (Estacion Central)](https://youtu.be/M0CB0NfaDvA)
-- [Alameda (Estacion Central)](https://youtu.be/BoPqVYHL-t4)
-- [Alameda (Estacion Central)](https://youtu.be/tbFfPJ_JHf4)
-- [Alameda (Santiago)](https://youtu.be/7QvhVMrxe1U)
+https://youtu.be/M0CB0NfaDvA
+https://youtu.be/BoPqVYHL-t4
+https://youtu.be/tbFfPJ_JHf4
+https://youtu.be/7QvhVMrxe1U
 

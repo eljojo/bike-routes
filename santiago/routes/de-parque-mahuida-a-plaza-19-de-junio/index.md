@@ -32,13 +32,11 @@ Evaluación Pedaleable: de "regular" a "muy mala".
 Entre **Padre Hurtado Sur** y **Manquehue Sur** — 2,3 km sin infraestructura ciclista.
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Padre Hurtado Sur (La Reina)](https://youtu.be/8bf528QTAj4)
-- [Manquehue Sur (Las Condes)](https://youtu.be/t96OaKvFdp0)
-- [Manquehue Sur (Las Condes)](https://youtu.be/_usaXpmBoY0)
-- [Maria Teresa (Las Condes)](https://youtu.be/teUm5XUyNDU)
-- [Noruega (Las Condes)](https://youtu.be/hkLwkDOM5Oo)
+https://youtu.be/8bf528QTAj4
+https://youtu.be/t96OaKvFdp0
+https://youtu.be/_usaXpmBoY0
+https://youtu.be/teUm5XUyNDU
+https://youtu.be/hkLwkDOM5Oo
 

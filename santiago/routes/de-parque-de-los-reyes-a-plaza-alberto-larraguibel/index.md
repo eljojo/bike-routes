@@ -1,7 +1,7 @@
 ---
 name: "De Parque de los Reyes a Plaza Alberto Larraguibel"
 status: published
-distance_km: 16.1
+distance_km: 16.2
 tags:
   - bike path
   - median lane
@@ -10,15 +10,16 @@ tags:
   - hard
   - recoleta
   - huechuraba
+  - vitacura
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
   - name: "De Parque de los Reyes a Plaza Alberto Larraguibel"
     gpx: main.gpx
-    distance_km: 16.1
+    distance_km: 16.2
 ---
 
-16,1 kilómetros por Recoleta y Huechuraba, desde Parque de los Reyes hasta Plaza Alberto Larraguibel. El 75% del recorrido tiene ciclovía.
+16,2 kilómetros por Recoleta, Huechuraba y Vitacura, desde Parque de los Reyes hasta Plaza Alberto Larraguibel. El 72% del recorrido tiene ciclovía.
 
 ### Tramos
 
@@ -28,27 +29,22 @@ Evaluación Pedaleable: "mala".
 **Avenida El Salto** (Recoleta) — 1,8 km, secondary/bidireccional, en calzada, 170 cm de ancho.
 Evaluación Pedaleable: "regular".
 
-**El Salto** (Huechuraba) — 3,2 km, bidireccional/cycleway/crossing, en acera y calzada, 220–250 cm de ancho.
-Evaluación Pedaleable: de "buena" a "mala".
+**Sin Nombre** — 1,3 km, cycleway.
 
-**Camino La Pirámide** — 3,8 km, tertiary.
+**Sendero Rustico** (Huechuraba y Vitacura) — 5,4 km.
 
 **La Cruz** — 1,6 km, path, en parque.
 
 
 ### Tramos sin infraestructura
 
-Entre **Avenida El Salto** y **El Salto** — 1,7 km sin infraestructura ciclista.
+Entre **Tramo Anterior** y **Sendero Rustico** — 2,3 km sin infraestructura ciclista.
 
-Entre **Camino La Pirámide** y **La Cruz** — 2,3 km sin infraestructura ciclista.
+Entre **Sendero Rustico** y **La Cruz** — 2,2 km sin infraestructura ciclista.
 
-
-### Video
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Peru (Recoleta)](https://youtu.be/_X2IfuUEsrA)
-- [El Salto (Recoleta)](https://youtu.be/m8ThMN4_Ays)
-- [El Salto (Huechuraba)](https://youtu.be/0g6CbXsVW3Q)
-- [La Rinconada (Huechuraba)](https://youtu.be/CR55Sw5BTr8)
+https://youtu.be/_X2IfuUEsrA
+https://youtu.be/m8ThMN4_Ays
 

@@ -24,9 +24,7 @@ variants:
 Evaluación Pedaleable: "mala".
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Clotario Blest (Pedro Aguirre Cerda)](https://youtu.be/YAmrphx2w98)
+https://youtu.be/YAmrphx2w98
 

@@ -36,13 +36,11 @@ Evaluación Pedaleable: de "muy mala" a "mala".
 Entre **Tramo Anterior** y **Alameda** — 2,4 km sin infraestructura ciclista.
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Las Torres (Pudahuel)](https://youtu.be/iHN3aOwV1NQ)
-- [La Laguna Sur (Pudahuel)](https://youtu.be/2n9iwLLZg4Q)
-- [Alameda (Estacion Central)](https://youtu.be/BoPqVYHL-t4)
-- [Alameda (Estacion Central)](https://youtu.be/tbFfPJ_JHf4)
-- [Alameda (Santiago)](https://youtu.be/7QvhVMrxe1U)
+https://youtu.be/iHN3aOwV1NQ
+https://youtu.be/2n9iwLLZg4Q
+https://youtu.be/BoPqVYHL-t4
+https://youtu.be/tbFfPJ_JHf4
+https://youtu.be/7QvhVMrxe1U
 

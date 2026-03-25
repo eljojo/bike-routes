@@ -38,15 +38,13 @@ Evaluación Pedaleable: de "buena" a "regular".
 Entre **Tramo Anterior** y **Siguiente Tramo** — 273 m sin infraestructura ciclista.
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Vicuna Mackenna Poniente (La Florida)](https://youtu.be/CDLA0o2UNlohttps://youtu.be/CDLA0o2UNlo)
-- [Marathon (La Florida)](https://youtu.be/AslONM70Z_M)
-- [Marathon (Macul)](https://youtu.be/li3HGMpxgio)
-- [Marathon (Ñuñoa)](https://youtu.be/XZ6bBcaBXoY)
-- [Antonio Varas (Ñuñoa)](https://youtu.be/q4_8Jm9zPu0)
-- [Antonio Varas (Providencia)](https://youtu.be/NxQZvKGsmJE)
-- [Santa Beatriz (Providencia)](https://youtu.be/5IT00lIO0RU)
+https://youtu.be/CDLA0o2UNlohttps://youtu.be/CDLA0o2UNlo
+https://youtu.be/AslONM70Z_M
+https://youtu.be/li3HGMpxgio
+https://youtu.be/XZ6bBcaBXoY
+https://youtu.be/q4_8Jm9zPu0
+https://youtu.be/NxQZvKGsmJE
+https://youtu.be/5IT00lIO0RU
 

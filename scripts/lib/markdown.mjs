@@ -209,15 +209,11 @@ variants:
 
   if (uniqueVideoSegments.length > 0) {
     const lines = [
-      '### Video',
-      '',
       'Videos a nivel de calle de cada tramo, grabados por Pedaleable:',
       '',
     ];
     for (const seg of uniqueVideoSegments) {
-      const name = titleCase(seg.nombre || 'Tramo');
-      const comuna = seg.comuna ? ` (${titleCase(seg.comuna)})` : '';
-      lines.push(`- [${name}${comuna}](${seg.video.trim()})`);
+      lines.push(seg.video.trim());
     }
     lines.push('');
     sections.push(lines.join('\n'));

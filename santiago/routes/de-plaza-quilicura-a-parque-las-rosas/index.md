@@ -35,10 +35,8 @@ Entre **Ciclovía Tinquilco** y **Siguiente Tramo** — 2,3 km sin infraestructu
 Entre **Tramo Anterior** y **Siguiente Tramo** — 92 m sin infraestructura ciclista.
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Lo Marcoleta (Quilicura)](https://youtu.be/ZfXS8i_Y1D4)
-- [Caletera Pdte Eduardo Frei Montalva Oriente (Quilicura)](no grabado)
+https://youtu.be/ZfXS8i_Y1D4
+no grabado
 

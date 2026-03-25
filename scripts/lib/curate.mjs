@@ -59,7 +59,8 @@ export function curateLaunchSet(proposals, opts = {}) {
     const allSegs = r.axes.flatMap((a) => a.segments);
     const parkSegs = allSegs.filter((s) => s.emplazamiento === 'parque');
     const parkFraction = allSegs.length > 0 ? parkSegs.length / allSegs.length : 0;
-    const greenScore = parkFraction > 0.5 ? 10 : parkFraction > 0.2 ? 5 : parkFraction > 0 ? 2 : 0;
+    // Smooth scale: no cliff edges. 17% park gets 3.4 instead of jumping from 2 to 5 at 20%.
+    const greenScore = Math.min(parkFraction * 20, 10);
 
     // Archetype variety — loops and spines are more interesting
     const archetypeScore = r.archetype === 'loop' ? 5 : 0;

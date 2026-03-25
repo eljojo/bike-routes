@@ -1,33 +1,37 @@
 ---
 name: "De Plaza Monumento Maipú a Plaza Paul Harris"
 status: published
-distance_km: 4.0
+distance_km: 5.9
 tags:
   - bike path
   - park path
   - flat
-  - easy
-  - family friendly
+  - hard
   - maipu
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Monumento Maipú a Plaza Paul Harris"
     gpx: main.gpx
-    distance_km: 4.0
+    distance_km: 5.9
 ---
 
-4,0 kilómetros por Maipu, desde Plaza Monumento Maipú hasta Plaza Paul Harris. Prácticamente todo el recorrido tiene ciclovía.
+5,9 kilómetros por Maipu, desde Plaza Monumento Maipú hasta Plaza Paul Harris. El 73% del recorrido tiene ciclovía.
 
 ### Tramos
+
+**Sin Nombre** — 0,3 km, footway, en parque.
 
 **Tres Poniente** (Maipu) — 4,0 km, bidireccional, en parque, 210 cm de ancho.
 Evaluación Pedaleable: "mala".
 
 
-### Video
+### Tramos sin infraestructura
+
+Entre **Tramo Anterior** y **Tres Poniente** — 1,6 km sin infraestructura ciclista.
+
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Tres Poniente (Maipu)](https://youtu.be/1PXOlICOnxg)
+https://youtu.be/1PXOlICOnxg
 

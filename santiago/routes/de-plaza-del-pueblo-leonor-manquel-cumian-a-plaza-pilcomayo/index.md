@@ -25,10 +25,8 @@ variants:
 Evaluación Pedaleable: "buena".
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Vicuna Mackenna (San Ramon)](https://youtu.be/7l_Hb8vgupA)
-- [Vicuna Mackenna (La Cisterna)](https://youtu.be/T0Wd9w2naXc)
+https://youtu.be/7l_Hb8vgupA
+https://youtu.be/T0Wd9w2naXc
 

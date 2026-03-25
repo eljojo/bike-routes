@@ -39,11 +39,9 @@ Entre **Roma-dorsal** y **Siguiente Tramo** — 334 m sin infraestructura ciclis
 Entre **Tramo Anterior** y **El Guanaco** — 191 m sin infraestructura ciclista.
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Roma-dorsal (Conchali)](https://youtu.be/6drCqSnk2oY)
-- [Cardenal Jose Maria Caro (Recoleta)](https://youtu.be/qqbgo1uZJRQ)
-- [El Guanaco (Conchali)](https://youtu.be/6ZVq03mfU1Q)
+https://youtu.be/6drCqSnk2oY
+https://youtu.be/qqbgo1uZJRQ
+https://youtu.be/6ZVq03mfU1Q
 

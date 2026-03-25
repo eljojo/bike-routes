@@ -41,11 +41,9 @@ Entre **Tramo Anterior** y **El Salto** — 482 m sin infraestructura ciclista.
 Entre **Camino La Pirámide** y **Sendero Rustico** — 405 m sin infraestructura ciclista.
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [El Salto (Recoleta)](https://youtu.be/m8ThMN4_Ays)
-- [El Salto (Huechuraba)](https://youtu.be/0g6CbXsVW3Q)
-- [La Rinconada (Huechuraba)](https://youtu.be/CR55Sw5BTr8)
+https://youtu.be/m8ThMN4_Ays
+https://youtu.be/0g6CbXsVW3Q
+https://youtu.be/CR55Sw5BTr8
 

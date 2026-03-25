@@ -25,9 +25,7 @@ variants:
 Evaluación Pedaleable: de "regular" a "buena".
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Salvador Gutierrez (Cerro Navia)](https://www.youtube.com/watch?v=TyYUi_NK-vc)
+https://www.youtube.com/watch?v=TyYUi_NK-vc
 

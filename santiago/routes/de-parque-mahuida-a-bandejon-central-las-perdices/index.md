@@ -25,9 +25,7 @@ variants:
 Evaluación Pedaleable: "muy mala".
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Alto Macul (La Florida)](https://youtu.be/SbgbgBJvVy8)
+https://youtu.be/SbgbgBJvVy8
 

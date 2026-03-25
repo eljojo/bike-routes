@@ -25,10 +25,8 @@ variants:
 Evaluación Pedaleable: de "regular" a "mala".
 
 
-### Video
-
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Estadio (San Joaquin)](https://youtu.be/FyMbMaa4rn0)
-- [Vicuna Mackenna (San Joaquin)](https://youtu.be/bgMjNWKepyw)
+https://youtu.be/FyMbMaa4rn0
+https://youtu.be/bgMjNWKepyw
 

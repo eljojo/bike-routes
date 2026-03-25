@@ -17,7 +17,7 @@ import { assignTags } from './tags.mjs';
 // ---------------------------------------------------------------------------
 
 const MIN_ROUTE_KM = 2;
-const MAX_ROUTE_KM = 50;
+const MAX_ROUTE_KM = 80;
 const MAX_GAP_M = 3000;
 const AXIS_TO_ANCHOR_THRESHOLD_M = 3000;
 const MIN_ANCHOR_SCORE = 5;
@@ -366,7 +366,8 @@ function buildRoute(axisChain, startAnchor, endAnchor) {
   const allSegs = axisChain.flatMap((a) => a.segments);
   const parkSegs = allSegs.filter((s) => s.emplazamiento === 'parque');
   const parkFraction = allSegs.length > 0 ? parkSegs.length / allSegs.length : 0;
-  const greenBonus = parkFraction > 0.5 ? 3 : parkFraction > 0.2 ? 2 : parkFraction > 0 ? 1 : 0;
+  // Smooth scale: 0% = 0, 10% = 1, 25% = 2, 50% = 3, 100% = 4
+  const greenBonus = Math.min(parkFraction * 8, 4);
 
   route.compositeScore = Math.round(
     (infraScore + condScore + anchorScoreVal + signatureBonus + distBonus + archetypeBonus + coherenceBonus + greenBonus - gapPenalty) * 10,
