@@ -33,17 +33,31 @@ export async function queryOverpass(query) {
   }
 
   console.log(`[overpass] fetching from API (key: ${key})`);
-  const res = await fetch(OVERPASS_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `data=${encodeURIComponent(query)}`,
-  });
 
-  if (!res.ok) {
+  let data;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const res = await fetch(OVERPASS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `data=${encodeURIComponent(query)}`,
+    });
+
+    if (res.ok) {
+      data = await res.json();
+      break;
+    }
+
+    if (res.status === 504 || res.status === 429) {
+      const wait = (attempt + 1) * 15;
+      console.log(`[overpass] server busy (${res.status}), retrying in ${wait}s...`);
+      await new Promise((r) => setTimeout(r, wait * 1000));
+      continue;
+    }
+
     throw new Error(`Overpass API error ${res.status}: ${await res.text()}`);
   }
 
-  const data = await res.json();
+  if (!data) throw new Error('Overpass API: failed after 3 retries');
   writeFileSync(cachePath, JSON.stringify(data), 'utf8');
   console.log(`[overpass] cached ${data.elements?.length ?? 0} elements to ${key}`);
   return data;
@@ -58,23 +72,47 @@ export async function fetchPOIs(bounds) {
   const [s, w, n, e] = bounds;
   const bbox = `${s},${w},${n},${e}`;
 
+  // POI types that matter for cycling: destinations worth riding to,
+  // places to stop, and cycling-specific infrastructure.
+  // Modeled after the curated places in Ottawa (128 hand-picked spots).
   const query = `
-[out:json][timeout:60];
+[out:json][timeout:180];
 (
+  // Parks, gardens, beaches — primary ride destinations
   way["leisure"="park"](${bbox});
   node["leisure"="park"](${bbox});
+  way["leisure"="garden"]["name"](${bbox});
+  node["natural"="beach"](${bbox});
+  way["natural"="beach"](${bbox});
+
+  // Viewpoints, squares, plazas — scenic stops
   node["tourism"="viewpoint"](${bbox});
-  node["amenity"="marketplace"](${bbox});
-  way["amenity"="marketplace"](${bbox});
   node["place"="square"](${bbox});
   way["place"="square"](${bbox});
-  node["railway"="station"](${bbox});
-  way["natural"="water"]["name"](${bbox});
+
+  // Food & drink — where cyclists refuel
   node["amenity"="cafe"]["name"](${bbox});
-  way["leisure"="garden"]["name"](${bbox});
+  node["amenity"="ice_cream"]["name"](${bbox});
+  node["amenity"="pub"]["name"](${bbox});
+  node["amenity"="marketplace"](${bbox});
+  way["amenity"="marketplace"](${bbox});
+
+  // Cycling infrastructure
   node["amenity"="bicycle_rental"](${bbox});
+  node["shop"="bicycle"](${bbox});
+
+  // Transport hubs
+  node["railway"="station"](${bbox});
+  node["amenity"="ferry_terminal"](${bbox});
+
+  // Camping (for longer rides)
+  node["tourism"="camp_site"]["name"](${bbox});
+  way["tourism"="camp_site"]["name"](${bbox});
+
+  // Culture
   node["tourism"="museum"]["name"](${bbox});
   way["tourism"="museum"]["name"](${bbox});
+  way["natural"="water"]["name"](${bbox});
 );
 out center tags;
 `.trim();

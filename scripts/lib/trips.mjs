@@ -14,9 +14,9 @@ import { assignTags } from './tags.mjs';
 // ---------------------------------------------------------------------------
 
 const MIN_ROUTE_KM = 2;
-const MAX_ROUTE_KM = 25;
-const MAX_GAP_M = 2000;
-const AXIS_TO_ANCHOR_THRESHOLD_M = 800;
+const MAX_ROUTE_KM = 50;
+const MAX_GAP_M = 3000;
+const AXIS_TO_ANCHOR_THRESHOLD_M = 3000;
 const MIN_ANCHOR_SCORE = 5;
 const MIN_PAIR_ANCHOR_SCORE = 7;
 const MAX_CANDIDATES_PER_PAIR = 3;
@@ -132,9 +132,19 @@ function buildRoute(axisChain, startAnchor, endAnchor) {
   const condScore = avgConditionScore;  // 0-10
   const gapPenalty = Math.min(gapDistanceM / 500, 5);
   const anchorScoreVal = (startAnchor.anchorScore + endAnchor.anchorScore) / 4; // 0-5
-  const distancePenalty = totalDistanceM > 15000 ? 2 : 0;
+
+  // Signature segment bonus: routes built around a long continuous pathway
+  // (>3km) are the ones cyclists remember and recommend
+  const longestAxis = Math.max(...axisChain.map((a) => a.totalInfraM));
+  const signatureBonus = longestAxis > 5000 ? 3 : longestAxis > 3000 ? 1.5 : 0;
+
+  // Distance: don't penalize longer routes — they're often the best ones.
+  // Instead, bonus for the sweet spot (5-15km for urban, 15-40km for destination rides).
+  const distKm = totalDistanceM / 1000;
+  const distBonus = distKm >= 5 && distKm <= 15 ? 1 : distKm >= 15 && distKm <= 40 ? 2 : 0;
+
   route.compositeScore = Math.round(
-    (infraScore + condScore + anchorScoreVal - gapPenalty - distancePenalty) * 10,
+    (infraScore + condScore + anchorScoreVal + signatureBonus + distBonus - gapPenalty) * 10,
   ) / 10;
 
   // --- Tags ---

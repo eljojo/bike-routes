@@ -11,14 +11,55 @@
  *     --output proposals.json
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+import yaml from 'js-yaml';
 import { parseCatastroFeature, parseOverpassWay } from './lib/segments.mjs';
 import { detectAxes } from './lib/axes.mjs';
 import { fetchPOIs, fetchCyclingWays } from './lib/overpass.mjs';
-import { scoreAnchors } from './lib/anchors.mjs';
+import { scoreAnchors, clusterDestinationZones } from './lib/anchors.mjs';
 import { stitchTrips } from './lib/trips.mjs';
 import { buildGPX } from './lib/gpx.mjs';
 import { buildMarkdown } from './lib/markdown.mjs';
+
+// ---------------------------------------------------------------------------
+// Place loading (from data repo)
+// ---------------------------------------------------------------------------
+
+/**
+ * Load places from a city's places/ directory as high-priority anchors.
+ * These are hand-curated by local riders — better than OSM POIs.
+ */
+function loadPlaces(placesDir) {
+  if (!existsSync(placesDir)) return [];
+
+  const files = readdirSync(placesDir).filter((f) => f.endsWith('.md'));
+  const places = [];
+
+  for (const file of files) {
+    const raw = readFileSync(join(placesDir, file), 'utf8');
+    const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
+    if (!fmMatch) continue;
+
+    const fm = yaml.load(fmMatch[1]);
+    if (!fm.lat || !fm.lng || !fm.name) continue;
+    if (fm.status && fm.status !== 'published') continue;
+
+    places.push({
+      name: fm.name,
+      lat: fm.lat,
+      lng: fm.lng,
+      type: fm.category || 'unknown',
+      osmType: 'curated',
+      osmId: file.replace('.md', ''),
+      tags: fm,
+      source: 'places',
+      goodFor: fm.good_for || [],
+    });
+  }
+
+  return places;
+}
 
 // ---------------------------------------------------------------------------
 // Argument parsing
@@ -129,9 +170,22 @@ async function main() {
   const pois = await fetchPOIs(bounds);
   console.log(`[pipeline] ${pois.length} POIs fetched`);
 
+  // Load curated places from the data repo if available
+  const contentDir = args['content-dir'] || '.';
+  const placesDir = join(contentDir, city, 'places');
+  const curatedPlaces = existsSync(placesDir) ? loadPlaces(placesDir) : [];
+  if (curatedPlaces.length > 0) {
+    console.log(`[pipeline] ${curatedPlaces.length} curated places loaded from ${placesDir}`);
+  }
+
   console.log('[pipeline] Scoring anchors...');
-  const anchors = scoreAnchors(pois, axes);
-  console.log(`[pipeline] ${anchors.length} anchors scored`);
+  const rawAnchors = scoreAnchors(pois, axes, curatedPlaces);
+  console.log(`[pipeline] ${rawAnchors.length} anchors scored`);
+
+  console.log('[pipeline] Clustering destination zones...');
+  const anchors = clusterDestinationZones(rawAnchors);
+  const multiZones = anchors.filter((a) => a.zoneMembers > 1);
+  console.log(`[pipeline] ${anchors.length} zones (${multiZones.length} with multiple POIs)`);
 
   // --- Pass 3: Stitch trips ---
   console.log('[pipeline] Stitching routes...');
