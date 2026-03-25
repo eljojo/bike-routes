@@ -54,13 +54,24 @@ export function curateLaunchSet(proposals, opts = {}) {
     // "De Bandejon Central a Bandejon Central"
     const nameScore = assessNameQuality(r.startAnchor.name, r.endAnchor.name);
 
+    // Greenery — routes through parks and along rivers are where joy lives
+    const allSegs = r.axes.flatMap((a) => a.segments);
+    const parkSegs = allSegs.filter((s) => s.emplazamiento === 'parque');
+    const parkFraction = allSegs.length > 0 ? parkSegs.length / allSegs.length : 0;
+    const greenScore = parkFraction > 0.5 ? 10 : parkFraction > 0.2 ? 5 : parkFraction > 0 ? 2 : 0;
+
+    // Archetype variety — loops and spines are more interesting
+    const archetypeScore = r.archetype === 'loop' ? 3 : r.archetype === 'spine' ? 1 : 0;
+
     const interestScore =
       destinationScore * 1.5 +
       distScore * 2 +
       safetyScore * 2 +
       conditionScore +
       videoScore +
-      nameScore * 3;
+      nameScore * 3 +
+      greenScore +
+      archetypeScore;
 
     return { ...r, interestScore, distKm };
   });

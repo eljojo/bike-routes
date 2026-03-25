@@ -22,12 +22,72 @@ const MAX_GAP_M = 3000;
 const AXIS_TO_ANCHOR_THRESHOLD_M = 3000;
 const MIN_ANCHOR_SCORE = 5;
 const MAX_CHAIN_AXES = 5;
-const MAX_STATES_PER_START = 2000;  // hard cap per start axis DFS
+const MAX_STATES_PER_START = 2000;
 const DEDUP_OVERLAP_THRESHOLD = 0.6;
+// Point-to-point: total distance / crow-flies. A straight line = 1.0.
+// Urban cycling typically 1.5–3.0. Above 3.5 means zigzag garbage.
+const MAX_DETOUR_RATIO = 3.5;
+// Loops get a more lenient ratio (measured as total / diameter of bounding box)
+const MAX_LOOP_DETOUR_RATIO = 5;
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
+
+/** Centroid of an axis (average of segment centroids). */
+function axisCentroid(axis) {
+  let sumLng = 0, sumLat = 0;
+  for (const seg of axis.segments) {
+    sumLng += seg.centroid[0];
+    sumLat += seg.centroid[1];
+  }
+  const n = axis.segments.length;
+  return [sumLng / n, sumLat / n];
+}
+
+/**
+ * Direction vector from first to last segment centroid.
+ * Returns [dx, dy] in degrees (not normalized — length indicates axis extent).
+ */
+function axisDirection(axis) {
+  const first = axis.segments[0].centroid;
+  const last = axis.segments[axis.segments.length - 1].centroid;
+  return [last[0] - first[0], last[1] - first[1]];
+}
+
+/** Dot product of 2D vectors. */
+function dot(a, b) { return a[0] * b[0] + a[1] * b[1]; }
+
+/**
+ * How well does axis B continue the direction of travel from axis A?
+ * Returns a value from -1 (reverses) to +1 (continues perfectly).
+ * Uses the vector from A's centroid to B's centroid vs A's direction.
+ */
+function directionScore(axisA, axisB) {
+  const dirA = axisDirection(axisA);
+  const centA = axisCentroid(axisA);
+  const centB = axisCentroid(axisB);
+  const toB = [centB[0] - centA[0], centB[1] - centA[1]];
+  const magA = Math.sqrt(dot(dirA, dirA));
+  const magB = Math.sqrt(dot(toB, toB));
+  if (magA < 1e-10 || magB < 1e-10) return 0;
+  return dot(dirA, toB) / (magA * magB);
+}
+
+/**
+ * Detour ratio: total path distance / crow-flies distance between endpoints.
+ * Lower is more coherent. A straight line = 1.0.
+ */
+function detourRatio(axisChain, totalDistanceM) {
+  if (axisChain.length === 1) return 1;
+  const firstSegs = axisChain[0].segments;
+  const lastSegs = axisChain[axisChain.length - 1].segments;
+  const start = firstSegs[0].start;
+  const end = lastSegs[lastSegs.length - 1].end;
+  const crowFlies = haversineM(start, end);
+  if (crowFlies < 100) return totalDistanceM / 1000; // essentially a loop
+  return totalDistanceM / crowFlies;
+}
 
 /** Distance from an anchor [lng, lat] to the nearest endpoint of an axis. */
 function anchorToAxisDist(anchor, axis) {
@@ -210,8 +270,20 @@ function buildRoute(axisChain, startAnchor, endAnchor) {
   const distBonus = distKm >= 5 && distKm <= 15 ? 1 : distKm >= 15 && distKm <= 40 ? 2 : 0;
   const archetypeBonus = archetype === 'loop' ? 2 : archetype === 'spine' ? 1 : 0;
 
+  // Coherence bonus: straighter paths look better on the map and are more rideable
+  const ratio = detourRatio(axisChain, totalDistanceM);
+  const coherenceBonus = ratio < 1.5 ? 2 : ratio < 2.0 ? 1 : ratio < 2.5 ? 0 : -1;
+
+  // Greenery & water bonus: routes through parks, along rivers, or with tree cover
+  // are the ones people remember. A bike path through a park is infinitely better
+  // than the same distance along a busy road.
+  const allSegs = axisChain.flatMap((a) => a.segments);
+  const parkSegs = allSegs.filter((s) => s.emplazamiento === 'parque');
+  const parkFraction = allSegs.length > 0 ? parkSegs.length / allSegs.length : 0;
+  const greenBonus = parkFraction > 0.5 ? 3 : parkFraction > 0.2 ? 2 : parkFraction > 0 ? 1 : 0;
+
   route.compositeScore = Math.round(
-    (infraScore + condScore + anchorScoreVal + signatureBonus + distBonus + archetypeBonus - gapPenalty) * 10,
+    (infraScore + condScore + anchorScoreVal + signatureBonus + distBonus + archetypeBonus + coherenceBonus + greenBonus - gapPenalty) * 10,
   ) / 10;
 
   route.suggestedTags = assignTags(route);
@@ -249,12 +321,26 @@ function discoverChains(startXi, connections, axes) {
     if (!conns) continue;
 
     const visited = new Set(chain);
+    const currentAxis = axes[current];
 
-    // Limit branching: prefer longer axes (more interesting routes)
-    const nextAxes = [...conns]
-      .filter((n) => !visited.has(n))
-      .sort((a, b) => axes[b].totalInfraM - axes[a].totalInfraM)
-      .slice(0, 6); // max 6 branches per node
+    // Direction-aware branching: prefer axes that continue the current
+    // direction of travel. This prevents zigzag routes that look nonsensical.
+    const candidates = [...conns].filter((n) => !visited.has(n));
+
+    // Score each candidate by direction continuity + axis length
+    const scored = candidates.map((n) => {
+      const ds = directionScore(currentAxis, axes[n]);
+      const lengthBonus = Math.min(axes[n].totalInfraM / 5000, 1); // 0-1
+      // Only allow axes continuing forward (ds > -0.3) to prevent backtracking
+      return { xi: n, score: ds * 2 + lengthBonus, ds };
+    });
+
+    // Filter out backtracking (ds < -0.3) and sort by score
+    const nextAxes = scored
+      .filter((s) => s.ds > -0.3)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 4) // tighter branching for coherent paths
+      .map((s) => s.xi);
 
     for (const next of nextAxes) {
       const currSegs = axes[current].segments;
@@ -363,6 +449,11 @@ export function stitchTrips(axes, anchors, options = {}) {
       if (!endAnchors || endAnchors.length === 0) continue;
 
       const axisChain = chain.map((xi) => axes[xi]);
+
+      // Reject geographically incoherent chains (zigzags)
+      const infraM = axisChain.reduce((s, a) => s + a.totalInfraM, 0);
+      const ratio = detourRatio(axisChain, infraM);
+      if (ratio > MAX_DETOUR_RATIO) continue;
 
       // Best anchor near start, best different anchor near end
       const startAnchor = startAnchors[0];

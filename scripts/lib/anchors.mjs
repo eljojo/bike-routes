@@ -14,17 +14,18 @@ import { haversineM } from './geo.mjs';
  */
 const ANCHOR_SCORES = {
   // Primary destinations — rides go HERE
+  // Greenery and water pull hardest: these are where the good rides are
   beach: 9,
-  park: 8,
+  park: 9,
+  garden: 8,
+  water: 8,        // rivers, lakes — ride along them
   viewpoint: 8,
   camp_site: 7,
   square: 7,
   marketplace: 7,
-  station: 7,
+  station: 6,
   museum: 6,
-  water: 6,
   ferry_terminal: 6,
-  garden: 5,
   // Stops along the way — not destinations, but nice to pass
   bicycle_rental: 4,
   bicycle: 4,     // shop=bicycle (bike shops)
