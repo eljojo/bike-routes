@@ -163,45 +163,130 @@ function checkLoopBacktracking(segments) {
 }
 
 /**
+ * Rideability score: "does this route make sense for a human to ride?"
+ * Measures what fraction of the route makes forward progress vs wasting
+ * distance on backtracking.
+ *
+ * For one-way: projects points onto start→end line. Backward movement = waste.
+ * For loops: measures angular monotonicity around centroid.
+ *
+ * @returns {number} 0-100 (100 = every meter is forward progress)
+ */
+function computeRideability(points, isLoop) {
+  if (points.length < 3) return 100;
+
+  if (isLoop) {
+    let cx = 0, cy = 0;
+    for (const [x, y] of points) { cx += x; cy += y; }
+    cx /= points.length; cy /= points.length;
+
+    const step = Math.max(1, Math.floor(points.length / 100));
+    let dominant = 0, prevAngle = null;
+
+    // Determine dominant rotation direction
+    for (let i = 0; i < points.length; i += step) {
+      const angle = Math.atan2(points[i][0] - cx, points[i][1] - cy) * 180 / Math.PI;
+      if (prevAngle !== null) {
+        let delta = angle - prevAngle;
+        if (delta > 180) delta -= 360;
+        if (delta < -180) delta += 360;
+        dominant += delta > 0 ? 1 : -1;
+      }
+      prevAngle = angle;
+    }
+    const expectedDir = dominant >= 0 ? 1 : -1;
+
+    // Measure forward vs backward arc
+    let forwardArc = 0, backwardArc = 0;
+    prevAngle = null;
+    for (let i = 0; i < points.length; i += step) {
+      const angle = Math.atan2(points[i][0] - cx, points[i][1] - cy) * 180 / Math.PI;
+      if (prevAngle !== null) {
+        let delta = angle - prevAngle;
+        if (delta > 180) delta -= 360;
+        if (delta < -180) delta += 360;
+        if (Math.abs(delta) > 2) {
+          if ((delta > 0 ? 1 : -1) === expectedDir) forwardArc += Math.abs(delta);
+          else backwardArc += Math.abs(delta);
+        }
+      }
+      prevAngle = angle;
+    }
+
+    const totalArc = forwardArc + backwardArc;
+    return totalArc > 0 ? Math.round((forwardArc / totalArc) * 100) : 100;
+  }
+
+  // One-way: project onto start→end direction
+  const first = points[0], last = points[points.length - 1];
+  const ox = last[0] - first[0], oy = last[1] - first[1];
+  const lenSq = ox * ox + oy * oy;
+  if (lenSq < 1e-12) return 0;
+
+  let totalDist = 0, wastedDist = 0, prevProj = 0;
+  for (let i = 1; i < points.length; i++) {
+    const d = haversineM(points[i - 1], points[i]);
+    totalDist += d;
+    const dx = points[i][0] - first[0], dy = points[i][1] - first[1];
+    const proj = (dx * ox + dy * oy) / Math.sqrt(lenSq) * 111320;
+    if (proj < prevProj) wastedDist += d;
+    prevProj = proj;
+  }
+
+  return totalDist > 0 ? Math.round(Math.max(0, 1 - (wastedDist * 2 / totalDist)) * 100) : 100;
+}
+
+/**
  * Validate a segment chain for trace quality.
  * @param {Array} segments - ordered segments with .start, .end, .geometry, .lengthM
  * @param {string} archetype - 'one-way', 'loop', or 'mountain'
- * @param {object} [opts] - { maxGapM: 3000, maxBacktrackM: 500 }
- * @returns {{ valid: boolean, reason?: string, worstGapM: number, backtrackCount: number }}
+ * @param {object} [opts] - { maxGapM: 3000, maxBacktrackM: 300, minRideability: 60 }
+ * @returns {{ valid: boolean, reason?: string, worstGapM: number, backtrackCount: number, rideability: number }}
  */
 export function validateTrace(segments, archetype, opts = {}) {
   const maxGapM = opts.maxGapM ?? 3000;
-  const maxBacktrackM = opts.maxBacktrackM ?? 500;
+  const maxBacktrackM = opts.maxBacktrackM ?? 300;
+  const minRideability = opts.minRideability ?? 65;
 
   if (!segments || segments.length === 0) {
-    return { valid: false, reason: 'no segments', worstGapM: 0, backtrackCount: 0 };
+    return { valid: false, reason: 'no segments', worstGapM: 0, backtrackCount: 0, rideability: 0 };
   }
 
   // 1. Teleporting check (all archetypes)
   const { worst: worstGapM, teleports } = checkTeleporting(segments, maxGapM);
   if (teleports > 0) {
-    return { valid: false, reason: `teleport: ${teleports} gap(s) > ${maxGapM}m (worst: ${Math.round(worstGapM)}m)`, worstGapM, backtrackCount: 0 };
+    return { valid: false, reason: `teleport: ${teleports} gap(s) > ${maxGapM}m (worst: ${Math.round(worstGapM)}m)`, worstGapM, backtrackCount: 0, rideability: 0 };
   }
 
-  // 2. Mountain routes — skip backtracking checks
+  // 2. Rideability check (all archetypes except mountain)
+  const isLoop = archetype === 'loop';
+  let rideability = 100;
+  if (archetype !== 'mountain') {
+    const points = sampleTracePoints(segments);
+    rideability = computeRideability(points, isLoop);
+    if (rideability < minRideability) {
+      return { valid: false, reason: `low rideability: ${rideability}% (min ${minRideability}%)`, worstGapM, backtrackCount: 0, rideability };
+    }
+  }
+
+  // 3. Mountain routes — skip backtracking checks
   if (archetype === 'mountain') {
-    return { valid: true, worstGapM, backtrackCount: 0 };
+    return { valid: true, worstGapM, backtrackCount: 0, rideability: 100 };
   }
 
-  // 3. Backtracking check
+  // 4. Backtracking check
   let backtrackCount = 0;
-  if (archetype === 'loop') {
+  if (isLoop) {
     backtrackCount = checkLoopBacktracking(segments);
     if (backtrackCount > 2) {
-      return { valid: false, reason: `loop zigzag: ${backtrackCount} direction reversals`, worstGapM, backtrackCount };
+      return { valid: false, reason: `loop zigzag: ${backtrackCount} direction reversals`, worstGapM, backtrackCount, rideability };
     }
   } else {
-    // one-way or any other archetype
     backtrackCount = checkOneWayBacktracking(segments, maxBacktrackM);
     if (backtrackCount > 0) {
-      return { valid: false, reason: `backtracking: ${backtrackCount} point(s) regressed > ${maxBacktrackM}m`, worstGapM, backtrackCount };
+      return { valid: false, reason: `backtracking: ${backtrackCount} point(s) regressed > ${maxBacktrackM}m`, worstGapM, backtrackCount, rideability };
     }
   }
 
-  return { valid: true, worstGapM, backtrackCount };
+  return { valid: true, worstGapM, backtrackCount, rideability };
 }
