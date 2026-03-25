@@ -11,7 +11,7 @@ waypoints:
   - Museo Interactivo Mirador MIM
   - Estadio Nacional
   - Parque Inés de Suárez
-  - Estadio Monumental
+  - Estadio Monumental David Arellano
   - Parque Uruguay
   - Parque Bicentenario de la Infancia
 created_at: '2026-03-25'

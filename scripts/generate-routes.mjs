@@ -83,9 +83,10 @@ console.log(`Generating bike-routes for ${proposals.city}...`);
 // ---------------------------------------------------------------------------
 
 let roadGraph = null;
+let roadWays = [];
 if (proposals.bounds) {
   console.log('Building road graph for gap routing...');
-  const roadWays = await fetchRoadNetwork(proposals.bounds);
+  roadWays = await fetchRoadNetwork(proposals.bounds);
   roadGraph = buildRoadGraph(roadWays);
 }
 
@@ -208,12 +209,20 @@ if (templatedRoutes.length > 0 && proposals.bounds) {
     fs.mkdirSync(routeDir, { recursive: true });
 
     // Build route from waypoints using segment-level A*
-    // Pass ALL named data for waypoint matching: axes, zones, anchors, metro, zone POIs
+    // Pass ALL named data: axes, zones, anchors, metro, zone POIs, park areas, AND named roads
+    const namedRoads = roadWays
+      .filter(w => w.tags?.name && w.geometry?.length >= 2)
+      .map(w => {
+        const g = w.geometry;
+        const midIdx = Math.floor(g.length / 2);
+        return { name: w.tags.name, lat: g[midIdx].lat, lng: g[midIdx].lon };
+      });
     const allPOIs = [
       ...anchors,
       ...metro.map(s => ({ name: s.name, lat: s.lat, lng: s.lng })),
       ...zonePOIs.filter(p => p.tags?.name).map(p => ({ name: p.tags.name, lat: p.lat, lng: p.lng })),
       ...parkAreas.map(p => ({ name: p.name, lat: p.lat, lng: p.lng })),
+      ...namedRoads,
     ];
     const result = buildTemplatePath(tmpl.waypoints, graph, axes, allPOIs, zones);
 

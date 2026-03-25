@@ -269,7 +269,7 @@ export async function fetchRoadNetwork(bounds) {
   const query = `
 [out:json][timeout:90];
 (
-  way["highway"~"cycleway|path|footway|residential|tertiary|secondary|living_street|pedestrian|service"](${bbox});
+  way["highway"~"cycleway|path|footway|residential|tertiary|secondary|unclassified|living_street|pedestrian|service"](${bbox});
 );
 out geom;
 `.trim();

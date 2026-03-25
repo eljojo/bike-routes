@@ -18,7 +18,7 @@ function normalize(s) {
 
 // Common prefixes that don't carry distinctive meaning.
 // "Parque Forestal" and "Ciclovía Parque Forestal" are the same place.
-const STRIP_PREFIXES = /^(parque|plaza|ciclovia|avenida|calle|rotonda|camino|estadio|jardin|paseo|ciclo ?recreovia|mirador|puente|entrada|acceso|museo|centro cultural|bandejón central)\s+/i;
+const STRIP_PREFIXES = /^(parque|plaza|ciclovia|avenida|calle|rotonda|camino|estadio|jardin|paseo|ciclo ?recreovia|mirador|puente|entrada|acceso|museo|centro cultural|bandejón central|barrio|piscina|mural|laguna|cerro|rio|subida|empalme|conexion|estacionamientos)\s+/i;
 
 /**
  * Extract the distinctive part of a name — strip common type prefixes.
