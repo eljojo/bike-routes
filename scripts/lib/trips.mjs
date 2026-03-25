@@ -756,13 +756,24 @@ export function buildSegmentGraph(axes, maxGapM = MAX_GAP_M) {
   let sameAxisEdges = 0;
   let crossAxisEdges = 0;
 
-  // Same-axis edges: consecutive segments within each axis
+  // Same-axis edges: consecutive segments within each axis.
+  // Respect one-way bike direction: 'forward' = start→end only,
+  // 'reverse' = end→start only, 'both' = bidirectional.
   for (let ai = 0; ai < axes.length; ai++) {
     const range = axisSegRanges.get(ai);
     for (let si = range.start; si < range.end; si++) {
-      edges[si].push({ to: si + 1, cost: SAME_AXIS_COST });
-      edges[si + 1].push({ to: si, cost: SAME_AXIS_COST });
-      sameAxisEdges += 2;
+      const seg = segments[si];
+      const dir = seg.bikeDirection || 'both';
+      // Forward edge (si → si+1): allowed unless segment is reverse-only
+      if (dir !== 'reverse') {
+        edges[si].push({ to: si + 1, cost: SAME_AXIS_COST });
+        sameAxisEdges++;
+      }
+      // Backward edge (si+1 → si): allowed unless segment is forward-only
+      if (dir !== 'forward') {
+        edges[si + 1].push({ to: si, cost: SAME_AXIS_COST });
+        sameAxisEdges++;
+      }
     }
   }
 

@@ -121,6 +121,20 @@ export function parseOverpassWay(element, index) {
   const smoothness = tags.smoothness || null;
   const incline = tags.incline || null;
 
+  // Direction: is this segment one-way for cyclists?
+  // oneway=yes + oneway:bicycle=no → bikes can go both ways (common)
+  // oneway=yes + no bicycle tag → bikes must follow direction
+  // oneway:bicycle=yes → bikes must follow direction
+  // oneway:bicycle=-1 → bikes go opposite to digitized direction
+  const onewayBicycle = tags['oneway:bicycle'];
+  const oneway = tags.oneway;
+  let bikeDirection = 'both'; // 'both', 'forward', 'reverse'
+  if (onewayBicycle === 'yes' || (oneway === 'yes' && onewayBicycle !== 'no')) {
+    bikeDirection = 'forward'; // must follow digitized direction (start → end)
+  } else if (onewayBicycle === '-1') {
+    bikeDirection = 'reverse'; // must go end → start
+  }
+
   // Infer emplazamiento from OSM tags and name — this drives the greenery
   // scoring. A cycleway through Parque Metropolitano should score as 'parque'.
   let emplazamiento = null;
@@ -157,6 +171,7 @@ export function parseOverpassWay(element, index) {
     invalida: false,
     video: null,
     videoId: null,
+    bikeDirection,
     start: ep.start,
     end: ep.end,
     centroid: centroid(geo),
