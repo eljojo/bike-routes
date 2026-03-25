@@ -2,7 +2,7 @@
 name: Circuito Intercomunal de Parques
 status: published
 homepage_featured: true
-distance_km: 52.3
+distance_km: 51.1
 tags:
   - bike path
   - scenic
@@ -26,7 +26,7 @@ updated_at: '2026-03-25'
 variants:
   - name: Circuito Intercomunal de Parques
     gpx: main.gpx
-    distance_km: 52.3
+    distance_km: 51.1
 ---
 
 A loop through the connected parks of Vitacura, Providencia, and Santiago. River, green, and culture in one ride.
