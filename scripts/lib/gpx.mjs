@@ -31,19 +31,32 @@ async function fetchElevations(coords) {
       const batch = coords.slice(i, i + BATCH_SIZE);
       const lats = batch.map((c) => c[1]).join(',');
       const lons = batch.map((c) => c[0]).join(',');
-      const res = await fetch(`${OPEN_METEO_URL}?latitude=${lats}&longitude=${lons}`, {
-        signal: AbortSignal.timeout(30000),
-      });
-      if (!res.ok) {
+
+      let data = null;
+      for (let attempt = 0; attempt < 3; attempt++) {
+        const res = await fetch(`${OPEN_METEO_URL}?latitude=${lats}&longitude=${lons}`, {
+          signal: AbortSignal.timeout(30000),
+        });
+        if (res.ok) {
+          data = await res.json();
+          break;
+        }
+        if (res.status === 429) {
+          const wait = (attempt + 1) * 5;
+          console.warn(`[gpx] elevation rate limited, waiting ${wait}s...`);
+          await new Promise((r) => setTimeout(r, wait * 1000));
+          continue;
+        }
         console.warn(`[gpx] elevation API returned ${res.status}`);
         return null;
       }
-      const data = await res.json();
+      if (!data) return null;
+
       const elev = Array.isArray(data.elevation) ? data.elevation : [data.elevation];
       all.push(...elev);
-      // Rate-limit: small delay between batches to avoid throttling
+      // Rate-limit: delay between batches to avoid throttling
       if (i + BATCH_SIZE < coords.length) {
-        await new Promise((r) => setTimeout(r, 200));
+        await new Promise((r) => setTimeout(r, 500));
       }
     }
     return all;

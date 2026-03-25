@@ -19,7 +19,7 @@ variants:
     distance_km: 2.7
 ---
 
-2,7 kilómetros por Puente Alto, desde Plaza Cristóbal Colón hasta Plaza Claudio Gay. Prácticamente todo el recorrido tiene ciclovía.
+2,7 kilómetros por Puente Alto, desde Plaza Claudio Gay hasta Plaza Cristóbal Colón. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
