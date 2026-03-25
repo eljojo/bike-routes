@@ -17,6 +17,7 @@ import yaml from 'js-yaml';
 import { queryOverpass } from './lib/overpass.mjs';
 import { haversineM } from './lib/geo.mjs';
 import { slugify } from './lib/slugify.mjs';
+import { orderWays } from './lib/order-ways.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -84,47 +85,6 @@ out geom;`;
 }
 
 // ---------------------------------------------------------------------------
-// Order ways into a continuous trace using nearest-endpoint chaining
-// ---------------------------------------------------------------------------
-
-function orderWays(ways) {
-  if (ways.length <= 1) return ways;
-
-  const eps = ways.map(w => ({
-    start: [w.geometry[0].lon, w.geometry[0].lat],
-    end: [w.geometry[w.geometry.length - 1].lon, w.geometry[w.geometry.length - 1].lat],
-    mid: [
-      (w.geometry[0].lon + w.geometry[w.geometry.length - 1].lon) / 2,
-      (w.geometry[0].lat + w.geometry[w.geometry.length - 1].lat) / 2,
-    ],
-  }));
-
-  // Deduplicate overlapping ways: if two ways cover the same ground
-  // (midpoints within 100m), keep the longer one.
-  const dominated = new Set();
-  for (let i = 0; i < ways.length; i++) {
-    if (dominated.has(i)) continue;
-    for (let j = i + 1; j < ways.length; j++) {
-      if (dominated.has(j)) continue;
-      if (haversineM(eps[i].mid, eps[j].mid) < 100) {
-        const lenI = ways[i].geometry.length;
-        const lenJ = ways[j].geometry.length;
-        dominated.add(lenI >= lenJ ? j : i);
-      }
-    }
-  }
-
-  const active = ways.map((_, i) => i).filter(i => !dominated.has(i));
-  if (active.length <= 1) return active.map(i => ways[i]);
-
-  // Sort by midpoint longitude. This works for linear corridors —
-  // the ways form a path from one end to the other. buildGPX handles
-  // per-segment reversal to make the trace continuous.
-  active.sort((a, b) => eps[a].mid[0] - eps[b].mid[0]);
-
-  return active.map(i => ways[i]);
-}
-
 // ---------------------------------------------------------------------------
 // Build GPX from ordered ways
 // ---------------------------------------------------------------------------

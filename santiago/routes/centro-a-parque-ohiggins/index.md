@@ -1,7 +1,7 @@
 ---
 name: Centro a Parque O'Higgins
 status: published
-distance_km: 9.4
+distance_km: 11.4
 tags:
   - bike path
   - flat
@@ -13,7 +13,7 @@ updated_at: '2026-03-25'
 variants:
   - name: Centro a Parque O'Higgins
     gpx: main.gpx
-    distance_km: 9.4
+    distance_km: 11.4
 ---
 
 South from Parque Forestal past La Moneda to Parque O'Higgins. A straight shot through the civic heart of Santiago.
