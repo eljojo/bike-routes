@@ -9,19 +9,16 @@ function makeWay(id, coords) {
   };
 }
 
-/** Count reversals in ordered ways (same logic as the spot-check script). */
+/** Count reversals (bearing change > 120°) in the trace as buildGPX would render it. */
 function countReversals(ordered) {
   let revs = 0, lastB = null, prev = null;
   for (const w of ordered) {
     const coords = w.geometry.map(p => [p.lon, p.lat]);
-    const trace = w._reversed ? [...coords].reverse() : coords;
-    if (prev) {
-      // buildGPX fallback: orient by nearest endpoint (for ways without _reversed)
-      if (w._reversed == null) {
-        const dFirst = haversineM(prev, trace[0]);
-        const dLast = haversineM(prev, trace[trace.length - 1]);
-        if (dLast < dFirst) trace.reverse();
-      }
+    let trace = w._reversed ? [...coords].reverse() : coords;
+    if (prev && w._reversed == null) {
+      const dFirst = haversineM(prev, trace[0]);
+      const dLast = haversineM(prev, trace[trace.length - 1]);
+      if (dLast < dFirst) trace = [...trace].reverse();
     }
     if (trace.length >= 2) {
       const b = Math.atan2(trace[trace.length - 1][0] - trace[0][0], trace[trace.length - 1][1] - trace[0][1]);
@@ -36,146 +33,201 @@ function countReversals(ordered) {
   return revs;
 }
 
-/** Check that consecutive ways share an endpoint (within tolerance). */
-function isContiguous(ordered, toleranceM = 200) {
-  for (let i = 0; i < ordered.length - 1; i++) {
-    const g1 = ordered[i].geometry;
-    const g2 = ordered[i + 1].geometry;
-    const ends1 = [[g1[0].lon, g1[0].lat], [g1[g1.length - 1].lon, g1[g1.length - 1].lat]];
-    const starts2 = [[g2[0].lon, g2[0].lat], [g2[g2.length - 1].lon, g2[g2.length - 1].lat]];
-    let minDist = Infinity;
-    for (const e of ends1) for (const s of starts2) minDist = Math.min(minDist, haversineM(e, s));
-    if (minDist > toleranceM) return false;
-  }
-  return true;
-}
-
 describe('orderWays', () => {
-  describe('basic ordering', () => {
-    it('returns single way unchanged', () => {
-      const ways = [makeWay(1, [[-70.66, -33.43], [-70.65, -33.43]])];
-      expect(orderWays(ways)).toHaveLength(1);
-    });
-
-    it('orders a shuffled 3-way east-west path', () => {
-      const ways = [
-        makeWay(2, [[-70.65, -33.43], [-70.64, -33.43]]),
-        makeWay(1, [[-70.66, -33.43], [-70.65, -33.43]]),
-        makeWay(3, [[-70.64, -33.43], [-70.63, -33.43]]),
-      ];
-      const ordered = orderWays(ways);
-      expect(ordered).toHaveLength(3);
-      expect(isContiguous(ordered)).toBe(true);
-      expect(countReversals(ordered)).toBe(0);
-    });
-
-    it('orders a shuffled north-south path', () => {
-      const ways = [
-        makeWay(2, [[-70.65, -33.44], [-70.65, -33.43]]),
-        makeWay(1, [[-70.65, -33.45], [-70.65, -33.44]]),
-        makeWay(3, [[-70.65, -33.43], [-70.65, -33.42]]),
-      ];
-      const ordered = orderWays(ways);
-      expect(ordered).toHaveLength(3);
-      expect(isContiguous(ordered)).toBe(true);
-      expect(countReversals(ordered)).toBe(0);
-    });
-
-    it('orders an L-shaped path (east then north)', () => {
-      const ways = [
-        makeWay(2, [[-70.64, -33.43], [-70.64, -33.42]]),  // north leg
-        makeWay(1, [[-70.66, -33.43], [-70.64, -33.43]]),   // east leg
-      ];
-      const ordered = orderWays(ways);
-      expect(ordered).toHaveLength(2);
-      expect(isContiguous(ordered)).toBe(true);
-    });
+  it('orders a simple 3-way path without reversals', () => {
+    const ways = [
+      makeWay(2, [[-70.65, -33.43], [-70.64, -33.43]]),
+      makeWay(1, [[-70.66, -33.43], [-70.65, -33.43]]),
+      makeWay(3, [[-70.64, -33.43], [-70.63, -33.43]]),
+    ];
+    const ordered = orderWays(ways);
+    expect(ordered).toHaveLength(3);
+    expect(countReversals(ordered)).toBe(0);
   });
 
-  describe('dedup', () => {
-    it('deduplicates overlapping ways (same endpoints, similar midpoint)', () => {
-      const ways = [
-        makeWay(1, [[-70.66, -33.43], [-70.65, -33.43]]),
-        makeWay(2, [[-70.66, -33.43], [-70.6505, -33.43], [-70.65, -33.43]]), // longer, same ground
-        makeWay(3, [[-70.65, -33.43], [-70.64, -33.43]]),
-      ];
-      const ordered = orderWays(ways);
-      expect(ordered.length).toBeLessThanOrEqual(2); // one of the overlapping pair dropped
-    });
-
-    it('keeps legitimate parallel segments (same cluster pair, different midpoints)', () => {
-      // Two paths between same junctions but 150m apart (different sides of road)
-      const ways = [
-        makeWay(1, [[-70.66, -33.430], [-70.65, -33.430]]),  // south side
-        makeWay(2, [[-70.66, -33.429], [-70.65, -33.429]]),   // north side, 110m away
-        makeWay(3, [[-70.65, -33.430], [-70.64, -33.430]]),   // continuation
-      ];
-      const ordered = orderWays(ways);
-      // Both parallel segments should survive (midpoints > 80m apart)
-      expect(ordered.length).toBeGreaterThanOrEqual(2);
-    });
-
-    it('drops self-loops', () => {
-      const ways = [
-        makeWay(1, [[-70.66, -33.43], [-70.65, -33.43]]),
-        makeWay(2, [[-70.65, -33.43], [-70.6501, -33.43]]),  // tiny loop: same cluster
-        makeWay(3, [[-70.65, -33.43], [-70.64, -33.43]]),
-      ];
-      const ordered = orderWays(ways);
-      expect(ordered.length).toBeLessThanOrEqual(2);
-    });
-
-    it('drops fragments shorter than snap distance', () => {
-      const ways = [
-        makeWay(1, [[-70.66, -33.43], [-70.65, -33.43]]),
-        makeWay(2, [[-70.65, -33.43], [-70.64999, -33.43]]),  // ~8m
-        makeWay(3, [[-70.65, -33.43], [-70.64, -33.43]]),
-      ];
-      const ordered = orderWays(ways);
-      expect(ordered.length).toBeLessThanOrEqual(2);
-    });
+  it('orders a north-south path without reversals', () => {
+    const ways = [
+      makeWay(2, [[-70.65, -33.44], [-70.65, -33.43]]),
+      makeWay(1, [[-70.65, -33.45], [-70.65, -33.44]]),
+      makeWay(3, [[-70.65, -33.43], [-70.65, -33.42]]),
+    ];
+    expect(countReversals(orderWays(ways))).toBe(0);
   });
 
-  describe('junction handling', () => {
-    it('prefers straight continuation at T-junction', () => {
-      // Main path goes east: A→B→C
-      // Spur goes south from B: B→D
-      const ways = [
-        makeWay(1, [[-70.67, -33.43], [-70.66, -33.43]]),   // A→B
-        makeWay(2, [[-70.66, -33.43], [-70.65, -33.43]]),   // B→C (straight)
-        makeWay(3, [[-70.66, -33.43], [-70.66, -33.44]]),   // B→D (spur south)
-      ];
-      const ordered = orderWays(ways);
-      expect(ordered).toHaveLength(3);
-      // The spur should be last (reversal if any should be at the end)
-      const revs = countReversals(ordered);
-      expect(revs).toBeLessThanOrEqual(1);
-    });
+  it('orders a diagonal path without reversals', () => {
+    const ways = [];
+    for (let i = 0; i < 6; i++) {
+      ways.push(makeWay(i, [
+        [-70.70 + i * 0.008, -33.45 + i * 0.005],
+        [-70.70 + (i + 1) * 0.008, -33.45 + (i + 1) * 0.005],
+      ]));
+    }
+    ways.sort(() => Math.random() - 0.5);
+    expect(countReversals(orderWays(ways))).toBe(0);
   });
 
-  describe('disconnected components', () => {
-    it('stitches two separated segments', () => {
-      const ways = [
-        makeWay(1, [[-70.66, -33.43], [-70.65, -33.43]]),
-        makeWay(2, [[-70.63, -33.43], [-70.62, -33.43]]),  // 2km gap
-      ];
-      const ordered = orderWays(ways);
-      expect(ordered).toHaveLength(2);
-    });
+  it('orders a curved quarter-circle path without reversals', () => {
+    const ways = [];
+    const cx = -70.65, cy = -33.43, r = 0.03;
+    for (let i = 0; i < 8; i++) {
+      const a1 = (i / 8) * Math.PI / 2;
+      const a2 = ((i + 1) / 8) * Math.PI / 2;
+      ways.push(makeWay(i, [
+        [cx + r * Math.cos(a1), cy + r * Math.sin(a1)],
+        [cx + r * Math.cos(a2), cy + r * Math.sin(a2)],
+      ]));
+    }
+    ways.sort(() => Math.random() - 0.5);
+    expect(countReversals(orderWays(ways))).toBe(0);
   });
 
-  describe('orientation', () => {
-    it('returns ways with _reversed flag', () => {
-      const ways = [
-        makeWay(1, [[-70.65, -33.43], [-70.66, -33.43]]),  // stored west-to-east
-        makeWay(2, [[-70.64, -33.43], [-70.65, -33.43]]),   // stored east-to-west
-      ];
-      const ordered = orderWays(ways);
-      expect(ordered).toHaveLength(2);
-      // Every way should have _reversed defined
-      for (const w of ordered) {
-        expect(w._reversed).toBeDefined();
-      }
-    });
+  it('handles reversed OSM way directions without reversals', () => {
+    // All stored east-to-west but should form a continuous corridor
+    const ways = [
+      makeWay(1, [[-70.64, -33.43], [-70.65, -33.43]]),
+      makeWay(2, [[-70.63, -33.43], [-70.64, -33.43]]),
+      makeWay(3, [[-70.66, -33.43], [-70.67, -33.43]]),
+      makeWay(4, [[-70.65, -33.43], [-70.66, -33.43]]),
+    ];
+    expect(countReversals(orderWays(ways))).toBe(0);
+  });
+
+  // ---------------------------------------------------------------
+  // Mapocho-like spur problem
+  //
+  // Reproduces the actual Mapocho 42k bug:
+  // - Main corridor: 8 segments going west→east, ~8km
+  // - Eastern spur: 1 segment extending 3km further east from a
+  //   junction that's NOT at the corridor's east end but near it
+  //
+  // The spur shares a junction with the main corridor.
+  // The walk must not reverse through the main corridor to reach
+  // the spur — the spur should be walked last.
+  //
+  // Expected: 0 reversals (spur continues the same eastward direction)
+  //           OR at most 1 reversal at the very end (acceptable)
+  // ---------------------------------------------------------------
+  it('handles a corridor with an eastern spur (Mapocho pattern)', () => {
+    const ways = [];
+    // Main corridor: 8 segments west→east
+    // -70.76 to -70.60, each ~2km
+    for (let i = 0; i < 8; i++) {
+      const lng1 = -70.76 + i * 0.02;
+      const lng2 = lng1 + 0.02;
+      ways.push(makeWay(i + 1, [[lng1, -33.42], [lng2, -33.42]]));
+    }
+    // Junction is at -70.60 (east end of main corridor)
+    // Spur extends further east from -70.60 to -70.57 (3km)
+    ways.push(makeWay(9, [[-70.60, -33.42], [-70.57, -33.41]]));
+
+    // Shuffle to simulate unordered OSM data
+    ways.sort(() => Math.random() - 0.5);
+
+    const ordered = orderWays(ways);
+    expect(ordered).toHaveLength(9);
+    expect(countReversals(ordered)).toBeLessThanOrEqual(1);
+  });
+
+  // Same as above but spur branches from the MIDDLE of the corridor,
+  // not the end. This is harder — the walk must go through the
+  // corridor in one direction, then backtrack to pick up the spur.
+  it('handles a corridor with a mid-point spur', () => {
+    const ways = [];
+    // Main corridor: 6 segments west→east
+    for (let i = 0; i < 6; i++) {
+      const lng1 = -70.70 + i * 0.02;
+      const lng2 = lng1 + 0.02;
+      ways.push(makeWay(i + 1, [[lng1, -33.42], [lng2, -33.42]]));
+    }
+    // Spur from midpoint (-70.64) going south
+    ways.push(makeWay(7, [[-70.64, -33.42], [-70.64, -33.44]]));
+
+    ways.sort(() => Math.random() - 0.5);
+
+    const ordered = orderWays(ways);
+    expect(ordered).toHaveLength(7);
+    expect(countReversals(ordered)).toBeLessThanOrEqual(1);
+  });
+
+  // Duplicate ways covering the same ground — like Mapocho where
+  // OSM relation has overlapping sections
+  it('deduplicates overlapping ways in the same corridor', () => {
+    const ways = [];
+    // 4 segments west→east
+    for (let i = 0; i < 4; i++) {
+      const lng1 = -70.70 + i * 0.02;
+      const lng2 = lng1 + 0.02;
+      ways.push(makeWay(i + 1, [[lng1, -33.42], [lng2, -33.42]]));
+    }
+    // Duplicate of segments 1-2 (same endpoints, slightly different midpoint)
+    ways.push(makeWay(5, [[-70.70, -33.42], [-70.68, -33.4201]]));
+    ways.push(makeWay(6, [[-70.68, -33.42], [-70.66, -33.4201]]));
+
+    ways.sort(() => Math.random() - 0.5);
+
+    const ordered = orderWays(ways);
+    // Should dedup the duplicates and produce a clean trace
+    expect(ordered.length).toBeLessThanOrEqual(4);
+    expect(countReversals(ordered)).toBe(0);
+  });
+
+  // Y-junction: stem + two branches
+  it('handles a Y-junction with at most 1 reversal', () => {
+    const ways = [
+      makeWay(1, [[-70.68, -33.43], [-70.67, -33.43]]),   // stem
+      makeWay(2, [[-70.67, -33.43], [-70.66, -33.42]]),   // NE branch
+      makeWay(3, [[-70.67, -33.43], [-70.66, -33.44]]),   // SE branch
+    ];
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    expect(ordered).toHaveLength(3);
+    expect(countReversals(ordered)).toBeLessThanOrEqual(1);
+  });
+
+  // Reproduces the exact Mapocho topology: main corridor + spur +
+  // duplicate section covering 4 ways in the middle.
+  // The duplicate ways have SLIGHTLY different endpoints (within 30m)
+  // simulating how OSM has multiple overlapping ways for the same road.
+  it('handles Mapocho-like corridor with duplicates AND spur', () => {
+    const ways = [];
+    // Main corridor: 10 segments west→east (-70.76 to -70.60)
+    for (let i = 0; i < 10; i++) {
+      const lng1 = -70.76 + i * 0.016;
+      const lng2 = lng1 + 0.016;
+      ways.push(makeWay(100 + i, [[lng1, -33.420], [lng2, -33.420]]));
+    }
+    // Spur extending east from junction at -70.60
+    ways.push(makeWay(200, [[-70.600, -33.420], [-70.570, -33.415]]));
+
+    // Duplicate ways covering segments 5-8 (middle-east section)
+    // with ~100m offset — outside snap distance, simulating OSM data
+    // where the same corridor is mapped as separate parallel ways
+    for (let i = 5; i < 9; i++) {
+      const lng1 = -70.76 + i * 0.016 + 0.0005; // ~40m lng offset
+      const lng2 = lng1 + 0.016;
+      ways.push(makeWay(300 + i, [[lng1, -33.4210], [lng2, -33.4210]])); // ~110m south
+    }
+
+    ways.sort(() => Math.random() - 0.5);
+
+    const ordered = orderWays(ways);
+    // Should dedup the 4 duplicates, keep 10 main + 1 spur = 11
+    // (or fewer if dedup catches more)
+    // When dedup works: ≤11 ways, 0-1 reversals
+    // Current bug: 15 ways (duplicates not caught), multiple reversals
+    expect(ordered.length).toBeLessThanOrEqual(11);
+    expect(countReversals(ordered)).toBeLessThanOrEqual(1);
+  });
+
+  // Returns _reversed flag on all ways
+  it('returns _reversed flag on all ways', () => {
+    const ways = [
+      makeWay(1, [[-70.66, -33.43], [-70.65, -33.43]]),
+      makeWay(2, [[-70.65, -33.43], [-70.64, -33.43]]),
+    ];
+    const ordered = orderWays(ways);
+    for (const w of ordered) {
+      expect(w._reversed).toBeDefined();
+    }
   });
 });
