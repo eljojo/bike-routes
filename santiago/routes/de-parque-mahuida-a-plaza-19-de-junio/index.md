@@ -1,5 +1,5 @@
 ---
-name: "De Plaza Chile-Perú a Plaza 19 de Junio"
+name: "De Parque Mahuida a Plaza 19 de Junio"
 status: published
 distance_km: 7.8
 tags:
@@ -11,12 +11,12 @@ tags:
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
-  - name: "De Plaza Chile-Perú a Plaza 19 de Junio"
+  - name: "De Parque Mahuida a Plaza 19 de Junio"
     gpx: main.gpx
     distance_km: 7.8
 ---
 
-7,8 kilómetros por La Reina y Las Condes, desde Plaza Chile-Perú hasta Plaza 19 de Junio. El 70% del recorrido tiene ciclovía.
+7,8 kilómetros por La Reina y Las Condes, desde Parque Mahuida hasta Plaza 19 de Junio. El 70% del recorrido tiene ciclovía.
 
 ### Tramos
 

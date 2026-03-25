@@ -5,6 +5,7 @@ distance_km: 23.8
 tags:
   - bike path
   - protected lane
+  - park path
   - flat
   - hard
   - providencia
@@ -34,7 +35,7 @@ Evaluación Pedaleable: "regular".
 
 **Camino La Pirámide** — 3,8 km, tertiary.
 
-**La Cruz** — 1,6 km, path.
+**La Cruz** — 1,6 km, path, en parque.
 
 
 ### Tramos sin infraestructura

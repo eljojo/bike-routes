@@ -5,6 +5,7 @@ distance_km: 16.1
 tags:
   - bike path
   - median lane
+  - park path
   - flat
   - hard
   - recoleta
@@ -32,7 +33,7 @@ Evaluación Pedaleable: de "buena" a "mala".
 
 **Camino La Pirámide** — 3,8 km, tertiary.
 
-**La Cruz** — 1,6 km, path.
+**La Cruz** — 1,6 km, path, en parque.
 
 
 ### Tramos sin infraestructura

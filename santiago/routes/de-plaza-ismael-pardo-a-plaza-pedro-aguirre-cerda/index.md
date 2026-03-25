@@ -4,6 +4,7 @@ status: published
 distance_km: 12.0
 tags:
   - bike path
+  - park path
   - flat
   - cerrillos
   - maipu
@@ -22,7 +23,7 @@ variants:
 **Camino A Melipilla** (Cerrillos y Maipu) — 8,4 km, bidireccional/cycleway, en acera, 140–200 cm de ancho.
 Evaluación Pedaleable: "mala".
 
-**Ciclovia Parque Bicentenario Cerrillos** — 2,7 km, cycleway.
+**Ciclovia Parque Bicentenario Cerrillos** — 2,7 km, cycleway, en parque.
 
 
 ### Tramos sin infraestructura

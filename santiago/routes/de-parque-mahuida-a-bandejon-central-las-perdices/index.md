@@ -1,5 +1,5 @@
 ---
-name: "De Bandejón Central Las Perdices a Parque Mahuida"
+name: "De Parque Mahuida a Bandejón Central Las Perdices"
 status: published
 distance_km: 6.2
 tags:
@@ -12,12 +12,12 @@ tags:
 created_at: "2026-03-25"
 updated_at: "2026-03-25"
 variants:
-  - name: "De Bandejón Central Las Perdices a Parque Mahuida"
+  - name: "De Parque Mahuida a Bandejón Central Las Perdices"
     gpx: main.gpx
     distance_km: 6.2
 ---
 
-6,2 kilómetros por La Florida, desde Bandejón Central Las Perdices hasta Parque Mahuida. Prácticamente todo el recorrido tiene ciclovía.
+6,2 kilómetros por La Florida, desde Parque Mahuida hasta Bandejón Central Las Perdices. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 

@@ -21,7 +21,7 @@ variants:
     distance_km: 13.9
 ---
 
-Un circuito de 13,9 kilómetros por La Reina, Penalolen y Las Condes, saliendo desde Plaza Chile-Perú. Prácticamente todo el recorrido tiene ciclovía.
+Un circuito de 13,9 kilómetros por La Reina, Penalolen y Las Condes, saliendo desde Parque Mahuida. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
