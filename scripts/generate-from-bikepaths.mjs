@@ -117,63 +117,12 @@ function orderWays(ways) {
   const active = ways.map((_, i) => i).filter(i => !dominated.has(i));
   if (active.length <= 1) return active.map(i => ways[i]);
 
-  // Find the true endpoint: the way whose start or end is furthest
-  // from any other way's endpoints. This is a path terminus, not a
-  // middle segment.
-  let bestStart = active[0];
-  let bestIsolation = 0;
-  for (const i of active) {
-    for (const coord of [eps[i].start, eps[i].end]) {
-      let minDist = Infinity;
-      for (const j of active) {
-        if (j === i) continue;
-        minDist = Math.min(minDist,
-          haversineM(coord, eps[j].start),
-          haversineM(coord, eps[j].end),
-          haversineM(coord, eps[j].mid),
-        );
-      }
-      if (minDist > bestIsolation) {
-        bestIsolation = minDist;
-        bestStart = i;
-      }
-    }
-  }
+  // Sort by midpoint longitude. This works for linear corridors —
+  // the ways form a path from one end to the other. buildGPX handles
+  // per-segment reversal to make the trace continuous.
+  active.sort((a, b) => eps[a].mid[0] - eps[b].mid[0]);
 
-  // Chain from the most isolated endpoint
-  const startEp = haversineM(eps[bestStart].start, eps[active.find(j => j !== bestStart)].mid) >
-                   haversineM(eps[bestStart].end, eps[active.find(j => j !== bestStart)].mid)
-    ? eps[bestStart].start : eps[bestStart].end;
-  // We enter from the isolated end, exit from the other
-  let frontier = startEp === eps[bestStart].start ? eps[bestStart].end : eps[bestStart].start;
-
-  const ordered = [bestStart];
-  const used = new Set([bestStart]);
-
-  while (ordered.length < active.length) {
-    let bestIdx = -1;
-    let bestDist = Infinity;
-
-    for (const i of active) {
-      if (used.has(i)) continue;
-      const dStart = haversineM(frontier, eps[i].start);
-      const dEnd = haversineM(frontier, eps[i].end);
-      const d = Math.min(dStart, dEnd);
-      if (d < bestDist) { bestDist = d; bestIdx = i; }
-    }
-
-    if (bestIdx < 0) break;
-    // Stop if next segment is far away (>2km gap = probably wrong)
-    if (bestDist > 2000) break;
-
-    ordered.push(bestIdx);
-    used.add(bestIdx);
-    const dS = haversineM(frontier, eps[bestIdx].start);
-    const dE = haversineM(frontier, eps[bestIdx].end);
-    frontier = dS < dE ? eps[bestIdx].end : eps[bestIdx].start;
-  }
-
-  return ordered.map(i => ways[i]);
+  return active.map(i => ways[i]);
 }
 
 // ---------------------------------------------------------------------------
