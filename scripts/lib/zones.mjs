@@ -128,7 +128,7 @@ export function detectSensoryZones(waterways, parkAreas) {
 
   // Parks with polygon geometry → area zones
   for (const park of parkAreas) {
-    if (park.extent < 200) continue; // skip tiny plazas
+    if (park.extent < 500) continue; // only significant parks become zones
 
     let cells;
     if (park.geometry && park.geometry.length >= 3) {
