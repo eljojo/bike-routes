@@ -1,7 +1,7 @@
 ---
 name: "Estadio a Parque Intercomunal Victor Jara"
 status: published
-distance_km: 7.6
+distance_km: 6.9
 tags:
   - bike path
   - flat
@@ -15,15 +15,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "Estadio a Parque Intercomunal Victor Jara"
     gpx: main.gpx
-    distance_km: 7.6
+    distance_km: 6.9
 ---
 
-7,6 kilómetros por La Florida, Macul y San Joaquin, desde Plaza Cívica de La Florida hasta Parque Intercomunal Victor Jara. Prácticamente todo el recorrido tiene ciclovía.
+6,9 kilómetros por La Florida, Macul y San Joaquin, desde Plaza Cívica de La Florida hasta Parque Intercomunal Victor Jara. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Vicuna Mackenna Poniente** (La Florida) — 2,5 km, bidireccional, en acera, 200 cm de ancho.
-Evaluación Pedaleable: "mala".
+**El Cabildo** (La Florida) — 1,8 km.
 
 **Estadio** (Macul y San Joaquin) — 5,1 km, bidireccional, en acera y calzada, 220–260 cm de ancho.
 Evaluación Pedaleable: de "regular" a "mala".
@@ -33,7 +32,7 @@ Evaluación Pedaleable: de "regular" a "mala".
 
 Videos a nivel de calle de cada tramo, grabados por Pedaleable:
 
-- [Vicuna Mackenna Poniente (La Florida)](https://youtu.be/CDLA0o2UNlo)
+- [El Cabildo (La Florida)](https://youtu.be/NuiIdOlIKF8)
 - [Vicuna Mackenna Poniente (La Florida)](https://youtu.be/CDLA0o2UNlohttps://youtu.be/CDLA0o2UNlo)
 - [Estadio (San Joaquin)](https://youtu.be/FyMbMaa4rn0)
 - [Vicuna Mackenna (San Joaquin)](https://youtu.be/bgMjNWKepyw)

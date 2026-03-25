@@ -369,9 +369,25 @@ function discoverChains(startXi, connections, axes) {
     // direction of travel. This prevents zigzag routes that look nonsensical.
     const candidates = [...conns].filter((n) => !visited.has(n));
 
+    // Reject candidates that overlap the current axis — same name, same start area.
+    // Two "ANDRES BELLO" axes starting from Baquedano are variants, not a sequence.
+    // But two "COSTANERA SUR" axes where one ends near the other's start ARE sequential.
+    const currStart = currentAxis.segments[0].start;
+    const currEnd = currentAxis.segments[currentAxis.segments.length - 1].end;
+    const nonOverlapping = candidates.filter((n) => {
+      if (currentAxis.name !== axes[n].name) return true; // different names can't overlap
+      const candStart = axes[n].segments[0].start;
+      const candEnd = axes[n].segments[axes[n].segments.length - 1].end;
+      // Overlapping: both start from the same point (forking variants)
+      if (haversineM(currStart, candStart) < 200) return false;
+      // Overlapping: both end at the same point (converging variants)
+      if (haversineM(currEnd, candEnd) < 200) return false;
+      return true;
+    });
+
     // Score each candidate by direction continuity + axis length + name affinity
     const currentName = currentAxis.name;
-    const scored = candidates.map((n) => {
+    const scored = nonOverlapping.map((n) => {
       const ds = directionScore(currentAxis, axes[n]);
       const lengthBonus = Math.min(axes[n].totalInfraM / 5000, 1); // 0-1
       // Same-name affinity: strongly prefer chaining COSTANERA SUR → COSTANERA SUR

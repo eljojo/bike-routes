@@ -29,7 +29,10 @@ Evaluación Pedaleable: "mala".
 **Camino A Melipilla** (Cerrillos y Maipu) — 6,3 km, bidireccional, en acera, 140–200 cm de ancho.
 Evaluación Pedaleable: "mala".
 
-**Pedro Aguirre Cerda** (Cerrillos y Estacion Central) — 4,7 km, bidireccional, en acera y calzada, 140–180 cm de ancho.
+**Pedro Aguirre Cerda** (Cerrillos) — 3,5 km, bidireccional, en acera, 140 cm de ancho.
+Evaluación Pedaleable: "mala".
+
+**Pedro Aguirre Cerda** (Estacion Central) — 1,3 km, bidireccional, en calzada, 140–180 cm de ancho.
 Evaluación Pedaleable: "mala".
 
 

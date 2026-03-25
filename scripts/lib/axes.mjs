@@ -175,27 +175,34 @@ export function detectAxes(segments) {
       }
     });
 
-    // --- Union-Find: chain segments that connect end-to-end (≤ 200m) ---
-    // Important: reject parallel segments (both start-start AND end-end are close).
-    // Two lanes of a highway have close endpoints but run side-by-side, not in series.
+    // --- Union-Find: chain segments that connect sequentially (≤ 200m) ---
+    // Only chain end→start or start→end connections (sequential).
+    // Reject: start→start (overlapping/forking) and end→end (converging).
+    // Also reject parallel segments (both ends close simultaneously).
     const n = sorted.length;
     const uf = makeUF(n);
 
     for (let i = 0; i < n; i++) {
       for (let j = i + 1; j < n; j++) {
-        const { distance } = minEndpointDistance(sorted[i], sorted[j]);
-        if (distance > CHAIN_THRESHOLD_M) continue;
-
-        // Parallel check: if BOTH start-start and end-end are close,
-        // these are parallel paths, not a continuous chain.
+        const esD = haversineM(sorted[i].end, sorted[j].start);    // i flows into j
+        const seD = haversineM(sorted[i].start, sorted[j].end);    // j flows into i
         const ssD = haversineM(sorted[i].start, sorted[j].start);
         const eeD = haversineM(sorted[i].end, sorted[j].end);
-        const seD = haversineM(sorted[i].start, sorted[j].end);
-        const esD = haversineM(sorted[i].end, sorted[j].start);
+
+        // Sequential: one segment's end connects to the other's start
+        const sequential = esD <= CHAIN_THRESHOLD_M || seD <= CHAIN_THRESHOLD_M;
+        if (!sequential) continue;
+
+        // Reject parallel: both start-start and end-end close (side-by-side)
         const bothEndsClose = (ssD < CHAIN_THRESHOLD_M && eeD < CHAIN_THRESHOLD_M) ||
                               (seD < CHAIN_THRESHOLD_M && esD < CHAIN_THRESHOLD_M);
-        // Only reject if segments are long enough that parallel matters (>200m)
         if (bothEndsClose && sorted[i].lengthM > 200 && sorted[j].lengthM > 200) continue;
+
+        // Reject overlapping: start-start close means they fork from same point
+        // (like two segments of Andres Bello that start at Baquedano)
+        if (ssD < CHAIN_THRESHOLD_M && esD > CHAIN_THRESHOLD_M && seD > CHAIN_THRESHOLD_M) continue;
+        // end-end close means they converge to same point
+        if (eeD < CHAIN_THRESHOLD_M && esD > CHAIN_THRESHOLD_M && seD > CHAIN_THRESHOLD_M) continue;
 
         uf.union(i, j);
       }
