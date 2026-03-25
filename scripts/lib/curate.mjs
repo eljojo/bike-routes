@@ -32,11 +32,12 @@ export function curateLaunchSet(proposals, opts = {}) {
     // Destination quality — parks and plazas are why people ride
     const destinationScore = (startData?.anchorScore || 0) + (endData?.anchorScore || 0);
 
-    // Distance sweet spot — 4-12km is a Saturday ride
+    // Distance: the sweet spot is broad — 4-20km covers everything from
+    // a Saturday spin to a proper destination ride. Don't punish long routes.
     const distKm = r.totalDistanceM / 1000;
     const distScore =
-      distKm >= 4 && distKm <= 12 ? 5 :
-      distKm >= 2 && distKm <= 20 ? 2 : 0;
+      distKm >= 4 && distKm <= 20 ? 5 :
+      distKm >= 2 && distKm <= 40 ? 3 : 0;
 
     // Safety — high infrastructure coverage means fewer scary moments
     const safetyScore =
@@ -63,6 +64,12 @@ export function curateLaunchSet(proposals, opts = {}) {
     // Archetype variety — loops and spines are more interesting
     const archetypeScore = r.archetype === 'loop' ? 3 : r.archetype === 'spine' ? 1 : 0;
 
+    // Corridor bonus — routes that span 3+ comunas are corridor rides
+    // (along a river, through a park chain, across the city). These are
+    // the signature rides that define a city's cycling character.
+    const comunaCount = new Set(r.axes.flatMap((a) => a.comunas || [])).size;
+    const corridorBonus = comunaCount >= 4 ? 6 : comunaCount >= 3 ? 3 : 0;
+
     const interestScore =
       destinationScore * 1.5 +
       distScore * 2 +
@@ -71,7 +78,8 @@ export function curateLaunchSet(proposals, opts = {}) {
       videoScore +
       nameScore * 3 +
       greenScore +
-      archetypeScore;
+      archetypeScore +
+      corridorBonus;
 
     return { ...r, interestScore, distKm };
   });
@@ -81,8 +89,8 @@ export function curateLaunchSet(proposals, opts = {}) {
 
   // Greedy selection with diversity constraints
   const selected = [];
-  const comunaPairCounts = new Map(); // max 2 routes per comuna-pair
   const anchorUsed = new Map();       // max 3 routes per anchor name
+  const comunaUsed = new Map();       // per-comuna count (not per-pair)
 
   for (const route of scored) {
     if (selected.length >= target) break;
@@ -94,11 +102,13 @@ export function curateLaunchSet(proposals, opts = {}) {
       return k === pairKey;
     })) continue;
 
-    // Geographic spread — max 2 routes per comuna pair
-    const comunas = [...new Set(route.axes.flatMap((a) => a.comunas))].sort();
-    const comunaKey = comunas.join(',');
-    const comunaCount = comunaPairCounts.get(comunaKey) || 0;
-    if (comunaCount >= 2) continue;
+    // Geographic spread — per-comuna cap, not per-pair.
+    // A route spanning 4 comunas shouldn't be blocked because two of those
+    // comunas appeared in separate routes. The constraint is: no single
+    // comuna should dominate (max 4 routes touching it).
+    const comunas = [...new Set(route.axes.flatMap((a) => a.comunas || []))];
+    const maxComunaHits = Math.max(...comunas.map((c) => comunaUsed.get(c) || 0));
+    if (maxComunaHits >= 4) continue;
 
     // Anchor spread — don't overuse the same POI
     const startCount = anchorUsed.get(route.startAnchor.name) || 0;
@@ -106,7 +116,9 @@ export function curateLaunchSet(proposals, opts = {}) {
     if (startCount >= 3 || endCount >= 3) continue;
 
     selected.push(route);
-    comunaPairCounts.set(comunaKey, comunaCount + 1);
+    for (const c of comunas) {
+      comunaUsed.set(c, (comunaUsed.get(c) || 0) + 1);
+    }
     anchorUsed.set(route.startAnchor.name, startCount + 1);
     anchorUsed.set(route.endAnchor.name, endCount + 1);
   }
