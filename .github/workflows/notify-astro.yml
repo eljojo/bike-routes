@@ -8,11 +8,19 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout for commit message
-        if: github.ref_name == 'staging'
+      - name: Checkout
         uses: actions/checkout@v6
         with:
-          fetch-depth: 1
+          fetch-depth: 2
+
+      - name: Detect changed cities
+        id: detect
+        run: |
+          # Top-level directories with config.yml are cities
+          CITIES=$(git diff --name-only HEAD~1 HEAD | grep -oP '^[^/]+(?=/)' | sort -u | while read dir; do
+            [ -f "$dir/config.yml" ] && echo "$dir"
+          done | paste -sd ',' -)
+          echo "cities=${CITIES:-ottawa}" >> "$GITHUB_OUTPUT"
 
       - name: Extract app branch from commit
         if: github.ref_name == 'staging'
@@ -29,12 +37,13 @@ jobs:
             EVENT_TYPE="data-updated"
           fi
 
+          CITIES="${{ steps.detect.outputs.cities }}"
           APP_BRANCH="${{ steps.branch.outputs.app_branch }}"
-          PAYLOAD="{\"event_type\": \"$EVENT_TYPE\""
+          PAYLOAD="{\"event_type\": \"$EVENT_TYPE\", \"client_payload\": {\"city\": \"$CITIES\""
           if [ -n "$APP_BRANCH" ]; then
-            PAYLOAD="$PAYLOAD, \"client_payload\": {\"app_branch\": \"$APP_BRANCH\"}"
+            PAYLOAD="$PAYLOAD, \"app_branch\": \"$APP_BRANCH\""
           fi
-          PAYLOAD="$PAYLOAD}"
+          PAYLOAD="$PAYLOAD}}"
 
           curl -X POST \
             -H "Authorization: token ${{ secrets.ASTRO_REPO_TOKEN }}" \
