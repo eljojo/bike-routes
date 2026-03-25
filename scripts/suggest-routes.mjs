@@ -17,7 +17,16 @@ import yaml from 'js-yaml';
 import { parseCatastroFeature, parseOverpassWay } from './lib/segments.mjs';
 import { detectAxes } from './lib/axes.mjs';
 import { fetchPOIs, fetchCyclingWays } from './lib/overpass.mjs';
-import { haversineM } from './lib/geo.mjs';
+import { haversineM, allCoords } from './lib/geo.mjs';
+
+/** Sample N evenly-spaced points along a coordinate array. */
+function samplePoints(coords, n) {
+  if (coords.length <= n) return coords;
+  const step = Math.max(1, Math.floor(coords.length / n));
+  const pts = [];
+  for (let i = 0; i < coords.length; i += step) pts.push(coords[i]);
+  return pts;
+}
 import { scoreAnchors, clusterDestinationZones } from './lib/anchors.mjs';
 import { stitchTrips } from './lib/trips.mjs';
 import { buildGPX } from './lib/gpx.mjs';
@@ -170,17 +179,29 @@ async function main() {
     const osmSegments = osmWays.map((el, i) => parseOverpassWay(el, primarySegments.length + i));
     console.log(`[pipeline] ${osmSegments.length} OSM cycling ways fetched`);
 
-    // Deduplicate: skip OSM segments whose centroid is within 50m of a primary segment
-    // (they're the same path, catastro version is more detailed)
-    const primaryCentroids = validSegments.map((s) => s.centroid);
+    // Deduplicate: skip OSM segments that trace the same path as a catastro segment.
+    // Sample points along both and check overlap, not just centroid proximity.
     let added = 0;
     for (const osm of osmSegments) {
+      const osmCoords = osm.geometry.type === 'MultiLineString'
+        ? osm.geometry.coordinates.flat() : osm.geometry.coordinates;
+      const osmSample = samplePoints(osmCoords, 5);
       let duplicate = false;
-      for (const pc of primaryCentroids) {
-        if (Math.abs(osm.centroid[0] - pc[0]) < 0.001 && Math.abs(osm.centroid[1] - pc[1]) < 0.001) {
-          // Quick bounding box check before haversine
-          const d = haversineM(osm.centroid, pc);
-          if (d < 50) { duplicate = true; break; }
+      for (const primary of validSegments) {
+        // Quick distance pre-filter
+        if (haversineM(osm.centroid, primary.centroid) > osm.lengthM + primary.lengthM) continue;
+        const priCoords = primary.geometry.type === 'MultiLineString'
+          ? primary.geometry.coordinates.flat() : primary.geometry.coordinates;
+        const priSample = samplePoints(priCoords, 5);
+        let near = 0;
+        for (const op of osmSample) {
+          for (const pp of priSample) {
+            if (haversineM(op, pp) < 80) { near++; break; }
+          }
+        }
+        if (osmSample.length > 0 && near / osmSample.length > 0.4) {
+          duplicate = true;
+          break;
         }
       }
       if (!duplicate) {

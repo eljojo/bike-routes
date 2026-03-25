@@ -428,12 +428,19 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
       // Skip the start/end anchors
       if (anchor.name === startAnchor.name || anchor.name === endAnchor.name) continue;
       const anchorCoord = [anchor.lng, anchor.lat];
+      // Check proximity to start, end, and centroid of each segment
+      let found = false;
       for (const seg of allSegs) {
-        if (haversineM(anchorCoord, seg.centroid) < 300) {
-          waypointTypes.add(anchor.type);
-          routeWaypoints.push({ name: anchor.name, type: anchor.type, lat: anchor.lat, lng: anchor.lng });
+        if (haversineM(anchorCoord, seg.start) < 300 ||
+            haversineM(anchorCoord, seg.end) < 300 ||
+            haversineM(anchorCoord, seg.centroid) < 300) {
+          found = true;
           break;
         }
+      }
+      if (found) {
+        waypointTypes.add(anchor.type);
+        routeWaypoints.push({ name: anchor.name, type: anchor.type, lat: anchor.lat, lng: anchor.lng });
       }
     }
     // Diversity of stops matters more than quantity

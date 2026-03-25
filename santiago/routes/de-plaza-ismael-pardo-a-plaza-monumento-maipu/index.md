@@ -1,7 +1,7 @@
 ---
 name: "De Plaza Ismael Pardo a Plaza Monumento Maipú"
 status: published
-distance_km: 8.4
+distance_km: 6.3
 tags:
   - bike path
   - flat
@@ -14,14 +14,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Plaza Ismael Pardo a Plaza Monumento Maipú"
     gpx: main.gpx
-    distance_km: 8.4
+    distance_km: 6.3
 ---
 
-8,4 kilómetros por Cerrillos y Maipu, desde Plaza Ismael Pardo hasta Plaza Monumento Maipú. Prácticamente todo el recorrido tiene ciclovía.
+6,3 kilómetros por Cerrillos y Maipu, desde Plaza Ismael Pardo hasta Plaza Monumento Maipú. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Camino A Melipilla** (Cerrillos y Maipu) — 8,4 km, bidireccional/cycleway, en acera, 140–200 cm de ancho.
+**Camino A Melipilla** (Cerrillos y Maipu) — 6,3 km, bidireccional, en acera, 140–200 cm de ancho.
 Evaluación Pedaleable: "mala".
 
 

@@ -1,7 +1,7 @@
 ---
 name: "De Parque Intercomunal Victor Jara a Plaza Ismael Pardo"
 status: published
-distance_km: 7.0
+distance_km: 3.3
 tags:
   - bike path
   - flat
@@ -13,14 +13,14 @@ updated_at: "2026-03-25"
 variants:
   - name: "De Parque Intercomunal Victor Jara a Plaza Ismael Pardo"
     gpx: main.gpx
-    distance_km: 7.0
+    distance_km: 3.3
 ---
 
-7,0 kilómetros por Pedro Aguirre Cerda, desde Parque Intercomunal Victor Jara hasta Plaza Ismael Pardo. Prácticamente todo el recorrido tiene ciclovía.
+3,3 kilómetros por Pedro Aguirre Cerda, desde Parque Intercomunal Victor Jara hasta Plaza Ismael Pardo. Prácticamente todo el recorrido tiene ciclovía.
 
 ### Tramos
 
-**Avenida Clotario Blest** (Pedro Aguirre Cerda) — 7,0 km, track/bidireccional/cycleway, en acera, 200 cm de ancho.
+**Clotario Blest** (Pedro Aguirre Cerda) — 3,3 km, bidireccional, en acera, 200 cm de ancho.
 Evaluación Pedaleable: "mala".
 
 

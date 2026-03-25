@@ -23,7 +23,7 @@ variants:
 
 ### Tramos
 
-**Las Perdices** (La Reina y Penalolen) — 8,5 km, bidireccional/track, en parque, acera y mediana, 200 cm de ancho.
+**Las Perdices** (La Reina y Penalolen) — 8,5 km, bidireccional, en parque, acera y mediana, 200 cm de ancho.
 Evaluación Pedaleable: de "muy mala" a "mala".
 
 

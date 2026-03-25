@@ -9,7 +9,7 @@
  *   5. Each chain = one axis
  */
 
-import { haversineM, minEndpointDistance } from './geo.mjs';
+import { haversineM, minEndpointDistance, allCoords } from './geo.mjs';
 import { slugify } from './slugify.mjs';
 
 const CHAIN_THRESHOLD_M = 200;
@@ -70,34 +70,50 @@ function worstOfTwo(a, b) {
 // ---------------------------------------------------------------------------
 
 function buildAxis(rawSegments, bearing) {
-  // Deduplicate overlapping segments: if two segments have centroids within
-  // 100m AND similar start/end points, they cover the same ground. Keep the
-  // longer one (more detailed geometry).
+  // Deduplicate overlapping segments by tracing actual path geometry.
+  // Sample points along each segment and check if another segment covers
+  // the same ground. If >40% of a shorter segment's sampled points are
+  // within 80m of a longer segment's path, it's a duplicate — drop it.
   const segments = [];
   const used = new Set();
-  // Sort by length descending so we keep the longest version
   const byLength = [...rawSegments].sort((a, b) => b.lengthM - a.lengthM);
+
+  // Pre-compute sampled points for each segment (every ~100m)
+  const sampledPoints = byLength.map((seg) => {
+    const coords = allCoords(seg.geometry);
+    if (coords.length <= 3) return coords;
+    const step = Math.max(1, Math.floor(coords.length / Math.ceil(seg.lengthM / 100)));
+    const pts = [];
+    for (let k = 0; k < coords.length; k += step) pts.push(coords[k]);
+    if (pts[pts.length - 1] !== coords[coords.length - 1]) pts.push(coords[coords.length - 1]);
+    return pts;
+  });
+
   for (let i = 0; i < byLength.length; i++) {
     if (used.has(i)) continue;
-    const a = byLength[i];
-    segments.push(a);
-    // Mark shorter overlapping segments as used
+    segments.push(byLength[i]);
+
+    const aPts = sampledPoints[i];
     for (let j = i + 1; j < byLength.length; j++) {
       if (used.has(j)) continue;
-      const b = byLength[j];
-      const centroidDist = haversineM(a.centroid, b.centroid);
-      if (centroidDist > 150) continue;
-      // Check if they cover similar ground
-      const ssD = haversineM(a.start, b.start);
-      const eeD = haversineM(a.end, b.end);
-      const seD = haversineM(a.start, b.end);
-      const esD = haversineM(a.end, b.start);
-      const overlaps = (ssD < 200 && eeD < 200) || (seD < 200 && esD < 200) ||
-                        ssD < 100 || eeD < 100 || seD < 100 || esD < 100;
-      if (overlaps) used.add(j);
+      // Quick bounding box pre-filter
+      if (haversineM(byLength[i].centroid, byLength[j].centroid) > byLength[i].lengthM + 500) continue;
+
+      const bPts = sampledPoints[j];
+      // Check how many of b's points are near a's path
+      let nearCount = 0;
+      for (const bp of bPts) {
+        for (const ap of aPts) {
+          if (haversineM(bp, ap) < 80) { nearCount++; break; }
+        }
+      }
+      if (bPts.length > 0 && nearCount / bPts.length > 0.4) {
+        used.add(j); // b is covered by a — drop it
+      }
     }
   }
-  // Re-sort by position (centroid along dominant orientation)
+
+  // Re-sort by position along dominant orientation
   if (bearing === 'north-south') {
     segments.sort((a, b) => a.centroid[1] - b.centroid[1]);
   } else {
