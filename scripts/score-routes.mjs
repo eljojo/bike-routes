@@ -398,7 +398,108 @@ function scoreInfraReality(pts, grid) {
 }
 
 /**
- * 8. SHAPE DESCRIPTION — trace the route in directional blocks
+ * 8. RIDEABILITY — "would a human actually ride this path?"
+ *    Measures wasted distance: how much of the route is spent going
+ *    somewhere you'll backtrack from? A perfect route has efficiency
+ *    close to 1.0 (every meter gets you closer to the end).
+ *    A route that goes east 2km then west 2km has efficiency ~0.
+ *
+ *    For loops: measures how monotonically the angle from centroid
+ *    progresses. A perfect O scores 100, a C that goes back scores 0.
+ *
+ *    Score: 0-100 (100 = every meter makes progress)
+ */
+function scoreRideability(pts) {
+  if (pts.length < 3) return { rideability: 100, efficiency: 1, wastedDistM: 0 };
+
+  let totalDist = 0;
+  for (let i = 1; i < pts.length; i++) totalDist += haversineM(pts[i - 1], pts[i]);
+
+  const crowFlies = haversineM(pts[0], pts[pts.length - 1]);
+  const isLoop = crowFlies < Math.max(2000, totalDist * 0.15);
+
+  if (isLoop) {
+    // For loops: measure angular monotonicity
+    // A perfect loop has angle from centroid always increasing (or decreasing)
+    // Back-and-forth = wasted angular distance
+    let cx = 0, cy = 0;
+    for (const [lng, lat] of pts) { cx += lng; cy += lat; }
+    cx /= pts.length; cy /= pts.length;
+
+    const step = Math.max(1, Math.floor(pts.length / 100));
+    let forwardArc = 0, backwardArc = 0;
+    let prevAngle = null;
+    let dominant = 0; // +1 or -1 (CW vs CCW)
+
+    // First pass: determine dominant direction
+    for (let i = 0; i < pts.length; i += step) {
+      const angle = Math.atan2(pts[i][0] - cx, pts[i][1] - cy) * 180 / Math.PI;
+      if (prevAngle !== null) {
+        let delta = angle - prevAngle;
+        if (delta > 180) delta -= 360;
+        if (delta < -180) delta += 360;
+        dominant += delta > 0 ? 1 : -1;
+      }
+      prevAngle = angle;
+    }
+    const expectedDir = dominant >= 0 ? 1 : -1;
+
+    // Second pass: measure forward vs backward arc
+    prevAngle = null;
+    for (let i = 0; i < pts.length; i += step) {
+      const angle = Math.atan2(pts[i][0] - cx, pts[i][1] - cy) * 180 / Math.PI;
+      if (prevAngle !== null) {
+        let delta = angle - prevAngle;
+        if (delta > 180) delta -= 360;
+        if (delta < -180) delta += 360;
+        if (Math.abs(delta) > 2) {
+          if ((delta > 0 ? 1 : -1) === expectedDir) forwardArc += Math.abs(delta);
+          else backwardArc += Math.abs(delta);
+        }
+      }
+      prevAngle = angle;
+    }
+
+    const totalArc = forwardArc + backwardArc;
+    const efficiency = totalArc > 0 ? forwardArc / totalArc : 1;
+    const wastedDistM = Math.round(totalDist * (1 - efficiency));
+    const rideability = Math.round(efficiency * 100);
+
+    return { rideability, efficiency: Math.round(efficiency * 100) / 100, wastedDistM };
+  }
+
+  // For one-way: measure how much distance is "wasted" going backwards
+  // Project each point onto the start→end line. The ideal route has
+  // monotonically increasing projection. Any decrease is wasted.
+  const ox = pts[pts.length - 1][0] - pts[0][0];
+  const oy = pts[pts.length - 1][1] - pts[0][1];
+  const lenSq = ox * ox + oy * oy;
+  if (lenSq < 1e-12) return { rideability: 0, efficiency: 0, wastedDistM: Math.round(totalDist) };
+
+  let maxProj = -Infinity;
+  let wastedDist = 0;
+  let prevProj = 0;
+
+  for (let i = 0; i < pts.length; i++) {
+    const dx = pts[i][0] - pts[0][0];
+    const dy = pts[i][1] - pts[0][1];
+    const proj = (dx * ox + dy * oy) / Math.sqrt(lenSq) * 111320;
+
+    if (proj > maxProj) maxProj = proj;
+    if (i > 0 && proj < prevProj) {
+      wastedDist += haversineM(pts[i - 1], pts[i]);
+    }
+    prevProj = proj;
+  }
+
+  const efficiency = totalDist > 0 ? Math.max(0, 1 - (wastedDist * 2 / totalDist)) : 1;
+  const rideability = Math.round(efficiency * 100);
+
+  return { rideability, efficiency: Math.round(efficiency * 100) / 100, wastedDistM: Math.round(wastedDist) };
+}
+
+/**
+ * 9. SHAPE DESCRIPTION — trace the route in directional blocks
  *    Returns a compact string like "→E →E ↑N ↑N ←W ←W" showing
  *    the general direction of each ~1km block.
  */
@@ -464,6 +565,12 @@ function compositeScore(scores) {
   // Loop closure: +5 if closed, -10 if open loop
   if (scores.loopClosure) {
     score += scores.loopClosure.closed ? 5 : -10;
+  }
+
+  // Rideability: the biggest factor. A route that backtracks is not rideable.
+  // 0-100 → 0-30 points. A route with rideability 0 gets -30.
+  if (scores.rideability) {
+    score += (scores.rideability.rideability - 50) * 0.6; // 100→+30, 50→0, 0→-30
   }
 
   // Infrastructure reality: oasis vs car stress
@@ -549,6 +656,7 @@ for (const city of cities) {
       density: scoreDensity(pts),
       loopClosure: scoreLoopClosure(pts, tags),
       infra: scoreInfraReality(pts, infraGrid),
+      rideability: scoreRideability(pts),
     };
     scores.composite = compositeScore(scores);
 
@@ -563,6 +671,7 @@ for (const city of cities) {
     if (scores.infra.bikePathPct < 30) issues.push(`only ${scores.infra.bikePathPct}% on bike path`);
     if (scores.infra.carStressPct > 50) issues.push(`${scores.infra.carStressPct}% near car traffic`);
     if (scores.loopClosure && !scores.loopClosure.closed) issues.push(`loop not closed (${scores.loopClosure.closureDistM}m gap)`);
+    if (scores.rideability.rideability < 50) issues.push(`low rideability ${scores.rideability.rideability}% (${Math.round(scores.rideability.wastedDistM/1000*10)/10}km wasted)`);
     if (scores.density.pointsPerKm < 20) issues.push(`sparse (${scores.density.pointsPerKm} pts/km)`);
 
     allScores.push({ slug: routeSlug, scores, tags, shape, issues });
@@ -577,7 +686,7 @@ for (const city of cities) {
     const loopMark = s.loopClosure ? (s.loopClosure.closed ? '○' : '⊘') : ' ';
     const distStr = s.density.distKm + 'km';
     const header = `${loopMark} ${slug} (${distStr})`;
-    const scoreLine = `  Score: ${s.composite} | Smooth: ${s.smoothness.smoothness}% | Bike: ${s.infra.bikePathPct}% | Cars: ${s.infra.carStressPct}% | Green: ${s.infra.greenPct}% | POIs: ${s.pois.poisNearby} | Real: ${s.gapQuality.realDataPct}% | ${s.density.pointsPerKm} pts/km`;
+    const scoreLine = `  Score: ${s.composite} | Ride: ${s.rideability.rideability}% | Smooth: ${s.smoothness.smoothness}% | Bike: ${s.infra.bikePathPct}% | Cars: ${s.infra.carStressPct}% | Green: ${s.infra.greenPct}% | POIs: ${s.pois.poisNearby} | Real: ${s.gapQuality.realDataPct}%`;
     const shapeLine = `  Shape: ${shape}`;
 
     console.log(header);
@@ -601,6 +710,8 @@ for (const city of cities) {
   const loops = allScores.filter((r) => r.scores.loopClosure);
   const closedLoops = loops.filter((r) => r.scores.loopClosure.closed).length;
 
+  const rideabilities = allScores.map((r) => r.scores.rideability.rideability);
+  const lowRideability = allScores.filter((r) => r.scores.rideability.rideability < 50).length;
   const bikePathPcts = allScores.map((r) => r.scores.infra.bikePathPct);
   const carStressPcts = allScores.map((r) => r.scores.infra.carStressPct);
   const greenPcts = allScores.map((r) => r.scores.infra.greenPct);
@@ -611,6 +722,10 @@ for (const city of cities) {
   console.log(`${'─'.repeat(80)}`);
   console.log(`  Routes: ${allScores.length}`);
   console.log(`  Composite score: avg=${avg(composites).toFixed(1)}, min=${Math.min(...composites).toFixed(1)}, max=${Math.max(...composites).toFixed(1)}`);
+  console.log();
+  console.log(`  RIDEABILITY ("does this make sense to ride?")`);
+  console.log(`    Avg rideability: ${avg(rideabilities).toFixed(0)}%`);
+  console.log(`    Routes below 50%: ${lowRideability}/${allScores.length}`);
   console.log();
   console.log(`  TRACE QUALITY`);
   console.log(`    Smoothness: avg=${avg(smoothnesses).toFixed(0)}%`);
