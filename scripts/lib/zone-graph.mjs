@@ -25,7 +25,7 @@ function gridKey(lng, lat) {
  * @param {Array<{ centroid: [number, number] }>} segments
  * @returns {number} segment index
  */
-function nearestSegmentToZone(zone, segments) {
+export function nearestSegmentToZone(zone, segments) {
   let bestIdx = 0;
   let bestDist = Infinity;
   for (let i = 0; i < segments.length; i++) {
@@ -51,7 +51,7 @@ function nearestSegmentToZone(zone, segments) {
  * @param {Array<Array<{ to: number, cost: number }>>} edges
  * @returns {{ path: number[], distM: number } | null}
  */
-function aStarSegments(fromIdx, toIdx, segments, edges) {
+export function aStarSegments(fromIdx, toIdx, segments, edges) {
   if (fromIdx === toIdx) return { path: [fromIdx], distM: 0 };
 
   const targetCentroid = segments[toIdx].centroid;
