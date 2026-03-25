@@ -1,11 +1,14 @@
 /**
  * Pass 3 — Trip stitching.
  *
- * Generates candidate routes by exploring axis chains via graph search,
- * then assigning the best anchors to each chain's endpoints.
+ * Generates candidate routes by exploring segment-level graphs,
+ * then assigning the best anchors to each route's endpoints.
  *
- * v2: axis-chain-first search (not anchor-pair-first),
- *     tiered gap penalty, route archetypes (loop, out-and-back, spine).
+ * v3: segment-level search replaces axis-chain DFS.
+ *     - buildSegmentGraph(): 2255-node graph with spatial grid
+ *     - searchOneWayRoutes(): greedy best-first toward distant anchors
+ *     - searchLoopRoutes(): quadrant-sweep loops around high-score anchors
+ *     - segmentsToAxisChain(): partial axis usage
  */
 
 import { haversineM, minEndpointDistance } from './geo.mjs';
@@ -23,7 +26,6 @@ const MAX_GAP_M = 2000;
 const AXIS_TO_ANCHOR_THRESHOLD_M = 3000;
 const MIN_ANCHOR_SCORE = 5;
 const MAX_CHAIN_AXES = 8;
-const MAX_STATES_PER_START = 5000;
 const DEDUP_OVERLAP_THRESHOLD = 0.6;
 // Point-to-point: total distance / crow-flies. A straight line = 1.0.
 // Urban cycling typically 1.5–3.0. Above 3.5 means zigzag garbage.
@@ -31,8 +33,14 @@ const MAX_DETOUR_RATIO = 3.5;
 // Loops get a more lenient ratio (measured as total / diameter of bounding box)
 const MAX_LOOP_DETOUR_RATIO = 5;
 
+// Segment graph constants
+const GRID_CELL_DEG = 0.005; // ~500m cells for spatial index
+const SAME_AXIS_COST = 0;
+const MAX_SEG_SEARCH_STEPS = 300; // greedy search budget per start
+const MIN_LOOP_SEGS = 6;
+
 // ---------------------------------------------------------------------------
-// Helpers
+// Helpers (preserved from v2)
 // ---------------------------------------------------------------------------
 
 /** Centroid of an axis (average of segment centroids). */
@@ -146,50 +154,6 @@ function anchorToAxisDist(anchor, axis) {
 }
 
 /**
- * Check if a gap is feasible to ride through.
- * Samples points along the gap line and checks if there's infrastructure
- * nearby. A gap through a city (segments everywhere) is rideable.
- * A gap across a mountain/highway/river (no segments) is not.
- *
- * @param {Array} from - [lng, lat] gap start
- * @param {Array} to - [lng, lat] gap end
- * @param {Array} allAxes - all detected axes for density check
- * @returns {boolean} true if the gap appears rideable
- */
-function isGapFeasible(from, to, allAxes, excludeAxisIndices = []) {
-  const dist = haversineM(from, to);
-  if (dist < 150) return true; // very short gaps are always fine
-
-  // Sample 5 points along the gap line
-  const samples = [0.1, 0.3, 0.5, 0.7, 0.9].map((t) => [
-    from[0] + (to[0] - from[0]) * t,
-    from[1] + (to[1] - from[1]) * t,
-  ]);
-
-  // Every sample point must have cycling infrastructure within 500m.
-  // If ANY point is in an infrastructure desert (mountain, highway,
-  // river, industrial zone), the gap is not rideable.
-  // Also scale the threshold: longer gaps need denser coverage.
-  const radius = dist > 1000 ? 400 : 500;
-  const excludeSet = new Set(excludeAxisIndices);
-  for (const pt of samples) {
-    let hasNearby = false;
-    for (let ai = 0; ai < allAxes.length; ai++) {
-      if (excludeSet.has(ai)) continue; // don't count the axes being connected
-      for (const seg of allAxes[ai].segments) {
-        if (haversineM(pt, seg.centroid) < radius) {
-          hasNearby = true;
-          break;
-        }
-      }
-      if (hasNearby) break;
-    }
-    if (!hasNearby) return false;
-  }
-  return true;
-}
-
-/**
  * Find the minimum gap between two axes, considering both orientations.
  * Returns { distance, from, to } where from/to are [lng, lat] coords.
  */
@@ -283,10 +247,7 @@ function detectArchetype(axisChain, startAnchor, endAnchor) {
  * - Perimeter efficiency: route distance / (2 * (width + height))
  *   (0.8-1.0 = traces the perimeter cleanly, <0.5 = zigzag or narrow)
  *
- * The Big Loop Around Ottawa scores: aspect 1.2, perimEff 0.89.
- * A narrow out-and-back-disguised-as-loop scores: aspect >3, perimEff <0.5.
- *
- * Returns { aspect, perimEff, isOval }
+ * Returns { aspect, perimEff, isOval, isPaperclip, hasHubRevisit }
  */
 function loopShape(axisChain, totalDistanceM) {
   const coords = [];
@@ -318,10 +279,6 @@ function loopShape(axisChain, totalDistanceM) {
   const mid = Math.floor(coords.length / 2);
   const firstHalf = coords.slice(0, mid);
   const secondHalf = coords.slice(mid);
-  // Overlap radius scales with route size: short loops use 300m (same-avenue
-  // paperclips), longer loops use up to 1500m (parallel-corridor detection).
-  // Santa Rosa (12km) and La Serena (9km) are ~1.5km apart — the old 300m
-  // fixed radius couldn't catch them as overlapping.
   const overlapRadius = Math.min(300 + totalDistanceM / 20, 1500);
   let overlapCount = 0;
   const sampleStep = Math.max(1, Math.floor(firstHalf.length / 20)); // sample ~20 points
@@ -336,12 +293,9 @@ function loopShape(axisChain, totalDistanceM) {
   }
   const sampledPoints = Math.ceil(firstHalf.length / sampleStep);
   const overlapFraction = sampledPoints > 0 ? overlapCount / sampledPoints : 0;
-  const isPaperclip = overlapFraction > 0.4; // >40% of outbound overlaps with return
+  const isPaperclip = overlapFraction > 0.4;
 
-  // Hub/star detection: a star pattern has multiple spokes from one hub,
-  // where the GPX returns to the hub between spokes. Detect by checking
-  // if junction points revisit the same area AND the route has low area
-  // coverage (perimEff < 0.6 means the route doesn't trace a real perimeter).
+  // Hub/star detection
   let hasHubRevisit = false;
   if (axisChain.length >= 3) {
     const junctionPoints = [];
@@ -358,9 +312,6 @@ function loopShape(axisChain, totalDistanceM) {
         }
       }
     }
-    // Only flag as star if there are multiple hub revisits AND the route
-    // doesn't trace a real perimeter. A single hub revisit in an otherwise
-    // good loop (like a trail network) is OK.
     hasHubRevisit = hubCount >= 2 || (hubCount >= 1 && perimEff < 0.5);
   }
 
@@ -402,9 +353,7 @@ function optimizeAxisOrder(axisChain, isLoop = false) {
     for (let i = 1; i < order.length; i++) {
       const prevIdx = order[i - 1];
       const currIdx = order[i];
-      // Exit point of previous axis depends on its direction
       const prevExit = dirs[i - 1] ? eps[prevIdx].start : eps[prevIdx].end;
-      // Entry point of current axis
       const currEntry = dirs[i] ? eps[currIdx].end : eps[currIdx].start;
       total += haversineM(prevExit, currEntry);
     }
@@ -465,17 +414,14 @@ function optimizeAxisOrder(axisChain, isLoop = false) {
     }
   }
 
-  // Phase 2: 2-opt improvement — swap pairs and re-check.
-  // For N<=8 axes this is fast (28 pairs × 2 directions = 112 checks).
+  // Phase 2: 2-opt improvement
   let improved = true;
   while (improved) {
     improved = false;
     for (let i = 0; i < best.order.length - 1; i++) {
       for (let j = i + 1; j < best.order.length; j++) {
-        // Try swapping positions i and j
         const newOrder = [...best.order];
         [newOrder[i], newOrder[j]] = [newOrder[j], newOrder[i]];
-        // Try both direction assignments
         for (const startRev of [false, true]) {
           const newDirs = assignDirections(newOrder, startRev);
           const newGap = totalGapForOrder(newOrder, newDirs);
@@ -528,14 +474,10 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
   const gaps = computeGaps(axisChain);
 
   // Reject routes with any single gap too large in the actual trace.
-  // The connection graph links axes within 3km of ANY endpoint pair,
-  // but the built route traces segments in order — the actual gap
-  // between consecutive axes can be much larger than the connection distance.
   const maxGap = gaps.length > 0 ? Math.max(...gaps.map((g) => g.distanceM)) : 0;
   if (maxGap > MAX_BUILT_GAP_M) return null;
 
   // For loops, also check the closure gap (last axis → first axis).
-  // A loop where you have to ride 7km on roads to get back to the start is not a loop.
   if (earlyArchetype === 'loop' && axisChain.length >= 2) {
     const closureGap = minAxesGap(axisChain[axisChain.length - 1], axisChain[0]);
     if (closureGap.distance > MAX_BUILT_GAP_M) return null;
@@ -621,12 +563,7 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
   const longestAxis = Math.max(...axisChain.map((a) => a.totalInfraM));
   const signatureBonus = longestAxis > 5000 ? 3 : longestAxis > 3000 ? 1.5 : 0;
   const distKm = totalDistanceM / 1000;
-  // Penalize very short routes — prefer combining into longer ones.
-  // 5-15km is the sweet spot, 15-40km is great for experienced riders.
-  // Under 4km is too short to be a proper route.
   const distBonus = distKm < 4 ? -2 : distKm >= 5 && distKm <= 15 ? 1 : distKm >= 15 && distKm <= 40 ? 2 : 0;
-  // Loops get a bonus, oval loops get a bigger bonus — they're the signature rides
-  // Coherence bonus: straighter paths look better on the map and are more rideable
   let archetypeBonus = 0;
   let coherenceBonus;
   if (archetype === 'loop') {
@@ -638,26 +575,14 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
     coherenceBonus = ratio < 1.5 ? 2 : ratio < 2.0 ? 1 : ratio < 2.5 ? 0 : -1;
   }
 
-  // Mountain routes: different scoring — nature IS the infra
+  // Mountain routes: different scoring
   if (archetype === 'mountain') {
-    // Override: don't penalize low infra% for trail routes
-    // Trails are the infrastructure, they just aren't tagged as 'cycleway'
     archetypeBonus = 3;
-    // The green bonus already rewards park paths, so mountain routes benefit
   }
 
   // --- "Oasis in the Desert" scoring ---
-  // The city is car infrastructure desert. We're looking for oases:
-  // places where you can ride with headphones on, and where there's
-  // something worth stopping for along the way.
-
   const allSegs = axisChain.flatMap((a) => a.segments);
 
-  // 1. Segregation quality: "Can I ride here with headphones on?"
-  //    parque/mediana/bandejón = oasis (fully separated from cars)
-  //    acera = decent (sidewalk, separated but shared with pedestrians)
-  //    calzada = exposed (on the road with cars)
-  //    null (OSM) = unknown, assume decent
   const oasisSegs = allSegs.filter((s) =>
     s.emplazamiento === 'parque' || s.emplazamiento === 'mediana' || s.emplazamiento === 'bandejón');
   const exposedSegs = allSegs.filter((s) => s.emplazamiento === 'calzada');
@@ -666,28 +591,20 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
   const exposedLengthM = exposedSegs.reduce((s, seg) => s + (seg.lengthM || 0), 0);
   const oasisFraction = totalLengthM > 0 ? oasisLengthM / totalLengthM : 0;
   const exposedFraction = totalLengthM > 0 ? exposedLengthM / totalLengthM : 0;
-  // Reward oasis, penalize exposed riding
   const segregationScore = oasisFraction * 5 - exposedFraction * 5;
 
-  // 2. Greenery: parks, rivers, shade
   const parkSegs = allSegs.filter((s) => s.emplazamiento === 'parque');
   const parkLengthM = parkSegs.reduce((s, seg) => s + (seg.lengthM || 0), 0);
   const parkFraction = totalLengthM > 0 ? parkLengthM / totalLengthM : 0;
   const greenBonus = Math.min(parkFraction * 8, 4);
 
-  // 3. Route richness: "Can I stop here?"
-  //    Find POIs within 300m of any segment along the route.
-  //    A route that passes cafes, parks, water fountains is alive.
-  //    A route along a highway service road with nothing around is dead.
   let waypointBonus = 0;
   if (allAnchors.length > 0 && infraPercent >= 70) {
     const waypointTypes = new Set();
     const routeWaypoints = [];
     for (const anchor of allAnchors) {
-      // Skip the start/end anchors
       if (anchor.name === startAnchor.name || anchor.name === endAnchor.name) continue;
       const anchorCoord = [anchor.lng, anchor.lat];
-      // Check proximity to start, end, and centroid of each segment
       let found = false;
       for (const seg of allSegs) {
         if (haversineM(anchorCoord, seg.start) < 300 ||
@@ -702,9 +619,7 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
         routeWaypoints.push({ name: anchor.name, type: anchor.type, lat: anchor.lat, lng: anchor.lng });
       }
     }
-    // Diversity of stops matters more than quantity
     waypointBonus = Math.min(waypointTypes.size * 1.5, 6);
-    // Store for use in markdown/description
     route.waypointPOIs = routeWaypoints.slice(0, 10);
   }
 
@@ -717,92 +632,588 @@ function buildRoute(axisChain, startAnchor, endAnchor, allAnchors = []) {
 }
 
 // ---------------------------------------------------------------------------
-// Axis-chain-first search
+// A. Segment connection graph
 // ---------------------------------------------------------------------------
 
+/** Spatial grid key for a coordinate. */
+function gridKey(coord) {
+  const gx = Math.floor(coord[0] / GRID_CELL_DEG);
+  const gy = Math.floor(coord[1] / GRID_CELL_DEG);
+  return `${gx},${gy}`;
+}
+
 /**
- * DFS from each axis to discover all viable chains (1 to MAX_CHAIN_AXES).
- * Returns chains as arrays of axis indices. Runs once per start axis.
+ * Build a segment-level connection graph from all axes.
+ *
+ * Each segment becomes a node. Edges connect:
+ * - Consecutive segments within the same axis (cost=0)
+ * - Segments from different axes whose endpoints are close (cost=gap distance)
+ *
+ * Uses a spatial grid (~500m cells) for the cross-axis neighbor search.
  */
-function discoverChains(startXi, connections, axes) {
-  const results = [];
-  // DFS with hard budget to prevent explosion on dense graphs
-  const stack = [[startXi, [startXi], axes[startXi].totalInfraM, 0]];
-  let explored = 0;
+function buildSegmentGraph(axes, maxGapM = MAX_GAP_M) {
+  const t0 = Date.now();
 
-  while (stack.length > 0 && explored < MAX_STATES_PER_START) {
-    const [current, chain, infraM, gapM] = stack.pop();
-    explored++;
-    const totalM = infraM + gapM;
+  // Flatten all segments, track which axis each belongs to
+  const segments = [];
+  const segToAxis = new Map(); // segIndex -> axisIndex
+  const axisSegRanges = new Map(); // axisIndex -> { start, end } indices into segments[]
 
-    // Record if in distance range
-    if (totalM >= MIN_ROUTE_KM * 1000 && totalM <= MAX_ROUTE_KM * 1000) {
-      results.push({ chain: [...chain], infraM, gapM });
+  for (let ai = 0; ai < axes.length; ai++) {
+    const startIdx = segments.length;
+    for (const seg of axes[ai].segments) {
+      segToAxis.set(segments.length, ai);
+      segments.push(seg);
     }
+    axisSegRanges.set(ai, { start: startIdx, end: segments.length - 1 });
+  }
 
-    if (chain.length >= MAX_CHAIN_AXES) continue;
-    if (totalM > MAX_ROUTE_KM * 1000) continue;
-
-    const conns = connections.get(current);
-    if (!conns) continue;
-
-    const visited = new Set(chain);
-    const currentAxis = axes[current];
-
-    // Direction-aware branching: prefer axes that continue the current
-    // direction of travel. This prevents zigzag routes that look nonsensical.
-    const candidates = [...conns].filter((n) => !visited.has(n));
-
-    // Reject candidates that overlap the current axis — same name, same start area.
-    // Two "ANDRES BELLO" axes starting from Baquedano are variants, not a sequence.
-    // But two "COSTANERA SUR" axes where one ends near the other's start ARE sequential.
-    const currStart = currentAxis.segments[0].start;
-    const currEnd = currentAxis.segments[currentAxis.segments.length - 1].end;
-    const nonOverlapping = candidates.filter((n) => {
-      if (currentAxis.name !== axes[n].name) return true; // different names can't overlap
-      const candStart = axes[n].segments[0].start;
-      const candEnd = axes[n].segments[axes[n].segments.length - 1].end;
-      // Overlapping: both start from the same point (forking variants)
-      if (haversineM(currStart, candStart) < 200) return false;
-      // Overlapping: both end at the same point (converging variants)
-      if (haversineM(currEnd, candEnd) < 200) return false;
-      return true;
-    });
-
-    // Score each candidate by direction continuity + axis length + name affinity
-    const currentName = currentAxis.name;
-    const scored = nonOverlapping.map((n) => {
-      const ds = directionScore(currentAxis, axes[n]);
-      const lengthBonus = Math.min(axes[n].totalInfraM / 5000, 1); // 0-1
-      // Same-name affinity: strongly prefer chaining COSTANERA SUR → COSTANERA SUR
-      const nameBonus = (currentName && axes[n].name === currentName) ? 3 : 0;
-      return { xi: n, score: ds * 2 + lengthBonus + nameBonus, ds };
-    });
-
-    // Filter out backtracking (ds < -0.3) and sort by score
-    const nextAxes = scored
-      .filter((s) => s.ds > -0.3)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 4) // tighter branching for coherent paths
-      .map((s) => s.xi);
-
-    for (const next of nextAxes) {
-      const currSegs = axes[current].segments;
-      const nextSegs = axes[next].segments;
-      const { distance: gapDist } = minEndpointDistance(
-        currSegs[currSegs.length - 1],
-        nextSegs[0],
-      );
-
-      const newInfra = infraM + axes[next].totalInfraM;
-      const newGap = gapM + gapDist;
-      if (newInfra + newGap > MAX_ROUTE_KM * 1000) continue;
-
-      stack.push([next, [...chain, next], newInfra, newGap]);
+  // Build spatial grid over segment endpoints
+  const grid = new Map(); // gridKey -> [{ segIdx, coord, which: 'start'|'end' }]
+  for (let si = 0; si < segments.length; si++) {
+    const seg = segments[si];
+    for (const [which, coord] of [['start', seg.start], ['end', seg.end]]) {
+      const key = gridKey(coord);
+      if (!grid.has(key)) grid.set(key, []);
+      grid.get(key).push({ segIdx: si, coord, which });
     }
   }
 
+  // Build adjacency list: edges[segIdx] = [{ to, cost }]
+  const edges = new Array(segments.length);
+  for (let i = 0; i < segments.length; i++) edges[i] = [];
+
+  let sameAxisEdges = 0;
+  let crossAxisEdges = 0;
+
+  // Same-axis edges: consecutive segments within each axis
+  for (let ai = 0; ai < axes.length; ai++) {
+    const range = axisSegRanges.get(ai);
+    for (let si = range.start; si < range.end; si++) {
+      edges[si].push({ to: si + 1, cost: SAME_AXIS_COST });
+      edges[si + 1].push({ to: si, cost: SAME_AXIS_COST });
+      sameAxisEdges += 2;
+    }
+  }
+
+  // Cross-axis edges: segments from different axes with close endpoints
+  // For each segment, check its neighborhood in the spatial grid
+  for (let si = 0; si < segments.length; si++) {
+    const seg = segments[si];
+    const myAxis = segToAxis.get(si);
+
+    for (const coord of [seg.start, seg.end]) {
+      const gx = Math.floor(coord[0] / GRID_CELL_DEG);
+      const gy = Math.floor(coord[1] / GRID_CELL_DEG);
+
+      // Check 3x3 neighborhood of grid cells
+      for (let dx = -1; dx <= 1; dx++) {
+        for (let dy = -1; dy <= 1; dy++) {
+          const neighborKey = `${gx + dx},${gy + dy}`;
+          const cell = grid.get(neighborKey);
+          if (!cell) continue;
+
+          for (const entry of cell) {
+            if (entry.segIdx === si) continue;
+            if (segToAxis.get(entry.segIdx) === myAxis) continue; // same axis handled above
+
+            const dist = haversineM(coord, entry.coord);
+            if (dist <= maxGapM) {
+              // Check if this edge already exists (avoid duplicates)
+              const existing = edges[si].find((e) => e.to === entry.segIdx);
+              if (!existing) {
+                edges[si].push({ to: entry.segIdx, cost: dist });
+                crossAxisEdges++;
+              } else if (dist < existing.cost) {
+                existing.cost = dist;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  const elapsed = Date.now() - t0;
+  console.log(`[trips] Segment graph: ${segments.length} nodes, ${sameAxisEdges} same-axis edges, ${crossAxisEdges} cross-axis edges (${elapsed}ms)`);
+
+  return { segments, edges, segToAxis, axisSegRanges };
+}
+
+// ---------------------------------------------------------------------------
+// B. Partial axis usage — convert segment indices to axis chain
+// ---------------------------------------------------------------------------
+
+/**
+ * Convert a sequence of segment indices into an axis chain suitable for buildRoute().
+ *
+ * Groups consecutive segments by their axis. For each group, creates a
+ * "partial axis" object with only those segments and recalculated totalInfraM.
+ */
+function segmentsToAxisChain(segIndices, graph, axes) {
+  if (segIndices.length === 0) return [];
+
+  const { segments, segToAxis } = graph;
+  const groups = [];
+  let currentAxisIdx = segToAxis.get(segIndices[0]);
+  let currentGroup = [segIndices[0]];
+
+  for (let i = 1; i < segIndices.length; i++) {
+    const ai = segToAxis.get(segIndices[i]);
+    if (ai === currentAxisIdx) {
+      currentGroup.push(segIndices[i]);
+    } else {
+      groups.push({ axisIdx: currentAxisIdx, segIndices: currentGroup });
+      currentAxisIdx = ai;
+      currentGroup = [segIndices[i]];
+    }
+  }
+  groups.push({ axisIdx: currentAxisIdx, segIndices: currentGroup });
+
+  // Build partial axis objects
+  const chain = [];
+  for (const group of groups) {
+    const sourceAxis = axes[group.axisIdx];
+    const partialSegs = group.segIndices.map((si) => segments[si]);
+    const totalInfraM = partialSegs.reduce((s, seg) => s + (seg.lengthM || 0), 0);
+
+    chain.push({
+      name: sourceAxis.name,
+      slug: sourceAxis.slug,
+      segments: partialSegs,
+      comunas: sourceAxis.comunas,
+      totalInfraM,
+      bearing: sourceAxis.bearing,
+      avgConditionScore: sourceAxis.avgConditionScore,
+      bestCondition: sourceAxis.bestCondition,
+      worstCondition: sourceAxis.worstCondition,
+      videos: sourceAxis.videos,
+      gapsWithinAxis: sourceAxis.gapsWithinAxis,
+    });
+  }
+
+  return chain;
+}
+
+// ---------------------------------------------------------------------------
+// Bearing helpers for search
+// ---------------------------------------------------------------------------
+
+/** Bearing in degrees (0=N, 90=E) from [lng,lat] to [lng,lat]. */
+function bearingDeg(from, to) {
+  const dLng = to[0] - from[0];
+  const dLat = to[1] - from[1];
+  const rad = Math.atan2(dLng, dLat); // atan2(x, y) for bearing
+  return ((rad * 180 / Math.PI) + 360) % 360;
+}
+
+/** Angular difference in degrees, always 0-180. */
+function angleDiff(a, b) {
+  let d = Math.abs(a - b) % 360;
+  if (d > 180) d = 360 - d;
+  return d;
+}
+
+// ---------------------------------------------------------------------------
+// C. One-way route search — greedy best-first
+// ---------------------------------------------------------------------------
+
+/**
+ * Find segments within `radiusM` of a coordinate using the spatial grid.
+ */
+function findNearbySegments(coord, radiusM, graph) {
+  const { segments } = graph;
+  const results = [];
+  const gridRadius = Math.ceil(radiusM / (GRID_CELL_DEG * 111320)) + 1;
+  const cx = Math.floor(coord[0] / GRID_CELL_DEG);
+  const cy = Math.floor(coord[1] / GRID_CELL_DEG);
+
+  // Scan cells — but with many segments we just iterate all and filter.
+  // For 2255 segments this is fast enough.
+  for (let si = 0; si < segments.length; si++) {
+    const seg = segments[si];
+    const d = Math.min(
+      haversineM(coord, seg.start),
+      haversineM(coord, seg.end),
+      haversineM(coord, seg.centroid),
+    );
+    if (d <= radiusM) {
+      results.push({ segIdx: si, dist: d });
+    }
+  }
   return results;
+}
+
+/**
+ * Search one-way routes from high-scoring anchors using greedy best-first search.
+ *
+ * For each anchor, finds nearby start segments and runs a direction-constrained
+ * search toward distant anchors. The search strongly prefers:
+ * 1. Same-axis continuation (follow the bike path you're on)
+ * 2. Cross-axis connections that maintain bearing
+ * 3. Longer axes over shorter ones
+ */
+function searchOneWayRoutes(graph, anchors, axes, usableAnchors) {
+  const { segments, edges, segToAxis } = graph;
+  const candidates = [];
+  const highAnchors = anchors.filter((a) => a.anchorScore >= MIN_ANCHOR_SCORE);
+
+  // Build anchor spatial index for quick "is there an anchor near here?" lookups
+  const anchorCoords = highAnchors.map((a) => [a.lng, a.lat]);
+
+  /** Find the best anchor within radiusM of a coordinate. */
+  function nearestAnchor(coord, radiusM) {
+    let best = null, bestDist = radiusM;
+    for (let i = 0; i < highAnchors.length; i++) {
+      const d = haversineM(coord, anchorCoords[i]);
+      if (d < bestDist) { bestDist = d; best = highAnchors[i]; }
+    }
+    return best;
+  }
+
+  let totalSearches = 0;
+  let totalFound = 0;
+
+  for (const startAnchor of highAnchors) {
+    const startCoord = [startAnchor.lng, startAnchor.lat];
+    const nearbyStart = findNearbySegments(startCoord, 2000, graph);
+    if (nearbyStart.length === 0) continue;
+
+    // Pick up to 3 start segments (closest, sorted)
+    nearbyStart.sort((a, b) => a.dist - b.dist);
+    const startSegIndices = nearbyStart.slice(0, 3).map((n) => n.segIdx);
+
+    for (const startSi of startSegIndices) {
+      totalSearches++;
+
+      // Greedy best-first search
+      // State: { segIdx, path: [segIdx...], infraM, gapM, bearing, visited: Set }
+      const startSeg = segments[startSi];
+      const initialBearing = bearingDeg(startSeg.start, startSeg.end);
+
+      // Priority queue approximation: just use an array sorted by score
+      let frontier = [{
+        segIdx: startSi,
+        path: [startSi],
+        infraM: startSeg.lengthM || 0,
+        gapM: 0,
+        bearing: initialBearing,
+        visited: new Set([startSi]),
+        lastCoord: startSeg.end,
+      }];
+
+      let steps = 0;
+      const routesFromHere = [];
+
+      while (frontier.length > 0 && steps < MAX_SEG_SEARCH_STEPS) {
+        // Pop best state (highest infra, maintained direction)
+        const state = frontier.shift();
+        steps++;
+
+        const totalM = state.infraM + state.gapM;
+        const totalKm = totalM / 1000;
+
+        // Check termination: reached an anchor far from start, route long enough
+        if (totalKm >= MIN_ROUTE_KM) {
+          const endAnchor = nearestAnchor(state.lastCoord, 2000);
+          if (endAnchor && endAnchor.name !== startAnchor.name &&
+              haversineM(startCoord, [endAnchor.lng, endAnchor.lat]) > 1500) {
+            // Build axis chain and validate
+            const axisChain = segmentsToAxisChain(state.path, graph, axes);
+            if (axisChain.length <= MAX_CHAIN_AXES) {
+              const route = buildRoute(axisChain, startAnchor, endAnchor, usableAnchors);
+              if (route) {
+                routesFromHere.push(route);
+                if (routesFromHere.length >= 3) break; // enough from this start
+              }
+            }
+          }
+        }
+
+        // Prune: too long
+        if (totalKm > MAX_ROUTE_KM) continue;
+        if (state.visited.size > 60) continue;
+
+        // Expand neighbors
+        const neighborEdges = edges[state.segIdx];
+        const expansions = [];
+
+        for (const edge of neighborEdges) {
+          if (state.visited.has(edge.to)) continue;
+
+          const nextSeg = segments[edge.to];
+          const nextAxis = segToAxis.get(edge.to);
+          const currAxis = segToAxis.get(state.segIdx);
+          const isSameAxis = nextAxis === currAxis;
+
+          // Direction check for cross-axis transitions
+          let bearingToNext = bearingDeg(state.lastCoord, nextSeg.centroid);
+          let dirDiff = angleDiff(state.bearing, bearingToNext);
+
+          // Reject reverse direction (>120° turn) for cross-axis
+          if (!isSameAxis && dirDiff > 120) continue;
+
+          // Score this expansion
+          let score = 0;
+
+          // Strong preference for same-axis continuation
+          if (isSameAxis) {
+            score += 10;
+          } else {
+            // Prefer connections that maintain direction
+            score += (180 - dirDiff) / 30; // 0-6 based on direction match
+            // Prefer longer axes (more infra per gap)
+            const nextAxisObj = axes[nextAxis];
+            score += Math.min(nextAxisObj.totalInfraM / 3000, 2); // 0-2
+            // Penalize gap distance
+            score -= edge.cost / 1000; // -0 to -2 for 0-2km gaps
+          }
+
+          expansions.push({
+            segIdx: edge.to,
+            score,
+            cost: edge.cost,
+            isSameAxis,
+            nextSeg,
+            bearingToNext,
+          });
+        }
+
+        // Sort expansions by score, take top candidates
+        expansions.sort((a, b) => b.score - a.score);
+        const topN = expansions.slice(0, 4);
+
+        for (const exp of topN) {
+          const newInfra = state.infraM + (exp.nextSeg.lengthM || 0);
+          const newGap = state.gapM + (exp.isSameAxis ? 0 : exp.cost);
+          // Update bearing: blend current bearing with new direction
+          const newBearing = exp.isSameAxis
+            ? bearingDeg(exp.nextSeg.start, exp.nextSeg.end)
+            : exp.bearingToNext;
+
+          const newVisited = new Set(state.visited);
+          newVisited.add(exp.segIdx);
+
+          frontier.push({
+            segIdx: exp.segIdx,
+            path: [...state.path, exp.segIdx],
+            infraM: newInfra,
+            gapM: newGap,
+            bearing: newBearing,
+            visited: newVisited,
+            lastCoord: exp.nextSeg.end,
+          });
+        }
+
+        // Keep frontier manageable — sort by infra distance (prefer longer routes)
+        // and drop states that are too far behind
+        if (frontier.length > 50) {
+          frontier.sort((a, b) => (b.infraM - b.gapM) - (a.infraM - a.gapM));
+          frontier = frontier.slice(0, 30);
+        }
+      }
+
+      totalFound += routesFromHere.length;
+      candidates.push(...routesFromHere);
+    }
+  }
+
+  console.log(`[trips] One-way search: ${totalSearches} searches, ${totalFound} routes found`);
+  return candidates;
+}
+
+// ---------------------------------------------------------------------------
+// D. Loop route search — outward then curve back
+// ---------------------------------------------------------------------------
+
+/**
+ * Search loop routes around high-scoring anchors.
+ *
+ * Strategy: search outward from start, then when distance from start exceeds
+ * half the target radius, switch to preferring segments that curve back toward
+ * start. This produces oval-ish loops naturally.
+ */
+function searchLoopRoutes(graph, anchors, axes, usableAnchors) {
+  const { segments, edges, segToAxis } = graph;
+  const candidates = [];
+  const highAnchors = anchors.filter((a) => a.anchorScore >= MIN_ANCHOR_SCORE);
+
+  let totalSearches = 0;
+  let totalFound = 0;
+
+  // Try different target radii for different loop sizes
+  const targetRadii = [2000, 4000, 6000]; // metres from center
+
+  for (const centerAnchor of highAnchors) {
+    const centerCoord = [centerAnchor.lng, centerAnchor.lat];
+
+    for (const targetRadius of targetRadii) {
+      const nearbyStart = findNearbySegments(centerCoord, 1500, graph);
+      if (nearbyStart.length < MIN_LOOP_SEGS) continue;
+
+      // Pick 2 start segments
+      nearbyStart.sort((a, b) => a.dist - b.dist);
+      const startSegIndices = nearbyStart.slice(0, 2).map((n) => n.segIdx);
+
+      for (const startSi of startSegIndices) {
+        totalSearches++;
+
+        const startSeg = segments[startSi];
+        const initialBearing = bearingDeg(startSeg.start, startSeg.end);
+
+        let frontier = [{
+          segIdx: startSi,
+          path: [startSi],
+          infraM: startSeg.lengthM || 0,
+          gapM: 0,
+          bearing: initialBearing,
+          visited: new Set([startSi]),
+          lastCoord: startSeg.end,
+          phase: 'outward', // 'outward' then 'return'
+        }];
+
+        let steps = 0;
+        const routesFromHere = [];
+
+        while (frontier.length > 0 && steps < MAX_SEG_SEARCH_STEPS) {
+          const state = frontier.shift();
+          steps++;
+
+          const totalM = state.infraM + state.gapM;
+          const totalKm = totalM / 1000;
+          const distFromStart = haversineM(state.lastCoord, centerCoord);
+
+          // Determine phase
+          let phase = state.phase;
+          if (phase === 'outward' && distFromStart > targetRadius * 0.5) {
+            phase = 'return';
+          }
+
+          // Check loop closure: near start and route long enough
+          if (totalKm >= MIN_ROUTE_KM && state.path.length >= MIN_LOOP_SEGS &&
+              phase === 'return' && distFromStart < 2000) {
+            const axisChain = segmentsToAxisChain(state.path, graph, axes);
+            if (axisChain.length >= 2 && axisChain.length <= MAX_CHAIN_AXES) {
+              // Check loop shape before building (quick reject)
+              const infraM = axisChain.reduce((s, a) => s + a.totalInfraM, 0);
+              const shape = loopShape(axisChain, infraM);
+              if (!shape.isPaperclip && !shape.hasHubRevisit) {
+                const route = buildRoute(axisChain, centerAnchor, centerAnchor, usableAnchors);
+                if (route) {
+                  routesFromHere.push(route);
+                  if (routesFromHere.length >= 2) break;
+                }
+              }
+            }
+          }
+
+          // Prune
+          if (totalKm > MAX_ROUTE_KM) continue;
+          if (state.visited.size > 60) continue;
+
+          // Expand
+          const neighborEdges = edges[state.segIdx];
+          const expansions = [];
+
+          for (const edge of neighborEdges) {
+            if (state.visited.has(edge.to)) continue;
+
+            const nextSeg = segments[edge.to];
+            const nextAxis = segToAxis.get(edge.to);
+            const currAxis = segToAxis.get(state.segIdx);
+            const isSameAxis = nextAxis === currAxis;
+
+            const bearingToNext = bearingDeg(state.lastCoord, nextSeg.centroid);
+            const dirDiff = angleDiff(state.bearing, bearingToNext);
+
+            // For loops, we need to turn — so allow wider bearing tolerance
+            // but still reject pure reversals
+            if (!isSameAxis && dirDiff > 150) continue;
+
+            let score = 0;
+
+            // Same-axis preference (but less dominant than one-way)
+            if (isSameAxis) {
+              score += 6;
+            } else {
+              score += (180 - dirDiff) / 45; // 0-4
+              const nextAxisObj = axes[nextAxis];
+              score += Math.min(nextAxisObj.totalInfraM / 3000, 2);
+              score -= edge.cost / 1000;
+            }
+
+            // Phase-dependent scoring
+            if (phase === 'outward') {
+              // Prefer moving away from start
+              const nextDist = haversineM(nextSeg.centroid, centerCoord);
+              if (nextDist > distFromStart) score += 2;
+            } else {
+              // Prefer moving toward start
+              const nextDist = haversineM(nextSeg.centroid, centerCoord);
+              if (nextDist < distFromStart) score += 3;
+
+              // Bonus for curving — bearing toward start
+              const bearingToStart = bearingDeg(state.lastCoord, centerCoord);
+              const returnDirDiff = angleDiff(bearingToNext, bearingToStart);
+              score += (90 - Math.min(returnDirDiff, 90)) / 30; // 0-3
+            }
+
+            expansions.push({
+              segIdx: edge.to,
+              score,
+              cost: edge.cost,
+              isSameAxis,
+              nextSeg,
+              bearingToNext,
+              phase,
+            });
+          }
+
+          expansions.sort((a, b) => b.score - a.score);
+          const topN = expansions.slice(0, 4);
+
+          for (const exp of topN) {
+            const newInfra = state.infraM + (exp.nextSeg.lengthM || 0);
+            const newGap = state.gapM + (exp.isSameAxis ? 0 : exp.cost);
+            const newBearing = exp.isSameAxis
+              ? bearingDeg(exp.nextSeg.start, exp.nextSeg.end)
+              : exp.bearingToNext;
+
+            const newVisited = new Set(state.visited);
+            newVisited.add(exp.segIdx);
+
+            frontier.push({
+              segIdx: exp.segIdx,
+              path: [...state.path, exp.segIdx],
+              infraM: newInfra,
+              gapM: newGap,
+              bearing: newBearing,
+              visited: newVisited,
+              lastCoord: exp.nextSeg.end,
+              phase: exp.phase,
+            });
+          }
+
+          // Keep frontier manageable
+          if (frontier.length > 50) {
+            // For loops, sort by combined infra and proximity to closing
+            frontier.sort((a, b) => {
+              const aScore = a.infraM - a.gapM + (a.phase === 'return' ? 2000 : 0);
+              const bScore = b.infraM - b.gapM + (b.phase === 'return' ? 2000 : 0);
+              return bScore - aScore;
+            });
+            frontier = frontier.slice(0, 30);
+          }
+        }
+
+        totalFound += routesFromHere.length;
+        candidates.push(...routesFromHere);
+      }
+    }
+  }
+
+  console.log(`[trips] Loop search: ${totalSearches} searches, ${totalFound} routes found`);
+  return candidates;
 }
 
 // ---------------------------------------------------------------------------
@@ -835,138 +1246,21 @@ export function stitchTrips(axes, anchors, options = {}) {
   const axesWithAnchors = axisAnchors.size;
   console.log(`[trips] ${axesWithAnchors} axes have nearby anchors`);
 
-  // --- Step 2: Build axis connection graph (lazy, from relevant axes) ---
-  const axisConnections = new Map();
+  // --- Step 2: Build segment graph ---
+  console.log('[trips] Building segment graph...');
+  const graph = buildSegmentGraph(axes);
 
-  function connectionsFor(i) {
-    if (axisConnections.has(i)) return axisConnections.get(i);
-    const connections = new Set();
-    const segsI = axes[i].segments;
-    const endpointsI = [segsI[0], segsI[segsI.length - 1]];
-    for (let j = 0; j < axes.length; j++) {
-      if (i === j) continue;
-      const segsJ = axes[j].segments;
-      const endpointsJ = [segsJ[0], segsJ[segsJ.length - 1]];
-      for (const ei of endpointsI) {
-        for (const ej of endpointsJ) {
-          const { distance, fromEnd, toEnd } = minEndpointDistance(ei, ej);
-          if (distance <= MAX_GAP_M) {
-            // Check gap feasibility: is there infrastructure along the gap?
-            // Short gaps (<500m) skip the check — you can walk/ride anything that short.
-            const from = ei[fromEnd];
-            const to = ej[toEnd];
-            if (distance < 500 || isGapFeasible(from, to, axes, [i, j])) {
-              connections.add(j);
-            }
-            break;
-          }
-        }
-        if (connections.has(j)) break;
-      }
-    }
-    axisConnections.set(i, connections);
-    return connections;
-  }
+  // --- Step 3: One-way search via greedy best-first ---
+  console.log('[trips] Searching one-way routes...');
+  const oneWayCandidates = searchOneWayRoutes(graph, anchors, axes, usableAnchors);
 
-  // Pre-compute for axes with anchors + 1 hop
-  console.log('[trips] Building connection graph...');
-  for (const xi of axisAnchors.keys()) {
-    const conns = connectionsFor(xi);
-    for (const j of conns) connectionsFor(j);
-  }
-  console.log(`[trips] ${axisConnections.size} axes in connection graph`);
-
-  // --- Step 3: Discover chains from each anchor-bearing axis ---
-  console.log('[trips] Discovering axis chains...');
-  const candidates = [];
-  const chainsSeen = new Set(); // dedup chain fingerprints
-  const chainsByStart = new Map(); // startXi → chains (reused for loop search)
-
-  for (const startXi of axisAnchors.keys()) {
-    const startAnchors = axisAnchors.get(startXi);
-    if (!startAnchors || startAnchors.length === 0) continue;
-
-    const chains = discoverChains(startXi, axisConnections, axes);
-    chainsByStart.set(startXi, chains);
-
-    for (const { chain } of chains) {
-      // Dedup by sorted axis indices
-      const fingerprint = [...chain].sort().join(',');
-      if (chainsSeen.has(fingerprint)) continue;
-      chainsSeen.add(fingerprint);
-
-      const endXi = chain[chain.length - 1];
-      const endAnchors = axisAnchors.get(endXi);
-      if (!endAnchors || endAnchors.length === 0) continue;
-
-      const axisChain = chain.map((xi) => axes[xi]);
-
-      // Reject geographically incoherent chains
-      const infraM = axisChain.reduce((s, a) => s + a.totalInfraM, 0);
-      const ratio = detourRatio(axisChain, infraM);
-      if (ratio > MAX_DETOUR_RATIO) continue;
-      if (!gapsAreCoherent(axisChain)) continue;
-
-      // Best anchor near start, best different anchor near end
-      const startAnchor = startAnchors[0];
-      const endAnchor = endAnchors.find((a) => a.name !== startAnchor.name) || endAnchors[0];
-
-      const route = buildRoute(axisChain, startAnchor, endAnchor, usableAnchors);
-      if (route) candidates.push(route);
-    }
-  }
-
-  console.log(`[trips] ${candidates.length} chain candidates`);
-
-  // --- Step 4: Loop routes (reuse chains from step 3, distance-based closure) ---
+  // --- Step 4: Loop search ---
   console.log('[trips] Searching loop routes...');
-  let loopCount = 0;
-  const loopsSeen = new Set();
+  const loopCandidates = searchLoopRoutes(graph, anchors, axes, usableAnchors);
 
-  for (const [startXi, chains] of chainsByStart) {
-    const startAnchors = axisAnchors.get(startXi);
-    if (!startAnchors || startAnchors.length === 0) continue;
-
-    for (const { chain } of chains) {
-      if (chain.length < 3) continue;
-
-      const endXi = chain[chain.length - 1];
-
-      // Distance-based closure: check if the last axis's endpoint is
-      // within 2km of the first axis's startpoint
-      const endAxis = axes[endXi];
-      const startAxis = axes[startXi];
-      const endPoint = endAxis.segments[endAxis.segments.length - 1].end;
-      const startPoint = startAxis.segments[0].start;
-      const closureDist = haversineM(endPoint, startPoint);
-      if (closureDist >= 2000) continue;
-
-      const fingerprint = 'loop:' + [...chain].sort().join(',');
-      if (loopsSeen.has(fingerprint)) continue;
-      loopsSeen.add(fingerprint);
-
-      const axisChain = chain.map((xi) => axes[xi]);
-
-      // Reject loops with large gaps
-      const loopGaps = computeGaps(axisChain);
-      const maxLoopGap = loopGaps.length > 0 ? Math.max(...loopGaps.map((g) => g.distanceM)) : 0;
-      if (maxLoopGap > 2000) continue;
-
-      // Reject paperclip loops — riding both sides of the same avenue is not a loop
-      const infraM = axisChain.reduce((s, a) => s + a.totalInfraM, 0);
-      const shape = loopShape(axisChain, infraM);
-      if (shape.isPaperclip || shape.hasHubRevisit) continue;
-
-      const anchor = startAnchors[0];
-      const loopRoute = buildRoute(axisChain, anchor, anchor, usableAnchors);
-      if (loopRoute) candidates.push(loopRoute);
-      loopCount++;
-    }
-  }
-  console.log(`[trips] ${loopCount} loop candidates`);
-
-  // --- Step 5: Out-and-back for long single axes ---
+  // --- Step 5: Out-and-back for long single axes (preserved from v2) ---
   console.log('[trips] Adding out-and-back routes...');
+  const oabCandidates = [];
   for (let xi = 0; xi < axes.length; xi++) {
     const axis = axes[xi];
     if (axis.totalInfraM < MIN_ROUTE_KM * 1000) continue;
@@ -975,16 +1269,18 @@ export function stitchTrips(axes, anchors, options = {}) {
 
     if (nearAnchors.length >= 2) {
       const oab = buildRoute([axis], nearAnchors[0], nearAnchors[1], usableAnchors);
-      if (oab) candidates.push(oab);
+      if (oab) oabCandidates.push(oab);
     } else {
       const oab = buildRoute([axis], nearAnchors[0], nearAnchors[0], usableAnchors);
-      if (oab) candidates.push(oab);
+      if (oab) oabCandidates.push(oab);
     }
   }
+  console.log(`[trips] ${oabCandidates.length} out-and-back candidates`);
 
+  // --- Step 6: Combine and deduplicate ---
+  const candidates = [...oneWayCandidates, ...loopCandidates, ...oabCandidates];
   console.log(`[trips] ${candidates.length} total candidates`);
 
-  // --- Step 6: Deduplicate ---
   candidates.sort((a, b) => b.compositeScore - a.compositeScore);
 
   const kept = [];
