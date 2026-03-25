@@ -2,7 +2,7 @@
 name: Ciclovía de la Infancia
 status: published
 homepage_featured: true
-distance_km: 17.7
+distance_km: 14.1
 tags:
   - bike path
   - flat
@@ -19,7 +19,7 @@ updated_at: '2026-03-25'
 variants:
   - name: Ciclovía de la Infancia
     gpx: main.gpx
-    distance_km: 17.7
+    distance_km: 14.1
 ---
 
 South to north through Santiago's stadiums, parks, and family spaces. From the MIM in La Granja to the children's park in Recoleta.

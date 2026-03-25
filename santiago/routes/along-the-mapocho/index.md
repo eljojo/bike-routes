@@ -2,7 +2,7 @@
 name: Along the Mapocho
 status: published
 homepage_featured: true
-distance_km: 15.7
+distance_km: 21.1
 tags:
   - bike path
   - scenic
@@ -20,7 +20,7 @@ updated_at: '2026-03-25'
 variants:
   - name: Along the Mapocho
     gpx: main.gpx
-    distance_km: 15.7
+    distance_km: 21.1
 ---
 
 The Mapocho river runs through the heart of Santiago. This route follows its banks from Parque de los Reyes eastward through Lastarria and Providencia all the way to Parque Bicentenario de Vitacura.

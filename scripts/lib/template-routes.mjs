@@ -16,6 +16,41 @@ function normalize(s) {
   return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().replace(/\s+/g, ' ');
 }
 
+// Common prefixes that don't carry distinctive meaning.
+// "Parque Forestal" and "Ciclovía Parque Forestal" are the same place.
+const STRIP_PREFIXES = /^(parque|plaza|ciclovia|avenida|calle|rotonda|camino|estadio|jardin|paseo|ciclo ?recreovia|mirador|puente|entrada|acceso|museo|centro cultural|bandejón central)\s+/i;
+
+/**
+ * Extract the distinctive part of a name — strip common type prefixes.
+ * "Parque Sánchez Fontecilla" → "sanchez fontecilla"
+ * "Ciclovía Andrés Bello" → "andres bello"
+ */
+function distinctive(s) {
+  let d = normalize(s);
+  // Strip prefixes repeatedly (handles "Parque Intercomunal Padre Hurtado")
+  for (let i = 0; i < 3; i++) {
+    const before = d;
+    d = d.replace(STRIP_PREFIXES, '').trim();
+    if (d === before) break;
+  }
+  return d || normalize(s); // fallback to full name if stripping removed everything
+}
+
+/**
+ * Match two names by their distinctive parts.
+ * "Rotonda Pérez Zujovic" matches "Plaza Pérez Zujovic" because
+ * both have distinctive part "perez zujovic".
+ */
+function namesMatch(a, b) {
+  const na = normalize(a), nb = normalize(b);
+  // Direct substring
+  if (na.length >= 4 && nb.length >= 4 && (na.includes(nb) || nb.includes(na))) return true;
+  // Distinctive part match
+  const da = distinctive(a), db = distinctive(b);
+  if (da.length >= 4 && db.length >= 4 && (da.includes(db) || db.includes(da))) return true;
+  return false;
+}
+
 /**
  * Resolve a waypoint to segment indices in the graph.
  *
@@ -29,9 +64,9 @@ function resolveToSegments(waypoint, graph, axes, anchors, zones) {
   if (n) {
     // 1. Match axis by name — returns the full corridor
     for (let ai = 0; ai < axes.length; ai++) {
-      const axisN = normalize(axes[ai].name || '');
-      if (!axisN || axisN.length < 3) continue; // skip unnamed/tiny axes
-      if (axisN.includes(n) || (n.length >= 4 && n.includes(axisN))) {
+      const axisName = axes[ai].name || '';
+      if (!axisName || axisName.length < 3) continue;
+      if (namesMatch(name, axisName)) {
         const segIndices = [];
         for (let si = 0; si < segments.length; si++) {
           if (segToAxis.get(si) === ai) segIndices.push(si);
@@ -45,8 +80,7 @@ function resolveToSegments(waypoint, graph, axes, anchors, zones) {
     // 2. Match zone by name
     if (zones) {
       for (const z of zones) {
-        const zn = normalize(z.name);
-        if (zn && zn.length >= 3 && (zn.includes(n) || (n.length >= 4 && n.includes(zn)))) {
+        if (z.name && namesMatch(name, z.name)) {
           const nearest = findNearestSeg(z.centerCoord, segments);
           return { type: 'zone', name: z.name, segIndices: [], entryIdx: nearest, exitIdx: nearest };
         }
@@ -56,8 +90,7 @@ function resolveToSegments(waypoint, graph, axes, anchors, zones) {
     // 3. Match anchor/POI by name
     if (anchors) {
       for (const a of anchors) {
-        const an = normalize(a.name || '');
-        if (an && an.length >= 3 && (an.includes(n) || (n.length >= 4 && n.includes(an)))) {
+        if (a.name && namesMatch(name, a.name)) {
           const nearest = findNearestSeg([a.lng, a.lat], segments);
           return { type: 'poi', name: a.name, segIndices: [], entryIdx: nearest, exitIdx: nearest };
         }
