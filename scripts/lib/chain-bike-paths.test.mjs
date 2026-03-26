@@ -6,6 +6,7 @@ import { planRoute } from './plan-route.mjs';
 import { scoreRoute } from './score-route.mjs';
 import { readFileSync } from 'fs';
 import { drawAscii, drawSideBySide } from './ascii-route.mjs';
+import { compareToReference, printComparison } from './route-compare.mjs';
 
 function makeWay(id, coords) {
   return { id, geometry: coords.map(([lon, lat]) => ({ lon, lat })) };
@@ -667,6 +668,82 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
   //   sánchez north → pocuro: 2.5-3.7km (no direct connection)
   //   pocuro west → costanera east: 2.2km (antonio varas connects them)
   //   costanera/mapocho/avMapocho overlap along the river
+
+  const LA_REINA_GOOGLE = JSON.parse(readFileSync(new URL('./fixtures/google-ref-la-reina.json', import.meta.url), 'utf8'));
+
+  it('shape matches the Google reference corridor', async () => {
+    // Resolve waypoints the same way the generate script does
+    const { resolveWaypoints } = await import('./resolve-waypoints.mjs');
+    const { filterCyclingWays } = await import('./filter-cycling-ways.mjs');
+    const yaml = await import('js-yaml');
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const routePath = new URL('../../santiago/routes/la-reina-a-quinta-normal/index.md', import.meta.url);
+    const placesDir = new URL('../../santiago/places/', import.meta.url);
+
+    const routeMd = readFileSync(routePath, 'utf8');
+    const fm = yaml.load(routeMd.match(/^---\n([\s\S]*?)\n---/)[1]);
+
+    const { slugify } = await import('./slugify.mjs');
+    const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
+    const bpBySlug = new Map();
+    for (const bp of bike_paths) bpBySlug.set(slugify(bp.name), bp);
+
+    const { queryOverpass } = await import('./overpass.mjs');
+
+    async function fetchBPWays(bp) {
+      let ways = [];
+      try {
+        if (bp.osm_relations?.length > 0) {
+          for (const relId of bp.osm_relations) {
+            const q = `[out:json][timeout:60];relation(${relId});way(r);out geom;`;
+            const d = await queryOverpass(q);
+            ways.push(...d.elements.filter(e => e.type === 'way' && e.geometry?.length >= 2));
+          }
+        } else if (bp.osm_names?.length > 0 && bp.anchors?.length >= 2) {
+          const lats = bp.anchors.map(a => a[1]), lngs = bp.anchors.map(a => a[0]);
+          const pad = 0.02;
+          const s = Math.min(...lats) - pad, n = Math.max(...lats) + pad;
+          const w = Math.min(...lngs) - pad, e = Math.max(...lngs) + pad;
+          const nameFilters = bp.osm_names.map(nm =>
+            `way["name"="${nm.replace(/"/g, '\\"')}"](${s},${w},${n},${e});`
+          ).join('\n');
+          const q = `[out:json][timeout:60];\n(\n${nameFilters}\n);\nout geom;`;
+          const data = await queryOverpass(q);
+          ways = data.elements.filter(el => el.type === 'way' && el.geometry?.length >= 2);
+        }
+      } catch { /* skip */ }
+      ways = filterCyclingWays(ways);
+      return ways.length > 0 ? orderWays(ways) : [];
+    }
+
+    const { chainWaypoints } = await resolveWaypoints(fm.waypoints, async (slug) => {
+      const bp = bpBySlug.get(slug);
+      if (!bp) return null;
+      const w = await fetchBPWays(bp);
+      return w.length > 0 ? w : null;
+    }, {
+      resolvePlace: (placeSlug) => {
+        try {
+          const raw = readFileSync(new URL(placeSlug + '.md', placesDir), 'utf8');
+          const m = raw.match(/^---\n([\s\S]*?)\n---/);
+          if (!m) return null;
+          const pm = yaml.load(m[1]);
+          if (pm.lat == null || pm.lng == null) return null;
+          return { name: pm.name || placeSlug, lat: pm.lat, lng: pm.lng };
+        } catch { return null; }
+      },
+    });
+
+    const segments = chainBikePaths(chainWaypoints);
+    const pts = renderTrace(segments);
+
+    const result = compareToReference(pts, LA_REINA_GOOGLE);
+    printComparison(result, pts, LA_REINA_GOOGLE, 'La Reina a Quinta Normal');
+
+    expect(result.pctAt200,
+      result.pctAt200 + '% at 200m (need ≥90%)'
+    ).toBeGreaterThanOrEqual(90);
+  }, 120_000);
 
   function loadFixtures() {
     const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
