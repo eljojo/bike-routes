@@ -9,6 +9,22 @@ function makeWay(id, coords) {
   };
 }
 
+function renderTrace(ordered) {
+  const pts = [];
+  let prev = null;
+  for (const w of ordered) {
+    const coords = w.geometry.map(p => [p.lon, p.lat]);
+    let trace = w._reversed ? [...coords].reverse() : coords;
+    if (prev && w._reversed == null) {
+      if (haversineM(prev, trace[trace.length - 1]) < haversineM(prev, trace[0]))
+        trace = [...trace].reverse();
+    }
+    for (const c of trace) pts.push(c);
+    prev = trace[trace.length - 1];
+  }
+  return pts;
+}
+
 /** Count reversals (bearing change > 120°) in the trace as buildGPX would render it. */
 function countReversals(ordered) {
   let revs = 0, lastB = null, prev = null;
@@ -217,6 +233,33 @@ describe('orderWays', () => {
     // Current bug: 15 ways (duplicates not caught), multiple reversals
     expect(ordered.length).toBeLessThanOrEqual(11);
     expect(countReversals(ordered)).toBeLessThanOrEqual(1);
+  });
+
+  // Direction convention: W→E for east-west paths, N→S for north-south paths
+  it('east-west path should go west to east', () => {
+    const ways = [];
+    for (let i = 0; i < 5; i++) {
+      ways.push(makeWay(i, [[-70.70 + i * 0.02, -33.42], [-70.70 + (i + 1) * 0.02, -33.42]]));
+    }
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    const startLng = pts[0][0];
+    const endLng = pts[pts.length - 1][0];
+    expect(endLng).toBeGreaterThan(startLng); // east end has higher (less negative) longitude
+  });
+
+  it('north-south path should go north to south', () => {
+    const ways = [];
+    for (let i = 0; i < 5; i++) {
+      ways.push(makeWay(i, [[-70.60, -33.42 - i * 0.01], [-70.60, -33.42 - (i + 1) * 0.01]]));
+    }
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    const startLat = pts[0][1];
+    const endLat = pts[pts.length - 1][1];
+    expect(endLat).toBeLessThan(startLat); // south has more negative latitude
   });
 
   // Returns _reversed flag on all ways
