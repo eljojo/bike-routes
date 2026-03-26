@@ -504,6 +504,22 @@ describe('orderWays', () => {
     expect(overallDlng).toBeGreaterThan(0); // now going east = correct
   });
 
+  // REAL DATA: Salvador Gutiérrez — 27 OSM ways with the same name but
+  // different road types: 10 are cycleway=track (the actual bike path),
+  // the rest are residential pasajes, living streets, and tertiary roads.
+  // The non-bike ways (especially living_street near -70.705) create a
+  // loop at the end of the trace: the walk visits the pasaje, backtracks.
+  //
+  // Root cause: name search returns ALL ways, not just bike infrastructure.
+  // The bike path is 3.8km. With pasajes included, the trace is 7.3km
+  // with a 1.3km backtrack loop at the end.
+  it('REAL: Salvador Gutiérrez should have 0 reversals (no pasaje loop)', () => {
+    const ways = JSON.parse(readFileSync(new URL('./fixtures/salvador-gutierrez-ways.json', import.meta.url), 'utf8'));
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    expect(countReversals(ordered)).toBe(0);
+  });
+
   // Returns _reversed flag on all ways
   it('returns _reversed flag on all ways', () => {
     const ways = [
