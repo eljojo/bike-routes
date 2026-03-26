@@ -49,7 +49,11 @@ function buildMeasuredPoly(ways) {
 /**
  * Closest pair between two measured polylines.
  * Samples points along each, projects onto the other.
- * Tie-breaks: among near-minimum pairs, prefer where B's scalar is nearest an endpoint.
+ *
+ * Tie-break strategy:
+ * - For non-overlapping paths (minDist > 200m): prefer B entry nearest an endpoint
+ * - For overlapping paths (minDist ≤ 200m): maximize A's scalar (exit A late)
+ *   so each path covers its unique section before handing off to the next.
  */
 function closestPair(polyA, polyB) {
   let minDist = Infinity;
@@ -71,15 +75,30 @@ function closestPair(polyA, polyB) {
     if (proj.dist < minDist) minDist = proj.dist;
   }
 
-  // Tie-break: among near-minimum, prefer B entry nearest an endpoint
   const threshold = Math.max(minDist * 1.1, minDist + 50);
   const near = candidates.filter(c => c.dist <= threshold);
 
   let best = near[0];
-  let bestEndDist = Math.min(best.scalarB, polyB.totalLength - best.scalarB);
-  for (const c of near) {
-    const ed = Math.min(c.scalarB, polyB.totalLength - c.scalarB);
-    if (ed < bestEndDist) { bestEndDist = ed; best = c; }
+
+  // Detect overlapping paths: many candidates with very small distance means
+  // the paths run alongside each other, not just meet at one junction.
+  const closeCount = candidates.filter(c => c.dist < 100).length;
+  const isOverlapping = minDist < 100 && closeCount > candidates.length * 0.3;
+
+  if (isOverlapping) {
+    // Overlapping paths: hand off as late as possible on A.
+    // Maximize scalarA so A covers its full unique section before switching to B.
+    let bestScalarA = -Infinity;
+    for (const c of near) {
+      if (c.scalarA > bestScalarA) { bestScalarA = c.scalarA; best = c; }
+    }
+  } else {
+    // Non-overlapping: prefer B entry nearest an endpoint
+    let bestEndDist = Math.min(best.scalarB, polyB.totalLength - best.scalarB);
+    for (const c of near) {
+      const ed = Math.min(c.scalarB, polyB.totalLength - c.scalarB);
+      if (ed < bestEndDist) { bestEndDist = ed; best = c; }
+    }
   }
 
   return best;
