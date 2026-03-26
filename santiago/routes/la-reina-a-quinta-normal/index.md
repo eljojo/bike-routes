@@ -16,7 +16,7 @@ waypoints:
   - ciclovia-pocuro
   - sanhattan
   - luis-thayer-ojeda
-  - avenida-costanera-sur
+  - ciclovia-costanera-sur
   - mapocho-42k
   - avenida-mapocho
   - parque-quinta-normal

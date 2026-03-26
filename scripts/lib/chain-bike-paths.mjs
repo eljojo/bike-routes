@@ -86,11 +86,19 @@ function closestPair(polyA, polyB) {
   const isOverlapping = minDist < 100 && closeCount > candidates.length * 0.3;
 
   if (isOverlapping) {
-    // Overlapping paths: hand off as late as possible on A.
-    // Maximize scalarA so A covers its full unique section before switching to B.
-    let bestScalarA = -Infinity;
+    // Overlapping paths: find the midpoint of the overlap zone.
+    // Don't maximize or minimize either path — split the overlap fairly
+    // so direction correction can decide which section each path covers.
+    let minScalarA = Infinity, maxScalarA = -Infinity;
     for (const c of near) {
-      if (c.scalarA > bestScalarA) { bestScalarA = c.scalarA; best = c; }
+      if (c.scalarA < minScalarA) minScalarA = c.scalarA;
+      if (c.scalarA > maxScalarA) maxScalarA = c.scalarA;
+    }
+    const midScalarA = (minScalarA + maxScalarA) / 2;
+    let bestDiff = Infinity;
+    for (const c of near) {
+      const diff = Math.abs(c.scalarA - midScalarA);
+      if (diff < bestDiff) { bestDiff = diff; best = c; }
     }
   } else {
     // Non-overlapping: prefer B entry nearest an endpoint
