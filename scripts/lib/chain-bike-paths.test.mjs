@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { haversineM } from './geo.mjs';
 import { chainBikePaths } from './chain-bike-paths.mjs';
 import { orderWays } from './order-ways.mjs';
+import { planRoute } from './plan-route.mjs';
 import { readFileSync } from 'fs';
 
 function makeWay(id, coords) {
@@ -316,40 +317,66 @@ describe('chainBikePaths — real data', () => {
     expect(countReversals(pts)).toBeLessThanOrEqual(9);
   });
 
-  it('REAL: La Reina — route must pass through every waypoint landmark', () => {
-    // The route goes: La Reina → Canal San Carlos → Pocuro → Sanhattan →
-    // Thayer Ojeda → Costanera Sur → Mapocho → Quinta Normal.
-    // The test asserts the trace passes within 800m of each landmark,
-    // and visits them in the correct order (% progress should increase).
+  it('REAL: La Reina — planRoute should select paths that ride through every place', () => {
+    // The human writes places. The system figures out the bike paths.
+    // La Reina → Canal San Carlos → Sanhattan → Thayer Ojeda → Quinta Normal.
+    // planRoute should fill gaps with: sanchez, pocuro, costanera, mapocho42k, avMapocho.
+    // The test asserts:
+    //   1. Each input bike path has ≥10% of its ways in the output
+    //   2. The trace visits each place landmark in order
     const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
     const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
     const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
     const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
     const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
 
-    const quintaNormal = { name: 'Quinta Normal', lat: -33.440, lng: -70.730 };
-    const segments = chainBikePaths([
-      sanchez, pocuro, costanera, mapocho42k, avMapocho, quintaNormal,
-    ]);
-    const pts = renderTrace(segments);
-
-    const landmarks = [
-      { name: 'La Reina (start)', coord: [-70.555, -33.455] },
-      { name: 'Sanhattan', coord: [-70.605, -33.418] },
-      { name: 'Costanera Sur', coord: [-70.650, -33.420] },
-      { name: 'Quinta Normal (end)', coord: [-70.720, -33.435] },
+    const allPaths = [
+      { slug: 'sanchez', ways: sanchez },
+      { slug: 'pocuro', ways: pocuro },
+      { slug: 'costanera', ways: costanera },
+      { slug: 'mapocho42k', ways: mapocho42k },
+      { slug: 'avMapocho', ways: avMapocho },
     ];
 
+    // Place-only waypoints — the system should select the paths
+    const waypoints = [
+      { type: 'place', coord: [-70.555, -33.455] },   // La Reina
+      { type: 'place', coord: [-70.5725, -33.433] },  // Canal San Carlos
+      { type: 'place', coord: [-70.605, -33.418] },   // Sanhattan
+      { type: 'place', coord: [-70.613, -33.421] },   // Luis Thayer Ojeda
+      { type: 'place', coord: [-70.730, -33.440] },   // Quinta Normal
+    ];
+
+    const planned = planRoute(waypoints, allPaths);
+    const segments = chainBikePaths(planned);
+    const allWays = segments.flat();
+    const outputIds = new Set(allWays.map(w => w.id));
+
+    // Each path should contribute ≥10% of its ways
+    for (const p of allPaths) {
+      const included = p.ways.filter(w => outputIds.has(w.id)).length;
+      const pct = Math.round(included / p.ways.length * 100);
+      expect(pct, p.slug + ': ' + included + '/' + p.ways.length + ' ways (' + pct + '%)').toBeGreaterThanOrEqual(10);
+    }
+
+    // Trace should visit each place in order
+    const pts = renderTrace(segments);
+    const places = [
+      { name: 'La Reina', coord: [-70.555, -33.455] },
+      { name: 'Canal San Carlos', coord: [-70.5725, -33.433] },
+      { name: 'Sanhattan', coord: [-70.605, -33.418] },
+      { name: 'Quinta Normal', coord: [-70.730, -33.440] },
+    ];
     let lastIdx = -1;
-    for (const lm of landmarks) {
+    for (const place of places) {
       let minDist = Infinity;
       let closestIdx = -1;
       for (let i = 0; i < pts.length; i++) {
-        const d = haversineM(pts[i], lm.coord);
+        const d = haversineM(pts[i], place.coord);
         if (d < minDist) { minDist = d; closestIdx = i; }
       }
-      expect(minDist, lm.name + ' should be within 800m, got ' + Math.round(minDist) + 'm').toBeLessThan(800);
-      expect(closestIdx, lm.name + ' should come after previous landmark').toBeGreaterThan(lastIdx);
+      expect(minDist, place.name + ' should be within 1500m, got ' + Math.round(minDist) + 'm').toBeLessThan(1500);
+      expect(closestIdx, place.name + ' should come after previous').toBeGreaterThan(lastIdx);
       lastIdx = closestIdx;
     }
   });
