@@ -12,6 +12,10 @@ waypoints:
   - name: Canal San Carlos
     lat: -33.433
     lng: -70.5725
+  - ciclovia-sanchez-fontecilla
+  - name: Canal San Carlos
+    lat: -33.433
+    lng: -70.5725
   - ciclovia-pocuro
   - name: Sanhattan
     lat: -33.418
