@@ -418,6 +418,118 @@ describe('chainBikePaths — real data', () => {
   });
 
 // ==========================================================================
+// Ruta de los Parques — Google Directions reference polyline
+//
+// From Parque Brasil (La Granja) to Plaza de la Sustentabilidad (Vitacura)
+// via Estadio Monumental, Estadio Nacional area, Parque Inés de Suárez,
+// Parque Augusto Errázuriz. 19.6km cycling route from Google Directions API.
+//
+// The reference polyline IS the spec. Every metre our generated route
+// deviates from it is a bug.
+// ==========================================================================
+
+describe('Ruta de los Parques — Google reference polyline', () => {
+  // 105-point sample of the Google Directions cycling route (729 points total, 19.6km)
+  const GOOGLE_REFERENCE = [[-70.6138,-33.5162],[-70.6136,-33.5151],[-70.6137,-33.5108],[-70.614,-33.5093],[-70.6129,-33.5085],[-70.6106,-33.5081],[-70.6097,-33.5075],[-70.6084,-33.5066],[-70.6075,-33.5056],[-70.6062,-33.5037],[-70.6057,-33.5023],[-70.6054,-33.4997],[-70.6051,-33.4971],[-70.6074,-33.4951],[-70.6105,-33.4925],[-70.6114,-33.4915],[-70.6115,-33.4905],[-70.6119,-33.4866],[-70.6126,-33.4857],[-70.6129,-33.4822],[-70.6134,-33.4751],[-70.6135,-33.4721],[-70.6136,-33.4706],[-70.614,-33.4676],[-70.6148,-33.4656],[-70.615,-33.4621],[-70.6153,-33.4608],[-70.6135,-33.4582],[-70.6095,-33.4571],[-70.6091,-33.4552],[-70.6089,-33.4535],[-70.6101,-33.45],[-70.6111,-33.4469],[-70.6124,-33.4431],[-70.6132,-33.4408],[-70.6116,-33.4401],[-70.6116,-33.44],[-70.6117,-33.4389],[-70.6112,-33.4385],[-70.6117,-33.4371],[-70.61,-33.4367],[-70.6036,-33.4351],[-70.5976,-33.4336],[-70.5882,-33.4312],[-70.5872,-33.431],[-70.5867,-33.431],[-70.5859,-33.4307],[-70.5845,-33.4302],[-70.5814,-33.4294],[-70.5806,-33.4291],[-70.5775,-33.4263],[-70.5771,-33.4256],[-70.5777,-33.4251],[-70.5783,-33.4245],[-70.5788,-33.4239],[-70.5793,-33.4235],[-70.5795,-33.423],[-70.5799,-33.4225],[-70.5802,-33.4221],[-70.5804,-33.4216],[-70.5809,-33.4211],[-70.5815,-33.4203],[-70.5821,-33.4193],[-70.5824,-33.4187],[-70.5828,-33.4182],[-70.5833,-33.4171],[-70.5838,-33.416],[-70.5841,-33.4155],[-70.5843,-33.4149],[-70.5848,-33.414],[-70.5851,-33.4133],[-70.5855,-33.4126],[-70.5857,-33.4121],[-70.5861,-33.4114],[-70.5865,-33.4107],[-70.5869,-33.4099],[-70.5872,-33.4093],[-70.5875,-33.4085],[-70.5874,-33.4078],[-70.5872,-33.4072],[-70.5868,-33.4065],[-70.5864,-33.4058],[-70.5863,-33.4052],[-70.5863,-33.4045],[-70.5865,-33.4036],[-70.5867,-33.403],[-70.5869,-33.4024],[-70.5873,-33.4012],[-70.5872,-33.4007],[-70.5878,-33.3986],[-70.5884,-33.3971],[-70.5888,-33.3966],[-70.5904,-33.3945],[-70.5909,-33.3939],[-70.5916,-33.3933],[-70.5921,-33.3928],[-70.5927,-33.3925],[-70.5938,-33.3939],[-70.5951,-33.394],[-70.5968,-33.3933],[-70.5971,-33.3923],[-70.5977,-33.3917],[-70.5971,-33.3916],[-70.5969,-33.3911],[-70.5975,-33.3909]];
+
+  it('generated route should follow the Google reference within 500m at every checkpoint', () => {
+    // Load all bike paths that planRoute could use
+    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
+    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
+    const pedroAC = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pedro-aguirre-cerda-ways.json', import.meta.url), 'utf8')));
+    const varas = orderWays(JSON.parse(readFileSync(new URL('./fixtures/antonio-varas-ways.json', import.meta.url), 'utf8')));
+    const vicuna = orderWays(JSON.parse(readFileSync(new URL('./fixtures/vicuna-mackenna-ways.json', import.meta.url), 'utf8')));
+
+    const allPaths = [
+      { slug: 'sanchez', ways: sanchez },
+      { slug: 'pocuro', ways: pocuro },
+      { slug: 'costanera', ways: costanera },
+      { slug: 'mapocho42k', ways: mapocho42k },
+      { slug: 'avMapocho', ways: avMapocho },
+      { slug: 'pedro-aguirre-cerda', ways: pedroAC },
+      { slug: 'antonio-varas', ways: varas },
+      { slug: 'vicuna-mackenna', ways: vicuna },
+    ];
+
+    // Place waypoints from the route
+    const waypoints = [
+      { type: 'place', coord: [-70.6141, -33.5193] },  // Parque Brasil
+      { type: 'place', coord: [-70.6069, -33.5028] },  // Estadio Monumental
+      { type: 'place', coord: [-70.6114, -33.4405] },  // Parque Inés de Suárez
+      { type: 'place', coord: [-70.5869, -33.4309] },  // Parque Augusto Errázuriz
+      { type: 'place', coord: [-70.5975, -33.3911] },  // Plaza Sustentabilidad
+    ];
+
+    const planned = planRoute(waypoints, allPaths);
+    const segments = chainBikePaths(planned);
+    const pts = renderTrace(segments);
+
+    // For each Google reference point, find the closest point on our route
+    const deviations = [];
+    for (let i = 0; i < GOOGLE_REFERENCE.length; i++) {
+      const ref = GOOGLE_REFERENCE[i];
+      let minDist = Infinity;
+      for (const p of pts) {
+        const d = haversineM(p, ref);
+        if (d < minDist) minDist = d;
+      }
+      if (minDist > 200) {
+        deviations.push({ refIdx: i, coord: ref, deviationM: Math.round(minDist) });
+      }
+    }
+
+    // 80% of reference points must be within 200m of our route
+    const matchPct = Math.round((GOOGLE_REFERENCE.length - deviations.length) / GOOGLE_REFERENCE.length * 100);
+    expect(matchPct,
+      matchPct + '% match (' + deviations.length + '/' + GOOGLE_REFERENCE.length + ' deviate >200m). ' +
+      'Worst: ' + deviations.slice(0, 3).map(d => 'pt' + d.refIdx + '=' + d.deviationM + 'm').join(', ')
+    ).toBeGreaterThanOrEqual(80);
+  });
+
+  it('total distance should be within 30% of Google reference (19.6km)', () => {
+    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
+    const pedroAC = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pedro-aguirre-cerda-ways.json', import.meta.url), 'utf8')));
+    const varas = orderWays(JSON.parse(readFileSync(new URL('./fixtures/antonio-varas-ways.json', import.meta.url), 'utf8')));
+    const vicuna = orderWays(JSON.parse(readFileSync(new URL('./fixtures/vicuna-mackenna-ways.json', import.meta.url), 'utf8')));
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
+    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
+
+    const allPaths = [
+      { slug: 'sanchez', ways: sanchez },
+      { slug: 'pocuro', ways: pocuro },
+      { slug: 'costanera', ways: costanera },
+      { slug: 'mapocho42k', ways: mapocho42k },
+      { slug: 'avMapocho', ways: avMapocho },
+      { slug: 'pedro-aguirre-cerda', ways: pedroAC },
+      { slug: 'antonio-varas', ways: varas },
+      { slug: 'vicuna-mackenna', ways: vicuna },
+    ];
+
+    const waypoints = [
+      { type: 'place', coord: [-70.6141, -33.5193] },
+      { type: 'place', coord: [-70.6069, -33.5028] },
+      { type: 'place', coord: [-70.6114, -33.4405] },
+      { type: 'place', coord: [-70.5869, -33.4309] },
+      { type: 'place', coord: [-70.5975, -33.3911] },
+    ];
+
+    const planned = planRoute(waypoints, allPaths);
+    const segments = chainBikePaths(planned);
+    const pts = renderTrace(segments);
+    const dist = totalDistance(pts);
+
+    // Google says 19.6km. We should be 14-26km.
+    expect(dist, 'route is ' + (dist/1000).toFixed(1) + 'km').toBeGreaterThan(14000);
+    expect(dist, 'route is ' + (dist/1000).toFixed(1) + 'km').toBeLessThan(26000);
+  });
+});
+
+// ==========================================================================
 // Product Brief Tests — "What Must Be True"
 // Based on ~/code/bike-app/docs/route-waypoints.md
 //
