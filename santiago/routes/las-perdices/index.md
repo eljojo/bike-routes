@@ -2,7 +2,7 @@
 name: Las Perdices
 status: published
 homepage_featured: true
-distance_km: 12.8
+distance_km: 8.4
 tags:
   - bike path
   - scenic
@@ -16,7 +16,7 @@ updated_at: '2026-03-26'
 variants:
   - name: Las Perdices
     gpx: main.gpx
-    distance_km: 12.8
+    distance_km: 8.4
 ---
 
 A ride along the foothills. From Parque Intercomunal Padre Hurtado south through the Las Perdices corridor — tree-lined, quiet, with the mountains getting closer with every kilometre.
