@@ -509,6 +509,21 @@ describe('Ruta de los Parques — Google reference polyline', () => {
     ).toBeGreaterThanOrEqual(90);
   });
 
+  it('planRoute selects avenida-marathon-oriente for the middle section', () => {
+    const allPaths = loadCorridorPaths();
+    const planned = planRoute(WAYPOINTS, allPaths);
+
+    const selectedSlugs = [];
+    for (const wp of planned) {
+      if (Array.isArray(wp)) {
+        const match = allPaths.find(p => p.ways === wp);
+        if (match) selectedSlugs.push(match.slug);
+      }
+    }
+
+    expect(selectedSlugs, 'selected: ' + selectedSlugs.join(', ')).toContain('avenida-marathon-oriente');
+  });
+
   it('total distance within 30% of Google reference (19.6km)', () => {
     const pts = generateRoute();
     const dist = totalDistance(pts);
