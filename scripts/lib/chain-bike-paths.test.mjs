@@ -89,31 +89,29 @@ function totalDistance(pts) {
 }
 
 describe('chainBikePaths — real data', () => {
-  // REAL DATA: Pocuro → Antonio Varas → Costanera Sur
-  // Combined route bearing 279° (E→W), should go W→E.
-  // The 3 bike paths run roughly east-west through Providencia.
-  // The chain should produce a continuous W→E trace.
-  it('REAL: Pocuro a Parque Forestal should go W→E with 0 reversals', () => {
-    const pocuro = JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8'));
-    const varas = JSON.parse(readFileSync(new URL('./fixtures/antonio-varas-ways.json', import.meta.url), 'utf8'));
-    const costanera = JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8'));
+  // REAL DATA: Parque Forestal → Costanera Sur → Antonio Varas → Pocuro
+  // Route goes W→E: start at Parque Forestal (west), end at Pocuro (east).
+  // Parque Forestal is a place waypoint anchoring the start.
+  it('REAL: Forestal a Pocuro — place anchor + 3 bike paths, W→E', () => {
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+    const varas = orderWays(JSON.parse(readFileSync(new URL('./fixtures/antonio-varas-ways.json', import.meta.url), 'utf8')));
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
 
-    const orderedPocuro = orderWays(pocuro);
-    const orderedVaras = orderWays(varas);
-    const orderedCostanera = orderWays(costanera);
+    // Parque Forestal: -33.4353, -70.6413 (west anchor)
+    const parqueForestal = { name: 'Parque Forestal', lat: -33.4353, lng: -70.6413 };
 
-    const segments = chainBikePaths([orderedPocuro, orderedVaras, orderedCostanera]);
+    const segments = chainBikePaths([parqueForestal, costanera, varas, pocuro]);
     const pts = renderTrace(segments);
 
-    // Should go W→E (east end has less negative longitude)
+    // Should go W→E (Forestal is west, Pocuro is east)
     expect(pts[pts.length - 1][0]).toBeGreaterThan(pts[0][0]);
 
     // Should not have excessive reversals
     expect(countReversals(pts)).toBeLessThanOrEqual(3);
 
-    // Distance should be reasonable (not inflated by backtracking)
+    // Distance should be reasonable (~10-15km, not 30+ from backtracking)
     const dist = totalDistance(pts);
-    expect(dist).toBeLessThan(20000); // ~15km at most, not 30+
+    expect(dist).toBeLessThan(20000);
   });
 
   // THEORY: chainBikePaths drops most input ways during trimming.
@@ -152,6 +150,30 @@ describe('chainBikePaths — real data', () => {
     for (const w of allOutputWays) {
       expect(w.geometry.length, `way ${w.id} has ${w.geometry.length} pts`).toBeLessThan(200);
     }
+  });
+
+  // THEORY: the last path's unconstrained exit picks the endpoint farthest
+  // from entry in path order, but this sends Costanera westward (away from
+  // the route's travel direction). The exit should continue the direction
+  // of travel established by the previous paths.
+  it('REAL: last path exit should continue travel direction, not maximize distance', () => {
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
+    const varas = orderWays(JSON.parse(readFileSync(new URL('./fixtures/antonio-varas-ways.json', import.meta.url), 'utf8')));
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+
+    const segments = chainBikePaths([pocuro, varas, costanera]);
+    // Costanera is the last segment. Its entry is near its east end
+    // (closest to Varas). Its exit should be EAST of the entry (continuing
+    // the eastward travel direction), not at the west end.
+    const lastSeg = segments[segments.length - 1];
+    const lastWay = lastSeg[lastSeg.length - 1];
+    const firstWay = lastSeg[0];
+    const startLng = firstWay.geometry[0].lon;
+    const endLng = lastWay.geometry[lastWay.geometry.length - 1].lon;
+    // The last segment should not go significantly westward
+    // (its end should not be more than 2km west of its start)
+    // Currently it goes from -70.60 to -70.77 (17km west!) — that's wrong
+    expect(Math.abs(endLng - startLng) * 85000).toBeLessThan(5000);
   });
 });
 
