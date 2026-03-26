@@ -166,18 +166,57 @@ export function chainBikePaths(waypoints) {
     }
   }
 
-  // Resolve unconstrained boundaries
-  for (const item of items) {
+  // Resolve unconstrained boundaries.
+  // For first/last paths, use the travel direction from neighboring waypoints
+  // to pick the right endpoint, not just "farthest from entry/exit".
+  for (let idx = 0; idx < items.length; idx++) {
+    const item = items[idx];
     if (item.type !== 'path') continue;
     const L = item.poly.totalLength;
 
     if (item.entry === null && item.exit !== null) {
-      // First path: pick endpoint farthest from exit in path order
+      // First path: pick the endpoint on the OPPOSITE side of exit
+      // so the path goes toward the exit. "Farthest from exit" is correct here.
       item.entry = Math.abs(item.exit - 0) >= Math.abs(item.exit - L) ? 0 : L;
     }
     if (item.exit === null && item.entry !== null) {
-      // Last path: pick endpoint farthest from entry in path order
-      item.exit = Math.abs(item.entry - 0) >= Math.abs(item.entry - L) ? 0 : L;
+      // Last path: continue travel direction established by previous paths.
+      // Find the previous waypoint's exit to determine travel direction.
+      let prevCoord = null;
+      for (let p = idx - 1; p >= 0; p--) {
+        if (items[p].type === 'place') { prevCoord = items[p].coord; break; }
+        if (items[p].type === 'path' && items[p].exit != null) {
+          prevCoord = coordAtScalar(items[p].poly, items[p].exit);
+          break;
+        }
+      }
+      if (prevCoord) {
+        // The entry point on this path is where we arrive from the previous path.
+        // The travel direction goes FROM prevCoord TOWARD entry.
+        // Continue that direction: pick the exit that is farther from prevCoord
+        // than the entry is (i.e., continue past the entry in the same direction).
+        const entryCoord = coordAtScalar(item.poly, item.entry);
+        const coordAt0 = coordAtScalar(item.poly, 0);
+        const coordAtL = coordAtScalar(item.poly, L);
+        const entryDist = haversineM(prevCoord, entryCoord);
+        const d0 = haversineM(prevCoord, coordAt0);
+        const dL = haversineM(prevCoord, coordAtL);
+        // Pick the endpoint that goes FURTHER from prevCoord than the entry
+        // If both are farther, pick the one farthest. If neither, pick closer to entry.
+        if (d0 > entryDist && dL > entryDist) {
+          item.exit = d0 >= dL ? 0 : L;
+        } else if (d0 > entryDist) {
+          item.exit = 0;
+        } else if (dL > entryDist) {
+          item.exit = L;
+        } else {
+          // Neither endpoint is farther than entry — entry is at or beyond
+          // the path's extent. Use the nearest endpoint (small section).
+          item.exit = Math.abs(item.entry - 0) < Math.abs(item.entry - L) ? 0 : L;
+        }
+      } else {
+        item.exit = Math.abs(item.entry - 0) >= Math.abs(item.entry - L) ? 0 : L;
+      }
     }
     if (item.entry === null && item.exit === null) {
       item.entry = 0;
