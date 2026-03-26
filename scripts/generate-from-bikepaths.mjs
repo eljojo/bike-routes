@@ -20,6 +20,7 @@ import { slugify } from './lib/slugify.mjs';
 import { orderWays } from './lib/order-ways.mjs';
 import { chainBikePaths } from './lib/chain-bike-paths.mjs';
 import { resolveWaypoints } from './lib/resolve-waypoints.mjs';
+import { planRoute } from './lib/plan-route.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -286,6 +287,8 @@ console.log(`\n${generated} bike path routes generated, ${failed} failed.`);
 let combined = 0;
 let combinedFailed = 0;
 
+let allPathsCache = null;
+
 if (fs.existsSync(routesDir)) {
   for (const slug of fs.readdirSync(routesDir)) {
     const mdPath = path.join(routesDir, slug, 'index.md');
@@ -318,7 +321,35 @@ if (fs.existsSync(routesDir)) {
         continue;
       }
 
-      const segments = chainBikePaths(chainWaypoints);
+      // Classify waypoints for the planner
+      const classified = chainWaypoints.map(wp => {
+        if (Array.isArray(wp)) return { type: 'path', ways: wp };
+        return { type: 'place', coord: [wp.lng, wp.lat] };
+      });
+
+      // Check if there are any gaps (consecutive places without a path between them)
+      let hasGaps = false;
+      for (let i = 0; i < classified.length - 1; i++) {
+        if (classified[i].type === 'place' && classified[i + 1].type === 'place') {
+          hasGaps = true;
+          break;
+        }
+      }
+
+      let finalWaypoints = chainWaypoints;
+      if (hasGaps) {
+        // Build all-paths index (lazy: only fetch if we have gaps)
+        if (!allPathsCache) {
+          allPathsCache = [];
+          for (const [bpSlug, bp] of bpBySlug.entries()) {
+            const ways = await fetchBikePathWays(bp);
+            if (ways.length > 0) allPathsCache.push({ slug: bpSlug, ways });
+          }
+        }
+        finalWaypoints = planRoute(classified, allPathsCache);
+      }
+
+      const segments = chainBikePaths(finalWaypoints);
       const { gpx, distanceKm } = buildGPX(fm.name || slug, segments);
       const routeDir = path.join(routesDir, slug);
       fs.writeFileSync(path.join(routeDir, 'main.gpx'), gpx);
