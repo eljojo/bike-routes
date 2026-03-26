@@ -57,3 +57,33 @@ export function findCandidatePaths(from, to, allPaths, options = {}) {
   candidates.sort((a, b) => b.score.total - a.score.total);
   return candidates;
 }
+
+/**
+ * Given a classified waypoint list, detect gaps between consecutive non-path
+ * waypoints and fill them with the best available bike paths.
+ *
+ * @param {Array<{ type: 'place'|'path', coord?: [number,number], ways?: Array<way> }>} waypoints
+ * @param {Array<{ slug: string, ways: Array<way> }>} allPaths
+ * @param {Object} [options]
+ * @returns {Array} - mixed: place objects { lat, lng } and way arrays, ready for chainBikePaths
+ */
+export function planRoute(waypoints, allPaths, options = {}) {
+  const result = [];
+
+  for (let i = 0; i < waypoints.length; i++) {
+    const wp = waypoints[i];
+    result.push(wp.type === 'path' ? wp.ways : { lat: wp.coord[1], lng: wp.coord[0] });
+
+    // Check for gap: current is non-path AND next is non-path
+    if (wp.type === 'place' && i + 1 < waypoints.length && waypoints[i + 1].type === 'place') {
+      const from = wp.coord;
+      const to = waypoints[i + 1].coord;
+      const candidates = findCandidatePaths(from, to, allPaths, options);
+      if (candidates.length > 0) {
+        result.push(candidates[0].ways);
+      }
+    }
+  }
+
+  return result;
+}
