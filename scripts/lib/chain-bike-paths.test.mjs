@@ -316,10 +316,16 @@ describe('chainBikePaths — real data', () => {
     expect(countReversals(pts)).toBeLessThanOrEqual(9);
   });
 
-  it('REAL: La Reina — E→W chain should have ≤2 reversals and <35km', () => {
-    // DESIRED behavior: place anchors + direction-aware chain = clean E→W route.
-    // Currently fails (9 reversals, 65km). Will pass once chainBikePaths
-    // overrides path direction based on the entry→exit scalar relationship.
+  it('REAL: La Reina — route should go steadily westward, not zigzag', () => {
+    // THE BUG: the GPX starts at La Reina (-70.55, east) and should go
+    // steadily west to Quinta Normal (-70.72). Instead it goes:
+    //   west to -70.75 → REVERSES east to -70.66 → REVERSES west to -70.71
+    // This creates a zigzag pattern visible on the map. The route covers
+    // 26km instead of ~18km because of the backtracking.
+    //
+    // CORRECT BEHAVIOR: the trace should move monotonically westward.
+    // Each sample point's longitude should be roughly ≤ the previous point's.
+    // Small eastward deviations (<500m) are OK for curves, but no 5km reversals.
     const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
     const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
     const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
@@ -335,12 +341,26 @@ describe('chainBikePaths — real data', () => {
     ]);
     const pts = renderTrace(segments);
 
-    expect(pts[0][0], 'start should be east of end').toBeGreaterThan(pts[pts.length - 1][0]);
-    // 9 reversals and 65km are from orderWays internal quality (way orientation
-    // within each path), not chain-level direction. Will tighten once orderWays
-    // produces cleaner per-path traversals.
-    expect(countReversals(pts)).toBeLessThanOrEqual(9);
-    expect(totalDistance(pts)).toBeLessThan(66000);
+    // Start should be east (La Reina ~-70.55), end west (Quinta Normal ~-70.72)
+    expect(pts[0][0], 'start near La Reina').toBeGreaterThan(-70.58);
+    expect(pts[pts.length - 1][0], 'end near Quinta Normal').toBeLessThan(-70.70);
+
+    // Check for large eastward backtracks: sample every 50 points,
+    // no sample should be >2km EAST of the westernmost point seen so far.
+    let westmostLng = pts[0][0];
+    const backtracks = [];
+    for (let i = 50; i < pts.length; i += 50) {
+      if (pts[i][0] < westmostLng) westmostLng = pts[i][0];
+      const eastwardKm = (pts[i][0] - westmostLng) * 85; // rough deg→km at this lat
+      if (eastwardKm > 2) {
+        backtracks.push({ pt: i, lng: pts[i][0].toFixed(4), westmost: westmostLng.toFixed(4), backtrackKm: eastwardKm.toFixed(1) });
+      }
+    }
+    expect(backtracks, 'large eastward backtracks: ' + JSON.stringify(backtracks)).toHaveLength(0);
+
+    // Reasonable distance: ~18-25km for a direct E→W cross-city route
+    expect(totalDistance(pts)).toBeLessThan(30000);
+    expect(countReversals(pts)).toBeLessThanOrEqual(2);
   });
 
 describe('chainBikePaths — synthetic', () => {
