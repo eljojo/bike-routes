@@ -262,6 +262,74 @@ describe('orderWays', () => {
     expect(endLat).toBeLessThan(startLat); // south has more negative latitude
   });
 
+  // Diagonal path (NW-SE) should go NW→SE (more west, more south = SE end)
+  // Reproduces ciclovia-el-noviciado: bearing 319° classified as N-S but
+  // it's really a diagonal. The convention for diagonals going NW-SE should
+  // prefer the direction where BOTH longitude increases and latitude decreases.
+  it('diagonal NW-SE path should go NW to SE', () => {
+    const ways = [];
+    for (let i = 0; i < 5; i++) {
+      ways.push(makeWay(i, [
+        [-70.85 + i * 0.006, -33.40 - i * 0.008],
+        [-70.85 + (i + 1) * 0.006, -33.40 - (i + 1) * 0.008],
+      ]));
+    }
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    // Should go from NW (-70.85, -33.40) toward SE (-70.82, -33.44)
+    // NW has more negative lng, less negative lat
+    // SE has less negative lng, more negative lat
+    const startLng = pts[0][0];
+    const endLng = pts[pts.length - 1][0];
+    expect(endLng).toBeGreaterThan(startLng); // going east (lng increasing)
+  });
+
+  // Path that goes north (S→N): the walk may pick the wrong start.
+  // Reproduces ciclovia-los-morros: 0 reversals but wrong direction.
+  // The walk correctly orders the ways but starts from the south end.
+  it('short north-south path with shuffled ways goes N→S', () => {
+    // 4 ways going south, but stored in mixed directions
+    const ways = [
+      makeWay(1, [[-70.67, -33.56], [-70.67, -33.55]]),   // stored S→N
+      makeWay(2, [[-70.67, -33.55], [-70.67, -33.54]]),   // stored S→N
+      makeWay(3, [[-70.67, -33.58], [-70.67, -33.57]]),   // stored S→N
+      makeWay(4, [[-70.67, -33.57], [-70.67, -33.56]]),   // stored S→N
+    ];
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    const startLat = pts[0][1];
+    const endLat = pts[pts.length - 1][1];
+    // N→S means start is less negative (north), end is more negative (south)
+    expect(startLat).toBeGreaterThan(endLat);
+  });
+
+  // Two disconnected E-W components with a spur on the first.
+  // The spur creates a reversal in component 1. After stitching,
+  // the overall direction should still be W→E.
+  // Reproduces ciclovia-pocuro pattern: reversals + multi-component + wrong direction.
+  it('two-component E-W path with spur goes W→E after stitching', () => {
+    const ways = [];
+    // Component 1: 4 ways going east + 1 spur going south from midpoint
+    for (let i = 0; i < 4; i++) {
+      ways.push(makeWay(i, [[-70.62 + i * 0.008, -33.43], [-70.62 + (i + 1) * 0.008, -33.43]]));
+    }
+    ways.push(makeWay(4, [[-70.604, -33.43], [-70.604, -33.44]])); // spur south from midpoint
+
+    // Component 2: 3 ways east section, >2km gap (separate component)
+    for (let i = 0; i < 3; i++) {
+      ways.push(makeWay(10 + i, [[-70.57 + i * 0.008, -33.43], [-70.57 + (i + 1) * 0.008, -33.43]]));
+    }
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    const startLng = pts[0][0];
+    const endLng = pts[pts.length - 1][0];
+    expect(endLng).toBeGreaterThan(startLng); // W→E overall
+    expect(countReversals(ordered)).toBeLessThanOrEqual(1); // spur may cause 1
+  });
+
   // Returns _reversed flag on all ways
   it('returns _reversed flag on all ways', () => {
     const ways = [
