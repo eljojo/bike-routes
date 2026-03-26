@@ -26,6 +26,11 @@ export function filterCyclingWays(ways) {
       cycleways.push(w); continue;
     }
 
+    // Parks and paths people bike through
+    if (t.leisure === 'park' || hw === 'path' || hw === 'pedestrian') {
+      cycleways.push(w); continue;
+    }
+
     // Roads with explicit bike lane/track tags
     const hasBikeTags = t.cycleway || t['cycleway:left'] || t['cycleway:right'] || t['cycleway:both'];
     if (hasBikeTags) { bikeLanes.push(w); continue; }

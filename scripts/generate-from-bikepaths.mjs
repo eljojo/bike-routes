@@ -198,6 +198,38 @@ async function fetchBikePathWays(bp) {
   // Prefer cycleways over parallel road lanes. Many OSM relations include
   // both the dedicated bike path AND the car lanes of the same avenue.
   ways = filterCyclingWays(ways);
+
+  // If filtering left only park polygons (closed ways, no roads/cycleways),
+  // snap to the actual cycleways running THROUGH the park.
+  if (ways.length > 0 && ways.every(w => w.tags?.leisure === 'park')) {
+    const parkWays = ways;
+    // Compute bounding box from the park polygons
+    let minLat = 90, maxLat = -90, minLng = 180, maxLng = -180;
+    for (const w of parkWays) {
+      for (const p of w.geometry) {
+        if (p.lat < minLat) minLat = p.lat;
+        if (p.lat > maxLat) maxLat = p.lat;
+        if (p.lon < minLng) minLng = p.lon;
+        if (p.lon > maxLng) maxLng = p.lon;
+      }
+    }
+    const pad = 0.001; // ~100m
+    const q = `[out:json][timeout:30];
+(
+  way["highway"="cycleway"](${minLat - pad},${minLng - pad},${maxLat + pad},${maxLng + pad});
+  way["highway"="path"]["bicycle"~"designated|yes"](${minLat - pad},${minLng - pad},${maxLat + pad},${maxLng + pad});
+);
+out geom;`;
+    try {
+      const data = await queryOverpass(q);
+      const cycleways = data.elements.filter(e => e.type === 'way' && e.geometry?.length >= 2);
+      if (cycleways.length > 0) {
+        console.log(`  [park-snap] ${bp.name}: found ${cycleways.length} cycleways inside park`);
+        ways = cycleways;
+      }
+    } catch { /* keep park ways as fallback */ }
+  }
+
   return ways.length > 0 ? orderWays(ways) : [];
 }
 

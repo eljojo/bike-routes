@@ -62,12 +62,13 @@ describe('filterCyclingWays', () => {
     const dist = totalDistance(pts);
     const revs = countReversals(pts);
 
-    // Should keep cycleways + roads with bike tags, not plain parallel lanes
+    // Should keep cycleways + roads with bike tags + parks, not plain parallel lanes
     for (const w of filtered) {
       const t = w.tags || {};
-      const hasBikeInfra = t.highway === 'cycleway' || t.cycleway || t['cycleway:left'] ||
-        t['cycleway:right'] || t['cycleway:both'] || t.bicycle === 'designated' || t.bicycle === 'yes';
-      expect(!!hasBikeInfra, 'way ' + w.id + ' (' + t.highway + ') has no bike infrastructure').toBe(true);
+      const isRideable = t.highway === 'cycleway' || t.cycleway || t['cycleway:left'] ||
+        t['cycleway:right'] || t['cycleway:both'] || t.bicycle === 'designated' || t.bicycle === 'yes' ||
+        t.leisure === 'park' || t.highway === 'path' || t.highway === 'pedestrian';
+      expect(!!isRideable, 'way ' + w.id + ' (' + (t.highway || t.leisure || 'no tags') + ') is not rideable').toBe(true);
     }
 
     // Route should be short (cycling infra only), not 34.8km (all parallel lanes)

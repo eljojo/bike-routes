@@ -1143,8 +1143,8 @@ bike_paths:
     anchors:
       - - -70.5514
         - -33.4626
-      - - -70.5725
-        - -33.4389
+      - - -70.5842
+        - -33.4318
     segments:
       - osm_way: 1372050779
         quality: 2.5
@@ -1178,6 +1178,7 @@ bike_paths:
         width_cm: 140
     osm_names:
       - Ciclovía Sánchez Fontecilla
+      - Ciclovía Sánchez de Fontecilla
   - name: Avenida Clotario Blest
     anchors:
       - - -70.681
@@ -2978,14 +2979,6 @@ bike_paths:
         - -33.5962899
       - - -70.590296
         - -33.5962899
-  - name: Ciclovía Sánchez de Fontecilla
-    osm_names:
-      - Ciclovía Sánchez de Fontecilla
-    anchors:
-      - - -70.5842274
-        - -33.4378522
-      - - -70.5735648
-        - -33.4317813
   - name: Pista Recreativa Jaime Guzmán
     osm_names:
       - Pista Recreativa Jaime Guzmán
