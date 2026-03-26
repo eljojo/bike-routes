@@ -652,6 +652,7 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
   function chainLaReina() {
     const { sanchez, pocuro, costanera, mapocho42k, avMapocho } = loadFixtures();
     // Frontmatter waypoints (gospel) from santiago/routes/la-reina-a-quinta-normal/index.md
+    const plazaEgana = { name: 'Plaza Egaña', lat: -33.4529, lng: -70.5713 };
     const canalSanCarlos = { name: 'Canal San Carlos', lat: -33.433, lng: -70.5725 };
     const sanhattan = { name: 'Sanhattan', lat: -33.418, lng: -70.605 };
     const thayerOjeda = { name: 'Luis Thayer Ojeda', lat: -33.421, lng: -70.613 };
@@ -659,6 +660,7 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     return {
       fixtures: { sanchez, pocuro, costanera, mapocho42k, avMapocho },
       input: [
+        plazaEgana,          // plaza-egana (start)
         sanchez,             // ciclovia-sanchez-fontecilla
         canalSanCarlos,      // inline coordinate
         sanchez,             // ciclovia-sanchez-fontecilla (repeated)
@@ -674,32 +676,53 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     };
   }
 
-  // Rule 0a: No gaps larger than 500m between consecutive points
-  it('no gaps larger than 500m between consecutive points', () => {
+  // Rule 0a: No jumps >500m within a segment
+  // Gaps BETWEEN segments are expected (streets without bike paths).
+  // But within a segment, consecutive ways should connect smoothly.
+  it('no jumps larger than 500m within any segment', () => {
     const { input } = chainLaReina();
     const segments = chainBikePaths(input);
-    const pts = renderTrace(segments);
 
     const bigJumps = [];
-    for (let i = 1; i < pts.length; i++) {
-      const d = haversineM(pts[i - 1], pts[i]);
-      if (d > 500) {
-        bigJumps.push({ idx: i, distM: Math.round(d),
-          from: '[' + pts[i-1][0].toFixed(4) + ',' + pts[i-1][1].toFixed(4) + ']',
-          to: '[' + pts[i][0].toFixed(4) + ',' + pts[i][1].toFixed(4) + ']' });
+    for (let s = 0; s < segments.length; s++) {
+      const pts = renderTrace([segments[s]]);
+      for (let i = 1; i < pts.length; i++) {
+        const d = haversineM(pts[i - 1], pts[i]);
+        if (d > 500) {
+          bigJumps.push({ seg: s, idx: i, distM: Math.round(d),
+            from: '[' + pts[i-1][0].toFixed(4) + ',' + pts[i-1][1].toFixed(4) + ']',
+            to: '[' + pts[i][0].toFixed(4) + ',' + pts[i][1].toFixed(4) + ']' });
+        }
       }
     }
 
     if (bigJumps.length > 0) {
-      console.log('\nGaps >500m:');
-      for (const j of bigJumps) console.log('  pt' + j.idx + ': ' + j.distM + 'm ' + j.from + ' → ' + j.to);
-      console.log('\n' + drawAscii(pts, null, 60));
+      console.log('\nJumps >500m within segments:');
+      for (const j of bigJumps) console.log('  seg' + j.seg + ' pt' + j.idx + ': ' + j.distM + 'm ' + j.from + ' → ' + j.to);
+      console.log('\n' + drawAscii(renderTrace(segments), null, 60));
     }
 
-    expect(bigJumps, 'gaps >500m: ' + bigJumps.map(j => j.distM + 'm').join(', ')).toHaveLength(0);
+    expect(bigJumps, 'jumps >500m: ' + bigJumps.map(j => 'seg' + j.seg + ':' + j.distM + 'm').join(', ')).toHaveLength(0);
   });
 
-  // Rule 0b: The chain includes mapocho-42k going WEST (toward Quinta Normal)
+  // Rule 0b: The trace passes near key landmarks along the river corridor.
+  // Costanera sur / mapocho 42k / avenida mapocho run along the Mapocho river.
+  // The route should pass through this corridor, including Parque Forestal.
+  it('passes within 500m of Parque Forestal', () => {
+    const { input } = chainLaReina();
+    const segments = chainBikePaths(input);
+    const pts = renderTrace(segments);
+    // Parque Forestal: along the Mapocho river, ~[-70.643, -33.437]
+    const parqueForestal = [-70.643, -33.437];
+    let minDist = Infinity;
+    for (const p of pts) {
+      const d = haversineM(p, parqueForestal);
+      if (d < minDist) minDist = d;
+    }
+    expect(minDist, 'closest point to Parque Forestal: ' + Math.round(minDist) + 'm').toBeLessThan(500);
+  });
+
+  // Rule 0c: The chain includes mapocho-42k going WEST (toward Quinta Normal)
   // The frontmatter lists mapocho-42k as an explicit waypoint. The chain must
   // include it, and it must go east→west (the route's direction of travel).
   it('includes mapocho-42k ways going westward', () => {

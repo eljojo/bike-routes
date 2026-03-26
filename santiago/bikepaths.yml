@@ -2763,3 +2763,994 @@ bike_paths:
         width_cm: 240
     osm_names:
       - Avenida Federico Haydn
+  - name: 'B07: Parque Industrial => (M) Los Libertadores'
+    osm_relations:
+      - 5963331
+  - name: 'C20: (M) Escuela Militar => Parque Arauco'
+    osm_relations:
+      - 6712452
+  - name: 'B07: (M) Los Libertadores => Parque Industrial'
+    osm_relations:
+      - 16033938
+  - name: Tramo Parque Bicentenario de la Infancia
+    osm_relations:
+      - 17960383
+  - name: Ciclorecreovía Parquemet
+    osm_relations:
+      - 18251499
+  - name: Ciclovía Bilbao
+    osm_names:
+      - Ciclovía Bilbao
+    anchors:
+      - - -70.6125095
+        - -33.4381237
+      - - -70.6125095
+        - -33.4381237
+  - name: Ciclovia Bustamante
+    osm_names:
+      - Ciclovia Bustamante
+    anchors:
+      - - -70.6333149
+        - -33.4373765
+      - - -70.6333149
+        - -33.4373765
+  - name: Apoquindo
+    osm_names:
+      - Apoquindo
+    anchors:
+      - - -70.5485215
+        - -33.4083004
+      - - -70.5485215
+        - -33.4083004
+  - name: Ciclovía Larraín
+    osm_names:
+      - Ciclovía Larraín
+    anchors:
+      - - -70.5675124
+        - -33.4532404
+      - - -70.5630343
+        - -33.4526348
+  - name: Ciclovía Emilia Téllez
+    osm_names:
+      - Ciclovía Emilia Téllez
+    anchors:
+      - - -70.5754924
+        - -33.4420697
+      - - -70.5754924
+        - -33.4420697
+  - name: Ciclovía Alberto Llona
+    osm_names:
+      - Ciclovía Alberto Llona
+    anchors:
+      - - -70.7557303
+        - -33.5190164
+      - - -70.7556881
+        - -33.513158
+  - name: Ciclovía Paseo Escultor Samuel Román Rojas
+    osm_names:
+      - Ciclovía Paseo Escultor Samuel Román Rojas
+    anchors:
+      - - -70.6395188
+        - -33.4575433
+      - - -70.6395188
+        - -33.4575433
+  - name: Ciclovía Gabriela Mistral
+    osm_names:
+      - Ciclovía Gabriela Mistral
+    anchors:
+      - - -70.7006076
+        - -33.5281495
+      - - -70.7006076
+        - -33.5281495
+  - name: Ciclovía Departamental
+    osm_names:
+      - Ciclovía Departamental
+    anchors:
+      - - -70.6347199
+        - -33.5109446
+      - - -70.5745319
+        - -33.5069573
+  - name: Ciclovìa Los Presidentes
+    osm_names:
+      - Ciclovìa Los Presidentes
+    anchors:
+      - - -70.5761361
+        - -33.4807499
+      - - -70.5761361
+        - -33.4807499
+  - name: Ciclovìa Juanita
+    osm_names:
+      - Ciclovìa Juanita
+    anchors:
+      - - -70.6189944
+        - -33.5895551
+      - - -70.6189944
+        - -33.5895551
+  - name: Ciclovía Gabriela
+    osm_names:
+      - Ciclovía Gabriela
+    anchors:
+      - - -70.6198687
+        - -33.5845274
+      - - -70.6198687
+        - -33.5845274
+  - name: Ciclovia Laguna Sur
+    osm_names:
+      - Ciclovia Laguna Sur
+    anchors:
+      - - -70.760379
+        - -33.460285
+      - - -70.7512387
+        - -33.4587649
+  - name: Ciclovía Lo Blanco
+    osm_names:
+      - Ciclovía Lo Blanco
+    anchors:
+      - - -70.6862491
+        - -33.5787636
+      - - -70.6862491
+        - -33.5787636
+  - name: Ciclovía Padre Hurtado
+    osm_names:
+      - Ciclovía Padre Hurtado
+    anchors:
+      - - -70.6761599
+        - -33.5809845
+      - - -70.6737878
+        - -33.5726201
+  - name: Ciclovía Guanaco
+    osm_names:
+      - Ciclovía Guanaco
+    anchors:
+      - - -70.6575388
+        - -33.3840915
+      - - -70.6575388
+        - -33.3840915
+  - name: Ciclovía Cardenal José María Caro
+    osm_names:
+      - Ciclovía Cardenal José María Caro
+    anchors:
+      - - -70.6555417
+        - -33.3935658
+      - - -70.6555417
+        - -33.3935658
+  - name: Ciclovía Guanaco-Vespucio
+    osm_names:
+      - Ciclovía Guanaco-Vespucio
+    anchors:
+      - - -70.6526142
+        - -33.3785666
+      - - -70.6526142
+        - -33.3785666
+  - name: Ciclovía Exposición
+    osm_names:
+      - Ciclovía Exposición
+    anchors:
+      - - -70.6781709
+        - -33.456902
+      - - -70.6781709
+        - -33.456902
+  - name: Ciclovía Lo Martínez
+    osm_names:
+      - Ciclovía Lo Martínez
+    anchors:
+      - - -70.6795104
+        - -33.5694571
+      - - -70.6795104
+        - -33.5694571
+  - name: Ciclovía Valdivieso
+    osm_names:
+      - Ciclovía Valdivieso
+    anchors:
+      - - -70.6301677
+        - -33.411252
+      - - -70.6301677
+        - -33.411252
+  - name: Ciclovía Padre Hurtado - Los Moros
+    osm_names:
+      - Ciclovía Padre Hurtado - Los Moros
+    anchors:
+      - - -70.682111
+        - -33.6035165
+      - - -70.682111
+        - -33.6035165
+  - name: Bernardo O'Higgins (Quilicura)
+    osm_names:
+      - Bernardo O'Higgins (Quilicura)
+    anchors:
+      - - -70.7286861
+        - -33.344701
+      - - -70.7284855
+        - -33.3398546
+  - name: Ciclovía Sebastián Piñera
+    osm_names:
+      - Ciclovía Sebastián Piñera
+    anchors:
+      - - -70.5647266
+        - -33.4140228
+      - - -70.5583749
+        - -33.4094207
+  - name: Ciclovía Ciudad del Sol
+    osm_names:
+      - Ciclovía Ciudad del Sol
+    anchors:
+      - - -70.590296
+        - -33.5962899
+      - - -70.590296
+        - -33.5962899
+  - name: Ciclovía Sánchez de Fontecilla
+    osm_names:
+      - Ciclovía Sánchez de Fontecilla
+    anchors:
+      - - -70.5842274
+        - -33.4378522
+      - - -70.5735648
+        - -33.4317813
+  - name: Pista Recreativa Jaime Guzmán
+    osm_names:
+      - Pista Recreativa Jaime Guzmán
+    anchors:
+      - - -70.5971916
+        - -33.4472869
+      - - -70.5937943
+        - -33.4453805
+  - name: Ciclovía Costanera Sur
+    osm_names:
+      - Ciclovía Costanera Sur
+    anchors:
+      - - -70.6876855
+        - -33.425834
+      - - -70.6062665
+        - -33.4135441
+  - name: Ciclovía Parque Forestal
+    osm_names:
+      - Ciclovía Parque Forestal
+    anchors:
+      - - -70.6392512
+        - -33.4360118
+      - - -70.6354152
+        - -33.4354005
+  - name: Sendero Ciclista 4 ½
+    osm_names:
+      - Sendero Ciclista 4 ½
+    anchors:
+      - - -70.6280582
+        - -33.4244658
+      - - -70.6253281
+        - -33.4224447
+  - name: Sendero Ciclista Anfiteatro
+    osm_names:
+      - Sendero Ciclista Anfiteatro
+    anchors:
+      - - -70.6106043
+        - -33.4063839
+      - - -70.609377
+        - -33.401743
+  - name: Sendero Ciclista Pirámide
+    osm_names:
+      - Sendero Ciclista Pirámide
+    anchors:
+      - - -70.6045562
+        - -33.3924284
+      - - -70.6045562
+        - -33.3924284
+  - name: Ciclovía Mapocho 42k
+    osm_names:
+      - Ciclovía Mapocho 42k
+    anchors:
+      - - -70.7614187
+        - -33.4139598
+      - - -70.7214645
+        - -33.4122577
+  - name: Ciclovía San Francisco
+    osm_names:
+      - Ciclovía San Francisco
+    anchors:
+      - - -70.7467406
+        - -33.4363853
+      - - -70.7467406
+        - -33.4363853
+  - name: Ciclovía 3 Poniente
+    osm_names:
+      - Ciclovía 3 Poniente
+    anchors:
+      - - -70.7792128
+        - -33.5138966
+      - - -70.7788046
+        - -33.5069337
+  - name: Ciclovía Pedro León Gallo
+    osm_names:
+      - Ciclovía Pedro León Gallo
+    anchors:
+      - - -70.6230096
+        - -33.4420431
+      - - -70.6143305
+        - -33.4403353
+  - name: Ciclovia Rinconada
+    osm_names:
+      - Ciclovia Rinconada
+    anchors:
+      - - -70.7771908
+        - -33.5089917
+      - - -70.7687411
+        - -33.5079759
+  - name: Ciclovía Pajaritos
+    osm_names:
+      - Ciclovía Pajaritos
+    anchors:
+      - - -70.7129531
+        - -33.4593397
+      - - -70.7129531
+        - -33.4593397
+  - name: Ciclovia Santa Maria
+    osm_names:
+      - Ciclovia Santa Maria
+    anchors:
+      - - -70.6457166
+        - -33.3195213
+      - - -70.6457166
+        - -33.3195213
+  - name: Sendero Ciclista Mahuida
+    osm_names:
+      - Sendero Ciclista Mahuida
+    anchors:
+      - - -70.5150033
+        - -33.457546
+      - - -70.5150033
+        - -33.457546
+  - name: Sendero Ciclista Pa' Arriba
+    osm_names:
+      - Sendero Ciclista Pa' Arriba
+    anchors:
+      - - -70.6096849
+        - -33.4016593
+      - - -70.6096849
+        - -33.4016593
+  - name: Sendero Ciclista Torre 5
+    osm_names:
+      - Sendero Ciclista Torre 5
+    anchors:
+      - - -70.6080412
+        - -33.4057394
+      - - -70.6073606
+        - -33.4033177
+  - name: Sendero Ciclista Centenario
+    osm_names:
+      - Sendero Ciclista Centenario
+    anchors:
+      - - -70.6295841
+        - -33.4247749
+      - - -70.6276457
+        - -33.4236589
+  - name: Ciclovía Estocolmo
+    osm_names:
+      - Ciclovía Estocolmo
+    anchors:
+      - - -70.5671409
+        - -33.4045831
+      - - -70.5646426
+        - -33.4011265
+  - name: Sendero Ciclista El Zorzal
+    osm_names:
+      - Sendero Ciclista El Zorzal
+    anchors:
+      - - -70.6099952
+        - -33.4019116
+      - - -70.6099952
+        - -33.4019116
+  - name: Sendero Ciclista La S
+    osm_names:
+      - Sendero Ciclista La S
+    anchors:
+      - - -70.6106416
+        - -33.4020785
+      - - -70.6106416
+        - -33.4020785
+  - name: Ciclovía El Rosal
+    osm_names:
+      - Ciclovía El Rosal
+    anchors:
+      - - -70.7737542
+        - -33.4890513
+      - - -70.7645184
+        - -33.4835109
+  - name: Ciclovía Los Dominicos
+    osm_names:
+      - Ciclovía Los Dominicos
+    anchors:
+      - - -70.5491254
+        - -33.4142741
+      - - -70.5448923
+        - -33.4104693
+  - name: Mapocho Pedaleable
+    osm_names:
+      - Mapocho Pedaleable
+    anchors:
+      - - -70.6521134
+        - -33.4322399
+      - - -70.6521134
+        - -33.4322399
+  - name: Acceso Huelén
+    osm_names:
+      - Acceso Huelén
+    anchors:
+      - - -70.6244511
+        - -33.4297509
+      - - -70.6244511
+        - -33.4297509
+  - name: Acceso Loreto
+    osm_names:
+      - Acceso Loreto
+    anchors:
+      - - -70.6432214
+        - -33.4344135
+      - - -70.6432214
+        - -33.4344135
+  - name: Ciclovía El Parque
+    osm_names:
+      - Ciclovía El Parque
+    anchors:
+      - - -70.744081
+        - -33.3034305
+      - - -70.7382123
+        - -33.3030317
+  - name: Ciclovía El Salto-La Pirámide
+    osm_names:
+      - Ciclovía El Salto-La Pirámide
+    anchors:
+      - - -70.6235457
+        - -33.3904488
+      - - -70.6185341
+        - -33.3840579
+  - name: Ciclovía El Alfalfal
+    osm_names:
+      - Ciclovía El Alfalfal
+    anchors:
+      - - -70.7325617
+        - -33.3033779
+      - - -70.7308033
+        - -33.301088
+  - name: Ciclovía Frei Montalva
+    osm_names:
+      - Ciclovía Frei Montalva
+    anchors:
+      - - -70.7311848
+        - -33.2994195
+      - - -70.7311848
+        - -33.2994195
+  - name: Ciclovía El Rodeo
+    osm_names:
+      - Ciclovía El Rodeo
+    anchors:
+      - - -70.7448575
+        - -33.3029566
+      - - -70.7448575
+        - -33.3029566
+  - name: Ciclovía Tinquilco
+    osm_names:
+      - Ciclovía Tinquilco
+    anchors:
+      - - -70.7408608
+        - -33.3524297
+      - - -70.7408608
+        - -33.3524297
+  - name: Ciclovia Los Canelos
+    osm_names:
+      - Ciclovia Los Canelos
+    anchors:
+      - - -70.633652
+        - -33.326318
+      - - -70.633652
+        - -33.326318
+  - name: Ciclovia Reiss
+    osm_names:
+      - Ciclovia Reiss
+    anchors:
+      - - -70.6276319
+        - -33.324681
+      - - -70.6276319
+        - -33.324681
+  - name: Ciclovia Chamisero
+    osm_names:
+      - Ciclovia Chamisero
+    anchors:
+      - - -70.6363758
+        - -33.3234126
+      - - -70.6363758
+        - -33.3234126
+  - name: Ciclovia Paseo Bandera
+    osm_names:
+      - Ciclovia Paseo Bandera
+    anchors:
+      - - -70.6457461
+        - -33.5481921
+      - - -70.6457461
+        - -33.5481921
+  - name: Las Perdices
+    osm_names:
+      - Las Perdices
+    anchors:
+      - - -70.5426141
+        - -33.5696121
+      - - -70.5418638
+        - -33.5633857
+  - name: Ciclovía Píno Nono
+    osm_names:
+      - Ciclovía Píno Nono
+    anchors:
+      - - -70.6358673
+        - -33.4333115
+      - - -70.6358673
+        - -33.4333115
+  - name: Ciclovía Santa Rosa
+    osm_names:
+      - Ciclovía Santa Rosa
+    anchors:
+      - - -70.6266116
+        - -33.6342061
+      - - -70.6266116
+        - -33.6342061
+  - name: Ciclovia Juan XXII
+    osm_names:
+      - Ciclovia Juan XXII
+    anchors:
+      - - -70.5689392
+        - -33.3791956
+      - - -70.5689392
+        - -33.3791956
+  - name: Ciclovía Avenida Padre Hurtado Sur
+    osm_names:
+      - Ciclovía Avenida Padre Hurtado Sur
+    anchors:
+      - - -70.5415374
+        - -33.4128593
+      - - -70.5415374
+        - -33.4128593
+  - name: Ciclovía Avenida Pedro Aguirre Cerda
+    osm_names:
+      - Ciclovía Avenida Pedro Aguirre Cerda
+    anchors:
+      - - -70.6910728
+        - -33.4785935
+      - - -70.6910728
+        - -33.4785935
+  - name: Ciclovìa Macul Alto
+    osm_names:
+      - Ciclovìa Macul Alto
+    anchors:
+      - - -70.5380248
+        - -33.5133777
+      - - -70.5380248
+        - -33.5133777
+  - name: Sendero Lejano Oeste
+    osm_names:
+      - Sendero Lejano Oeste
+    anchors:
+      - - -70.4779224
+        - -33.3903587
+      - - -70.4779224
+        - -33.3903587
+  - name: Sendero El Cóndor
+    osm_names:
+      - Sendero El Cóndor
+    anchors:
+      - - -70.4726084
+        - -33.3944678
+      - - -70.4726084
+        - -33.3944678
+  - name: Sendero Universidad
+    osm_names:
+      - Sendero Universidad
+    anchors:
+      - - -70.5071191
+        - -33.4894424
+      - - -70.5040847
+        - -33.4716628
+  - name: Monolito - Camino Alto del Naranjo
+    osm_names:
+      - Monolito - Camino Alto del Naranjo
+    anchors:
+      - - -70.4743552
+        - -33.4013213
+      - - -70.4743552
+        - -33.4013213
+  - name: Sendero Lomo Vetado
+    osm_names:
+      - Sendero Lomo Vetado
+    anchors:
+      - - -70.498629
+        - -33.3088657
+      - - -70.498629
+        - -33.3088657
+  - name: Conexión a La Bala
+    osm_names:
+      - Conexión a La Bala
+    anchors:
+      - - -70.5076181
+        - -33.319537
+      - - -70.5076181
+        - -33.319537
+  - name: Conexión Calibre 12-La Virgen
+    osm_names:
+      - Conexión Calibre 12-La Virgen
+    anchors:
+      - - -70.4928779
+        - -33.3020901
+      - - -70.4928779
+        - -33.3020901
+  - name: Sendero XL
+    osm_names:
+      - Sendero XL
+    anchors:
+      - - -70.4888373
+        - -33.3111721
+      - - -70.4888373
+        - -33.3111721
+  - name: Sendero de Chile [Tramo Sur]
+    osm_names:
+      - Sendero de Chile [Tramo Sur]
+    anchors:
+      - - -70.5150436
+        - -33.541354
+      - - -70.5134031
+        - -33.5392755
+  - name: Pista DH Técnica
+    osm_names:
+      - Pista DH Técnica
+    anchors:
+      - - -70.5245751
+        - -33.5369274
+      - - -70.5245751
+        - -33.5369274
+  - name: Pista DH
+    osm_names:
+      - Pista DH
+    anchors:
+      - - -70.529098
+        - -33.538698
+      - - -70.5186509
+        - -33.5353758
+  - name: Pista Animita
+    osm_names:
+      - Pista Animita
+    anchors:
+      - - -70.5226567
+        - -33.5352726
+      - - -70.5226567
+        - -33.5352726
+  - name: Subida Ciclistas
+    osm_names:
+      - Subida Ciclistas
+    anchors:
+      - - -70.5328384
+        - -33.5358057
+      - - -70.529673
+        - -33.5344202
+  - name: Pista MTB Clásica
+    osm_names:
+      - Pista MTB Clásica
+    anchors:
+      - - -70.5328101
+        - -33.5361111
+      - - -70.5328101
+        - -33.5361111
+  - name: Pista MTB
+    osm_names:
+      - Pista MTB
+    anchors:
+      - - -70.5326485
+        - -33.5361906
+      - - -70.5236909
+        - -33.5350347
+  - name: Sendero La Plaza Sur - Morro Las Papas
+    osm_names:
+      - Sendero La Plaza Sur - Morro Las Papas
+    anchors:
+      - - -70.4907974
+        - -33.4133043
+      - - -70.4893867
+        - -33.4076118
+  - name: Sendero MTB Bebedero
+    osm_names:
+      - Sendero MTB Bebedero
+    anchors:
+      - - -70.4888681
+        - -33.3982778
+      - - -70.4868463
+        - -33.3939843
+  - name: Sendero Cerro El Carbón
+    osm_names:
+      - Sendero Cerro El Carbón
+    anchors:
+      - - -70.6018885
+        - -33.3815982
+      - - -70.6018885
+        - -33.3815982
+  - name: Egipcios
+    osm_names:
+      - Egipcios
+    anchors:
+      - - -70.5737678
+        - -33.3617558
+      - - -70.5737678
+        - -33.3617558
+  - name: Sendero a Cerro El Carbón
+    osm_names:
+      - Sendero a Cerro El Carbón
+    anchors:
+      - - -70.603417
+        - -33.3835752
+      - - -70.6033976
+        - -33.3835747
+  - name: Acceso C° El Carbón
+    osm_names:
+      - Acceso C° El Carbón
+    anchors:
+      - - -70.6004159
+        - -33.3796203
+      - - -70.6003815
+        - -33.3795864
+  - name: Subida Plaza Montaña
+    osm_names:
+      - Subida Plaza Montaña
+    anchors:
+      - - -70.4993749
+        - -33.4082118
+      - - -70.4950853
+        - -33.4067487
+  - name: Sendero Loop Memorial de Tupper
+    osm_names:
+      - Sendero Loop Memorial de Tupper
+    anchors:
+      - - -70.4895956
+        - -33.3935286
+      - - -70.4895956
+        - -33.3935286
+  - name: Pink Floyd
+    osm_names:
+      - Pink Floyd
+    anchors:
+      - - -70.5624268
+        - -33.3557904
+      - - -70.5624268
+        - -33.3557904
+  - name: Sendero El Excursionista
+    osm_names:
+      - Sendero El Excursionista
+    anchors:
+      - - -70.6287578
+        - -33.4267943
+      - - -70.6287578
+        - -33.4267943
+  - name: Variable cifuentes
+    osm_names:
+      - Variable cifuentes
+    anchors:
+      - - -70.7286031
+        - -33.5993436
+      - - -70.7286031
+        - -33.5993436
+  - name: Sendero Catemito
+    osm_names:
+      - Sendero Catemito
+    anchors:
+      - - -70.7261143
+        - -33.6042585
+      - - -70.7261143
+        - -33.6042585
+  - name: Cardito Cerro Chena
+    osm_names:
+      - Cardito Cerro Chena
+    anchors:
+      - - -70.7366071
+        - -33.5994187
+      - - -70.732664
+        - -33.5993081
+  - name: Bosque Catemito, Cherro Chena
+    osm_names:
+      - Bosque Catemito, Cherro Chena
+    anchors:
+      - - -70.7312493
+        - -33.6048338
+      - - -70.7303711
+        - -33.6042151
+  - name: Zeta Cerro Chena
+    osm_names:
+      - Zeta Cerro Chena
+    anchors:
+      - - -70.7239495
+        - -33.5981096
+      - - -70.7239495
+        - -33.5981096
+  - name: Sendero Mundo magico
+    osm_names:
+      - Sendero Mundo magico
+    anchors:
+      - - -70.7301452
+        - -33.6033701
+      - - -70.7301452
+        - -33.6033701
+  - name: Bajada/subida Antena
+    osm_names:
+      - Bajada/subida Antena
+    anchors:
+      - - -70.7360514
+        - -33.5970378
+      - - -70.733765
+        - -33.5954119
+  - name: Rock Garden XCO
+    osm_names:
+      - Rock Garden XCO
+    anchors:
+      - - -70.7236442
+        - -33.5999407
+      - - -70.7236442
+        - -33.5999407
+  - name: Calavera (MTB)
+    osm_names:
+      - Calavera (MTB)
+    anchors:
+      - - -70.7297147
+        - -33.5979779
+      - - -70.7292912
+        - -33.5964076
+  - name: Quebrada el Zorro (MTB)
+    osm_names:
+      - Quebrada el Zorro (MTB)
+    anchors:
+      - - -70.7322387
+        - -33.6003884
+      - - -70.7321882
+        - -33.598481
+  - name: MOTO (MTB)
+    osm_names:
+      - MOTO (MTB)
+    anchors:
+      - - -70.726459
+        - -33.5972852
+      - - -70.7241667
+        - -33.595224
+  - name: conexión tonijua (MTB)
+    osm_names:
+      - conexión tonijua (MTB)
+    anchors:
+      - - -70.7274521
+        - -33.5981495
+      - - -70.7274521
+        - -33.5981495
+  - name: sendero Mundo magico (subida)
+    osm_names:
+      - sendero Mundo magico (subida)
+    anchors:
+      - - -70.7300238
+        - -33.603495
+      - - -70.7300238
+        - -33.603495
+  - name: La Cruz
+    osm_names:
+      - La Cruz
+    anchors:
+      - - -70.5812899
+        - -33.3638
+      - - -70.5812899
+        - -33.3638
+  - name: Sendero Rock´n Roll
+    osm_names:
+      - Sendero Rock´n Roll
+    anchors:
+      - - -70.4949974
+        - -33.3224199
+      - - -70.4949974
+        - -33.3224199
+  - name: Ssendero Los Saltos
+    osm_names:
+      - Ssendero Los Saltos
+    anchors:
+      - - -70.5038562
+        - -33.3150093
+      - - -70.5038562
+        - -33.3150093
+  - name: Sendero Cebolla
+    osm_names:
+      - Sendero Cebolla
+    anchors:
+      - - -70.5045305
+        - -33.3176812
+      - - -70.5045305
+        - -33.3176812
+  - name: Sendero Mountainbike Familiar 2
+    osm_names:
+      - Sendero Mountainbike Familiar 2
+    anchors:
+      - - -70.4901278
+        - -33.3878667
+      - - -70.4877058
+        - -33.3872827
+  - name: Sendero MTB San Ramón
+    osm_names:
+      - Sendero MTB San Ramón
+    anchors:
+      - - -70.4978232
+        - -33.4069547
+      - - -70.4978232
+        - -33.4069547
+  - name: Sendero MTB Provincia
+    osm_names:
+      - Sendero MTB Provincia
+    anchors:
+      - - -70.4977816
+        - -33.407066
+      - - -70.4977816
+        - -33.407066
+  - name: Sendero MTB Piedra Rajada
+    osm_names:
+      - Sendero MTB Piedra Rajada
+    anchors:
+      - - -70.4977844
+        - -33.4071394
+      - - -70.4977844
+        - -33.4071394
+  - name: Sendero MTB Las Toninas
+    osm_names:
+      - Sendero MTB Las Toninas
+    anchors:
+      - - -70.4999934
+        - -33.4077672
+      - - -70.4999934
+        - -33.4077672
+  - name: Sendero MTB Los Humboldt
+    osm_names:
+      - Sendero MTB Los Humboldt
+    anchors:
+      - - -70.5000271
+        - -33.4077265
+      - - -70.5000271
+        - -33.4077265
+  - name: Sendero MTB Orca
+    osm_names:
+      - Sendero MTB Orca
+    anchors:
+      - - -70.500141
+        - -33.4076918
+      - - -70.500141
+        - -33.4076918
+  - name: Sendero MTB Cachalote
+    osm_names:
+      - Sendero MTB Cachalote
+    anchors:
+      - - -70.5002619
+        - -33.4078497
+      - - -70.5002619
+        - -33.4078497
+  - name: Sendero MTB Bajada Bebedero
+    osm_names:
+      - Sendero MTB Bajada Bebedero
+    anchors:
+      - - -70.4865276
+        - -33.3877289
+      - - -70.4865276
+        - -33.3877289
+  - name: Sendero Ojos de Agua
+    osm_names:
+      - Sendero Ojos de Agua
+    anchors:
+      - - -70.4743851
+        - -33.3958789
+      - - -70.4743851
+        - -33.3958789
+  - name: Parque Canal San Carlos
+    osm_names:
+      - Parque Canal San Carlos
+    anchors:
+      - - -70.597966
+        - -33.4358025
+      - - -70.5779926
+        - -33.4206109
+  - name: Parque Tobalaba - Canal San Carlos
+    osm_names:
+      - Parque Tobalaba - Canal San Carlos
+    anchors:
+      - - -70.5701414
+        - -33.5047368
+      - - -70.5524329
+        - -33.4413441

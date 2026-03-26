@@ -9,26 +9,16 @@ tags:
   - river
 waypoints:
   - ciclovia-sanchez-fontecilla
-  - name: Canal San Carlos
-    lat: -33.433
-    lng: -70.5725
+  - canal-san-carlos
   - ciclovia-sanchez-fontecilla
-  - name: Canal San Carlos
-    lat: -33.433
-    lng: -70.5725
+  - canal-san-carlos
   - ciclovia-pocuro
-  - name: Sanhattan
-    lat: -33.418
-    lng: -70.605
-  - name: Luis Thayer Ojeda
-    lat: -33.421
-    lng: -70.613
+  - sanhattan
+  - luis-thayer-ojeda
   - avenida-costanera-sur
   - mapocho-42k
   - avenida-mapocho
-  - name: Quinta Normal
-    lat: -33.44
-    lng: -70.73
+  - parque-quinta-normal
 created_at: '2026-03-25'
 updated_at: '2026-03-26'
 variants:
