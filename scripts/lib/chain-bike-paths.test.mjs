@@ -586,6 +586,34 @@ describe('Ruta de los Parques — Google reference polyline', () => {
     expect(dist, 'route is ' + (dist/1000).toFixed(1) + 'km').toBeLessThan(28000);
   }, 120_000);
 
+  it('pocuro section goes west to east (toward vespucio oriente)', async () => {
+    const allPaths = await loadAllPaths();
+    const planned = planRoute(WAYPOINTS, allPaths);
+    const segments = chainBikePaths(planned);
+
+    // Find pocuro ways in the output
+    const pocuroPath = allPaths.find(p => p.slug === 'ciclovia-pocuro');
+    if (!pocuroPath) return; // pocuro not available
+
+    const pocuroIds = new Set(pocuroPath.ways.map(w => w.id));
+    const pocuroOutput = segments.flat().filter(w => pocuroIds.has(w.id));
+
+    expect(pocuroOutput.length, 'pocuro should have ways in output').toBeGreaterThan(0);
+
+    const pocuroPts = renderTrace([pocuroOutput]);
+    const startLng = pocuroPts[0][0];
+    const endLng = pocuroPts[pocuroPts.length - 1][0];
+
+    // Pocuro should go west→east (less negative → more negative... wait, more east = less negative in Santiago)
+    // West is more negative lng, east is less negative. W→E means startLng < endLng.
+    // Actually in Santiago, west = more negative (e.g. -70.61), east = less negative (e.g. -70.58)
+    // So W→E means start is more negative than end.
+    expect(endLng,
+      'pocuro should go W→E: start ' + startLng.toFixed(4) + ' → end ' + endLng.toFixed(4) +
+      ' (end should be less negative = more east)'
+    ).toBeGreaterThan(startLng);
+  }, 120_000);
+
   it('route does not loop back on itself', async () => {
     const allPaths = await loadAllPaths();
     const planned = planRoute(WAYPOINTS, allPaths);
