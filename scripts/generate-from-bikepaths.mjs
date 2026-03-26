@@ -18,6 +18,7 @@ import { queryOverpass } from './lib/overpass.mjs';
 import { haversineM } from './lib/geo.mjs';
 import { slugify } from './lib/slugify.mjs';
 import { orderWays } from './lib/order-ways.mjs';
+import { chainBikePaths } from './lib/chain-bike-paths.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -89,67 +90,86 @@ out geom;`;
 // Build GPX from ordered ways
 // ---------------------------------------------------------------------------
 
-function buildGPX(name, orderedWays) {
-  const allCoords = [];
-  let lastCoord = null;
-
-  for (const way of orderedWays) {
-    let coords = way.geometry.map(p => [p.lon, p.lat]);
-
-    if (way._reversed != null) {
-      // Walk already determined orientation — trust it
-      if (way._reversed) coords = [...coords].reverse();
-    } else if (lastCoord && coords.length >= 2) {
-      // Fallback: orient to flow from previous (for ways without walk info)
-      const dFirst = haversineM(lastCoord, coords[0]);
-      const dLast = haversineM(lastCoord, coords[coords.length - 1]);
-      if (dLast < dFirst) coords = [...coords].reverse();
-    }
-
-    for (const c of coords) allCoords.push(c);
-    lastCoord = coords[coords.length - 1];
-  }
-
-  // Densify sparse sections
-  const densified = [allCoords[0]];
-  for (let i = 1; i < allCoords.length; i++) {
-    const gap = haversineM(allCoords[i - 1], allCoords[i]);
-    if (gap > 80) {
-      const steps = Math.ceil(gap / 50);
-      for (let s = 1; s < steps; s++) {
-        const t = s / steps;
-        densified.push([
-          allCoords[i - 1][0] + (allCoords[i][0] - allCoords[i - 1][0]) * t,
-          allCoords[i - 1][1] + (allCoords[i][1] - allCoords[i - 1][1]) * t,
-        ]);
-      }
-    }
-    densified.push(allCoords[i]);
-  }
-
-  // Distance
-  let distM = 0;
-  for (let i = 1; i < densified.length; i++) {
-    distM += haversineM(densified[i - 1], densified[i]);
+function buildGPX(name, input) {
+  // Accept flat Array<way> or segmented Array<Array<way>>
+  let segments;
+  if (input.length === 0) {
+    segments = [[]];
+  } else if (input[0].geometry) {
+    // Flat array of ways — wrap in single segment
+    segments = [input];
+  } else {
+    // Already segmented
+    segments = input;
   }
 
   const escName = name.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  const trkpts = densified.map(c =>
-    `      <trkpt lat="${c[1]}" lon="${c[0]}"></trkpt>`
-  );
+  const trksegs = [];
+  let totalDistM = 0;
+
+  for (const segment of segments) {
+    if (segment.length === 0) continue;
+
+    // Orient ways and collect coords within this segment
+    const allCoords = [];
+    let lastCoord = null;
+
+    for (const way of segment) {
+      let coords = way.geometry.map(p => [p.lon, p.lat]);
+
+      if (way._reversed != null) {
+        if (way._reversed) coords = [...coords].reverse();
+      } else if (lastCoord && coords.length >= 2) {
+        const dFirst = haversineM(lastCoord, coords[0]);
+        const dLast = haversineM(lastCoord, coords[coords.length - 1]);
+        if (dLast < dFirst) coords = [...coords].reverse();
+      }
+
+      for (const c of coords) allCoords.push(c);
+      lastCoord = coords[coords.length - 1];
+    }
+
+    if (allCoords.length === 0) continue;
+
+    // Densify sparse sections within segment
+    const densified = [allCoords[0]];
+    for (let i = 1; i < allCoords.length; i++) {
+      const gap = haversineM(allCoords[i - 1], allCoords[i]);
+      if (gap > 80) {
+        const steps = Math.ceil(gap / 50);
+        for (let s = 1; s < steps; s++) {
+          const t = s / steps;
+          densified.push([
+            allCoords[i - 1][0] + (allCoords[i][0] - allCoords[i - 1][0]) * t,
+            allCoords[i - 1][1] + (allCoords[i][1] - allCoords[i - 1][1]) * t,
+          ]);
+        }
+      }
+      densified.push(allCoords[i]);
+    }
+
+    // Segment distance
+    for (let i = 1; i < densified.length; i++) {
+      totalDistM += haversineM(densified[i - 1], densified[i]);
+    }
+
+    const trkpts = densified.map(c =>
+      `      <trkpt lat="${c[1]}" lon="${c[0]}"></trkpt>`
+    );
+
+    trksegs.push(`    <trkseg>\n${trkpts.join('\n')}\n    </trkseg>`);
+  }
 
   const gpx = `<?xml version="1.0" encoding="UTF-8"?>
 <gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1" creator="whereto.bike">
   <metadata><name>${escName}</name></metadata>
   <trk>
     <name>${escName}</name>
-    <trkseg>
-${trkpts.join('\n')}
-    </trkseg>
+${trksegs.join('\n')}
   </trk>
 </gpx>`;
 
-  return { gpx, distanceKm: Math.round(distM / 100) / 10 };
+  return { gpx, distanceKm: Math.round(totalDistM / 100) / 10 };
 }
 
 // ---------------------------------------------------------------------------
@@ -262,8 +282,8 @@ if (fs.existsSync(routesDir)) {
     if (!fm.waypoints || !Array.isArray(fm.waypoints) || fm.waypoints.length === 0) continue;
 
     try {
-      // Fetch and chain each bike path's ways in order
-      const allWays = [];
+      // Fetch ways for each bike path and build waypoint list for chaining
+      const chainWaypoints = [];
       const resolved = [];
       for (const bpSlug of fm.waypoints) {
         const bp = bpBySlug.get(bpSlug);
@@ -276,37 +296,18 @@ if (fs.existsSync(routesDir)) {
           console.log(`  WARN ${slug}: bike path "${bpSlug}" has no OSM ways`);
           continue;
         }
-
-        // Orient this bike path's ways relative to previous:
-        // if the last point of previous ways is closer to this path's
-        // end than its start, reverse the whole path.
-        if (allWays.length > 0) {
-          const lastWay = allWays[allWays.length - 1];
-          const lastGeom = lastWay.geometry;
-          const lastCoord = [lastGeom[lastGeom.length - 1].lon, lastGeom[lastGeom.length - 1].lat];
-          const firstWay = ways[0];
-          const firstStart = [firstWay.geometry[0].lon, firstWay.geometry[0].lat];
-          const lastWayOfPath = ways[ways.length - 1];
-          const pathEnd = [lastWayOfPath.geometry[lastWayOfPath.geometry.length - 1].lon, lastWayOfPath.geometry[lastWayOfPath.geometry.length - 1].lat];
-          if (haversineM(lastCoord, pathEnd) < haversineM(lastCoord, firstStart)) {
-            ways.reverse();
-          }
-        }
-
-        // Strip _reversed from individual walk — combined route orientation
-        // is determined by buildGPX based on trace continuity, not per-path walks
-        for (const w of ways) delete w._reversed;
-        allWays.push(...ways);
+        chainWaypoints.push(ways); // each bike path as an Array<way>
         resolved.push(bpSlug);
       }
 
-      if (allWays.length === 0) {
+      if (chainWaypoints.length === 0) {
         console.log(`  SKIP combined ${slug}: no ways resolved`);
         combinedFailed++;
         continue;
       }
 
-      const { gpx, distanceKm } = buildGPX(fm.name || slug, allWays);
+      const segments = chainBikePaths(chainWaypoints);
+      const { gpx, distanceKm } = buildGPX(fm.name || slug, segments);
       const routeDir = path.join(routesDir, slug);
       fs.writeFileSync(path.join(routeDir, 'main.gpx'), gpx);
 
