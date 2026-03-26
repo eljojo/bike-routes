@@ -115,6 +115,44 @@ describe('chainBikePaths — real data', () => {
     const dist = totalDistance(pts);
     expect(dist).toBeLessThan(20000); // ~15km at most, not 30+
   });
+
+  // THEORY: chainBikePaths drops most input ways during trimming.
+  // Input: 55 ways (9+7+39). Output: 3 ways. That's a 95% drop rate.
+  // The trimming is too aggressive — finding nearest connection point
+  // and cutting everything else, instead of keeping the section between
+  // entry and exit.
+  it('REAL: Pocuro chain should keep most input ways, not drop 95%', () => {
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
+    const varas = orderWays(JSON.parse(readFileSync(new URL('./fixtures/antonio-varas-ways.json', import.meta.url), 'utf8')));
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+
+    const inputWays = pocuro.length + varas.length + costanera.length;
+    const segments = chainBikePaths([pocuro, varas, costanera]);
+    const outputWays = segments.reduce((s, seg) => s + seg.length, 0);
+
+    // Should keep at least 50% of input ways (trimming removes overlap, not 95%)
+    expect(outputWays).toBeGreaterThan(inputWays * 0.5);
+  });
+
+  // THEORY: chainBikePaths destroys the original way structure.
+  // It flattens each path into a polyline, slices it, then wraps the
+  // slice as ONE synthetic way. A path with 9 OSM ways becomes 1 way
+  // with all the coordinates. The output ways should be the ORIGINAL
+  // OSM ways (trimmed), not synthetic polylines.
+  it('REAL: output ways should be original OSM ways, not synthetic polylines', () => {
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
+    const varas = orderWays(JSON.parse(readFileSync(new URL('./fixtures/antonio-varas-ways.json', import.meta.url), 'utf8')));
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+
+    const segments = chainBikePaths([pocuro, varas, costanera]);
+    const allOutputWays = segments.flat();
+
+    // Every output way should have a reasonable number of points (< 100).
+    // A synthetic polyline from a 39-way path would have 700+ points.
+    for (const w of allOutputWays) {
+      expect(w.geometry.length, `way ${w.id} has ${w.geometry.length} pts`).toBeLessThan(200);
+    }
+  });
 });
 
 describe('chainBikePaths', () => {
