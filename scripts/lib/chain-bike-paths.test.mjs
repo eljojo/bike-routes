@@ -203,6 +203,11 @@ describe('chainBikePaths — real data', () => {
     const dist = totalDistance(pts);
     expect(dist).toBeLessThan(35000);
   });
+
+  // DISPROVEN THEORY: stripping _reversed makes it 5x worse (105 vs 19).
+  // The _reversed flags from orderWays are crucial for orientation.
+  // The reversals come from individual path ordering (orderWays internal
+  // quality) not from the chain's direction logic.
 });
 
 describe('chainBikePaths — synthetic', () => {
