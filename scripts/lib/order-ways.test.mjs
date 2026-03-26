@@ -553,6 +553,27 @@ describe('orderWays', () => {
     expect(countReversals(ordered)).toBeLessThanOrEqual(4);
   });
 
+  it('REAL: Pedro Aguirre Cerda should be a straight line with no backtracks >500m', () => {
+    // Pedro is a straight NE→SW corridor. The trace should go steadily
+    // in one direction with no significant backtracks from parallel oneway lanes.
+    const ways = JSON.parse(readFileSync(new URL('./fixtures/pedro-aguirre-cerda-ways.json', import.meta.url), 'utf8'));
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+
+    // Check for backtracks: track the most SW point seen so far,
+    // no sample should backtrack >500m NE.
+    let swMostLat = pts[0][1];
+    const backtracks = [];
+    for (let i = 10; i < pts.length; i += 10) {
+      if (pts[i][1] < swMostLat) swMostLat = pts[i][1];
+      const neKm = (pts[i][1] - swMostLat) * 111;
+      if (neKm > 0.5) {
+        backtracks.push({ pt: i, lat: pts[i][1].toFixed(4), swMost: swMostLat.toFixed(4), backtrackKm: neKm.toFixed(1) });
+      }
+    }
+    expect(backtracks, 'NE backtracks >500m: ' + JSON.stringify(backtracks)).toHaveLength(0);
+  });
+
   // THEORY 1: Pedro reversal [4] — 13km gap stitching.
   // The stitching connects a component ending at -33.36 to a way starting
   // at -33.47. These are 13km apart — clearly different sections of the city.
