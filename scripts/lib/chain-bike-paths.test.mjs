@@ -316,6 +316,44 @@ describe('chainBikePaths — real data', () => {
     expect(countReversals(pts)).toBeLessThanOrEqual(9);
   });
 
+  it('REAL: La Reina — route must pass through every waypoint landmark', () => {
+    // The route goes: La Reina → Canal San Carlos → Pocuro → Sanhattan →
+    // Thayer Ojeda → Costanera Sur → Mapocho → Quinta Normal.
+    // The test asserts the trace passes within 800m of each landmark,
+    // and visits them in the correct order (% progress should increase).
+    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
+    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
+
+    const quintaNormal = { name: 'Quinta Normal', lat: -33.440, lng: -70.730 };
+    const segments = chainBikePaths([
+      sanchez, pocuro, costanera, mapocho42k, avMapocho, quintaNormal,
+    ]);
+    const pts = renderTrace(segments);
+
+    const landmarks = [
+      { name: 'La Reina (start)', coord: [-70.555, -33.455] },
+      { name: 'Sanhattan', coord: [-70.605, -33.418] },
+      { name: 'Costanera Sur', coord: [-70.650, -33.420] },
+      { name: 'Quinta Normal (end)', coord: [-70.720, -33.435] },
+    ];
+
+    let lastIdx = -1;
+    for (const lm of landmarks) {
+      let minDist = Infinity;
+      let closestIdx = -1;
+      for (let i = 0; i < pts.length; i++) {
+        const d = haversineM(pts[i], lm.coord);
+        if (d < minDist) { minDist = d; closestIdx = i; }
+      }
+      expect(minDist, lm.name + ' should be within 800m, got ' + Math.round(minDist) + 'm').toBeLessThan(800);
+      expect(closestIdx, lm.name + ' should come after previous landmark').toBeGreaterThan(lastIdx);
+      lastIdx = closestIdx;
+    }
+  });
+
   it('REAL: La Reina — overlapping paths should auto-discover handoffs, no zigzag', () => {
     // Costanera, Mapocho 42k, and Avenida Mapocho overlap along the same river.
     // The chain should automatically discover where each path hands off to the
