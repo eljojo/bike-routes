@@ -329,9 +329,32 @@ export function orderWays(ways) {
     const odd = [...deg.entries()].filter(([, d]) => d % 2 === 1).map(([v]) => v);
     const candidates = odd.length >= 2 ? odd : [[...deg.entries()].sort((a, b) => a[1] - b[1])[0][0]];
 
+    // Try each start, optionally reversing to enforce direction convention.
+    // Convention: W→E for east-west paths, N→S for north-south paths.
+    function enforceDirection(ways) {
+      if (ways.length < 2) return ways;
+      const first = ways[0], last = ways[ways.length - 1];
+      const fC = first.geometry.map(p => [p.lon, p.lat]);
+      const lC = last.geometry.map(p => [p.lon, p.lat]);
+      const fT = first._reversed ? [...fC].reverse() : fC;
+      const lT = last._reversed ? [...lC].reverse() : lC;
+      const s = fT[0], e = lT[lT.length - 1];
+      const dlng = e[0] - s[0], dlat = e[1] - s[1];
+      // Use bearing to determine if path is E-W or N-S.
+      // Bearing 45-135° or 225-315° = primarily E-W.
+      // Otherwise primarily N-S.
+      const b = (Math.atan2(dlng, dlat) * 180 / Math.PI + 360) % 360;
+      const isEW = (b >= 45 && b < 135) || (b >= 225 && b < 315);
+      const wrong = isEW ? dlng < 0 : dlat > 0;
+      if (!wrong) return ways;
+      const rev = [...ways].reverse();
+      for (const w of rev) w._reversed = !w._reversed;
+      return rev;
+    }
+
     let bestResult = null, bestRevs = Infinity, bestFirstRev = 0;
     for (const startV of candidates) {
-      const result = doWalk(segIds, startV);
+      const result = enforceDirection(doWalk(segIds, startV));
       const revs = countReversals(result);
       const fr = firstReversalIndex(result);
       if (revs < bestRevs || (revs === bestRevs && fr > bestFirstRev)) {
