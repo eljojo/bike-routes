@@ -2,7 +2,7 @@
 name: Las Perdices
 status: published
 homepage_featured: true
-distance_km: 11.1
+distance_km: 18.4
 tags:
   - bike path
   - scenic
@@ -12,11 +12,11 @@ waypoints:
   - ciclovia-las-perdices-avenida-bilbao-avenida-jose-arrieta
   - ciclovia-las-perdices-avenida-jose-arrieta-avenida-departamental
 created_at: '2026-03-25'
-updated_at: '2026-03-25'
+updated_at: '2026-03-26'
 variants:
   - name: Las Perdices
     gpx: main.gpx
-    distance_km: 11.1
+    distance_km: 18.4
 ---
 
 A ride along the foothills. From Parque Intercomunal Padre Hurtado south through the Las Perdices corridor — tree-lined, quiet, with the mountains getting closer with every kilometre.

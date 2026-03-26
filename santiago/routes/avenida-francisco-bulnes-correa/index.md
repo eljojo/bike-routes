@@ -5,7 +5,7 @@ distance_km: 4.3
 tags:
   - bike path
 created_at: '2026-03-25'
-updated_at: '2026-03-25'
+updated_at: '2026-03-26'
 variants:
   - name: Avenida Francisco Bulnes Correa
     gpx: main.gpx

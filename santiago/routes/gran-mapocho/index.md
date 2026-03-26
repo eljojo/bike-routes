@@ -2,7 +2,7 @@
 name: Gran Mapocho
 status: published
 homepage_featured: true
-distance_km: 63.7
+distance_km: 54
 tags:
   - bike path
   - scenic
@@ -13,11 +13,11 @@ waypoints:
   - ciclovia-andres-bello
   - avenida-costanera-sur
 created_at: '2026-03-25'
-updated_at: '2026-03-25'
+updated_at: '2026-03-26'
 variants:
   - name: Gran Mapocho
     gpx: main.gpx
-    distance_km: 63.7
+    distance_km: 54
 ---
 
 The longest continuous bike corridor in Santiago. Follow the Mapocho river from Laguna Poniente in the west all the way to Parque Monseñor Escrivá de Balaguer in the east — over 25 kilometres of river, parks, and bike paths.
