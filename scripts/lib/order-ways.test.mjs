@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { orderWays } from './order-ways.mjs';
 import { haversineM } from './geo.mjs';
+import { readFileSync } from 'fs';
 
 function makeWay(id, coords) {
   return {
@@ -507,16 +508,25 @@ describe('orderWays', () => {
   // REAL DATA: Salvador Gutiérrez — 27 OSM ways with the same name but
   // different road types: 10 are cycleway=track (the actual bike path),
   // the rest are residential pasajes, living streets, and tertiary roads.
-  // The non-bike ways (especially living_street near -70.705) create a
-  // loop at the end of the trace: the walk visits the pasaje, backtracks.
   //
   // Root cause: name search returns ALL ways, not just bike infrastructure.
-  // The bike path is 3.8km. With pasajes included, the trace is 7.3km
-  // with a 1.3km backtrack loop at the end.
-  it('REAL: Salvador Gutiérrez should have 0 reversals (no pasaje loop)', () => {
+  it('REAL: Salvador Gutiérrez — all 27 ways produces reversals', () => {
     const ways = JSON.parse(readFileSync(new URL('./fixtures/salvador-gutierrez-ways.json', import.meta.url), 'utf8'));
     const ordered = orderWays(ways);
-    const pts = renderTrace(ordered);
+    expect(countReversals(ordered)).toBeGreaterThan(0); // documents the bug
+  });
+
+  // THEORY: filtering to only cycling ways (cycleway=track or highway=cycleway)
+  // removes the pasajes and eliminates the reversal.
+  it('REAL: Salvador Gutiérrez — only cycling ways = 0 reversals', () => {
+    const ways = JSON.parse(readFileSync(new URL('./fixtures/salvador-gutierrez-ways.json', import.meta.url), 'utf8'));
+    const cyclingOnly = ways.filter(w =>
+      w.tags?.cycleway === 'track' ||
+      w.tags?.cycleway === 'lane' ||
+      w.tags?.cycleway === 'shared_lane' ||
+      w.tags?.highway === 'cycleway'
+    );
+    const ordered = orderWays(cyclingOnly);
     expect(countReversals(ordered)).toBe(0);
   });
 

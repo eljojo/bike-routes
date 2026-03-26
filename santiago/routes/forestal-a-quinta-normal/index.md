@@ -1,7 +1,7 @@
 ---
 name: Forestal a Quinta Normal
 status: published
-distance_km: 20
+distance_km: 18.9
 tags:
   - bike path
   - flat
@@ -14,7 +14,7 @@ updated_at: '2026-03-26'
 variants:
   - name: Forestal a Quinta Normal
     gpx: main.gpx
-    distance_km: 20
+    distance_km: 18.9
 ---
 
 From the Museo de Bellas Artes west along the Mapocho, then through Barrio Yungay to Parque Quinta Normal. Short, flat, full of character.

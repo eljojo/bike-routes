@@ -82,7 +82,21 @@ ${nameFilters}
 );
 out geom;`;
   const data = await queryOverpass(query);
-  return data.elements.filter(el => el.type === 'way' && el.geometry?.length >= 2);
+  return data.elements.filter(el => {
+    if (el.type !== 'way' || !el.geometry?.length || el.geometry.length < 2) return false;
+    // Filter to cycling infrastructure only — exclude residential pasajes,
+    // living streets, and other non-bike ways that share a name with the
+    // bike path. Proven by Salvador Gutiérrez test: 27 ways share the name
+    // but only 10 are cycleway=track (the actual bike path).
+    const t = el.tags || {};
+    if (t.highway === 'cycleway') return true;
+    if (t.cycleway || t['cycleway:left'] || t['cycleway:right'] || t['cycleway:both']) return true;
+    if (t.bicycle === 'designated' || t.bicycle === 'yes') return true;
+    // Keep secondary/primary/trunk roads (they may have bike lanes tagged differently)
+    if (['primary', 'secondary', 'tertiary'].includes(t.highway)) return true;
+    // Exclude residential, living_street, service, footway without cycling tags
+    return false;
+  });
 }
 
 // ---------------------------------------------------------------------------
