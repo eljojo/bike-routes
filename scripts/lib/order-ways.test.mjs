@@ -505,6 +505,17 @@ describe('orderWays', () => {
     expect(overallDlng).toBeGreaterThan(0); // now going east = correct
   });
 
+  // REAL DATA: Costanera Sur — 61 ways with multiple disconnected components.
+  // After filtering to cycling ways: 39 ways with gaps up to 8km.
+  // The stitching connects components but reversal 1 (way [3], km 2.8)
+  // flips direction because a 125m gap connects to a way going the opposite
+  // direction. Reversal 2 (way [22], km 10.4) happens at a 3km gap.
+  it('REAL: Costanera Sur (61 ways, multi-component) should have ≤2 reversals', () => {
+    const ways = JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8'));
+    const ordered = orderWays(ways);
+    expect(countReversals(ordered)).toBeLessThanOrEqual(2);
+  });
+
   // REAL DATA: Salvador Gutiérrez — 27 OSM ways with the same name but
   // different road types: 10 are cycleway=track (the actual bike path),
   // the rest are residential pasajes, living streets, and tertiary roads.

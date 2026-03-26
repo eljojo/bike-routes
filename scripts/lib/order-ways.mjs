@@ -384,20 +384,44 @@ export function orderWays(ways) {
   const chain = [walked[0]];
   const rest = walked.slice(1);
   while (rest.length > 0) {
-    let best = null;
+    const options = [];
     for (let i = 0; i < rest.length; i++) {
       const c = rest[i];
       const tail = chain[chain.length - 1];
       const head = chain[0];
-      for (const opt of [
+      options.push(
         { d: haversineM(tail.end, c.start), place: 'append', rev: false, i },
         { d: haversineM(tail.end, c.end), place: 'append', rev: true, i },
         { d: haversineM(c.end, head.start), place: 'prepend', rev: false, i },
         { d: haversineM(c.start, head.start), place: 'prepend', rev: true, i },
-      ]) {
-        if (!best || opt.d < best.d) best = opt;
+      );
+    }
+    options.sort((a, b) => a.d - b.d);
+    const minDist = options[0].d;
+    // Among options within 50% of minimum distance, prefer the one that
+    // doesn't create a bearing reversal at the junction.
+    const threshold = Math.max(minDist * 1.5, minDist + 500);
+    const viable = options.filter(o => o.d <= threshold);
+
+    let best = viable[0];
+    for (const opt of viable) {
+      const c = rest[opt.i];
+      // Check if this option would create a reversal at the junction
+      const tail = chain[chain.length - 1];
+      const head = chain[0];
+      if (opt.place === 'append') {
+        // The junction is between tail.end and c's entry
+        const tailBearing = bearing(tail.start, tail.end);
+        const cEntry = opt.rev ? c.end : c.start;
+        const cExit = opt.rev ? c.start : c.end;
+        const junctionBearing = bearing(tail.end, cEntry);
+        const continueBearing = bearing(cEntry, cExit);
+        const turnFromTail = angleDiff(tailBearing, continueBearing);
+        // If this option continues roughly the same direction, prefer it
+        if (turnFromTail < Math.PI / 2) { best = opt; break; }
       }
     }
+
     const comp = rest.splice(best.i, 1)[0];
     const norm = best.rev
       ? {
