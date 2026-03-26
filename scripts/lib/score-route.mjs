@@ -93,10 +93,19 @@ export function scoreRoute(ways, startCoord, endCoord, options = {}) {
   }
   const relaxation = totalLen > 0 ? (weightedRelax / totalLen) * 2 : 0;
 
-  // Directness (0-5): route length vs straight-line distance
+  // Directness (0-5): how well does this path cover the gap?
+  // Penalize both detours (path much longer than gap) AND undershoot (path much shorter).
+  // A path should roughly match the gap distance.
   const straightLine = haversineM(startCoord, endCoord);
-  const ratio = straightLine > 0 ? totalLen / straightLine : 10;
-  const directness = ratio <= 1.2 ? 5 : ratio <= 1.5 ? 4 : ratio <= 2.0 ? 3 : ratio <= 3.0 ? 1 : 0;
+  let directness = 0;
+  if (straightLine > 0) {
+    const ratio = totalLen / straightLine;
+    // ratio ~1.0 = perfect match. >2.0 = detour. <0.3 = way too short.
+    if (ratio >= 0.5 && ratio <= 1.5) directness = 5;
+    else if (ratio >= 0.3 && ratio <= 2.0) directness = 3;
+    else if (ratio >= 0.2 && ratio <= 3.0) directness = 1;
+    else directness = 0;
+  }
 
   // Transitions (-3 to 0): penalty for big drops in relaxation level
   let transitions = 0;

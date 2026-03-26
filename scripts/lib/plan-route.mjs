@@ -67,8 +67,40 @@ export function findCandidatePaths(from, to, allPaths, options = {}) {
  * @param {Object} [options]
  * @returns {Array} - mixed: place objects { lat, lng } and way arrays, ready for chainBikePaths
  */
+/**
+ * Find the nearest point on a path's geometry to a given coordinate.
+ * Returns the distance in metres.
+ */
+function pathDistTo(ways, coord) {
+  let minD = Infinity;
+  for (const w of ways) {
+    for (const p of w.geometry) {
+      const d = haversineM(coord, [p.lon, p.lat]);
+      if (d < minD) minD = d;
+    }
+  }
+  return minD;
+}
+
+/**
+ * Find the coordinate on a path closest to a given point (for greedy chaining).
+ */
+function nearestCoordOnPath(ways, coord) {
+  let minD = Infinity;
+  let best = coord;
+  for (const w of ways) {
+    for (const p of w.geometry) {
+      const c = [p.lon, p.lat];
+      const d = haversineM(coord, c);
+      if (d < minD) { minD = d; best = c; }
+    }
+  }
+  return best;
+}
+
 export function planRoute(waypoints, allPaths, options = {}) {
   const result = [];
+  const usedSlugs = new Set(); // Don't reuse paths
 
   for (let i = 0; i < waypoints.length; i++) {
     const wp = waypoints[i];
@@ -78,12 +110,54 @@ export function planRoute(waypoints, allPaths, options = {}) {
     if (wp.type === 'place' && i + 1 < waypoints.length && waypoints[i + 1].type === 'place') {
       const from = wp.coord;
       const to = waypoints[i + 1].coord;
-      const candidates = findCandidatePaths(from, to, allPaths, options);
-      if (candidates.length > 0) {
-        result.push(candidates[0].ways);
+      const gapDist = haversineM(from, to);
+
+      // Filter out already-used paths
+      const available = allPaths.filter(p => !usedSlugs.has(p.slug));
+
+      // Try to fill the gap — may need multiple paths (greedy chaining)
+      const filled = fillGap(from, to, available, options);
+      for (const selected of filled) {
+        result.push(selected.ways);
+        usedSlugs.add(selected.slug);
       }
     }
   }
 
   return result;
+}
+
+/**
+ * Fill a gap between two coordinates with one or more bike paths.
+ * Uses greedy chaining: pick the best path from `from`, advance to its
+ * exit point, repeat until we reach `to` or run out of candidates.
+ *
+ * @returns {Array<{ slug, ways }>} selected paths in order
+ */
+function fillGap(from, to, available, options = {}, maxChain = 3) {
+  const selected = [];
+  const used = new Set();
+  let current = from;
+
+  for (let step = 0; step < maxChain; step++) {
+    const remaining = available.filter(p => !used.has(p.slug));
+    const candidates = findCandidatePaths(current, to, remaining, options);
+    if (candidates.length === 0) break;
+
+    const best = candidates[0];
+    selected.push(best);
+    used.add(best.slug);
+
+    // Advance current position to the path's point closest to `to`
+    const exitCoord = nearestCoordOnPath(best.ways, to);
+    const distToGoal = haversineM(exitCoord, to);
+
+    // If we're within 2km of the destination, stop chaining
+    if (distToGoal < 2000) break;
+
+    // Otherwise, continue from the exit point
+    current = exitCoord;
+  }
+
+  return selected;
 }

@@ -300,19 +300,25 @@ if (fs.existsSync(routesDir)) {
     if (!fm.waypoints || !Array.isArray(fm.waypoints) || fm.waypoints.length === 0) continue;
 
     try {
-      // Resolve waypoints: bike path slugs → ways, place objects → pass through
+      // Resolve waypoints: bike path slugs → ways, place slugs → coordinates, objects → pass through
+      const placesDir = path.join(dataDir, 'places');
       const { chainWaypoints, resolved } = await resolveWaypoints(fm.waypoints, async (bpSlug) => {
         const bp = bpBySlug.get(bpSlug);
-        if (!bp) {
-          console.log(`  WARN ${slug}: bike path "${bpSlug}" not found in bikepaths.yml`);
-          return null;
-        }
+        if (!bp) return null;
         const ways = await fetchBikePathWays(bp);
-        if (ways.length === 0) {
-          console.log(`  WARN ${slug}: bike path "${bpSlug}" has no OSM ways`);
-          return null;
-        }
+        if (ways.length === 0) return null;
         return ways;
+      }, {
+        resolvePlace: (placeSlug) => {
+          const placePath = path.join(placesDir, placeSlug + '.md');
+          if (!fs.existsSync(placePath)) return null;
+          const raw = fs.readFileSync(placePath, 'utf8');
+          const match = raw.match(/^---\n([\s\S]*?)\n---/);
+          if (!match) return null;
+          const pm = yaml.load(match[1]);
+          if (pm.lat == null || pm.lng == null) return null;
+          return { name: pm.name || placeSlug, lat: pm.lat, lng: pm.lng };
+        },
       });
 
       if (chainWaypoints.length === 0) {

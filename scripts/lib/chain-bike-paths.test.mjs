@@ -417,6 +417,170 @@ describe('chainBikePaths — real data', () => {
     expect(countReversals(pts)).toBeLessThanOrEqual(3);
   });
 
+// ==========================================================================
+// Product Brief Tests — "What Must Be True"
+// Based on ~/code/bike-app/docs/route-waypoints.md
+//
+// These tests define correctness for the route waypoint system.
+// Each test corresponds to a rule from the product brief.
+// ==========================================================================
+
+describe('Product Brief — La Reina a Quinta Normal', () => {
+  // The ride: Plaza Egaña → sánchez fontecilla (north) → pocuro (west) →
+  // through Sanhattan → costanera sur (west along river) → mapocho 42k →
+  // avenida mapocho → Parque Quinta Normal
+  //
+  // Geography (from fixture analysis):
+  //   sánchez fontecilla: 7.9km diagonal, south end at Plaza Egaña (-70.559, -33.452)
+  //                       north end near Canal San Carlos (-70.569, -33.443)
+  //   pocuro: 8.2km E-W, west end (-70.608, -33.436), east end (-70.593, -33.432)
+  //   costanera sur: 46km E-W along river, east end near Sanhattan (-70.607, -33.416)
+  //   mapocho 42k: 36km E-W along river, overlaps costanera
+  //   avenida mapocho: 16km E-W, west end near Quinta Normal (-70.736, -33.423)
+  //
+  // Gaps:
+  //   sánchez north → pocuro: 2.5-3.7km (no direct connection)
+  //   pocuro west → costanera east: 2.2km (antonio varas connects them)
+  //   costanera/mapocho/avMapocho overlap along the river
+
+  function loadFixtures() {
+    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
+    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
+    return { sanchez, pocuro, costanera, mapocho42k, avMapocho };
+  }
+
+  function chainLaReina() {
+    const { sanchez, pocuro, costanera, mapocho42k, avMapocho } = loadFixtures();
+    const plazaEgana = { name: 'Plaza Egaña', lat: -33.451, lng: -70.558 };
+    const sanhattan = { name: 'Sanhattan', lat: -33.418, lng: -70.605 };
+    const quintaNormal = { name: 'Parque Quinta Normal', lat: -33.440, lng: -70.730 };
+    return {
+      fixtures: { sanchez, pocuro, costanera, mapocho42k, avMapocho },
+      input: [plazaEgana, sanchez, pocuro, sanhattan, costanera, mapocho42k, avMapocho, quintaNormal],
+    };
+  }
+
+  // Rule 1: Start at the first waypoint
+  // A cyclist standing at Plaza Egaña should see the route start HERE, not 1km away.
+  it('starts within 300m of Plaza Egaña', () => {
+    const { input } = chainLaReina();
+    const segments = chainBikePaths(input);
+    const pts = renderTrace(segments);
+    const plazaEgana = [-70.558, -33.451];
+    const startDist = haversineM(pts[0], plazaEgana);
+    expect(startDist, 'GPX starts ' + Math.round(startDist) + 'm from Plaza Egaña').toBeLessThan(300);
+  });
+
+  // Rule 2: End at the last waypoint
+  // The route should end AT Quinta Normal, not 2km away in some random spot.
+  it('ends within 500m of Parque Quinta Normal', () => {
+    const { input } = chainLaReina();
+    const segments = chainBikePaths(input);
+    const pts = renderTrace(segments);
+    const quintaNormal = [-70.730, -33.440];
+    const endDist = haversineM(pts[pts.length - 1], quintaNormal);
+    expect(endDist, 'GPX ends ' + Math.round(endDist) + 'm from Quinta Normal').toBeLessThan(500);
+  });
+
+  // Rule 3: Ride each bike path — meaningfully, not just 1 way
+  // "Take pocuro" means ride pocuro. At least 2km of each path, or 30% of ways.
+  it('rides a meaningful section of each bike path', () => {
+    const { input, fixtures } = chainLaReina();
+    const segments = chainBikePaths(input);
+    const outputIds = new Set(segments.flat().map(w => w.id));
+
+    for (const [name, ways] of Object.entries(fixtures)) {
+      const included = ways.filter(w => outputIds.has(w.id)).length;
+      const pct = Math.round(included / ways.length * 100);
+      // For overlapping river paths, 20% is acceptable (they share corridor).
+      // For non-overlapping paths (sanchez, pocuro), 30%+.
+      const minPct = (name === 'costanera' || name === 'mapocho42k' || name === 'avMapocho') ? 20 : 30;
+      expect(pct, name + ': ' + included + '/' + ways.length + ' ways (' + pct + '%) — need ≥' + minPct + '%').toBeGreaterThanOrEqual(minPct);
+    }
+  });
+
+  // Rule 4: Pass through each place
+  // "Pass through Sanhattan" means the trace actually goes THROUGH Sanhattan,
+  // not 2km away. 300m is a city block — the rider should see it.
+  it('passes within 300m of Sanhattan', () => {
+    const { input } = chainLaReina();
+    const segments = chainBikePaths(input);
+    const pts = renderTrace(segments);
+    const sanhattan = [-70.605, -33.418];
+    let minDist = Infinity;
+    for (const p of pts) {
+      const d = haversineM(p, sanhattan);
+      if (d < minDist) minDist = d;
+    }
+    expect(minDist, 'closest point to Sanhattan: ' + Math.round(minDist) + 'm').toBeLessThan(300);
+  });
+
+  // Rule 5: Visit waypoints in order
+  it('visits Plaza Egaña before Sanhattan before Quinta Normal', () => {
+    const { input } = chainLaReina();
+    const segments = chainBikePaths(input);
+    const pts = renderTrace(segments);
+
+    const checkpoints = [
+      { name: 'Plaza Egaña', coord: [-70.558, -33.451] },
+      { name: 'Sanhattan', coord: [-70.605, -33.418] },
+      { name: 'Parque Quinta Normal', coord: [-70.730, -33.440] },
+    ];
+
+    let lastIdx = -1;
+    for (const cp of checkpoints) {
+      let closestIdx = -1, minDist = Infinity;
+      for (let i = 0; i < pts.length; i++) {
+        const d = haversineM(pts[i], cp.coord);
+        if (d < minDist) { minDist = d; closestIdx = i; }
+      }
+      expect(closestIdx, cp.name + ' (at idx ' + closestIdx + ') should come after previous (at idx ' + lastIdx + ')').toBeGreaterThan(lastIdx);
+      lastIdx = closestIdx;
+    }
+  });
+
+  // Rule 6: Go in the right direction (no large backtracks)
+  it('goes steadily SE→NW with no backtracks >2km', () => {
+    const { input } = chainLaReina();
+    const segments = chainBikePaths(input);
+    const pts = renderTrace(segments);
+
+    // The route goes from Plaza Egaña (east, -70.558) to Quinta Normal (west, -70.730)
+    // Track the westernmost longitude seen; no point should backtrack >2km east
+    let westmostLng = pts[0][0];
+    const backtracks = [];
+    for (let i = 50; i < pts.length; i += 50) {
+      if (pts[i][0] < westmostLng) westmostLng = pts[i][0];
+      const eastwardKm = (pts[i][0] - westmostLng) * 85;
+      if (eastwardKm > 2) {
+        backtracks.push({ pt: i, backtrackKm: eastwardKm.toFixed(1) });
+      }
+    }
+    expect(backtracks, 'backtracks >2km: ' + JSON.stringify(backtracks)).toHaveLength(0);
+  });
+
+  // Pocuro should go WEST (toward Sanhattan), not east
+  it('rides pocuro westward, not eastward', () => {
+    const { input, fixtures } = chainLaReina();
+    const segments = chainBikePaths(input);
+    const outputIds = new Set(segments.flat().map(w => w.id));
+    const pocuroIds = new Set(fixtures.pocuro.map(w => w.id));
+
+    // Find pocuro ways in the output and check their rendered direction
+    const pocuroOutput = segments.flat().filter(w => pocuroIds.has(w.id));
+    if (pocuroOutput.length === 0) return; // covered by rule 3
+
+    const pocuroPts = renderTrace([pocuroOutput]);
+    const startLng = pocuroPts[0][0];
+    const endLng = pocuroPts[pocuroPts.length - 1][0];
+    // West = more negative lng. Pocuro should go toward more negative (west).
+    expect(endLng, 'pocuro should go west: start ' + startLng.toFixed(4) + ' → end ' + endLng.toFixed(4)).toBeLessThan(startLng);
+  });
+});
+
 describe('chainBikePaths — synthetic', () => {
   // ---------------------------------------------------------------
   // Emporio La Rosa → Plaza Ñuñoa
