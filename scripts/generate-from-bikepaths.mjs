@@ -327,6 +327,33 @@ if (fs.existsSync(routesDir)) {
           if (pm.lat == null || pm.lng == null) return null;
           return { name: pm.name || placeSlug, lat: pm.lat, lng: pm.lng };
         },
+        queryOsmName: async (slug) => {
+          // Convert slug back to a name: "luis-thayer-ojeda" → "Luis Thayer Ojeda"
+          const name = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+          // Search OSM for ways with this name in the city
+          const cityBounds = yaml.load(fs.readFileSync(path.join(dataDir, 'config.yml'), 'utf8'));
+          const lat = cityBounds?.lat || -33.45;
+          const lng = cityBounds?.lng || -70.65;
+          const pad = 0.15; // ~15km radius
+          const q = `[out:json][timeout:30];way["name"~"${name.replace(/"/g, '\\"')}",i](${lat-pad},${lng-pad},${lat+pad},${lng+pad});out geom;`;
+          try {
+            const data = await queryOverpass(q);
+            const ways = data.elements.filter(el =>
+              el.type === 'way' && el.geometry?.length >= 2
+            );
+            if (ways.length > 0) {
+              const ordered = orderWays(ways);
+              console.log(`  [osm-query] "${name}" → ${ordered.length} ways`);
+              return ordered;
+            }
+            // No ways but maybe a node? Use as a place coordinate
+            const nodes = data.elements.filter(el => el.type === 'node' && el.lat != null);
+            if (nodes.length > 0) {
+              return { name, lat: nodes[0].lat, lng: nodes[0].lon };
+            }
+          } catch { /* skip */ }
+          return null;
+        },
       });
 
       if (chainWaypoints.length === 0) {

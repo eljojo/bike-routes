@@ -10,9 +10,9 @@ tags:
 waypoints:
   - plaza-egana
   - ciclovia-sanchez-fontecilla
-  - canal-san-carlos
+  - parque-canal-san-carlos
   - ciclovia-sanchez-fontecilla
-  - canal-san-carlos
+  - parque-canal-san-carlos
   - ciclovia-pocuro
   - sanhattan
   - luis-thayer-ojeda

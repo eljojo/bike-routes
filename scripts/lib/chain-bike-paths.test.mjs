@@ -745,6 +745,90 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     ).toBeGreaterThanOrEqual(90);
   }, 120_000);
 
+  it('all frontmatter waypoints resolve (none skipped)', async () => {
+    const yaml = await import('js-yaml');
+    const { slugify } = await import('./slugify.mjs');
+    const { resolveWaypoints } = await import('./resolve-waypoints.mjs');
+    const { filterCyclingWays } = await import('./filter-cycling-ways.mjs');
+    const { queryOverpass } = await import('./overpass.mjs');
+
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const routePath = new URL('../../santiago/routes/la-reina-a-quinta-normal/index.md', import.meta.url);
+    const placesDir = new URL('../../santiago/places/', import.meta.url);
+
+    const routeMd = readFileSync(routePath, 'utf8');
+    const fm = yaml.load(routeMd.match(/^---\n([\s\S]*?)\n---/)[1]);
+
+    const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
+    const bpBySlug = new Map();
+    for (const bp of bike_paths) bpBySlug.set(slugify(bp.name), bp);
+
+    async function fetchBPWays(bp) {
+      let ways = [];
+      try {
+        if (bp.osm_relations?.length > 0) {
+          for (const relId of bp.osm_relations) {
+            const q = `[out:json][timeout:60];relation(${relId});way(r);out geom;`;
+            const d = await queryOverpass(q);
+            ways.push(...d.elements.filter(e => e.type === 'way' && e.geometry?.length >= 2));
+          }
+        } else if (bp.osm_names?.length > 0 && bp.anchors?.length >= 2) {
+          const lats = bp.anchors.map(a => a[1]), lngs = bp.anchors.map(a => a[0]);
+          const pad = 0.02;
+          const s = Math.min(...lats) - pad, n = Math.max(...lats) + pad;
+          const w = Math.min(...lngs) - pad, e = Math.max(...lngs) + pad;
+          const nameFilters = bp.osm_names.map(nm =>
+            `way["name"="${nm.replace(/"/g, '\\"')}"](${s},${w},${n},${e});`
+          ).join('\n');
+          const q = `[out:json][timeout:60];\n(\n${nameFilters}\n);\nout geom;`;
+          const data = await queryOverpass(q);
+          ways = data.elements.filter(el => el.type === 'way' && el.geometry?.length >= 2);
+        }
+      } catch { /* skip */ }
+      ways = filterCyclingWays(ways);
+      return ways.length > 0 ? orderWays(ways) : [];
+    }
+
+    const { chainWaypoints, resolved } = await resolveWaypoints(fm.waypoints, async (slug) => {
+      const bp = bpBySlug.get(slug);
+      if (!bp) return null;
+      const w = await fetchBPWays(bp);
+      return w.length > 0 ? w : null;
+    }, {
+      resolvePlace: (placeSlug) => {
+        try {
+          const raw = readFileSync(new URL(placeSlug + '.md', placesDir), 'utf8');
+          const m = raw.match(/^---\n([\s\S]*?)\n---/);
+          if (!m) return null;
+          const pm = yaml.load(m[1]);
+          if (pm.lat == null || pm.lng == null) return null;
+          return { name: pm.name || placeSlug, lat: pm.lat, lng: pm.lng };
+        } catch { return null; }
+      },
+      queryOsmName: async (slug) => {
+        const name = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        const q = `[out:json][timeout:30];way["name"~"${name.replace(/"/g, '\\"')}",i](-33.60,-70.80,-33.30,-70.50);out geom;`;
+        try {
+          const data = await queryOverpass(q);
+          const ways = data.elements.filter(el => el.type === 'way' && el.geometry?.length >= 2);
+          if (ways.length > 0) return orderWays(ways);
+        } catch { /* skip */ }
+        return null;
+      },
+    });
+
+    console.log('Resolved: ' + resolved.join(' → '));
+
+    // Every frontmatter waypoint must resolve
+    expect(chainWaypoints.length,
+      'resolved ' + chainWaypoints.length + '/' + fm.waypoints.length +
+      ' waypoints. Missing: ' + fm.waypoints.filter((wp, i) => {
+        const slug = typeof wp === 'string' ? wp : wp.name;
+        return !resolved.some(r => r.startsWith(slug));
+      }).join(', ')
+    ).toBe(fm.waypoints.length);
+  }, 120_000);
+
   function loadFixtures() {
     const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
     const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
