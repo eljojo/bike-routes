@@ -175,9 +175,37 @@ describe('chainBikePaths — real data', () => {
     // Currently it goes from -70.60 to -70.77 (17km west!) — that's wrong
     expect(Math.abs(endLng - startLng) * 85000).toBeLessThan(5000);
   });
+
+  // REAL DATA: La Reina a Quinta Normal
+  // Waypoints: sánchez-fontecilla → pocuro → costanera-sur → mapocho-42k → avenida-mapocho
+  // Direction: EAST to WEST (La Reina is east, Quinta Normal is west)
+  // The waypoint order defines the direction of travel.
+  // Currently: 4 reversals, 43.8km (should be ~25km with 0 reversals)
+  it('REAL: La Reina a Quinta Normal — E→W, ≤2 reversals', () => {
+    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
+    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
+
+    // Waypoint order: east → west
+    const segments = chainBikePaths([sanchez, pocuro, costanera, mapocho42k, avMapocho]);
+    const pts = renderTrace(segments);
+
+    // Should go roughly E→W (start lng less negative than end lng)
+    // La Reina (~-70.55) → Quinta Normal (~-70.72)
+    expect(pts[0][0]).toBeGreaterThan(pts[pts.length - 1][0]);
+
+    // Should not backtrack excessively
+    expect(countReversals(pts)).toBeLessThanOrEqual(2);
+
+    // Distance should be reasonable (~20-30km, not 44km)
+    const dist = totalDistance(pts);
+    expect(dist).toBeLessThan(35000);
+  });
 });
 
-describe('chainBikePaths', () => {
+describe('chainBikePaths — synthetic', () => {
   // ---------------------------------------------------------------
   // Emporio La Rosa → Plaza Ñuñoa
   //
