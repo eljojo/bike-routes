@@ -106,7 +106,6 @@ function nearestCoordOnPath(ways, coord) {
 
 export function planRoute(waypoints, allPaths, options = {}) {
   const result = [];
-  const usedSlugs = new Set(); // Don't reuse paths
 
   for (let i = 0; i < waypoints.length; i++) {
     const wp = waypoints[i];
@@ -118,14 +117,11 @@ export function planRoute(waypoints, allPaths, options = {}) {
       const to = waypoints[i + 1].coord;
       const gapDist = haversineM(from, to);
 
-      // Filter out already-used paths
-      const available = allPaths.filter(p => !usedSlugs.has(p.slug));
-
-      // Try to fill the gap — may need multiple paths (greedy chaining)
-      const filled = fillGap(from, to, available, options);
+      // All paths are available — chainBikePaths handles trimming each
+      // occurrence to the relevant section, so reuse is fine.
+      const filled = fillGap(from, to, allPaths, options);
       for (const selected of filled) {
         result.push(selected.ways);
-        usedSlugs.add(selected.slug);
       }
     }
   }

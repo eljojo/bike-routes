@@ -21,6 +21,7 @@ import { orderWays } from './lib/order-ways.mjs';
 import { chainBikePaths } from './lib/chain-bike-paths.mjs';
 import { resolveWaypoints } from './lib/resolve-waypoints.mjs';
 import { planRoute } from './lib/plan-route.mjs';
+import { filterCyclingWays } from './lib/filter-cycling-ways.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -84,21 +85,11 @@ ${nameFilters}
 );
 out geom;`;
   const data = await queryOverpass(query);
-  return data.elements.filter(el => {
-    if (el.type !== 'way' || !el.geometry?.length || el.geometry.length < 2) return false;
-    // Filter to cycling infrastructure only — exclude residential pasajes,
-    // living streets, and other non-bike ways that share a name with the
-    // bike path. Proven by Salvador Gutiérrez test: 27 ways share the name
-    // but only 10 are cycleway=track (the actual bike path).
-    const t = el.tags || {};
-    if (t.highway === 'cycleway') return true;
-    if (t.cycleway || t['cycleway:left'] || t['cycleway:right'] || t['cycleway:both']) return true;
-    if (t.bicycle === 'designated' || t.bicycle === 'yes') return true;
-    // Keep secondary/primary/trunk roads (they may have bike lanes tagged differently)
-    if (['primary', 'secondary', 'tertiary'].includes(t.highway)) return true;
-    // Exclude residential, living_street, service, footway without cycling tags
-    return false;
-  });
+  // Basic geometry filter only — cycling infrastructure filtering
+  // happens in fetchBikePathWays via filterCyclingWays.
+  return data.elements.filter(el =>
+    el.type === 'way' && el.geometry?.length >= 2
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -204,6 +195,9 @@ async function fetchBikePathWays(bp) {
   } else if (bp.anchors?.length >= 2) {
     ways = await fetchNamedWays([bp.name], bp.anchors);
   }
+  // Prefer cycleways over parallel road lanes. Many OSM relations include
+  // both the dedicated bike path AND the car lanes of the same avenue.
+  ways = filterCyclingWays(ways);
   return ways.length > 0 ? orderWays(ways) : [];
 }
 
