@@ -541,6 +541,31 @@ describe('orderWays', () => {
     expect(countReversals(ordered)).toBe(0);
   });
 
+  // REGRESSION GUARD: lock in reversal counts for all real fixtures.
+  // If a code change increases reversals for any fixture, the test fails.
+  // These numbers are the BEST we've achieved — don't regress.
+  it('REGRESSION: fixture reversal counts should not increase', () => {
+    const maxReversals = {
+      'pocuro-ways': 2,
+      'costanera-sur-ways': 2,
+      'noviciado-ways': 0,
+      'salvador-gutierrez-ways': 2, // full 27 ways including non-cycling; cycling-filtered = 0
+      'mapocho-42k-ways': 0,
+      'avenida-mapocho-ways': 0,
+      'sanchez-fontecilla-ways': 0,
+      'antonio-varas-ways': 0,
+      'los-morros-ways': 0,
+      'duble-almeyda-ways': 0,
+      'vicuna-mackenna-ways': 0,
+    };
+    for (const [file, maxRev] of Object.entries(maxReversals)) {
+      const ways = JSON.parse(readFileSync(new URL('./fixtures/' + file + '.json', import.meta.url), 'utf8'));
+      const ordered = orderWays(ways);
+      const revs = countReversals(ordered);
+      expect(revs, file + ' has ' + revs + ' reversals (max ' + maxRev + ')').toBeLessThanOrEqual(maxRev);
+    }
+  });
+
   // Returns _reversed flag on all ways
   it('returns _reversed flag on all ways', () => {
     const ways = [

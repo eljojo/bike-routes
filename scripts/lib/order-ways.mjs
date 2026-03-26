@@ -403,23 +403,39 @@ export function orderWays(ways) {
     const threshold = Math.max(minDist * 1.5, minDist + 500);
     const viable = options.filter(o => o.d <= threshold);
 
-    let best = viable[0];
-    for (const opt of viable) {
-      const c = rest[opt.i];
-      // Check if this option would create a reversal at the junction
-      const tail = chain[chain.length - 1];
-      const head = chain[0];
-      if (opt.place === 'append') {
-        // The junction is between tail.end and c's entry
-        const tailBearing = bearing(tail.start, tail.end);
+    // Tiered selection: preserve component orientation by default.
+    // 1. Try append + non-reversing first (safest — keeps enforceDirection)
+    // 2. Among those, prefer turn < 90° if available, else nearest distance
+    // 3. Only fall back to prepend or reversing if no acceptable append exists
+    const tail = chain[chain.length - 1];
+    const tailFwd = bearing(tail.start, tail.end);
+
+    // Tier 1: append + rev:false
+    const tier1 = viable.filter(o => o.place === 'append' && !o.rev);
+    // Tier 2: append + rev:true
+    const tier2 = viable.filter(o => o.place === 'append' && o.rev);
+    // Tier 3: prepend (any)
+    const tier3 = viable.filter(o => o.place === 'prepend');
+
+    let best = viable[0]; // ultimate fallback
+    let found = false;
+
+    for (const tier of [tier1, tier2, tier3]) {
+      if (found || tier.length === 0) continue;
+      // Within this tier, check bearing continuity
+      let bearingMatch = null;
+      for (const opt of tier) {
+        const c = rest[opt.i];
         const cEntry = opt.rev ? c.end : c.start;
         const cExit = opt.rev ? c.start : c.end;
-        const junctionBearing = bearing(tail.end, cEntry);
-        const continueBearing = bearing(cEntry, cExit);
-        const turnFromTail = angleDiff(tailBearing, continueBearing);
-        // If this option continues roughly the same direction, prefer it
-        if (turnFromTail < Math.PI / 2) { best = opt; break; }
+        const continueFwd = bearing(cEntry, cExit);
+        const turn = angleDiff(tailFwd, continueFwd);
+        if (turn < Math.PI / 2) { bearingMatch = opt; break; }
       }
+      // If a bearing match exists in this tier, use it. Otherwise use
+      // the nearest distance in this tier.
+      best = bearingMatch || tier[0];
+      found = true;
     }
 
     const comp = rest.splice(best.i, 1)[0];
