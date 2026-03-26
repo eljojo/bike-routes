@@ -108,7 +108,8 @@ function sliceWays(ways, poly, entryScalar, exitScalar) {
 
   return included.map(w => {
     const way = { ...ways[w] };
-    if (!forward) way._reversed = !way._reversed;
+    // Always set _reversed explicitly so renderTrace/buildGPX doesn't re-guess
+    way._reversed = forward ? (way._reversed || false) : !way._reversed;
     return way;
   });
 }

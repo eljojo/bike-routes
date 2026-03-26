@@ -61,6 +61,8 @@ function countReversals(pts) {
   let revs = 0, lastB = null, prev = null;
   for (const p of pts) {
     if (prev) {
+      // Skip duplicate/near-duplicate points (zero-length steps at way boundaries)
+      if (haversineM(prev, p) < 1) continue;
       const b = Math.atan2(p[0] - prev[0], p[1] - prev[1]);
       if (lastB !== null) {
         let df = Math.abs(b - lastB); if (df > Math.PI) df = 2 * Math.PI - df;
