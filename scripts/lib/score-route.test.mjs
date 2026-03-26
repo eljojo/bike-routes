@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { relaxationScore } from './score-route.mjs';
+import { relaxationScore, scoreRoute } from './score-route.mjs';
 
 describe('relaxationScore', () => {
   it('highway=cycleway → 5 (full relaxation)', () => {
@@ -40,5 +40,49 @@ describe('relaxationScore', () => {
 
   it('catastro emplazamiento acera → 3', () => {
     expect(relaxationScore({ highway: 'cycleway' }, { emplazamiento: 'acera' })).toBe(3);
+  });
+});
+
+function makeWay(id, coords, tags = {}) {
+  return { id, geometry: coords.map(([lon, lat]) => ({ lon, lat })), tags };
+}
+
+describe('scoreRoute', () => {
+  it('all-cycleway route scores high relaxation', () => {
+    const ways = [
+      makeWay(1, [[-70.60, -33.42], [-70.61, -33.42]], { highway: 'cycleway' }),
+      makeWay(2, [[-70.61, -33.42], [-70.62, -33.42]], { highway: 'cycleway' }),
+    ];
+    const score = scoreRoute(ways, [-70.60, -33.42], [-70.62, -33.42]);
+    expect(score.relaxation).toBeGreaterThan(8);
+    expect(score.total).toBeGreaterThan(15);
+  });
+
+  it('mixed route scores lower relaxation than all-cycleway', () => {
+    const ways = [
+      makeWay(1, [[-70.60, -33.42], [-70.61, -33.42]], { highway: 'cycleway' }),
+      makeWay(2, [[-70.61, -33.42], [-70.62, -33.42]], { highway: 'secondary', cycleway: 'lane' }),
+    ];
+    const score = scoreRoute(ways, [-70.60, -33.42], [-70.62, -33.42]);
+    expect(score.relaxation).toBeLessThan(8);
+  });
+
+  it('very indirect route gets low directness', () => {
+    const ways = [
+      makeWay(1, [[-70.60, -33.42], [-70.55, -33.42]], { highway: 'cycleway' }),
+      makeWay(2, [[-70.55, -33.42], [-70.60, -33.42]], { highway: 'cycleway' }),
+    ];
+    const score = scoreRoute(ways, [-70.60, -33.42], [-70.60, -33.42]);
+    expect(score.directness).toBeLessThan(2);
+  });
+
+  it('transition penalty for relaxed→tense switch', () => {
+    const ways = [
+      makeWay(1, [[-70.60, -33.42], [-70.61, -33.42]], { highway: 'cycleway' }),
+      makeWay(2, [[-70.61, -33.42], [-70.62, -33.42]], { highway: 'primary' }),
+      makeWay(3, [[-70.62, -33.42], [-70.63, -33.42]], { highway: 'cycleway' }),
+    ];
+    const score = scoreRoute(ways, [-70.60, -33.42], [-70.63, -33.42]);
+    expect(score.transitions).toBeLessThan(0);
   });
 });
