@@ -134,6 +134,44 @@ export function orderWays(ways) {
     }
   }
 
+  // Oneway lane dedup: if two ways both have oneway tags and are within
+  // 30m perpendicular distance with similar or anti-parallel bearing,
+  // they're parallel lanes of the same bike path. Keep the longer one.
+  // This catches bidirectional cycleways mapped as two one-way lanes.
+  {
+    const remaining = segs.filter(s => !dropped.has(s.i));
+    remaining.sort((a, b) => b.lengthM - a.lengthM);
+    for (let i = 0; i < remaining.length; i++) {
+      if (dropped.has(remaining[i].i)) continue;
+      const a = remaining[i];
+      const aOneway = a.way.tags?.oneway === 'yes' || a.way.tags?.['oneway:bicycle'] === 'yes';
+      if (!aOneway) continue;
+      const aB = bearing(a.start, a.end);
+
+      for (let j = i + 1; j < remaining.length; j++) {
+        if (dropped.has(remaining[j].i)) continue;
+        const b = remaining[j];
+        const bOneway = b.way.tags?.oneway === 'yes' || b.way.tags?.['oneway:bicycle'] === 'yes';
+        if (!bOneway) continue;
+
+        if (haversineM(a.mid, b.mid) > 100) continue;
+
+        const bB = bearing(b.start, b.end);
+        let bDiff = angleDiff(aB, bB);
+        const antiDiff = angleDiff(aB, bB + Math.PI);
+        if (Math.min(bDiff, antiDiff) > Math.PI / 4) continue; // > 45°
+
+        // Perpendicular distance
+        const axDir = [Math.cos(aB), Math.sin(aB)];
+        const perpDir = [-axDir[1], axDir[0]];
+        const perpDist = Math.abs((b.mid[0] - a.mid[0]) * perpDir[0] + (b.mid[1] - a.mid[1]) * perpDir[1]) * 100000;
+        if (perpDist > 50) continue;
+
+        dropped.add(b.i);
+      }
+    }
+  }
+
   // Parallel-overlap dedup: detect ways that cover the same corridor
   // but are in DIFFERENT clusters (e.g. 100m apart along a river).
   // Two ways are parallel overlaps if:
