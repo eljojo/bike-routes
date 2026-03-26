@@ -541,6 +541,18 @@ describe('orderWays', () => {
     expect(countReversals(ordered)).toBe(0);
   });
 
+  // REAL DATA: Pedro Aguirre Cerda — 90 cycling ways, many oneway=yes
+  // parallel pairs (110 pairs within 50m with similar bearing).
+  // The bike path is mapped as two one-way lanes ~15m apart.
+  // orderWays should treat parallel oneway pairs as duplicates and
+  // keep only one direction. Currently: 8 reversals from zigzagging
+  // between the two lanes.
+  it('REAL: Pedro Aguirre Cerda (oneway parallel lanes) should have ≤2 reversals', () => {
+    const ways = JSON.parse(readFileSync(new URL('./fixtures/pedro-aguirre-cerda-ways.json', import.meta.url), 'utf8'));
+    const ordered = orderWays(ways);
+    expect(countReversals(ordered)).toBeLessThanOrEqual(2);
+  });
+
   // REGRESSION GUARD: lock in reversal counts for all real fixtures.
   // If a code change increases reversals for any fixture, the test fails.
   // These numbers are the BEST we've achieved — don't regress.
