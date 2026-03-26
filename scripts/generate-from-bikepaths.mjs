@@ -241,6 +241,14 @@ for (const bp of bike_paths) {
     // Idempotent: if index.md exists, only update GPX-derived fields
     // (distance_km, variants distance). Preserve everything else
     // (description, tags, waypoints, status, etc.)
+    // Collect unique video URLs from catastro segments
+    const videoUrls = [...new Set(
+      (bp.segments || []).map(s => s.video).filter(Boolean)
+    )];
+    const videoBody = videoUrls.length > 0
+      ? '\n' + videoUrls.join('\n') + '\n'
+      : '';
+
     const mdPath = path.join(routeDir, 'index.md');
     if (fs.existsSync(mdPath)) {
       const raw = fs.readFileSync(mdPath, 'utf8');
@@ -250,7 +258,13 @@ for (const bp of bike_paths) {
         existing.distance_km = distanceKm;
         existing.updated_at = new Date().toISOString().split('T')[0];
         if (existing.variants?.[0]) existing.variants[0].distance_km = distanceKm;
-        const md = `---\n${yaml.dump(existing, { lineWidth: -1 })}---\n${fmMatch[2] || ''}`;
+        // Preserve hand-written body; regenerate if body is empty or only video URLs
+        const existingBody = (fmMatch[2] || '').trim();
+        const isOnlyVideos = existingBody === '' || existingBody.split('\n').every(
+          line => line.trim() === '' || line.trim().startsWith('https://youtu.be/') || line.trim().startsWith('https://www.youtube.com/')
+        );
+        const body = isOnlyVideos ? videoBody : fmMatch[2] || '';
+        const md = `---\n${yaml.dump(existing, { lineWidth: -1 })}---\n${body}`;
         fs.writeFileSync(mdPath, md);
       }
     } else {
@@ -263,7 +277,7 @@ for (const bp of bike_paths) {
         updated_at: new Date().toISOString().split('T')[0],
         variants: [{ name: bp.name, gpx: 'main.gpx', distance_km: distanceKm }],
       };
-      fs.writeFileSync(mdPath, `---\n${yaml.dump(fm, { lineWidth: -1 })}---\n`);
+      fs.writeFileSync(mdPath, `---\n${yaml.dump(fm, { lineWidth: -1 })}---\n${videoBody}`);
     }
 
     if (!fs.existsSync(path.join(routeDir, 'media.yml'))) {

@@ -11,3 +11,5 @@ variants:
     gpx: main.gpx
     distance_km: 4.9
 ---
+
+https://youtu.be/YAmrphx2w98
