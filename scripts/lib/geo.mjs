@@ -189,3 +189,50 @@ export function isPointInCells(coord, cells, gridSize = AREA_GRID) {
   const key = `${Math.floor(coord[0] / gridSize)},${Math.floor(coord[1] / gridSize)}`;
   return cells.has(key);
 }
+
+/**
+ * Project a point onto a polyline and return the scalar distance along it.
+ *
+ * For each line segment, compute the perpendicular projection. If the
+ * projection falls within the segment, use it. Otherwise, use the nearer
+ * endpoint. Returns the closest point with its scalar position.
+ *
+ * @param {[number, number]} point - [lng, lat]
+ * @param {Array<[number, number]>} polyline - array of [lng, lat] coords
+ * @returns {{ coord: [number, number], scalar: number, totalLength: number, dist: number }}
+ */
+export function nearestPointOnPolyline(point, polyline) {
+  let bestDist = Infinity;
+  let bestScalar = 0;
+  let bestCoord = polyline[0];
+  let cumDist = 0;
+
+  for (let i = 0; i < polyline.length - 1; i++) {
+    const a = polyline[i];
+    const b = polyline[i + 1];
+    const segLen = haversineM(a, b);
+
+    const dx = b[0] - a[0];
+    const dy = b[1] - a[1];
+    const lenSq = dx * dx + dy * dy;
+
+    let t = 0;
+    if (lenSq > 0) {
+      t = ((point[0] - a[0]) * dx + (point[1] - a[1]) * dy) / lenSq;
+      t = Math.max(0, Math.min(1, t));
+    }
+
+    const proj = [a[0] + t * dx, a[1] + t * dy];
+    const d = haversineM(point, proj);
+
+    if (d < bestDist) {
+      bestDist = d;
+      bestScalar = cumDist + t * segLen;
+      bestCoord = proj;
+    }
+
+    cumDist += segLen;
+  }
+
+  return { coord: bestCoord, scalar: bestScalar, totalLength: cumDist, dist: bestDist };
+}
