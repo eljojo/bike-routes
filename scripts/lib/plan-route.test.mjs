@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'fs';
 import { findCandidatePaths, planRoute } from './plan-route.mjs';
+import { orderWays } from './order-ways.mjs';
 
 function makeWay(id, coords, tags = {}) {
   return { id, geometry: coords.map(([lon, lat]) => ({ lon, lat })), tags };
@@ -111,5 +113,44 @@ describe('planRoute', () => {
     const result = planRoute(waypoints, allPaths);
     const pathCount = result.filter(r => Array.isArray(r)).length;
     expect(pathCount).toBeGreaterThanOrEqual(1);
+  });
+});
+
+describe('planRoute — real data integration', () => {
+  it('two river places should select a river bike path', () => {
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
+    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
+
+    const allPaths = [
+      { slug: 'costanera-sur', ways: costanera },
+      { slug: 'mapocho-42k', ways: mapocho42k },
+      { slug: 'avenida-mapocho', ways: avMapocho },
+    ];
+
+    // Two places along the river — should pick a river path
+    const waypoints = [
+      { type: 'place', coord: [-70.65, -33.42] },
+      { type: 'place', coord: [-70.72, -33.42] },
+    ];
+
+    const result = planRoute(waypoints, allPaths);
+    const insertedPaths = result.filter(r => Array.isArray(r));
+    expect(insertedPaths.length).toBeGreaterThan(0);
+  });
+
+  it('places far from any bike path get no insertion', () => {
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
+    const allPaths = [{ slug: 'pocuro', ways: pocuro }];
+
+    // Two places in the far south, nowhere near pocuro
+    const waypoints = [
+      { type: 'place', coord: [-70.60, -33.60] },
+      { type: 'place', coord: [-70.59, -33.61] },
+    ];
+
+    const result = planRoute(waypoints, allPaths);
+    const insertedPaths = result.filter(r => Array.isArray(r));
+    expect(insertedPaths.length).toBe(0);
   });
 });
