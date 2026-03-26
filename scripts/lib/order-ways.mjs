@@ -292,14 +292,27 @@ export function orderWays(ways) {
         continue;
       }
 
+      // Filter by oneway direction: if a way has oneway=yes, only enter
+      // it from its start cluster (following the one-way direction).
+      // Don't enter from its end cluster (going against traffic).
+      const directed = incident.filter(si => {
+        const s = segMap.get(si);
+        const oneway = s.way.tags?.oneway === 'yes' || s.way.tags?.['oneway:bicycle'] === 'yes';
+        if (!oneway) return true; // not oneway, either direction fine
+        // For oneway, cur must be the start cluster (entering from start)
+        return s.startCluster === cur;
+      });
+      // Fall back to all incident if oneway filtering removes everything
+      const candidates = directed.length > 0 ? directed : incident;
+
       // Fix #3: pick the edge with smallest turn angle from current heading
       let nextSi;
-      if (incident.length === 1 || lastBearing === null) {
-        nextSi = incident[0];
+      if (candidates.length === 1 || lastBearing === null) {
+        nextSi = candidates[0];
       } else {
         let bestTurn = Infinity;
-        nextSi = incident[0];
-        for (const si of incident) {
+        nextSi = candidates[0];
+        for (const si of candidates) {
           const s = segMap.get(si);
           const otherCluster = s.startCluster === cur ? s.endCluster : s.startCluster;
           const edgeBearing = bearing(clusterCoord(cur), clusterCoord(otherCluster));

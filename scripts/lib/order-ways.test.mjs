@@ -553,6 +553,81 @@ describe('orderWays', () => {
     expect(countReversals(ordered)).toBeLessThanOrEqual(4);
   });
 
+  // THEORY 1: Pedro reversal [4] — 13km gap stitching.
+  // The stitching connects a component ending at -33.36 to a way starting
+  // at -33.47. These are 13km apart — clearly different sections of the city.
+  // Stitching with gaps >5km should not create reversals.
+  it('THEORY: stitching across >5km gap should not reverse direction', () => {
+    // Two components: one going NE, one going SW, 6km apart
+    const ways = [];
+    // Component 1: 3 ways going NE
+    for (let i = 0; i < 3; i++) {
+      ways.push(makeWay(i, [[-70.68 + i*0.005, -33.47 - i*0.005], [-70.68 + (i+1)*0.005, -33.47 - (i+1)*0.005]]));
+    }
+    // Component 2: 3 ways going NE, 6km south (separate area)
+    for (let i = 0; i < 3; i++) {
+      ways.push(makeWay(10+i, [[-70.72 + i*0.005, -33.52 - i*0.005], [-70.72 + (i+1)*0.005, -33.52 - (i+1)*0.005]]));
+    }
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    // Both components go NE — stitching should not reverse either
+    expect(countReversals(ordered)).toBe(0);
+  });
+
+  // THEORY 2: Pedro reversals [16-17] — oneway way meets non-oneway way.
+  // Way 272519482 (oneway=yes, 41°) → way 94451925 (oneway=-, 219°).
+  // The oneway dedup only catches pairs where BOTH have oneway=yes.
+  // When a oneway way meets a non-tagged way going the opposite direction,
+  // the dedup misses it and the walk zigzags.
+  it('THEORY: oneway + non-oneway parallel should still be deduped', () => {
+    const ways = [
+      { ...makeWay(1, [[-70.70, -33.49], [-70.69, -33.48]]), tags: { oneway: 'yes' } }, // NE
+      { ...makeWay(2, [[-70.69, -33.48], [-70.70, -33.49]]) },                           // SW, NO oneway tag
+      { ...makeWay(3, [[-70.69, -33.48], [-70.68, -33.47]]), tags: { oneway: 'yes' } }, // continues NE
+    ];
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    // Way 2 is the return lane without oneway tag — should be deduped
+    expect(countReversals(ordered)).toBe(0);
+  });
+
+  // THEORY 3: after oneway dedup removes one lane, the surviving opposite
+  // lane becomes an orphan that creates a dead-end reversal.
+  // Way 1 (SW oneway) gets deduped as parallel to way 2 (NE oneway).
+  // Way 2 survives but goes NE while the path goes SW. The walk enters
+  // way 2 and then must reverse to continue SW.
+  // FIX: when deduping oneway pairs, keep the lane that matches the
+  // dominant direction (more ways go SW than NE), not the arbitrary first.
+  it('THEORY: oneway dedup should keep the dominant-direction lane', () => {
+    // Two oneway lanes + a non-oneway continuation
+    const ways = [
+      { ...makeWay(1, [[-70.70, -33.489], [-70.704, -33.493]]), tags: { oneway: 'yes' } },  // SW lane
+      { ...makeWay(2, [[-70.704, -33.493], [-70.698, -33.486]]), tags: { oneway: 'yes' } },  // NE lane (opposite)
+      { ...makeWay(3, [[-70.695, -33.483], [-70.714, -33.506]]) },  // SW continuation
+    ];
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    // After dedup, only 2 ways should remain (one lane + continuation)
+    // The NE lane should be the one dropped, not the SW lane
+    // Result should go SW continuously with 0 reversals
+    expect(countReversals(ordered)).toBe(0);
+  });
+
+  // THEORY 3b: same as above but with more context — 4 SW ways and 1 NE way.
+  // The dominant direction is clearly SW. The NE oneway should be dropped.
+  it('THEORY: orphan oneway against dominant direction should be dropped', () => {
+    const ways = [
+      { ...makeWay(1, [[-70.69, -33.48], [-70.695, -33.485]]), tags: { oneway: 'yes' } },  // SW
+      { ...makeWay(2, [[-70.695, -33.485], [-70.70, -33.489]]), tags: { oneway: 'yes' } },  // SW
+      { ...makeWay(3, [[-70.70, -33.489], [-70.704, -33.493]]), tags: { oneway: 'yes' } },  // SW
+      { ...makeWay(4, [[-70.704, -33.493], [-70.698, -33.486]]), tags: { oneway: 'yes' } },  // NE (opposite!)
+      { ...makeWay(5, [[-70.704, -33.493], [-70.71, -33.50]]) },                              // SW continuation
+    ];
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    expect(countReversals(ordered)).toBe(0);
+  });
+
   // REGRESSION GUARD: lock in reversal counts for all real fixtures.
   // If a code change increases reversals for any fixture, the test fails.
   // These numbers are the BEST we've achieved — don't regress.
