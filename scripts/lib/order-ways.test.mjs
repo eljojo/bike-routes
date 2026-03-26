@@ -410,6 +410,100 @@ describe('orderWays', () => {
     expect(endLng).toBeGreaterThan(startLng);
   });
 
+  // THEORY: single way gets _reversed=undefined because it doesn't go
+  // through the graph walk (no edges to traverse) or gets dropped.
+  it('single way should have _reversed set (not undefined)', () => {
+    const ways = [makeWay(1, [[-70.825, -33.437], [-70.835, -33.430], [-70.852, -33.405]])];
+    const ordered = orderWays(ways);
+    expect(ordered).toHaveLength(1); // way must survive
+    expect(ordered[0]._reversed).toBeDefined();
+  });
+
+  // THEORY: single way is being dropped by dedup (self-loop or fragment check)
+  it('single 4km way should not be dropped by dedup', () => {
+    const { readFileSync } = require('fs');
+    const ways = JSON.parse(readFileSync(new URL('./fixtures/noviciado-ways.json', import.meta.url), 'utf8'));
+    const ordered = orderWays(ways);
+    expect(ordered).toHaveLength(1);
+  });
+
+  // THEORY: single way returns the original object (not a copy from doWalk)
+  // meaning it never goes through the graph walk at all
+  it('single way should return a NEW object (copy from walk), not the input', () => {
+    const ways = [makeWay(1, [[-70.825, -33.437], [-70.835, -33.430], [-70.852, -33.405]])];
+    const ordered = orderWays(ways);
+    expect(ordered[0]).not.toBe(ways[0]); // must be a copy, not same reference
+  });
+
+  // THEORY: single-component multi-way paths return early (line 384:
+  // `if (walked.length === 1) return walked[0].ways`) before any
+  // post-stitch direction check. If enforceDirection inside walkComponent
+  // produces the wrong direction AND the early return fires, the result
+  // is wrong with no second chance to fix it.
+  // Test: a single-component E→W path should still get W→E direction.
+  it('single-component path should not bypass direction enforcement', () => {
+    // 5 ways that form one connected component, going E→W
+    // (all stored east-to-west, which is the wrong direction)
+    const ways = [];
+    for (let i = 0; i < 5; i++) {
+      const lng1 = -70.59 - i * 0.006;
+      const lng2 = lng1 - 0.006;
+      ways.push(makeWay(i, [[lng1, -33.43 - i * 0.001], [lng2, -33.43 - (i + 1) * 0.001]]));
+    }
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    // Should go W→E (end lng > start lng)
+    expect(pts[pts.length - 1][0]).toBeGreaterThan(pts[0][0]);
+  });
+
+  // DIAGNOSTIC: Pocuro has _reversed defined on all ways.
+  // The direction is wrong despite flags being set.
+  // Check: is the overall bearing classified as E-W or N-S?
+  // Pocuro overall bearing is 254° — that's in the 225-315 range (E-W).
+  // So isEW=true, and dlng<0 means wrong. enforceDirection SHOULD reverse.
+  // But it doesn't. WHY?
+  //
+  // THEORY: enforceDirection runs per-component inside walkComponent.
+  // If Pocuro has 2 components, each component's local bearing may be
+  // different from 254°. If a component has bearing ~200° (classified as
+  // N-S, going south = correct), enforceDirection won't reverse it.
+  // Then the stitched result is E→W but no post-stitch check exists.
+  it('REAL: Pocuro — per-component bearings may differ from overall bearing', () => {
+    const { readFileSync } = require('fs');
+    const ways = JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8'));
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+
+    // Find component boundaries (gaps > 100m in the rendered trace)
+    const compStarts = [0];
+    for (let i = 1; i < pts.length; i++) {
+      if (haversineM(pts[i - 1], pts[i]) > 100) compStarts.push(i);
+    }
+
+    // For each component, compute bearing
+    const compBearings = [];
+    for (let c = 0; c < compStarts.length; c++) {
+      const start = compStarts[c];
+      const end = c + 1 < compStarts.length ? compStarts[c + 1] - 1 : pts.length - 1;
+      const s = pts[start], e = pts[end];
+      const dlng = e[0] - s[0], dlat = e[1] - s[1];
+      const b = Math.round((Math.atan2(dlng, dlat) * 180 / Math.PI + 360) % 360);
+      const isEW = (b >= 45 && b < 135) || (b >= 225 && b < 315);
+      compBearings.push({ b, isEW, dlng: dlng.toFixed(4), dlat: dlat.toFixed(4) });
+    }
+
+    // If ANY component has a bearing classified as N-S (not E-W) while
+    // the overall path is E-W, that's the bug: enforceDirection misclassifies
+    // the component and doesn't reverse it.
+    const overallDlng = pts[pts.length - 1][0] - pts[0][0];
+    const overallB = Math.round((Math.atan2(overallDlng, pts[pts.length - 1][1] - pts[0][1]) * 180 / Math.PI + 360) % 360);
+    const overallIsEW = (overallB >= 45 && overallB < 135) || (overallB >= 225 && overallB < 315);
+
+    // After fix: post-stitch enforcement reverses the result to W→E.
+    expect(overallIsEW).toBe(true); // overall is E-W
+    expect(overallDlng).toBeGreaterThan(0); // now going east = correct
+  });
+
   // Returns _reversed flag on all ways
   it('returns _reversed flag on all ways', () => {
     const ways = [

@@ -49,7 +49,7 @@ function angleDiff(a, b) {
  * @returns {Array} ordered ways (with _reversed: boolean added)
  */
 export function orderWays(ways) {
-  if (ways.length <= 1) return ways;
+  if (ways.length === 0) return ways;
 
   // --- Precompute per-way data ---
   const segs = ways.map((way, i) => {
@@ -189,7 +189,7 @@ export function orderWays(ways) {
   }
 
   const active = segs.filter(s => !dropped.has(s.i));
-  if (active.length <= 1) return active.map(s => s.way);
+  if (active.length === 0) return [];
 
   // --- Build adjacency ---
   const segMap = new Map(active.map(s => [s.i, s]));
@@ -332,7 +332,7 @@ export function orderWays(ways) {
     // Try each start, optionally reversing to enforce direction convention.
     // Convention: W→E for east-west paths, N→S for north-south paths.
     function enforceDirection(ways) {
-      if (ways.length < 2) return ways;
+      if (ways.length === 0) return ways;
       const first = ways[0], last = ways[ways.length - 1];
       const fC = first.geometry.map(p => [p.lon, p.lat]);
       const lC = last.geometry.map(p => [p.lon, p.lat]);
@@ -381,8 +381,6 @@ export function orderWays(ways) {
   }).filter(Boolean);
 
   walked.sort((a, b) => b.ways.length - a.ways.length);
-  if (walked.length === 1) return walked[0].ways;
-
   const chain = [walked[0]];
   const rest = walked.slice(1);
   while (rest.length > 0) {
@@ -412,5 +410,29 @@ export function orderWays(ways) {
     else chain.unshift(norm);
   }
 
-  return chain.flatMap(c => c.ways);
+  const result = chain.flatMap(c => c.ways);
+
+  // Re-enforce direction on the final stitched result.
+  // Per-component enforcement runs inside walkComponent, but stitching
+  // can reorder/reverse components, and per-component bearings may differ
+  // from the overall bearing. This final check catches those cases.
+  // Proven by: Pocuro diagnostic test (overall E-W going west, unfixed).
+  if (result.length >= 1) {
+    const first = result[0], last = result[result.length - 1];
+    const fC = first.geometry.map(p => [p.lon, p.lat]);
+    const lC = last.geometry.map(p => [p.lon, p.lat]);
+    const fT = first._reversed ? [...fC].reverse() : fC;
+    const lT = last._reversed ? [...lC].reverse() : lC;
+    const s = fT[0], e = lT[lT.length - 1];
+    const dlng = e[0] - s[0], dlat = e[1] - s[1];
+    const b = (Math.atan2(dlng, dlat) * 180 / Math.PI + 360) % 360;
+    const isEW = (b >= 45 && b < 135) || (b >= 225 && b < 315);
+    const wrong = isEW ? dlng < 0 : dlat > 0;
+    if (wrong) {
+      result.reverse();
+      for (const w of result) w._reversed = !w._reversed;
+    }
+  }
+
+  return result;
 }
