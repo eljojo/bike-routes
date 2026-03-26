@@ -20,6 +20,8 @@ bike_paths:
         - -33.6423
       - - -70.7728
         - -33.5782
+    osm_names:
+      - Camino a Lonquén
   - name: Ciclovìa La Serena
     anchors:
       - - -70.6163
@@ -47,6 +49,8 @@ bike_paths:
         video: https://youtu.be/TpJp994P9lc
         surface_type: acera
         width_cm: 240
+    osm_names:
+      - Ciclovìa La Serena
   - name: Ciclovía Los Pajaritos
     osm_names:
       - Ciclovía Los Pajaritos
@@ -109,12 +113,16 @@ bike_paths:
         video: https://youtu.be/7QvhVMrxe1U
         surface_type: mediana
         width_cm: 200
+    osm_names:
+      - Ciclovía Alameda
   - name: Santa Inés
     anchors:
       - - -70.8047
         - -33.6294
       - - -70.736
         - -33.649
+    osm_names:
+      - Santa Inés
   - name: Avenida San Carlos de Apoquindo
     anchors:
       - - -70.5059
@@ -197,6 +205,8 @@ bike_paths:
         video: https://youtu.be/j1MLXusjIfo
         surface_type: calzada
         width_cm: 100
+    osm_names:
+      - Avenida San Carlos de Apoquindo
   - name: Avenida Marathon Oriente
     anchors:
       - - -70.6118
@@ -206,27 +216,27 @@ bike_paths:
     segments:
       - osm_way: 398966265
         quality: 10
-        video: "https://youtu.be/li3HGMpxgio "
+        video: 'https://youtu.be/li3HGMpxgio '
         surface_type: calzada
         width_cm: 250
       - osm_way: 926073353
         quality: 10
-        video: "https://youtu.be/li3HGMpxgio "
+        video: 'https://youtu.be/li3HGMpxgio '
         surface_type: calzada
         width_cm: 250
       - osm_way: 1191517426
         quality: 10
-        video: "https://youtu.be/li3HGMpxgio "
+        video: 'https://youtu.be/li3HGMpxgio '
         surface_type: calzada
         width_cm: 250
       - osm_way: 445992387
         quality: 10
-        video: "https://youtu.be/li3HGMpxgio "
+        video: 'https://youtu.be/li3HGMpxgio '
         surface_type: calzada
         width_cm: 250
       - osm_way: 1191517427
         quality: 10
-        video: "https://youtu.be/li3HGMpxgio "
+        video: 'https://youtu.be/li3HGMpxgio '
         surface_type: calzada
         width_cm: 250
       - osm_way: 447314430
@@ -339,12 +349,16 @@ bike_paths:
         video: https://youtu.be/XZ6bBcaBXoY
         surface_type: calzada
         width_cm: 150
+    osm_names:
+      - Avenida Marathon Oriente
   - name: Avenida Calera de Tango
     anchors:
       - - -70.8234
         - -33.6102
       - - -70.7719
         - -33.6265
+    osm_names:
+      - Avenida Calera de Tango
   - name: Ciclovía Las Perdices (Avenida José Arrieta - Avenida Departamental)
     anchors:
       - - -70.5347
@@ -357,6 +371,8 @@ bike_paths:
         video: https://youtu.be/534dB8sPXfk
         surface_type: acera
         width_cm: 200
+    osm_names:
+      - Ciclovía Las Perdices (Avenida José Arrieta - Avenida Departamental)
   - name: Ciclovía Pedro Aguirre Cerda
     osm_names:
       - Ciclovía Pedro Aguirre Cerda
@@ -430,6 +446,8 @@ bike_paths:
         - -33.5364
       - - -70.7231
         - -33.5107
+    osm_names:
+      - Ciclovía Camino a Melipilla
   - name: Avenida Presidente Riesco
     osm_names:
       - Avenida Presidente Riesco
@@ -598,12 +616,16 @@ bike_paths:
         video: https://youtu.be/nEh8DJc0r-k
         surface_type: acera
         width_cm: 250
+    osm_names:
+      - Ciclovia Grecia
   - name: Ciclovia El Noviciado
     anchors:
       - - -70.825
         - -33.4365
       - - -70.8524
         - -33.4047
+    osm_names:
+      - Ciclovia El Noviciado
   - name: Ciclovía Concha y Toro
     anchors:
       - - -70.5764
@@ -641,6 +663,8 @@ bike_paths:
         video: https://youtu.be/b0YYBrcYSGY
         surface_type: acera
         width_cm: 200
+    osm_names:
+      - Ciclovía Concha y Toro
   - name: Avenida Independencia
     anchors:
       - - -70.6531
@@ -698,6 +722,8 @@ bike_paths:
         video: https://youtu.be/GSVs3kE5Pbc
         surface_type: calzada
         width_cm: 200
+    osm_names:
+      - Avenida Independencia
   - name: Antumalén
     anchors:
       - - -70.6589
@@ -706,12 +732,16 @@ bike_paths:
         - -33.5737
     segments:
       - osm_way: 1124350220
+    osm_names:
+      - Antumalén
   - name: Camino La Pirámide
     anchors:
       - - -70.6174
         - -33.3776
       - - -70.6018
         - -33.3864
+    osm_names:
+      - Camino La Pirámide
   - name: Ciclovía Libertador Bernardo O'Higgins
     anchors:
       - - -70.7058
@@ -794,6 +824,8 @@ bike_paths:
         video: https://youtu.be/tbFfPJ_JHf4
         surface_type: mediana
         width_cm: 320
+    osm_names:
+      - Ciclovía Libertador Bernardo O'Higgins
   - name: Avenida El Valle
     anchors:
       - - -70.5565
@@ -871,6 +903,8 @@ bike_paths:
         video: https://youtu.be/pYU0_qfjk3I
         surface_type: calzada
         width_cm: 100
+    osm_names:
+      - Avenida El Valle
   - name: Salvador Gutiérrez
     anchors:
       - - -70.7321
@@ -903,12 +937,16 @@ bike_paths:
         video: https://www.youtube.com/watch?v=TyYUi_NK-vc
         surface_type: calzada
         width_cm: 200
+    osm_names:
+      - Salvador Gutiérrez
   - name: Avenida Vicuña Mackenna
     anchors:
       - - -70.7456
         - -33.4057
       - - -70.7454
         - -33.4057
+    osm_names:
+      - Avenida Vicuña Mackenna
   - name: Pista Recreativa Simón Bolívar
     anchors:
       - - -70.6098
@@ -931,6 +969,8 @@ bike_paths:
         video: https://youtu.be/Tsc3Fsu1Kg0
         surface_type: calzada
         width_cm: 160
+    osm_names:
+      - Pista Recreativa Simón Bolívar
   - name: Avenida José Miguel Infante
     anchors:
       - - -70.7454
@@ -964,6 +1004,8 @@ bike_paths:
         video: https://youtu.be/LGGnCTZ79VM
         surface_type: calzada
         width_cm: 150
+    osm_names:
+      - Avenida José Miguel Infante
   - name: Ciclovía Las Torres
     anchors:
       - - -70.7312
@@ -981,6 +1023,8 @@ bike_paths:
         video: https://youtu.be/E1Ip6s_Gopg
         surface_type: acera
         width_cm: 200
+    osm_names:
+      - Ciclovía Las Torres
   - name: Martín de Zamora
     anchors:
       - - -70.5926
@@ -1020,6 +1064,8 @@ bike_paths:
         width_cm: 100
       - osm_way: 590220072
         video: https://youtu.be/t96OaKvFdp0
+    osm_names:
+      - Martín de Zamora
   - name: Ciclovía Los Morros
     anchors:
       - - -70.6757
@@ -1042,6 +1088,8 @@ bike_paths:
         video: https://youtu.be/S3k-ulqi3QE
         surface_type: acera
         width_cm: 150
+    osm_names:
+      - Ciclovía Los Morros
   - name: Eliodoro Yáñez
     anchors:
       - - -70.6244
@@ -1089,6 +1137,8 @@ bike_paths:
         video: https://youtu.be/3vv5d0QT_Zw
         surface_type: calzada
         width_cm: 260
+    osm_names:
+      - Eliodoro Yáñez
   - name: Ciclovía Sánchez Fontecilla
     anchors:
       - - -70.5514
@@ -1126,6 +1176,8 @@ bike_paths:
         video: https://youtu.be/UojFP4KcpKM
         surface_type: calzada
         width_cm: 140
+    osm_names:
+      - Ciclovía Sánchez Fontecilla
   - name: Avenida Clotario Blest
     anchors:
       - - -70.681
@@ -1173,6 +1225,8 @@ bike_paths:
         video: https://youtu.be/YAmrphx2w98
         surface_type: acera
         width_cm: 200
+    osm_names:
+      - Avenida Clotario Blest
   - name: General Bulnes
     osm_names:
       - General Bulnes
@@ -1267,6 +1321,8 @@ bike_paths:
         video: https://youtu.be/-Yr2Jq4P_94
         surface_type: acera
         width_cm: 140
+    osm_names:
+      - Ciclovía Esquina Blanca
   - name: Avenida Antonio Varas
     osm_names:
       - Avenida Antonio Varas
@@ -1404,6 +1460,8 @@ bike_paths:
         video: https://youtu.be/elx4Qtq4mVg
         surface_type: calzada
         width_cm: 200
+    osm_names:
+      - Avenida Santa Isabel
   - name: Arturo Prat
     anchors:
       - - -70.6466
@@ -1421,18 +1479,24 @@ bike_paths:
         video: https://youtu.be/yCHV1JZKoj8
         surface_type: calzada
         width_cm: 200
+    osm_names:
+      - Arturo Prat
   - name: Avenida El Carmen
     anchors:
       - - -70.6627
         - -33.3544
       - - -70.675
         - -33.3428
+    osm_names:
+      - Avenida El Carmen
   - name: Alcalde Hernán Prieto
     anchors:
       - - -70.5849
         - -33.6693
       - - -70.588
         - -33.6415
+    osm_names:
+      - Alcalde Hernán Prieto
   - name: Vicuña Mackenna
     osm_names:
       - Vicuña Mackenna
@@ -1605,6 +1669,8 @@ bike_paths:
         surface_type: calzada
         width_cm: 190
       - osm_way: 442629926
+    osm_names:
+      - Avenida Alberto Mackenna
   - name: Avenida Suecia
     anchors:
       - - -70.6023
@@ -1632,6 +1698,8 @@ bike_paths:
         video: https://youtu.be/zrp8o0JxfPE
         surface_type: calzada
         width_cm: 150
+    osm_names:
+      - Avenida Suecia
   - name: Ciclovía Las Perdices (Avenida Bilbao - Avenida José Arrieta)
     anchors:
       - - -70.5308
@@ -1679,6 +1747,8 @@ bike_paths:
         video: https://youtu.be/DKePoVjTqcwhttps://youtu.be/DKePoVjTqcw
         surface_type: mediana
         width_cm: 200
+    osm_names:
+      - Ciclovía Las Perdices (Avenida Bilbao - Avenida José Arrieta)
   - name: Juan Martínez de Rozas
     anchors:
       - - -70.6898
@@ -1706,24 +1776,32 @@ bike_paths:
         video: https://youtu.be/9yxtcY7-eBw
         surface_type: calzada
         width_cm: 200
+    osm_names:
+      - Juan Martínez de Rozas
   - name: Avenida La Montaña
     anchors:
       - - -70.6173
         - -33.4053
       - - -70.6201
         - -33.3999
+    osm_names:
+      - Avenida La Montaña
   - name: Avenida Lo Errázuriz
     anchors:
       - - -70.7089
         - -33.5014
       - - -70.7021
         - -33.5047
+    osm_names:
+      - Avenida Lo Errázuriz
   - name: Ciclovia La Plaza
     anchors:
       - - -70.5005
         - -33.3907
       - - -70.5005
         - -33.3907
+    osm_names:
+      - Ciclovia La Plaza
   - name: Ciclovía Avenida Alcalde Fernando Castillo Velasco
     anchors:
       - - -70.5585
@@ -1766,6 +1844,8 @@ bike_paths:
         video: https://youtu.be/EtsaK4ehRP8
         surface_type: mediana
         width_cm: 200
+    osm_names:
+      - Ciclovía Avenida Alcalde Fernando Castillo Velasco
   - name: Ciclovía Dorsal
     anchors:
       - - -70.6813
@@ -1788,6 +1868,8 @@ bike_paths:
         video: https://youtu.be/6ZVq03mfU1Q
         surface_type: acera
         width_cm: 200
+    osm_names:
+      - Ciclovía Dorsal
   - name: Ciclovía Pocuro
     osm_names:
       - Ciclovía Pocuro
@@ -1850,6 +1932,8 @@ bike_paths:
         video: https://youtu.be/tjLqtvKEeSM
         surface_type: calzada
         width_cm: 130
+    osm_names:
+      - Avenida Francisco Bulnes Correa
   - name: Ciclovía Andrés Bello
     anchors:
       - - -70.6261
@@ -1869,6 +1953,8 @@ bike_paths:
         quality: 4
         surface_type: acera
         width_cm: 250
+    osm_names:
+      - Ciclovía Andrés Bello
   - name: Avenida Ricardo Lyon
     anchors:
       - - -70.6029
@@ -1886,12 +1972,16 @@ bike_paths:
         video: https://youtu.be/3TCBuRfmmJ4
         surface_type: calzada
         width_cm: 230
+    osm_names:
+      - Avenida Ricardo Lyon
   - name: Ciclovia Parque Bicentenario Cerrillos
     anchors:
       - - -70.7045
         - -33.501
       - - -70.6909
         - -33.4853
+    osm_names:
+      - Ciclovia Parque Bicentenario Cerrillos
   - name: Avenida Mapocho
     anchors:
       - - -70.6924
@@ -1974,6 +2064,8 @@ bike_paths:
         video: https://youtu.be/5Aid1Ureb8M
         surface_type: calzada
         width_cm: 200
+    osm_names:
+      - Avenida Mapocho
   - name: Rosas
     anchors:
       - - -70.6801
@@ -2001,6 +2093,8 @@ bike_paths:
         video: https://youtu.be/8W-stRc6fm4
         surface_type: calzada
         width_cm: 250
+    osm_names:
+      - Rosas
   - name: Avenida Brasil
     anchors:
       - - -70.6648
@@ -2087,6 +2181,8 @@ bike_paths:
         video: https://youtu.be/5Aid1Ureb8M
         surface_type: calzada
         width_cm: 200
+    osm_names:
+      - Avenida Brasil
   - name: Condell
     osm_names:
       - Condell
@@ -2148,18 +2244,24 @@ bike_paths:
         - -33.3554
       - - -70.5779
         - -33.3611
+    osm_names:
+      - MTB Clásico
   - name: Avenida Jorge Hirmas
     anchors:
       - - -70.6918
         - -33.4152
       - - -70.6772
         - -33.4203
+    osm_names:
+      - Avenida Jorge Hirmas
   - name: Avenida Observatorio
     anchors:
       - - -70.6569
         - -33.5624
       - - -70.6306
         - -33.5658
+    osm_names:
+      - Avenida Observatorio
   - name: Club Hípico
     anchors:
       - - -70.6649
@@ -2197,12 +2299,16 @@ bike_paths:
         video: https://youtu.be/s1izo_6v2gE
         surface_type: calzada
         width_cm: 210
+    osm_names:
+      - Club Hípico
   - name: Avenida Costanera Sur
     anchors:
       - - -70.7806
         - -33.4154
       - - -70.7588
         - -33.4137
+    osm_names:
+      - Avenida Costanera Sur
   - name: Ciclovia Hamilton
     anchors:
       - - -70.53
@@ -2215,6 +2321,8 @@ bike_paths:
         video: https://youtu.be/iOQezyivKSs
         surface_type: calzada
         width_cm: 130
+    osm_names:
+      - Ciclovia Hamilton
   - name: Avenida Sargento Menadier
     anchors:
       - - -70.6277
@@ -2267,12 +2375,16 @@ bike_paths:
         video: https://youtu.be/_yBpLfpEaOk
         surface_type: calzada
         width_cm: 200
+    osm_names:
+      - Avenida Sargento Menadier
   - name: Avenida Pedro Bannen
     anchors:
       - - -70.6326
         - -33.4237
       - - -70.623
         - -33.4161
+    osm_names:
+      - Avenida Pedro Bannen
   - name: Ciclovía Dorsal
     anchors:
       - - -70.6304
@@ -2290,6 +2402,8 @@ bike_paths:
         video: https://youtu.be/6drCqSnk2oY
         surface_type: acera
         width_cm: 250
+    osm_names:
+      - Ciclovía Dorsal
   - name: Carlos Antúnez
     anchors:
       - - -70.6146
@@ -2317,6 +2431,8 @@ bike_paths:
         video: https://youtu.be/ycDhH88kqlM
         surface_type: calzada
         width_cm: 100
+    osm_names:
+      - Carlos Antúnez
   - name: Mapocho Expreso
     anchors:
       - - -70.6453
@@ -2377,6 +2493,8 @@ bike_paths:
       - osm_way: 895297050
         video: https://youtu.be/hLIhoLirtts
         width_cm: 180
+    osm_names:
+      - Mapocho Expreso
   - name: Libertad
     anchors:
       - - -70.673
@@ -2389,6 +2507,8 @@ bike_paths:
         video: https://youtu.be/7QvhVMrxe1U
         surface_type: mediana
         width_cm: 200
+    osm_names:
+      - Libertad
   - name: Ciclovía Carlos Valdovinos
     anchors:
       - - -70.6416
@@ -2401,6 +2521,8 @@ bike_paths:
         video: https://youtu.be/aLewv34bqYE
         surface_type: acera
         width_cm: 180
+    osm_names:
+      - Ciclovía Carlos Valdovinos
   - name: Ciclovía Parque Víctor Jara
     anchors:
       - - -70.654
@@ -2422,6 +2544,8 @@ bike_paths:
         video: https://youtu.be/gJWVK1zHrIQ
         surface_type: acera
         width_cm: 200
+    osm_names:
+      - Ciclovía Parque Víctor Jara
   - name: Avenida Capitán Ignacio Carrera Pinto
     anchors:
       - - -70.5882
@@ -2444,12 +2568,16 @@ bike_paths:
         video: https://youtu.be/TIMlVrjpeBI
         surface_type: acera
         width_cm: 205
+    osm_names:
+      - Avenida Capitán Ignacio Carrera Pinto
   - name: Ciclovia 5 de Abril
     anchors:
       - - -70.7213
         - -33.4727
       - - -70.7016
         - -33.4633
+    osm_names:
+      - Ciclovia 5 de Abril
   - name: Avenida José Miguel Claro
     anchors:
       - - -70.6165
@@ -2467,6 +2595,8 @@ bike_paths:
         video: https://youtu.be/s_oBLAbOvnc
         surface_type: calzada
         width_cm: 200
+    osm_names:
+      - Avenida José Miguel Claro
   - name: Marín
     anchors:
       - - -70.6423
@@ -2504,6 +2634,8 @@ bike_paths:
         video: https://youtu.be/9THTv3njnOA
         surface_type: acera
         width_cm: 200
+    osm_names:
+      - Marín
   - name: Enrique Olivares
     anchors:
       - - -70.5883
@@ -2513,59 +2645,61 @@ bike_paths:
     segments:
       - osm_way: 109791006
         quality: 5
-        video: "https://youtu.be/cndKnyVJH98 "
+        video: 'https://youtu.be/cndKnyVJH98 '
         surface_type: calzada
         width_cm: 100
       - osm_way: 1004120592
         quality: 5
-        video: "https://youtu.be/cndKnyVJH98 "
+        video: 'https://youtu.be/cndKnyVJH98 '
         surface_type: calzada
         width_cm: 100
       - osm_way: 1004120597
         quality: 5
-        video: "https://youtu.be/cndKnyVJH98 "
+        video: 'https://youtu.be/cndKnyVJH98 '
         surface_type: calzada
         width_cm: 100
       - osm_way: 438205727
         quality: 5
-        video: "https://youtu.be/cndKnyVJH98 "
+        video: 'https://youtu.be/cndKnyVJH98 '
         surface_type: calzada
         width_cm: 100
       - osm_way: 205945152
         quality: 5
-        video: "https://youtu.be/cndKnyVJH98 "
+        video: 'https://youtu.be/cndKnyVJH98 '
         surface_type: calzada
         width_cm: 100
       - osm_way: 1453500574
         quality: 5
-        video: "https://youtu.be/cndKnyVJH98 "
+        video: 'https://youtu.be/cndKnyVJH98 '
         surface_type: calzada
         width_cm: 100
       - osm_way: 1453500575
         quality: 5
-        video: "https://youtu.be/cndKnyVJH98 "
+        video: 'https://youtu.be/cndKnyVJH98 '
         surface_type: calzada
         width_cm: 100
       - osm_way: 126104129
         quality: 5
-        video: "https://youtu.be/cndKnyVJH98 "
+        video: 'https://youtu.be/cndKnyVJH98 '
         surface_type: calzada
         width_cm: 100
       - osm_way: 198019608
         quality: 5
-        video: "https://youtu.be/cndKnyVJH98 "
+        video: 'https://youtu.be/cndKnyVJH98 '
         surface_type: calzada
         width_cm: 100
       - osm_way: 1459131465
         quality: 5
-        video: "https://youtu.be/cndKnyVJH98 "
+        video: 'https://youtu.be/cndKnyVJH98 '
         surface_type: calzada
         width_cm: 100
       - osm_way: 453820986
         quality: 5
-        video: "https://youtu.be/cndKnyVJH98 "
+        video: 'https://youtu.be/cndKnyVJH98 '
         surface_type: calzada
         width_cm: 100
+    osm_names:
+      - Enrique Olivares
   - name: Avenida Sur
     anchors:
       - - -70.7781
@@ -2588,6 +2722,8 @@ bike_paths:
         video: https://youtu.be/Z2hWokhYj6Q
         surface_type: calzada
         width_cm: 220
+    osm_names:
+      - Avenida Sur
   - name: Avenida Federico Haydn
     anchors:
       - - -70.62
@@ -2625,3 +2761,5 @@ bike_paths:
         video: https://youtu.be/vDwTXTBfH9s
         surface_type: calzada
         width_cm: 240
+    osm_names:
+      - Avenida Federico Haydn

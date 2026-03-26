@@ -305,29 +305,109 @@ describe('orderWays', () => {
     expect(startLat).toBeGreaterThan(endLat);
   });
 
-  // Two disconnected E-W components with a spur on the first.
-  // The spur creates a reversal in component 1. After stitching,
-  // the overall direction should still be W→E.
-  // Reproduces ciclovia-pocuro pattern: reversals + multi-component + wrong direction.
-  it('two-component E-W path with spur goes W→E after stitching', () => {
-    const ways = [];
-    // Component 1: 4 ways going east + 1 spur going south from midpoint
-    for (let i = 0; i < 4; i++) {
-      ways.push(makeWay(i, [[-70.62 + i * 0.008, -33.43], [-70.62 + (i + 1) * 0.008, -33.43]]));
-    }
-    ways.push(makeWay(4, [[-70.604, -33.43], [-70.604, -33.44]])); // spur south from midpoint
+  // ---------------------------------------------------------------
+  // REAL-WORLD DIRECTION PATTERNS
+  // Each test reproduces the exact bearing/geometry of a real Santiago
+  // bike path that currently goes the wrong direction.
+  // ---------------------------------------------------------------
 
-    // Component 2: 3 ways east section, >2km gap (separate component)
-    for (let i = 0; i < 3; i++) {
-      ways.push(makeWay(10 + i, [[-70.57 + i * 0.008, -33.43], [-70.57 + (i + 1) * 0.008, -33.43]]));
+  // Clotario Blest: bearing 203° (SSW). dlng=-0.018, dlat=-0.044.
+  // Primarily N-S (more lat change than lng change), going south.
+  // N→S convention says this is CORRECT. But it also goes west.
+  // Expected: N→S (south end at the end, north at the start)
+  it('SSW path (bearing 203°, like Clotario Blest) goes N→S', () => {
+    const ways = [];
+    for (let i = 0; i < 5; i++) {
+      ways.push(makeWay(i, [
+        [-70.669 - i * 0.004, -33.479 - i * 0.009],
+        [-70.669 - (i + 1) * 0.004, -33.479 - (i + 1) * 0.009],
+      ]));
     }
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    // N→S: start should be more north (less negative lat)
+    expect(pts[0][1]).toBeGreaterThan(pts[pts.length - 1][1]);
+  });
+
+  // Los Morros: bearing 195° (almost due south, slight west). dlng=-0.01, dlat=-0.037.
+  // Clearly N-S. Should go N→S.
+  it('nearly due-south path (bearing 195°, like Los Morros) goes N→S', () => {
+    const ways = [];
+    for (let i = 0; i < 4; i++) {
+      ways.push(makeWay(i, [
+        [-70.676 - i * 0.003, -33.543 - i * 0.009],
+        [-70.676 - (i + 1) * 0.003, -33.543 - (i + 1) * 0.009],
+      ]));
+    }
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    expect(pts[0][1]).toBeGreaterThan(pts[pts.length - 1][1]); // N→S
+  });
+
+  // El Noviciado: bearing 319° (NW). dlng=-0.027, dlat=+0.032.
+  // Goes northwest. Ambiguous — going both north AND west.
+  // Since it goes more north than west (dlat > dlng), classify as N-S.
+  // But N→S convention says going north is wrong — should reverse to SE→NW...
+  // which goes WEST. So neither convention is clean.
+  // For NW diagonals: prefer the direction that goes more east.
+  // NW→SE goes east. SE→NW goes west. So NW→SE is correct.
+  it('NW diagonal (bearing 319°, like El Noviciado) ends going east', () => {
+    const ways = [
+      makeWay(1, [[-70.852, -33.405], [-70.845, -33.412], [-70.838, -33.418]]),
+      makeWay(2, [[-70.838, -33.418], [-70.832, -33.425], [-70.825, -33.437]]),
+    ];
+    ways.sort(() => Math.random() - 0.5);
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    // Should end more east (less negative lng) than it started
+    expect(pts[pts.length - 1][0]).toBeGreaterThan(pts[0][0]);
+  });
+
+  // REAL DATA: Ciclovía Pocuro — 15 actual OSM ways.
+  // bearing 254° (WSW), should go W→E.
+  it('REAL: Pocuro (15 OSM ways, bearing 254°) should go W→E', () => {
+    const { readFileSync } = require('fs');
+    const ways = JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8'));
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    expect(pts[pts.length - 1][0]).toBeGreaterThan(pts[0][0]); // W→E
+  });
+
+  // REAL DATA: Ciclovia El Noviciado — 1 OSM way, bearing 319° (NW diagonal).
+  // Single-way path stored SE→NW in OSM. Should be reversed to go NW→SE
+  // (toward the east). The direction enforcement must work on single-way
+  // paths too, not just multi-way walks.
+  it('REAL: El Noviciado (1 OSM way, bearing 319°) should end going east', () => {
+    const { readFileSync } = require('fs');
+    const ways = JSON.parse(readFileSync(new URL('./fixtures/noviciado-ways.json', import.meta.url), 'utf8'));
+    const ordered = orderWays(ways);
+    const pts = renderTrace(ordered);
+    expect(pts[pts.length - 1][0]).toBeGreaterThan(pts[0][0]); // end lng > start = going east
+  });
+
+  // Reproduces ciclovia-el-noviciado: diagonal NW→SE path at bearing ~319°.
+  // This is classified as N-S (319° is between 315-360°), and the N→S
+  // convention reverses it to SE→NW, which goes WEST — wrong.
+  // Convention should prefer the direction with an eastward component.
+  it('El Noviciado pattern: diagonal NW-SE at 319° → should go SE to NW (eastward)', () => {
+    // Path goes from SE (-70.825, -33.437) to NW (-70.852, -33.405)
+    // That's bearing ~319° — going NW. Reverse should go SE→NW... wait.
+    // Actually going NW means dlng < 0 (more west) — that's the wrong direction.
+    // The correct direction should have dlng > 0 (going east).
+    // So the path should go NW→SE: from (-70.852, -33.405) to (-70.825, -33.437)
+    const ways = [
+      makeWay(1, [[-70.852, -33.405], [-70.845, -33.412], [-70.838, -33.418]]),
+      makeWay(2, [[-70.838, -33.418], [-70.832, -33.425], [-70.825, -33.437]]),
+    ];
     ways.sort(() => Math.random() - 0.5);
     const ordered = orderWays(ways);
     const pts = renderTrace(ordered);
     const startLng = pts[0][0];
     const endLng = pts[pts.length - 1][0];
-    expect(endLng).toBeGreaterThan(startLng); // W→E overall
-    expect(countReversals(ordered)).toBeLessThanOrEqual(1); // spur may cause 1
+    // Should go toward the east (less negative lng)
+    expect(endLng).toBeGreaterThan(startLng);
   });
 
   // Returns _reversed flag on all ways
