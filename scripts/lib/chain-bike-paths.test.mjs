@@ -674,7 +674,32 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     };
   }
 
-  // Rule 0: The chain includes mapocho-42k going WEST (toward Quinta Normal)
+  // Rule 0a: No gaps larger than 500m between consecutive points
+  it('no gaps larger than 500m between consecutive points', () => {
+    const { input } = chainLaReina();
+    const segments = chainBikePaths(input);
+    const pts = renderTrace(segments);
+
+    const bigJumps = [];
+    for (let i = 1; i < pts.length; i++) {
+      const d = haversineM(pts[i - 1], pts[i]);
+      if (d > 500) {
+        bigJumps.push({ idx: i, distM: Math.round(d),
+          from: '[' + pts[i-1][0].toFixed(4) + ',' + pts[i-1][1].toFixed(4) + ']',
+          to: '[' + pts[i][0].toFixed(4) + ',' + pts[i][1].toFixed(4) + ']' });
+      }
+    }
+
+    if (bigJumps.length > 0) {
+      console.log('\nGaps >500m:');
+      for (const j of bigJumps) console.log('  pt' + j.idx + ': ' + j.distM + 'm ' + j.from + ' → ' + j.to);
+      console.log('\n' + drawAscii(pts, null, 60));
+    }
+
+    expect(bigJumps, 'gaps >500m: ' + bigJumps.map(j => j.distM + 'm').join(', ')).toHaveLength(0);
+  });
+
+  // Rule 0b: The chain includes mapocho-42k going WEST (toward Quinta Normal)
   // The frontmatter lists mapocho-42k as an explicit waypoint. The chain must
   // include it, and it must go east→west (the route's direction of travel).
   it('includes mapocho-42k ways going westward', () => {
