@@ -166,6 +166,51 @@ export function chainBikePaths(waypoints) {
     }
   }
 
+  // Direction correction: when a path is bracketed by places (or other paths),
+  // ensure the entry→exit scalar direction matches the travel direction.
+  // If the previous waypoint is EAST and the next is WEST, but entry < exit
+  // on a W→E polyline, swap entry and exit to force backward traversal.
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    if (item.type !== 'path') continue;
+    if (item.entry === null || item.exit === null) continue;
+
+    // Find previous and next coordinates
+    let prevCoord = null, nextCoord = null;
+    for (let p = i - 1; p >= 0; p--) {
+      if (items[p].type === 'place') { prevCoord = items[p].coord; break; }
+      if (items[p].type === 'path' && items[p].exit != null) {
+        prevCoord = coordAtScalar(items[p].poly, items[p].exit);
+        break;
+      }
+    }
+    for (let n = i + 1; n < items.length; n++) {
+      if (items[n].type === 'place') { nextCoord = items[n].coord; break; }
+      if (items[n].type === 'path' && items[n].entry != null) {
+        nextCoord = coordAtScalar(items[n].poly, items[n].entry);
+        break;
+      }
+    }
+
+    if (!prevCoord || !nextCoord) continue;
+
+    // Check: does the current entry→exit go the right way?
+    // Entry should be closer to prevCoord, exit closer to nextCoord.
+    const entryCoord = coordAtScalar(item.poly, item.entry);
+    const exitCoord = coordAtScalar(item.poly, item.exit);
+
+    const entryToPrev = haversineM(entryCoord, prevCoord);
+    const exitToPrev = haversineM(exitCoord, prevCoord);
+    const entryToNext = haversineM(entryCoord, nextCoord);
+    const exitToNext = haversineM(exitCoord, nextCoord);
+
+    // If exit is closer to prev than entry, and entry is closer to next than exit,
+    // the path is going the wrong way. Swap.
+    if (exitToPrev < entryToPrev && entryToNext < exitToNext) {
+      [item.entry, item.exit] = [item.exit, item.entry];
+    }
+  }
+
   // Resolve unconstrained boundaries.
   // For first/last paths, use the travel direction from neighboring waypoints
   // to pick the right endpoint, not just "farthest from entry/exit".
