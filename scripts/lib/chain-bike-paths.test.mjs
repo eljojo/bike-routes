@@ -30,19 +30,27 @@ function makeNSPath(lng, startLat, endLat, n) {
   return ways;
 }
 
-/** Render ways into a coordinate trace the way buildGPX would. */
-function renderTrace(ways) {
+/**
+ * Render segmented output into a coordinate trace the way buildGPX would.
+ * chainBikePaths returns Array<Array<way>> (segments).
+ * Each segment is rendered independently — no cross-segment orientation.
+ */
+function renderTrace(segments) {
+  // Handle both flat array (legacy) and segmented array
+  const segs = Array.isArray(segments[0]) ? segments : [segments];
   const pts = [];
-  let prev = null;
-  for (const w of ways) {
-    const coords = w.geometry.map(p => [p.lon, p.lat]);
-    let trace = w._reversed ? [...coords].reverse() : coords;
-    if (prev && w._reversed == null) {
-      if (haversineM(prev, trace[trace.length - 1]) < haversineM(prev, trace[0]))
-        trace = [...trace].reverse();
+  for (const segment of segs) {
+    let prev = null;
+    for (const w of segment) {
+      const coords = w.geometry.map(p => [p.lon, p.lat]);
+      let trace = w._reversed ? [...coords].reverse() : coords;
+      if (prev && w._reversed == null) {
+        if (haversineM(prev, trace[trace.length - 1]) < haversineM(prev, trace[0]))
+          trace = [...trace].reverse();
+      }
+      for (const c of trace) pts.push(c);
+      prev = trace[trace.length - 1];
     }
-    for (const c of trace) pts.push(c);
-    prev = trace[trace.length - 1];
   }
   return pts;
 }
