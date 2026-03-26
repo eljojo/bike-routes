@@ -674,6 +674,25 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     };
   }
 
+  // Rule 0: The chain includes mapocho-42k going WEST (toward Quinta Normal)
+  // The frontmatter lists mapocho-42k as an explicit waypoint. The chain must
+  // include it, and it must go east→west (the route's direction of travel).
+  it('includes mapocho-42k ways going westward', () => {
+    const { input, fixtures } = chainLaReina();
+    const segments = chainBikePaths(input);
+    const mapocho42kIds = new Set(fixtures.mapocho42k.map(w => w.id));
+
+    // Find mapocho-42k ways in the output
+    const m42kOutput = segments.flat().filter(w => mapocho42kIds.has(w.id));
+    expect(m42kOutput.length, 'mapocho-42k should have ways in output').toBeGreaterThan(0);
+
+    // The mapocho-42k section should go WEST (more negative longitude)
+    const m42kPts = renderTrace([m42kOutput]);
+    const startLng = m42kPts[0][0];
+    const endLng = m42kPts[m42kPts.length - 1][0];
+    expect(endLng, 'mapocho-42k should go west: start ' + startLng.toFixed(4) + ' → end ' + endLng.toFixed(4)).toBeLessThan(startLng);
+  });
+
   // Rule 1: Start at the first waypoint
   // Route starts at sánchez fontecilla (south end, far from Canal San Carlos).
   it('starts near the south end of sánchez fontecilla', () => {
