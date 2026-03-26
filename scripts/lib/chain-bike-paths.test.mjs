@@ -3,6 +3,7 @@ import { haversineM } from './geo.mjs';
 import { chainBikePaths } from './chain-bike-paths.mjs';
 import { orderWays } from './order-ways.mjs';
 import { planRoute } from './plan-route.mjs';
+import { scoreRoute } from './score-route.mjs';
 import { readFileSync } from 'fs';
 
 function makeWay(id, coords) {
@@ -90,6 +91,23 @@ function totalDistance(pts) {
   for (let i = 1; i < pts.length; i++) d += haversineM(pts[i - 1], pts[i]);
   return d;
 }
+
+describe('scoreRoute — alignment', () => {
+  // A N-S path should score higher than an E-W path for a N-S gap
+  it('prefers aligned paths over perpendicular ones', () => {
+    const nsPath = makeNSPath(-70.61, -33.52, -33.44, 5);  // N-S, 5 ways
+    const ewPath = makeLinearPath(-70.65, -70.55, -33.48, 5);  // E-W, 5 ways
+
+    const from = [-70.61, -33.52];  // south
+    const to = [-70.61, -33.44];    // north (same longitude, pure N-S gap)
+
+    const nsScore = scoreRoute(nsPath, from, to);
+    const ewScore = scoreRoute(ewPath, from, to);
+
+    expect(nsScore.alignment).toBeGreaterThan(ewScore.alignment);
+    expect(nsScore.total).toBeGreaterThan(ewScore.total);
+  });
+});
 
 describe('chainBikePaths — real data', () => {
   // REAL DATA: Parque Forestal → Costanera Sur → Antonio Varas → Pocuro

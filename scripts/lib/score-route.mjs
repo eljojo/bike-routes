@@ -107,6 +107,33 @@ export function scoreRoute(ways, startCoord, endCoord, options = {}) {
     else directness = 0;
   }
 
+  // Alignment (0-5): does the path actually bridge from → to?
+  // Find closest point on path to each endpoint. A well-aligned path
+  // gets close to both from AND to. A perpendicular path only gets
+  // close to the corridor midpoint.
+  let alignment = 0;
+  if (straightLine > 0) {
+    let fromDist = Infinity, toDist = Infinity;
+    for (const w of ways) {
+      for (const p of w.geometry) {
+        const c = [p.lon, p.lat];
+        const df = haversineM(startCoord, c);
+        const dt = haversineM(endCoord, c);
+        if (df < fromDist) fromDist = df;
+        if (dt < toDist) toDist = dt;
+      }
+    }
+    // Perfect alignment: both distances are 0 → score 5
+    // Score decreases as the sum of distances grows relative to the gap
+    const approachRatio = (fromDist + toDist) / straightLine;
+    if (approachRatio <= 0.3) alignment = 5;
+    else if (approachRatio <= 0.6) alignment = 4;
+    else if (approachRatio <= 1.0) alignment = 3;
+    else if (approachRatio <= 1.5) alignment = 2;
+    else if (approachRatio <= 2.0) alignment = 1;
+    else alignment = 0;
+  }
+
   // Transitions (-3 to 0): penalty for big drops in relaxation level
   let transitions = 0;
   for (let i = 1; i < perWayScores.length; i++) {
@@ -138,6 +165,6 @@ export function scoreRoute(ways, startCoord, endCoord, options = {}) {
     amenities = Math.min(types.size, 3);
   }
 
-  const total = relaxation + directness + transitions + coverage + amenities;
-  return { relaxation, directness, transitions, coverage, amenities, total };
+  const total = relaxation + directness + alignment + transitions + coverage + amenities;
+  return { relaxation, directness, alignment, transitions, coverage, amenities, total };
 }
