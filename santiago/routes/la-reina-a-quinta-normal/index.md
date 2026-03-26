@@ -8,6 +8,7 @@ tags:
   - flat
   - river
 waypoints:
+  - plaza-egana
   - ciclovia-sanchez-fontecilla
   - canal-san-carlos
   - ciclovia-sanchez-fontecilla
