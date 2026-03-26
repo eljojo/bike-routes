@@ -58,3 +58,56 @@ describe('resolveWaypoints', () => {
     expect(resolved).toEqual(['pocuro', 'Canal San Carlos', 'costanera', 'Sanhattan', 'pocuro']);
   });
 });
+
+describe('resolveWaypoints — place slugs', () => {
+  const mockFetchWays = async (slug) => {
+    if (slug === 'pocuro') return [makeWay(1, [[-70.60, -33.43], [-70.59, -33.43]])];
+    return null;
+  };
+
+  const mockResolvePlace = (slug) => {
+    if (slug === 'estacion-central') return { name: 'Estación Central', lat: -33.452, lng: -70.679 };
+    if (slug === 'plaza-italia') return { name: 'Plaza Italia', lat: -33.437, lng: -70.634 };
+    return null;
+  };
+
+  it('resolves place slug to coordinate when not a bike path', async () => {
+    const { chainWaypoints, resolved } = await resolveWaypoints(
+      ['estacion-central', 'pocuro', 'plaza-italia'],
+      mockFetchWays,
+      { resolvePlace: mockResolvePlace },
+    );
+    expect(chainWaypoints).toHaveLength(3);
+    expect(chainWaypoints[0].lat).toBe(-33.452);
+    expect(chainWaypoints[0].lng).toBe(-70.679);
+    expect(Array.isArray(chainWaypoints[1])).toBe(true);
+    expect(chainWaypoints[2].lat).toBe(-33.437);
+    expect(resolved).toEqual(['Estación Central', 'pocuro', 'Plaza Italia']);
+  });
+
+  it('bike path slug takes priority over place slug', async () => {
+    const fetchBoth = async (slug) => {
+      if (slug === 'pocuro') return [makeWay(1, [[-70.60, -33.43], [-70.59, -33.43]])];
+      return null;
+    };
+    const placeAlsoPocuro = (slug) => {
+      if (slug === 'pocuro') return { name: 'Pocuro', lat: -33.43, lng: -70.60 };
+      return null;
+    };
+    const { chainWaypoints } = await resolveWaypoints(
+      ['pocuro'],
+      fetchBoth,
+      { resolvePlace: placeAlsoPocuro },
+    );
+    expect(Array.isArray(chainWaypoints[0])).toBe(true);
+  });
+
+  it('unknown slug is silently skipped', async () => {
+    const { chainWaypoints } = await resolveWaypoints(
+      ['nonexistent-place'],
+      async () => null,
+      { resolvePlace: () => null },
+    );
+    expect(chainWaypoints).toHaveLength(0);
+  });
+});
