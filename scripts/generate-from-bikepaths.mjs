@@ -19,6 +19,7 @@ import { haversineM } from './lib/geo.mjs';
 import { slugify } from './lib/slugify.mjs';
 import { orderWays } from './lib/order-ways.mjs';
 import { chainBikePaths } from './lib/chain-bike-paths.mjs';
+import { resolveWaypoints } from './lib/resolve-waypoints.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -296,23 +297,20 @@ if (fs.existsSync(routesDir)) {
     if (!fm.waypoints || !Array.isArray(fm.waypoints) || fm.waypoints.length === 0) continue;
 
     try {
-      // Fetch ways for each bike path and build waypoint list for chaining
-      const chainWaypoints = [];
-      const resolved = [];
-      for (const bpSlug of fm.waypoints) {
+      // Resolve waypoints: bike path slugs → ways, place objects → pass through
+      const { chainWaypoints, resolved } = await resolveWaypoints(fm.waypoints, async (bpSlug) => {
         const bp = bpBySlug.get(bpSlug);
         if (!bp) {
           console.log(`  WARN ${slug}: bike path "${bpSlug}" not found in bikepaths.yml`);
-          continue;
+          return null;
         }
         const ways = await fetchBikePathWays(bp);
         if (ways.length === 0) {
           console.log(`  WARN ${slug}: bike path "${bpSlug}" has no OSM ways`);
-          continue;
+          return null;
         }
-        chainWaypoints.push(ways); // each bike path as an Array<way>
-        resolved.push(bpSlug);
-      }
+        return ways;
+      });
 
       if (chainWaypoints.length === 0) {
         console.log(`  SKIP combined ${slug}: no ways resolved`);
