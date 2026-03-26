@@ -305,19 +305,56 @@ export function orderWays(ways) {
       // Fall back to all incident if oneway filtering removes everything
       const candidates = directed.length > 0 ? directed : incident;
 
-      // Fix #3: pick the edge with smallest turn angle from current heading
+      // Fix #3: pick the edge with smallest turn angle from current heading.
+      // For oneway edges that create a >120° turn (going backwards), add a
+      // heavy penalty so the walk prefers any other option. If ALL candidates
+      // are penalized oneways, skip the junction entirely and jump to the
+      // nearest unused cluster — better a gap than a 5km backtrack.
       let nextSi;
       if (candidates.length === 1 || lastBearing === null) {
+        // Single candidate: check if it's a backwards oneway we should skip
+        if (lastBearing !== null && candidates.length === 1) {
+          const s = segMap.get(candidates[0]);
+          const otherCluster = s.startCluster === cur ? s.endCluster : s.startCluster;
+          const edgeBearing = bearing(clusterCoord(cur), clusterCoord(otherCluster));
+          const turn = angleDiff(lastBearing, edgeBearing);
+          const oneway = s.way.tags?.oneway === 'yes' || s.way.tags?.['oneway:bicycle'] === 'yes';
+          if (oneway && turn > 2 * Math.PI / 3) {
+            // Skip this backwards oneway — jump to nearest unused cluster
+            // that ISN'T this one. The skipped way stays unused and may be
+            // picked up later from a better direction.
+            let bestCl = null, bestD = Infinity;
+            const cc = clusterCoord(cur);
+            for (const si of unused) {
+              if (si === candidates[0]) continue; // skip the backwards oneway
+              const ss = segMap.get(si);
+              for (const cl of [ss.startCluster, ss.endCluster]) {
+                if (cl === cur) continue; // don't jump to same cluster
+                const d = haversineM(cc, clusterCoord(cl));
+                if (d < bestD) { bestD = d; bestCl = cl; }
+              }
+            }
+            if (bestCl != null) {
+              cur = bestCl;
+              lastBearing = null;
+              continue;
+            }
+            // No other cluster available — fall through and take this way
+          }
+        }
         nextSi = candidates[0];
       } else {
-        let bestTurn = Infinity;
+        let bestScore = Infinity;
         nextSi = candidates[0];
         for (const si of candidates) {
           const s = segMap.get(si);
           const otherCluster = s.startCluster === cur ? s.endCluster : s.startCluster;
           const edgeBearing = bearing(clusterCoord(cur), clusterCoord(otherCluster));
-          const turn = angleDiff(lastBearing, edgeBearing);
-          if (turn < bestTurn) { bestTurn = turn; nextSi = si; }
+          let score = angleDiff(lastBearing, edgeBearing);
+          // Penalize oneway edges that go backwards (>120°)
+          const oneway = s.way.tags?.oneway === 'yes' || s.way.tags?.['oneway:bicycle'] === 'yes';
+          if (oneway && score > 2 * Math.PI / 3) score += Math.PI;
+          if (score < bestScore) { bestScore = score; nextSi = si; }
         }
       }
 

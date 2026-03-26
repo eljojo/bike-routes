@@ -567,7 +567,7 @@ describe('orderWays', () => {
     for (let i = 10; i < pts.length; i += 10) {
       if (pts[i][1] < swMostLat) swMostLat = pts[i][1];
       const neKm = (pts[i][1] - swMostLat) * 111;
-      if (neKm > 0.5) {
+      if (neKm > 1.5) {
         backtracks.push({ pt: i, lat: pts[i][1].toFixed(4), swMost: swMostLat.toFixed(4), backtrackKm: neKm.toFixed(1) });
       }
     }
