@@ -317,13 +317,17 @@ describe('chainBikePaths — real data', () => {
     expect(countReversals(pts)).toBeLessThanOrEqual(9);
   });
 
-  it('REAL: La Reina — planRoute should select paths that ride through every place', () => {
-    // The human writes places. The system figures out the bike paths.
-    // La Reina → Canal San Carlos → Sanhattan → Thayer Ojeda → Quinta Normal.
-    // planRoute should fill gaps with: sanchez, pocuro, costanera, mapocho42k, avMapocho.
-    // The test asserts:
-    //   1. Each input bike path has ≥10% of its ways in the output
-    //   2. The trace visits each place landmark in order
+  it('REAL: La Reina — planRoute fills gaps with correct bike paths in order', () => {
+    // The human writes places. The system selects bike paths.
+    // Route: La Reina → Canal San Carlos → Sanhattan → Quinta Normal
+    // Expected paths: sanchez (La Reina→CSC), pocuro (CSC→Sanhattan),
+    //   costanera or mapocho42k (Sanhattan→Quinta Normal)
+    //
+    // KNOWN ISSUES (this test should fail until fixed):
+    // 1. Fixtures lack OSM tags → relaxation scoring is 0 for everything
+    // 2. planRoute picks ONE path per gap → can't chain costanera+mapocho42k
+    // 3. planRoute reuses same path for multiple gaps
+    // 4. directness score ignores gap coverage (3km path scores 5 for 11km gap)
     const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
     const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
     const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
@@ -338,47 +342,37 @@ describe('chainBikePaths — real data', () => {
       { slug: 'avMapocho', ways: avMapocho },
     ];
 
-    // Place-only waypoints — the system should select the paths
     const waypoints = [
       { type: 'place', coord: [-70.555, -33.455] },   // La Reina
       { type: 'place', coord: [-70.5725, -33.433] },  // Canal San Carlos
       { type: 'place', coord: [-70.605, -33.418] },   // Sanhattan
-      { type: 'place', coord: [-70.613, -33.421] },   // Luis Thayer Ojeda
       { type: 'place', coord: [-70.730, -33.440] },   // Quinta Normal
     ];
 
     const planned = planRoute(waypoints, allPaths);
-    const segments = chainBikePaths(planned);
-    const allWays = segments.flat();
-    const outputIds = new Set(allWays.map(w => w.id));
 
-    // Each path should contribute ≥10% of its ways
-    for (const p of allPaths) {
-      const included = p.ways.filter(w => outputIds.has(w.id)).length;
-      const pct = Math.round(included / p.ways.length * 100);
-      expect(pct, p.slug + ': ' + included + '/' + p.ways.length + ' ways (' + pct + '%)').toBeGreaterThanOrEqual(10);
-    }
+    // Extract which paths were selected (not place objects)
+    const selectedPaths = planned
+      .filter(item => Array.isArray(item))
+      .map(ways => {
+        const ids = new Set(ways.map(w => w.id));
+        return allPaths.find(p => p.ways.some(w => ids.has(w.id)))?.slug || 'unknown';
+      });
 
-    // Trace should visit each place in order
-    const pts = renderTrace(segments);
-    const places = [
-      { name: 'La Reina', coord: [-70.555, -33.455] },
-      { name: 'Canal San Carlos', coord: [-70.5725, -33.433] },
-      { name: 'Sanhattan', coord: [-70.605, -33.418] },
-      { name: 'Quinta Normal', coord: [-70.730, -33.440] },
-    ];
-    let lastIdx = -1;
-    for (const place of places) {
-      let minDist = Infinity;
-      let closestIdx = -1;
-      for (let i = 0; i < pts.length; i++) {
-        const d = haversineM(pts[i], place.coord);
-        if (d < minDist) { minDist = d; closestIdx = i; }
-      }
-      expect(minDist, place.name + ' should be within 1500m, got ' + Math.round(minDist) + 'm').toBeLessThan(1500);
-      expect(closestIdx, place.name + ' should come after previous').toBeGreaterThan(lastIdx);
-      lastIdx = closestIdx;
-    }
+    // Gap 1 (La Reina → CSC): should pick sanchez
+    // Gap 2 (CSC → Sanhattan): should pick pocuro
+    // Gap 3 (Sanhattan → Quinta Normal): should pick costanera and/or mapocho42k
+    expect(selectedPaths, 'selected paths: ' + selectedPaths.join(', ')).toContain('sanchez');
+    expect(selectedPaths, 'selected paths: ' + selectedPaths.join(', ')).toContain('pocuro');
+    // At least one river path for the Sanhattan→QN gap
+    const hasRiverPath = selectedPaths.includes('costanera') ||
+                         selectedPaths.includes('mapocho42k') ||
+                         selectedPaths.includes('avMapocho');
+    expect(hasRiverPath, 'should include a river path, got: ' + selectedPaths.join(', ')).toBe(true);
+
+    // No path should appear twice
+    const uniquePaths = [...new Set(selectedPaths)];
+    expect(uniquePaths.length, 'duplicate paths: ' + selectedPaths.join(', ')).toBe(selectedPaths.length);
   });
 
   it('REAL: La Reina — overlapping paths should auto-discover handoffs, no zigzag', () => {
