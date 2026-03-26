@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { haversineM } from './geo.mjs';
 import { chainBikePaths } from './chain-bike-paths.mjs';
+import { orderWays } from './order-ways.mjs';
+import { readFileSync } from 'fs';
 
 function makeWay(id, coords) {
   return { id, geometry: coords.map(([lon, lat]) => ({ lon, lat })) };
@@ -85,6 +87,35 @@ function totalDistance(pts) {
   for (let i = 1; i < pts.length; i++) d += haversineM(pts[i - 1], pts[i]);
   return d;
 }
+
+describe('chainBikePaths — real data', () => {
+  // REAL DATA: Pocuro → Antonio Varas → Costanera Sur
+  // Combined route bearing 279° (E→W), should go W→E.
+  // The 3 bike paths run roughly east-west through Providencia.
+  // The chain should produce a continuous W→E trace.
+  it('REAL: Pocuro a Parque Forestal should go W→E with 0 reversals', () => {
+    const pocuro = JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8'));
+    const varas = JSON.parse(readFileSync(new URL('./fixtures/antonio-varas-ways.json', import.meta.url), 'utf8'));
+    const costanera = JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8'));
+
+    const orderedPocuro = orderWays(pocuro);
+    const orderedVaras = orderWays(varas);
+    const orderedCostanera = orderWays(costanera);
+
+    const segments = chainBikePaths([orderedPocuro, orderedVaras, orderedCostanera]);
+    const pts = renderTrace(segments);
+
+    // Should go W→E (east end has less negative longitude)
+    expect(pts[pts.length - 1][0]).toBeGreaterThan(pts[0][0]);
+
+    // Should not have excessive reversals
+    expect(countReversals(pts)).toBeLessThanOrEqual(3);
+
+    // Distance should be reasonable (not inflated by backtracking)
+    const dist = totalDistance(pts);
+    expect(dist).toBeLessThan(20000); // ~15km at most, not 30+
+  });
+});
 
 describe('chainBikePaths', () => {
   // ---------------------------------------------------------------
