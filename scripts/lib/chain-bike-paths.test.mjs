@@ -316,28 +316,24 @@ describe('chainBikePaths — real data', () => {
     expect(countReversals(pts)).toBeLessThanOrEqual(9);
   });
 
-  it('REAL: La Reina — route should go steadily westward, not zigzag', () => {
-    // THE BUG: the GPX starts at La Reina (-70.55, east) and should go
-    // steadily west to Quinta Normal (-70.72). Instead it goes:
-    //   west to -70.75 → REVERSES east to -70.66 → REVERSES west to -70.71
-    // This creates a zigzag pattern visible on the map. The route covers
-    // 26km instead of ~18km because of the backtracking.
+  it('REAL: La Reina — overlapping paths should auto-discover handoffs, no zigzag', () => {
+    // Costanera, Mapocho 42k, and Avenida Mapocho overlap along the same river.
+    // The chain should automatically discover where each path hands off to the
+    // next — using only the NON-OVERLAPPING section of each path.
     //
-    // CORRECT BEHAVIOR: the trace should move monotonically westward.
-    // Each sample point's longitude should be roughly ≤ the previous point's.
-    // Small eastward deviations (<500m) are OK for curves, but no 5km reversals.
+    // No manual handoff anchors (Puente Patronato, Puente Bulnes) — just the
+    // paths in order with a destination anchor at Quinta Normal.
+    //
+    // CORRECT BEHAVIOR: steady westward trace, <20km, no backtracks >2km.
     const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
     const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
     const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
     const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
     const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
 
-    const canalSanCarlos = { name: 'Canal San Carlos', lat: -33.433, lng: -70.5725 };
-    const sanhattan = { name: 'Sanhattan', lat: -33.418, lng: -70.605 };
-    const thayerOjeda = { name: 'Luis Thayer Ojeda', lat: -33.421, lng: -70.613 };
+    const quintaNormal = { name: 'Quinta Normal', lat: -33.440, lng: -70.730 };
     const segments = chainBikePaths([
-      sanchez, canalSanCarlos, pocuro, sanhattan, thayerOjeda,
-      costanera, mapocho42k, avMapocho,
+      sanchez, pocuro, costanera, mapocho42k, avMapocho, quintaNormal,
     ]);
     const pts = renderTrace(segments);
 
@@ -345,21 +341,20 @@ describe('chainBikePaths — real data', () => {
     expect(pts[0][0], 'start near La Reina').toBeGreaterThan(-70.58);
     expect(pts[pts.length - 1][0], 'end near Quinta Normal').toBeLessThan(-70.70);
 
-    // Check for large eastward backtracks: sample every 50 points,
-    // no sample should be >2km EAST of the westernmost point seen so far.
+    // No large eastward backtracks
     let westmostLng = pts[0][0];
     const backtracks = [];
     for (let i = 50; i < pts.length; i += 50) {
       if (pts[i][0] < westmostLng) westmostLng = pts[i][0];
-      const eastwardKm = (pts[i][0] - westmostLng) * 85; // rough deg→km at this lat
+      const eastwardKm = (pts[i][0] - westmostLng) * 85;
       if (eastwardKm > 2) {
         backtracks.push({ pt: i, lng: pts[i][0].toFixed(4), westmost: westmostLng.toFixed(4), backtrackKm: eastwardKm.toFixed(1) });
       }
     }
     expect(backtracks, 'large eastward backtracks: ' + JSON.stringify(backtracks)).toHaveLength(0);
 
-    // Reasonable distance: ~18-25km for a direct E→W cross-city route
-    expect(totalDistance(pts)).toBeLessThan(30000);
+    // Reasonable distance and no excessive reversals
+    expect(totalDistance(pts)).toBeLessThan(25000);
     expect(countReversals(pts)).toBeLessThanOrEqual(2);
   });
 
