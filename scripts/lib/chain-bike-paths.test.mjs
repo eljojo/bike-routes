@@ -280,6 +280,66 @@ describe('chainBikePaths — real data', () => {
   // quality) not from the chain's direction logic.
 });
 
+  // La Reina uses place waypoints BETWEEN bike paths to steer the route.
+  // The chain should go E→W (~25km). Currently it goes 67km with 8 reversals
+  // because individual paths are oriented W→E by orderWays.
+  // Two problems:
+  //   1. generate script skips place objects (doesn't pass them to chainBikePaths)
+  //   2. chainBikePaths doesn't override path direction based on waypoint order
+
+  it('REAL: La Reina — place anchors trim ways but still have reversals', () => {
+    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
+    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
+
+    const canalSanCarlos = { name: 'Canal San Carlos', lat: -33.433, lng: -70.5725 };
+    const sanhattan = { name: 'Sanhattan', lat: -33.418, lng: -70.605 };
+    const thayerOjeda = { name: 'Luis Thayer Ojeda', lat: -33.421, lng: -70.613 };
+    const segments = chainBikePaths([
+      sanchez, canalSanCarlos, pocuro, sanhattan, thayerOjeda,
+      costanera, mapocho42k, avMapocho,
+    ]);
+    const pts = renderTrace(segments);
+    const ways = segments.flat();
+
+    // Places DO work — chain trims to 98 ways (vs 104 without), 65km (vs 67km)
+    expect(ways.length).toBeLessThan(104);
+    expect(totalDistance(pts)).toBeLessThan(67000);
+
+    // But reversals are still bad — 9 with places (8 without).
+    // ROOT CAUSE: paths are oriented W→E by orderWays, chain doesn't flip them.
+    // The entry/exit scalars from place projections are correct, but when
+    // entry < exit on a W→E path, sliceWays returns forward traversal (W→E),
+    // which is wrong for an E→W route.
+    expect(countReversals(pts)).toBeLessThanOrEqual(9);
+  });
+
+  it('REAL: La Reina — E→W chain should have ≤2 reversals and <35km', () => {
+    // DESIRED behavior: place anchors + direction-aware chain = clean E→W route.
+    // Currently fails (9 reversals, 65km). Will pass once chainBikePaths
+    // overrides path direction based on the entry→exit scalar relationship.
+    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
+    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
+    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
+    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
+    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
+
+    const canalSanCarlos = { name: 'Canal San Carlos', lat: -33.433, lng: -70.5725 };
+    const sanhattan = { name: 'Sanhattan', lat: -33.418, lng: -70.605 };
+    const thayerOjeda = { name: 'Luis Thayer Ojeda', lat: -33.421, lng: -70.613 };
+    const segments = chainBikePaths([
+      sanchez, canalSanCarlos, pocuro, sanhattan, thayerOjeda,
+      costanera, mapocho42k, avMapocho,
+    ]);
+    const pts = renderTrace(segments);
+
+    expect(pts[0][0], 'start should be east of end').toBeGreaterThan(pts[pts.length - 1][0]);
+    expect(countReversals(pts)).toBeLessThanOrEqual(2);
+    expect(totalDistance(pts)).toBeLessThan(35000);
+  });
+
 describe('chainBikePaths — synthetic', () => {
   // ---------------------------------------------------------------
   // Emporio La Rosa → Plaza Ñuñoa
