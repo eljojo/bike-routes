@@ -866,3 +866,25 @@ describe('chainBikePaths — synthetic', () => {
     expect(countReversals(pts)).toBe(0);
   });
 });
+
+describe('planRoute — corridor filtering', () => {
+  it('finds a long N-S path that crosses through a short gap corridor', () => {
+    // A ~100km N-S path (100 ways), gap is a 1km section off-centre.
+    // The path's start/mid/end are all far from the corridor midpoint,
+    // so the old 3-point check misses it — but intermediate points pass through.
+    const longPath = makeNSPath(-70.61, -34.0, -33.0, 100);
+    const from = [-70.61, -33.44];
+    const to = [-70.61, -33.43];
+
+    const allPaths = [{ slug: 'long-ns', ways: longPath }];
+    const waypoints = [
+      { type: 'place', coord: from },
+      { type: 'place', coord: to },
+    ];
+
+    const planned = planRoute(waypoints, allPaths);
+    // Should find the long path (it passes right through the gap)
+    const pathCount = planned.filter(wp => Array.isArray(wp)).length;
+    expect(pathCount, 'planRoute should find the long N-S path').toBe(1);
+  });
+});

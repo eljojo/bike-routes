@@ -16,8 +16,9 @@ function waysToCoords(ways) {
 
 /**
  * Check if a bike path is within bufferM of the corridor between two points.
- * Checks start, midpoint, and end of the path against a circle centered on
- * the corridor midpoint with radius = half corridor length + buffer.
+ * Samples ~20 evenly-spaced points along the path (plus the last point)
+ * against a circle centered on the corridor midpoint with radius =
+ * half corridor length + buffer.
  */
 function pathNearCorridor(from, to, ways, bufferM = 2000) {
   const coords = waysToCoords(ways);
@@ -25,9 +26,14 @@ function pathNearCorridor(from, to, ways, bufferM = 2000) {
   const mid = [(from[0] + to[0]) / 2, (from[1] + to[1]) / 2];
   const corridorLen = haversineM(from, to);
   const maxDist = corridorLen / 2 + bufferM;
-  for (const c of [coords[0], coords[Math.floor(coords.length / 2)], coords[coords.length - 1]]) {
-    if (haversineM(mid, c) < maxDist) return true;
+
+  // Sample every ~20 points along the path (not just 3)
+  const step = Math.max(1, Math.floor(coords.length / 20));
+  for (let i = 0; i < coords.length; i += step) {
+    if (haversineM(mid, coords[i]) < maxDist) return true;
   }
+  // Always check last point
+  if (haversineM(mid, coords[coords.length - 1]) < maxDist) return true;
   return false;
 }
 
