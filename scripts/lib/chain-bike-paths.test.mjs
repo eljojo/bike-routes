@@ -452,17 +452,67 @@ describe('Ruta de los Parques — Google reference polyline', () => {
   // This IS the expected shape. The generated route must follow this corridor.
   const GOOGLE_REFERENCE = JSON.parse(readFileSync(new URL('./fixtures/google-ref-ruta-de-los-parques.json', import.meta.url), 'utf8'));
 
-  // Minimum fixture set: only the bike paths that cover this corridor.
-  // These 5 paths provide 100% coverage of the Google reference at 500m.
-  function loadCorridorPaths() {
-    const load = f => orderWays(JSON.parse(readFileSync(new URL('./fixtures/' + f, import.meta.url), 'utf8')));
-    return [
-      { slug: 'ruta-de-la-infancia', ways: load('ruta-de-la-infancia-ways.json') },
-      { slug: 'ciclovia-parque-vespucio', ways: load('parque-vespucio-ways.json') },
-      { slug: 'avenida-marathon-oriente', ways: load('marathon-oriente-ways.json') },
-      { slug: 'antonio-varas', ways: load('antonio-varas-ways.json') },
-      { slug: 'pocuro', ways: load('pocuro-ways.json') },
-    ];
+  // Load ALL bike paths from bikepaths.yml, exactly like the generate script.
+  // Uses Overpass with disk cache (scripts/.cache/) — first run fetches, subsequent runs are instant.
+  // The cache is NOT committed — this test reproduces the real pipeline faithfully.
+  async function loadAllPaths() {
+    const yaml = await import('js-yaml');
+    const { queryOverpass } = await import('./overpass.mjs');
+    const { slugify } = await import('./slugify.mjs');
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
+
+    const allPaths = [];
+    for (const bp of bike_paths) {
+      const slug = slugify(bp.name);
+      let ways = [];
+      try {
+        if (bp.osm_relations?.length > 0) {
+          for (const relId of bp.osm_relations) {
+            const q = `[out:json][timeout:60];relation(${relId});way(r);out geom;`;
+            const data = await queryOverpass(q);
+            ways.push(...data.elements.filter(e => e.type === 'way' && e.geometry?.length >= 2));
+          }
+        } else if (bp.osm_names?.length > 0 && bp.anchors?.length >= 2) {
+          const lats = bp.anchors.map(a => a[1]), lngs = bp.anchors.map(a => a[0]);
+          const pad = 0.02;
+          const s = Math.min(...lats) - pad, n = Math.max(...lats) + pad;
+          const w = Math.min(...lngs) - pad, e = Math.max(...lngs) + pad;
+          const nameFilters = bp.osm_names.map(nm =>
+            `way["name"="${nm.replace(/"/g, '\\"')}"](${s},${w},${n},${e});`
+          ).join('\n');
+          const q = `[out:json][timeout:60];\n(\n${nameFilters}\n);\nout geom;`;
+          const data = await queryOverpass(q);
+          ways = data.elements.filter(el => {
+            if (el.type !== 'way' || !el.geometry?.length || el.geometry.length < 2) return false;
+            const t = el.tags || {};
+            if (t.highway === 'cycleway') return true;
+            if (t.cycleway || t['cycleway:left'] || t['cycleway:right'] || t['cycleway:both']) return true;
+            if (t.bicycle === 'designated' || t.bicycle === 'yes') return true;
+            if (['primary', 'secondary', 'tertiary'].includes(t.highway)) return true;
+            return false;
+          });
+        } else if (bp.anchors?.length >= 2) {
+          const lats = bp.anchors.map(a => a[1]), lngs = bp.anchors.map(a => a[0]);
+          const pad = 0.02;
+          const s = Math.min(...lats) - pad, n = Math.max(...lats) + pad;
+          const w = Math.min(...lngs) - pad, e = Math.max(...lngs) + pad;
+          const q = `[out:json][timeout:60];\nway["name"="${bp.name.replace(/"/g, '\\"')}"](${s},${w},${n},${e});\nout geom;`;
+          const data = await queryOverpass(q);
+          ways = data.elements.filter(el => {
+            if (el.type !== 'way' || !el.geometry?.length || el.geometry.length < 2) return false;
+            const t = el.tags || {};
+            if (t.highway === 'cycleway') return true;
+            if (t.cycleway || t['cycleway:left'] || t['cycleway:right'] || t['cycleway:both']) return true;
+            if (t.bicycle === 'designated' || t.bicycle === 'yes') return true;
+            if (['primary', 'secondary', 'tertiary'].includes(t.highway)) return true;
+            return false;
+          });
+        }
+      } catch { /* skip paths that fail to fetch */ }
+      if (ways.length > 0) allPaths.push({ slug, ways: orderWays(ways) });
+    }
+    return allPaths;
   }
 
   // Place waypoints from the route frontmatter (gospel)
@@ -474,15 +524,21 @@ describe('Ruta de los Parques — Google reference polyline', () => {
     { type: 'place', coord: [-70.5975, -33.3911] },  // Plaza Sustentabilidad
   ];
 
-  function generateRoute() {
-    const allPaths = loadCorridorPaths();
+  it('shape matches the Google reference corridor', async () => {
+    const allPaths = await loadAllPaths();
     const planned = planRoute(WAYPOINTS, allPaths);
     const segments = chainBikePaths(planned);
-    return renderTrace(segments);
-  }
+    const pts = renderTrace(segments);
 
-  it('shape matches the Google reference corridor', () => {
-    const pts = generateRoute();
+    // Show which paths were selected
+    const selectedSlugs = [];
+    for (const wp of planned) {
+      if (Array.isArray(wp)) {
+        const match = allPaths.find(p => p.ways === wp);
+        if (match) selectedSlugs.push(match.slug);
+      }
+    }
+    console.log('\nplanRoute selected (' + allPaths.length + ' paths available): ' + selectedSlugs.join(' → '));
 
     // For each Google reference point, find the closest point on our route
     const deviations = [];
@@ -507,10 +563,10 @@ describe('Ruta de los Parques — Google reference polyline', () => {
       matchPct + '% match (' + deviations.length + '/' + GOOGLE_REFERENCE.length + ' deviate >500m). ' +
       'Worst: ' + deviations.slice(0, 5).map(d => 'pt' + d.refIdx + '=' + d.deviationM + 'm').join(', ')
     ).toBeGreaterThanOrEqual(90);
-  });
+  }, 120_000); // 2min timeout for first-run Overpass fetches
 
-  it('planRoute selects avenida-marathon-oriente for the middle section', () => {
-    const allPaths = loadCorridorPaths();
+  it('planRoute selects avenida-marathon-oriente for the middle section', async () => {
+    const allPaths = await loadAllPaths();
     const planned = planRoute(WAYPOINTS, allPaths);
 
     const selectedSlugs = [];
@@ -522,18 +578,24 @@ describe('Ruta de los Parques — Google reference polyline', () => {
     }
 
     expect(selectedSlugs, 'selected: ' + selectedSlugs.join(', ')).toContain('avenida-marathon-oriente');
-  });
+  }, 120_000);
 
-  it('total distance within 30% of Google reference (19.6km)', () => {
-    const pts = generateRoute();
+  it('total distance within 30% of Google reference (19.6km)', async () => {
+    const allPaths = await loadAllPaths();
+    const planned = planRoute(WAYPOINTS, allPaths);
+    const segments = chainBikePaths(planned);
+    const pts = renderTrace(segments);
     const dist = totalDistance(pts);
 
     expect(dist, 'route is ' + (dist/1000).toFixed(1) + 'km').toBeGreaterThan(14000);
     expect(dist, 'route is ' + (dist/1000).toFixed(1) + 'km').toBeLessThan(26000);
-  });
+  }, 120_000);
 
-  it('route does not loop back on itself', () => {
-    const pts = generateRoute();
+  it('route does not loop back on itself', async () => {
+    const allPaths = await loadAllPaths();
+    const planned = planRoute(WAYPOINTS, allPaths);
+    const segments = chainBikePaths(planned);
+    const pts = renderTrace(segments);
 
     // The route goes S→N (latitude increases toward 0). No point should
     // backtrack more than 1km south of the northernmost point seen so far.
@@ -554,7 +616,7 @@ describe('Ruta de los Parques — Google reference polyline', () => {
     }
 
     expect(backtracks, 'route loops back >1km').toHaveLength(0);
-  });
+  }, 120_000);
 });
 
 // ==========================================================================

@@ -173,10 +173,13 @@ export function scoreRoute(ways, startCoord, endCoord, options = {}) {
   // cover the corridor is useless for gap-filling. Apply alignment as a
   // multiplier (0.0–1.0) on the comfort components so that only paths
   // that actually bridge the gap can score highly.
+  // Transitions penalty is also gated: a well-aligned path with mixed
+  // infrastructure is still better than a comfortable path off-corridor.
   const alignFactor = alignment / 10;  // 0.0–1.0
   const gatedRelaxation = relaxation * alignFactor;
   const gatedCoverage = coverage * alignFactor;
+  const gatedTransitions = transitions * (1 - alignFactor);  // high alignment dampens penalty
 
-  const total = gatedRelaxation + directness + alignment + transitions + gatedCoverage + amenities;
+  const total = gatedRelaxation + directness + alignment + gatedTransitions + gatedCoverage + amenities;
   return { relaxation, directness, alignment, transitions, coverage, amenities, total };
 }
