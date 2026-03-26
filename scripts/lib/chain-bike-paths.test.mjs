@@ -460,6 +460,9 @@ describe('Ruta de los Parques — Google reference polyline', () => {
     const pedroAC = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pedro-aguirre-cerda-ways.json', import.meta.url), 'utf8')));
     const varas = orderWays(JSON.parse(readFileSync(new URL('./fixtures/antonio-varas-ways.json', import.meta.url), 'utf8')));
     const vicuna = orderWays(JSON.parse(readFileSync(new URL('./fixtures/vicuna-mackenna-ways.json', import.meta.url), 'utf8')));
+    const infancia = orderWays(JSON.parse(readFileSync(new URL('./fixtures/ruta-de-la-infancia-ways.json', import.meta.url), 'utf8')));
+    const vespucio = orderWays(JSON.parse(readFileSync(new URL('./fixtures/parque-vespucio-ways.json', import.meta.url), 'utf8')));
+    const marathon = orderWays(JSON.parse(readFileSync(new URL('./fixtures/marathon-oriente-ways.json', import.meta.url), 'utf8')));
 
     const allPaths = [
       { slug: 'sanchez', ways: sanchez },
@@ -470,6 +473,9 @@ describe('Ruta de los Parques — Google reference polyline', () => {
       { slug: 'pedro-aguirre-cerda', ways: pedroAC },
       { slug: 'antonio-varas', ways: varas },
       { slug: 'vicuna-mackenna', ways: vicuna },
+      { slug: 'ruta-de-la-infancia', ways: infancia },
+      { slug: 'ciclovia-parque-vespucio', ways: vespucio },
+      { slug: 'avenida-marathon-oriente', ways: marathon },
     ];
 
     // Place waypoints from the route
@@ -516,6 +522,9 @@ describe('Ruta de los Parques — Google reference polyline', () => {
     const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
     const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
     const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
+    const infancia = orderWays(JSON.parse(readFileSync(new URL('./fixtures/ruta-de-la-infancia-ways.json', import.meta.url), 'utf8')));
+    const vespucio = orderWays(JSON.parse(readFileSync(new URL('./fixtures/parque-vespucio-ways.json', import.meta.url), 'utf8')));
+    const marathon = orderWays(JSON.parse(readFileSync(new URL('./fixtures/marathon-oriente-ways.json', import.meta.url), 'utf8')));
 
     const allPaths = [
       { slug: 'sanchez', ways: sanchez },
@@ -526,6 +535,9 @@ describe('Ruta de los Parques — Google reference polyline', () => {
       { slug: 'pedro-aguirre-cerda', ways: pedroAC },
       { slug: 'antonio-varas', ways: varas },
       { slug: 'vicuna-mackenna', ways: vicuna },
+      { slug: 'ruta-de-la-infancia', ways: infancia },
+      { slug: 'ciclovia-parque-vespucio', ways: vespucio },
+      { slug: 'avenida-marathon-oriente', ways: marathon },
     ];
 
     const waypoints = [

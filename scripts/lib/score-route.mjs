@@ -29,7 +29,8 @@ export function relaxationScore(tags, catastro) {
 
   // OSM tag baseline
   const hw = tags.highway || '';
-  const cw = tags.cycleway || '';
+  // Check both undirected and directional cycleway tags
+  const cw = tags.cycleway || tags['cycleway:left'] || tags['cycleway:right'] || tags['cycleway:both'] || '';
 
   // Dedicated cycleway — headphones on
   if (hw === 'cycleway') return 5;
@@ -107,10 +108,13 @@ export function scoreRoute(ways, startCoord, endCoord, options = {}) {
     else directness = 0;
   }
 
-  // Alignment (0-5): does the path actually bridge from → to?
+  // Alignment (0-10): does the path actually bridge from → to?
   // Find closest point on path to each endpoint. A well-aligned path
   // gets close to both from AND to. A perpendicular path only gets
   // close to the corridor midpoint.
+  // Scaled 0-10 (same weight as relaxation) because alignment is the
+  // primary signal for gap-filling — a perfectly relaxing path that
+  // doesn't cover the corridor is useless.
   let alignment = 0;
   if (straightLine > 0) {
     let fromDist = Infinity, toDist = Infinity;
@@ -123,14 +127,14 @@ export function scoreRoute(ways, startCoord, endCoord, options = {}) {
         if (dt < toDist) toDist = dt;
       }
     }
-    // Perfect alignment: both distances are 0 → score 5
+    // Perfect alignment: both distances are 0 → score 10
     // Score decreases as the sum of distances grows relative to the gap
     const approachRatio = (fromDist + toDist) / straightLine;
-    if (approachRatio <= 0.3) alignment = 5;
-    else if (approachRatio <= 0.6) alignment = 4;
-    else if (approachRatio <= 1.0) alignment = 3;
-    else if (approachRatio <= 1.5) alignment = 2;
-    else if (approachRatio <= 2.0) alignment = 1;
+    if (approachRatio <= 0.3) alignment = 10;
+    else if (approachRatio <= 0.6) alignment = 8;
+    else if (approachRatio <= 1.0) alignment = 6;
+    else if (approachRatio <= 1.5) alignment = 4;
+    else if (approachRatio <= 2.0) alignment = 2;
     else alignment = 0;
   }
 
@@ -165,6 +169,14 @@ export function scoreRoute(ways, startCoord, endCoord, options = {}) {
     amenities = Math.min(types.size, 3);
   }
 
-  const total = relaxation + directness + alignment + transitions + coverage + amenities;
+  // Alignment gates the total: a perfectly comfortable path that doesn't
+  // cover the corridor is useless for gap-filling. Apply alignment as a
+  // multiplier (0.0–1.0) on the comfort components so that only paths
+  // that actually bridge the gap can score highly.
+  const alignFactor = alignment / 10;  // 0.0–1.0
+  const gatedRelaxation = relaxation * alignFactor;
+  const gatedCoverage = coverage * alignFactor;
+
+  const total = gatedRelaxation + directness + alignment + transitions + gatedCoverage + amenities;
   return { relaxation, directness, alignment, transitions, coverage, amenities, total };
 }
