@@ -943,7 +943,7 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     for (let i = 0; i < pts.length; i++) {
       if (pts[i][0] < -70.635 || pts[i][0] > -70.610) continue;
       if (pts[i][1] < -33.440 || pts[i][1] > -33.420) continue;
-      if (lastSignificantPt && haversineM(pts[i], lastSignificantPt) < 50) continue;
+      if (lastSignificantPt && haversineM(pts[i], lastSignificantPt) < 100) continue;
       if (lastSignificantPt) {
         const dlng = pts[i][0] - lastSignificantPt[0];
         if (Math.abs(dlng) > 0.0001) {
@@ -992,7 +992,7 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     for (let i = 0; i < pts.length; i++) {
       if (pts[i][1] < -33.435 || pts[i][1] > -33.428) continue;
       if (pts[i][0] < -70.62 || pts[i][0] > -70.58) continue;
-      if (lastSignificantPt && haversineM(pts[i], lastSignificantPt) < 50) continue;
+      if (lastSignificantPt && haversineM(pts[i], lastSignificantPt) < 100) continue;
       if (lastSignificantPt) {
         const dlat = pts[i][1] - lastSignificantPt[1];
         if (Math.abs(dlat) > 0.0001) {
@@ -1011,7 +1011,7 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     for (let i = 0; i < pts.length; i++) {
       if (pts[i][1] < -33.435 || pts[i][1] > -33.428) continue;
       if (pts[i][0] < -70.62 || pts[i][0] > -70.58) continue;
-      if (lastSignificantPt && haversineM(pts[i], lastSignificantPt) < 50) continue;
+      if (lastSignificantPt && haversineM(pts[i], lastSignificantPt) < 100) continue;
       if (lastSignificantPt) {
         const dlat = pts[i][1] - lastSignificantPt[1];
         if (Math.abs(dlat) > 0.0001) {

@@ -160,13 +160,18 @@ function insertConnectors(planned, allPaths) {
       for (let k = 1; k < coords.length; k++) pathLen += haversineM(coords[k - 1], coords[k]);
       if (pathLen > 1500) continue;
 
-      // Must be near the place (<500m)
+      // Must be near the place (<500m) — ALL points, not just the nearest.
+      // A connector whose geometry extends far from the junction causes
+      // zigzag in other parts of the route.
       let nearPlace = Infinity;
+      let farPlace = 0;
       for (const c of coords) {
         const d = haversineM(c, placeCoord);
         if (d < nearPlace) nearPlace = d;
+        if (d > farPlace) farPlace = d;
       }
       if (nearPlace > 500) continue;
+      if (farPlace > 1000) continue; // entire connector must be within 1km of junction
 
       // Must also be near both paths
       const leftCoords = waysToRenderedCoords(leftWays);
@@ -185,6 +190,19 @@ function insertConnectors(planned, allPaths) {
 
       const score = nearPlace + nearLeft + nearRight;
       if (score < bestScore && nearLeft < 500 && nearRight < 500) {
+        // Check the connector doesn't just duplicate the left or right path.
+        // If the connector's midpoint overlaps with either path (within 100m),
+        // it's redundant — skip it.
+        const midCoord = coords[Math.floor(coords.length / 2)];
+        let overlapsLeft = false, overlapsRight = false;
+        for (let li = 0; li < leftCoords.length; li += Math.max(1, Math.floor(leftCoords.length / 30))) {
+          if (haversineM(midCoord, leftCoords[li]) < 100) { overlapsLeft = true; break; }
+        }
+        for (let ri = 0; ri < rightCoords.length; ri += Math.max(1, Math.floor(rightCoords.length / 30))) {
+          if (haversineM(midCoord, rightCoords[ri]) < 100) { overlapsRight = true; break; }
+        }
+        if (overlapsLeft || overlapsRight) continue;
+
         bestScore = score;
         bestConnector = bp;
       }
