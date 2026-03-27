@@ -31,9 +31,16 @@ function buildMeasuredPoly(ways) {
 
   for (let w = 0; w < ways.length; w++) {
     const g = ways[w].geometry;
+    // Apply _reversed so the measured poly follows the RENDERED direction.
+    // This way, projecting a place onto the poly gives a scalar in the
+    // rendered coordinate space, and forward/backward in sliceWays
+    // correctly maps to the rendered direction.
+    const points = ways[w]._reversed
+      ? [...g].reverse()
+      : g;
     const startScalar = dist;
-    for (let p = 0; p < g.length; p++) {
-      const c = [g[p].lon, g[p].lat];
+    for (let p = 0; p < points.length; p++) {
+      const c = [points[p].lon, points[p].lat];
       if (coords.length > 0) {
         dist += haversineM(coords[coords.length - 1], c);
       }
@@ -135,7 +142,9 @@ function sliceWays(ways, poly, entryScalar, exitScalar) {
 
   return included.map(w => {
     const way = { ...ways[w] };
-    // Always set _reversed explicitly so renderTrace/buildGPX doesn't re-guess
+    // The measured poly is built in RENDERED direction (applying _reversed).
+    // Forward = render in poly direction = keep _reversed as-is.
+    // Backward = render against poly direction = flip _reversed.
     way._reversed = forward ? (way._reversed || false) : !way._reversed;
     return way;
   });

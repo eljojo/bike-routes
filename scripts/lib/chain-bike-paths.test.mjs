@@ -641,6 +641,86 @@ describe('Ruta de los Parques — Google reference polyline', () => {
 
     expect(backtracks, 'route loops back >1km').toHaveLength(0);
   }, 120_000);
+
+  it('passes through Isabel la Católica area (pocuro goes W→E)', async () => {
+    // The Google ref goes W→E through pocuro, passing Isabel la Católica
+    // around [-70.600, -33.434]. This confirms pocuro is traversed in the
+    // correct direction — west to east toward Parque Vespucio.
+    const { generateRoute } = await import('./generate-route.mjs');
+    const yaml = await import('js-yaml');
+    const routePath = new URL('../../santiago/routes/ruta-de-los-parques/index.md', import.meta.url);
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const dataDir = new URL('../../santiago', import.meta.url).pathname;
+
+    const routeMd = readFileSync(routePath, 'utf8');
+    const fm = yaml.load(routeMd.match(/^---\n([\s\S]*?)\n---/)[1]);
+    const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
+
+    const { segments } = await generateRoute({
+      waypoints: fm.waypoints,
+      dataDir,
+      bikePaths: bike_paths,
+    });
+    const pts = renderTrace(segments);
+
+    // Route must pass within 300m of Isabel la Católica / pocuro intersection
+    const isabelLaCatolica = [-70.600, -33.434];
+    let minDist = Infinity;
+    for (const p of pts) {
+      const d = haversineM(p, isabelLaCatolica);
+      if (d < minDist) minDist = d;
+    }
+    expect(minDist,
+      'route should pass within 300m of Isabel la Católica, closest: ' + Math.round(minDist) + 'm'
+    ).toBeLessThan(300);
+  }, 120_000);
+
+  it('pocuro section goes W→E (from Inés toward Errázuriz)', async () => {
+    // Google ref shows pocuro going W→E: pt37 at lng -70.612 → pt49 at -70.581.
+    // The route should enter pocuro from the west and go east — no backtracking
+    // from east to west within pocuro's corridor (lat -33.44 to -33.43, lng -70.615 to -70.585).
+    const { generateRoute } = await import('./generate-route.mjs');
+    const yaml = await import('js-yaml');
+    const routePath = new URL('../../santiago/routes/ruta-de-los-parques/index.md', import.meta.url);
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const dataDir = new URL('../../santiago', import.meta.url).pathname;
+
+    const routeMd = readFileSync(routePath, 'utf8');
+    const fm = yaml.load(routeMd.match(/^---\n([\s\S]*?)\n---/)[1]);
+    const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
+
+    const { segments } = await generateRoute({
+      waypoints: fm.waypoints,
+      dataDir,
+      bikePaths: bike_paths,
+    });
+    const pts = renderTrace(segments);
+
+    // Find consecutive points in pocuro's corridor
+    // Pocuro runs E-W at lat ~-33.43, lng -70.615 to -70.585
+    const pocuroSection = [];
+    for (let i = 0; i < pts.length; i++) {
+      if (pts[i][1] > -33.44 && pts[i][1] < -33.425 &&
+          pts[i][0] > -70.616 && pts[i][0] < -70.584) {
+        pocuroSection.push(pts[i]);
+      }
+    }
+
+    expect(pocuroSection.length, 'should have points in pocuro corridor').toBeGreaterThan(5);
+
+    // Overall direction: the pocuro section should go W→E.
+    // Split into first half and second half — the second half's average lng
+    // should be more east (less negative) than the first half's.
+    const mid = Math.floor(pocuroSection.length / 2);
+    const firstHalfAvgLng = pocuroSection.slice(0, mid).reduce((s, p) => s + p[0], 0) / mid;
+    const secondHalfAvgLng = pocuroSection.slice(mid).reduce((s, p) => s + p[0], 0) / (pocuroSection.length - mid);
+
+    expect(secondHalfAvgLng,
+      'pocuro should go W→E: first half avg lng ' + firstHalfAvgLng.toFixed(4) +
+      ', second half avg lng ' + secondHalfAvgLng.toFixed(4) +
+      ' (second half should be less negative = more east)'
+    ).toBeGreaterThan(firstHalfAvgLng);
+  }, 120_000);
 });
 
 // ==========================================================================
