@@ -328,5 +328,58 @@ export function chainBikePaths(waypoints) {
   }
 
   if (currentSegment.length > 0) segments.push(currentSegment);
+
+  // Remove backtracking overlaps within segments.
+  // When overlapping paths are merged, consecutive ways may start BEHIND
+  // the previous way's end (e.g., way A ends at lat -33.464, way B starts
+  // at lat -33.465 going the same direction). Drop the backtracking portion.
+  for (let s = 0; s < segments.length; s++) {
+    const seg = segments[s];
+    if (seg.length < 2) continue;
+
+    // Determine overall direction from first and last rendered points
+    const firstWay = seg[0];
+    const lastWay = seg[seg.length - 1];
+    const fc = firstWay.geometry;
+    const lc = lastWay.geometry;
+    const startPt = firstWay._reversed ? fc[fc.length - 1] : fc[0];
+    const endPt = lastWay._reversed ? lc[0] : lc[lc.length - 1];
+    const overallDlat = endPt.lat - startPt.lat;
+    const overallDlng = endPt.lon - startPt.lon;
+    // Only apply to predominantly N-S segments (lat component > lng component)
+    if (Math.abs(overallDlat) < Math.abs(overallDlng)) continue;
+    if (Math.abs(overallDlat) < 0.001) continue;
+
+    const goingNorth = overallDlat > 0;
+    const filtered = [seg[0]];
+
+    for (let w = 1; w < seg.length; w++) {
+      const prevWay = filtered[filtered.length - 1];
+      const curWay = seg[w];
+
+      // Get the rendered end of previous and rendered start of current
+      const pg = prevWay.geometry;
+      const prevEnd = prevWay._reversed ? pg[0] : pg[pg.length - 1];
+      const cg = curWay.geometry;
+      const curStart = curWay._reversed ? cg[cg.length - 1] : cg[0];
+
+      // If current way starts behind previous way's end (against direction),
+      // check if the overlap is significant (>100m)
+      const backtrackM = goingNorth
+        ? (prevEnd.lat - curStart.lat) * 111000  // going north: backtrack = start is south of end
+        : (curStart.lat - prevEnd.lat) * 111000; // going south: backtrack = start is north of end
+
+      if (backtrackM > 100 && !curWay._connector) {
+        // Skip this way — it backtracks against the travel direction
+        // (but never skip deliberately-inserted connector ways)
+        continue;
+      }
+
+      filtered.push(curWay);
+    }
+
+    segments[s] = filtered;
+  }
+
   return segments.length > 0 ? segments : [[]];
 }

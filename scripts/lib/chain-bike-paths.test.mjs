@@ -483,7 +483,7 @@ describe('Ruta de los Parques — Google reference polyline', () => {
       if (pts[i][1] < -33.49 || pts[i][1] > -33.45) continue;
       if (pts[i][1] > maxNorthLat) maxNorthLat = pts[i][1];
       const southM = (maxNorthLat - pts[i][1]) * 111000;
-      if (southM > 150) {
+      if (southM > 100) {
         backtracks.push({ pt: i, southM: Math.round(southM), lat: pts[i][1].toFixed(4) });
       }
     }

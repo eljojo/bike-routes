@@ -191,7 +191,9 @@ function insertConnectors(planned, allPaths) {
     }
 
     if (bestConnector) {
-      result.push(bestConnector.ways);
+      // Mark connector ways so backtrack removal doesn't drop them
+      const connectorWays = bestConnector.ways.map(w => ({ ...w, _connector: true }));
+      result.push(connectorWays);
     }
   }
 
