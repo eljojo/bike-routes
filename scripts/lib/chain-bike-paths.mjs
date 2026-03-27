@@ -319,36 +319,9 @@ export function chainBikePaths(waypoints) {
     const trimmed = sliceWays(item.ways, item.poly, item.entry, item.exit);
     if (trimmed.length === 0) { pathIdx++; continue; }
 
-    // Check if this connects to the previous segment.
-    // Also force a segment break if the new path would go in a
-    // substantially different direction (>90° turn from overall segment
-    // bearing). This prevents e.g., a N-S path (LTO) from merging into
-    // an E-W segment (Pocuro) and causing zigzag.
+    // Check if this connects to the previous segment
     const entryCoord = coordAtScalar(item.poly, item.entry);
-    let shouldBreak = false;
-    if (lastExitCoord) {
-      const gap = haversineM(lastExitCoord, entryCoord);
-      if (gap > SEGMENT_BREAK_M) {
-        shouldBreak = true;
-      } else if (currentSegment.length > 0) {
-        // Check if the new path goes in a very different direction
-        const exitCoord = coordAtScalar(item.poly, item.exit);
-        const newDlat = exitCoord[1] - entryCoord[1];
-        const newDlng = exitCoord[0] - entryCoord[0];
-        const firstPt = currentSegment[0];
-        const fc = firstPt.geometry;
-        const segStart = firstPt._reversed ? [fc[fc.length-1].lon, fc[fc.length-1].lat] : [fc[0].lon, fc[0].lat];
-        const segDlat = lastExitCoord[1] - segStart[1];
-        const segDlng = lastExitCoord[0] - segStart[0];
-        // Compute angle between segment direction and new path direction
-        const segB = Math.atan2(segDlng, segDlat);
-        const newB = Math.atan2(newDlng, newDlat);
-        let turn = Math.abs(segB - newB);
-        if (turn > Math.PI) turn = 2 * Math.PI - turn;
-        if (turn > Math.PI / 2) shouldBreak = true;
-      }
-    }
-    if (shouldBreak) {
+    if (lastExitCoord && haversineM(lastExitCoord, entryCoord) > SEGMENT_BREAK_M) {
       if (currentSegment.length > 0) segments.push(currentSegment);
       currentSegment = [];
     }
@@ -361,20 +334,28 @@ export function chainBikePaths(waypoints) {
 
   if (currentSegment.length > 0) segments.push(currentSegment);
 
-  // Deduplicate consecutive ways with the same OSM id.
+  // Deduplicate ways with the same OSM id WITHIN the same source path.
   // When overlapping bike paths share underlying OSM ways, sliceWays can
-  // include the same way twice in succession. This causes zigzag artifacts
-  // because the duplicate is rendered again (potentially with different
-  // _reversed flags from different path contexts).
+  // include the same way twice. This causes zigzag artifacts because the
+  // duplicate is rendered again (potentially with different _reversed flags).
+  // Only dedup within the same _pathIdx — different paths can legitimately
+  // have ways with the same id (e.g., synthetic tests, or streets that
+  // cross multiple bike path definitions).
   for (let s = 0; s < segments.length; s++) {
     const seg = segments[s];
     if (seg.length < 2) continue;
     const deduped = [seg[0]];
-    const seen = new Set([seg[0].id]);
+    const seenByPath = new Map(); // pathIdx → Set<id>
+    const firstPathIdx = seg[0]._pathIdx;
+    seenByPath.set(firstPathIdx, new Set([seg[0].id]));
     for (let w = 1; w < seg.length; w++) {
-      if (seen.has(seg[w].id)) continue;
-      seen.add(seg[w].id);
-      deduped.push(seg[w]);
+      const way = seg[w];
+      const pi = way._pathIdx;
+      if (!seenByPath.has(pi)) seenByPath.set(pi, new Set());
+      const seen = seenByPath.get(pi);
+      if (seen.has(way.id)) continue;
+      seen.add(way.id);
+      deduped.push(way);
     }
     segments[s] = deduped;
   }
