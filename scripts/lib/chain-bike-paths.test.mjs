@@ -868,6 +868,191 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     }
     expect(backtracks, 'backtracks >2km: ' + JSON.stringify(backtracks)).toHaveLength(0);
   }, 120_000);
+
+  // --- Bug reproduction tests -----------------------------------------------
+
+  it('no E-W zigzag around Parque Balmaceda (lng -70.635 to -70.610)', async () => {
+    // The route should pass through the Balmaceda / Andrés Bello area as a
+    // continuous westbound line. Currently it zigzags left-right (4 reversals).
+    const { pts } = await generateLaReinaReal();
+
+    let reversals = 0;
+    let lastDir = null;
+    for (let i = 0; i < pts.length - 1; i++) {
+      // Balmaceda zone: lng (-70.635, -70.610), lat (-33.440, -33.420)
+      if (pts[i][0] < -70.635 || pts[i][0] > -70.610) continue;
+      if (pts[i][1] < -33.440 || pts[i][1] > -33.420) continue;
+      const dlng = pts[i + 1][0] - pts[i][0];
+      if (Math.abs(dlng) < 0.0001) continue;
+      const dir = dlng > 0 ? 'E' : 'W';
+      if (lastDir && dir !== lastDir) reversals++;
+      lastDir = dir;
+    }
+
+    expect(reversals,
+      reversals + ' E-W direction changes around Parque Balmaceda — should be a continuous line, not a zigzag'
+    ).toBeLessThanOrEqual(1);
+  }, 120_000);
+
+  it('Pocuro is a clean E-W line with no N-S zigzag', async () => {
+    // Pocuro runs E-W around lat -33.430. The route should ride through it
+    // once as a straight line. Currently it zigzags N-S (3 reversals).
+    const { pts } = await generateLaReinaReal();
+
+    let reversals = 0;
+    let lastDir = null;
+    for (let i = 0; i < pts.length - 1; i++) {
+      // Pocuro zone: lat (-33.435, -33.428), lng (-70.62, -70.58)
+      if (pts[i][1] < -33.435 || pts[i][1] > -33.428) continue;
+      if (pts[i][0] < -70.62 || pts[i][0] > -70.58) continue;
+      const dlat = pts[i + 1][1] - pts[i][1];
+      if (Math.abs(dlat) < 0.0001) continue;
+      const dir = dlat > 0 ? 'N' : 'S';
+      if (lastDir && dir !== lastDir) reversals++;
+      lastDir = dir;
+    }
+
+    expect(reversals,
+      reversals + ' N-S direction changes in Pocuro zone — should be a single clean E-W pass'
+    ).toBeLessThanOrEqual(1);
+  }, 120_000);
+
+  it('luis-thayer-ojeda resolves as cycling infrastructure with multiple ways', async () => {
+    // LTO has cycleway=track tags on 6+ road segments. queryOsmName should
+    // find them, filterCyclingWays should keep only cycling-tagged ways,
+    // and orderWays should chain them into a continuous N-S path.
+    const { generateRoute } = await import('./generate-route.mjs');
+    const yaml = await import('js-yaml');
+    const { readFileSync } = await import('fs');
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const dataDir = new URL('../../santiago', import.meta.url).pathname;
+    const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
+
+    // Resolve just LTO as a waypoint to see what comes back
+    const { chainWaypoints, resolved } = await generateRoute({
+      waypoints: ['luis-thayer-ojeda'],
+      dataDir,
+      bikePaths: bike_paths,
+    });
+
+    expect(chainWaypoints.length, 'luis-thayer-ojeda should resolve').toBe(1);
+    expect(Array.isArray(chainWaypoints[0]), 'should resolve as a path (array of ways), not a place').toBe(true);
+
+    const ways = chainWaypoints[0];
+    expect(ways.length,
+      'LTO should have multiple cycling ways (has cycleway=track on 6+ segments), got ' + ways.length
+    ).toBeGreaterThanOrEqual(3);
+
+    // The path should span a meaningful N-S distance (LTO is ~2km long)
+    const lats = ways.flatMap(w => w.geometry.map(p => p.lat));
+    const latRange = Math.max(...lats) - Math.min(...lats);
+    expect(latRange,
+      'LTO should span at least 0.01° latitude (~1.1km), got ' + latRange.toFixed(4) + '°'
+    ).toBeGreaterThanOrEqual(0.01);
+  }, 120_000);
+
+  it('LTO segment spans meaningful N-S distance in the full route', async () => {
+    // When LTO is part of the full route, chainBikePaths should keep it as
+    // a meaningful N-S segment, not trim it to a tiny fragment.
+    const { segments } = await generateLaReinaReal();
+
+    // Find the segment containing ways near LTO's longitude (~-70.610)
+    // and spanning N-S (lat range > 0.005 = ~550m)
+    let ltoSegIdx = -1;
+    for (let s = 0; s < segments.length; s++) {
+      const seg = segments[s];
+      const ltoWays = seg.filter(w => {
+        const lats = w.geometry.map(p => p.lat);
+        const lngs = w.geometry.map(p => p.lon);
+        const avgLng = lngs.reduce((a, b) => a + b) / lngs.length;
+        return Math.abs(avgLng - (-70.610)) < 0.01;
+      });
+      if (ltoWays.length > 0) {
+        const allLats = ltoWays.flatMap(w => w.geometry.map(p => p.lat));
+        const latRange = Math.max(...allLats) - Math.min(...allLats);
+        if (latRange > 0.005) { ltoSegIdx = s; break; }
+      }
+    }
+
+    expect(ltoSegIdx,
+      'no segment found with meaningful N-S extent near LTO longitude — LTO is being trimmed to nothing'
+    ).toBeGreaterThanOrEqual(0);
+  }, 120_000);
+
+  it('Luis Thayer Ojeda is ridden northward toward Andrés Bello', async () => {
+    // The route should go: Pocuro (E-W) → LTO (northward) → Sanhattan →
+    // Andrés Bello.
+    // Check the actual segment that contains LTO ways (near lng -70.610,
+    // N-S dominant) rather than searching the rendered trace, which could
+    // pick up Andrés Bello passing through the same area.
+    const { segments } = await generateLaReinaReal();
+
+    // Find the segment with N-S ways near LTO's longitude
+    let ltoSeg = null;
+    for (const seg of segments) {
+      // Find ways whose name matches LTO
+      const ltoWays = seg.filter(w =>
+        w.tags?.name && w.tags.name.includes('Thayer')
+      );
+      if (ltoWays.length >= 1) {
+        ltoSeg = ltoWays;
+        break;
+      }
+    }
+
+    expect(ltoSeg, 'no LTO segment found in route').toBeTruthy();
+
+    // Render the LTO ways and check direction
+    const pts = [];
+    for (const w of ltoSeg) {
+      const coords = w.geometry.map(p => [p.lon, p.lat]);
+      const trace = w._reversed ? [...coords].reverse() : coords;
+      for (const c of trace) pts.push(c);
+    }
+
+    const startLat = pts[0][1];
+    const endLat = pts[pts.length - 1][1];
+
+    // Northward = latitude increases (less negative in Santiago)
+    expect(endLat,
+      'LTO goes south (start lat: ' + startLat.toFixed(4) +
+      ', end lat: ' + endLat.toFixed(4) + ') — should go north toward Sanhattan/Andrés Bello'
+    ).toBeGreaterThan(startLat);
+  }, 120_000);
+
+  it('Pocuro–Balmaceda–Andrés Bello corridor overlaps Google reference', async () => {
+    // Zoomed overlay of the middle section where all three bugs live.
+    // Filters both routes to the corridor (lng -70.63 to -70.58, lat -33.44 to -33.41)
+    // then draws the overlay so divergence is visually obvious.
+    const { pts } = await generateLaReinaReal();
+
+    const inCorridor = p => p[0] >= -70.63 && p[0] <= -70.58 && p[1] >= -33.44 && p[1] <= -33.41;
+    const genCorridor = pts.filter(inCorridor);
+    const refCorridor = LA_REINA_GOOGLE.filter(inCorridor);
+
+    console.log('\n=== Pocuro–Balmaceda–Andrés Bello corridor (zoomed) ===');
+    console.log('Generated points in corridor:', genCorridor.length);
+    console.log('Reference points in corridor:', refCorridor.length);
+    console.log(drawAscii(genCorridor, refCorridor, 60));
+
+    // Measure corridor-specific match: every reference point in this zone
+    // should be within 50m of a generated point
+    let covered = 0;
+    for (const ref of refCorridor) {
+      let minDist = Infinity;
+      for (const gen of genCorridor) {
+        const d = haversineM(ref, gen);
+        if (d < minDist) minDist = d;
+      }
+      if (minDist <= 50) covered++;
+    }
+    const pct = refCorridor.length > 0 ? Math.round(covered / refCorridor.length * 100) : 100;
+    console.log(`Corridor coverage at 50m: ${pct}% (${covered}/${refCorridor.length})`);
+
+    expect(pct,
+      pct + '% of Google reference covered at 50m in Pocuro–Balmaceda corridor (need ≥95%)'
+    ).toBeGreaterThanOrEqual(95);
+  }, 120_000);
 });
 
 describe('chainBikePaths — synthetic', () => {

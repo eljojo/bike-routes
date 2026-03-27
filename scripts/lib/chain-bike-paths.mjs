@@ -305,34 +305,84 @@ export function chainBikePaths(waypoints) {
     }
   }
 
-  // Trim each path and collect into segments
+  // Trim each path and collect into segments.
+  // Tag each way with _pathIdx so backtrack removal only applies within
+  // the same source path (not across path transitions like Pocuro → LTO).
   const segments = [];
   let currentSegment = [];
   let lastExitCoord = null;
+  let pathIdx = 0;
 
   for (const item of items) {
     if (item.type !== 'path') continue;
 
     const trimmed = sliceWays(item.ways, item.poly, item.entry, item.exit);
-    if (trimmed.length === 0) continue;
+    if (trimmed.length === 0) { pathIdx++; continue; }
 
-    // Check if this connects to the previous segment
+    // Check if this connects to the previous segment.
+    // Also force a segment break if the new path would go in a
+    // substantially different direction (>90° turn from overall segment
+    // bearing). This prevents e.g., a N-S path (LTO) from merging into
+    // an E-W segment (Pocuro) and causing zigzag.
     const entryCoord = coordAtScalar(item.poly, item.entry);
-    if (lastExitCoord && haversineM(lastExitCoord, entryCoord) > SEGMENT_BREAK_M) {
+    let shouldBreak = false;
+    if (lastExitCoord) {
+      const gap = haversineM(lastExitCoord, entryCoord);
+      if (gap > SEGMENT_BREAK_M) {
+        shouldBreak = true;
+      } else if (currentSegment.length > 0) {
+        // Check if the new path goes in a very different direction
+        const exitCoord = coordAtScalar(item.poly, item.exit);
+        const newDlat = exitCoord[1] - entryCoord[1];
+        const newDlng = exitCoord[0] - entryCoord[0];
+        const firstPt = currentSegment[0];
+        const fc = firstPt.geometry;
+        const segStart = firstPt._reversed ? [fc[fc.length-1].lon, fc[fc.length-1].lat] : [fc[0].lon, fc[0].lat];
+        const segDlat = lastExitCoord[1] - segStart[1];
+        const segDlng = lastExitCoord[0] - segStart[0];
+        // Compute angle between segment direction and new path direction
+        const segB = Math.atan2(segDlng, segDlat);
+        const newB = Math.atan2(newDlng, newDlat);
+        let turn = Math.abs(segB - newB);
+        if (turn > Math.PI) turn = 2 * Math.PI - turn;
+        if (turn > Math.PI / 2) shouldBreak = true;
+      }
+    }
+    if (shouldBreak) {
       if (currentSegment.length > 0) segments.push(currentSegment);
       currentSegment = [];
     }
 
+    for (const w of trimmed) w._pathIdx = pathIdx;
     currentSegment.push(...trimmed);
     lastExitCoord = coordAtScalar(item.poly, item.exit);
+    pathIdx++;
   }
 
   if (currentSegment.length > 0) segments.push(currentSegment);
 
+  // Deduplicate consecutive ways with the same OSM id.
+  // When overlapping bike paths share underlying OSM ways, sliceWays can
+  // include the same way twice in succession. This causes zigzag artifacts
+  // because the duplicate is rendered again (potentially with different
+  // _reversed flags from different path contexts).
+  for (let s = 0; s < segments.length; s++) {
+    const seg = segments[s];
+    if (seg.length < 2) continue;
+    const deduped = [seg[0]];
+    const seen = new Set([seg[0].id]);
+    for (let w = 1; w < seg.length; w++) {
+      if (seen.has(seg[w].id)) continue;
+      seen.add(seg[w].id);
+      deduped.push(seg[w]);
+    }
+    segments[s] = deduped;
+  }
+
   // Remove backtracking overlaps within segments.
   // When overlapping paths are merged, consecutive ways may start BEHIND
-  // the previous way's end (e.g., way A ends at lat -33.464, way B starts
-  // at lat -33.465 going the same direction). Drop the backtracking portion.
+  // the previous way's end. Drop the backtracking portion.
+  // Works for both N-S and E-W dominant segments.
   for (let s = 0; s < segments.length; s++) {
     const seg = segments[s];
     if (seg.length < 2) continue;
@@ -346,11 +396,12 @@ export function chainBikePaths(waypoints) {
     const endPt = lastWay._reversed ? lc[0] : lc[lc.length - 1];
     const overallDlat = endPt.lat - startPt.lat;
     const overallDlng = endPt.lon - startPt.lon;
-    // Only apply to predominantly N-S segments (lat component > lng component)
-    if (Math.abs(overallDlat) < Math.abs(overallDlng)) continue;
-    if (Math.abs(overallDlat) < 0.001) continue;
 
-    const goingNorth = overallDlat > 0;
+    const isNS = Math.abs(overallDlat) >= Math.abs(overallDlng);
+    // Need at least some movement to detect backtracking
+    if (isNS && Math.abs(overallDlat) < 0.001) continue;
+    if (!isNS && Math.abs(overallDlng) < 0.001) continue;
+
     const filtered = [seg[0]];
 
     for (let w = 1; w < seg.length; w++) {
@@ -363,15 +414,25 @@ export function chainBikePaths(waypoints) {
       const cg = curWay.geometry;
       const curStart = curWay._reversed ? cg[cg.length - 1] : cg[0];
 
-      // If current way starts behind previous way's end (against direction),
-      // check if the overlap is significant (>100m)
-      const backtrackM = goingNorth
-        ? (prevEnd.lat - curStart.lat) * 111000  // going north: backtrack = start is south of end
-        : (curStart.lat - prevEnd.lat) * 111000; // going south: backtrack = start is north of end
+      let backtrackM;
+      if (isNS) {
+        const goingNorth = overallDlat > 0;
+        backtrackM = goingNorth
+          ? (prevEnd.lat - curStart.lat) * 111000
+          : (curStart.lat - prevEnd.lat) * 111000;
+      } else {
+        const goingEast = overallDlng > 0;
+        // lng degrees ≈ 85km at Santiago's latitude (-33°)
+        backtrackM = goingEast
+          ? (prevEnd.lon - curStart.lon) * 85000
+          : (curStart.lon - prevEnd.lon) * 85000;
+      }
 
-      if (backtrackM > 100 && !curWay._connector) {
-        // Skip this way — it backtracks against the travel direction
-        // (but never skip deliberately-inserted connector ways)
+      if (backtrackM > 100 && !curWay._connector
+          && curWay._pathIdx === prevWay._pathIdx) {
+        // Only drop if both ways come from the same source path.
+        // Cross-path transitions (e.g., Pocuro → LTO) can legitimately
+        // go "backward" on the dominant axis.
         continue;
       }
 

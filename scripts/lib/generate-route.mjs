@@ -260,7 +260,14 @@ export async function generateRoute({ waypoints, dataDir, bikePaths }) {
           el.type === 'way' && el.geometry?.length >= 2
         );
         if (ways.length > 0) {
-          const ordered = orderWays(ways);
+          // Filter to cycling infrastructure when available.
+          // Streets like "Luis Thayer Ojeda" return dozens of road
+          // segments; keeping them all creates a messy polyline that
+          // causes zigzag when merged with adjacent paths. Filtering
+          // keeps only cycleways/bike lanes, producing a cleaner trace.
+          // If no cycling infrastructure exists, fall back to all ways.
+          const filtered = filterCyclingWays(ways);
+          const ordered = orderWays(filtered.length > 0 ? filtered : ways);
           return ordered;
         }
         const nodes = data.elements.filter(el => el.type === 'node' && el.lat != null);
