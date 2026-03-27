@@ -149,10 +149,6 @@ function sliceWays(ways, poly, entryScalar, exitScalar) {
     // Backward = render against poly direction = flip _reversed.
     way._reversed = forward ? (way._reversed || false) : !way._reversed;
 
-    // NOTE: Boundary way trimming was considered here but removed.
-    // The dedup pass already removes duplicate way IDs, and the backtrack
-    // removal handles overlapping corridors. Trimming boundary ways
-    // reduces Google reference coverage without fixing remaining zigzag.
 
     return way;
   });
@@ -320,6 +316,7 @@ export function chainBikePaths(waypoints) {
   let currentSegment = [];
   let lastExitCoord = null;
   let pathIdx = 0;
+  const pathItems = items.filter(it => it.type === 'path');
 
   for (const item of items) {
     if (item.type !== 'path') continue;
@@ -352,10 +349,50 @@ export function chainBikePaths(waypoints) {
     if (seg.length < 2) continue;
     const deduped = [seg[0]];
     const seen = new Set([seg[0].id]);
+    // Track rendered corridor coverage for geography-based dedup
+    const coveredCorridors = []; // [{midLng, midLat, bearing}]
+    {
+      const g0 = seg[0].geometry;
+      const s0 = seg[0]._reversed ? g0[g0.length - 1] : g0[0];
+      const e0 = seg[0]._reversed ? g0[0] : g0[g0.length - 1];
+      coveredCorridors.push({
+        midLng: (s0.lon + e0.lon) / 2, midLat: (s0.lat + e0.lat) / 2,
+        bearing: Math.atan2(e0.lon - s0.lon, e0.lat - s0.lat),
+      });
+    }
     for (let w = 1; w < seg.length; w++) {
-      if (seen.has(seg[w].id)) continue;
-      seen.add(seg[w].id);
-      deduped.push(seg[w]);
+      const way = seg[w];
+      // ID-based dedup
+      if (seen.has(way.id)) continue;
+
+      // Geography-based dedup: if this way covers the same corridor as
+      // a previously rendered way (midpoints within 150m, similar bearing),
+      // it's a duplicate from a different OSM relation. Drop it.
+      const g = way.geometry;
+      const ws = way._reversed ? g[g.length - 1] : g[0];
+      const we = way._reversed ? g[0] : g[g.length - 1];
+      const midLng = (ws.lon + we.lon) / 2;
+      const midLat = (ws.lat + we.lat) / 2;
+      const bearing = Math.atan2(we.lon - ws.lon, we.lat - ws.lat);
+      let isGeoDup = false;
+      for (const c of coveredCorridors) {
+        const dist = haversineM([midLng, midLat], [c.midLng, c.midLat]);
+        if (dist > 150) continue;
+        let bDiff = Math.abs(bearing - c.bearing);
+        if (bDiff > Math.PI) bDiff = 2 * Math.PI - bDiff;
+        // Similar or anti-parallel bearing (same corridor, either direction).
+        // Use a generous 60° threshold to catch diagonal overlaps
+        // (e.g., NW sánchez fontecilla overlapping W pocuro).
+        if (bDiff < Math.PI / 3 || bDiff > 2 * Math.PI / 3) {
+          isGeoDup = true;
+          break;
+        }
+      }
+      if (isGeoDup) continue;
+
+      seen.add(way.id);
+      coveredCorridors.push({ midLng, midLat, bearing });
+      deduped.push(way);
     }
     segments[s] = deduped;
   }
@@ -437,7 +474,7 @@ export function chainBikePaths(waypoints) {
           : (curStart.lon - prevEnd.lon) * 85000;
       }
 
-      if (backtrackM > 100 && !curWay._connector) {
+      if (backtrackM > 100) {
         // Always drop same-path backtracks. For cross-path backtracks,
         // only drop if the way re-enters an already-covered corridor
         // (same OSM id as a previously rendered way). A new corridor

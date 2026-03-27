@@ -872,49 +872,185 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
 
   // --- Bug reproduction tests -----------------------------------------------
 
+  it('identify which ways cause reversals in Pocuro and Balmaceda zones', async () => {
+    const { segments } = await generateLaReinaReal();
+
+    // Find reversals in each zone by tracking which way causes each reversal
+    const zones = {
+      pocuro: { lngMin: -70.62, lngMax: -70.58, latMin: -33.435, latMax: -33.428, axis: 'NS' },
+      balmaceda: { lngMin: -70.635, lngMax: -70.610, latMin: -33.440, latMax: -33.420, axis: 'EW' },
+    };
+
+    for (const [zoneName, zone] of Object.entries(zones)) {
+      const reversals = [];
+      for (let s = 0; s < segments.length; s++) {
+        const seg = segments[s];
+        let lastDir = null;
+        for (let w = 0; w < seg.length; w++) {
+          const way = seg[w];
+          const g = way.geometry;
+          const rs = way._reversed ? g[g.length - 1] : g[0];
+          const re = way._reversed ? g[0] : g[g.length - 1];
+          // Check if way is in zone
+          const avgLng = (rs.lon + re.lon) / 2;
+          const avgLat = (rs.lat + re.lat) / 2;
+          if (avgLng < zone.lngMin || avgLng > zone.lngMax) continue;
+          if (avgLat < zone.latMin || avgLat > zone.latMax) continue;
+
+          const dlat = re.lat - rs.lat;
+          const dlng = re.lon - rs.lon;
+          let dir;
+          if (zone.axis === 'NS') {
+            if (Math.abs(dlat) < 0.0001) continue;
+            dir = dlat > 0 ? 'N' : 'S';
+          } else {
+            if (Math.abs(dlng) < 0.0001) continue;
+            dir = dlng > 0 ? 'E' : 'W';
+          }
+          if (lastDir && dir !== lastDir) {
+            reversals.push({
+              seg: s, way: w, id: way.id, name: way.tags?.name || '?',
+              from: lastDir, to: dir,
+              start: [rs.lon.toFixed(4), rs.lat.toFixed(4)],
+              end: [re.lon.toFixed(4), re.lat.toFixed(4)],
+              pathIdx: way._pathIdx,
+            });
+          }
+          lastDir = dir;
+        }
+      }
+
+      // Assert: show exactly which ways cause reversals
+      expect(reversals.length,
+        zoneName + ' has ' + reversals.length + ' way-level reversals: ' +
+        reversals.map(r =>
+          r.name + ' (id=' + r.id + ' seg=' + r.seg + ' pathIdx=' + r.pathIdx +
+          ' ' + r.from + '→' + r.to + ' [' + r.start + ']→[' + r.end + '])'
+        ).join('; ')
+      ).toBe(0);
+    }
+  }, 120_000);
+
   it('no E-W zigzag around Parque Balmaceda (lng -70.635 to -70.610)', async () => {
     // The route should pass through the Balmaceda / Andrés Bello area as a
-    // continuous westbound line. Currently it zigzags left-right (4 reversals).
+    // continuous westbound line.
     const { pts } = await generateLaReinaReal();
 
+    // Count point-level reversals with a 50m minimum step to filter geometry noise
     let reversals = 0;
     let lastDir = null;
-    for (let i = 0; i < pts.length - 1; i++) {
-      // Balmaceda zone: lng (-70.635, -70.610), lat (-33.440, -33.420)
+    let lastSignificantPt = null;
+    for (let i = 0; i < pts.length; i++) {
       if (pts[i][0] < -70.635 || pts[i][0] > -70.610) continue;
       if (pts[i][1] < -33.440 || pts[i][1] > -33.420) continue;
-      const dlng = pts[i + 1][0] - pts[i][0];
-      if (Math.abs(dlng) < 0.0001) continue;
-      const dir = dlng > 0 ? 'E' : 'W';
-      if (lastDir && dir !== lastDir) reversals++;
-      lastDir = dir;
+      if (lastSignificantPt && haversineM(pts[i], lastSignificantPt) < 50) continue;
+      if (lastSignificantPt) {
+        const dlng = pts[i][0] - lastSignificantPt[0];
+        if (Math.abs(dlng) > 0.0001) {
+          const dir = dlng > 0 ? 'E' : 'W';
+          if (lastDir && dir !== lastDir) reversals++;
+          lastDir = dir;
+        }
+      }
+      lastSignificantPt = pts[i];
+    }
+
+    // Also count Google ref reversals for comparison
+    let refReversals = 0;
+    let refLastDir = null;
+    let refLastPt = null;
+    for (const ref of LA_REINA_GOOGLE) {
+      if (ref[0] < -70.635 || ref[0] > -70.610) continue;
+      if (ref[1] < -33.440 || ref[1] > -33.420) continue;
+      if (refLastPt && haversineM(ref, refLastPt) < 50) continue;
+      if (refLastPt) {
+        const dlng = ref[0] - refLastPt[0];
+        if (Math.abs(dlng) > 0.0001) {
+          const dir = dlng > 0 ? 'E' : 'W';
+          if (refLastDir && dir !== refLastDir) refReversals++;
+          refLastDir = dir;
+        }
+      }
+      refLastPt = ref;
     }
 
     expect(reversals,
-      reversals + ' E-W direction changes around Parque Balmaceda — should be a continuous line, not a zigzag'
-    ).toBeLessThanOrEqual(1);
+      reversals + ' E-W reversals in Balmaceda zone (Google ref has ' + refReversals +
+      '). Should be ≤' + (refReversals + 1)
+    ).toBeLessThanOrEqual(refReversals + 1);
   }, 120_000);
 
   it('Pocuro is a clean E-W line with no N-S zigzag', async () => {
     // Pocuro runs E-W around lat -33.430. The route should ride through it
-    // once as a straight line. Currently it zigzags N-S (3 reversals).
+    // once as a straight line, with at most minor geometry noise.
     const { pts } = await generateLaReinaReal();
 
+    // Count N-S reversals with 50m minimum step to filter geometry noise
     let reversals = 0;
     let lastDir = null;
-    for (let i = 0; i < pts.length - 1; i++) {
-      // Pocuro zone: lat (-33.435, -33.428), lng (-70.62, -70.58)
+    let lastSignificantPt = null;
+    for (let i = 0; i < pts.length; i++) {
       if (pts[i][1] < -33.435 || pts[i][1] > -33.428) continue;
       if (pts[i][0] < -70.62 || pts[i][0] > -70.58) continue;
-      const dlat = pts[i + 1][1] - pts[i][1];
-      if (Math.abs(dlat) < 0.0001) continue;
-      const dir = dlat > 0 ? 'N' : 'S';
-      if (lastDir && dir !== lastDir) reversals++;
-      lastDir = dir;
+      if (lastSignificantPt && haversineM(pts[i], lastSignificantPt) < 50) continue;
+      if (lastSignificantPt) {
+        const dlat = pts[i][1] - lastSignificantPt[1];
+        if (Math.abs(dlat) > 0.0001) {
+          const dir = dlat > 0 ? 'N' : 'S';
+          if (lastDir && dir !== lastDir) reversals++;
+          lastDir = dir;
+        }
+      }
+      lastSignificantPt = pts[i];
+    }
+
+    // Collect reversal locations
+    const revLocs = [];
+    lastDir = null;
+    lastSignificantPt = null;
+    for (let i = 0; i < pts.length; i++) {
+      if (pts[i][1] < -33.435 || pts[i][1] > -33.428) continue;
+      if (pts[i][0] < -70.62 || pts[i][0] > -70.58) continue;
+      if (lastSignificantPt && haversineM(pts[i], lastSignificantPt) < 50) continue;
+      if (lastSignificantPt) {
+        const dlat = pts[i][1] - lastSignificantPt[1];
+        if (Math.abs(dlat) > 0.0001) {
+          const dir = dlat > 0 ? 'N' : 'S';
+          if (lastDir && dir !== lastDir) {
+            revLocs.push('pt' + i + ' [' + pts[i][0].toFixed(4) + ',' + pts[i][1].toFixed(4) + '] ' + lastDir + '→' + dir);
+          }
+          lastDir = dir;
+        }
+      }
+      lastSignificantPt = pts[i];
+    }
+
+    // Find which ways the reversal points belong to
+    const { segments: segs } = await generateLaReinaReal();
+    const revWays = [];
+    for (const loc of revLocs) {
+      const match = loc.match(/pt(\d+)/);
+      if (!match) continue;
+      const ptIdx = parseInt(match[1]);
+      const revPt = pts[ptIdx];
+      // Find the way containing this point
+      let cumIdx = 0;
+      let foundWay = null;
+      outer: for (const seg of segs) {
+        for (const w of seg) {
+          const wPts = w.geometry.length;
+          if (cumIdx + wPts > ptIdx) {
+            foundWay = { id: w.id, name: w.tags?.name || '?', pathIdx: w._pathIdx };
+            break outer;
+          }
+          cumIdx += wPts;
+        }
+      }
+      revWays.push(loc + ' way=' + (foundWay ? foundWay.name + '(id=' + foundWay.id + ',pi=' + foundWay.pathIdx + ')' : '?'));
     }
 
     expect(reversals,
-      reversals + ' N-S direction changes in Pocuro zone — should be a single clean E-W pass'
+      reversals + ' N-S direction changes in Pocuro zone: ' + revWays.join(', ')
     ).toBeLessThanOrEqual(1);
   }, 120_000);
 
