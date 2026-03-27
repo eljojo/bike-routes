@@ -3,17 +3,15 @@
 /**
  * Build bikepaths.yml — the city's cycling infrastructure registry.
  *
- * Merges two data sources:
- *   1. OSM — all cycling infrastructure in the city (cycleways, park paths, etc.)
- *   2. Pedaleable.org catastro — surveyed segments with quality/video data
+ * Discovers cycling infrastructure from OSM and optionally enriches with
+ * external data sources (e.g. Pedaleable catastro for Santiago).
  *
- * Discovers ALL rideable paths, not just formal cycleways. Parks with paths
- * through them (like Parque Canal San Carlos), pistas recreativas, named
- * bike routes — everything a cyclist would ride on and give a name to.
+ * Region-specific behavior (OSM query patterns, external data sources) is
+ * defined in lib/city-adapter.mjs.
  *
  * Usage:
  *   node scripts/build-bikepaths.mjs --city santiago
- *   node scripts/build-bikepaths.mjs --city santiago --dry-run
+ *   node scripts/build-bikepaths.mjs --city ottawa --dry-run
  *
  * Idempotent: new paths get added, existing entries keep their data.
  * Hand-edited fields (slug overrides, manual anchors) are preserved.
@@ -25,6 +23,7 @@ import yaml from 'js-yaml';
 import { queryOverpass } from './lib/overpass.mjs';
 import { haversineM } from './lib/geo.mjs';
 import { slugify } from './lib/slugify.mjs';
+import { loadCityAdapter } from './lib/city-adapter.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -43,20 +42,23 @@ if (!args.city) {
 const dataDir = path.resolve('..', args.city);
 const bikepathsPath = path.join(dataDir, 'bikepaths.yml');
 
-// City bounding boxes
-const CITY_BOUNDS = {
-  santiago: { s: -33.65, w: -70.85, n: -33.30, e: -70.45 },
-  ottawa: { s: 45.25, w: -76.00, n: 45.50, e: -75.55 },
-};
-const bounds = CITY_BOUNDS[args.city];
-if (!bounds) {
-  console.error(`No bounding box defined for city: ${args.city}`);
+// Read city bounds from config.yml
+const configPath = path.join(dataDir, 'config.yml');
+if (!fs.existsSync(configPath)) {
+  console.error(`No config.yml found for city: ${args.city} (looked at ${configPath})`);
   process.exit(1);
 }
-const bbox = `${bounds.s},${bounds.w},${bounds.n},${bounds.e}`;
+const cityConfig = yaml.load(fs.readFileSync(configPath, 'utf8'));
+if (!cityConfig.bounds) {
+  console.error(`No bounds defined in ${configPath}`);
+  process.exit(1);
+}
+// Use overpass_bounds if defined (tighter area for querying), otherwise bounds
+const bounds = cityConfig.overpass_bounds || cityConfig.bounds;
+const bbox = `${bounds.south},${bounds.west},${bounds.north},${bounds.east}`;
 
-const CATASTRO_URL =
-  'https://raw.githubusercontent.com/pedaleable/mapa-catastro/refs/heads/gh-pages/datos/catastro.geojson';
+// Load city adapter for region-specific queries
+const adapter = loadCityAdapter(args.city);
 
 // ---------------------------------------------------------------------------
 // Step 1: Discover cycling relations from OSM
@@ -67,7 +69,7 @@ async function discoverOsmRelations() {
   const q = `[out:json][timeout:120];
 (
   relation["route"="bicycle"](${bbox});
-  relation["type"="route"]["name"~"[Cc]iclo|[Bb]ici|[Pp]ista [Rr]ecreativa|[Pp]arque"](${bbox});
+  relation["type"="route"]["name"~"${adapter.relationNamePattern}"](${bbox});
 );
 out tags;`;
   const data = await queryOverpass(q);
@@ -87,17 +89,7 @@ out tags;`;
 async function discoverOsmNamedWays() {
   console.log('Discovering named cycling ways from OSM...');
 
-  // Split into separate queries to avoid timeouts
-  const queries = [
-    { label: 'cycleways', q: `[out:json][timeout:60];way["highway"="cycleway"]["name"](${bbox});out tags center;` },
-    { label: 'bike paths', q: `[out:json][timeout:60];way["highway"="path"]["bicycle"~"designated|yes"]["name"](${bbox});out tags center;` },
-    { label: 'bike lanes', q: `[out:json][timeout:60];way["cycleway"~"lane|track"]["name"](${bbox});out tags center;` },
-    { label: 'bike lanes (left)', q: `[out:json][timeout:60];way["cycleway:left"~"lane|track"]["name"](${bbox});out tags center;` },
-    { label: 'bike lanes (right)', q: `[out:json][timeout:60];way["cycleway:right"~"lane|track"]["name"](${bbox});out tags center;` },
-    { label: 'bike lanes (both)', q: `[out:json][timeout:60];way["cycleway:both"~"lane|track"]["name"](${bbox});out tags center;` },
-    { label: 'linear parks', q: `[out:json][timeout:60];way["leisure"="park"]["name"~"[Pp]arque.*[Cc]anal|[Pp]arque.*[Ll]ineal|[Pp]arque.*[Bb]ici"](${bbox});out tags center;` },
-    { label: 'pistas recreativas', q: `[out:json][timeout:60];way["name"~"[Pp]ista [Rr]ecreativa"](${bbox});out tags center;` },
-  ];
+  const queries = adapter.namedWayQueries(bbox);
 
   const allElements = [];
   for (const { label, q } of queries) {
@@ -143,12 +135,23 @@ async function discoverOsmNamedWays() {
 }
 
 // ---------------------------------------------------------------------------
-// Step 3: Fetch catastro data from pedaleable.org
+// Step 3: Fetch external data (catastro, etc.) — city-specific
 // ---------------------------------------------------------------------------
 
-async function fetchCatastro() {
+async function fetchExternalData() {
+  if (!adapter.externalData) {
+    console.log('No external data source for this city, skipping.');
+    return [];
+  }
+
+  const { type, url } = adapter.externalData;
+  if (type !== 'catastro') {
+    console.log(`Unknown external data type: ${type}, skipping.`);
+    return [];
+  }
+
   console.log('Fetching catastro from pedaleable.org...');
-  const res = await fetch(CATASTRO_URL);
+  const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch catastro: ${res.status}`);
   const geojson = await res.json();
 
@@ -182,38 +185,7 @@ async function fetchCatastro() {
 }
 
 // ---------------------------------------------------------------------------
-// Step 4: Match catastro segments to OSM ways
-// ---------------------------------------------------------------------------
-
-async function matchCatastroToOsm(segments) {
-  console.log('Matching catastro segments to OSM ways...');
-  let matched = 0;
-
-  for (const seg of segments) {
-    // Search for nearest OSM cycleway at the segment's midpoint
-    const [lng, lat] = seg.center;
-    const pad = 0.005; // ~500m
-    const q = `[out:json][timeout:30];
-way["highway"="cycleway"](${lat - pad},${lng - pad},${lat + pad},${lng + pad});
-out ids;`;
-
-    try {
-      const data = await queryOverpass(q);
-      if (data.elements.length > 0) {
-        seg.osmWayId = data.elements[0].id;
-        matched++;
-      }
-    } catch {
-      // Rate limited — skip this segment
-    }
-  }
-
-  console.log(`  Matched ${matched}/${segments.length} segments to OSM ways`);
-  return segments;
-}
-
-// ---------------------------------------------------------------------------
-// Step 5: Load existing bikepaths.yml and merge
+// Step 4: Load existing bikepaths.yml and merge
 // ---------------------------------------------------------------------------
 
 function loadExisting() {
@@ -291,7 +263,7 @@ function mergeData(existing, osmRelations, osmNamedWays, catastroSegments) {
     added++;
   }
 
-  // Enrich entries with catastro data
+  // Enrich entries with catastro data (Santiago-only for now)
   let enriched = 0;
   for (const seg of catastroSegments) {
     if (!seg.osmWayId) continue;
@@ -326,7 +298,9 @@ function mergeData(existing, osmRelations, osmNamedWays, catastroSegments) {
 
   console.log(`  Existing entries: ${existing.length}`);
   console.log(`  New entries added: ${added}`);
-  console.log(`  Catastro segments matched: ${enriched}`);
+  if (catastroSegments.length > 0) {
+    console.log(`  Catastro segments matched: ${enriched}`);
+  }
   console.log(`  Total entries: ${result.length}`);
 
   return result;
@@ -337,16 +311,14 @@ function mergeData(existing, osmRelations, osmNamedWays, catastroSegments) {
 // ---------------------------------------------------------------------------
 
 async function main() {
+  console.log(`Building bikepaths.yml for ${args.city} (bbox: ${bbox})`);
+
   const existing = loadExisting();
   const osmRelations = await discoverOsmRelations();
   const osmNamedWays = await discoverOsmNamedWays();
-  const catastroSegments = await fetchCatastro();
+  const externalSegments = await fetchExternalData();
 
-  // Skip catastro-to-OSM matching for now (too many Overpass queries).
-  // The existing bikepaths.yml already has catastro data from analyze-catastro.mjs.
-  const matchedCatastro = catastroSegments;
-
-  const merged = mergeData(existing, osmRelations, osmNamedWays, matchedCatastro);
+  const merged = mergeData(existing, osmRelations, osmNamedWays, externalSegments);
 
   if (args.dryRun) {
     console.log('\n--- DRY RUN — would write: ---');

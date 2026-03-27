@@ -171,7 +171,6 @@ function insertConnectors(planned, allPaths) {
         if (d > farPlace) farPlace = d;
       }
       if (nearPlace > 500) continue;
-      if (farPlace > 1000) continue; // entire connector must be within 1km of junction
 
       // Must also be near both paths
       const leftCoords = waysToRenderedCoords(leftWays);
