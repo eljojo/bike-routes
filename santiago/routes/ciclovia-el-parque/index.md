@@ -5,7 +5,7 @@ distance_km: 1.2
 tags:
   - bike path
 created_at: '2026-03-26'
-updated_at: '2026-03-26'
+updated_at: '2026-03-27'
 variants:
   - name: Ciclovía El Parque
     gpx: main.gpx

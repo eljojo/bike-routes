@@ -1,7 +1,7 @@
 ---
 name: Circuito Dominical Combinado
 status: published
-distance_km: 17.1
+distance_km: 20.2
 tags:
   - bike path
   - loop
@@ -17,7 +17,7 @@ updated_at: '2026-03-27'
 variants:
   - name: Circuito Dominical Combinado
     gpx: main.gpx
-    distance_km: 17.1
+    distance_km: 20.2
 ---
 
 The Sunday epic. West along the Mapocho to Quinta Normal, back east on the Alameda, loop through Parque O'Higgins, up San Cristóbal, and back down. All of Santiago in one ride.

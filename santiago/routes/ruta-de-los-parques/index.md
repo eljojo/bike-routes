@@ -12,7 +12,7 @@ waypoints:
   - parque-augusto-errazuriz
   - plaza-de-la-sustentabilidad
 created_at: '2026-03-26'
-updated_at: '2026-03-26'
+updated_at: '2026-03-27'
 distance_km: 19.7
 ---
 
