@@ -671,72 +671,28 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
 
   const LA_REINA_GOOGLE = JSON.parse(readFileSync(new URL('./fixtures/google-ref-la-reina.json', import.meta.url), 'utf8'));
 
-  it('shape matches the Google reference corridor', async () => {
-    // Resolve waypoints the same way the generate script does
-    const { resolveWaypoints } = await import('./resolve-waypoints.mjs');
-    const { filterCyclingWays } = await import('./filter-cycling-ways.mjs');
+  // Real pipeline — same code as the generate script, result in memory.
+  async function generateLaReinaReal() {
+    const { generateRoute } = await import('./generate-route.mjs');
     const yaml = await import('js-yaml');
-    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
     const routePath = new URL('../../santiago/routes/la-reina-a-quinta-normal/index.md', import.meta.url);
-    const placesDir = new URL('../../santiago/places/', import.meta.url);
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const dataDir = new URL('../../santiago', import.meta.url).pathname;
 
     const routeMd = readFileSync(routePath, 'utf8');
     const fm = yaml.load(routeMd.match(/^---\n([\s\S]*?)\n---/)[1]);
-
-    const { slugify } = await import('./slugify.mjs');
     const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
-    const bpBySlug = new Map();
-    for (const bp of bike_paths) bpBySlug.set(slugify(bp.name), bp);
 
-    const { queryOverpass } = await import('./overpass.mjs');
-
-    async function fetchBPWays(bp) {
-      let ways = [];
-      try {
-        if (bp.osm_relations?.length > 0) {
-          for (const relId of bp.osm_relations) {
-            const q = `[out:json][timeout:60];relation(${relId});way(r);out geom;`;
-            const d = await queryOverpass(q);
-            ways.push(...d.elements.filter(e => e.type === 'way' && e.geometry?.length >= 2));
-          }
-        } else if (bp.osm_names?.length > 0 && bp.anchors?.length >= 2) {
-          const lats = bp.anchors.map(a => a[1]), lngs = bp.anchors.map(a => a[0]);
-          const pad = 0.02;
-          const s = Math.min(...lats) - pad, n = Math.max(...lats) + pad;
-          const w = Math.min(...lngs) - pad, e = Math.max(...lngs) + pad;
-          const nameFilters = bp.osm_names.map(nm =>
-            `way["name"="${nm.replace(/"/g, '\\"')}"](${s},${w},${n},${e});`
-          ).join('\n');
-          const q = `[out:json][timeout:60];\n(\n${nameFilters}\n);\nout geom;`;
-          const data = await queryOverpass(q);
-          ways = data.elements.filter(el => el.type === 'way' && el.geometry?.length >= 2);
-        }
-      } catch { /* skip */ }
-      ways = filterCyclingWays(ways);
-      return ways.length > 0 ? orderWays(ways) : [];
-    }
-
-    const { chainWaypoints } = await resolveWaypoints(fm.waypoints, async (slug) => {
-      const bp = bpBySlug.get(slug);
-      if (!bp) return null;
-      const w = await fetchBPWays(bp);
-      return w.length > 0 ? w : null;
-    }, {
-      resolvePlace: (placeSlug) => {
-        try {
-          const raw = readFileSync(new URL(placeSlug + '.md', placesDir), 'utf8');
-          const m = raw.match(/^---\n([\s\S]*?)\n---/);
-          if (!m) return null;
-          const pm = yaml.load(m[1]);
-          if (pm.lat == null || pm.lng == null) return null;
-          return { name: pm.name || placeSlug, lat: pm.lat, lng: pm.lng };
-        } catch { return null; }
-      },
+    const { segments } = await generateRoute({
+      waypoints: fm.waypoints,
+      dataDir,
+      bikePaths: bike_paths,
     });
+    return renderTrace(segments);
+  }
 
-    const segments = chainBikePaths(chainWaypoints);
-    const pts = renderTrace(segments);
-
+  it('shape matches the Google reference corridor', async () => {
+    const pts = await generateLaReinaReal();
     const result = compareToReference(pts, LA_REINA_GOOGLE);
     printComparison(result, pts, LA_REINA_GOOGLE, 'La Reina a Quinta Normal');
 
@@ -745,82 +701,30 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     ).toBeGreaterThanOrEqual(90);
   }, 120_000);
 
-  it('route passes through sánchez fontecilla crossing area', async () => {
-    // The Google ref pts 12-19 are where sánchez fontecilla crosses Canal San Carlos
-    // to the other side (~[-70.578, -33.436]). The route must pass through here.
-    const crossingArea = [-70.578, -33.436];
+  it('no part of the route is more than 500m west of Quinta Normal', async () => {
+    const pts = await generateLaReinaReal();
+    const quintaNormal = [-70.730, -33.440];
 
-    const { resolveWaypoints } = await import('./resolve-waypoints.mjs');
-    const { filterCyclingWays } = await import('./filter-cycling-ways.mjs');
-    const yaml = await import('js-yaml');
-    const { queryOverpass } = await import('./overpass.mjs');
-    const { slugify } = await import('./slugify.mjs');
-    const routePath = new URL('../../santiago/routes/la-reina-a-quinta-normal/index.md', import.meta.url);
-    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
-    const placesDir = new URL('../../santiago/places/', import.meta.url);
-    const routeMd = readFileSync(routePath, 'utf8');
-    const fm = yaml.load(routeMd.match(/^---\n([\s\S]*?)\n---/)[1]);
-    const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
-    const bpBySlug = new Map();
-    for (const bp of bike_paths) bpBySlug.set(slugify(bp.name), bp);
-
-    async function fetchBPWays(bp) {
-      let ways = [];
-      try {
-        if (bp.osm_relations?.length > 0) {
-          for (const relId of bp.osm_relations) {
-            const q = `[out:json][timeout:60];relation(${relId});way(r);out geom;`;
-            const d = await queryOverpass(q);
-            ways.push(...d.elements.filter(e => e.type === 'way' && e.geometry?.length >= 2));
-          }
-        } else if (bp.osm_names?.length > 0 && bp.anchors?.length >= 2) {
-          const lats = bp.anchors.map(a => a[1]), lngs = bp.anchors.map(a => a[0]);
-          const pad = 0.02;
-          const s = Math.min(...lats) - pad, n = Math.max(...lats) + pad;
-          const w = Math.min(...lngs) - pad, e = Math.max(...lngs) + pad;
-          const nameFilters = bp.osm_names.map(nm =>
-            `way["name"="${nm.replace(/"/g, '\\"')}"](${s},${w},${n},${e});`
-          ).join('\n');
-          const q = `[out:json][timeout:60];\n(\n${nameFilters}\n);\nout geom;`;
-          const data = await queryOverpass(q);
-          ways = data.elements.filter(el => el.type === 'way' && el.geometry?.length >= 2);
-        }
-      } catch { /* skip */ }
-      ways = filterCyclingWays(ways);
-      return ways.length > 0 ? orderWays(ways) : [];
+    let westmostLng = pts[0][0];
+    for (const p of pts) {
+      if (p[0] < westmostLng) westmostLng = p[0];
     }
+    const overshootM = (quintaNormal[0] - westmostLng) * 85000;
+    expect(overshootM,
+      'route overshoots ' + Math.round(overshootM) + 'm west of Quinta Normal (westmost lng: ' + westmostLng.toFixed(4) + ')'
+    ).toBeLessThan(500);
+  }, 120_000);
 
-    const { chainWaypoints } = await resolveWaypoints(fm.waypoints, async (slug) => {
-      const bp = bpBySlug.get(slug);
-      if (!bp) return null;
-      const w = await fetchBPWays(bp);
-      return w.length > 0 ? w : null;
-    }, {
-      resolvePlace: (placeSlug) => {
-        try {
-          const raw = readFileSync(new URL(placeSlug + '.md', placesDir), 'utf8');
-          const m = raw.match(/^---\n([\s\S]*?)\n---/);
-          if (!m) return null;
-          const pm = yaml.load(m[1]);
-          if (pm.lat == null || pm.lng == null) return null;
-          return { name: pm.name || placeSlug, lat: pm.lat, lng: pm.lng };
-        } catch { return null; }
-      },
-      queryOsmName: async (slug) => {
-        const name = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-        const q = `[out:json][timeout:30];way["name"~"${name.replace(/"/g, '\\"')}",i](-33.60,-70.80,-33.30,-70.50);out geom;`;
-        try {
-          const data = await queryOverpass(q);
-          const ways = data.elements.filter(el => el.type === 'way' && el.geometry?.length >= 2);
-          if (ways.length > 0) return orderWays(ways);
-        } catch { /* skip */ }
-        return null;
-      },
-    });
+  it('route ends within 2km of Quinta Normal', async () => {
+    const pts = await generateLaReinaReal();
+    const quintaNormal = [-70.730, -33.440];
+    const endDist = haversineM(pts[pts.length - 1], quintaNormal);
+    expect(endDist, 'route ends ' + Math.round(endDist) + 'm from Quinta Normal').toBeLessThan(2000);
+  }, 120_000);
 
-    const segments = chainBikePaths(chainWaypoints);
-    const pts = renderTrace(segments);
-
+  it('route passes through sánchez fontecilla crossing area', async () => {
+    const pts = await generateLaReinaReal();
+    const crossingArea = [-70.578, -33.436];
     let minDist = Infinity;
     for (const p of pts) {
       const d = haversineM(p, crossingArea);
@@ -832,75 +736,20 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
   }, 120_000);
 
   it('all frontmatter waypoints resolve (none skipped)', async () => {
+    const { generateRoute } = await import('./generate-route.mjs');
     const yaml = await import('js-yaml');
-    const { slugify } = await import('./slugify.mjs');
-    const { resolveWaypoints } = await import('./resolve-waypoints.mjs');
-    const { filterCyclingWays } = await import('./filter-cycling-ways.mjs');
-    const { queryOverpass } = await import('./overpass.mjs');
-
-    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
     const routePath = new URL('../../santiago/routes/la-reina-a-quinta-normal/index.md', import.meta.url);
-    const placesDir = new URL('../../santiago/places/', import.meta.url);
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const dataDir = new URL('../../santiago', import.meta.url).pathname;
 
     const routeMd = readFileSync(routePath, 'utf8');
     const fm = yaml.load(routeMd.match(/^---\n([\s\S]*?)\n---/)[1]);
-
     const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
-    const bpBySlug = new Map();
-    for (const bp of bike_paths) bpBySlug.set(slugify(bp.name), bp);
 
-    async function fetchBPWays(bp) {
-      let ways = [];
-      try {
-        if (bp.osm_relations?.length > 0) {
-          for (const relId of bp.osm_relations) {
-            const q = `[out:json][timeout:60];relation(${relId});way(r);out geom;`;
-            const d = await queryOverpass(q);
-            ways.push(...d.elements.filter(e => e.type === 'way' && e.geometry?.length >= 2));
-          }
-        } else if (bp.osm_names?.length > 0 && bp.anchors?.length >= 2) {
-          const lats = bp.anchors.map(a => a[1]), lngs = bp.anchors.map(a => a[0]);
-          const pad = 0.02;
-          const s = Math.min(...lats) - pad, n = Math.max(...lats) + pad;
-          const w = Math.min(...lngs) - pad, e = Math.max(...lngs) + pad;
-          const nameFilters = bp.osm_names.map(nm =>
-            `way["name"="${nm.replace(/"/g, '\\"')}"](${s},${w},${n},${e});`
-          ).join('\n');
-          const q = `[out:json][timeout:60];\n(\n${nameFilters}\n);\nout geom;`;
-          const data = await queryOverpass(q);
-          ways = data.elements.filter(el => el.type === 'way' && el.geometry?.length >= 2);
-        }
-      } catch { /* skip */ }
-      ways = filterCyclingWays(ways);
-      return ways.length > 0 ? orderWays(ways) : [];
-    }
-
-    const { chainWaypoints, resolved } = await resolveWaypoints(fm.waypoints, async (slug) => {
-      const bp = bpBySlug.get(slug);
-      if (!bp) return null;
-      const w = await fetchBPWays(bp);
-      return w.length > 0 ? w : null;
-    }, {
-      resolvePlace: (placeSlug) => {
-        try {
-          const raw = readFileSync(new URL(placeSlug + '.md', placesDir), 'utf8');
-          const m = raw.match(/^---\n([\s\S]*?)\n---/);
-          if (!m) return null;
-          const pm = yaml.load(m[1]);
-          if (pm.lat == null || pm.lng == null) return null;
-          return { name: pm.name || placeSlug, lat: pm.lat, lng: pm.lng };
-        } catch { return null; }
-      },
-      queryOsmName: async (slug) => {
-        const name = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-        const q = `[out:json][timeout:30];way["name"~"${name.replace(/"/g, '\\"')}",i](-33.60,-70.80,-33.30,-70.50);out geom;`;
-        try {
-          const data = await queryOverpass(q);
-          const ways = data.elements.filter(el => el.type === 'way' && el.geometry?.length >= 2);
-          if (ways.length > 0) return orderWays(ways);
-        } catch { /* skip */ }
-        return null;
-      },
+    const { chainWaypoints, resolved } = await generateRoute({
+      waypoints: fm.waypoints,
+      dataDir,
+      bikePaths: bike_paths,
     });
 
     console.log('Resolved: ' + resolved.join(' → '));
