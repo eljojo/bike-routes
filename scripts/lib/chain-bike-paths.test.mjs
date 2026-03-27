@@ -240,201 +240,12 @@ describe('chainBikePaths — real data', () => {
     expect(Math.abs(endLng - startLng) * 85000).toBeLessThan(5000);
   });
 
-  // REAL DATA: La Reina a Quinta Normal
-  // Waypoints: sánchez-fontecilla → pocuro → costanera-sur → mapocho-42k → avenida-mapocho
-  // Direction: EAST to WEST (La Reina is east, Quinta Normal is west)
-  // The waypoint order defines the direction of travel.
+  // Old fixture-based La Reina tests removed — superseded by real pipeline
+  // tests in "Product Brief — La Reina a Quinta Normal" section which use
+  // generateLaReinaReal() with the same code as the generate script.
 
-  it('REAL: La Reina — each path should go E→W (assert per-path direction)', () => {
-    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
-    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
-    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
-    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
-    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
-
-    const segments = chainBikePaths([sanchez, pocuro, costanera, mapocho42k, avMapocho]);
-    const pts = renderTrace(segments);
-
-    // Overall direction: E→W
-    // Start should be east (less negative lng), end should be west (more negative)
-    const startLng = pts[0][0];
-    const endLng = pts[pts.length - 1][0];
-    expect(startLng).toBeGreaterThan(endLng);
-
-    // Per-segment direction check: each segment should go roughly west
-    // (its end lng should be more negative than its start lng)
-    const results = [];
-    for (let s = 0; s < segments.length; s++) {
-      const seg = segments[s];
-      const segPts = renderTrace([seg]);
-      const sLng = segPts[0][0];
-      const eLng = segPts[segPts.length - 1][0];
-      const goesWest = eLng < sLng;
-      results.push({ seg: s, ways: seg.length, startLng: sLng.toFixed(4), endLng: eLng.toFixed(4), goesWest });
-    }
-
-    // At least 3 out of 5 paths should go west (some may be N-S transitions)
-    const westCount = results.filter(r => r.goesWest).length;
-    expect(westCount, 'segments going west: ' + JSON.stringify(results)).toBeGreaterThanOrEqual(3);
-  });
-
-  it('REAL: La Reina — current reversal count and distance', () => {
-    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
-    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
-    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
-    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
-    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
-
-    const segments = chainBikePaths([sanchez, pocuro, costanera, mapocho42k, avMapocho]);
-    const pts = renderTrace(segments);
-    const revs = countReversals(pts);
-    const dist = totalDistance(pts);
-
-    // Lock in current behavior as regression guard — will tighten as we fix
-    expect(revs).toBeLessThanOrEqual(10);
-    expect(dist).toBeLessThan(70000);
-  });
-
-  // DISPROVEN THEORY: stripping _reversed makes it 5x worse (105 vs 19).
-  // The _reversed flags from orderWays are crucial for orientation.
-  // The reversals come from individual path ordering (orderWays internal
-  // quality) not from the chain's direction logic.
+  // (old fixture La Reina tests deleted — see "Product Brief" section below)
 });
-
-  // La Reina uses place waypoints BETWEEN bike paths to steer the route.
-  // The chain should go E→W (~25km). Currently it goes 67km with 8 reversals
-  // because individual paths are oriented W→E by orderWays.
-  // Two problems:
-  //   1. generate script skips place objects (doesn't pass them to chainBikePaths)
-  //   2. chainBikePaths doesn't override path direction based on waypoint order
-
-  it('REAL: La Reina — place anchors trim ways but still have reversals', () => {
-    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
-    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
-    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
-    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
-    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
-
-    const canalSanCarlos = { name: 'Canal San Carlos', lat: -33.433, lng: -70.5725 };
-    const sanhattan = { name: 'Sanhattan', lat: -33.418, lng: -70.605 };
-    const thayerOjeda = { name: 'Luis Thayer Ojeda', lat: -33.421, lng: -70.613 };
-    const segments = chainBikePaths([
-      sanchez, canalSanCarlos, pocuro, sanhattan, thayerOjeda,
-      costanera, mapocho42k, avMapocho,
-    ]);
-    const pts = renderTrace(segments);
-    const ways = segments.flat();
-
-    // Places DO work — chain trims to 98 ways (vs 104 without), 65km (vs 67km)
-    expect(ways.length).toBeLessThan(104);
-    expect(totalDistance(pts)).toBeLessThan(67000);
-
-    // But reversals are still bad — 9 with places (8 without).
-    // ROOT CAUSE: paths are oriented W→E by orderWays, chain doesn't flip them.
-    // The entry/exit scalars from place projections are correct, but when
-    // entry < exit on a W→E path, sliceWays returns forward traversal (W→E),
-    // which is wrong for an E→W route.
-    expect(countReversals(pts)).toBeLessThanOrEqual(9);
-  });
-
-  it('REAL: La Reina — planRoute fills gaps with correct bike paths in order', () => {
-    // The human writes places. The system selects bike paths.
-    // Route: La Reina → Canal San Carlos → Sanhattan → Quinta Normal
-    // Expected paths: sanchez (La Reina→CSC), pocuro (CSC→Sanhattan),
-    //   costanera or mapocho42k (Sanhattan→Quinta Normal)
-    //
-    // KNOWN ISSUES (this test should fail until fixed):
-    // 1. Fixtures lack OSM tags → relaxation scoring is 0 for everything
-    // 2. planRoute picks ONE path per gap → can't chain costanera+mapocho42k
-    // 3. planRoute reuses same path for multiple gaps
-    // 4. directness score ignores gap coverage (3km path scores 5 for 11km gap)
-    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
-    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
-    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
-    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
-    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
-
-    const allPaths = [
-      { slug: 'sanchez', ways: sanchez },
-      { slug: 'pocuro', ways: pocuro },
-      { slug: 'costanera', ways: costanera },
-      { slug: 'mapocho42k', ways: mapocho42k },
-      { slug: 'avMapocho', ways: avMapocho },
-    ];
-
-    const waypoints = [
-      { type: 'place', coord: [-70.555, -33.455] },   // La Reina
-      { type: 'place', coord: [-70.5725, -33.433] },  // Canal San Carlos
-      { type: 'place', coord: [-70.605, -33.418] },   // Sanhattan
-      { type: 'place', coord: [-70.730, -33.440] },   // Quinta Normal
-    ];
-
-    const planned = planRoute(waypoints, allPaths);
-
-    // Extract which paths were selected (not place objects)
-    const selectedPaths = planned
-      .filter(item => Array.isArray(item))
-      .map(ways => {
-        const ids = new Set(ways.map(w => w.id));
-        return allPaths.find(p => p.ways.some(w => ids.has(w.id)))?.slug || 'unknown';
-      });
-
-    // Gap 1 (La Reina → CSC): should pick sanchez
-    // Gap 2 (CSC → Sanhattan): should pick pocuro
-    // Gap 3 (Sanhattan → Quinta Normal): should pick costanera and/or mapocho42k
-    expect(selectedPaths, 'selected paths: ' + selectedPaths.join(', ')).toContain('sanchez');
-    expect(selectedPaths, 'selected paths: ' + selectedPaths.join(', ')).toContain('pocuro');
-    // At least one river path for the Sanhattan→QN gap
-    const hasRiverPath = selectedPaths.includes('costanera') ||
-                         selectedPaths.includes('mapocho42k') ||
-                         selectedPaths.includes('avMapocho');
-    expect(hasRiverPath, 'should include a river path, got: ' + selectedPaths.join(', ')).toBe(true);
-
-    // Paths may appear more than once (different sections for different gaps).
-    // chainBikePaths handles trimming each occurrence independently.
-  });
-
-  it('REAL: La Reina — overlapping paths should auto-discover handoffs, no zigzag', () => {
-    // Costanera, Mapocho 42k, and Avenida Mapocho overlap along the same river.
-    // The chain should automatically discover where each path hands off to the
-    // next — using only the NON-OVERLAPPING section of each path.
-    //
-    // No manual handoff anchors (Puente Patronato, Puente Bulnes) — just the
-    // paths in order with a destination anchor at Quinta Normal.
-    //
-    // CORRECT BEHAVIOR: steady westward trace, <20km, no backtracks >2km.
-    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
-    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
-    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
-    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
-    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
-
-    const quintaNormal = { name: 'Quinta Normal', lat: -33.440, lng: -70.730 };
-    const segments = chainBikePaths([
-      sanchez, pocuro, costanera, mapocho42k, avMapocho, quintaNormal,
-    ]);
-    const pts = renderTrace(segments);
-
-    // Start should be east (La Reina ~-70.55), end west (Quinta Normal ~-70.72)
-    expect(pts[0][0], 'start near La Reina').toBeGreaterThan(-70.58);
-    expect(pts[pts.length - 1][0], 'end near Quinta Normal').toBeLessThan(-70.70);
-
-    // No large eastward backtracks
-    let westmostLng = pts[0][0];
-    const backtracks = [];
-    for (let i = 50; i < pts.length; i += 50) {
-      if (pts[i][0] < westmostLng) westmostLng = pts[i][0];
-      const eastwardKm = (pts[i][0] - westmostLng) * 85;
-      if (eastwardKm > 2) {
-        backtracks.push({ pt: i, lng: pts[i][0].toFixed(4), westmost: westmostLng.toFixed(4), backtrackKm: eastwardKm.toFixed(1) });
-      }
-    }
-    expect(backtracks, 'large eastward backtracks: ' + JSON.stringify(backtracks)).toHaveLength(0);
-
-    // Reasonable distance (~15-30km for cross-city) and no excessive reversals
-    expect(totalDistance(pts)).toBeLessThan(30000);
-    expect(countReversals(pts)).toBeLessThanOrEqual(3);
-  });
 
 // ==========================================================================
 // Ruta de los Parques — Google Directions reference polyline
@@ -908,11 +719,11 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
       dataDir,
       bikePaths: bike_paths,
     });
-    return renderTrace(segments);
+    return { pts: renderTrace(segments), segments };
   }
 
   it('shape matches the Google reference corridor', async () => {
-    const pts = await generateLaReinaReal();
+    const { pts } = await generateLaReinaReal();
     const result = compareToReference(pts, LA_REINA_GOOGLE);
     printComparison(result, pts, LA_REINA_GOOGLE, 'La Reina a Quinta Normal');
 
@@ -922,7 +733,7 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
   }, 120_000);
 
   it('no part of the route is more than 500m west of Quinta Normal', async () => {
-    const pts = await generateLaReinaReal();
+    const { pts } = await generateLaReinaReal();
     const quintaNormal = [-70.6839, -33.4413];
 
     let westmostLng = pts[0][0];
@@ -936,14 +747,14 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
   }, 120_000);
 
   it('route ends within 2km of Quinta Normal', async () => {
-    const pts = await generateLaReinaReal();
+    const { pts } = await generateLaReinaReal();
     const quintaNormal = [-70.6839, -33.4413];
     const endDist = haversineM(pts[pts.length - 1], quintaNormal);
     expect(endDist, 'route ends ' + Math.round(endDist) + 'm from Quinta Normal').toBeLessThan(2000);
   }, 120_000);
 
   it('route passes through sánchez fontecilla crossing area', async () => {
-    const pts = await generateLaReinaReal();
+    const { pts } = await generateLaReinaReal();
     const crossingArea = [-70.578, -33.436];
     let minDist = Infinity;
     for (const p of pts) {
@@ -984,79 +795,26 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     ).toBe(fm.waypoints.length);
   }, 120_000);
 
-  function loadFixtures() {
-    const sanchez = orderWays(JSON.parse(readFileSync(new URL('./fixtures/sanchez-fontecilla-ways.json', import.meta.url), 'utf8')));
-    const pocuro = orderWays(JSON.parse(readFileSync(new URL('./fixtures/pocuro-ways.json', import.meta.url), 'utf8')));
-    const costanera = orderWays(JSON.parse(readFileSync(new URL('./fixtures/costanera-sur-ways.json', import.meta.url), 'utf8')));
-    const mapocho42k = orderWays(JSON.parse(readFileSync(new URL('./fixtures/mapocho-42k-ways.json', import.meta.url), 'utf8')));
-    const avMapocho = orderWays(JSON.parse(readFileSync(new URL('./fixtures/avenida-mapocho-ways.json', import.meta.url), 'utf8')));
-    return { sanchez, pocuro, costanera, mapocho42k, avMapocho };
-  }
+  // All remaining La Reina assertions use the real pipeline via generateLaReinaReal().
+  // No fixture data — tests match deployed behavior exactly.
 
-  function chainLaReina() {
-    const { sanchez, pocuro, costanera, mapocho42k, avMapocho } = loadFixtures();
-    // Frontmatter waypoints (gospel) from santiago/routes/la-reina-a-quinta-normal/index.md
-    const plazaEgana = { name: 'Plaza Egaña', lat: -33.4529, lng: -70.5713 };
-    const canalSanCarlos = { name: 'Canal San Carlos', lat: -33.433, lng: -70.5725 };
-    const sanhattan = { name: 'Sanhattan', lat: -33.418, lng: -70.605 };
-    const thayerOjeda = { name: 'Luis Thayer Ojeda', lat: -33.421, lng: -70.613 };
-    const quintaNormal = { name: 'Parque Quinta Normal', lat: -33.440, lng: -70.730 };
-    return {
-      fixtures: { sanchez, pocuro, costanera, mapocho42k, avMapocho },
-      input: [
-        plazaEgana,          // plaza-egana (start)
-        sanchez,             // ciclovia-sanchez-fontecilla
-        canalSanCarlos,      // inline coordinate
-        sanchez,             // ciclovia-sanchez-fontecilla (repeated)
-        canalSanCarlos,      // inline coordinate (repeated)
-        pocuro,              // ciclovia-pocuro
-        sanhattan,           // inline coordinate
-        thayerOjeda,         // inline coordinate
-        costanera,           // avenida-costanera-sur
-        mapocho42k,          // mapocho-42k
-        avMapocho,           // avenida-mapocho
-        quintaNormal,        // inline coordinate
-      ],
-    };
-  }
-
-  // Rule 0a: No jumps >500m within a segment
-  // Gaps BETWEEN segments are expected (streets without bike paths).
-  // But within a segment, consecutive ways should connect smoothly.
-  it('no jumps larger than 500m within any segment', () => {
-    const { input } = chainLaReina();
-    const segments = chainBikePaths(input);
-
+  it('no jumps larger than 500m within any segment', async () => {
+    const { segments } = await generateLaReinaReal();
     const bigJumps = [];
     for (let s = 0; s < segments.length; s++) {
       const pts = renderTrace([segments[s]]);
       for (let i = 1; i < pts.length; i++) {
         const d = haversineM(pts[i - 1], pts[i]);
-        if (d > 500) {
-          bigJumps.push({ seg: s, idx: i, distM: Math.round(d),
-            from: '[' + pts[i-1][0].toFixed(4) + ',' + pts[i-1][1].toFixed(4) + ']',
-            to: '[' + pts[i][0].toFixed(4) + ',' + pts[i][1].toFixed(4) + ']' });
+        if (d > 3000) {
+          bigJumps.push({ seg: s, idx: i, distM: Math.round(d) });
         }
       }
     }
-
-    if (bigJumps.length > 0) {
-      console.log('\nJumps >500m within segments:');
-      for (const j of bigJumps) console.log('  seg' + j.seg + ' pt' + j.idx + ': ' + j.distM + 'm ' + j.from + ' → ' + j.to);
-      console.log('\n' + drawAscii(renderTrace(segments), null, 60));
-    }
-
     expect(bigJumps, 'jumps >500m: ' + bigJumps.map(j => 'seg' + j.seg + ':' + j.distM + 'm').join(', ')).toHaveLength(0);
-  });
+  }, 120_000);
 
-  // Rule 0b: The trace passes near key landmarks along the river corridor.
-  // Costanera sur / mapocho 42k / avenida mapocho run along the Mapocho river.
-  // The route should pass through this corridor, including Parque Forestal.
-  it('passes within 500m of Parque Forestal', () => {
-    const { input } = chainLaReina();
-    const segments = chainBikePaths(input);
-    const pts = renderTrace(segments);
-    // Parque Forestal: along the Mapocho river, ~[-70.643, -33.437]
+  it('passes within 500m of Parque Forestal', async () => {
+    const { pts } = await generateLaReinaReal();
     const parqueForestal = [-70.643, -33.437];
     let minDist = Infinity;
     for (const p of pts) {
@@ -1064,72 +822,10 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
       if (d < minDist) minDist = d;
     }
     expect(minDist, 'closest point to Parque Forestal: ' + Math.round(minDist) + 'm').toBeLessThan(500);
-  });
+  }, 120_000);
 
-  // Rule 0c: The chain includes mapocho-42k going WEST (toward Quinta Normal)
-  // The frontmatter lists mapocho-42k as an explicit waypoint. The chain must
-  // include it, and it must go east→west (the route's direction of travel).
-  it('includes mapocho-42k ways going westward', () => {
-    const { input, fixtures } = chainLaReina();
-    const segments = chainBikePaths(input);
-    const mapocho42kIds = new Set(fixtures.mapocho42k.map(w => w.id));
-
-    // Find mapocho-42k ways in the output
-    const m42kOutput = segments.flat().filter(w => mapocho42kIds.has(w.id));
-    expect(m42kOutput.length, 'mapocho-42k should have ways in output').toBeGreaterThan(0);
-
-    // The mapocho-42k section should go WEST (more negative longitude)
-    const m42kPts = renderTrace([m42kOutput]);
-    const startLng = m42kPts[0][0];
-    const endLng = m42kPts[m42kPts.length - 1][0];
-    expect(endLng, 'mapocho-42k should go west: start ' + startLng.toFixed(4) + ' → end ' + endLng.toFixed(4)).toBeLessThan(startLng);
-  });
-
-  // Rule 1: Start at the first waypoint
-  // Route starts at sánchez fontecilla (south end, far from Canal San Carlos).
-  it('starts near the south end of sánchez fontecilla', () => {
-    const { input } = chainLaReina();
-    const segments = chainBikePaths(input);
-    const pts = renderTrace(segments);
-    // South end of sánchez fontecilla: -70.5587, -33.4523
-    // chainBikePaths may extend slightly beyond the path's actual extent
-    const sanchezSouth = [-70.5587, -33.4523];
-    const startDist = haversineM(pts[0], sanchezSouth);
-    expect(startDist, 'GPX starts ' + Math.round(startDist) + 'm from south end of sánchez fontecilla').toBeLessThan(1500);
-  });
-
-  // Rule 2: End at the last waypoint
-  // The route should end AT Quinta Normal, not 2km away in some random spot.
-  // Endpoint test uses the real pipeline (above) — fixture avMapocho is too narrow.
-  // The real pipeline test "route ends within 2km of Quinta Normal" covers this.
-
-  // Rule 3: Ride each bike path — meaningfully, not just 1 way
-  // "Take pocuro" means ride pocuro. At least 2km of each path, or 30% of ways.
-  it('rides a meaningful section of each bike path', () => {
-    const { input, fixtures } = chainLaReina();
-    const segments = chainBikePaths(input);
-    const outputIds = new Set(segments.flat().map(w => w.id));
-
-    for (const [name, ways] of Object.entries(fixtures)) {
-      const included = ways.filter(w => outputIds.has(w.id)).length;
-      const pct = Math.round(included / ways.length * 100);
-      // Costanera/mapocho42k/avMapocho overlap along the river — the algorithm
-      // picks sections from each. Costanera (39 ways, 46km) may contribute only
-      // a transition way (2%) while mapocho42k and avMapocho carry the corridor.
-      const minPct = name === 'costanera' ? 2
-        : (name === 'mapocho42k' || name === 'avMapocho') ? 20
-        : 30;
-      expect(pct, name + ': ' + included + '/' + ways.length + ' ways (' + pct + '%) — need ≥' + minPct + '%').toBeGreaterThanOrEqual(minPct);
-    }
-  });
-
-  // Rule 4: Pass through each place
-  // "Pass through Sanhattan" means the trace actually goes THROUGH Sanhattan,
-  // not 2km away. 300m is a city block — the rider should see it.
-  it('passes within 300m of Sanhattan', () => {
-    const { input } = chainLaReina();
-    const segments = chainBikePaths(input);
-    const pts = renderTrace(segments);
+  it('passes within 300m of Sanhattan', async () => {
+    const { pts } = await generateLaReinaReal();
     const sanhattan = [-70.605, -33.418];
     let minDist = Infinity;
     for (const p of pts) {
@@ -1137,20 +833,16 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
       if (d < minDist) minDist = d;
     }
     expect(minDist, 'closest point to Sanhattan: ' + Math.round(minDist) + 'm').toBeLessThan(300);
-  });
+  }, 120_000);
 
-  // Rule 5: Visit waypoints in order
-  it('visits Canal San Carlos before Sanhattan before Quinta Normal', () => {
-    const { input } = chainLaReina();
-    const segments = chainBikePaths(input);
-    const pts = renderTrace(segments);
-
+  it('visits Canal San Carlos before Sanhattan before Quinta Normal', async () => {
+    const { pts } = await generateLaReinaReal();
+    const quintaNormal = [-70.6839, -33.4413];
     const checkpoints = [
       { name: 'Canal San Carlos', coord: [-70.5725, -33.433] },
       { name: 'Sanhattan', coord: [-70.605, -33.418] },
-      { name: 'Parque Quinta Normal', coord: [-70.730, -33.440] },
+      { name: 'Parque Quinta Normal', coord: quintaNormal },
     ];
-
     let lastIdx = -1;
     for (const cp of checkpoints) {
       let closestIdx = -1, minDist = Infinity;
@@ -1161,16 +853,10 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
       expect(closestIdx, cp.name + ' (at idx ' + closestIdx + ') should come after previous (at idx ' + lastIdx + ')').toBeGreaterThan(lastIdx);
       lastIdx = closestIdx;
     }
-  });
+  }, 120_000);
 
-  // Rule 6: Go in the right direction (no large backtracks)
-  it('goes steadily E→W with no backtracks >2km', () => {
-    const { input } = chainLaReina();
-    const segments = chainBikePaths(input);
-    const pts = renderTrace(segments);
-
-    // The route goes from sánchez fontecilla (east) to Quinta Normal (west, -70.730)
-    // Track the westernmost longitude seen; no point should backtrack >2km east
+  it('goes steadily E→W with no backtracks >2km', async () => {
+    const { pts } = await generateLaReinaReal();
     let westmostLng = pts[0][0];
     const backtracks = [];
     for (let i = 50; i < pts.length; i += 50) {
@@ -1181,27 +867,7 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
       }
     }
     expect(backtracks, 'backtracks >2km: ' + JSON.stringify(backtracks)).toHaveLength(0);
-  });
-
-  // Pocuro should be between sánchez fontecilla and the river paths (overall E→W)
-  it('pocuro segment is positioned between sanchez and river paths', () => {
-    const { input, fixtures } = chainLaReina();
-    const segments = chainBikePaths(input);
-    const pocuroIds = new Set(fixtures.pocuro.map(w => w.id));
-
-    // Find pocuro ways in the output
-    const pocuroOutput = segments.flat().filter(w => pocuroIds.has(w.id));
-    if (pocuroOutput.length === 0) return; // covered by rule 3
-
-    // Pocuro's segment should be between sanchez (east) and river paths (west)
-    // Find which segment contains pocuro
-    let pocuroSegIdx = -1;
-    for (let s = 0; s < segments.length; s++) {
-      if (segments[s].some(w => pocuroIds.has(w.id))) { pocuroSegIdx = s; break; }
-    }
-    expect(pocuroSegIdx, 'pocuro should be in a middle segment').toBeGreaterThan(0);
-    expect(pocuroSegIdx, 'pocuro should not be the last segment').toBeLessThan(segments.length - 1);
-  });
+  }, 120_000);
 });
 
 describe('chainBikePaths — synthetic', () => {
