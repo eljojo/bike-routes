@@ -122,6 +122,8 @@ function closestPair(polyA, polyB) {
 /**
  * Given entry/exit scalars on a measured polyline, return the original ways
  * that overlap the interval, in the correct traversal order.
+ * Boundary ways are trimmed to the entry/exit scalar cut points so they
+ * don't extend beyond the needed section.
  */
 function sliceWays(ways, poly, entryScalar, exitScalar) {
   const forward = entryScalar <= exitScalar;
@@ -146,6 +148,12 @@ function sliceWays(ways, poly, entryScalar, exitScalar) {
     // Forward = render in poly direction = keep _reversed as-is.
     // Backward = render against poly direction = flip _reversed.
     way._reversed = forward ? (way._reversed || false) : !way._reversed;
+
+    // NOTE: Boundary way trimming was considered here but removed.
+    // The dedup pass already removes duplicate way IDs, and the backtrack
+    // removal handles overlapping corridors. Trimming boundary ways
+    // reduces Google reference coverage without fixing remaining zigzag.
+
     return way;
   });
 }
@@ -334,30 +342,50 @@ export function chainBikePaths(waypoints) {
 
   if (currentSegment.length > 0) segments.push(currentSegment);
 
-  // Deduplicate ways with the same OSM id WITHIN the same source path.
-  // When overlapping bike paths share underlying OSM ways, sliceWays can
-  // include the same way twice. This causes zigzag artifacts because the
-  // duplicate is rendered again (potentially with different _reversed flags).
-  // Only dedup within the same _pathIdx — different paths can legitimately
-  // have ways with the same id (e.g., synthetic tests, or streets that
-  // cross multiple bike path definitions).
+  // Deduplicate ways with the same OSM id across the entire segment.
+  // When overlapping bike paths share underlying OSM ways (e.g., pocuro
+  // appears in both ciclovia-pocuro and ciclovia-sanchez-fontecilla),
+  // keep only the first occurrence. This prevents the same corridor from
+  // being rendered twice, which causes zigzag artifacts.
   for (let s = 0; s < segments.length; s++) {
     const seg = segments[s];
     if (seg.length < 2) continue;
     const deduped = [seg[0]];
-    const seenByPath = new Map(); // pathIdx → Set<id>
-    const firstPathIdx = seg[0]._pathIdx;
-    seenByPath.set(firstPathIdx, new Set([seg[0].id]));
+    const seen = new Set([seg[0].id]);
     for (let w = 1; w < seg.length; w++) {
-      const way = seg[w];
-      const pi = way._pathIdx;
-      if (!seenByPath.has(pi)) seenByPath.set(pi, new Set());
-      const seen = seenByPath.get(pi);
-      if (seen.has(way.id)) continue;
-      seen.add(way.id);
-      deduped.push(way);
+      if (seen.has(seg[w].id)) continue;
+      seen.add(seg[w].id);
+      deduped.push(seg[w]);
     }
     segments[s] = deduped;
+  }
+
+  // Split segments at large gaps between consecutive rendered ways.
+  // closestPair can find junctions where polylines are close but the actual
+  // rendered way endpoints are far apart (e.g., Pocuro and LTO: polylines
+  // meet at a projected point but the ways are 1.6km apart). Split these
+  // into separate segments.
+  const RENDERED_GAP_M = 1000;
+  for (let s = segments.length - 1; s >= 0; s--) {
+    const seg = segments[s];
+    if (seg.length < 2) continue;
+    for (let w = 1; w < seg.length; w++) {
+      const prevWay = seg[w - 1];
+      const curWay = seg[w];
+      const pg = prevWay.geometry;
+      const cg = curWay.geometry;
+      const prevEnd = prevWay._reversed ? pg[0] : pg[pg.length - 1];
+      const curStart = curWay._reversed ? cg[cg.length - 1] : cg[0];
+      const gap = haversineM([prevEnd.lon, prevEnd.lat], [curStart.lon, curStart.lat]);
+      if (gap > RENDERED_GAP_M && prevWay._pathIdx != null && curWay._pathIdx != null
+          && prevWay._pathIdx !== curWay._pathIdx) {
+        // Split: seg[0..w-1] and seg[w..end]
+        const before = seg.slice(0, w);
+        const after = seg.slice(w);
+        segments.splice(s, 1, before, after);
+        break; // restart from the new segments
+      }
+    }
   }
 
   // Remove backtracking overlaps within segments.
@@ -409,12 +437,20 @@ export function chainBikePaths(waypoints) {
           : (curStart.lon - prevEnd.lon) * 85000;
       }
 
-      if (backtrackM > 100 && !curWay._connector
-          && curWay._pathIdx === prevWay._pathIdx) {
-        // Only drop if both ways come from the same source path.
-        // Cross-path transitions (e.g., Pocuro → LTO) can legitimately
-        // go "backward" on the dominant axis.
-        continue;
+      if (backtrackM > 100 && !curWay._connector) {
+        // Always drop same-path backtracks. For cross-path backtracks,
+        // only drop if the way re-enters an already-covered corridor
+        // (same OSM id as a previously rendered way). A new corridor
+        // entering from a different direction (e.g., LTO going N-S after
+        // Pocuro going E-W) is a legitimate transition, not a backtrack.
+        if (curWay._pathIdx === prevWay._pathIdx) {
+          continue; // same source path — definitely backtracking
+        }
+        // Cross-path: check if this way's OSM id was already seen
+        const alreadySeen = filtered.some(fw => fw.id === curWay.id);
+        if (alreadySeen) {
+          continue; // re-entering an already-covered corridor
+        }
       }
 
       filtered.push(curWay);

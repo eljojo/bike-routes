@@ -298,16 +298,27 @@ export async function generateRoute({ waypoints, dataDir, bikePaths }) {
     }
   }
 
+  // Also check for path→place→path junctions that need connectors
+  let hasJunctions = false;
+  for (let i = 0; i < classified.length - 2; i++) {
+    if (classified[i].type === 'path' && classified[i + 1].type === 'place' && classified[i + 2].type === 'path') {
+      hasJunctions = true;
+      break;
+    }
+  }
+
   let finalWaypoints = chainWaypoints;
   let allPathsCache = null;
 
-  if (hasGaps) {
+  if (hasGaps || hasJunctions) {
     allPathsCache = [];
     for (const [bpSlug, bp] of bpBySlug.entries()) {
       const ways = await fetchBikePathWays(bp);
       if (ways.length > 0) allPathsCache.push({ slug: bpSlug, ways });
     }
-    finalWaypoints = planRoute(classified, allPathsCache);
+    if (hasGaps) {
+      finalWaypoints = planRoute(classified, allPathsCache);
+    }
   }
 
   // Insert short connector paths at path→path junctions.

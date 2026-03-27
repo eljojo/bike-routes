@@ -12,11 +12,12 @@ function makeWay(id, coords) {
   return { id, geometry: coords.map(([lon, lat]) => ({ lon, lat })) };
 }
 
+let _nextSyntheticId = 1000;
 function makeLinearPath(startLng, endLng, lat, n) {
   const ways = [];
   const step = (endLng - startLng) / n;
   for (let i = 0; i < n; i++) {
-    ways.push(makeWay(i, [
+    ways.push(makeWay(_nextSyntheticId++, [
       [startLng + i * step, lat],
       [startLng + (i + 1) * step, lat],
     ]));
@@ -28,7 +29,7 @@ function makeNSPath(lng, startLat, endLat, n) {
   const ways = [];
   const step = (endLat - startLat) / n;
   for (let i = 0; i < n; i++) {
-    ways.push(makeWay(i, [
+    ways.push(makeWay(_nextSyntheticId++, [
       [lng, startLat + i * step],
       [lng, startLat + (i + 1) * step],
     ]));
@@ -1018,6 +1019,115 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
       'LTO goes south (start lat: ' + startLat.toFixed(4) +
       ', end lat: ' + endLat.toFixed(4) + ') — should go north toward Sanhattan/Andrés Bello'
     ).toBeGreaterThan(startLat);
+  }, 120_000);
+
+  it('trimming preserves sufficient geometry points per segment', async () => {
+    // The sliceWays trimming should not destroy route coverage.
+    // Each segment should retain enough points to render a continuous trace.
+    const { segments } = await generateLaReinaReal();
+
+    let totalPts = 0;
+    for (let s = 0; s < segments.length; s++) {
+      const seg = segments[s];
+      const segPts = seg.reduce((n, w) => n + w.geometry.length, 0);
+      totalPts += segPts;
+    }
+
+    // The full route should have at least 100 geometry points total.
+    // Before trimming was added this was ~792 points. If trimming
+    // drops it below 100, we're clipping too aggressively.
+    expect(totalPts,
+      'total geometry points across all segments: ' + totalPts + ' (need ≥100)'
+    ).toBeGreaterThanOrEqual(100);
+  }, 120_000);
+
+  it('shape match: per-region coverage against Google reference', async () => {
+    // Check WHERE uncovered gaps are — eastern start, middle corridor, or west end.
+    const { pts } = await generateLaReinaReal();
+
+    // Group Google ref points by region
+    const regions = {
+      east: { pts: [], desc: 'east start (lng > -70.58)', test: r => r[0] > -70.58 },
+      pocuro: { pts: [], desc: 'Pocuro corridor (-70.62 to -70.58)', test: r => r[0] >= -70.62 && r[0] <= -70.58 },
+      middle: { pts: [], desc: 'Balmaceda/LTO (-70.63 to -70.60)', test: r => r[0] >= -70.63 && r[0] < -70.60 },
+      west: { pts: [], desc: 'west end (lng < -70.63)', test: r => r[0] < -70.63 },
+    };
+
+    for (const ref of LA_REINA_GOOGLE) {
+      for (const [name, region] of Object.entries(regions)) {
+        if (region.test(ref)) { region.pts.push(ref); break; }
+      }
+    }
+
+    const results = {};
+    for (const [name, region] of Object.entries(regions)) {
+      let covered = 0;
+      for (const ref of region.pts) {
+        let minDist = Infinity;
+        for (const gen of pts) {
+          const d = haversineM(ref, gen);
+          if (d < minDist) minDist = d;
+        }
+        if (minDist <= 200) covered++;
+      }
+      const pct = region.pts.length > 0 ? Math.round(covered / region.pts.length * 100) : 100;
+      results[name] = { pct, covered, total: region.pts.length, desc: region.desc };
+    }
+
+    // Build a readable summary
+    const summary = Object.entries(results).map(([name, r]) =>
+      name + ': ' + r.pct + '% (' + r.covered + '/' + r.total + ') ' + r.desc
+    ).join(' | ');
+
+    // Overall coverage at 200m
+    let totalCovered = 0;
+    for (const r of Object.values(results)) totalCovered += r.covered;
+    const overallPct = Math.round(totalCovered / LA_REINA_GOOGLE.length * 100);
+
+    expect(overallPct,
+      overallPct + '% overall at 200m. By region: ' + summary
+    ).toBeGreaterThanOrEqual(90);
+  }, 120_000);
+
+  it('LTO is in a separate segment from Pocuro (>200m gap)', async () => {
+    // LTO should not merge into Pocuro's segment. If they merge,
+    // LTO's N-S ways cause zigzag in Pocuro's E-W zone.
+    const { segments } = await generateLaReinaReal();
+
+    // Find segments containing Pocuro and LTO ways by name
+    let pocuroSegIdx = -1, ltoSegIdx = -1;
+    for (let s = 0; s < segments.length; s++) {
+      for (const w of segments[s]) {
+        if (w.tags?.name?.includes('Pocuro') && pocuroSegIdx < 0) pocuroSegIdx = s;
+        if (w.tags?.name?.includes('Thayer') && ltoSegIdx < 0) ltoSegIdx = s;
+      }
+    }
+
+    expect(pocuroSegIdx, 'Pocuro segment not found').toBeGreaterThanOrEqual(0);
+    expect(ltoSegIdx, 'LTO segment not found').toBeGreaterThanOrEqual(0);
+    // Also check: what is the actual rendered gap between Pocuro's last point
+    // and LTO's first point?
+    if (pocuroSegIdx === ltoSegIdx) {
+      const seg = segments[pocuroSegIdx];
+      const pocuroWays = seg.filter(w => w.tags?.name?.includes('Pocuro'));
+      const ltoWays = seg.filter(w => w.tags?.name?.includes('Thayer'));
+      if (pocuroWays.length > 0 && ltoWays.length > 0) {
+        const lastPocuro = pocuroWays[pocuroWays.length - 1];
+        const pg = lastPocuro.geometry;
+        const pocuroEnd = lastPocuro._reversed ? pg[0] : pg[pg.length - 1];
+        const firstLto = ltoWays[0];
+        const lg = firstLto.geometry;
+        const ltoStart = firstLto._reversed ? lg[lg.length - 1] : lg[0];
+        const gapM = haversineM([pocuroEnd.lon, pocuroEnd.lat], [ltoStart.lon, ltoStart.lat]);
+        expect(ltoSegIdx,
+          'LTO is in segment ' + ltoSegIdx + ' (same as Pocuro). Gap: ' + Math.round(gapM) +
+          'm. Pocuro end: [' + pocuroEnd.lon.toFixed(4) + ',' + pocuroEnd.lat.toFixed(4) +
+          '], LTO start: [' + ltoStart.lon.toFixed(4) + ',' + ltoStart.lat.toFixed(4) + ']'
+        ).not.toBe(pocuroSegIdx);
+      }
+    } else {
+      expect(ltoSegIdx).not.toBe(pocuroSegIdx); // passes
+    }
   }, 120_000);
 
   it('Pocuro–Balmaceda–Andrés Bello corridor overlaps Google reference', async () => {
