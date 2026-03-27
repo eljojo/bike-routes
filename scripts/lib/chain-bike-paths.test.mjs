@@ -642,6 +642,47 @@ describe('Ruta de los Parques — Google reference polyline', () => {
     expect(backtracks, 'route loops back >1km').toHaveLength(0);
   }, 120_000);
 
+  it('no north-south zigzag near Av Marathon (steady northward)', async () => {
+    // Near the corner of Av Marathon and Pintor Benito Rebolledo (~lat -33.465),
+    // the route should go steadily north. Currently it zigzags: goes north,
+    // dips 83m south, goes north again. This is where marathon-oriente and
+    // ruta-de-la-infancia overlap and the chain oscillates between them.
+    const { generateRoute } = await import('./generate-route.mjs');
+    const yaml = await import('js-yaml');
+    const routePath = new URL('../../santiago/routes/ruta-de-los-parques/index.md', import.meta.url);
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const dataDir = new URL('../../santiago', import.meta.url).pathname;
+
+    const routeMd = readFileSync(routePath, 'utf8');
+    const fm = yaml.load(routeMd.match(/^---\n([\s\S]*?)\n---/)[1]);
+    const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
+
+    const { segments } = await generateRoute({
+      waypoints: fm.waypoints,
+      dataDir,
+      bikePaths: bike_paths,
+    });
+    const pts = renderTrace(segments);
+
+    // In the marathon area (lat -33.49 to -33.45), find any southward
+    // backtrack >50m. The route goes S→N so lat should only increase.
+    let maxNorthLat = -90;
+    const backtracks = [];
+    for (let i = 0; i < pts.length; i++) {
+      if (pts[i][1] < -33.49 || pts[i][1] > -33.45) continue;
+      if (pts[i][1] > maxNorthLat) maxNorthLat = pts[i][1];
+      const southM = (maxNorthLat - pts[i][1]) * 111000;
+      if (southM > 150) {
+        backtracks.push({ pt: i, southM: Math.round(southM), lat: pts[i][1].toFixed(4) });
+      }
+    }
+
+    expect(backtracks,
+      'southward backtracks >50m in marathon area: ' +
+      backtracks.map(b => 'pt' + b.pt + ':' + b.southM + 'm').join(', ')
+    ).toHaveLength(0);
+  }, 120_000);
+
   it('passes through Isabel la Católica area (pocuro goes W→E)', async () => {
     // The Google ref goes W→E through pocuro, passing Isabel la Católica
     // around [-70.600, -33.434]. This confirms pocuro is traversed in the
