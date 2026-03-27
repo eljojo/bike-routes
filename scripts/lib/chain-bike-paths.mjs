@@ -108,11 +108,12 @@ function closestPair(polyA, polyB) {
       if (diff < bestDiff) { bestDiff = diff; best = c; }
     }
   } else {
-    // Non-overlapping: prefer B entry nearest an endpoint
-    let bestEndDist = Math.min(best.scalarB, polyB.totalLength - best.scalarB);
+    // Non-overlapping: use the closest pair (minimum distance).
+    // Don't prefer endpoints — that can set entry at the far end of a
+    // long path, causing the entire path to be included when only a
+    // section near the junction is needed.
     for (const c of near) {
-      const ed = Math.min(c.scalarB, polyB.totalLength - c.scalarB);
-      if (ed < bestEndDist) { bestEndDist = ed; best = c; }
+      if (c.dist < best.dist) best = c;
     }
   }
 
@@ -130,13 +131,23 @@ function sliceWays(ways, poly, entryScalar, exitScalar) {
   const lo = Math.min(entryScalar, exitScalar);
   const hi = Math.max(entryScalar, exitScalar);
 
-  // Find ways overlapping the interval
+  // Find ways overlapping the interval.
+  // Skip boundary ways that barely overlap — they extend mostly outside
+  // the needed section and can cause zigzag in adjacent paths' zones.
   const included = [];
   for (let w = 0; w < ways.length; w++) {
     const wb = poly.wayBounds[w];
-    if (wb.endScalar >= lo && wb.startScalar <= hi) {
-      included.push(w);
-    }
+    if (wb.endScalar < lo || wb.startScalar > hi) continue;
+    const wayLen = wb.endScalar - wb.startScalar;
+    const overlapLo = Math.max(lo, wb.startScalar);
+    const overlapHi = Math.min(hi, wb.endScalar);
+    const overlapLen = overlapHi - overlapLo;
+    // Drop ways that barely overlap.
+    // OSM-name-resolved paths (streets found via queryOsmName) need
+    // stricter filtering because they often extend far beyond the
+    // needed section. Regular bikepaths.yml paths use a lenient threshold.
+    if (wayLen > 100 && overlapLen / wayLen < 0.2) continue;
+    included.push(w);
   }
 
   // Reverse order if traversing backward
@@ -149,6 +160,40 @@ function sliceWays(ways, poly, entryScalar, exitScalar) {
     // Backward = render against poly direction = flip _reversed.
     way._reversed = forward ? (way._reversed || false) : !way._reversed;
 
+    // Trim boundary ways for OSM-name-resolved paths only.
+    // These paths (from queryOsmName) extend far beyond the needed section.
+    // Regular bikepaths.yml paths keep full boundary ways for coverage.
+    if (ways[w]._osmNameResolved) {
+      const isFirstInSlice = (included.indexOf(w) === 0);
+      const isLastInSlice = (included.indexOf(w) === included.length - 1);
+      if (isFirstInSlice || isLastInSlice) {
+        const wb = poly.wayBounds[w];
+        const wayLo = Math.max(lo, wb.startScalar);
+        const wayHi = Math.min(hi, wb.endScalar);
+        if (wayLo > wb.startScalar || wayHi < wb.endScalar) {
+          const origG = ways[w].geometry;
+          const rendered = ways[w]._reversed ? [...origG].reverse() : origG;
+          const dists = [0];
+          for (let p = 1; p < rendered.length; p++) {
+            dists.push(dists[p - 1] + haversineM(
+              [rendered[p - 1].lon, rendered[p - 1].lat],
+              [rendered[p].lon, rendered[p].lat]
+            ));
+          }
+          const trimStart = wayLo - wb.startScalar;
+          const trimEnd = wayHi - wb.startScalar;
+          const keptRendered = [];
+          for (let p = 0; p < rendered.length; p++) {
+            if (dists[p] >= trimStart - 1 && dists[p] <= trimEnd + 1) {
+              keptRendered.push(rendered[p]);
+            }
+          }
+          if (keptRendered.length >= 2) {
+            way.geometry = ways[w]._reversed ? [...keptRendered].reverse() : keptRendered;
+          }
+        }
+      }
+    }
 
     return way;
   });
@@ -306,6 +351,74 @@ export function chainBikePaths(waypoints) {
     if (item.entry === null && item.exit === null) {
       item.entry = 0;
       item.exit = L;
+    }
+  }
+
+  // Tighten OSM-name-resolved paths: their entry/exit may span the entire
+  // path when only a section is needed. Project the neighboring waypoints
+  // onto the path and constrain entry/exit to not extend beyond them plus
+  // a small margin. This prevents e.g., LTO from including its southern
+  // ways that overlap with Pocuro's zone.
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    if (item.type !== 'path') continue;
+    if (!item.ways.some(w => w._osmNameResolved)) continue;
+    if (item.entry === null || item.exit === null) continue;
+
+    // Find neighboring coordinates
+    let prevCoord = null, nextCoord = null;
+    for (let p = i - 1; p >= 0; p--) {
+      if (items[p].type === 'place') { prevCoord = items[p].coord; break; }
+      if (items[p].type === 'path' && items[p].exit != null) {
+        prevCoord = coordAtScalar(items[p].poly, items[p].exit);
+        break;
+      }
+    }
+    for (let n = i + 1; n < items.length; n++) {
+      if (items[n].type === 'place') { nextCoord = items[n].coord; break; }
+      if (items[n].type === 'path' && items[n].entry != null) {
+        nextCoord = coordAtScalar(items[n].poly, items[n].entry);
+        break;
+      }
+    }
+
+    // For OSM-name paths, constrain to the section between neighboring
+    // PLACE waypoints (not path waypoints). Path neighbors project onto
+    // LTO at the wrong end; place neighbors give the actual transition point.
+    // Use a 300m margin to allow for connection gaps.
+    const placePrev = (() => {
+      for (let p = i - 1; p >= 0; p--) {
+        if (items[p].type === 'place') return items[p].coord;
+      }
+      return null;
+    })();
+    const placeNext = (() => {
+      for (let n = i + 1; n < items.length; n++) {
+        if (items[n].type === 'place') return items[n].coord;
+      }
+      return null;
+    })();
+    if (placeNext) {
+      const nextProj = nearestPointOnPolyline(placeNext, item.poly.coords);
+      // Constrain around the next place: the path is used to get TO this place.
+      // Use a generous margin in the approach direction.
+      const projCenter = nextProj.scalar;
+      const margin = 800; // 800m around the next place
+      const projLo = projCenter;
+      const projHi = projCenter;
+      const tightLo = Math.max(0, projLo - margin);
+      const tightHi = Math.min(item.poly.totalLength, projHi + margin);
+      const lo = Math.min(item.entry, item.exit);
+      const hi = Math.max(item.entry, item.exit);
+      const newLo = Math.max(lo, tightLo);
+      const newHi = Math.min(hi, tightHi);
+      if (item.entry <= item.exit) {
+        item.entry = newLo;
+        item.exit = newHi;
+      } else {
+        item.entry = newHi;
+        item.exit = newLo;
+      }
     }
   }
 

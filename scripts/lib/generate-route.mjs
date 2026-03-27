@@ -286,6 +286,9 @@ export async function generateRoute({ waypoints, dataDir, bikePaths }) {
           // If no cycling infrastructure exists, fall back to all ways.
           const filtered = filterCyclingWays(ways);
           const ordered = orderWays(filtered.length > 0 ? filtered : ways);
+          // Tag as OSM name resolved — these paths may extend far beyond
+          // the needed section and should be trimmed more aggressively
+          for (const w of ordered) w._osmNameResolved = true;
           return ordered;
         }
         const nodes = data.elements.filter(el => el.type === 'node' && el.lat != null);

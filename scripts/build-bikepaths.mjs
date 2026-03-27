@@ -43,9 +43,10 @@ if (!args.city) {
 const dataDir = path.resolve('..', args.city);
 const bikepathsPath = path.join(dataDir, 'bikepaths.yml');
 
-// Santiago bounding box
+// City bounding boxes
 const CITY_BOUNDS = {
   santiago: { s: -33.65, w: -70.85, n: -33.30, e: -70.45 },
+  ottawa: { s: 45.25, w: -76.00, n: 45.50, e: -75.55 },
 };
 const bounds = CITY_BOUNDS[args.city];
 if (!bounds) {
