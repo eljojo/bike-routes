@@ -1985,9 +1985,9 @@ bike_paths:
       - Ciclovia Parque Bicentenario Cerrillos
   - name: Avenida Mapocho
     anchors:
-      - - -70.6924
-        - -33.4315
-      - - -70.6651
+      - - -70.7403
+        - -33.4235
+      - - -70.6575
         - -33.4321
     segments:
       - osm_way: 685925302

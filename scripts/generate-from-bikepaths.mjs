@@ -18,10 +18,7 @@ import { queryOverpass } from './lib/overpass.mjs';
 import { haversineM } from './lib/geo.mjs';
 import { slugify } from './lib/slugify.mjs';
 import { orderWays } from './lib/order-ways.mjs';
-import { chainBikePaths } from './lib/chain-bike-paths.mjs';
-import { resolveWaypoints } from './lib/resolve-waypoints.mjs';
-import { planRoute } from './lib/plan-route.mjs';
-import { filterCyclingWays } from './lib/filter-cycling-ways.mjs';
+import { fetchBikePathWays, generateRoute } from './lib/generate-route.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -50,49 +47,6 @@ const routesDir = path.join(dataDir, 'routes');
 
 // ---------------------------------------------------------------------------
 // Fetch relation geometry from Overpass
-// ---------------------------------------------------------------------------
-
-async function fetchRelationWays(relationId) {
-  const query = `[out:json][timeout:60];
-relation(${relationId});
-way(r);
-out geom;`;
-  const data = await queryOverpass(query);
-  return data.elements.filter(e => e.type === 'way' && e.geometry?.length >= 2);
-}
-
-// ---------------------------------------------------------------------------
-// Fetch ways by name within an anchor corridor
-// ---------------------------------------------------------------------------
-
-async function fetchNamedWays(osmNames, anchors, bounds) {
-  // Build bounding box from anchors with padding
-  const lats = anchors.map(a => a[1]);
-  const lngs = anchors.map(a => a[0]);
-  const pad = 0.02; // ~2km padding
-  const s = Math.min(...lats) - pad;
-  const n = Math.max(...lats) + pad;
-  const w = Math.min(...lngs) - pad;
-  const e = Math.max(...lngs) + pad;
-
-  const nameFilters = osmNames.map(name =>
-    `way["name"="${name.replace(/"/g, '\\"')}"](${s},${w},${n},${e});`
-  ).join('\n');
-
-  const query = `[out:json][timeout:60];
-(
-${nameFilters}
-);
-out geom;`;
-  const data = await queryOverpass(query);
-  // Basic geometry filter only — cycling infrastructure filtering
-  // happens in fetchBikePathWays via filterCyclingWays.
-  return data.elements.filter(el =>
-    el.type === 'way' && el.geometry?.length >= 2
-  );
-}
-
-// ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // Build GPX from ordered ways
 // ---------------------------------------------------------------------------
@@ -177,60 +131,6 @@ ${trksegs.join('\n')}
 </gpx>`;
 
   return { gpx, distanceKm: Math.round(totalDistM / 100) / 10 };
-}
-
-// ---------------------------------------------------------------------------
-// Fetch ordered ways for a bike path entry
-// ---------------------------------------------------------------------------
-
-async function fetchBikePathWays(bp) {
-  let ways = [];
-  if (bp.osm_relations?.length > 0) {
-    for (const relId of bp.osm_relations) {
-      const relWays = await fetchRelationWays(relId);
-      ways.push(...relWays);
-    }
-  } else if (bp.osm_names?.length > 0 && bp.anchors?.length >= 2) {
-    ways = await fetchNamedWays(bp.osm_names, bp.anchors);
-  } else if (bp.anchors?.length >= 2) {
-    ways = await fetchNamedWays([bp.name], bp.anchors);
-  }
-  // Prefer cycleways over parallel road lanes. Many OSM relations include
-  // both the dedicated bike path AND the car lanes of the same avenue.
-  ways = filterCyclingWays(ways);
-
-  // If filtering left only park polygons (closed ways, no roads/cycleways),
-  // snap to the actual cycleways running THROUGH the park.
-  if (ways.length > 0 && ways.every(w => w.tags?.leisure === 'park')) {
-    const parkWays = ways;
-    // Compute bounding box from the park polygons
-    let minLat = 90, maxLat = -90, minLng = 180, maxLng = -180;
-    for (const w of parkWays) {
-      for (const p of w.geometry) {
-        if (p.lat < minLat) minLat = p.lat;
-        if (p.lat > maxLat) maxLat = p.lat;
-        if (p.lon < minLng) minLng = p.lon;
-        if (p.lon > maxLng) maxLng = p.lon;
-      }
-    }
-    const pad = 0.001; // ~100m
-    const q = `[out:json][timeout:30];
-(
-  way["highway"="cycleway"](${minLat - pad},${minLng - pad},${maxLat + pad},${maxLng + pad});
-  way["highway"="path"]["bicycle"~"designated|yes"](${minLat - pad},${minLng - pad},${maxLat + pad},${maxLng + pad});
-);
-out geom;`;
-    try {
-      const data = await queryOverpass(q);
-      const cycleways = data.elements.filter(e => e.type === 'way' && e.geometry?.length >= 2);
-      if (cycleways.length > 0) {
-        console.log(`  [park-snap] ${bp.name}: found ${cycleways.length} cycleways inside park`);
-        ways = cycleways;
-      }
-    } catch { /* keep park ways as fallback */ }
-  }
-
-  return ways.length > 0 ? orderWays(ways) : [];
 }
 
 // Index bike paths by slug for combined route lookups
@@ -327,8 +227,6 @@ console.log(`\n${generated} bike path routes generated, ${failed} failed.`);
 let combined = 0;
 let combinedFailed = 0;
 
-let allPathsCache = null;
-
 if (fs.existsSync(routesDir)) {
   for (const slug of fs.readdirSync(routesDir)) {
     const mdPath = path.join(routesDir, slug, 'index.md');
@@ -340,89 +238,18 @@ if (fs.existsSync(routesDir)) {
     if (!fm.waypoints || !Array.isArray(fm.waypoints) || fm.waypoints.length === 0) continue;
 
     try {
-      // Resolve waypoints: bike path slugs → ways, place slugs → coordinates, objects → pass through
-      const placesDir = path.join(dataDir, 'places');
-      const { chainWaypoints, resolved } = await resolveWaypoints(fm.waypoints, async (bpSlug) => {
-        const bp = bpBySlug.get(bpSlug);
-        if (!bp) return null;
-        const ways = await fetchBikePathWays(bp);
-        if (ways.length === 0) return null;
-        return ways;
-      }, {
-        resolvePlace: (placeSlug) => {
-          const placePath = path.join(placesDir, placeSlug + '.md');
-          if (!fs.existsSync(placePath)) return null;
-          const raw = fs.readFileSync(placePath, 'utf8');
-          const match = raw.match(/^---\n([\s\S]*?)\n---/);
-          if (!match) return null;
-          const pm = yaml.load(match[1]);
-          if (pm.lat == null || pm.lng == null) return null;
-          return { name: pm.name || placeSlug, lat: pm.lat, lng: pm.lng };
-        },
-        queryOsmName: async (slug) => {
-          // Convert slug back to a name: "luis-thayer-ojeda" → "Luis Thayer Ojeda"
-          const name = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-          // Search OSM for ways with this name in the city
-          const cityBounds = yaml.load(fs.readFileSync(path.join(dataDir, 'config.yml'), 'utf8'));
-          const lat = cityBounds?.lat || -33.45;
-          const lng = cityBounds?.lng || -70.65;
-          const pad = 0.15; // ~15km radius
-          const q = `[out:json][timeout:30];way["name"~"${name.replace(/"/g, '\\"')}",i](${lat-pad},${lng-pad},${lat+pad},${lng+pad});out geom;`;
-          try {
-            const data = await queryOverpass(q);
-            const ways = data.elements.filter(el =>
-              el.type === 'way' && el.geometry?.length >= 2
-            );
-            if (ways.length > 0) {
-              const ordered = orderWays(ways);
-              console.log(`  [osm-query] "${name}" → ${ordered.length} ways`);
-              return ordered;
-            }
-            // No ways but maybe a node? Use as a place coordinate
-            const nodes = data.elements.filter(el => el.type === 'node' && el.lat != null);
-            if (nodes.length > 0) {
-              return { name, lat: nodes[0].lat, lng: nodes[0].lon };
-            }
-          } catch { /* skip */ }
-          return null;
-        },
+      const { segments, resolved } = await generateRoute({
+        waypoints: fm.waypoints,
+        dataDir,
+        bikePaths: bike_paths,
       });
 
-      if (chainWaypoints.length === 0) {
+      if (segments.length === 0 || (segments.length === 1 && segments[0].length === 0)) {
         console.log(`  SKIP combined ${slug}: no ways resolved`);
         combinedFailed++;
         continue;
       }
 
-      // Classify waypoints for the planner
-      const classified = chainWaypoints.map(wp => {
-        if (Array.isArray(wp)) return { type: 'path', ways: wp };
-        return { type: 'place', coord: [wp.lng, wp.lat] };
-      });
-
-      // Check if there are any gaps (consecutive places without a path between them)
-      let hasGaps = false;
-      for (let i = 0; i < classified.length - 1; i++) {
-        if (classified[i].type === 'place' && classified[i + 1].type === 'place') {
-          hasGaps = true;
-          break;
-        }
-      }
-
-      let finalWaypoints = chainWaypoints;
-      if (hasGaps) {
-        // Build all-paths index (lazy: only fetch if we have gaps)
-        if (!allPathsCache) {
-          allPathsCache = [];
-          for (const [bpSlug, bp] of bpBySlug.entries()) {
-            const ways = await fetchBikePathWays(bp);
-            if (ways.length > 0) allPathsCache.push({ slug: bpSlug, ways });
-          }
-        }
-        finalWaypoints = planRoute(classified, allPathsCache);
-      }
-
-      const segments = chainBikePaths(finalWaypoints);
       const { gpx, distanceKm } = buildGPX(fm.name || slug, segments);
       const routeDir = path.join(routesDir, slug);
       fs.writeFileSync(path.join(routeDir, 'main.gpx'), gpx);

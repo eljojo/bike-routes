@@ -13,7 +13,7 @@ waypoints:
   - avenida-antonio-varas
   - ciclovia-pocuro
 created_at: '2026-03-25'
-updated_at: '2026-03-26'
+updated_at: '2026-03-27'
 variants:
   - name: Parque Forestal a Pocuro
     gpx: main.gpx

@@ -9,7 +9,7 @@ waypoints:
   - general-bulnes
   - ciclovia-libertador-bernardo-o-higgins
 created_at: '2026-03-25'
-updated_at: '2026-03-26'
+updated_at: '2026-03-27'
 variants:
   - name: Centro a Parque O'Higgins
     gpx: main.gpx

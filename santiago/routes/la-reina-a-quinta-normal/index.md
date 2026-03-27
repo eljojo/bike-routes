@@ -2,7 +2,7 @@
 name: La Reina a Quinta Normal
 status: published
 homepage_featured: true
-distance_km: 23.8
+distance_km: 33.9
 tags:
   - bike path
   - flat
@@ -16,16 +16,17 @@ waypoints:
   - ciclovia-pocuro
   - sanhattan
   - luis-thayer-ojeda
-  - ciclovia-costanera-sur
+  - ciclovia-andres-bello
+  - ciclovia-parque-forestal
   - mapocho-42k
   - avenida-mapocho
   - parque-quinta-normal
 created_at: '2026-03-25'
-updated_at: '2026-03-26'
+updated_at: '2026-03-27'
 variants:
   - name: La Reina a Quinta Normal
     gpx: main.gpx
-    distance_km: 23.8
+    distance_km: 33.9
 ---
 
-East to west across the whole city. From La Reina along Canal San Carlos, through Pocuro and Sanhattan, then along the Costanera Sur and the Mapocho to Quinta Normal. The cross-city corridor.
+East to west across the whole city. From La Reina along Canal San Carlos, through Pocuro and Sanhattan, then through Parque Forestal and along the Mapocho to Quinta Normal. The cross-city corridor.

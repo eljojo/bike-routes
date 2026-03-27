@@ -76,16 +76,21 @@ export async function fetchBikePathWays(bp) {
 
   ways = filterCyclingWays(ways);
 
-  // Park-snap: if filtering left only park polygons, find cycleways inside
+  // Park-snap: if filtering left only park polygons, find cycleways that
+  // actually run through the park — not everything in the bounding box.
   if (ways.length > 0 && ways.every(w => w.tags?.leisure === 'park')) {
-    let minLat = 90, maxLat = -90, minLng = 180, maxLng = -180;
+    // Collect all park polygon points for proximity testing
+    const parkPoints = [];
     for (const w of ways) {
-      for (const p of w.geometry) {
-        if (p.lat < minLat) minLat = p.lat;
-        if (p.lat > maxLat) maxLat = p.lat;
-        if (p.lon < minLng) minLng = p.lon;
-        if (p.lon > maxLng) maxLng = p.lon;
-      }
+      for (const p of w.geometry) parkPoints.push([p.lon, p.lat]);
+    }
+
+    let minLat = 90, maxLat = -90, minLng = 180, maxLng = -180;
+    for (const [lng, lat] of parkPoints) {
+      if (lat < minLat) minLat = lat;
+      if (lat > maxLat) maxLat = lat;
+      if (lng < minLng) minLng = lng;
+      if (lng > maxLng) maxLng = lng;
     }
     const pad = 0.001;
     const q = `[out:json][timeout:30];
@@ -96,7 +101,16 @@ export async function fetchBikePathWays(bp) {
 out geom;`;
     try {
       const data = await queryOverpass(q);
-      const cycleways = data.elements.filter(e => e.type === 'way' && e.geometry?.length >= 2);
+      // Only keep cycleways that have at least one point within 50m of a park polygon point
+      const cycleways = data.elements.filter(e => {
+        if (e.type !== 'way' || !e.geometry?.length || e.geometry.length < 2) return false;
+        for (const p of e.geometry) {
+          for (const pp of parkPoints) {
+            if (haversineM([p.lon, p.lat], pp) < 50) return true;
+          }
+        }
+        return false;
+      });
       if (cycleways.length > 0) {
         ways = cycleways;
       }

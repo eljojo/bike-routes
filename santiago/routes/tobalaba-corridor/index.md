@@ -2,7 +2,7 @@
 name: Tobalaba
 status: published
 homepage_featured: true
-distance_km: 8.9
+distance_km: 10.3
 tags:
   - bike path
   - flat
@@ -11,11 +11,11 @@ waypoints:
   - ciclovia-parque-vespucio
   - ciclovia-sanchez-fontecilla
 created_at: '2026-03-25'
-updated_at: '2026-03-26'
+updated_at: '2026-03-27'
 variants:
   - name: Tobalaba
     gpx: main.gpx
-    distance_km: 8.9
+    distance_km: 10.3
 ---
 
 South from Providencia along the Tobalaba corridor through a chain of parks. The route follows Canal San Carlos for much of its length — the parks along the canal are connected by bike paths and form a continuous green corridor through the eastern suburbs.

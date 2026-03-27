@@ -12,7 +12,7 @@ waypoints:
   - ciclovia-las-perdices-avenida-bilbao-avenida-jose-arrieta
   - ciclovia-las-perdices-avenida-jose-arrieta-avenida-departamental
 created_at: '2026-03-25'
-updated_at: '2026-03-26'
+updated_at: '2026-03-27'
 variants:
   - name: Las Perdices
     gpx: main.gpx
