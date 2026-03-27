@@ -683,6 +683,105 @@ describe('Ruta de los Parques — Google reference polyline', () => {
     ).toHaveLength(0);
   }, 120_000);
 
+  it('uses ciclovia-bilbao as connector at Antonio Varas / Pocuro junction', async () => {
+    // Ciclovia Bilbao (0.4km) exists at the intersection of Antonio Varas
+    // and Pocuro. The route should use it as a connector between the longer
+    // paths, providing a smoother transition at the junction.
+    const { generateRoute } = await import('./generate-route.mjs');
+    const { slugify } = await import('./slugify.mjs');
+    const { fetchBikePathWays } = await import('./generate-route.mjs');
+    const yaml = await import('js-yaml');
+    const routePath = new URL('../../santiago/routes/ruta-de-los-parques/index.md', import.meta.url);
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const dataDir = new URL('../../santiago', import.meta.url).pathname;
+
+    const routeMd = readFileSync(routePath, 'utf8');
+    const fm = yaml.load(routeMd.match(/^---\n([\s\S]*?)\n---/)[1]);
+    const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
+
+    // Get bilbao way IDs
+    const bilbaoBp = bike_paths.find(b => slugify(b.name) === 'ciclovia-bilbao');
+    expect(bilbaoBp, 'ciclovia-bilbao should exist in bikepaths.yml').toBeTruthy();
+    const bilbaoWays = await fetchBikePathWays(bilbaoBp);
+    const bilbaoIds = new Set(bilbaoWays.map(w => w.id));
+
+    const { segments } = await generateRoute({
+      waypoints: fm.waypoints,
+      dataDir,
+      bikePaths: bike_paths,
+    });
+
+    // Debug: check where bilbao is relative to the path junctions
+    const bilbaoCoords = [];
+    for (const w of bilbaoWays) {
+      const g = w.geometry.map(p => [p.lon, p.lat]);
+      const trace = w._reversed ? [...g].reverse() : g;
+      for (const c of trace) bilbaoCoords.push(c);
+    }
+
+    // Check each path→path junction
+    const planned = []; // reconstruct from segments
+    for (let s = 0; s < segments.length; s++) {
+      const seg = segments[s];
+      if (seg.length === 0) continue;
+      const firstPt = seg[0]._reversed ? seg[0].geometry[seg[0].geometry.length-1] : seg[0].geometry[0];
+      const lastWay = seg[seg.length-1];
+      const lastPt = lastWay._reversed ? lastWay.geometry[0] : lastWay.geometry[lastWay.geometry.length-1];
+      let nearBilbao = Infinity;
+      const mid = [(firstPt.lon + lastPt.lon)/2, (firstPt.lat + lastPt.lat)/2];
+      for (const c of bilbaoCoords) {
+        const d = haversineM(c, [lastPt.lon, lastPt.lat]);
+        if (d < nearBilbao) nearBilbao = d;
+      }
+      console.log('seg' + s + ': ' + seg.length + ' ways, bilbao nearest to exit: ' + Math.round(nearBilbao) + 'm');
+    }
+
+    console.log('bilbao coords: [' + bilbaoCoords[0][0].toFixed(4) + ',' + bilbaoCoords[0][1].toFixed(4) + '] → [' + bilbaoCoords[bilbaoCoords.length-1][0].toFixed(4) + ',' + bilbaoCoords[bilbaoCoords.length-1][1].toFixed(4) + ']');
+
+    const found = segments.flat().filter(w => bilbaoIds.has(w.id));
+    expect(found.length,
+      'ciclovia-bilbao should be in the route as a connector (found ' + found.length + '/' + bilbaoWays.length + ' ways)'
+    ).toBeGreaterThan(0);
+  }, 120_000);
+
+  it('no overshoot at Antonio Varas x Pocuro corner', async () => {
+    // The route goes north on Antonio Varas then turns right (east) onto Pocuro.
+    // It should turn at the intersection (~[-70.608, -33.436]), not overshoot
+    // 92m north before coming back. The northernmost point in the Antonio Varas
+    // area (lng -70.612 to -70.604, lat -33.44 to -33.43) should be within
+    // 50m of the Pocuro intersection.
+    const { generateRoute } = await import('./generate-route.mjs');
+    const yaml = await import('js-yaml');
+    const routePath = new URL('../../santiago/routes/ruta-de-los-parques/index.md', import.meta.url);
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const dataDir = new URL('../../santiago', import.meta.url).pathname;
+
+    const routeMd = readFileSync(routePath, 'utf8');
+    const fm = yaml.load(routeMd.match(/^---\n([\s\S]*?)\n---/)[1]);
+    const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
+
+    const { segments } = await generateRoute({
+      waypoints: fm.waypoints,
+      dataDir,
+      bikePaths: bike_paths,
+    });
+    const pts = renderTrace(segments);
+
+    // Find northernmost point in Antonio Varas corridor
+    const pocuroIntersection = [-70.608, -33.436];
+    let northmostLat = -90;
+    for (const p of pts) {
+      if (p[0] > -70.612 && p[0] < -70.604 && p[1] > -33.44 && p[1] < -33.43) {
+        if (p[1] > northmostLat) northmostLat = p[1];
+      }
+    }
+
+    const overshootM = (northmostLat - pocuroIntersection[1]) * 111000;
+    expect(overshootM,
+      'route overshoots ' + Math.round(overshootM) + 'm north of Pocuro intersection before turning'
+    ).toBeLessThan(100);
+  }, 120_000);
+
   it('passes through Isabel la Católica area (pocuro goes W→E)', async () => {
     // The Google ref goes W→E through pocuro, passing Isabel la Católica
     // around [-70.600, -33.434]. This confirms pocuro is traversed in the

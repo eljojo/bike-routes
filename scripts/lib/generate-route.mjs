@@ -13,6 +13,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
 import { queryOverpass } from './overpass.mjs';
+import { haversineM } from './geo.mjs';
 import { orderWays } from './order-ways.mjs';
 import { chainBikePaths } from './chain-bike-paths.mjs';
 import { resolveWaypoints } from './resolve-waypoints.mjs';
@@ -121,6 +122,93 @@ out geom;`;
 }
 
 /**
+ * Insert short connector paths at path→path junctions.
+ */
+function insertConnectors(planned, allPaths) {
+  const result = [];
+
+  for (let i = 0; i < planned.length; i++) {
+    result.push(planned[i]);
+
+    if (!Array.isArray(planned[i])) continue;
+
+    // Find the place between this path and the next path (if any)
+    // The place is where the transition happens — use it as the junction reference
+    let placeCoord = null;
+    let nextPathIdx = -1;
+    for (let j = i + 1; j < planned.length; j++) {
+      if (!Array.isArray(planned[j]) && planned[j].lat != null) {
+        placeCoord = [planned[j].lng, planned[j].lat];
+      }
+      if (Array.isArray(planned[j])) { nextPathIdx = j; break; }
+    }
+    if (nextPathIdx < 0 || !placeCoord) continue;
+
+    // Search for short connector paths near the place waypoint
+    let bestConnector = null;
+    let bestScore = Infinity;
+
+    const leftWays = planned[i];
+    const rightWays = planned[nextPathIdx];
+
+    for (const bp of allPaths) {
+      if (bp.ways === leftWays || bp.ways === rightWays) continue;
+
+      const coords = waysToRenderedCoords(bp.ways);
+      // Only short paths (<1.5km)
+      let pathLen = 0;
+      for (let k = 1; k < coords.length; k++) pathLen += haversineM(coords[k - 1], coords[k]);
+      if (pathLen > 1500) continue;
+
+      // Must be near the place (<500m)
+      let nearPlace = Infinity;
+      for (const c of coords) {
+        const d = haversineM(c, placeCoord);
+        if (d < nearPlace) nearPlace = d;
+      }
+      if (nearPlace > 500) continue;
+
+      // Must also be near both paths
+      const leftCoords = waysToRenderedCoords(leftWays);
+      const rightCoords = waysToRenderedCoords(rightWays);
+      let nearLeft = Infinity, nearRight = Infinity;
+      for (const c of coords) {
+        for (let li = 0; li < leftCoords.length; li += Math.max(1, Math.floor(leftCoords.length / 50))) {
+          const d = haversineM(c, leftCoords[li]);
+          if (d < nearLeft) nearLeft = d;
+        }
+        for (let ri = 0; ri < rightCoords.length; ri += Math.max(1, Math.floor(rightCoords.length / 50))) {
+          const d = haversineM(c, rightCoords[ri]);
+          if (d < nearRight) nearRight = d;
+        }
+      }
+
+      const score = nearPlace + nearLeft + nearRight;
+      if (score < bestScore && nearLeft < 500 && nearRight < 500) {
+        bestScore = score;
+        bestConnector = bp;
+      }
+    }
+
+    if (bestConnector) {
+      result.push(bestConnector.ways);
+    }
+  }
+
+  return result;
+}
+
+function waysToRenderedCoords(ways) {
+  const coords = [];
+  for (const w of ways) {
+    const g = w.geometry.map(p => [p.lon, p.lat]);
+    const trace = w._reversed ? [...g].reverse() : g;
+    for (const c of trace) coords.push(c);
+  }
+  return coords;
+}
+
+/**
  * Generate a route from frontmatter waypoints.
  *
  * @param {Object} options
@@ -202,13 +290,24 @@ export async function generateRoute({ waypoints, dataDir, bikePaths }) {
   }
 
   let finalWaypoints = chainWaypoints;
+  let allPathsCache = null;
+
   if (hasGaps) {
-    const allPaths = [];
+    allPathsCache = [];
     for (const [bpSlug, bp] of bpBySlug.entries()) {
       const ways = await fetchBikePathWays(bp);
-      if (ways.length > 0) allPaths.push({ slug: bpSlug, ways });
+      if (ways.length > 0) allPathsCache.push({ slug: bpSlug, ways });
     }
-    finalWaypoints = planRoute(classified, allPaths);
+    finalWaypoints = planRoute(classified, allPathsCache);
+  }
+
+  // Insert short connector paths at path→path junctions.
+  // Short bike paths (<1km) exist at intersections for a reason — they
+  // bridge transitions between longer paths. Insert them even if the
+  // longer paths technically meet, because the connector provides a
+  // smoother, more natural transition.
+  if (allPathsCache) {
+    finalWaypoints = insertConnectors(finalWaypoints, allPathsCache);
   }
 
   const segments = chainBikePaths(finalWaypoints);
