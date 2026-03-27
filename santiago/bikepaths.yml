@@ -2,18 +2,36 @@ bike_paths:
   - name: Mapocho 42k
     osm_relations:
       - 4565440
+    wikipedia: es:Cicloparque Mapocho 42K
+    wikidata: Q18923988
+    network: rcn
+    ref: M42K
+    surface: asphalt
+    segregated: 'yes'
+    highway: cycleway
+    name_en: Mapocho 42k
+    access: 'yes'
   - name: Ruta de la Infancia
     osm_relations:
       - 10909268
+    network: rcn
   - name: Ciclovía Parque Vespucio
     osm_relations:
       - 14774537
+    network: lcn
+    surface: paved
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovia Maipu - Cerrillos
     osm_relations:
       - 15073801
+    network: lcn
   - name: Ciclovía Alameda
     osm_relations:
       - 19923606
+    wikipedia: es:Ciclovía Alameda Pajaritos
+    wikidata: Q5768903
+    network: rcn
   - name: Camino a Lonquén
     anchors:
       - - -70.8182
@@ -22,6 +40,11 @@ bike_paths:
         - -33.5782
     osm_names:
       - Camino a Lonquén
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: primary
+    ref: G-30
   - name: Ciclovìa La Serena
     anchors:
       - - -70.6163
@@ -51,6 +74,8 @@ bike_paths:
         width_cm: 240
     osm_names:
       - Ciclovìa La Serena
+    surface: paved
+    highway: cycleway
   - name: Ciclovía Los Pajaritos
     osm_names:
       - Ciclovía Los Pajaritos
@@ -101,6 +126,11 @@ bike_paths:
         video: https://youtu.be/NsuoffRsfCc
         surface_type: mediana
         width_cm: 210
+    surface: paved
+    smoothness: excellent
+    lit: 'yes'
+    highway: cycleway
+    alt_name: Avenida Ramón Freire
   - name: Ciclovía Alameda
     anchors:
       - - -70.6787
@@ -115,6 +145,12 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Ciclovía Alameda
+    wikipedia: es:Ciclovía Alameda Pajaritos
+    wikidata: Q5768903
+    surface: asphalt
+    width: '1.8'
+    lit: 'yes'
+    highway: cycleway
   - name: Santa Inés
     anchors:
       - - -70.8047
@@ -123,6 +159,10 @@ bike_paths:
         - -33.649
     osm_names:
       - Santa Inés
+    surface: paved
+    cycleway: lane
+    highway: secondary
+    ref: G-364
   - name: Avenida San Carlos de Apoquindo
     anchors:
       - - -70.5059
@@ -207,6 +247,9 @@ bike_paths:
         width_cm: 100
     osm_names:
       - Avenida San Carlos de Apoquindo
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
   - name: Avenida Marathon Oriente
     anchors:
       - - -70.6118
@@ -351,6 +394,9 @@ bike_paths:
         width_cm: 150
     osm_names:
       - Avenida Marathon Oriente
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
   - name: Avenida Calera de Tango
     anchors:
       - - -70.8234
@@ -359,6 +405,11 @@ bike_paths:
         - -33.6265
     osm_names:
       - Avenida Calera de Tango
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: primary
+    ref: G-34
   - name: Ciclovía Las Perdices (Avenida José Arrieta - Avenida Departamental)
     anchors:
       - - -70.5347
@@ -373,6 +424,10 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Ciclovía Las Perdices (Avenida José Arrieta - Avenida Departamental)
+    surface: asphalt
+    segregated: 'yes'
+    highway: cycleway
+    access: 'yes'
   - name: Ciclovía Pedro Aguirre Cerda
     osm_names:
       - Ciclovía Pedro Aguirre Cerda
@@ -415,6 +470,12 @@ bike_paths:
         video: https://youtu.be/M9ESitw1tdo
         surface_type: calzada
         width_cm: 180
+    surface: asphalt
+    lit: 'yes'
+    segregated: 'yes'
+    highway: cycleway
+    access: 'yes'
+    cycleway: lane
   - name: Ciclovia Vicuña Mackenna
     osm_names:
       - Ciclovia Vicuña Mackenna
@@ -440,6 +501,10 @@ bike_paths:
         video: https://youtu.be/CDLA0o2UNlo
         surface_type: acera
         width_cm: 200
+    highway: cycleway
+    surface: paved
+    lit: 'yes'
+    segregated: 'yes'
   - name: Ciclovía Camino a Melipilla
     anchors:
       - - -70.7698
@@ -448,6 +513,9 @@ bike_paths:
         - -33.5107
     osm_names:
       - Ciclovía Camino a Melipilla
+    lit: 'yes'
+    segregated: 'yes'
+    highway: cycleway
   - name: Avenida Presidente Riesco
     osm_names:
       - Avenida Presidente Riesco
@@ -578,6 +646,12 @@ bike_paths:
         video: https://youtu.be/cogz0fKRu40
         surface_type: calzada
         width_cm: 330
+    surface: paved
+    smoothness: intermediate
+    width: '2.5'
+    lit: 'yes'
+    incline: 3%
+    highway: cycleway
   - name: Ciclovia Grecia
     anchors:
       - - -70.5748
@@ -618,6 +692,11 @@ bike_paths:
         width_cm: 250
     osm_names:
       - Ciclovia Grecia
+    surface: concrete
+    lit: 'yes'
+    segregated: 'yes'
+    cycleway: crossing
+    highway: cycleway
   - name: Ciclovia El Noviciado
     anchors:
       - - -70.825
@@ -626,6 +705,8 @@ bike_paths:
         - -33.4047
     osm_names:
       - Ciclovia El Noviciado
+    surface: paved
+    highway: cycleway
   - name: Ciclovía Concha y Toro
     anchors:
       - - -70.5764
@@ -665,6 +746,9 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Ciclovía Concha y Toro
+    surface: concrete
+    segregated: 'yes'
+    highway: cycleway
   - name: Avenida Independencia
     anchors:
       - - -70.6531
@@ -724,6 +808,9 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Avenida Independencia
+    surface: concrete
+    lit: 'yes'
+    highway: primary
   - name: Antumalén
     anchors:
       - - -70.6589
@@ -734,6 +821,9 @@ bike_paths:
       - osm_way: 1124350220
     osm_names:
       - Antumalén
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
   - name: Camino La Pirámide
     anchors:
       - - -70.6174
@@ -742,6 +832,8 @@ bike_paths:
         - -33.3864
     osm_names:
       - Camino La Pirámide
+    surface: paved
+    highway: tertiary
   - name: Ciclovía Libertador Bernardo O'Higgins
     anchors:
       - - -70.7058
@@ -826,6 +918,10 @@ bike_paths:
         width_cm: 320
     osm_names:
       - Ciclovía Libertador Bernardo O'Higgins
+    surface: asphalt
+    width: '1.7'
+    lit: 'yes'
+    highway: cycleway
   - name: Avenida El Valle
     anchors:
       - - -70.5565
@@ -905,6 +1001,9 @@ bike_paths:
         width_cm: 100
     osm_names:
       - Avenida El Valle
+    surface: paved
+    lit: 'yes'
+    highway: tertiary
   - name: Salvador Gutiérrez
     anchors:
       - - -70.7321
@@ -939,6 +1038,10 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Salvador Gutiérrez
+    surface: asphalt
+    width: '8'
+    lit: 'yes'
+    highway: secondary
   - name: Avenida Vicuña Mackenna
     anchors:
       - - -70.7456
@@ -947,6 +1050,9 @@ bike_paths:
         - -33.4057
     osm_names:
       - Avenida Vicuña Mackenna
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
   - name: Pista Recreativa Simón Bolívar
     anchors:
       - - -70.6098
@@ -971,6 +1077,9 @@ bike_paths:
         width_cm: 160
     osm_names:
       - Pista Recreativa Simón Bolívar
+    surface: concrete
+    lit: 'yes'
+    highway: cycleway
   - name: Avenida José Miguel Infante
     anchors:
       - - -70.7454
@@ -1006,6 +1115,9 @@ bike_paths:
         width_cm: 150
     osm_names:
       - Avenida José Miguel Infante
+    surface: asphalt
+    lit: t
+    highway: secondary
   - name: Ciclovía Las Torres
     anchors:
       - - -70.7312
@@ -1025,6 +1137,8 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Ciclovía Las Torres
+    surface: paved
+    highway: cycleway
   - name: Martín de Zamora
     anchors:
       - - -70.5926
@@ -1066,6 +1180,9 @@ bike_paths:
         video: https://youtu.be/t96OaKvFdp0
     osm_names:
       - Martín de Zamora
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
   - name: Ciclovía Los Morros
     anchors:
       - - -70.6757
@@ -1090,6 +1207,9 @@ bike_paths:
         width_cm: 150
     osm_names:
       - Ciclovía Los Morros
+    surface: asphalt
+    lit: 'yes'
+    highway: cycleway
   - name: Eliodoro Yáñez
     anchors:
       - - -70.6244
@@ -1139,6 +1259,9 @@ bike_paths:
         width_cm: 260
     osm_names:
       - Eliodoro Yáñez
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
   - name: Ciclovía Sánchez Fontecilla
     anchors:
       - - -70.5514
@@ -1179,6 +1302,11 @@ bike_paths:
     osm_names:
       - Ciclovía Sánchez Fontecilla
       - Ciclovía Sánchez de Fontecilla
+    surface: paved
+    lit: 'yes'
+    segregated: 'yes'
+    highway: cycleway
+    access: 'yes'
   - name: Avenida Clotario Blest
     anchors:
       - - -70.681
@@ -1228,6 +1356,10 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Avenida Clotario Blest
+    surface: asphalt
+    lit: 'yes'
+    cycleway: track
+    highway: secondary
   - name: General Bulnes
     osm_names:
       - General Bulnes
@@ -1275,6 +1407,10 @@ bike_paths:
         video: https://youtu.be/VxV0myyfmNo
         surface_type: calzada
         width_cm: 200
+    lit: 'yes'
+    segregated: 'no'
+    highway: cycleway
+    surface: asphalt
   - name: Ciclovía Esquina Blanca
     anchors:
       - - -70.7438
@@ -1324,6 +1460,10 @@ bike_paths:
         width_cm: 140
     osm_names:
       - Ciclovía Esquina Blanca
+    surface: paved
+    smoothness: excellent
+    segregated: 'yes'
+    highway: cycleway
   - name: Avenida Antonio Varas
     osm_names:
       - Avenida Antonio Varas
@@ -1374,6 +1514,10 @@ bike_paths:
         video: https://youtu.be/q4_8Jm9zPu0
         surface_type: calzada
         width_cm: 150
+    surface: paved
+    width: '1.8'
+    lit: 'yes'
+    highway: cycleway
   - name: Avenida Santa Isabel
     anchors:
       - - -70.6598
@@ -1463,6 +1607,9 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Avenida Santa Isabel
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
   - name: Arturo Prat
     anchors:
       - - -70.6466
@@ -1482,6 +1629,10 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Arturo Prat
+    surface: asphalt
+    width: '12'
+    lit: 'yes'
+    highway: tertiary
   - name: Avenida El Carmen
     anchors:
       - - -70.6627
@@ -1490,6 +1641,9 @@ bike_paths:
         - -33.3428
     osm_names:
       - Avenida El Carmen
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
   - name: Alcalde Hernán Prieto
     anchors:
       - - -70.5849
@@ -1498,6 +1652,9 @@ bike_paths:
         - -33.6415
     osm_names:
       - Alcalde Hernán Prieto
+    surface: asphalt
+    highway: secondary
+    ref: G-405
   - name: Vicuña Mackenna
     osm_names:
       - Vicuña Mackenna
@@ -1542,6 +1699,9 @@ bike_paths:
         video: https://youtu.be/IVgy14O5dVw
       - osm_way: 1289786811
         video: https://youtu.be/IVgy14O5dVw
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
   - name: Pista recreativa Dublé Almeyda
     osm_names:
       - Pista recreativa Dublé Almeyda
@@ -1652,6 +1812,11 @@ bike_paths:
         video: https://youtu.be/hcqPN3NIsSk
         surface_type: acera
         width_cm: 150
+    surface: asphalt
+    highway: cycleway
+    width: '1.5'
+    lit: 'yes'
+    cycleway: crossing
   - name: Avenida Alberto Mackenna
     anchors:
       - - -70.6363
@@ -1672,6 +1837,11 @@ bike_paths:
       - osm_way: 442629926
     osm_names:
       - Avenida Alberto Mackenna
+    surface: asphalt
+    width: '4.5'
+    lit: 'yes'
+    cycleway: shared_lane
+    highway: residential
   - name: Avenida Suecia
     anchors:
       - - -70.6023
@@ -1701,6 +1871,9 @@ bike_paths:
         width_cm: 150
     osm_names:
       - Avenida Suecia
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
   - name: Ciclovía Las Perdices (Avenida Bilbao - Avenida José Arrieta)
     anchors:
       - - -70.5308
@@ -1750,6 +1923,11 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Ciclovía Las Perdices (Avenida Bilbao - Avenida José Arrieta)
+    surface: asphalt
+    lit: 'yes'
+    segregated: 'yes'
+    highway: cycleway
+    access: 'yes'
   - name: Juan Martínez de Rozas
     anchors:
       - - -70.6898
@@ -1779,6 +1957,10 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Juan Martínez de Rozas
+    alt_name: Martínez de Rozas
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
   - name: Avenida La Montaña
     anchors:
       - - -70.6173
@@ -1787,6 +1969,10 @@ bike_paths:
         - -33.3999
     osm_names:
       - Avenida La Montaña
+    surface: paved
+    cycleway: lane
+    highway: residential
+    access: 'yes'
   - name: Avenida Lo Errázuriz
     anchors:
       - - -70.7089
@@ -1795,6 +1981,9 @@ bike_paths:
         - -33.5047
     osm_names:
       - Avenida Lo Errázuriz
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
   - name: Ciclovia La Plaza
     anchors:
       - - -70.5005
@@ -1803,6 +1992,9 @@ bike_paths:
         - -33.3907
     osm_names:
       - Ciclovia La Plaza
+    surface: paved
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Avenida Alcalde Fernando Castillo Velasco
     anchors:
       - - -70.5585
@@ -1847,6 +2039,10 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Ciclovía Avenida Alcalde Fernando Castillo Velasco
+    surface: asphalt
+    lit: 'yes'
+    segregated: 'yes'
+    highway: cycleway
   - name: Ciclovía Dorsal
     anchors:
       - - -70.6813
@@ -1896,6 +2092,12 @@ bike_paths:
         video: https://youtu.be/H9XIzDvX3dI
         surface_type: parque
         width_cm: 230
+    wikipedia: es:Ciclovía Pocuro
+    surface: asphalt
+    width: '1'
+    segregated: 'yes'
+    highway: cycleway
+    lit: 'yes'
   - name: Avenida Francisco Bulnes Correa
     anchors:
       - - -70.5127
@@ -1935,6 +2137,9 @@ bike_paths:
         width_cm: 130
     osm_names:
       - Avenida Francisco Bulnes Correa
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
   - name: Ciclovía Andrés Bello
     anchors:
       - - -70.6261
@@ -1956,6 +2161,10 @@ bike_paths:
         width_cm: 250
     osm_names:
       - Ciclovía Andrés Bello
+    surface: asphalt
+    width: '1'
+    lit: 'yes'
+    highway: cycleway
   - name: Avenida Ricardo Lyon
     anchors:
       - - -70.6029
@@ -1975,6 +2184,9 @@ bike_paths:
         width_cm: 230
     osm_names:
       - Avenida Ricardo Lyon
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
   - name: Ciclovia Parque Bicentenario Cerrillos
     anchors:
       - - -70.7045
@@ -1983,6 +2195,8 @@ bike_paths:
         - -33.4853
     osm_names:
       - Ciclovia Parque Bicentenario Cerrillos
+    surface: paved
+    highway: cycleway
   - name: Avenida Mapocho
     anchors:
       - - -70.7403
@@ -2067,6 +2281,10 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Avenida Mapocho
+    surface: asphalt
+    smoothness: good
+    lit: 'yes'
+    highway: primary
   - name: Rosas
     anchors:
       - - -70.6801
@@ -2096,6 +2314,10 @@ bike_paths:
         width_cm: 250
     osm_names:
       - Rosas
+    alt_name: Mario Kreutzberger
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
   - name: Avenida Brasil
     anchors:
       - - -70.6648
@@ -2184,6 +2406,9 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Avenida Brasil
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
   - name: Condell
     osm_names:
       - Condell
@@ -2239,6 +2464,10 @@ bike_paths:
         video: https://youtu.be/LGGnCTZ79VM
         surface_type: calzada
         width_cm: 150
+    surface: asphalt
+    lit: t
+    highway: primary
+    ref: G-180
   - name: MTB Clásico
     anchors:
       - - -70.573
@@ -2247,6 +2476,9 @@ bike_paths:
         - -33.3611
     osm_names:
       - MTB Clásico
+    surface: dirt
+    highway: path
+    access: 'no'
   - name: Avenida Jorge Hirmas
     anchors:
       - - -70.6918
@@ -2255,6 +2487,8 @@ bike_paths:
         - -33.4203
     osm_names:
       - Avenida Jorge Hirmas
+    surface: concrete
+    highway: tertiary
   - name: Avenida Observatorio
     anchors:
       - - -70.6569
@@ -2263,6 +2497,10 @@ bike_paths:
         - -33.5658
     osm_names:
       - Avenida Observatorio
+    surface: concrete
+    lit: 'yes'
+    cycleway: lane
+    highway: cycleway
   - name: Club Hípico
     anchors:
       - - -70.6649
@@ -2302,6 +2540,9 @@ bike_paths:
         width_cm: 210
     osm_names:
       - Club Hípico
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
   - name: Avenida Costanera Sur
     anchors:
       - - -70.7806
@@ -2310,6 +2551,9 @@ bike_paths:
         - -33.4137
     osm_names:
       - Avenida Costanera Sur
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
   - name: Ciclovia Hamilton
     anchors:
       - - -70.53
@@ -2324,6 +2568,9 @@ bike_paths:
         width_cm: 130
     osm_names:
       - Ciclovia Hamilton
+    surface: paved
+    lit: 'yes'
+    highway: cycleway
   - name: Avenida Sargento Menadier
     anchors:
       - - -70.6277
@@ -2378,6 +2625,9 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Avenida Sargento Menadier
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
   - name: Avenida Pedro Bannen
     anchors:
       - - -70.6326
@@ -2386,6 +2636,9 @@ bike_paths:
         - -33.4161
     osm_names:
       - Avenida Pedro Bannen
+    surface: sett
+    cycleway: lane
+    highway: residential
   - name: Ciclovía Dorsal
     anchors:
       - - -70.6304
@@ -2405,6 +2658,11 @@ bike_paths:
         width_cm: 250
     osm_names:
       - Ciclovía Dorsal
+    surface: asphalt
+    width: '2.5'
+    lit: 'yes'
+    segregated: 'yes'
+    highway: cycleway
   - name: Carlos Antúnez
     anchors:
       - - -70.6146
@@ -2434,6 +2692,9 @@ bike_paths:
         width_cm: 100
     osm_names:
       - Carlos Antúnez
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
   - name: Mapocho Expreso
     anchors:
       - - -70.6453
@@ -2496,6 +2757,8 @@ bike_paths:
         width_cm: 180
     osm_names:
       - Mapocho Expreso
+    surface: paved
+    highway: cycleway
   - name: Libertad
     anchors:
       - - -70.673
@@ -2510,6 +2773,9 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Libertad
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
   - name: Ciclovía Carlos Valdovinos
     anchors:
       - - -70.6416
@@ -2524,6 +2790,8 @@ bike_paths:
         width_cm: 180
     osm_names:
       - Ciclovía Carlos Valdovinos
+    surface: paved
+    highway: cycleway
   - name: Ciclovía Parque Víctor Jara
     anchors:
       - - -70.654
@@ -2547,6 +2815,8 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Ciclovía Parque Víctor Jara
+    surface: asphalt
+    highway: cycleway
   - name: Avenida Capitán Ignacio Carrera Pinto
     anchors:
       - - -70.5882
@@ -2571,6 +2841,9 @@ bike_paths:
         width_cm: 205
     osm_names:
       - Avenida Capitán Ignacio Carrera Pinto
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
   - name: Ciclovia 5 de Abril
     anchors:
       - - -70.7213
@@ -2579,6 +2852,8 @@ bike_paths:
         - -33.4633
     osm_names:
       - Ciclovia 5 de Abril
+    surface: paved
+    highway: cycleway
   - name: Avenida José Miguel Claro
     anchors:
       - - -70.6165
@@ -2598,6 +2873,9 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Avenida José Miguel Claro
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
   - name: Marín
     anchors:
       - - -70.6423
@@ -2637,6 +2915,9 @@ bike_paths:
         width_cm: 200
     osm_names:
       - Marín
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
   - name: Enrique Olivares
     anchors:
       - - -70.5883
@@ -2701,6 +2982,10 @@ bike_paths:
         width_cm: 100
     osm_names:
       - Enrique Olivares
+    surface: asphalt
+    lit: 'yes'
+    cycleway: track
+    highway: secondary
   - name: Avenida Sur
     anchors:
       - - -70.7781
@@ -2725,6 +3010,9 @@ bike_paths:
         width_cm: 220
     osm_names:
       - Avenida Sur
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
   - name: Avenida Federico Haydn
     anchors:
       - - -70.62
@@ -2764,21 +3052,41 @@ bike_paths:
         width_cm: 240
     osm_names:
       - Avenida Federico Haydn
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
   - name: 'B07: Parque Industrial => (M) Los Libertadores'
     osm_relations:
       - 5963331
+    operator: Buses Alfa S.A.
+    network: Red Metropolitana de Movilidad
+    ref: B07
   - name: 'C20: (M) Escuela Militar => Parque Arauco'
     osm_relations:
       - 6712452
+    operator: RBU Santiago S.A.
+    network: Red Metropolitana de Movilidad
+    ref: C20
   - name: 'B07: (M) Los Libertadores => Parque Industrial'
     osm_relations:
       - 16033938
+    operator: Buses Alfa S.A.
+    network: Red Metropolitana de Movilidad
+    ref: B07
   - name: Tramo Parque Bicentenario de la Infancia
     osm_relations:
       - 17960383
+    operator: ParqueMet
+    network: lwn
+    ref: '1'
+    distance: '0.9'
   - name: Ciclorecreovía Parquemet
     osm_relations:
       - 18251499
+    wikipedia: es:Ciclovía Parque Metropolitano de Santiago
+    wikidata: Q5768920
+    network: lcn
+    distance: '6'
   - name: Ciclovía Bilbao
     osm_names:
       - Ciclovía Bilbao
@@ -2787,6 +3095,10 @@ bike_paths:
         - -33.4381237
       - - -70.6125095
         - -33.4381237
+    surface: asphalt
+    width: '1'
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovia Bustamante
     osm_names:
       - Ciclovia Bustamante
@@ -2795,6 +3107,8 @@ bike_paths:
         - -33.4373765
       - - -70.6333149
         - -33.4373765
+    highway: cycleway
+    surface: asphalt
   - name: Apoquindo
     osm_names:
       - Apoquindo
@@ -2803,6 +3117,8 @@ bike_paths:
         - -33.4083004
       - - -70.5485215
         - -33.4083004
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Larraín
     osm_names:
       - Ciclovía Larraín
@@ -2811,6 +3127,9 @@ bike_paths:
         - -33.4532404
       - - -70.5630343
         - -33.4526348
+    surface: asphalt
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Emilia Téllez
     osm_names:
       - Ciclovía Emilia Téllez
@@ -2819,6 +3138,9 @@ bike_paths:
         - -33.4420697
       - - -70.5754924
         - -33.4420697
+    surface: paved
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Alberto Llona
     osm_names:
       - Ciclovía Alberto Llona
@@ -2827,6 +3149,8 @@ bike_paths:
         - -33.5190164
       - - -70.7556881
         - -33.513158
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Paseo Escultor Samuel Román Rojas
     osm_names:
       - Ciclovía Paseo Escultor Samuel Román Rojas
@@ -2835,6 +3159,10 @@ bike_paths:
         - -33.4575433
       - - -70.6395188
         - -33.4575433
+    surface: asphalt
+    lit: 'yes'
+    segregated: 'yes'
+    highway: cycleway
   - name: Ciclovía Gabriela Mistral
     osm_names:
       - Ciclovía Gabriela Mistral
@@ -2843,6 +3171,7 @@ bike_paths:
         - -33.5281495
       - - -70.7006076
         - -33.5281495
+    highway: cycleway
   - name: Ciclovía Departamental
     osm_names:
       - Ciclovía Departamental
@@ -2851,6 +3180,9 @@ bike_paths:
         - -33.5109446
       - - -70.5745319
         - -33.5069573
+    surface: asphalt
+    segregated: 'yes'
+    highway: cycleway
   - name: Ciclovìa Los Presidentes
     osm_names:
       - Ciclovìa Los Presidentes
@@ -2859,6 +3191,7 @@ bike_paths:
         - -33.4807499
       - - -70.5761361
         - -33.4807499
+    highway: cycleway
   - name: Ciclovìa Juanita
     osm_names:
       - Ciclovìa Juanita
@@ -2867,6 +3200,7 @@ bike_paths:
         - -33.5895551
       - - -70.6189944
         - -33.5895551
+    highway: cycleway
   - name: Ciclovía Gabriela
     osm_names:
       - Ciclovía Gabriela
@@ -2875,6 +3209,8 @@ bike_paths:
         - -33.5845274
       - - -70.6198687
         - -33.5845274
+    surface: paved
+    highway: cycleway
   - name: Ciclovia Laguna Sur
     osm_names:
       - Ciclovia Laguna Sur
@@ -2883,6 +3219,8 @@ bike_paths:
         - -33.460285
       - - -70.7512387
         - -33.4587649
+    highway: cycleway
+    access: 'no'
   - name: Ciclovía Lo Blanco
     osm_names:
       - Ciclovía Lo Blanco
@@ -2891,6 +3229,7 @@ bike_paths:
         - -33.5787636
       - - -70.6862491
         - -33.5787636
+    highway: cycleway
   - name: Ciclovía Padre Hurtado
     osm_names:
       - Ciclovía Padre Hurtado
@@ -2899,6 +3238,7 @@ bike_paths:
         - -33.5809845
       - - -70.6737878
         - -33.5726201
+    highway: cycleway
   - name: Ciclovía Guanaco
     osm_names:
       - Ciclovía Guanaco
@@ -2907,6 +3247,8 @@ bike_paths:
         - -33.3840915
       - - -70.6575388
         - -33.3840915
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Cardenal José María Caro
     osm_names:
       - Ciclovía Cardenal José María Caro
@@ -2915,6 +3257,8 @@ bike_paths:
         - -33.3935658
       - - -70.6555417
         - -33.3935658
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Guanaco-Vespucio
     osm_names:
       - Ciclovía Guanaco-Vespucio
@@ -2923,6 +3267,7 @@ bike_paths:
         - -33.3785666
       - - -70.6526142
         - -33.3785666
+    highway: cycleway
   - name: Ciclovía Exposición
     osm_names:
       - Ciclovía Exposición
@@ -2931,6 +3276,9 @@ bike_paths:
         - -33.456902
       - - -70.6781709
         - -33.456902
+    surface: asphalt
+    highway: cycleway
+    access: 'yes'
   - name: Ciclovía Lo Martínez
     osm_names:
       - Ciclovía Lo Martínez
@@ -2939,6 +3287,8 @@ bike_paths:
         - -33.5694571
       - - -70.6795104
         - -33.5694571
+    surface: asphalt
+    highway: cycleway
   - name: Ciclovía Valdivieso
     osm_names:
       - Ciclovía Valdivieso
@@ -2947,6 +3297,9 @@ bike_paths:
         - -33.411252
       - - -70.6301677
         - -33.411252
+    surface: paved
+    segregated: 'yes'
+    highway: cycleway
   - name: Ciclovía Padre Hurtado - Los Moros
     osm_names:
       - Ciclovía Padre Hurtado - Los Moros
@@ -2955,6 +3308,7 @@ bike_paths:
         - -33.6035165
       - - -70.682111
         - -33.6035165
+    highway: cycleway
   - name: Bernardo O'Higgins (Quilicura)
     osm_names:
       - Bernardo O'Higgins (Quilicura)
@@ -2963,6 +3317,9 @@ bike_paths:
         - -33.344701
       - - -70.7284855
         - -33.3398546
+    surface: asphalt
+    segregated: 'yes'
+    highway: cycleway
   - name: Ciclovía Sebastián Piñera
     osm_names:
       - Ciclovía Sebastián Piñera
@@ -2971,6 +3328,9 @@ bike_paths:
         - -33.4140228
       - - -70.5583749
         - -33.4094207
+    surface: paved
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Ciudad del Sol
     osm_names:
       - Ciclovía Ciudad del Sol
@@ -2979,6 +3339,8 @@ bike_paths:
         - -33.5962899
       - - -70.590296
         - -33.5962899
+    surface: paved
+    highway: cycleway
   - name: Pista Recreativa Jaime Guzmán
     osm_names:
       - Pista Recreativa Jaime Guzmán
@@ -2987,6 +3349,9 @@ bike_paths:
         - -33.4472869
       - - -70.5937943
         - -33.4453805
+    surface: paved
+    width: '2'
+    highway: cycleway
   - name: Ciclovía Costanera Sur
     osm_names:
       - Ciclovía Costanera Sur
@@ -2995,6 +3360,9 @@ bike_paths:
         - -33.425834
       - - -70.6062665
         - -33.4135441
+    surface: asphalt
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Parque Forestal
     osm_names:
       - Ciclovía Parque Forestal
@@ -3003,6 +3371,9 @@ bike_paths:
         - -33.4360118
       - - -70.6354152
         - -33.4354005
+    surface: gravel
+    width: '1'
+    highway: cycleway
   - name: Sendero Ciclista 4 ½
     osm_names:
       - Sendero Ciclista 4 ½
@@ -3011,6 +3382,10 @@ bike_paths:
         - -33.4244658
       - - -70.6253281
         - -33.4224447
+    surface: ground
+    smoothness: bad
+    incline: down
+    highway: cycleway
   - name: Sendero Ciclista Anfiteatro
     osm_names:
       - Sendero Ciclista Anfiteatro
@@ -3019,6 +3394,12 @@ bike_paths:
         - -33.4063839
       - - -70.609377
         - -33.401743
+    surface: dirt
+    smoothness: bad
+    lit: 'no'
+    incline: down
+    highway: cycleway
+    access: 'no'
   - name: Sendero Ciclista Pirámide
     osm_names:
       - Sendero Ciclista Pirámide
@@ -3027,6 +3408,12 @@ bike_paths:
         - -33.3924284
       - - -70.6045562
         - -33.3924284
+    surface: ground
+    smoothness: bad
+    lit: 'no'
+    incline: up
+    highway: cycleway
+    access: 'yes'
   - name: Ciclovía Mapocho 42k
     osm_names:
       - Ciclovía Mapocho 42k
@@ -3035,6 +3422,13 @@ bike_paths:
         - -33.4139598
       - - -70.7214645
         - -33.4122577
+    name_en: Mapocho 42k Cicleway
+    wikipedia: es:Cicloparque Mapocho 42K
+    wikidata: Q18923988
+    surface: paved
+    segregated: 'yes'
+    highway: cycleway
+    access: 'yes'
   - name: Ciclovía San Francisco
     osm_names:
       - Ciclovía San Francisco
@@ -3043,6 +3437,8 @@ bike_paths:
         - -33.4363853
       - - -70.7467406
         - -33.4363853
+    surface: paved
+    highway: cycleway
   - name: Ciclovía 3 Poniente
     osm_names:
       - Ciclovía 3 Poniente
@@ -3051,6 +3447,9 @@ bike_paths:
         - -33.5138966
       - - -70.7788046
         - -33.5069337
+    surface: paved
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Pedro León Gallo
     osm_names:
       - Ciclovía Pedro León Gallo
@@ -3059,6 +3458,10 @@ bike_paths:
         - -33.4420431
       - - -70.6143305
         - -33.4403353
+    surface: asphalt
+    width: '1'
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovia Rinconada
     osm_names:
       - Ciclovia Rinconada
@@ -3067,6 +3470,10 @@ bike_paths:
         - -33.5089917
       - - -70.7687411
         - -33.5079759
+    surface: paved
+    smoothness: excellent
+    highway: cycleway
+    access: 'no'
   - name: Ciclovía Pajaritos
     osm_names:
       - Ciclovía Pajaritos
@@ -3075,6 +3482,7 @@ bike_paths:
         - -33.4593397
       - - -70.7129531
         - -33.4593397
+    highway: cycleway
   - name: Ciclovia Santa Maria
     osm_names:
       - Ciclovia Santa Maria
@@ -3083,6 +3491,7 @@ bike_paths:
         - -33.3195213
       - - -70.6457166
         - -33.3195213
+    highway: cycleway
   - name: Sendero Ciclista Mahuida
     osm_names:
       - Sendero Ciclista Mahuida
@@ -3091,6 +3500,9 @@ bike_paths:
         - -33.457546
       - - -70.5150033
         - -33.457546
+    surface: dirt
+    smoothness: horrible
+    highway: cycleway
   - name: Sendero Ciclista Pa' Arriba
     osm_names:
       - Sendero Ciclista Pa' Arriba
@@ -3099,6 +3511,12 @@ bike_paths:
         - -33.4016593
       - - -70.6096849
         - -33.4016593
+    surface: dirt
+    smoothness: bad
+    lit: 'no'
+    incline: up
+    highway: cycleway
+    access: 'no'
   - name: Sendero Ciclista Torre 5
     osm_names:
       - Sendero Ciclista Torre 5
@@ -3107,6 +3525,11 @@ bike_paths:
         - -33.4057394
       - - -70.6073606
         - -33.4033177
+    surface: dirt
+    smoothness: bad
+    lit: 'no'
+    incline: down
+    highway: cycleway
   - name: Sendero Ciclista Centenario
     osm_names:
       - Sendero Ciclista Centenario
@@ -3115,6 +3538,10 @@ bike_paths:
         - -33.4247749
       - - -70.6276457
         - -33.4236589
+    surface: ground
+    smoothness: bad
+    incline: down
+    highway: cycleway
   - name: Ciclovía Estocolmo
     osm_names:
       - Ciclovía Estocolmo
@@ -3123,6 +3550,8 @@ bike_paths:
         - -33.4045831
       - - -70.5646426
         - -33.4011265
+    lit: 'yes'
+    highway: cycleway
   - name: Sendero Ciclista El Zorzal
     osm_names:
       - Sendero Ciclista El Zorzal
@@ -3131,6 +3560,12 @@ bike_paths:
         - -33.4019116
       - - -70.6099952
         - -33.4019116
+    surface: dirt
+    smoothness: bad
+    lit: 'no'
+    incline: down
+    highway: cycleway
+    access: 'no'
   - name: Sendero Ciclista La S
     osm_names:
       - Sendero Ciclista La S
@@ -3139,6 +3574,12 @@ bike_paths:
         - -33.4020785
       - - -70.6106416
         - -33.4020785
+    surface: dirt
+    smoothness: bad
+    lit: 'no'
+    incline: down
+    highway: cycleway
+    access: 'yes'
   - name: Ciclovía El Rosal
     osm_names:
       - Ciclovía El Rosal
@@ -3147,6 +3588,7 @@ bike_paths:
         - -33.4890513
       - - -70.7645184
         - -33.4835109
+    highway: cycleway
   - name: Ciclovía Los Dominicos
     osm_names:
       - Ciclovía Los Dominicos
@@ -3155,6 +3597,9 @@ bike_paths:
         - -33.4142741
       - - -70.5448923
         - -33.4104693
+    surface: paved
+    lit: 'yes'
+    highway: cycleway
   - name: Mapocho Pedaleable
     osm_names:
       - Mapocho Pedaleable
@@ -3163,6 +3608,7 @@ bike_paths:
         - -33.4322399
       - - -70.6521134
         - -33.4322399
+    highway: cycleway
   - name: Acceso Huelén
     osm_names:
       - Acceso Huelén
@@ -3171,6 +3617,7 @@ bike_paths:
         - -33.4297509
       - - -70.6244511
         - -33.4297509
+    highway: cycleway
   - name: Acceso Loreto
     osm_names:
       - Acceso Loreto
@@ -3179,6 +3626,7 @@ bike_paths:
         - -33.4344135
       - - -70.6432214
         - -33.4344135
+    highway: cycleway
   - name: Ciclovía El Parque
     osm_names:
       - Ciclovía El Parque
@@ -3187,6 +3635,8 @@ bike_paths:
         - -33.3034305
       - - -70.7382123
         - -33.3030317
+    surface: paved
+    highway: cycleway
   - name: Ciclovía El Salto-La Pirámide
     osm_names:
       - Ciclovía El Salto-La Pirámide
@@ -3195,6 +3645,9 @@ bike_paths:
         - -33.3904488
       - - -70.6185341
         - -33.3840579
+    surface: asphalt
+    width: '2.4'
+    highway: cycleway
   - name: Ciclovía El Alfalfal
     osm_names:
       - Ciclovía El Alfalfal
@@ -3203,6 +3656,9 @@ bike_paths:
         - -33.3033779
       - - -70.7308033
         - -33.301088
+    surface: paved
+    segregated: 'yes'
+    highway: cycleway
   - name: Ciclovía Frei Montalva
     osm_names:
       - Ciclovía Frei Montalva
@@ -3211,6 +3667,8 @@ bike_paths:
         - -33.2994195
       - - -70.7311848
         - -33.2994195
+    surface: paved
+    highway: cycleway
   - name: Ciclovía El Rodeo
     osm_names:
       - Ciclovía El Rodeo
@@ -3219,6 +3677,8 @@ bike_paths:
         - -33.3029566
       - - -70.7448575
         - -33.3029566
+    surface: paved
+    highway: cycleway
   - name: Ciclovía Tinquilco
     osm_names:
       - Ciclovía Tinquilco
@@ -3227,6 +3687,7 @@ bike_paths:
         - -33.3524297
       - - -70.7408608
         - -33.3524297
+    highway: cycleway
   - name: Ciclovia Los Canelos
     osm_names:
       - Ciclovia Los Canelos
@@ -3235,6 +3696,7 @@ bike_paths:
         - -33.326318
       - - -70.633652
         - -33.326318
+    highway: cycleway
   - name: Ciclovia Reiss
     osm_names:
       - Ciclovia Reiss
@@ -3243,6 +3705,7 @@ bike_paths:
         - -33.324681
       - - -70.6276319
         - -33.324681
+    highway: cycleway
   - name: Ciclovia Chamisero
     osm_names:
       - Ciclovia Chamisero
@@ -3251,6 +3714,7 @@ bike_paths:
         - -33.3234126
       - - -70.6363758
         - -33.3234126
+    highway: cycleway
   - name: Ciclovia Paseo Bandera
     osm_names:
       - Ciclovia Paseo Bandera
@@ -3259,6 +3723,9 @@ bike_paths:
         - -33.5481921
       - - -70.6457461
         - -33.5481921
+    surface: paved
+    lit: 'yes'
+    highway: cycleway
   - name: Las Perdices
     osm_names:
       - Las Perdices
@@ -3267,6 +3734,8 @@ bike_paths:
         - -33.5696121
       - - -70.5418638
         - -33.5633857
+    surface: paved
+    highway: cycleway
   - name: Ciclovía Píno Nono
     osm_names:
       - Ciclovía Píno Nono
@@ -3275,6 +3744,8 @@ bike_paths:
         - -33.4333115
       - - -70.6358673
         - -33.4333115
+    surface: paved
+    highway: cycleway
   - name: Ciclovía Santa Rosa
     osm_names:
       - Ciclovía Santa Rosa
@@ -3283,6 +3754,9 @@ bike_paths:
         - -33.6342061
       - - -70.6266116
         - -33.6342061
+    surface: asphalt
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovia Juan XXII
     osm_names:
       - Ciclovia Juan XXII
@@ -3291,6 +3765,10 @@ bike_paths:
         - -33.3791956
       - - -70.5689392
         - -33.3791956
+    surface: paved
+    width: '2.5'
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Avenida Padre Hurtado Sur
     osm_names:
       - Ciclovía Avenida Padre Hurtado Sur
@@ -3299,6 +3777,9 @@ bike_paths:
         - -33.4128593
       - - -70.5415374
         - -33.4128593
+    surface: asphalt
+    lit: 'yes'
+    highway: cycleway
   - name: Ciclovía Avenida Pedro Aguirre Cerda
     osm_names:
       - Ciclovía Avenida Pedro Aguirre Cerda
@@ -3307,6 +3788,8 @@ bike_paths:
         - -33.4785935
       - - -70.6910728
         - -33.4785935
+    surface: paved
+    highway: cycleway
   - name: Ciclovìa Macul Alto
     osm_names:
       - Ciclovìa Macul Alto
@@ -3315,6 +3798,8 @@ bike_paths:
         - -33.5133777
       - - -70.5380248
         - -33.5133777
+    segregated: 'yes'
+    highway: cycleway
   - name: Sendero Lejano Oeste
     osm_names:
       - Sendero Lejano Oeste
@@ -3323,6 +3808,9 @@ bike_paths:
         - -33.3903587
       - - -70.4779224
         - -33.3903587
+    surface: ground
+    incline: up
+    highway: path
   - name: Sendero El Cóndor
     osm_names:
       - Sendero El Cóndor
@@ -3331,6 +3819,9 @@ bike_paths:
         - -33.3944678
       - - -70.4726084
         - -33.3944678
+    surface: dirt
+    incline: up
+    highway: path
   - name: Sendero Universidad
     osm_names:
       - Sendero Universidad
@@ -3339,6 +3830,9 @@ bike_paths:
         - -33.4894424
       - - -70.5040847
         - -33.4716628
+    surface: earth
+    highway: path
+    access: permissive
   - name: Monolito - Camino Alto del Naranjo
     osm_names:
       - Monolito - Camino Alto del Naranjo
@@ -3347,6 +3841,9 @@ bike_paths:
         - -33.4013213
       - - -70.4743552
         - -33.4013213
+    surface: ground
+    highway: path
+    access: 'yes'
   - name: Sendero Lomo Vetado
     osm_names:
       - Sendero Lomo Vetado
@@ -3355,6 +3852,9 @@ bike_paths:
         - -33.3088657
       - - -70.498629
         - -33.3088657
+    surface: dirt
+    highway: path
+    access: permissive
   - name: Conexión a La Bala
     osm_names:
       - Conexión a La Bala
@@ -3363,6 +3863,9 @@ bike_paths:
         - -33.319537
       - - -70.5076181
         - -33.319537
+    surface: dirt
+    highway: path
+    access: permissive
   - name: Conexión Calibre 12-La Virgen
     osm_names:
       - Conexión Calibre 12-La Virgen
@@ -3371,6 +3874,9 @@ bike_paths:
         - -33.3020901
       - - -70.4928779
         - -33.3020901
+    surface: dirt
+    highway: path
+    access: permissive
   - name: Sendero XL
     osm_names:
       - Sendero XL
@@ -3379,6 +3885,9 @@ bike_paths:
         - -33.3111721
       - - -70.4888373
         - -33.3111721
+    surface: dirt
+    highway: path
+    access: permissive
   - name: Sendero de Chile [Tramo Sur]
     osm_names:
       - Sendero de Chile [Tramo Sur]
@@ -3387,6 +3896,9 @@ bike_paths:
         - -33.541354
       - - -70.5134031
         - -33.5392755
+    surface: ground
+    highway: path
+    access: 'no'
   - name: Pista DH Técnica
     osm_names:
       - Pista DH Técnica
@@ -3395,6 +3907,9 @@ bike_paths:
         - -33.5369274
       - - -70.5245751
         - -33.5369274
+    surface: dirt
+    highway: path
+    access: 'no'
   - name: Pista DH
     osm_names:
       - Pista DH
@@ -3403,6 +3918,9 @@ bike_paths:
         - -33.538698
       - - -70.5186509
         - -33.5353758
+    surface: dirt
+    highway: path
+    access: 'no'
   - name: Pista Animita
     osm_names:
       - Pista Animita
@@ -3411,6 +3929,9 @@ bike_paths:
         - -33.5352726
       - - -70.5226567
         - -33.5352726
+    surface: dirt
+    highway: path
+    access: 'no'
   - name: Subida Ciclistas
     osm_names:
       - Subida Ciclistas
@@ -3419,6 +3940,9 @@ bike_paths:
         - -33.5358057
       - - -70.529673
         - -33.5344202
+    surface: dirt
+    highway: path
+    access: 'no'
   - name: Pista MTB Clásica
     osm_names:
       - Pista MTB Clásica
@@ -3427,6 +3951,9 @@ bike_paths:
         - -33.5361111
       - - -70.5328101
         - -33.5361111
+    surface: dirt
+    highway: path
+    access: 'no'
   - name: Pista MTB
     osm_names:
       - Pista MTB
@@ -3435,6 +3962,9 @@ bike_paths:
         - -33.5361906
       - - -70.5236909
         - -33.5350347
+    surface: dirt
+    highway: path
+    access: 'no'
   - name: Sendero La Plaza Sur - Morro Las Papas
     osm_names:
       - Sendero La Plaza Sur - Morro Las Papas
@@ -3443,6 +3973,9 @@ bike_paths:
         - -33.4133043
       - - -70.4893867
         - -33.4076118
+    website: https://asociacionparquecordillera.cl/red-de-parques-naturales/san-carlos-de-apoquindo/
+    surface: ground
+    highway: path
   - name: Sendero MTB Bebedero
     osm_names:
       - Sendero MTB Bebedero
@@ -3451,6 +3984,9 @@ bike_paths:
         - -33.3982778
       - - -70.4868463
         - -33.3939843
+    surface: dirt
+    highway: path
+    access: 'yes'
   - name: Sendero Cerro El Carbón
     osm_names:
       - Sendero Cerro El Carbón
@@ -3459,6 +3995,9 @@ bike_paths:
         - -33.3815982
       - - -70.6018885
         - -33.3815982
+    surface: ground
+    width: '3'
+    highway: path
   - name: Egipcios
     osm_names:
       - Egipcios
@@ -3467,6 +4006,9 @@ bike_paths:
         - -33.3617558
       - - -70.5737678
         - -33.3617558
+    surface: dirt
+    highway: path
+    access: 'no'
   - name: Sendero a Cerro El Carbón
     osm_names:
       - Sendero a Cerro El Carbón
@@ -3475,6 +4017,9 @@ bike_paths:
         - -33.3835752
       - - -70.6033976
         - -33.3835747
+    surface: ground
+    width: '3'
+    highway: path
   - name: Acceso C° El Carbón
     osm_names:
       - Acceso C° El Carbón
@@ -3483,6 +4028,9 @@ bike_paths:
         - -33.3796203
       - - -70.6003815
         - -33.3795864
+    surface: wood
+    highway: path
+    access: permissive
   - name: Subida Plaza Montaña
     osm_names:
       - Subida Plaza Montaña
@@ -3491,6 +4039,9 @@ bike_paths:
         - -33.4082118
       - - -70.4950853
         - -33.4067487
+    surface: ground
+    lit: 'yes'
+    highway: path
   - name: Sendero Loop Memorial de Tupper
     osm_names:
       - Sendero Loop Memorial de Tupper
@@ -3499,6 +4050,8 @@ bike_paths:
         - -33.3935286
       - - -70.4895956
         - -33.3935286
+    surface: ground
+    highway: path
   - name: Pink Floyd
     osm_names:
       - Pink Floyd
@@ -3507,6 +4060,8 @@ bike_paths:
         - -33.3557904
       - - -70.5624268
         - -33.3557904
+    surface: dirt
+    highway: path
   - name: Sendero El Excursionista
     osm_names:
       - Sendero El Excursionista
@@ -3515,6 +4070,9 @@ bike_paths:
         - -33.4267943
       - - -70.6287578
         - -33.4267943
+    surface: ground
+    highway: path
+    access: 'no'
   - name: Variable cifuentes
     osm_names:
       - Variable cifuentes
@@ -3523,6 +4081,10 @@ bike_paths:
         - -33.5993436
       - - -70.7286031
         - -33.5993436
+    surface: ground
+    incline: '-10%'
+    highway: path
+    access: 'no'
   - name: Sendero Catemito
     osm_names:
       - Sendero Catemito
@@ -3531,6 +4093,10 @@ bike_paths:
         - -33.6042585
       - - -70.7261143
         - -33.6042585
+    surface: ground
+    incline: 'yes'
+    highway: path
+    access: 'yes'
   - name: Cardito Cerro Chena
     osm_names:
       - Cardito Cerro Chena
@@ -3539,6 +4105,10 @@ bike_paths:
         - -33.5994187
       - - -70.732664
         - -33.5993081
+    surface: ground
+    incline: down
+    highway: path
+    access: 'no'
   - name: Bosque Catemito, Cherro Chena
     osm_names:
       - Bosque Catemito, Cherro Chena
@@ -3547,6 +4117,10 @@ bike_paths:
         - -33.6048338
       - - -70.7303711
         - -33.6042151
+    surface: ground
+    incline: steep
+    highway: path
+    access: 'no'
   - name: Zeta Cerro Chena
     osm_names:
       - Zeta Cerro Chena
@@ -3555,6 +4129,9 @@ bike_paths:
         - -33.5981096
       - - -70.7239495
         - -33.5981096
+    surface: ground
+    highway: path
+    access: 'no'
   - name: Sendero Mundo magico
     osm_names:
       - Sendero Mundo magico
@@ -3563,6 +4140,10 @@ bike_paths:
         - -33.6033701
       - - -70.7301452
         - -33.6033701
+    surface: ground
+    incline: down
+    highway: path
+    access: 'no'
   - name: Bajada/subida Antena
     osm_names:
       - Bajada/subida Antena
@@ -3571,6 +4152,9 @@ bike_paths:
         - -33.5970378
       - - -70.733765
         - -33.5954119
+    surface: ground
+    highway: path
+    access: 'no'
   - name: Rock Garden XCO
     osm_names:
       - Rock Garden XCO
@@ -3579,6 +4163,9 @@ bike_paths:
         - -33.5999407
       - - -70.7236442
         - -33.5999407
+    surface: rock
+    highway: path
+    access: 'no'
   - name: Calavera (MTB)
     osm_names:
       - Calavera (MTB)
@@ -3587,6 +4174,10 @@ bike_paths:
         - -33.5979779
       - - -70.7292912
         - -33.5964076
+    surface: ground
+    incline: down
+    highway: path
+    access: 'no'
   - name: Quebrada el Zorro (MTB)
     osm_names:
       - Quebrada el Zorro (MTB)
@@ -3595,6 +4186,10 @@ bike_paths:
         - -33.6003884
       - - -70.7321882
         - -33.598481
+    surface: ground
+    incline: 20%
+    highway: path
+    access: 'no'
   - name: MOTO (MTB)
     osm_names:
       - MOTO (MTB)
@@ -3603,6 +4198,10 @@ bike_paths:
         - -33.5972852
       - - -70.7241667
         - -33.595224
+    surface: ground
+    incline: down
+    highway: path
+    access: 'no'
   - name: conexión tonijua (MTB)
     osm_names:
       - conexión tonijua (MTB)
@@ -3611,6 +4210,10 @@ bike_paths:
         - -33.5981495
       - - -70.7274521
         - -33.5981495
+    surface: ground
+    incline: down
+    highway: path
+    access: 'no'
   - name: sendero Mundo magico (subida)
     osm_names:
       - sendero Mundo magico (subida)
@@ -3619,6 +4222,10 @@ bike_paths:
         - -33.603495
       - - -70.7300238
         - -33.603495
+    surface: ground
+    incline: up
+    highway: path
+    access: 'no'
   - name: La Cruz
     osm_names:
       - La Cruz
@@ -3627,6 +4234,8 @@ bike_paths:
         - -33.3638
       - - -70.5812899
         - -33.3638
+    surface: dirt
+    highway: path
   - name: Sendero Rock´n Roll
     osm_names:
       - Sendero Rock´n Roll
@@ -3635,6 +4244,9 @@ bike_paths:
         - -33.3224199
       - - -70.4949974
         - -33.3224199
+    surface: dirt
+    highway: path
+    access: permissive
   - name: Ssendero Los Saltos
     osm_names:
       - Ssendero Los Saltos
@@ -3643,6 +4255,9 @@ bike_paths:
         - -33.3150093
       - - -70.5038562
         - -33.3150093
+    surface: dirt
+    highway: path
+    access: permissive
   - name: Sendero Cebolla
     osm_names:
       - Sendero Cebolla
@@ -3651,6 +4266,9 @@ bike_paths:
         - -33.3176812
       - - -70.5045305
         - -33.3176812
+    surface: dirt
+    highway: path
+    access: permissive
   - name: Sendero Mountainbike Familiar 2
     osm_names:
       - Sendero Mountainbike Familiar 2
@@ -3659,6 +4277,8 @@ bike_paths:
         - -33.3878667
       - - -70.4877058
         - -33.3872827
+    surface: dirt
+    highway: path
   - name: Sendero MTB San Ramón
     osm_names:
       - Sendero MTB San Ramón
@@ -3667,6 +4287,9 @@ bike_paths:
         - -33.4069547
       - - -70.4978232
         - -33.4069547
+    surface: ground
+    lit: 'yes'
+    highway: path
   - name: Sendero MTB Provincia
     osm_names:
       - Sendero MTB Provincia
@@ -3675,6 +4298,9 @@ bike_paths:
         - -33.407066
       - - -70.4977816
         - -33.407066
+    surface: ground
+    lit: 'yes'
+    highway: path
   - name: Sendero MTB Piedra Rajada
     osm_names:
       - Sendero MTB Piedra Rajada
@@ -3683,6 +4309,9 @@ bike_paths:
         - -33.4071394
       - - -70.4977844
         - -33.4071394
+    surface: ground
+    lit: 'yes'
+    highway: path
   - name: Sendero MTB Las Toninas
     osm_names:
       - Sendero MTB Las Toninas
@@ -3691,6 +4320,9 @@ bike_paths:
         - -33.4077672
       - - -70.4999934
         - -33.4077672
+    surface: ground
+    lit: 'yes'
+    highway: path
   - name: Sendero MTB Los Humboldt
     osm_names:
       - Sendero MTB Los Humboldt
@@ -3699,6 +4331,9 @@ bike_paths:
         - -33.4077265
       - - -70.5000271
         - -33.4077265
+    surface: ground
+    lit: 'yes'
+    highway: path
   - name: Sendero MTB Orca
     osm_names:
       - Sendero MTB Orca
@@ -3707,6 +4342,9 @@ bike_paths:
         - -33.4076918
       - - -70.500141
         - -33.4076918
+    surface: ground
+    lit: 'yes'
+    highway: path
   - name: Sendero MTB Cachalote
     osm_names:
       - Sendero MTB Cachalote
@@ -3715,6 +4353,9 @@ bike_paths:
         - -33.4078497
       - - -70.5002619
         - -33.4078497
+    surface: ground
+    lit: 'yes'
+    highway: path
   - name: Sendero MTB Bajada Bebedero
     osm_names:
       - Sendero MTB Bajada Bebedero
@@ -3723,6 +4364,8 @@ bike_paths:
         - -33.3877289
       - - -70.4865276
         - -33.3877289
+    surface: dirt
+    highway: path
   - name: Sendero Ojos de Agua
     osm_names:
       - Sendero Ojos de Agua
@@ -3731,6 +4374,9 @@ bike_paths:
         - -33.3958789
       - - -70.4743851
         - -33.3958789
+    surface: ground
+    incline: up
+    highway: path
   - name: Parque Canal San Carlos
     osm_names:
       - Parque Canal San Carlos
@@ -3747,3 +4393,1934 @@ bike_paths:
         - -33.5047368
       - - -70.5524329
         - -33.4413441
+  - name: Avenida Pedro de Valdivia Norte
+    osm_names:
+      - Avenida Pedro de Valdivia Norte
+    anchors:
+      - - -70.6173828
+        - -33.420389
+      - - -70.6149865
+        - -33.4155137
+    surface: concrete
+    lit: 'yes'
+    cycleway: track
+    highway: tertiary
+  - name: Rotonda La Pirámide
+    osm_names:
+      - Rotonda La Pirámide
+    anchors:
+      - - -70.601503
+        - -33.3863729
+      - - -70.601503
+        - -33.3863729
+    alt_name: Camino La Pirámide
+    surface: asphalt
+    cycleway: shared_lane
+    highway: tertiary
+  - name: Rotonda La Capitanía
+    osm_names:
+      - Rotonda La Capitanía
+    anchors:
+      - - -70.5704348
+        - -33.4132615
+      - - -70.5699914
+        - -33.4130694
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: tertiary
+  - name: Antilen
+    osm_names:
+      - Antilen
+    anchors:
+      - - -70.612973
+        - -33.4086511
+      - - -70.612973
+        - -33.4086511
+    surface: asphalt
+    cycleway: shared_lane
+    highway: residential
+    access: customers
+  - name: Avenida Carlos Martner
+    osm_names:
+      - Avenida Carlos Martner
+    anchors:
+      - - -70.6216926
+        - -33.4148771
+      - - -70.6115735
+        - -33.4086478
+    surface: asphalt
+    cycleway: lane
+    highway: residential
+  - name: Avenida Federico Albert
+    osm_names:
+      - Avenida Federico Albert
+    anchors:
+      - - -70.6103015
+        - -33.4034463
+      - - -70.6103015
+        - -33.4034463
+    surface: asphalt
+    cycleway: lane
+    highway: unclassified
+  - name: Avenida Claudio Gay
+    osm_names:
+      - Avenida Claudio Gay
+    anchors:
+      - - -70.6093491
+        - -33.4035013
+      - - -70.6085657
+        - -33.3995592
+    surface: asphalt
+    cycleway: lane
+    highway: unclassified
+  - name: Avenida Manuel Zañartu
+    osm_names:
+      - Avenida Manuel Zañartu
+    anchors:
+      - - -70.6050647
+        - -33.394522
+      - - -70.6014076
+        - -33.386999
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: residential
+    access: 'yes'
+  - name: Avenida Carlos Reed
+    osm_names:
+      - Avenida Carlos Reed
+    anchors:
+      - - -70.6359549
+        - -33.430713
+      - - -70.6298131
+        - -33.4280686
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: residential
+  - name: Avenida Pablo Neruda
+    osm_names:
+      - Avenida Pablo Neruda
+    anchors:
+      - - -70.6106795
+        - -33.4057715
+      - - -70.6106795
+        - -33.4057715
+    surface: asphalt
+    cycleway: shared_lane
+    highway: residential
+  - name: Diego de Velásquez
+    osm_names:
+      - Diego de Velásquez
+    anchors:
+      - - -70.6097612
+        - -33.4237284
+      - - -70.6097612
+        - -33.4237284
+    surface: concrete
+    lit: 'yes'
+    cycleway: opposite_track
+    highway: residential
+  - name: Plaza Antilén
+    osm_names:
+      - Plaza Antilén
+    anchors:
+      - - -70.6112064
+        - -33.4075882
+      - - -70.6112064
+        - -33.4075882
+    surface: asphalt
+    cycleway: lane
+    highway: residential
+  - name: Avenida Abate Molina
+    osm_names:
+      - Avenida Abate Molina
+    anchors:
+      - - -70.6209428
+        - -33.4157368
+      - - -70.6151243
+        - -33.4132643
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: residential
+  - name: Avenida Santa María
+    osm_names:
+      - Avenida Santa María
+    anchors:
+      - - -70.6356745
+        - -33.4357101
+      - - -70.635306
+        - -33.4356474
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: primary
+  - name: El Director
+    osm_names:
+      - El Director
+    anchors:
+      - - -70.5675969
+        - -33.413392
+      - - -70.5664135
+        - -33.4124296
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: tertiary
+  - name: Avenida Manuel Castillo
+    osm_names:
+      - Avenida Manuel Castillo
+    anchors:
+      - - -70.8496541
+        - -33.6098324
+      - - -70.829194
+        - -33.6098018
+    surface: paved
+    cycleway: lane
+    highway: primary
+    ref: G-34
+  - name: José Miguel de la Barra
+    osm_names:
+      - José Miguel de la Barra
+    anchors:
+      - - -70.6435393
+        - -33.4375277
+      - - -70.6429379
+        - -33.4350994
+    surface: asphalt
+    lit: 'yes'
+    cycleway: track
+    highway: primary
+  - name: Pérez Valenzuela
+    osm_names:
+      - Pérez Valenzuela
+    anchors:
+      - - -70.6204926
+        - -33.4265441
+      - - -70.6196438
+        - -33.4249889
+    surface: paved
+    lit: 'yes'
+    cycleway: track
+    highway: residential
+  - name: Teatinos
+    osm_names:
+      - Teatinos
+    anchors:
+      - - -70.6559731
+        - -33.4445776
+      - - -70.6541849
+        - -33.4324005
+    surface: asphalt
+    lit: 'yes'
+    cycleway: track
+    highway: secondary
+  - name: Puente Ronald Wood Gwiazdon
+    osm_names:
+      - Puente Ronald Wood Gwiazdon
+    anchors:
+      - - -70.642804
+        - -33.4346474
+      - - -70.642804
+        - -33.4346474
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: primary
+  - name: Avenida Campos de Deportes
+    osm_names:
+      - Avenida Campos de Deportes
+    anchors:
+      - - -70.6097273
+        - -33.4582925
+      - - -70.609038
+        - -33.4543941
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
+  - name: Nueva de Lyon
+    osm_names:
+      - Nueva de Lyon
+    anchors:
+      - - -70.6109919
+        - -33.4212604
+      - - -70.6103221
+        - -33.4204893
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Olivos
+    osm_names:
+      - Olivos
+    anchors:
+      - - -70.6553761
+        - -33.4231661
+      - - -70.653165
+        - -33.4229389
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: José Victorino Lastarria
+    osm_names:
+      - José Victorino Lastarria
+    anchors:
+      - - -70.6411034
+        - -33.4396128
+      - - -70.6409446
+        - -33.4384617
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Tarapacá
+    osm_names:
+      - Tarapacá
+    anchors:
+      - - -70.6546588
+        - -33.4478927
+      - - -70.6481874
+        - -33.4468833
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Avenida Francisco Bilbao
+    osm_names:
+      - Avenida Francisco Bilbao
+    anchors:
+      - - -70.6327089
+        - -33.4430138
+      - - -70.5404735
+        - -33.4287671
+    alt_name: Avenida Francisco Bilbao Barquín
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Avenida Padre Luis Querbes
+    osm_names:
+      - Avenida Padre Luis Querbes
+    anchors:
+      - - -70.6094772
+        - -33.4970849
+      - - -70.605495
+        - -33.4937459
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: República de Israel
+    osm_names:
+      - República de Israel
+    anchors:
+      - - -70.6219538
+        - -33.4614372
+      - - -70.6149995
+        - -33.4538751
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
+  - name: General Calderón
+    osm_names:
+      - General Calderón
+    anchors:
+      - - -70.6215141
+        - -33.4254692
+      - - -70.620776
+        - -33.4251279
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Profesor Alberto Zañartu
+    osm_names:
+      - Profesor Alberto Zañartu
+    anchors:
+      - - -70.6546227
+        - -33.4176427
+      - - -70.6516817
+        - -33.4175591
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Del Inca
+    osm_names:
+      - Del Inca
+    anchors:
+      - - -70.5815505
+        - -33.4177677
+      - - -70.5675397
+        - -33.4106237
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Alcántara
+    osm_names:
+      - Alcántara
+    anchors:
+      - - -70.5890383
+        - -33.4282824
+      - - -70.5837741
+        - -33.4177147
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Cerro Colorado
+    osm_names:
+      - Cerro Colorado
+    anchors:
+      - - -70.5815499
+        - -33.4048372
+      - - -70.5704612
+        - -33.4004956
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Napoleón
+    osm_names:
+      - Napoleón
+    anchors:
+      - - -70.596685
+        - -33.4180122
+      - - -70.5926052
+        - -33.4170575
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: San Crescente
+    osm_names:
+      - San Crescente
+    anchors:
+      - - -70.5955081
+        - -33.4221932
+      - - -70.5924547
+        - -33.4171458
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Enrique Foster Sur
+    osm_names:
+      - Enrique Foster Sur
+    anchors:
+      - - -70.593918
+        - -33.4192124
+      - - -70.5931933
+        - -33.4167889
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Málaga
+    osm_names:
+      - Málaga
+    anchors:
+      - - -70.5861536
+        - -33.4253858
+      - - -70.5830309
+        - -33.417275
+    surface: paved
+    lit: 'yes'
+    highway: tertiary
+  - name: Latadía
+    osm_names:
+      - Latadía
+    anchors:
+      - - -70.5726858
+        - -33.4279068
+      - - -70.5552682
+        - -33.4269136
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Avenida Alcalde Eliecer Parada Pacheco
+    osm_names:
+      - Avenida Alcalde Eliecer Parada Pacheco
+    anchors:
+      - - -70.5931035
+        - -33.4481901
+      - - -70.5840003
+        - -33.4358166
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Nevería
+    osm_names:
+      - Nevería
+    anchors:
+      - - -70.5831
+        - -33.4156852
+      - - -70.5751708
+        - -33.4128724
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Jorge VI
+    osm_names:
+      - Jorge VI
+    anchors:
+      - - -70.5731382
+        - -33.4137966
+      - - -70.5731382
+        - -33.4137966
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Rosa O'Higgins
+    osm_names:
+      - Rosa O'Higgins
+    anchors:
+      - - -70.5746245
+        - -33.4142766
+      - - -70.5746245
+        - -33.4142766
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: María Teresa
+    osm_names:
+      - María Teresa
+    anchors:
+      - - -70.5650313
+        - -33.4105447
+      - - -70.5650313
+        - -33.4105447
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Herrera
+    osm_names:
+      - Herrera
+    anchors:
+      - - -70.6785424
+        - -33.4449744
+      - - -70.6772831
+        - -33.4310326
+    surface: concrete
+    lit: 'yes'
+    highway: residential
+  - name: Vidaurre
+    osm_names:
+      - Vidaurre
+    anchors:
+      - - -70.6559565
+        - -33.4480583
+      - - -70.6559565
+        - -33.4480583
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Pasaje Diego de Rosales
+    osm_names:
+      - Pasaje Diego de Rosales
+    anchors:
+      - - -70.6569665
+        - -33.4505609
+      - - -70.6569665
+        - -33.4505609
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Eleuterio Ramírez
+    osm_names:
+      - Eleuterio Ramírez
+    anchors:
+      - - -70.6555415
+        - -33.4504388
+      - - -70.6471054
+        - -33.4485103
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Jécar Antonio Nehgme Cristi
+    osm_names:
+      - Jécar Antonio Nehgme Cristi
+    anchors:
+      - - -70.6695276
+        - -33.4474345
+      - - -70.6692139
+        - -33.4454521
+    surface: paving_stones
+    lit: 'yes'
+    highway: tertiary
+  - name: Constantino
+    osm_names:
+      - Constantino
+    anchors:
+      - - -70.6966424
+        - -33.4525988
+      - - -70.6962124
+        - -33.4471963
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Yungay
+    osm_names:
+      - Yungay
+    anchors:
+      - - -70.6776951
+        - -33.4295671
+      - - -70.672571
+        - -33.4290881
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Villasana
+    osm_names:
+      - Villasana
+    anchors:
+      - - -70.6885355
+        - -33.4340026
+      - - -70.6884739
+        - -33.4327801
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Poeta Pedro Prado
+    osm_names:
+      - Poeta Pedro Prado
+    anchors:
+      - - -70.6872589
+        - -33.4326657
+      - - -70.6862732
+        - -33.4257334
+    surface: concrete
+    highway: tertiary
+  - name: Chiloé
+    osm_names:
+      - Chiloé
+    anchors:
+      - - -70.6483938
+        - -33.4918256
+      - - -70.6475384
+        - -33.4886847
+    surface: asphalt
+    highway: residential
+  - name: Avenida José Manuel Balmaceda
+    osm_names:
+      - Avenida José Manuel Balmaceda
+    anchors:
+      - - -70.7309518
+        - -33.4036507
+      - - -70.6989923
+        - -33.4017623
+    surface: concrete
+    lit: t
+    highway: tertiary
+  - name: Avenida La Paz
+    osm_names:
+      - Avenida La Paz
+    anchors:
+      - - -70.6516783
+        - -33.4324038
+      - - -70.6502768
+        - -33.4180827
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Los Alerces
+    osm_names:
+      - Los Alerces
+    anchors:
+      - - -70.7074335
+        - -33.4645941
+      - - -70.706733
+        - -33.4587033
+    surface: asphalt
+    highway: residential
+  - name: Erasmo Escala
+    osm_names:
+      - Erasmo Escala
+    anchors:
+      - - -70.6767291
+        - -33.446148
+      - - -70.6648775
+        - -33.4448271
+    surface: concrete
+    lit: 'yes'
+    highway: residential
+  - name: Las Malvas
+    osm_names:
+      - Las Malvas
+    anchors:
+      - - -70.568721
+        - -33.4126816
+      - - -70.568721
+        - -33.4126816
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Marchant Pereira
+    osm_names:
+      - Marchant Pereira
+    anchors:
+      - - -70.6130925
+        - -33.4310151
+      - - -70.6119342
+        - -33.426591
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
+  - name: Escanilla
+    osm_names:
+      - Escanilla
+    anchors:
+      - - -70.6603916
+        - -33.4278763
+      - - -70.6585426
+        - -33.4212776
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Curicó
+    osm_names:
+      - Curicó
+    anchors:
+      - - -70.6451982
+        - -33.4462865
+      - - -70.6334364
+        - -33.4432807
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Avenida Almirante Blanco Encalada
+    osm_names:
+      - Avenida Almirante Blanco Encalada
+    anchors:
+      - - -70.6742639
+        - -33.4584474
+      - - -70.6657556
+        - -33.4571858
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: La Cañada
+    osm_names:
+      - La Cañada
+    anchors:
+      - - -70.5681189
+        - -33.4421497
+      - - -70.5598117
+        - -33.4416178
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Avenida Isabel La Católica
+    osm_names:
+      - Avenida Isabel La Católica
+    anchors:
+      - - -70.5840018
+        - -33.4300791
+      - - -70.5794065
+        - -33.4280284
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Calle G
+    osm_names:
+      - Calle G
+    anchors:
+      - - -70.6633007
+        - -33.3760422
+      - - -70.6596804
+        - -33.3746919
+    surface: paved
+    lit: 'yes'
+    highway: tertiary
+  - name: Puente Alcalde Mauricio Litvak
+    osm_names:
+      - Puente Alcalde Mauricio Litvak
+    anchors:
+      - - -70.5857284
+        - -33.4306282
+      - - -70.585404
+        - -33.4304535
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Bezanilla
+    osm_names:
+      - Bezanilla
+    anchors:
+      - - -70.6601644
+        - -33.4177222
+      - - -70.6564853
+        - -33.4176546
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: República
+    osm_names:
+      - República
+    anchors:
+      - - -70.6682374
+        - -33.4559255
+      - - -70.6668687
+        - -33.4489746
+    surface: asphalt
+    width: '7'
+    lit: 'yes'
+    highway: residential
+  - name: Crescente Errázuriz
+    osm_names:
+      - Crescente Errázuriz
+    anchors:
+      - - -70.6155877
+        - -33.4582737
+      - - -70.6120313
+        - -33.4579259
+    surface: concrete
+    lit: 'yes'
+    highway: residential
+  - name: Avenida Cristóbal Colón
+    osm_names:
+      - Avenida Cristóbal Colón
+    anchors:
+      - - -70.5910788
+        - -33.4262681
+      - - -70.5910788
+        - -33.4262681
+    surface: concrete
+    lit: 'yes'
+    highway: primary
+  - name: Gorbea
+    osm_names:
+      - Gorbea
+    anchors:
+      - - -70.6727636
+        - -33.454459
+      - - -70.6602444
+        - -33.4518932
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
+  - name: Doctor Carlos Lorca Tobar
+    osm_names:
+      - Doctor Carlos Lorca Tobar
+    anchors:
+      - - -70.6555195
+        - -33.420997
+      - - -70.6530236
+        - -33.4206517
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Maipú
+    osm_names:
+      - Maipú
+    anchors:
+      - - -70.6767876
+        - -33.4458919
+      - - -70.6762756
+        - -33.438593
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Callao
+    osm_names:
+      - Callao
+    anchors:
+      - - -70.5991459
+        - -33.4195936
+      - - -70.590184
+        - -33.4175119
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: José Besa
+    osm_names:
+      - José Besa
+    anchors:
+      - - -70.6921133
+        - -33.5902092
+      - - -70.6921133
+        - -33.5902092
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Moneda
+    osm_names:
+      - Moneda
+    anchors:
+      - - -70.6762704
+        - -33.4448182
+      - - -70.6664848
+        - -33.443561
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Caupolicán
+    osm_names:
+      - Caupolicán
+    anchors:
+      - - -70.7006299
+        - -33.4049937
+      - - -70.7006299
+        - -33.4049937
+    surface: concrete
+    highway: tertiary
+  - name: Esperanza
+    osm_names:
+      - Esperanza
+    anchors:
+      - - -70.6759112
+        - -33.4487441
+      - - -70.6745051
+        - -33.4376023
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Littré Quiroga Carvajal
+    osm_names:
+      - Littré Quiroga Carvajal
+    anchors:
+      - - -70.6550715
+        - -33.435488
+      - - -70.6550715
+        - -33.435488
+    surface: asphalt
+    lit: 'yes'
+    highway: unclassified
+  - name: Renato Sánchez
+    osm_names:
+      - Renato Sánchez
+    anchors:
+      - - -70.5927225
+        - -33.4190457
+      - - -70.5841521
+        - -33.4171768
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Esmeralda
+    osm_names:
+      - Esmeralda
+    anchors:
+      - - -70.6498384
+        - -33.435182
+      - - -70.6454659
+        - -33.4346011
+    surface: sett
+    lit: 'yes'
+    highway: unclassified
+  - name: Barros Arana
+    osm_names:
+      - Barros Arana
+    anchors:
+      - - -70.703312
+        - -33.6068802
+      - - -70.7006541
+        - -33.5995178
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Calle Cabildo
+    osm_names:
+      - Calle Cabildo
+    anchors:
+      - - -70.600673
+        - -33.5193267
+      - - -70.600673
+        - -33.5193267
+    surface: asphalt
+    lit: 'yes'
+    highway: unclassified
+  - name: Concón
+    osm_names:
+      - Concón
+    anchors:
+      - - -70.6966644
+        - -33.457425
+      - - -70.6949356
+        - -33.4528548
+    alt_name: Con Con
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Almirante Latorre
+    osm_names:
+      - Almirante Latorre
+    anchors:
+      - - -70.6647839
+        - -33.4554624
+      - - -70.6641872
+        - -33.4482764
+    surface: asphalt
+    width: '7'
+    lit: 'yes'
+    highway: secondary
+  - name: Avenida Presidente Balmaceda
+    osm_names:
+      - Avenida Presidente Balmaceda
+    anchors:
+      - - -70.6567338
+        - -33.4323162
+      - - -70.6557724
+        - -33.4320854
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Dublé Almeyda
+    osm_names:
+      - Dublé Almeyda
+    anchors:
+      - - -70.6205018
+        - -33.4595759
+      - - -70.5765004
+        - -33.4541734
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Maturana
+    osm_names:
+      - Maturana
+    anchors:
+      - - -70.6675464
+        - -33.4436496
+      - - -70.6663576
+        - -33.4334768
+    surface: concrete
+    lit: 'yes'
+    highway: residential
+  - name: Alcalde Pedro Alarcón
+    osm_names:
+      - Alcalde Pedro Alarcón
+    anchors:
+      - - -70.6455214
+        - -33.4871015
+      - - -70.6455214
+        - -33.4871015
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Cueto
+    osm_names:
+      - Cueto
+    anchors:
+      - - -70.6735125
+        - -33.443776
+      - - -70.6721305
+        - -33.4292278
+    surface: concrete
+    lit: 'yes'
+    highway: residential
+  - name: Avenida Chile España
+    osm_names:
+      - Avenida Chile España
+    anchors:
+      - - -70.5984879
+        - -33.4532102
+      - - -70.5978895
+        - -33.4493065
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Dieciocho
+    osm_names:
+      - Dieciocho
+    anchors:
+      - - -70.6585416
+        - -33.4530227
+      - - -70.6569409
+        - -33.4457369
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Camino Catemito
+    osm_names:
+      - Camino Catemito
+    anchors:
+      - - -70.7566067
+        - -33.6219291
+      - - -70.7562229
+        - -33.6213505
+    surface: asphalt
+    smoothness: good
+    lit: 'yes'
+    highway: secondary
+    ref: G-346
+  - name: Tucapel Jiménez
+    osm_names:
+      - Tucapel Jiménez
+    anchors:
+      - - -70.6589279
+        - -33.4452011
+      - - -70.6586745
+        - -33.4432501
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Augusto Leguía Sur
+    osm_names:
+      - Augusto Leguía Sur
+    anchors:
+      - - -70.5969867
+        - -33.4179597
+      - - -70.5969867
+        - -33.4179597
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Matta Oriente
+    osm_names:
+      - Matta Oriente
+    anchors:
+      - - -70.6248531
+        - -33.4542881
+      - - -70.6248531
+        - -33.4542881
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
+  - name: Avenida Presidente Eduardo Frei Montalva
+    osm_names:
+      - Avenida Presidente Eduardo Frei Montalva
+    anchors:
+      - - -70.7283458
+        - -33.3004476
+      - - -70.7283458
+        - -33.3004476
+    surface: asphalt
+    highway: secondary
+  - name: Carmen
+    osm_names:
+      - Carmen
+    anchors:
+      - - -70.6338902
+        - -33.4789473
+      - - -70.6338902
+        - -33.4789473
+    surface: concrete
+    highway: secondary
+  - name: Dunguain
+    osm_names:
+      - Dunguain
+    anchors:
+      - - -70.6813848
+        - -33.60746
+      - - -70.6793548
+        - -33.6070057
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Werken
+    osm_names:
+      - Werken
+    anchors:
+      - - -70.680837
+        - -33.6071344
+      - - -70.680837
+        - -33.6071344
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Rukawue
+    osm_names:
+      - Rukawue
+    anchors:
+      - - -70.6800228
+        - -33.6073119
+      - - -70.6800228
+        - -33.6073119
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Inka Yen Mapu
+    osm_names:
+      - Inka Yen Mapu
+    anchors:
+      - - -70.6786514
+        - -33.6073891
+      - - -70.6786514
+        - -33.6073891
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: La Capitanía
+    osm_names:
+      - La Capitanía
+    anchors:
+      - - -70.5689257
+        - -33.4139268
+      - - -70.5689257
+        - -33.4139268
+    surface: concrete
+    lit: 'yes'
+    highway: residential
+  - name: Unión Americana
+    osm_names:
+      - Unión Americana
+    anchors:
+      - - -70.674328
+        - -33.4495797
+      - - -70.674328
+        - -33.4495797
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Avenida El Salto
+    osm_names:
+      - Avenida El Salto
+    anchors:
+      - - -70.6370473
+        - -33.4111785
+      - - -70.6341901
+        - -33.4070576
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
+  - name: Avenida Perú
+    osm_names:
+      - Avenida Perú
+    anchors:
+      - - -70.6401597
+        - -33.4272987
+      - - -70.6386046
+        - -33.4132746
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
+  - name: Abate Molina
+    osm_names:
+      - Abate Molina
+    anchors:
+      - - -70.6729223
+        - -33.449164
+      - - -70.6729223
+        - -33.449164
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
+  - name: Avenida Sergio Vieira de Mello
+    osm_names:
+      - Avenida Sergio Vieira de Mello
+    anchors:
+      - - -70.611502
+        - -33.4910594
+      - - -70.611502
+        - -33.4910594
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Avenida Marathon
+    osm_names:
+      - Avenida Marathon
+    anchors:
+      - - -70.6106552
+        - -33.5086567
+      - - -70.6058389
+        - -33.4996455
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
+  - name: Kume Che
+    osm_names:
+      - Kume Che
+    anchors:
+      - - -70.6805368
+        - -33.6075611
+      - - -70.6805368
+        - -33.6075611
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Kume Newen
+    osm_names:
+      - Kume Newen
+    anchors:
+      - - -70.680323
+        - -33.6068852
+      - - -70.680323
+        - -33.6068852
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: La Gloria
+    osm_names:
+      - La Gloria
+    anchors:
+      - - -70.5759571
+        - -33.4113382
+      - - -70.5759571
+        - -33.4113382
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Bayona
+    osm_names:
+      - Bayona
+    anchors:
+      - - -70.7230746
+        - -33.3098875
+      - - -70.7230746
+        - -33.3098875
+    surface: asphalt
+    highway: residential
+  - name: 21 de Mayo
+    osm_names:
+      - 21 de Mayo
+    anchors:
+      - - -70.6502464
+        - -33.4347412
+      - - -70.6502464
+        - -33.4347412
+    surface: asphalt
+    lit: 'yes'
+    highway: unclassified
+  - name: Seminario
+    osm_names:
+      - Seminario
+    anchors:
+      - - -70.6300844
+        - -33.4480148
+      - - -70.6282906
+        - -33.4403976
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Padre Luis de Valdivia
+    osm_names:
+      - Padre Luis de Valdivia
+    anchors:
+      - - -70.6417228
+        - -33.439274
+      - - -70.6417228
+        - -33.439274
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Rosal
+    osm_names:
+      - Rosal
+    anchors:
+      - - -70.6418707
+        - -33.4381152
+      - - -70.6418707
+        - -33.4381152
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: La Concepción
+    osm_names:
+      - La Concepción
+    anchors:
+      - - -70.6168942
+        - -33.4256953
+      - - -70.6146325
+        - -33.4236691
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Alonso de Córdova
+    osm_names:
+      - Alonso de Córdova
+    anchors:
+      - - -70.6011946
+        - -33.4037708
+      - - -70.5868973
+        - -33.4001013
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
+  - name: General Flores
+    osm_names:
+      - General Flores
+    anchors:
+      - - -70.6199777
+        - -33.4264268
+      - - -70.6199777
+        - -33.4264268
+    surface: paved
+    lit: 'yes'
+    highway: residential
+  - name: Cirujano Guzmán
+    osm_names:
+      - Cirujano Guzmán
+    anchors:
+      - - -70.6187128
+        - -33.4271955
+      - - -70.6187128
+        - -33.4271955
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Santa Beatriz
+    osm_names:
+      - Santa Beatriz
+    anchors:
+      - - -70.6186366
+        - -33.4277824
+      - - -70.61737
+        - -33.4263555
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Avenida Carrascal
+    osm_names:
+      - Avenida Carrascal
+    anchors:
+      - - -70.7225215
+        - -33.4116874
+      - - -70.7224073
+        - -33.4116227
+    surface: paved
+    highway: primary
+  - name: Avenida Juan XXIII
+    osm_names:
+      - Avenida Juan XXIII
+    anchors:
+      - - -70.5715532
+        - -33.3883026
+      - - -70.5689114
+        - -33.380708
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
+  - name: Aguas Claras
+    osm_names:
+      - Aguas Claras
+    anchors:
+      - - -70.5598498
+        - -33.4415524
+      - - -70.5585183
+        - -33.4406762
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Luis Barros Borgoño
+    osm_names:
+      - Luis Barros Borgoño
+    anchors:
+      - - -70.6875297
+        - -33.552392
+      - - -70.6736193
+        - -33.5495965
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Nueva Tajamar
+    osm_names:
+      - Nueva Tajamar
+    anchors:
+      - - -70.6076902
+        - -33.4160307
+      - - -70.6072111
+        - -33.4160156
+    surface: asphalt
+    highway: primary
+  - name: Avenida José Luis Caro
+    osm_names:
+      - Avenida José Luis Caro
+    anchors:
+      - - -70.8228488
+        - -33.5682016
+      - - -70.8167375
+        - -33.5604924
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+    ref: G-68
+  - name: Avenida Rolando Petersen
+    osm_names:
+      - Avenida Rolando Petersen
+    anchors:
+      - - -70.746342
+        - -33.4106764
+      - - -70.746342
+        - -33.4106764
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Santo Domingo
+    osm_names:
+      - Santo Domingo
+    anchors:
+      - - -70.6446939
+        - -33.4364153
+      - - -70.6434658
+        - -33.4356348
+    surface: asphalt
+    lit: 'yes'
+    highway: unclassified
+  - name: Avenida Beaucheff
+    osm_names:
+      - Avenida Beaucheff
+    anchors:
+      - - -70.664027
+        - -33.4578083
+      - - -70.6639762
+        - -33.4570658
+    surface: paving_stones
+    lit: 'yes'
+    highway: secondary
+  - name: Manuel Plaza
+    osm_names:
+      - Manuel Plaza
+    anchors:
+      - - -70.691522
+        - -33.4149115
+      - - -70.691522
+        - -33.4149115
+    surface: asphalt
+    highway: tertiary
+  - name: Villorrio Agrícola
+    osm_names:
+      - Villorrio Agrícola
+    anchors:
+      - - -70.7817338
+        - -33.6002522
+      - - -70.7817338
+        - -33.6002522
+    surface: asphalt
+    highway: residential
+  - name: Rosario Norte
+    osm_names:
+      - Rosario Norte
+    anchors:
+      - - -70.5730138
+        - -33.4084396
+      - - -70.5710548
+        - -33.4045629
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Emilia Téllez
+    osm_names:
+      - Emilia Téllez
+    anchors:
+      - - -70.5831995
+        - -33.442559
+      - - -70.5777394
+        - -33.4410658
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
+  - name: Ismael Valdés Vergara
+    osm_names:
+      - Ismael Valdés Vergara
+    anchors:
+      - - -70.644596
+        - -33.4359991
+      - - -70.6432834
+        - -33.4354224
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Varas Mena
+    osm_names:
+      - Varas Mena
+    anchors:
+      - - -70.623752
+        - -33.5115725
+      - - -70.6155813
+        - -33.5108361
+    surface: asphalt
+    width: '8.5'
+    lit: 'yes'
+    highway: tertiary
+  - name: Los Lirios
+    osm_names:
+      - Los Lirios
+    anchors:
+      - - -70.7570845
+        - -33.4005318
+      - - -70.7570845
+        - -33.4005318
+    surface: concrete
+    highway: residential
+  - name: La Hacienda
+    osm_names:
+      - La Hacienda
+    anchors:
+      - - -70.757466
+        - -33.3994792
+      - - -70.7572228
+        - -33.3991192
+    surface: concrete
+    highway: residential
+  - name: Las Acacias
+    osm_names:
+      - Las Acacias
+    anchors:
+      - - -70.7114019
+        - -33.5591448
+      - - -70.7095624
+        - -33.5589447
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Luis Thayer Ojeda
+    osm_names:
+      - Luis Thayer Ojeda
+    anchors:
+      - - -70.6023598
+        - -33.4313793
+      - - -70.5982763
+        - -33.419641
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: San Eugenio
+    osm_names:
+      - San Eugenio
+    anchors:
+      - - -70.6249658
+        - -33.4667592
+      - - -70.6235196
+        - -33.4618584
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
+  - name: Avenida Presidente Kennedy Lateral
+    osm_names:
+      - Avenida Presidente Kennedy Lateral
+    anchors:
+      - - -70.5857391
+        - -33.4035642
+      - - -70.5727595
+        - -33.398322
+    alt_name: Avenida Presidente Kennedy
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Del Arzobispo
+    osm_names:
+      - Del Arzobispo
+    anchors:
+      - - -70.6254733
+        - -33.4323866
+      - - -70.6251662
+        - -33.432106
+    surface: asphalt
+    highway: primary
+  - name: Montenegro
+    osm_names:
+      - Montenegro
+    anchors:
+      - - -70.5829114
+        - -33.4388428
+      - - -70.580942
+        - -33.4355166
+    surface: cobblestone
+    lit: 'yes'
+    highway: tertiary
+  - name: Tupper
+    osm_names:
+      - Tupper
+    anchors:
+      - - -70.6645272
+        - -33.4585367
+      - - -70.6645272
+        - -33.4585367
+    surface: asphalt
+    width: '6'
+    lit: 'yes'
+    highway: tertiary
+  - name: Avenida Ejército Libertador
+    osm_names:
+      - Avenida Ejército Libertador
+    anchors:
+      - - -70.5959211
+        - -33.6025492
+      - - -70.5937321
+        - -33.5920757
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Avenida Vicuña Mackenna Oriente
+    osm_names:
+      - Avenida Vicuña Mackenna Oriente
+    anchors:
+      - - -70.6107785
+        - -33.5088916
+      - - -70.6103531
+        - -33.5084823
+    surface: concrete
+    lit: 'yes'
+    highway: primary
+  - name: Avenida Vitacura
+    osm_names:
+      - Avenida Vitacura
+    anchors:
+      - - -70.6017857
+        - -33.4090525
+      - - -70.6017857
+        - -33.4090525
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Avenida Andrés Bello
+    osm_names:
+      - Avenida Andrés Bello
+    anchors:
+      - - -70.6033627
+        - -33.4113529
+      - - -70.6026671
+        - -33.4102805
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Avenida Pedro de Valdivia
+    osm_names:
+      - Avenida Pedro de Valdivia
+    anchors:
+      - - -70.6048879
+        - -33.4537196
+      - - -70.6048489
+        - -33.4531307
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+  - name: Merced
+    osm_names:
+      - Merced
+    anchors:
+      - - -70.6433813
+        - -33.4377042
+      - - -70.6433813
+        - -33.4377042
+    surface: asphalt
+    lit: 'yes'
+    highway: unclassified
+  - name: Avenida Departamental
+    osm_names:
+      - Avenida Departamental
+    anchors:
+      - - -70.6133369
+        - -33.5088673
+      - - -70.6109976
+        - -33.5086786
+    surface: concrete
+    lit: 'yes'
+    highway: primary
+  - name: Victoria Subercaseaux
+    osm_names:
+      - Victoria Subercaseaux
+    anchors:
+      - - -70.6429937
+        - -33.4380517
+      - - -70.6429937
+        - -33.4380517
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Los Turistas
+    osm_names:
+      - Los Turistas
+    anchors:
+      - - -70.6243966
+        - -33.3998897
+      - - -70.6203689
+        - -33.3954111
+    surface: concrete
+    lit: 'yes'
+    highway: residential
+  - name: Doctor Johow
+    osm_names:
+      - Doctor Johow
+    anchors:
+      - - -70.593807
+        - -33.457342
+      - - -70.593807
+        - -33.457342
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
+  - name: Matucana
+    osm_names:
+      - Matucana
+    anchors:
+      - - -70.6803805
+        - -33.4371984
+      - - -70.6801768
+        - -33.435193
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Diagonal Cervantes
+    osm_names:
+      - Diagonal Cervantes
+    anchors:
+      - - -70.6492154
+        - -33.4342139
+      - - -70.6492154
+        - -33.4342139
+    surface: asphalt
+    lit: 'yes'
+    highway: unclassified
+  - name: Avenida El Montijo Oriente
+    osm_names:
+      - Avenida El Montijo Oriente
+    anchors:
+      - - -70.7570243
+        - -33.4040373
+      - - -70.7570243
+        - -33.4040373
+    surface: concrete
+    highway: residential
+  - name: Avenida Gabriela Poniente
+    osm_names:
+      - Avenida Gabriela Poniente
+    anchors:
+      - - -70.5818412
+        - -33.5793042
+      - - -70.5817079
+        - -33.5792297
+    surface: concrete
+    lit: 'yes'
+    highway: primary
+  - name: Martín Sánchez
+    osm_names:
+      - Martín Sánchez
+    anchors:
+      - - -70.6581415
+        - -33.5728601
+      - - -70.6581415
+        - -33.5728601
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Avenida Francisco Bulnes Correa Oriente
+    osm_names:
+      - Avenida Francisco Bulnes Correa Oriente
+    anchors:
+      - - -70.5091814
+        - -33.3852473
+      - - -70.5091814
+        - -33.3852473
+    alt_name: Avenida Francisco Bulnes Correa
+    surface: concrete
+    highway: tertiary
+  - name: Avenida Apóstol Santiago
+    osm_names:
+      - Avenida Apóstol Santiago
+    anchors:
+      - - -70.6919898
+        - -33.414225
+      - - -70.6919898
+        - -33.414225
+    surface: asphalt
+    highway: primary
+  - name: Avenida Manquehue Norte
+    osm_names:
+      - Avenida Manquehue Norte
+    anchors:
+      - - -70.5719672
+        - -33.3954064
+      - - -70.5719672
+        - -33.3954064
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+  - name: Antonio Escobar Williams
+    osm_names:
+      - Antonio Escobar Williams
+    anchors:
+      - - -70.6952781
+        - -33.4860596
+      - - -70.6952781
+        - -33.4860596
+    lit: 'yes'
+    highway: residential
+  - name: Avenida Los Libertadores
+    osm_names:
+      - Avenida Los Libertadores
+    anchors:
+      - - -70.6926462
+        - -33.4858902
+      - - -70.6916643
+        - -33.484529
+    surface: concrete
+    lit: 'yes'
+    highway: tertiary
+  - name: Avenida El Cerro
+    osm_names:
+      - Avenida El Cerro
+    anchors:
+      - - -70.6080409
+        - -33.4160086
+      - - -70.6080409
+        - -33.4160086
+    surface: asphalt
+    highway: primary
+  - name: Avenida El Peñón
+    osm_names:
+      - Avenida El Peñón
+    anchors:
+      - - -70.5809582
+        - -33.5802706
+      - - -70.5752657
+        - -33.5792035
+    surface: concrete
+    lit: 'yes'
+    highway: primary
+  - name: Gamero
+    osm_names:
+      - Gamero
+    anchors:
+      - - -70.6558071
+        - -33.420571
+      - - -70.6558071
+        - -33.420571
+    surface: concrete
+    lit: 'yes'
+    highway: secondary
+  - name: San Jorge
+    osm_names:
+      - San Jorge
+    anchors:
+      - - -70.6590927
+        - -33.644382
+      - - -70.6590927
+        - -33.644382
+    surface: asphalt
+    highway: unclassified
+  - name: Luisa Toledo Sepúlveda
+    osm_names:
+      - Luisa Toledo Sepúlveda
+    anchors:
+      - - -70.6158573
+        - -33.5793564
+      - - -70.6158463
+        - -33.5792743
+    surface: concrete
+    lit: 'yes'
+    highway: residential
+  - name: Flor de Azafrán Oriente
+    osm_names:
+      - Flor de Azafrán Oriente
+    anchors:
+      - - -70.6176785
+        - -33.5792742
+      - - -70.6176785
+        - -33.5792742
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Flor de Azafrán Poniente
+    osm_names:
+      - Flor de Azafrán Poniente
+    anchors:
+      - - -70.6178519
+        - -33.5792974
+      - - -70.6178519
+        - -33.5792974
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Nueva Uno
+    osm_names:
+      - Nueva Uno
+    anchors:
+      - - -70.5942485
+        - -33.5130695
+      - - -70.5940126
+        - -33.5106505
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Camino de Cintura
+    osm_names:
+      - Camino de Cintura
+    anchors:
+      - - -70.6750874
+        - -33.3427849
+      - - -70.6750874
+        - -33.3427849
+    surface: concrete
+    highway: tertiary

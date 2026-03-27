@@ -122,7 +122,7 @@ async function discoverOsmNamedWays() {
     namedPaths.push({
       name,
       wayCount: ways.length,
-      tags: ways[0].tags || {},
+      tags: mergeWayTags(ways),
       anchors: [
         [Math.min(...lngs), Math.min(...lats)],
         [Math.max(...lngs), Math.max(...lats)],
@@ -188,10 +188,95 @@ async function fetchExternalData() {
 // Step 4: Load existing bikepaths.yml and merge
 // ---------------------------------------------------------------------------
 
+/**
+ * Extract useful OSM tags into structured metadata for bikepaths.yml.
+ * Only includes fields that have values — no nulls or empty strings.
+ */
+function extractOsmMetadata(tags) {
+  if (!tags) return {};
+  const meta = {};
+
+  // Bilingual names
+  if (tags['name:fr']) meta.name_fr = tags['name:fr'];
+  if (tags['name:en']) meta.name_en = tags['name:en'];
+  if (tags.alt_name) meta.alt_name = tags.alt_name;
+
+  // External references
+  if (tags.wikipedia) meta.wikipedia = tags.wikipedia;
+  if (tags.wikidata) meta.wikidata = tags.wikidata;
+  if (tags.wikimedia_commons) meta.wikimedia_commons = tags.wikimedia_commons;
+  if (tags.website || tags['contact:website']) meta.website = tags.website || tags['contact:website'];
+
+  // Physical characteristics
+  if (tags.surface) meta.surface = tags.surface;
+  if (tags.smoothness) meta.smoothness = tags.smoothness;
+  if (tags.width) meta.width = tags.width;
+  if (tags.lit) meta.lit = tags.lit;
+  if (tags.incline) meta.incline = tags.incline;
+
+  // Cycling infrastructure type
+  if (tags.segregated) meta.segregated = tags.segregated;
+  if (tags.cycleway) meta.cycleway = tags.cycleway;
+  if (tags.highway) meta.highway = tags.highway;
+  if (tags.tracktype) meta.tracktype = tags.tracktype;
+
+  // Network and management
+  if (tags.operator) meta.operator = tags.operator;
+  if (tags.network) meta.network = tags.network;
+  if (tags.ref) meta.ref = tags.ref;
+
+  // Route info (relations)
+  if (tags.distance) meta.distance = tags.distance;
+  if (tags.description) meta.description = tags.description;
+
+  // Seasonal / access
+  if (tags.opening_hours) meta.opening_hours = tags.opening_hours;
+  if (tags.seasonal) meta.seasonal = tags.seasonal;
+  if (tags.access) meta.access = tags.access;
+
+  return meta;
+}
+
+/**
+ * For named ways grouped by name, pick the most common value for each tag
+ * across all ways in the group.
+ */
+function mergeWayTags(ways) {
+  const tagCounts = {};
+  for (const way of ways) {
+    const tags = way.tags || {};
+    for (const [key, val] of Object.entries(tags)) {
+      if (!tagCounts[key]) tagCounts[key] = {};
+      tagCounts[key][val] = (tagCounts[key][val] || 0) + 1;
+    }
+  }
+  // Pick the most common value for each tag
+  const merged = {};
+  for (const [key, vals] of Object.entries(tagCounts)) {
+    let bestVal = null, bestCount = 0;
+    for (const [val, count] of Object.entries(vals)) {
+      if (count > bestCount) { bestCount = count; bestVal = val; }
+    }
+    merged[key] = bestVal;
+  }
+  return merged;
+}
+
 function loadExisting() {
   if (!fs.existsSync(bikepathsPath)) return [];
   const { bike_paths } = yaml.load(fs.readFileSync(bikepathsPath, 'utf8'));
   return bike_paths || [];
+}
+
+/**
+ * Enrich an existing entry with OSM metadata, only adding fields it doesn't
+ * already have (hand-edited values take precedence).
+ */
+function enrichEntry(entry, tags) {
+  const meta = extractOsmMetadata(tags);
+  for (const [key, val] of Object.entries(meta)) {
+    if (entry[key] == null) entry[key] = val;
+  }
 }
 
 function mergeData(existing, osmRelations, osmNamedWays, catastroSegments) {
@@ -215,7 +300,11 @@ function mergeData(existing, osmRelations, osmNamedWays, catastroSegments) {
 
   // Add OSM relations not already tracked
   for (const rel of osmRelations) {
-    if (byRelation.has(rel.id)) continue;
+    if (byRelation.has(rel.id)) {
+      // Enrich existing entry with any missing metadata
+      enrichEntry(byRelation.get(rel.id), rel.tags);
+      continue;
+    }
     // Check by name too (might be tracked by name instead of relation)
     const slug = slugify(rel.name);
     if (bySlug.has(slug)) {
@@ -223,13 +312,16 @@ function mergeData(existing, osmRelations, osmNamedWays, catastroSegments) {
       const entry = bySlug.get(slug);
       if (!entry.osm_relations) entry.osm_relations = [];
       entry.osm_relations.push(rel.id);
+      enrichEntry(entry, rel.tags);
       continue;
     }
 
-    // New entry
+    // New entry with OSM metadata
+    const meta = extractOsmMetadata(rel.tags);
     const entry = {
       name: rel.name,
       osm_relations: [rel.id],
+      ...meta,
     };
     result.push(entry);
     bySlug.set(slug, entry);
@@ -240,23 +332,30 @@ function mergeData(existing, osmRelations, osmNamedWays, catastroSegments) {
   // Add named ways not already tracked (by name or slug)
   for (const np of osmNamedWays) {
     const slug = slugify(np.name);
-    if (bySlug.has(slug)) continue;
-    if (byName.has(np.name.toLowerCase())) continue;
+    // Enrich existing entries with metadata from ways
+    const existingEntry = bySlug.get(slug) || byName.get(np.name.toLowerCase());
+    if (existingEntry) {
+      enrichEntry(existingEntry, np.tags);
+      continue;
+    }
 
     // Check if any existing entry has this as an osm_name
     let found = false;
     for (const entry of existing) {
       if (entry.osm_names?.some(n => n.toLowerCase() === np.name.toLowerCase())) {
+        enrichEntry(entry, np.tags);
         found = true;
         break;
       }
     }
     if (found) continue;
 
+    const meta = extractOsmMetadata(np.tags);
     const entry = {
       name: np.name,
       osm_names: np.osmNames,
       anchors: np.anchors,
+      ...meta,
     };
     result.push(entry);
     bySlug.set(slug, entry);

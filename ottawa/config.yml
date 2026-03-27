@@ -31,10 +31,10 @@ bounds:
   east: -1.43
   west: -76.74
 overpass_bounds:
-  north: 45.50
-  south: 45.25
-  east: -75.55
-  west: -76.00
+  north: 45.65
+  south: 45.15
+  east: -75.35
+  west: -76.35
 page_posters:
   home: meta/ottawa/home.png
   about: meta/ottawa/about.png

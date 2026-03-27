@@ -41,8 +41,10 @@ export async function queryOverpass(query) {
   console.log(`[overpass] fetching from API (key: ${key})`);
 
   let data;
-  for (let attempt = 0; attempt < 3; attempt++) {
-    const res = await fetch(OVERPASS_URL, {
+  for (let attempt = 0; attempt < OVERPASS_SERVERS.length * 2; attempt++) {
+    const serverIdx = Math.floor(attempt / 2) % OVERPASS_SERVERS.length;
+    const serverUrl = process.env.OVERPASS_URL || OVERPASS_SERVERS[serverIdx];
+    const res = await fetch(serverUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `data=${encodeURIComponent(query)}`,
@@ -53,9 +55,10 @@ export async function queryOverpass(query) {
       break;
     }
 
-    if (res.status === 504 || res.status === 429) {
-      const wait = (attempt + 1) * 15;
-      console.log(`[overpass] server busy (${res.status}), retrying in ${wait}s...`);
+    if (res.status === 504 || res.status === 429 || res.status === 502 || res.status === 503) {
+      const wait = (attempt + 1) * 10;
+      const nextServer = OVERPASS_SERVERS[(serverIdx + 1) % OVERPASS_SERVERS.length];
+      console.log(`[overpass] ${serverUrl} returned ${res.status}, trying next server in ${wait}s...`);
       await new Promise((r) => setTimeout(r, wait * 1000));
       continue;
     }

@@ -48,9 +48,9 @@ const ottawa = {
     { label: 'bike lanes (left)', q: `[out:json][timeout:60];way["cycleway:left"~"lane|track"]["name"](${bbox});out tags center;` },
     { label: 'bike lanes (right)', q: `[out:json][timeout:60];way["cycleway:right"~"lane|track"]["name"](${bbox});out tags center;` },
     { label: 'bike lanes (both)', q: `[out:json][timeout:60];way["cycleway:both"~"lane|track"]["name"](${bbox});out tags center;` },
-    // NCC multi-use pathways and recreational paths
-    { label: 'multi-use paths', q: `[out:json][timeout:60];way["highway"="path"]["name"](${bbox});out tags center;` },
-    // Footways designated for cycling (common in Ottawa for shared MUPs)
+    // Multi-use paths designated for cycling (NCC pathways, recreational paths)
+    { label: 'multi-use paths', q: `[out:json][timeout:60];way["highway"="path"]["bicycle"~"designated|yes"]["name"](${bbox});out tags center;` },
+    // Footways designated for cycling (shared MUPs tagged as footway)
     { label: 'shared footways', q: `[out:json][timeout:60];way["highway"="footway"]["bicycle"~"designated|yes"]["name"](${bbox});out tags center;` },
   ],
 
