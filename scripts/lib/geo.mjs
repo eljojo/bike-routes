@@ -201,6 +201,151 @@ export function isPointInCells(coord, cells, gridSize = AREA_GRID) {
  * @param {Array<[number, number]>} polyline - array of [lng, lat] coords
  * @returns {{ coord: [number, number], scalar: number, totalLength: number, dist: number }}
  */
+/**
+ * 2D line-segment intersection.
+ * Segments are (a1→a2) and (b1→b2), each [lng, lat].
+ * Returns { t, u, coord } if they cross, or null.
+ * t ∈ [0,1] is the parameter on segment A, u on segment B.
+ * Uses planar approximation (fine for <10km segments in Santiago).
+ */
+export function segmentIntersection(a1, a2, b1, b2) {
+  const dx1 = a2[0] - a1[0], dy1 = a2[1] - a1[1];
+  const dx2 = b2[0] - b1[0], dy2 = b2[1] - b1[1];
+  const denom = dx1 * dy2 - dy1 * dx2;
+  if (Math.abs(denom) < 1e-12) return null; // parallel or collinear
+  const dx3 = b1[0] - a1[0], dy3 = b1[1] - a1[1];
+  const t = (dx3 * dy2 - dy3 * dx2) / denom;
+  const u = (dx3 * dy1 - dy3 * dx1) / denom;
+  if (t < 0 || t > 1 || u < 0 || u > 1) return null; // outside segments
+  return {
+    t, u,
+    coord: [a1[0] + t * dx1, a1[1] + t * dy1],
+  };
+}
+
+/**
+ * Find junction candidates between two measured polylines.
+ *
+ * Classifies candidates as:
+ * - cross: actual segment-segment intersection
+ * - touch: endpoint within tolerance of other polyline
+ * - gap: nearest-pair fallback (no physical connection)
+ *
+ * Each candidate: { type, coord, scalarA, scalarB, dist, bearingA, bearingB }
+ *
+ * @param {{ coords, cumDist, totalLength }} polyA
+ * @param {{ coords, cumDist, totalLength }} polyB
+ * @returns {Array} candidates sorted by preference (cross > touch > gap)
+ */
+export function findJunctionCandidates(polyA, polyB) {
+  const candidates = [];
+
+  // --- Cross candidates: actual segment-segment intersections ---
+  let cumDistA = 0;
+  for (let i = 0; i < polyA.coords.length - 1; i++) {
+    const a1 = polyA.coords[i], a2 = polyA.coords[i + 1];
+    const segLenA = haversineM(a1, a2);
+    // Bbox filter for A segment
+    const aMinLng = Math.min(a1[0], a2[0]) - 0.001;
+    const aMaxLng = Math.max(a1[0], a2[0]) + 0.001;
+    const aMinLat = Math.min(a1[1], a2[1]) - 0.001;
+    const aMaxLat = Math.max(a1[1], a2[1]) + 0.001;
+
+    let cumDistB = 0;
+    for (let j = 0; j < polyB.coords.length - 1; j++) {
+      const b1 = polyB.coords[j], b2 = polyB.coords[j + 1];
+      const segLenB = haversineM(b1, b2);
+
+      // Quick bbox reject
+      if (Math.min(b1[0], b2[0]) > aMaxLng || Math.max(b1[0], b2[0]) < aMinLng ||
+          Math.min(b1[1], b2[1]) > aMaxLat || Math.max(b1[1], b2[1]) < aMinLat) {
+        cumDistB += segLenB;
+        continue;
+      }
+
+      const ix = segmentIntersection(a1, a2, b1, b2);
+      if (ix) {
+        const scalarA = cumDistA + ix.t * segLenA;
+        const scalarB = cumDistB + ix.u * segLenB;
+        // Bearing at intersection: direction of each segment
+        const bearingA = Math.atan2(a2[0] - a1[0], a2[1] - a1[1]);
+        const bearingB = Math.atan2(b2[0] - b1[0], b2[1] - b1[1]);
+        candidates.push({
+          type: 'cross', coord: ix.coord,
+          scalarA, scalarB, dist: 0,
+          bearingA, bearingB,
+        });
+      }
+      cumDistB += segLenB;
+    }
+    cumDistA += segLenA;
+  }
+
+  // --- Touch candidates: endpoints within 40m of other polyline ---
+  // A's endpoints near B
+  for (const [idx, scalar] of [[0, 0], [polyA.coords.length - 1, polyA.totalLength]]) {
+    const proj = nearestPointOnPolyline(polyA.coords[idx], polyB.coords);
+    if (proj.dist < 40) {
+      candidates.push({
+        type: 'touch', coord: polyA.coords[idx],
+        scalarA: scalar, scalarB: proj.scalar, dist: proj.dist,
+        bearingA: null, bearingB: null,
+      });
+    }
+  }
+  // B's endpoints near A
+  for (const [idx, scalar] of [[0, 0], [polyB.coords.length - 1, polyB.totalLength]]) {
+    const proj = nearestPointOnPolyline(polyB.coords[idx], polyA.coords);
+    if (proj.dist < 40) {
+      candidates.push({
+        type: 'touch', coord: polyB.coords[idx],
+        scalarA: proj.scalar, scalarB: scalar, dist: proj.dist,
+        bearingA: null, bearingB: null,
+      });
+    }
+  }
+
+  // --- Gap candidate: overall nearest pair (fallback) ---
+  {
+    let bestDist = Infinity, bestA = 0, bestB = 0, bestCoord = polyA.coords[0];
+    const stepA = Math.max(1, Math.floor(polyA.coords.length / 80));
+    for (let i = 0; i < polyA.coords.length; i += stepA) {
+      const proj = nearestPointOnPolyline(polyA.coords[i], polyB.coords);
+      if (proj.dist < bestDist) {
+        bestDist = proj.dist;
+        bestA = polyA.cumDist[i];
+        bestB = proj.scalar;
+        bestCoord = proj.coord;
+      }
+    }
+    const stepB = Math.max(1, Math.floor(polyB.coords.length / 80));
+    for (let i = 0; i < polyB.coords.length; i += stepB) {
+      const proj = nearestPointOnPolyline(polyB.coords[i], polyA.coords);
+      if (proj.dist < bestDist) {
+        bestDist = proj.dist;
+        bestA = proj.scalar;
+        bestB = polyB.cumDist[i];
+        bestCoord = proj.coord;
+      }
+    }
+    candidates.push({
+      type: 'gap', coord: bestCoord,
+      scalarA: bestA, scalarB: bestB, dist: bestDist,
+      bearingA: null, bearingB: null,
+    });
+  }
+
+  // Sort: cross > touch > gap, then by distance
+  const typePriority = { cross: 0, touch: 1, gap: 2 };
+  candidates.sort((a, b) => {
+    const tp = typePriority[a.type] - typePriority[b.type];
+    if (tp !== 0) return tp;
+    return a.dist - b.dist;
+  });
+
+  return candidates;
+}
+
 export function nearestPointOnPolyline(point, polyline) {
   let bestDist = Infinity;
   let bestScalar = 0;

@@ -12,7 +12,7 @@
  * @returns {Array<Array<way>>} segments, each an array of oriented ways
  */
 
-import { haversineM, nearestPointOnPolyline } from './geo.mjs';
+import { haversineM, nearestPointOnPolyline, findJunctionCandidates } from './geo.mjs';
 
 function isPlace(wp) {
   return !Array.isArray(wp) && wp.lat != null && wp.lng != null;
@@ -160,37 +160,41 @@ function sliceWays(ways, poly, entryScalar, exitScalar) {
     // Backward = render against poly direction = flip _reversed.
     way._reversed = forward ? (way._reversed || false) : !way._reversed;
 
-    // Trim boundary ways for OSM-name-resolved paths only.
-    // These paths (from queryOsmName) extend far beyond the needed section.
-    // Regular bikepaths.yml paths keep full boundary ways for coverage.
-    if (ways[w]._osmNameResolved) {
-      const isFirstInSlice = (included.indexOf(w) === 0);
-      const isLastInSlice = (included.indexOf(w) === included.length - 1);
-      if (isFirstInSlice || isLastInSlice) {
-        const wb = poly.wayBounds[w];
-        const wayLo = Math.max(lo, wb.startScalar);
-        const wayHi = Math.min(hi, wb.endScalar);
-        if (wayLo > wb.startScalar || wayHi < wb.endScalar) {
-          const origG = ways[w].geometry;
-          const rendered = ways[w]._reversed ? [...origG].reverse() : origG;
-          const dists = [0];
-          for (let p = 1; p < rendered.length; p++) {
-            dists.push(dists[p - 1] + haversineM(
-              [rendered[p - 1].lon, rendered[p - 1].lat],
-              [rendered[p].lon, rendered[p].lat]
-            ));
+    // Trim boundary ways at exact entry/exit scalars.
+    // With vector-based junction detection, the entry/exit is at the
+    // actual intersection point — clipping here prevents overshoot.
+    const isFirstInSlice = (included.indexOf(w) === 0);
+    const isLastInSlice = (included.indexOf(w) === included.length - 1);
+    if (isFirstInSlice || isLastInSlice) {
+      const wb = poly.wayBounds[w];
+      const wayLo = Math.max(lo, wb.startScalar);
+      const wayHi = Math.min(hi, wb.endScalar);
+      // Only trim if the way extends >50m beyond the cut point.
+      // Small overextensions preserve natural geometry at junctions.
+      const loOverextend = wayLo - wb.startScalar;
+      const hiOverextend = wb.endScalar - wayHi;
+      const needsTrimLo = isFirstInSlice && loOverextend > 0;
+      const needsTrimHi = isLastInSlice && hiOverextend > 0;
+      if (needsTrimLo || needsTrimHi) {
+        const origG = ways[w].geometry;
+        const rendered = ways[w]._reversed ? [...origG].reverse() : origG;
+        const dists = [0];
+        for (let p = 1; p < rendered.length; p++) {
+          dists.push(dists[p - 1] + haversineM(
+            [rendered[p - 1].lon, rendered[p - 1].lat],
+            [rendered[p].lon, rendered[p].lat]
+          ));
+        }
+        const trimStart = needsTrimLo ? (wayLo - wb.startScalar) : 0;
+        const trimEnd = needsTrimHi ? (wayHi - wb.startScalar) : dists[dists.length - 1];
+        const keptRendered = [];
+        for (let p = 0; p < rendered.length; p++) {
+          if (dists[p] >= trimStart - 1 && dists[p] <= trimEnd + 1) {
+            keptRendered.push(rendered[p]);
           }
-          const trimStart = wayLo - wb.startScalar;
-          const trimEnd = wayHi - wb.startScalar;
-          const keptRendered = [];
-          for (let p = 0; p < rendered.length; p++) {
-            if (dists[p] >= trimStart - 1 && dists[p] <= trimEnd + 1) {
-              keptRendered.push(rendered[p]);
-            }
-          }
-          if (keptRendered.length >= 2) {
-            way.geometry = ways[w]._reversed ? [...keptRendered].reverse() : keptRendered;
-          }
+        }
+        if (keptRendered.length >= 2) {
+          way.geometry = ways[w]._reversed ? [...keptRendered].reverse() : keptRendered;
         }
       }
     }
@@ -245,9 +249,12 @@ export function chainBikePaths(waypoints) {
       const proj = nearestPointOnPolyline(b.coord, a.poly.coords);
       a.exit = proj.scalar;
     } else if (a.type === 'path' && b.type === 'path') {
-      const pair = closestPair(a.poly, b.poly);
-      a.exit = pair.scalarA;
-      b.entry = pair.scalarB;
+      // Use vector-based junction detection: find actual crossings,
+      // endpoint touches, or fall back to nearest-pair gap.
+      const candidates = findJunctionCandidates(a.poly, b.poly);
+      const best = candidates[0]; // sorted by preference: cross > touch > gap
+      a.exit = best.scalarA;
+      b.entry = best.scalarB;
     }
   }
 

@@ -1021,76 +1021,42 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
   }, 120_000);
 
   it('Pocuro is a clean E-W line with no N-S zigzag', async () => {
-    // Pocuro runs E-W around lat -33.430. The route should ride through it
-    // once as a straight line, with at most minor geometry noise.
-    const { pts } = await generateLaReinaReal();
+    // Pocuro runs E-W around lat -33.430. Each SEGMENT that passes through
+    // the Pocuro zone should be a clean E-W line. Check per-segment to avoid
+    // false reversals from LTO points in a separate segment that happen to
+    // fall in the same lat range.
+    const { segments } = await generateLaReinaReal();
 
-    // Count N-S reversals with 50m minimum step to filter geometry noise
-    let reversals = 0;
-    let lastDir = null;
-    let lastSignificantPt = null;
-    for (let i = 0; i < pts.length; i++) {
-      if (pts[i][1] < -33.435 || pts[i][1] > -33.428) continue;
-      if (pts[i][0] < -70.62 || pts[i][0] > -70.58) continue;
-      if (lastSignificantPt && haversineM(pts[i], lastSignificantPt) < 100) continue;
-      if (lastSignificantPt) {
-        const dlat = pts[i][1] - lastSignificantPt[1];
-        if (Math.abs(dlat) > 0.0001) {
-          const dir = dlat > 0 ? 'N' : 'S';
-          if (lastDir && dir !== lastDir) reversals++;
-          lastDir = dir;
-        }
-      }
-      lastSignificantPt = pts[i];
-    }
-
-    // Collect reversal locations
-    const revLocs = [];
-    lastDir = null;
-    lastSignificantPt = null;
-    for (let i = 0; i < pts.length; i++) {
-      if (pts[i][1] < -33.435 || pts[i][1] > -33.428) continue;
-      if (pts[i][0] < -70.62 || pts[i][0] > -70.58) continue;
-      if (lastSignificantPt && haversineM(pts[i], lastSignificantPt) < 100) continue;
-      if (lastSignificantPt) {
-        const dlat = pts[i][1] - lastSignificantPt[1];
-        if (Math.abs(dlat) > 0.0001) {
-          const dir = dlat > 0 ? 'N' : 'S';
-          if (lastDir && dir !== lastDir) {
-            revLocs.push('pt' + i + ' [' + pts[i][0].toFixed(4) + ',' + pts[i][1].toFixed(4) + '] ' + lastDir + '→' + dir);
+    let worstReversals = 0;
+    let worstSegInfo = '';
+    for (let s = 0; s < segments.length; s++) {
+      const segPts = renderTrace([segments[s]]);
+      let reversals = 0;
+      let lastDir = null;
+      let lastSignificantPt = null;
+      for (const pt of segPts) {
+        if (pt[1] < -33.435 || pt[1] > -33.428) continue;
+        if (pt[0] < -70.62 || pt[0] > -70.58) continue;
+        if (lastSignificantPt && haversineM(pt, lastSignificantPt) < 100) continue;
+        if (lastSignificantPt) {
+          const dlat = pt[1] - lastSignificantPt[1];
+          if (Math.abs(dlat) > 0.0001) {
+            const dir = dlat > 0 ? 'N' : 'S';
+            if (lastDir && dir !== lastDir) reversals++;
+            lastDir = dir;
           }
-          lastDir = dir;
         }
+        lastSignificantPt = pt;
       }
-      lastSignificantPt = pts[i];
+      if (reversals > worstReversals) {
+        worstReversals = reversals;
+        const names = [...new Set(segments[s].map(w => w.tags?.name || 'id=' + w.id))];
+        worstSegInfo = 'seg' + s + ' (' + names.join(', ') + '): ' + reversals + ' N-S reversals';
+      }
     }
 
-    // Find which ways the reversal points belong to
-    const { segments: segs } = await generateLaReinaReal();
-    const revWays = [];
-    for (const loc of revLocs) {
-      const match = loc.match(/pt(\d+)/);
-      if (!match) continue;
-      const ptIdx = parseInt(match[1]);
-      const revPt = pts[ptIdx];
-      // Find the way containing this point
-      let cumIdx = 0;
-      let foundWay = null;
-      outer: for (const seg of segs) {
-        for (const w of seg) {
-          const wPts = w.geometry.length;
-          if (cumIdx + wPts > ptIdx) {
-            foundWay = { id: w.id, name: w.tags?.name || '?', pathIdx: w._pathIdx };
-            break outer;
-          }
-          cumIdx += wPts;
-        }
-      }
-      revWays.push(loc + ' way=' + (foundWay ? foundWay.name + '(id=' + foundWay.id + ',pi=' + foundWay.pathIdx + ')' : '?'));
-    }
-
-    expect(reversals,
-      reversals + ' N-S direction changes in Pocuro zone: ' + revWays.join(', ')
+    expect(worstReversals,
+      worstReversals + ' N-S direction changes in Pocuro zone. ' + worstSegInfo
     ).toBeLessThanOrEqual(1);
   }, 120_000);
 
@@ -1263,6 +1229,64 @@ describe('Product Brief — La Reina a Quinta Normal', () => {
     expect(overallPct,
       overallPct + '% overall at 200m. By region: ' + summary
     ).toBeGreaterThanOrEqual(90);
+  }, 120_000);
+
+  it('Pocuro×LTO junction is a cross, not a gap', async () => {
+    // Pocuro (E-W) and LTO (N-S) physically intersect. findJunctionCandidates
+    // should find a 'cross' candidate at the intersection.
+    const { findJunctionCandidates } = await import('./geo.mjs');
+    const { generateRoute } = await import('./generate-route.mjs');
+    const yaml = await import('js-yaml');
+    const { readFileSync } = await import('fs');
+    const bikepathsPath = new URL('../../santiago/bikepaths.yml', import.meta.url);
+    const dataDir = new URL('../../santiago', import.meta.url).pathname;
+    const { bike_paths } = yaml.load(readFileSync(bikepathsPath, 'utf8'));
+
+    // Resolve pocuro and LTO individually
+    const { chainWaypoints: pocuroWp } = await generateRoute({
+      waypoints: ['ciclovia-pocuro'], dataDir, bikePaths: bike_paths,
+    });
+    const { chainWaypoints: ltoWp } = await generateRoute({
+      waypoints: ['luis-thayer-ojeda'], dataDir, bikePaths: bike_paths,
+    });
+
+    expect(pocuroWp.length).toBe(1);
+    expect(ltoWp.length).toBe(1);
+
+    const { buildMeasuredPoly } = await import('./chain-bike-paths.mjs');
+    // buildMeasuredPoly isn't exported — use inline version
+    const { orderWays } = await import('./order-ways.mjs');
+
+    // Build measured polys manually
+    function buildPoly(ways) {
+      const coords = [];
+      const cumDist = [];
+      let dist = 0;
+      for (const w of ways) {
+        const g = w._reversed ? [...w.geometry].reverse() : w.geometry;
+        for (const p of g) {
+          const c = [p.lon, p.lat];
+          if (coords.length > 0) dist += haversineM(coords[coords.length - 1], c);
+          coords.push(c);
+          cumDist.push(dist);
+        }
+      }
+      return { coords, cumDist, totalLength: dist };
+    }
+
+    const polyPocuro = buildPoly(pocuroWp[0]);
+    const polyLTO = buildPoly(ltoWp[0]);
+
+    const candidates = findJunctionCandidates(polyPocuro, polyLTO);
+    const crossCandidates = candidates.filter(c => c.type === 'cross');
+    const touchCandidates = candidates.filter(c => c.type === 'touch');
+    const gapCandidates = candidates.filter(c => c.type === 'gap');
+
+    expect(crossCandidates.length,
+      'no cross candidates found between Pocuro and LTO. ' +
+      'Touch: ' + touchCandidates.length + ', Gap: ' + gapCandidates.length +
+      '. Best: ' + candidates[0].type + ' dist=' + Math.round(candidates[0].dist) + 'm'
+    ).toBeGreaterThan(0);
   }, 120_000);
 
   it('LTO is in a separate segment from Pocuro (>200m gap)', async () => {
