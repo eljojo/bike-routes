@@ -13,6 +13,3 @@ You ride through stands of trees that open up to river views, then close in agai
 
 Deer are a regular sighting along the quieter stretches, especially in the morning hours. Where the path reaches the river, there's a shipwreck visible from the Gatineau bank that's worth a stop if you haven't seen it.
 
-### Rides along this path
-
-- [Riding around Lac-Leamy and Gatineau](https://eljojo.bike/rides/2022-09-29-riding-around-lac-leamy-and-gatineau/) — first time in cold-weather tights

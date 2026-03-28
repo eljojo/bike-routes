@@ -13,6 +13,3 @@ Leamy Creek path (NCC route 27) follows the creek through a green corridor in Ga
 
 The beach at the end is one of the best swimming spots you can reach by bike from downtown Ottawa. Lifeguards in summer, volleyball courts, picnic areas with barbecues, paddleboard rentals. In summer it gets busy — which is part of the charm.
 
-### Rides along this path
-
-- [Riding around Lac-Leamy and Gatineau](https://eljojo.bike/rides/2022-09-29-riding-around-lac-leamy-and-gatineau/)

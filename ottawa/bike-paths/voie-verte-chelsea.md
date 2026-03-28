@@ -18,6 +18,3 @@ Chelsea is the natural halfway point, with food and a pub. Wakefield at the far 
 
 There's a detour in effect as of 2024 due to construction on Chemin Riverside. Check conditions before heading out.
 
-### Rides on this path
-
-- [Breathtaking Fall Ride to Wakefield](https://eljojo.bike/rides/2022-10-23-breathtaking-fall-ride-to-wakefield/) — the Bike Bums' last-minute fall ride, "beautiful landscape, fairly flat"

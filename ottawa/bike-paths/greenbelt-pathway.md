@@ -33,3 +33,4 @@ The [Mer Bleue Bog](https://ncc-ccn.gc.ca/places/mer-bleue) is the highlight of 
 ### Rides on this path
 
 - [Big Bog Excursion](https://eljojo.bike/rides/2023-06-04-big-bog-excursion/) — Mer Bleue, Prescott Russell Trail, Greenbelt, and a golf course shortcut
+- [Bruce Pit](https://eljojo.bike/rides/2021/10/09-150-bruce-pit) — loop through the western Greenbelt via Bruce Pit

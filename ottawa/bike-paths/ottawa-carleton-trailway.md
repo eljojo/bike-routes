@@ -18,4 +18,3 @@ Combined with the [Ottawa Valley Recreation Trail](/paths/ottawa-valley-recreati
 ### Rides on this path
 
 - [Bikepacking to The Opinicon](https://eljojo.bike/tours/bikepacking-to-the-opinicon/) — continued past Carleton Place to Chaffey's Lock and the Cataraqui Trail
-- [Exploring the Trans Canada Trail](https://eljojo.bike/rides/2023-08-17-exploring-the-trans-canada-trail/)

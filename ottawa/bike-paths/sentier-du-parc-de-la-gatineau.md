@@ -17,6 +17,5 @@ The climbing starts gradually and builds. Bring sugar. The descents can hit 60 k
 
 ### Rides on this path
 
-- [Champlain Lookout Ride](https://eljojo.bike/rides/2022-05-06-106-champlain-lookout-ride/) — first time to the top, spectacular views of the Ottawa Valley
-- [Adventure ride with the gang](https://eljojo.bike/rides/2023-04-28-559-adventure-ride-with-the-gang/) — pivoted to Pink Lake, tacos in Gatineau after
 - [Taylor Lake camping](https://eljojo.bike/tours/taylor-lake-camping/) — bikepacking into the park, hard climbs in the dark, incredible reward
+- [Canadian Shield Bikepacking Summit](https://eljojo.bike/rides/2025/05/camping-at-the-canadian-shield-bikepacking-summit/23-heading-to-canadian-shield-bikepacking-summit) — bikepacking north through the park to the Summit

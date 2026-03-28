@@ -17,8 +17,3 @@ Between May and October, the NCC closes Queen Elizabeth Driveway for Weekend Bik
 
 Patterson's Creek, about halfway along, has an NCC bistro in summer. Dow's Lake at the southern end has food, boat rentals, and the Arboretum next door.
 
-### Rides along this path
-
-- [Catching the Sunset at Dow's Lake](https://eljojo.bike/rides/2021-06-21-catching-the-sunset-at-dow-s-lake/) — evening colours on the water
-- [Sunset ride around Colonel By](https://eljojo.bike/rides/2022-09-10-sunset-ride-around-colonel-by/) — riding towards the locks
-- [Chill winter ride by the Canal](https://eljojo.bike/rides/2023-03-05-chill-winter-ride-by-the-canal/) — early season, mostly dry, some wet spots

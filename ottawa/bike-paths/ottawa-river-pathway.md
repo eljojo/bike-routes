@@ -15,8 +15,9 @@ The eastern stretch passes through the political heart of the city. Parliament H
 
 Further west you pass Westboro Beach and its new pavilion, then continue through to Britannia, where The Beachconers serves ice cream that justifies the ride on its own. On weekends and holiday Mondays from May to October, the NCC closes the westbound lanes of the adjacent [Kichi Zībī Mīkan](https://ncc-ccn.gc.ca/events/weekend-bikedays) — "Great River Road" in Algonquin, formerly the Sir John A. Macdonald Parkway — to cars for Weekend Bikedays, giving you 9 kilometres of parkway from Vimy Place to Carling Avenue as well.
 
-This is the path that connects almost everything. The [Rideau Canal paths](/paths/rideau-canal) branch south from here, the Trans Canada Trail overlaps in sections, and four bridges link you to the Gatineau side — including the Chief William Commanda Bridge, a converted rail crossing for people on foot and on bikes. It's part of a much bigger network — [over 200 km of MUPs](https://ncc-ccn.gc.ca/places/capital-pathway) stretching from Gatineau Park through the city and out to the [Greenbelt](/paths/greenbelt-pathway-west). If you're new to Ottawa cycling, this is where you start.
+This is the path that connects almost everything. The [Rideau Canal paths](/paths/rideau-canal) branch south from here, the Trans Canada Trail overlaps in sections, and four bridges link you to the Gatineau side — including the Chief William Commanda Bridge, a converted rail crossing for people on foot and on bikes. It's part of a much bigger network — [over 200 km of MUPs](https://ncc-ccn.gc.ca/places/capital-pathway) stretching from Gatineau Park through the city and out to the [Greenbelt](/paths/greenbelt-pathway). If you're new to Ottawa cycling, this is where you start.
 
-### Rides along this path
+### Rides on this path
 
-- [Exploring the Trans Canada Trail](https://eljojo.bike/rides/2023-08-17-exploring-the-trans-canada-trail/) — fox sighting near Britannia
+- [East-End Gravel Mixer](https://eljojo.bike/rides/2022/05/31-east-end-gravel-mixer) — gravel and pavement through the east end, with a long stretch along the river
+
