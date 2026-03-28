@@ -10,9 +10,9 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CACHE_DIR = join(__dirname, '..', '.cache');
 
-// Try alternative servers if main is rate-limited.
-// private.coffee has no rate limit and 4 servers with 256GB RAM each.
+// Server rotation — try our own server first, then public fallbacks.
 const OVERPASS_SERVERS = [
+  'https://overpass.whereto.bike/api/interpreter',
   'https://overpass.private.coffee/api/interpreter',
   'https://overpass-api.de/api/interpreter',
 ];

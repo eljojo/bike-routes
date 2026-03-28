@@ -164,6 +164,36 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     tracktype: grade2
+  - name: M&O Rail Corridor (Saint-Eugène to Vaudreuil-Dorion)
+    name_fr: Corridor ferroviaire M&O (Saint-Eugène à Vaudreuil-Dorion)
+    description: Former Montreal & Ottawa railway corridor through Rigaud, Hudson, and Vaudreuil-Dorion. Unmaintained in sections — ride at your own risk.
+    osm_names:
+      - M&O Subdivision
+    anchors:
+      - - -74.7188820
+        - 45.5177170
+      - - -74.6465510
+        - 45.5181040
+      - - -74.5357990
+        - 45.5160130
+      - - -74.4627150
+        - 45.4986810
+      - - -74.3908690
+        - 45.4795180
+      - - -74.3154690
+        - 45.4737990
+      - - -74.2394810
+        - 45.4786730
+      - - -74.1649750
+        - 45.4683310
+      - - -74.0987720
+        - 45.4408950
+      - - -74.0368580
+        - 45.4098600
+      - - -73.9757300
+        - 45.3856570
+    surface: variable
+    highway: proposed
   - name: Sentier vélo de Montagne - Parc de la Gatineau
     osm_relations:
       - 6198284
