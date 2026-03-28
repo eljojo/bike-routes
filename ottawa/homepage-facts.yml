@@ -97,6 +97,16 @@ facts:
       pick: first
       fields: [name, distance_km, slug]
 
+  # --- Always shown ---
+
+  - template: "Ottawa has more than {count} bike paths?"
+    link: "/paths"
+    link_text: "{count} bike paths"
+    always: true
+    query:
+      type: bike_paths
+      count_as: count
+
   # --- Hand-written (editorial) ---
 
   - template: "the Quyon Ferry Loop crosses provinces by ferry?"
