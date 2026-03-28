@@ -6,7 +6,7 @@ includes:
   - ottawa-carleton-trailway-east
 ---
 
-Roughly 30 km of gravel trail running southwest from Nepean through Stittsville to Carleton Place, built on a former Canadian Pacific rail corridor abandoned in 1990. Now part of the Trans Canada Trail, and one of the straightest, flattest long-distance paths in the region — a good first gravel century or a one-way bikepacking trip.
+[Roughly 30 km](https://www.ontariotrails.on.ca/trail/ottawa-carleton-trailway---trans-canada-section) of gravel trail running southwest from Nepean through Stittsville to Carleton Place, built on a former [Canadian Pacific rail corridor abandoned in 1990](https://churcher.crcml.org/candate/CarletonPlace.html). Now part of the Trans Canada Trail, and one of the straightest, flattest long-distance paths in the region — a good first gravel century or a one-way bikepacking trip.
 
 The old rail bed means the grade is gentle and consistent. The surface is packed gravel, rideable on most bikes with tires 35mm or wider. It can get monotonous on the longest stretches — bring a podcast — but the simplicity is also the appeal. No navigation, no traffic, just kilometres of trail through fields and small towns.
 
