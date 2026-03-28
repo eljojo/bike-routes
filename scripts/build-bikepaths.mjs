@@ -13,8 +13,24 @@
  *   node scripts/build-bikepaths.mjs --city santiago
  *   node scripts/build-bikepaths.mjs --city ottawa --dry-run
  *
- * Idempotent: new paths get added, existing entries keep their data.
- * Hand-edited fields (slug overrides, manual anchors) are preserved.
+ * ## Merge philosophy
+ *
+ * bikepaths.yml is machine-owned but accepts manual additions. The merge
+ * logic is additive and preserves existing entries:
+ *
+ * - **Entries already in the file are never removed**, even if the script's
+ *   OSM query no longer returns them (e.g. paths outside the city bounds).
+ * - **Hand-edited fields take precedence** over OSM data. The script only
+ *   fills in fields the entry doesn't already have.
+ * - **Manual one-offs are welcome.** If a path exists in OSM but falls
+ *   outside the query bounds (e.g. Prescott-Russell Trail is in a
+ *   neighbouring county), add it manually with its osm_relations. The
+ *   next script run will enrich it with any missing OSM metadata but
+ *   won't remove or duplicate it. This effectively enlarges the scope
+ *   of what the script manages.
+ * - The script matches existing entries by relation ID first, then by
+ *   slugified name. This prevents duplicates when an entry is added
+ *   manually before the script discovers it.
  */
 
 import fs from 'node:fs';
@@ -409,6 +425,41 @@ function mergeData(existing, osmRelations, osmNamedWays, catastroSegments) {
 // Main
 // ---------------------------------------------------------------------------
 
+/**
+ * Enrich manually added entries whose osm_relations were not found by the
+ * bbox-scoped discovery query. Fetches tags directly by relation ID.
+ * This is what makes manual one-offs work: add a relation ID to the file,
+ * and the next script run fills in name, surface, network, etc. from OSM.
+ */
+async function enrichOutOfBoundsRelations(merged, discoveredRelationIds) {
+  const missing = [];
+  for (const entry of merged) {
+    for (const relId of entry.osm_relations ?? []) {
+      if (!discoveredRelationIds.has(relId)) {
+        missing.push({ relId, entry });
+      }
+    }
+  }
+  if (missing.length === 0) return;
+
+  console.log(`Enriching ${missing.length} out-of-bounds relations...`);
+  const relIds = missing.map(m => m.relId);
+  const q = `[out:json][timeout:60];\n(\n${relIds.map(id => `  relation(${id});`).join('\n')}\n);\nout tags;`;
+  try {
+    const data = await queryOverpass(q);
+    const byId = new Map(data.elements.map(el => [el.id, el.tags || {}]));
+    for (const { relId, entry } of missing) {
+      const tags = byId.get(relId);
+      if (tags) {
+        enrichEntry(entry, tags);
+        console.log(`  Enriched: ${entry.name} (relation ${relId})`);
+      }
+    }
+  } catch (err) {
+    console.error(`  Failed to enrich out-of-bounds relations: ${err.message}`);
+  }
+}
+
 async function main() {
   console.log(`Building bikepaths.yml for ${args.city} (bbox: ${bbox})`);
 
@@ -418,6 +469,10 @@ async function main() {
   const externalSegments = await fetchExternalData();
 
   const merged = mergeData(existing, osmRelations, osmNamedWays, externalSegments);
+
+  // Enrich any manually added relations that fell outside the query bounds
+  const discoveredRelationIds = new Set(osmRelations.map(r => r.id));
+  await enrichOutOfBoundsRelations(merged, discoveredRelationIds);
 
   if (args.dryRun) {
     console.log('\n--- DRY RUN — would write: ---');

@@ -152,6 +152,12 @@ bike_paths:
     lit: 'no'
     highway: path
     operator: National Capital Commission
+  - name: Prescott and Russell Recreational Trail
+    osm_relations:
+      - 3461055
+    network: rcn
+    ref: PRT
+    surface: fine_gravel
   - name: Prescott Russell Trail Link
     osm_relations:
       - 3461068

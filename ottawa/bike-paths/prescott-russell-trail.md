@@ -3,7 +3,9 @@ name: Prescott-Russell Trail
 name_fr: Sentier Prescott-Russell
 vibe: "Rail trail from Ottawa to the Quebec border — and the corridor keeps going toward Montreal"
 featured: true
+wikipedia: en:Prescott and Russell Recreational Trail
 includes:
+  - prescott-and-russell-recreational-trail
   - prescott-russell-trail-link
   - m-o-rail-corridor-saint-eugene-to-vaudreuil-dorion
 ---
