@@ -6,6 +6,7 @@ includes:
   - ottawa-river-pathway-east
   - ottawa-river-pathway-west
   - ottawa-river-pathway
+  - ottawa-river-pathway-trans-canada-trail
 ---
 
 The oldest and most-used bike path in the capital. The Ottawa River Pathway was the [first section of the NCC's Capital Pathway network](https://en.wikipedia.org/wiki/Capital_Pathway), built in the early 1970s. From the Rideau Falls in the east to Britannia Beach in the west, it follows the south shore of the Ottawa River for roughly 30 kilometres — flat and open to the water almost the entire way.
