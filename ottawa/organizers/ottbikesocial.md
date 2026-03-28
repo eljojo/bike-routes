@@ -9,4 +9,11 @@ tagline: Slow bike rides with nice people
 tags:
   - social
   - group-rides
+featured: true
+hidden: false
+social_links:
+  - platform: instagram
+    url: https://instagram.com/ottbikesocial
 ---
+
+Thursday rides at a chill pace!
