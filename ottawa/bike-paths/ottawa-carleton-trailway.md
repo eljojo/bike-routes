@@ -1,6 +1,7 @@
 ---
 name: Ottawa-Carleton Trailway
 vibe: "Former rail corridor to Carleton Place — flat gravel, long distance, Trans Canada Trail"
+featured: true
 includes:
   - ottawa-carleton-trailway
   - ottawa-carleton-trailway-east

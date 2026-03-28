@@ -2,6 +2,7 @@
 name: Sentier du Parc de la Gatineau
 name_fr: Sentier du Parc de la Gatineau
 vibe: "The gateway to Gatineau Park — Pink Lake, Meech Lake, Champlain Lookout"
+featured: true
 includes:
   - sentier-du-parc-de-la-gatineau
   - promenade-sentier-du-parc-de-la-gatineau

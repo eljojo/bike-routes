@@ -2,6 +2,7 @@
 name: Voie Verte Chelsea
 name_fr: Voie Verte Chelsea
 vibe: "Former rail line to Wakefield — flat gravel, river views, autumn colours"
+featured: true
 includes:
   - voie-verte-chelsea
   - voie-verte-de-chelsea

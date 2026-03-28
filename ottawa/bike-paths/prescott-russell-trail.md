@@ -2,6 +2,7 @@
 name: Prescott-Russell Trail
 name_fr: Sentier Prescott-Russell
 vibe: "Rail trail from Ottawa to the Quebec border — and the corridor keeps going toward Montreal"
+featured: true
 includes:
   - prescott-russell-trail-link
   - m-o-rail-corridor-saint-eugene-to-vaudreuil-dorion

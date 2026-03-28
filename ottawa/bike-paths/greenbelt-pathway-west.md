@@ -1,6 +1,7 @@
 ---
 name: Greenbelt Pathway
 vibe: "A ring of gravel trail through forest, wetland, and farmland encircling the city"
+featured: true
 includes:
   - greenbelt-pathway-west
   - greenbelt-pathway-west-barrhaven

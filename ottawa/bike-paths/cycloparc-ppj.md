@@ -2,6 +2,7 @@
 name: Cycloparc PPJ
 name_fr: Cycloparc PPJ
 vibe: "Rail trail through rural Quebec — the Pontiac Pacific Junction Railway reborn"
+featured: true
 includes:
   - cycloparc-ppj
   - ppj-cycloparc
