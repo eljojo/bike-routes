@@ -6,6 +6,7 @@ tags:
   - gravel
   - beach
   - poutine
+  - bike path
 created_at: "2022-10-17"
 updated_at: "2024-05-21"
 tagline: the gravel patch is the secret sauce

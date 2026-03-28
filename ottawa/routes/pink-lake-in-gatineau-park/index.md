@@ -6,6 +6,7 @@ tags:
   - scenic
   - elevation
   - park
+  - bike path
 created_at: "2022-10-18"
 updated_at: "2024-05-22"
 tagline: hard climb that pays off on its way down

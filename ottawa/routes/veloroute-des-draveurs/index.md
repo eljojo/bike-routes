@@ -8,6 +8,7 @@ tags:
 - chill
 - long ride
 - beach
+- bike path
 created_at: '2022-11-10'
 updated_at: '2024-05-21'
 tagline: sneak away on a hot summer day to this blue paradise

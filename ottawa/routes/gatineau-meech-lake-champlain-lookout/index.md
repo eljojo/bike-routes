@@ -6,6 +6,7 @@ tags:
   - hard
   - scenic
   - beach
+  - bike path
 created_at: "2022-10-15"
 updated_at: "2024-06-14"
 tagline: like 2x pink, treat yourself to a dip in the lake 🏊

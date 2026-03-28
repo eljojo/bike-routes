@@ -4,6 +4,7 @@ status: published
 distance_km: 52.4
 tags:
   - gravel
+  - bike path
 created_at: "2022-10-15"
 updated_at: "2025-08-12"
 tagline: quiet roads, farm views, and light gravel!
