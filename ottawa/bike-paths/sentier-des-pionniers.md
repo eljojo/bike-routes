@@ -2,6 +2,7 @@
 name: Sentier des Pionniers
 name_fr: Sentier des Pionniers
 vibe: "Paved connector through Gatineau — linking Hull to the eastern pathways"
+stub: true
 includes:
   - sentier-des-pionniers-pathway
   - sentier-des-pionniers

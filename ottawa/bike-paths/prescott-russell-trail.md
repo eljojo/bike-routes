@@ -7,7 +7,7 @@ includes:
   - m-o-rail-corridor-saint-eugene-to-vaudreuil-dorion
 ---
 
-A 72-kilometre regional cycling trail linking Ottawa's eastern edge to the rural communities of Prescott and Russell counties, running from Hammond in the west to Saint-Eugène at the Quebec border in the east. Three metres wide, fine gravel (stone dust), with short paved sections near Bourget, Plantagenet, Vankleek Hill, and Saint-Eugène. Part of the Trans Canada Trail.
+A 72-kilometre trail linking Ottawa's eastern edge to the rural communities of Prescott and Russell counties, running from Hammond in the west to Saint-Eugène at the Quebec border in the east. Mostly stone dust with short paved sections near the towns. Part of the Trans Canada Trail.
 
 The trail follows an old Canadian Pacific rail corridor that once connected Montreal to Ottawa — the M&O (Montreal & Ottawa) Subdivision. The rails were lifted in the 1980s, and the trail was developed starting in 2002 — inspired by Quebec's P'tit Train du Nord. The first 54 km opened in June 2004, with the remaining 18 km completed the following year. Because it's a former railbed, it's flat and straight, with farmland on both sides and the occasional small town for water and snacks.
 

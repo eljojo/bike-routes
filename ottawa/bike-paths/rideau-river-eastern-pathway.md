@@ -1,6 +1,7 @@
 ---
 name: Rideau River Eastern Pathway
 vibe: "Quiet river path south of downtown — trees, water, and room to breathe"
+stub: true
 includes:
   - rideau-river-eastern-pathway
   - rideau-river-eastern-pathway-city-section

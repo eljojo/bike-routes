@@ -2,6 +2,7 @@
 name: Sentier de la Rivière-Gatineau
 name_fr: Sentier de la Rivière-Gatineau
 vibe: "Following the Gatineau River north toward Chelsea and the hills"
+stub: true
 includes:
   - sentier-de-la-riviere-gatineau
   - sentier-de-la-riviere-gatineau-pathway

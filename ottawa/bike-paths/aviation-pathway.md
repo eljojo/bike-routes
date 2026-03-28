@@ -1,6 +1,7 @@
 ---
 name: Aviation Pathway
 vibe: "A lit, paved connector through Ottawa's east end — linking neighbourhoods to the river"
+stub: true
 includes:
   - aviation-pathway
 ---

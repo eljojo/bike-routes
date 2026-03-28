@@ -1,6 +1,7 @@
 ---
 name: Ottawa Valley Recreation Trail
 vibe: "The Trans Canada Trail continues southwest from Carleton Place to Smiths Falls"
+stub: true
 includes:
   - ottawa-valley-recreation-trail
   - ottawa-valley-recreational-trail

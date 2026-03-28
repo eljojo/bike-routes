@@ -1,6 +1,7 @@
 ---
 name: Sawmill Creek Pathway
 vibe: "A sheltered creek-side path through Ottawa's south end"
+stub: true
 includes:
   - sawmill-creek-pathway
   - sawmill-creek-path
