@@ -1,5 +1,6 @@
 ---
 name: Greenbelt Pathway
+wikipedia: en:Capital Pathway
 vibe: "A ring of gravel trail through forest, wetland, and farmland encircling the city"
 featured: true
 includes:

@@ -1,5 +1,6 @@
 ---
 name: Aviation Pathway
+wikipedia: en:Capital Pathway
 vibe: "A lit, paved connector through Ottawa's east end — linking neighbourhoods to the river"
 stub: true
 includes:
@@ -10,7 +11,7 @@ Five kilometres of flat, straight path through Ottawa's east end, running alongs
 
 It works year-round for commuting, and it's a handy way to reach the river paths if you're coming from the east end.
 
-At the north end you arrive at [Rockcliffe Airport](https://en.wikipedia.org/wiki/Ottawa/Rockcliffe_Airport) — Canada's oldest active airport, which opened in 1920 as the Ottawa Air Station. The Canada Aviation and Space Museum sits on the airport grounds, and from there you can continue west along the river toward downtown or east toward the [Greenbelt](/paths/greenbelt-pathway-west).
+At the north end you arrive at [Rockcliffe Airport](https://en.wikipedia.org/wiki/Ottawa/Rockcliffe_Airport) — Canada's oldest active airport, which opened in 1920 as the Ottawa Air Station. The Canada Aviation and Space Museum sits on the airport grounds, and from there you can continue west along the river toward downtown or east toward the [Greenbelt](/paths/greenbelt-pathway).
 
 ### Rides on this path
 

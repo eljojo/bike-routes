@@ -1,7 +1,8 @@
 ---
 name: Rideau River Eastern Pathway
+wikipedia: en:Capital Pathway
 vibe: "Quiet river path south of downtown — trees, water, and room to breathe"
-stub: true
+featured: true
 includes:
   - rideau-river-eastern-pathway
   - rideau-river-eastern-pathway-city-section

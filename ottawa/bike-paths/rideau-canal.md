@@ -1,5 +1,6 @@
 ---
 name: Rideau Canal Pathway
+wikipedia: en:Capital Pathway
 vibe: "Both sides of the canal, from Dow's Lake to the locks"
 featured: true
 includes:

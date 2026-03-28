@@ -1,7 +1,7 @@
 ---
 name: Experimental Farm Pathway
 vibe: "Paved path through Ottawa's century-old research farm — fields, gardens, and quiet"
-stub: true
+featured: true
 includes:
   - experimental-farm-pathway
 ---

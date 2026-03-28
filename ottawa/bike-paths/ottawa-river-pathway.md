@@ -1,5 +1,6 @@
 ---
 name: Ottawa River Pathway
+wikipedia: en:Capital Pathway
 vibe: "The backbone of Ottawa cycling — river views from one end of the city to the other"
 featured: true
 includes:
