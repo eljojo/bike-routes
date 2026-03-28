@@ -7,6 +7,6 @@ includes:
   - sentier-des-pionniers
 ---
 
-A paved, 3-metre-wide pathway in Gatineau that runs through the Aylmer sector, largely following Boulevard des Allumettières (Highway 148). Well-maintained and lit asphalt — it serves as both a commuting corridor and a recreational path, and is part of the NCC's Capital Pathway network.
+A paved path through Gatineau's Aylmer sector, running alongside Boulevard des Allumettières. Not the most scenic ride in the city — much of it passes through residential streets — but it gets you places. People use it to commute and to connect between the bigger paths.
 
-The western end connects with the Sentier des Voyageurs near the Aylmer Marina, while the eastern end reaches Boulevard Saint-Raymond, where it branches into side paths that lead toward lower Gatineau Park. Much of the route passes through residential subdivisions, but the final stretch runs through a pleasant wooded area. More of a commuter route than the parallel Voyageurs Pathway, but still a comfortable ride.
+At the western end it meets the [Sentier des Voyageurs](/paths/sentier-des-voyageurs) near the Aylmer Marina. At the eastern end, side paths branch off toward lower [Gatineau Park](/paths/sentier-du-parc-de-la-gatineau). The last stretch before the park is the best part — a quiet wooded section that feels like a reward for the suburban kilometres behind you.

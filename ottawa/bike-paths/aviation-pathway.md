@@ -5,11 +5,11 @@ includes:
   - aviation-pathway
 ---
 
-A 3-metre-wide, paved and lit pathway running alongside the [Aviation Parkway](https://en.wikipedia.org/wiki/Aviation_Parkway_(Ottawa)) — the youngest of the NCC's scenic parkways, built in 1988. The pathway runs about 5 km through Ottawa's east end, connecting Highway 417 in the south to the Canada Aviation and Space Museum and Rockcliffe Airport in the north, where it meets the Ottawa River Pathway.
+Five kilometres of flat, straight path through Ottawa's east end, running alongside the [Aviation Parkway](https://en.wikipedia.org/wiki/Aviation_Parkway_(Ottawa)) from Highway 417 up to Rockcliffe Airport and the [Ottawa River path](/paths/ottawa-river-pathway). Woods and open fields on both sides. No hills, no surprises — just a clean line north-south through a part of the city that most cyclists skip.
 
-The corridor is part of the NCC's Capital Pathway network and is bordered on either side by woods and open fields owned by the National Capital Commission. The terrain is flat and the ride is straight — no steep grades, no sharp turns, just a direct north-south line through the east end. It's well-lit and reliably maintained, making it a practical route for year-round commuting and a useful connector for longer recreational rides.
+It works year-round for commuting, and it's a handy way to reach the river paths if you're coming from the east end.
 
-At the northern end, the pathway arrives at [Rockcliffe Airport](https://en.wikipedia.org/wiki/Ottawa/Rockcliffe_Airport) — Canada's oldest active airport, which opened in 1920 as the Ottawa Air Station. The Canada Aviation and Space Museum sits on the airport grounds, and from there you can continue west along the Ottawa River Pathway toward downtown or east along the river toward the Greenbelt.
+At the north end you arrive at [Rockcliffe Airport](https://en.wikipedia.org/wiki/Ottawa/Rockcliffe_Airport) — Canada's oldest active airport, which opened in 1920 as the Ottawa Air Station. The Canada Aviation and Space Museum sits on the airport grounds, and from there you can continue west along the river toward downtown or east toward the [Greenbelt](/paths/greenbelt-pathway-west).
 
 ### Rides on this path
 

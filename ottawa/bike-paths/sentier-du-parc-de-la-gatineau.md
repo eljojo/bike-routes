@@ -8,7 +8,7 @@ includes:
   - sentier-du-parc-de-la-gatineau-parkway
 ---
 
-The main cycling corridor into Gatineau Park — one of the most rewarding rides in the region. The pathway connects the urban Gatineau paths to the park's 361-square-kilometre interior, where car-free parkways and serious climbs await.
+The way into Gatineau Park by bike — and one of the most rewarding rides in the region. This path connects the urban Gatineau network to the park's 361-square-kilometre interior, where car-free parkways and serious climbs await.
 
 From here you can reach [Pink Lake](https://ncc-ccn.gc.ca/places/pink-lake) — a meromictic lake whose upper and lower water layers never mix, named not for its colour but for the Pink family who settled nearby in 1826 — Meech Lake, and the Champlain Lookout. The NCC restricts vehicle access on the parkways most days from May through October, opening mornings exclusively to cyclists, runners, and skaters. That means long stretches of smooth, empty road through the forest with nothing but the sound of your chain.
 

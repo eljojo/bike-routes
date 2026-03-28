@@ -6,9 +6,9 @@ includes:
   - rideau-canal-eastern-pathway
 ---
 
-Two parallel pathways run along the Rideau Canal — one on each side — from Dow's Lake north to the Ottawa Locks at the river. Flat, lit, and wide enough to ride comfortably at any pace. The canal itself is a [UNESCO World Heritage Site](https://whc.unesco.org/en/list/1221/), designated in 2007 — a 202-km waterway built between 1826 and 1832 by Colonel John By, running from Ottawa all the way to Kingston.
+Two paths run along the Rideau Canal, one on each side, from Dow's Lake north to the locks at the river. The canal is a [UNESCO World Heritage Site](https://whc.unesco.org/en/list/1221/) — a 202-km waterway from Ottawa to Kingston, built in the 1820s and still operating its original hand-cranked locks.
 
-The western side has smoother pavement and tends to be quieter. The eastern side, along Colonel By Drive, has more character — benches overlooking the water, the two stone locks at Hartwells (Locks 9 and 10, the first lockstation south of downtown), and a good view of the Château Laurier as you approach the river end. At the northern terminus, the [flight of eight Ottawa Locks](https://parks.canada.ca/lhn-nhs/on/rideau/visit/posteeclusage-lockstation/ecluse-lock-ottawa) — the largest on the canal, still operated by hand — steps down from the pathway to the Ottawa River at the foot of Parliament Hill.
+The western side has smoother pavement and tends to be quieter. The eastern side, along Colonel By Drive, has more character — benches overlooking the water, the two stone locks at Hartwells (Locks 9 and 10, the first lockstation south of downtown), and a good view of the Château Laurier as you approach the river end. At the north end, the [flight of eight Ottawa Locks](https://parks.canada.ca/lhn-nhs/on/rideau/visit/posteeclusage-lockstation/ecluse-lock-ottawa) steps down to the Ottawa River at the foot of Parliament Hill.
 
 In spring, the tulip festival turns the canal banks into a slow ride through colour. In winter, the canal becomes the world's largest skating rink — 7.8 km of cleared ice from downtown to Dow's Lake — and cycling alongside it in the cold quiet is its own kind of good.
 

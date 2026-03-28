@@ -7,11 +7,11 @@ includes:
   - sentier-du-ruisseau-leamy-pathway
 ---
 
-Leamy Creek Pathway (NCC route 27) follows the creek through a green corridor in Gatineau, connecting the Ottawa River pathways to Leamy Lake Park. Paved and 2.5 metres wide — a comfortable ride with tree cover for most of the way. It connects to the Sentier des Voyageurs, which is part of the Trans Canada Trail and the Route verte.
+Leamy Creek path (NCC route 27) follows the creek through a green corridor in Gatineau, connecting the Ottawa River paths to Leamy Lake Park. A comfortable ride with tree cover for most of the way, linking up with the [Sentier des Voyageurs](/paths/sentier-des-voyageurs) and the Route Verte.
 
-[Leamy Lake Park](https://ncc-ccn.gc.ca/places/leamy-lake-park) is the largest urban park in the National Capital Region at 174 hectares, established in 1961. Over 180 bird species have been observed here, and northern map turtles — a species at risk — nest along the creek. The area also holds archaeological significance, with evidence of First Nations occupation going back 5,000 to 6,000 years.
+[Leamy Lake Park](https://ncc-ccn.gc.ca/places/leamy-lake-park) is huge — 174 hectares of forest, water, and shoreline, and it's been a gathering place for thousands of years. Turtles nest along the creek, herons fish in the shallows, and if you're paying attention you'll hear more bird species than you can count.
 
-Leamy Lake Beach at the end is one of the best swimming spots accessible by bike from downtown Ottawa. The beach is supervised by lifeguards in summer, and the park has volleyball courts, a playground, picnic areas with charcoal barbecues, and washrooms. Paddleboard rentals are available at the beach. In summer the beach gets busy — which is part of the charm.
+The beach at the end is one of the best swimming spots you can reach by bike from downtown Ottawa. Lifeguards in summer, volleyball courts, picnic areas with barbecues, paddleboard rentals. In summer it gets busy — which is part of the charm.
 
 ### Rides along this path
 
