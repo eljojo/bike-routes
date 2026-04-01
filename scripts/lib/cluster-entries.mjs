@@ -25,6 +25,16 @@ function pathType(entry) {
   return null; // unknown — compatible with anything
 }
 
+function operatorsCompatible(a, b) {
+  if (!a || !b) return true;
+  return a === b;
+}
+
+function typesCompatible(a, b) {
+  if (!a || !b) return true; // unknown type merges with anything
+  return a === b;
+}
+
 /**
  * Cluster bikepaths.yml entries by anchor proximity with operator + type + corridor-width guards.
  *
@@ -49,16 +59,6 @@ export function clusterEntries(entries, thresholdM = 200) {
 
   // Track all anchors per component for corridor width check
   const compAnchors = withAnchors.map(({ entry }) => [...entry.anchors]);
-
-  function operatorsCompatible(a, b) {
-    if (!a || !b) return true;
-    return a === b;
-  }
-
-  function typesCompatible(a, b) {
-    if (!a || !b) return true; // unknown type merges with anything
-    return a === b;
-  }
 
   // Pre-compute path types
   const entryTypes = withAnchors.map(({ entry }) => pathType(entry));
