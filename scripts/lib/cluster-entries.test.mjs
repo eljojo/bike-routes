@@ -2,7 +2,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { clusterEntries } from './cluster-entries.mjs';
+import { clusterEntries, clusterByConnectivity } from './cluster-entries.mjs';
 
 const southMarch = JSON.parse(readFileSync(new URL('./fixtures/south-march-trails.json', import.meta.url), 'utf8'));
 const pineGrove = JSON.parse(readFileSync(new URL('./fixtures/pine-grove-trails.json', import.meta.url), 'utf8'));
@@ -115,7 +115,7 @@ describe('clusterEntries', () => {
     assert.equal(clusters.length, 0, 'road lane and trail stay separate');
   });
 
-  it('absorbs new entry into existing grouped entry', () => {
+  it('absorbs new entry into existing grouped entry (clusterEntries)', () => {
     const existingGroup = {
       name: 'South March Highlands',
       grouped_from: ['coconut-tree', 'beartree'],
@@ -128,5 +128,124 @@ describe('clusterEntries', () => {
     assert.equal(clusters[0].existingGroup.name, 'South March Highlands');
     assert.equal(clusters[0].newMembers.length, 1);
     assert.equal(clusters[0].newMembers[0].name, 'New Trail');
+  });
+});
+
+describe('clusterByConnectivity', () => {
+  it('merges entries whose ways share a node', () => {
+    const entries = [
+      {
+        name: 'Trail A', highway: 'path', surface: 'ground',
+        anchors: [[-75.95, 45.34]],
+        _ways: [[
+          { lat: 45.340, lon: -75.950 },
+          { lat: 45.341, lon: -75.949 },
+          { lat: 45.342, lon: -75.948 },
+        ]],
+      },
+      {
+        name: 'Trail B', highway: 'path', surface: 'ground',
+        anchors: [[-75.94, 45.35]],
+        _ways: [[
+          { lat: 45.342, lon: -75.948 },  // shared node with Trail A
+          { lat: 45.343, lon: -75.947 },
+          { lat: 45.344, lon: -75.946 },
+        ]],
+      },
+    ];
+    const clusters = clusterByConnectivity(entries);
+    assert.equal(clusters.length, 1);
+    assert.equal(clusters[0].members.length, 2);
+  });
+
+  it('does not merge entries with no shared nodes or nearby endpoints', () => {
+    const entries = [
+      {
+        name: 'Trail A', highway: 'path', surface: 'ground',
+        anchors: [[-75.95, 45.34]],
+        _ways: [[
+          { lat: 45.340, lon: -75.950 },
+          { lat: 45.341, lon: -75.949 },
+        ]],
+      },
+      {
+        name: 'Trail B', highway: 'path', surface: 'ground',
+        anchors: [[-75.90, 45.30]],
+        _ways: [[
+          { lat: 45.300, lon: -75.900 },
+          { lat: 45.301, lon: -75.899 },
+        ]],
+      },
+    ];
+    const clusters = clusterByConnectivity(entries);
+    assert.equal(clusters.length, 0);
+  });
+
+  it('merges entries whose endpoints are within 10m', () => {
+    const entries = [
+      {
+        name: 'Trail A', highway: 'path', surface: 'ground',
+        anchors: [[-75.95, 45.34]],
+        _ways: [[
+          { lat: 45.340, lon: -75.950 },
+          { lat: 45.341, lon: -75.949 },
+          { lat: 45.3420000, lon: -75.9480000 },
+        ]],
+      },
+      {
+        name: 'Trail B', highway: 'path', surface: 'ground',
+        anchors: [[-75.94, 45.35]],
+        _ways: [[
+          { lat: 45.3420001, lon: -75.9479999 },  // ~0.1m from Trail A endpoint
+          { lat: 45.343, lon: -75.947 },
+          { lat: 45.344, lon: -75.946 },
+        ]],
+      },
+    ];
+    const clusters = clusterByConnectivity(entries);
+    assert.equal(clusters.length, 1);
+    assert.equal(clusters[0].members.length, 2);
+  });
+
+  it('excludes entries without _ways', () => {
+    const entries = [
+      {
+        name: 'Trail A', highway: 'path', surface: 'ground',
+        anchors: [[-75.95, 45.34]],
+        _ways: [[
+          { lat: 45.340, lon: -75.950 },
+          { lat: 45.342, lon: -75.948 },
+        ]],
+      },
+      {
+        name: 'No Ways', highway: 'path', surface: 'ground',
+        anchors: [[-75.95, 45.34]],
+      },
+    ];
+    const clusters = clusterByConnectivity(entries);
+    assert.equal(clusters.length, 0);
+  });
+
+  it('does not merge trail with paved cycleway', () => {
+    const entries = [
+      {
+        name: 'Forest Trail', highway: 'path', surface: 'ground',
+        anchors: [[-75.95, 45.34]],
+        _ways: [[
+          { lat: 45.340, lon: -75.950 },
+          { lat: 45.342, lon: -75.948 },
+        ]],
+      },
+      {
+        name: 'City Cycleway', highway: 'cycleway', surface: 'asphalt',
+        anchors: [[-75.94, 45.35]],
+        _ways: [[
+          { lat: 45.342, lon: -75.948 },  // shared node
+          { lat: 45.343, lon: -75.947 },
+        ]],
+      },
+    ];
+    const clusters = clusterByConnectivity(entries);
+    assert.equal(clusters.length, 0, 'trail and paved cycleway stay separate');
   });
 });
