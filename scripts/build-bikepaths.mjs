@@ -139,19 +139,25 @@ async function discoverOsmNamedWays() {
 
   const namedPaths = [];
   for (const [name, ways] of byName) {
-    // Compute bounding box from way centers for anchors
-    const lats = ways.filter(w => w.center).map(w => w.center.lat);
-    const lngs = ways.filter(w => w.center).map(w => w.center.lon);
-    if (lats.length === 0) continue;
+    // Use actual way endpoints as anchors (not bbox corners) so touching trails cluster
+    const anchors = [];
+    for (const w of ways) {
+      if (w.geometry?.length >= 2) {
+        const first = w.geometry[0];
+        const last = w.geometry[w.geometry.length - 1];
+        anchors.push([first.lon, first.lat]);
+        anchors.push([last.lon, last.lat]);
+      } else if (w.center) {
+        anchors.push([w.center.lon, w.center.lat]);
+      }
+    }
+    if (anchors.length === 0) continue;
 
     namedPaths.push({
       name,
       wayCount: ways.length,
       tags: mergeWayTags(ways),
-      anchors: [
-        [Math.min(...lngs), Math.min(...lats)],
-        [Math.max(...lngs), Math.max(...lats)],
-      ],
+      anchors,
       osmNames: [name],
     });
   }
@@ -429,6 +435,12 @@ function enrichEntry(entry, tags) {
   }
 }
 
+// TODO(anchors): mergeData preserves existing entries' anchors as-is. Since we now store
+// actual way endpoints (not bbox corners), existing entries keep their old bbox-style anchors
+// until the file is regenerated from scratch. This means touching trails won't cluster correctly
+// if their anchors predate the endpoint change. Fix: when an existing entry matches a discovered
+// entry, update its anchors to the discovered endpoints. Needs care to not overwrite manually
+// placed anchors. Related: cluster-entries.mjs TOUCHING_M threshold relies on real endpoints.
 async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments, parallelLanes = []) {
   console.log('Merging data...');
 
@@ -486,6 +498,10 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
     const existingEntry = bySlug.get(slug) || byName.get(np.name.toLowerCase());
     if (existingEntry) {
       enrichEntry(existingEntry, np.tags);
+      // Update anchors to real endpoints if discovered data has more detail
+      if (np.anchors?.length > (existingEntry.anchors?.length || 0)) {
+        existingEntry.anchors = np.anchors;
+      }
       continue;
     }
 
@@ -494,6 +510,9 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
     for (const entry of existing) {
       if (entry.osm_names?.some(n => n.toLowerCase() === np.name.toLowerCase())) {
         enrichEntry(entry, np.tags);
+        if (np.anchors?.length > (entry.anchors?.length || 0)) {
+          entry.anchors = np.anchors;
+        }
         found = true;
         break;
       }
@@ -775,14 +794,23 @@ out tags;`;
   }
   const osmNamedWays = [];
   for (const [name, ways] of waysByName) {
-    const lats = ways.filter(w => w.center).map(w => w.center.lat);
-    const lngs = ways.filter(w => w.center).map(w => w.center.lon);
-    if (lats.length === 0) continue;
+    const anchors = [];
+    for (const w of ways) {
+      if (w.geometry?.length >= 2) {
+        const first = w.geometry[0];
+        const last = w.geometry[w.geometry.length - 1];
+        anchors.push([first.lon, first.lat]);
+        anchors.push([last.lon, last.lat]);
+      } else if (w.center) {
+        anchors.push([w.center.lon, w.center.lat]);
+      }
+    }
+    if (anchors.length === 0) continue;
     osmNamedWays.push({
       name,
       wayCount: ways.length,
       tags: mergeWayTags(ways),
-      anchors: [[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]],
+      anchors,
       osmNames: [name],
     });
   }

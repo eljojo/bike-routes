@@ -158,13 +158,7 @@ out tags;`;
           if (member.osm_relations) {
             group.osm_relations = [...new Set([...(group.osm_relations || []), ...member.osm_relations])];
           }
-          const allAnchors = [...(group.anchors || []), ...(member.anchors || [])];
-          const lngs = allAnchors.map(a => a[0]);
-          const lats = allAnchors.map(a => a[1]);
-          group.anchors = [
-            [Math.min(...lngs), Math.min(...lats)],
-            [Math.max(...lngs), Math.max(...lats)],
-          ];
+          group.anchors = [...(group.anchors || []), ...(member.anchors || [])];
         }
         absorbedEntries.add(member);
       }
@@ -177,10 +171,7 @@ out tags;`;
       const groupEntry = {
         name: cluster.resolvedName,
         grouped_from: cluster.members.map(m => slugMap.get(m)),
-        anchors: [
-          [cluster.bbox.west, cluster.bbox.south],
-          [cluster.bbox.east, cluster.bbox.north],
-        ],
+        anchors: cluster.members.flatMap(m => m.anchors || []),
       };
 
       if (allOsmNames.length > 0) groupEntry.osm_names = allOsmNames;

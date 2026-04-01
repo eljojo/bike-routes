@@ -108,6 +108,17 @@ describe('autoGroupNearbyPaths', () => {
     assert.deepEqual(second[0].osm_names.sort(), first[0].osm_names.sort());
   });
 
+  it('preserves representative anchors in grouped entry (not just bbox)', async () => {
+    const result = await autoGroupNearbyPaths({
+      entries: southMarch.entries,
+      markdownSlugs: new Set(),
+      queryOverpass: mockQueryOverpass,
+    });
+    // Should have more than 2 anchors (not collapsed to bbox corners)
+    assert.ok(result[0].anchors.length > 2,
+      `expected >2 anchors, got ${result[0].anchors.length}`);
+  });
+
   it('removes absorbed individual entries from output', async () => {
     const result = await autoGroupNearbyPaths({
       entries: southMarch.entries,

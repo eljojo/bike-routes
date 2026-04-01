@@ -381,3 +381,48 @@ export function nearestPointOnPolyline(point, polyline) {
 
   return { coord: bestCoord, scalar: bestScalar, totalLength: cumDist, dist: bestDist };
 }
+
+/**
+ * Corridor width of a point cloud — the minor-axis extent.
+ * Samples rotations at 10° intervals and returns the minimum width
+ * in metres perpendicular to the best-fit orientation.
+ *
+ * @param {Array<[number, number]>} points — [lng, lat] pairs
+ * @returns {number} width in metres
+ */
+export function corridorWidth(points) {
+  if (points.length <= 1) return 0;
+
+  // Convert to local metres (flat-earth approximation, fine for <50km)
+  const refLat = points[0][1];
+  const cosLat = Math.cos(toRad(refLat));
+  const DEG_TO_M_LAT = 111320;
+  const DEG_TO_M_LNG = 111320 * cosLat;
+
+  const local = points.map(([lng, lat]) => [
+    (lng - points[0][0]) * DEG_TO_M_LNG,
+    (lat - points[0][1]) * DEG_TO_M_LAT,
+  ]);
+
+  let minWidth = Infinity;
+
+  // Sample rotations every 10 degrees (0-170)
+  for (let deg = 0; deg < 180; deg += 10) {
+    const rad = (deg * Math.PI) / 180;
+    const cos = Math.cos(rad);
+    const sin = Math.sin(rad);
+
+    // Project onto perpendicular axis
+    let min = Infinity, max = -Infinity;
+    for (const [x, y] of local) {
+      const proj = -x * sin + y * cos;
+      if (proj < min) min = proj;
+      if (proj > max) max = proj;
+    }
+
+    const width = max - min;
+    if (width < minWidth) minWidth = width;
+  }
+
+  return minWidth;
+}

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { nearestPointOnPolyline } from './geo.mjs';
+import { nearestPointOnPolyline, corridorWidth } from './geo.mjs';
 
 describe('nearestPointOnPolyline', () => {
   it('projects a point onto a straight horizontal line', () => {
@@ -35,5 +35,35 @@ describe('nearestPointOnPolyline', () => {
     const result = nearestPointOnPolyline([-70.63, -33.42], polyline);
     expect(result.totalLength).toBeGreaterThan(1500);
     expect(result.totalLength).toBeLessThan(2000);
+  });
+});
+
+describe('corridorWidth', () => {
+  it('returns 0 for a single point', () => {
+    expect(corridorWidth([[-75.9, 45.3]])).toBe(0);
+  });
+
+  it('returns 0 for collinear points (pure line)', () => {
+    const points = [[-75.9, 45.30], [-75.9, 45.31], [-75.9, 45.32]];
+    expect(corridorWidth(points)).toBeLessThan(1);
+  });
+
+  it('returns small width for a narrow corridor', () => {
+    const points = [
+      [-75.82, 45.29], [-75.82, 45.30], [-75.82, 45.31],
+      [-75.8205, 45.295], [-75.8195, 45.305],
+    ];
+    const w = corridorWidth(points);
+    expect(w).toBeLessThan(500);
+    expect(w).toBeGreaterThan(50);
+  });
+
+  it('returns large width for a spread-out cluster', () => {
+    const points = [
+      [-75.82, 45.29], [-75.82, 45.31],
+      [-75.80, 45.29], [-75.80, 45.31],
+    ];
+    const w = corridorWidth(points);
+    expect(w).toBeGreaterThan(1500);
   });
 });

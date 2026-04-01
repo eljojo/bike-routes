@@ -1,10 +1,10 @@
 // cluster-entries.mjs
-import { haversineM } from './geo.mjs';
+import { haversineM, corridorWidth } from './geo.mjs';
 
-const MAX_DIAMETER_M = 5000;
+const MAX_CORRIDOR_WIDTH_M = 1000;
 
 /**
- * Cluster bikepaths.yml entries by anchor proximity with operator + diameter guards.
+ * Cluster bikepaths.yml entries by anchor proximity with operator + corridor-width guards.
  *
  * @param {Array<{ name: string, anchors?: Array<[number, number]>, operator?: string, grouped_from?: string[], [k: string]: any }>} entries
  * @param {number} thresholdM — max distance between anchor points to cluster (default 200m)
@@ -25,26 +25,8 @@ export function clusterEntries(entries, thresholdM = 200) {
     return i;
   }
 
-  // Track bbox per component for diameter check
-  const compBbox = withAnchors.map(({ entry }) => {
-    const lngs = entry.anchors.map(a => a[0]);
-    const lats = entry.anchors.map(a => a[1]);
-    return {
-      south: Math.min(...lats), north: Math.max(...lats),
-      west: Math.min(...lngs), east: Math.max(...lngs),
-    };
-  });
-
-  function mergeBbox(a, b) {
-    return {
-      south: Math.min(a.south, b.south), north: Math.max(a.north, b.north),
-      west: Math.min(a.west, b.west), east: Math.max(a.east, b.east),
-    };
-  }
-
-  function bboxDiagonalM(bb) {
-    return haversineM([bb.west, bb.south], [bb.east, bb.north]);
-  }
+  // Track all anchors per component for corridor width check
+  const compAnchors = withAnchors.map(({ entry }) => [...entry.anchors]);
 
   function operatorsCompatible(a, b) {
     if (!a || !b) return true;
@@ -57,11 +39,12 @@ export function clusterEntries(entries, thresholdM = 200) {
 
     if (!operatorsCompatible(withAnchors[ri].entry.operator, withAnchors[rj].entry.operator)) return;
 
-    const merged = mergeBbox(compBbox[ri], compBbox[rj]);
-    if (bboxDiagonalM(merged) > MAX_DIAMETER_M) return;
+    // Corridor width guard: check the minor-axis extent of the merged anchor cloud
+    const mergedAnchors = [...compAnchors[ri], ...compAnchors[rj]];
+    if (corridorWidth(mergedAnchors) > MAX_CORRIDOR_WIDTH_M) return;
 
     parent[ri] = rj;
-    compBbox[rj] = merged;
+    compAnchors[rj] = mergedAnchors;
   }
 
   for (let i = 0; i < n; i++) {

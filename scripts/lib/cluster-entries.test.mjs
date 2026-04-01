@@ -55,13 +55,15 @@ describe('clusterEntries', () => {
     assert.equal(clusters.length, 1);
   });
 
-  it('rejects union when bbox diagonal exceeds 5km', () => {
+  it('rejects union when corridor width exceeds limit', () => {
+    // Two entries spread wide (not a corridor — a sprawl)
+    // ~3km E-W span and ~4.4km N-S span — minor axis well over 2km
     const entries = [
-      { name: 'A', anchors: [[-75.94, 45.34]] },
-      { name: 'B', anchors: [[-75.94, 45.40]] },
+      { name: 'A', anchors: [[-75.96, 45.34], [-75.92, 45.34]] },
+      { name: 'B', anchors: [[-75.96, 45.38], [-75.92, 45.38]] },
     ];
     const clusters = clusterEntries(entries, 50000);
-    assert.equal(clusters.length, 0, 'diameter cap prevents merge');
+    assert.equal(clusters.length, 0, 'wide spread prevents merge');
   });
 
   it('computes cluster bbox and centroid', () => {
@@ -73,6 +75,17 @@ describe('clusterEntries', () => {
     assert.ok(c.bbox.north > 45.344);
     assert.ok(c.centroid.lat > 45.33 && c.centroid.lat < 45.35);
     assert.ok(c.centroid.lon > -75.96 && c.centroid.lon < -75.94);
+  });
+
+  it('allows long narrow corridor to merge', () => {
+    // Two trail segments end-to-end, forming a ~4km corridor but only ~100m wide
+    const entries = [
+      { name: 'Trail A', anchors: [[-75.82, 45.29], [-75.82, 45.30], [-75.82, 45.31]] },
+      { name: 'Trail B', anchors: [[-75.8205, 45.3105], [-75.8205, 45.32], [-75.8205, 45.33]] },
+    ];
+    const clusters = clusterEntries(entries, THRESHOLD);
+    assert.equal(clusters.length, 1, 'narrow corridor merges despite 4km length');
+    assert.equal(clusters[0].members.length, 2);
   });
 
   it('absorbs new entry into existing grouped entry', () => {
