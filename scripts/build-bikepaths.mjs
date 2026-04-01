@@ -40,6 +40,8 @@ import { queryOverpass } from './lib/overpass.mjs';
 import { haversineM } from './lib/geo.mjs';
 import { slugify } from './lib/slugify.mjs';
 import { loadCityAdapter } from './lib/city-adapter.mjs';
+import { chainSegments } from './lib/chain-segments.mjs';
+import { defaultParallelLaneFilter } from './lib/city-adapter.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -148,6 +150,131 @@ async function discoverOsmNamedWays() {
   }
   console.log(`  Found ${namedPaths.length} named cycling ways`);
   return namedPaths;
+}
+
+// ---------------------------------------------------------------------------
+// Step 2b: Discover unnamed parallel bike lanes
+// ---------------------------------------------------------------------------
+
+async function discoverParallelLanes() {
+  console.log('Discovering unnamed parallel bike lanes...');
+
+  const filter = adapter.parallelLaneFilter || defaultParallelLaneFilter;
+
+  // Query all unnamed cycleways, excluding crossings
+  const q = `[out:json][timeout:120];
+way["highway"="cycleway"][!"name"][!"crossing"](${bbox});
+out tags center;`;
+
+  const data = await queryOverpass(q);
+  const candidates = data.elements.filter(el => filter(el.tags || {}));
+  console.log(`  ${data.elements.length} unnamed cycleways, ${candidates.length} after filter`);
+
+  if (candidates.length === 0) return [];
+
+  // Chain nearby segments
+  const segments = candidates.map(el => ({
+    id: el.id,
+    center: el.center,
+    tags: el.tags || {},
+  }));
+  const chains = chainSegments(segments, 50);
+  console.log(`  Chained into ${chains.length} groups`);
+
+  // Find nearest named road for each chain
+  const results = [];
+  for (const chain of chains) {
+    const { lat, lon } = chain.midpoint;
+    const roadQ = `[out:json][timeout:15];
+way["highway"~"^(primary|secondary|tertiary|residential|unclassified)$"]["name"]
+  (around:30,${lat},${lon});
+out tags 1;`;
+
+    try {
+      const roadData = await queryOverpass(roadQ);
+      if (roadData.elements.length === 0) continue;
+      const road = roadData.elements[0];
+      const roadName = road.tags?.name;
+      if (!roadName) continue;
+
+      results.push({
+        roadName,
+        chain,
+        tags: mergeWayTags(chain.tags.map((t, i) => ({ tags: t, id: chain.segmentIds[i] }))),
+      });
+    } catch (err) {
+      console.log(`  Road lookup failed for chain at ${lat},${lon}: ${err.message}`);
+    }
+  }
+
+  console.log(`  Matched ${results.length} chains to named roads`);
+
+  // Group by road name + spatial proximity
+  const grouped = groupByRoadAndProximity(results, 500);
+  console.log(`  Grouped into ${grouped.length} parallel lane candidates`);
+
+  return grouped;
+}
+
+/**
+ * Group chains with the same road name only if their bboxes are within proximityM of each other.
+ * Same road name far apart = separate entries.
+ */
+function groupByRoadAndProximity(results, proximityM) {
+  const groups = [];
+
+  for (const r of results) {
+    let merged = false;
+    for (const g of groups) {
+      if (g.roadName !== r.roadName) continue;
+      if (bboxDistance(g.bbox, r.chain.bbox) <= proximityM) {
+        g.chains.push(r.chain);
+        g.allTags.push(...r.chain.tags);
+        g.bbox = mergeBboxes(g.bbox, r.chain.bbox);
+        merged = true;
+        break;
+      }
+    }
+    if (!merged) {
+      groups.push({
+        roadName: r.roadName,
+        chains: [r.chain],
+        allTags: [...r.chain.tags],
+        bbox: { ...r.chain.bbox },
+      });
+    }
+  }
+
+  return groups.map(g => ({
+    name: g.roadName,
+    parallel_to: g.roadName,
+    anchors: [
+      [g.bbox.west, g.bbox.south],
+      [g.bbox.east, g.bbox.north],
+    ],
+    tags: mergeWayTags(g.allTags.map((t, i) => ({ tags: t, id: i }))),
+    _chainCoords: g.chains.flatMap(c =>
+      c.tags.map((_, i) => [c.midpoint.lat, c.midpoint.lon])
+    ),
+  }));
+}
+
+function bboxDistance(a, b) {
+  if (a.south <= b.north && a.north >= b.south && a.west <= b.east && a.east >= b.west) return 0;
+  const latA = (a.south + a.north) / 2;
+  const lngA = (a.west + a.east) / 2;
+  const latB = (b.south + b.north) / 2;
+  const lngB = (b.west + b.east) / 2;
+  return haversineM([lngA, latA], [lngB, latB]);
+}
+
+function mergeBboxes(a, b) {
+  return {
+    south: Math.min(a.south, b.south),
+    north: Math.max(a.north, b.north),
+    west: Math.min(a.west, b.west),
+    east: Math.max(a.east, b.east),
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -295,7 +422,7 @@ function enrichEntry(entry, tags) {
   }
 }
 
-function mergeData(existing, osmRelations, osmNamedWays, catastroSegments) {
+async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments, parallelLanes = []) {
   console.log('Merging data...');
 
   // Index existing entries by slug and relation ID
@@ -411,6 +538,73 @@ function mergeData(existing, osmRelations, osmNamedWays, catastroSegments) {
     }
   }
 
+  // --- Parallel lanes (pass 2: spatial dedup + merge) ---
+  if (parallelLanes.length > 0) {
+    const { isOverlapping } = await import('./lib/spatial-dedup.mjs');
+
+    // Load existing geometry for spatial dedup
+    const geoDir = path.resolve('.cache', 'bikepath-geometry', args.city);
+    const existingGeometries = [];
+    if (fs.existsSync(geoDir)) {
+      for (const file of fs.readdirSync(geoDir).filter(f => f.endsWith('.geojson'))) {
+        try {
+          const geojson = JSON.parse(fs.readFileSync(path.join(geoDir, file), 'utf8'));
+          const pts = [];
+          for (const feature of geojson.features || []) {
+            const coords = feature.geometry?.coordinates || [];
+            const lines = feature.geometry?.type === 'LineString' ? [coords] :
+                          feature.geometry?.type === 'MultiLineString' ? coords : [];
+            for (const line of lines) {
+              for (const c of line) pts.push([c[1], c[0]]); // [lat, lng]
+            }
+          }
+          if (pts.length > 0) existingGeometries.push(pts);
+        } catch {}
+      }
+    }
+
+    let parallelAdded = 0;
+    for (const candidate of parallelLanes) {
+      const slug = slugify(candidate.name);
+
+      // Skip if name already exists
+      if (bySlug.has(slug) || byName.has(candidate.name.toLowerCase())) continue;
+
+      // Skip if spatially overlapping existing geometry
+      const candidatePts = candidate._chainCoords;
+      let dominated = false;
+      for (const existingPts of existingGeometries) {
+        if (isOverlapping(candidatePts, existingPts, 30, 0.5)) {
+          dominated = true;
+          break;
+        }
+      }
+      if (dominated) continue;
+
+      // Add new entry
+      const entry = {
+        name: candidate.name,
+        parallel_to: candidate.parallel_to,
+        highway: candidate.tags.highway || 'cycleway',
+        anchors: candidate.anchors,
+      };
+      // Add optional tags
+      for (const key of ['surface', 'lit', 'width', 'smoothness']) {
+        if (candidate.tags[key]) entry[key] = candidate.tags[key];
+      }
+      result.push(entry);
+      bySlug.set(slug, entry);
+      byName.set(candidate.name.toLowerCase(), entry);
+      parallelAdded++;
+      console.log(`  + parallel lane: ${candidate.name}`);
+    }
+
+    if (parallelAdded > 0) {
+      added += parallelAdded;
+      console.log(`  Parallel lanes added: ${parallelAdded}`);
+    }
+  }
+
   console.log(`  Existing entries: ${existing.length}`);
   console.log(`  New entries added: ${added}`);
   if (catastroSegments.length > 0) {
@@ -467,8 +661,9 @@ async function main() {
   const osmRelations = await discoverOsmRelations();
   const osmNamedWays = await discoverOsmNamedWays();
   const externalSegments = await fetchExternalData();
+  const parallelLanes = await discoverParallelLanes();
 
-  const merged = mergeData(existing, osmRelations, osmNamedWays, externalSegments);
+  const merged = await mergeData(existing, osmRelations, osmNamedWays, externalSegments, parallelLanes);
 
   // Enrich any manually added relations that fell outside the query bounds
   const discoveredRelationIds = new Set(osmRelations.map(r => r.id));
@@ -479,7 +674,7 @@ async function main() {
     const newEntries = merged.slice(existing.length);
     for (const entry of newEntries) {
       const slug = entry.slug || slugify(entry.name);
-      const source = entry.osm_relations ? `relation ${entry.osm_relations[0]}` : `name "${entry.osm_names?.[0] || entry.name}"`;
+      const source = entry.osm_relations ? `relation ${entry.osm_relations[0]}` : entry.parallel_to ? `parallel to "${entry.parallel_to}"` : `name "${entry.osm_names?.[0] || entry.name}"`;
       console.log(`  + ${slug}: ${entry.name} (${source})`);
     }
     console.log(`\nTotal: ${existing.length} existing + ${newEntries.length} new = ${merged.length}`);

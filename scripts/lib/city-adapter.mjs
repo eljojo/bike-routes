@@ -31,6 +31,8 @@ const santiago = {
     type: 'catastro',
     url: 'https://raw.githubusercontent.com/pedaleable/mapa-catastro/refs/heads/gh-pages/datos/catastro.geojson',
   },
+
+  parallelLaneFilter: null,
 };
 
 // ---------------------------------------------------------------------------
@@ -55,7 +57,25 @@ const ottawa = {
   ],
 
   externalData: null,
+
+  parallelLaneFilter: null,
 };
+
+// ---------------------------------------------------------------------------
+// Parallel lane filter (default)
+// ---------------------------------------------------------------------------
+
+/**
+ * Default filter for parallel lane discovery.
+ * Accepts any highway=cycleway without a name or crossing tag.
+ * City adapters can override with stricter filters.
+ *
+ * @param {object} tags — OSM tags from the way
+ * @returns {boolean} — true if the way should be considered
+ */
+export function defaultParallelLaneFilter(tags) {
+  return tags.highway === 'cycleway' && !tags.name && !tags.crossing;
+}
 
 // ---------------------------------------------------------------------------
 // Loader
