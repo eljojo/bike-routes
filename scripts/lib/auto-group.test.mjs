@@ -73,12 +73,14 @@ describe('autoGroupNearbyPaths', () => {
       osm_names: ['Coconut Tree', 'Beartree'],
       anchors: [[-75.946, 45.342], [-75.943, 45.345]],
       surface: 'ground',
+      _ways: [[{ lat: 45.342, lon: -75.946 }, { lat: 45.343, lon: -75.944 }]],
     };
     const newEntry = {
       name: 'New Trail',
       osm_names: ['New Trail'],
       anchors: [[-75.944, 45.343]],
       surface: 'ground',
+      _ways: [[{ lat: 45.343, lon: -75.944 }, { lat: 45.344, lon: -75.942 }]],
     };
     const result = await autoGroupNearbyPaths({
       entries: [existingGroup, newEntry],
@@ -97,6 +99,17 @@ describe('autoGroupNearbyPaths', () => {
       markdownSlugs: new Set(),
       queryOverpass: mockQueryOverpass,
     });
+    // Simulate re-run: re-attach _ways from original entries (as mergeData would)
+    for (const entry of first) {
+      if (entry.grouped_from && !entry._ways) {
+        const ways = [];
+        for (const osmName of entry.osm_names || []) {
+          const src = southMarch.entries.find(e => e.name === osmName);
+          if (src?._ways) ways.push(...src._ways);
+        }
+        if (ways.length > 0) entry._ways = ways;
+      }
+    }
     const second = await autoGroupNearbyPaths({
       entries: first,
       markdownSlugs: new Set(),
