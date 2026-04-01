@@ -159,6 +159,7 @@ async function discoverOsmNamedWays() {
       tags: mergeWayTags(ways),
       anchors,
       osmNames: [name],
+      _ways: ways.filter(w => w.geometry?.length >= 2).map(w => w.geometry),
     });
   }
   console.log(`  Found ${namedPaths.length} named cycling ways`);
@@ -502,6 +503,7 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
       if (np.anchors?.length > (existingEntry.anchors?.length || 0)) {
         existingEntry.anchors = np.anchors;
       }
+      if (np._ways) existingEntry._ways = np._ways;
       continue;
     }
 
@@ -513,6 +515,7 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
         if (np.anchors?.length > (entry.anchors?.length || 0)) {
           entry.anchors = np.anchors;
         }
+        if (np._ways) entry._ways = np._ways;
         found = true;
         break;
       }
@@ -524,6 +527,7 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
       name: np.name,
       osm_names: np.osmNames,
       anchors: np.anchors,
+      _ways: np._ways,
       ...meta,
     };
     result.push(entry);
@@ -647,6 +651,22 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
     }
   }
 
+  // Re-attach _ways to existing group entries for connectivity clustering on re-runs.
+  const discoveredWaysByName = new Map();
+  for (const np of osmNamedWays) {
+    if (np._ways) discoveredWaysByName.set(np.name.toLowerCase(), np._ways);
+  }
+  for (const entry of result) {
+    if (entry.grouped_from && !entry._ways && entry.osm_names) {
+      const ways = [];
+      for (const osmName of entry.osm_names) {
+        const found = discoveredWaysByName.get(osmName.toLowerCase());
+        if (found) ways.push(...found);
+      }
+      if (ways.length > 0) entry._ways = ways;
+    }
+  }
+
   console.log(`  Existing entries: ${existing.length}`);
   console.log(`  New entries added: ${added}`);
   if (catastroSegments.length > 0) {
@@ -736,6 +756,10 @@ async function main() {
     }
     console.log(`\nTotal: ${grouped.length} entries (${grouped.filter(e => e.grouped_from).length} groups)`);
   } else {
+    // Strip transient fields before YAML output
+    for (const entry of grouped) {
+      delete entry._ways;
+    }
     // Compact anchors to bbox before writing — full endpoints are only needed in memory for clustering
     for (const entry of grouped) {
       if (entry.anchors?.length > 2) {
@@ -820,6 +844,7 @@ out tags;`;
       tags: mergeWayTags(ways),
       anchors,
       osmNames: [name],
+      _ways: ways.filter(w => w.geometry?.length >= 2).map(w => w.geometry),
     });
   }
 
