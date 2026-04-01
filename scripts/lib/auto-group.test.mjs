@@ -21,7 +21,6 @@ describe('autoGroupNearbyPaths', () => {
       entries: southMarch.entries,
       markdownSlugs: new Set(),
       queryOverpass: mockQueryOverpass,
-      thresholdM: 500,
     });
     assert.equal(result.length, 1);
     assert.equal(result[0].name, 'South March Highlands Conservation Forest');
@@ -36,7 +35,6 @@ describe('autoGroupNearbyPaths', () => {
       entries: southMarch.entries,
       markdownSlugs: new Set(),
       queryOverpass: mockQueryOverpass,
-      thresholdM: 500,
     });
     assert.ok(result[0].osm_names.includes('Coconut Tree'));
     assert.ok(result[0].osm_names.includes('Beartree'));
@@ -48,7 +46,6 @@ describe('autoGroupNearbyPaths', () => {
       entries: [...southMarch.entries, ...pineGrove.entries],
       markdownSlugs: new Set(),
       queryOverpass: mockQueryOverpass,
-      thresholdM: 500,
     });
     assert.equal(result.length, 2);
     const names = result.map(e => e.name).sort();
@@ -60,7 +57,6 @@ describe('autoGroupNearbyPaths', () => {
       entries: southMarch.entries,
       markdownSlugs: new Set(['coconut-tree', 'beartree']),
       queryOverpass: mockQueryOverpass,
-      thresholdM: 500,
     });
     for (const entry of result) {
       if (entry.grouped_from) {
@@ -100,13 +96,11 @@ describe('autoGroupNearbyPaths', () => {
       entries: southMarch.entries,
       markdownSlugs: new Set(),
       queryOverpass: mockQueryOverpass,
-      thresholdM: 500,
     });
     const second = await autoGroupNearbyPaths({
       entries: first,
       markdownSlugs: new Set(),
       queryOverpass: mockQueryOverpass,
-      thresholdM: 500,
     });
     assert.equal(second.length, 1);
     assert.equal(second[0].name, first[0].name);
@@ -119,7 +113,6 @@ describe('autoGroupNearbyPaths', () => {
       entries: southMarch.entries,
       markdownSlugs: new Set(),
       queryOverpass: mockQueryOverpass,
-      thresholdM: 500,
     });
     const allNames = result.map(e => e.name);
     assert.ok(!allNames.includes('Coconut Tree'), 'individual entry should be removed');

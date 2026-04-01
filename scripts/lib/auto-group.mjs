@@ -82,7 +82,7 @@ function mergeTags(entries) {
  * @param {{ entries: Array, markdownSlugs: Set<string>, queryOverpass: Function }} config
  * @returns {Promise<Array>} — updated entries array (groups replace absorbed members)
  */
-export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass, thresholdM = 200 }) {
+export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass, thresholdM = 400 }) {
   // Compute slugs for all entries
   const slugMap = computeSlugs(entries);
 

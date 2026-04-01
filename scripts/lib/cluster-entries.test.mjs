@@ -7,9 +7,12 @@ import { clusterEntries } from './cluster-entries.mjs';
 const southMarch = JSON.parse(readFileSync(new URL('./fixtures/south-march-trails.json', import.meta.url), 'utf8'));
 const pineGrove = JSON.parse(readFileSync(new URL('./fixtures/pine-grove-trails.json', import.meta.url), 'utf8'));
 
+// Production threshold — must match auto-group.mjs default
+const THRESHOLD = 400;
+
 describe('clusterEntries', () => {
   it('groups all South March Highlands trails into one cluster', () => {
-    const clusters = clusterEntries(southMarch.entries, 500);
+    const clusters = clusterEntries(southMarch.entries, THRESHOLD);
     assert.equal(clusters.length, 1);
     assert.equal(clusters[0].members.length, 6);
     const names = clusters[0].members.map(m => m.name).sort();
@@ -18,18 +21,18 @@ describe('clusterEntries', () => {
 
   it('keeps South March and Pine Grove as separate clusters', () => {
     const allEntries = [...southMarch.entries, ...pineGrove.entries];
-    const clusters = clusterEntries(allEntries, 500);
+    const clusters = clusterEntries(allEntries, THRESHOLD);
     assert.equal(clusters.length, 2);
   });
 
   it('does not create single-member clusters', () => {
-    const clusters = clusterEntries([southMarch.entries[0]], 200);
+    const clusters = clusterEntries([southMarch.entries[0]], THRESHOLD);
     assert.equal(clusters.length, 0);
   });
 
   it('ignores entries without anchors', () => {
     const entries = [...southMarch.entries, { name: 'Ghost Trail' }];
-    const clusters = clusterEntries(entries, 500);
+    const clusters = clusterEntries(entries, THRESHOLD);
     assert.equal(clusters.length, 1);
     assert.equal(clusters[0].members.length, 6);
   });
@@ -39,7 +42,7 @@ describe('clusterEntries', () => {
       { name: 'A', anchors: [[-75.945, 45.342]], operator: 'NCC' },
       { name: 'B', anchors: [[-75.944, 45.343]], operator: 'City of Ottawa' },
     ];
-    const clusters = clusterEntries(entries, 200);
+    const clusters = clusterEntries(entries, THRESHOLD);
     assert.equal(clusters.length, 0, 'different operators → no cluster (each would be single-member)');
   });
 
@@ -48,7 +51,7 @@ describe('clusterEntries', () => {
       { name: 'A', anchors: [[-75.945, 45.342]], operator: 'NCC' },
       { name: 'B', anchors: [[-75.944, 45.343]] },
     ];
-    const clusters = clusterEntries(entries, 200);
+    const clusters = clusterEntries(entries, THRESHOLD);
     assert.equal(clusters.length, 1);
   });
 
@@ -62,7 +65,7 @@ describe('clusterEntries', () => {
   });
 
   it('computes cluster bbox and centroid', () => {
-    const clusters = clusterEntries(southMarch.entries, 500);
+    const clusters = clusterEntries(southMarch.entries, THRESHOLD);
     const c = clusters[0];
     assert.ok(c.bbox.west < -75.95);
     assert.ok(c.bbox.east > -75.943);
@@ -79,7 +82,7 @@ describe('clusterEntries', () => {
       anchors: [[-75.945, 45.342], [-75.943, 45.345]],
     };
     const newNearby = { name: 'New Trail', anchors: [[-75.944, 45.343]] };
-    const clusters = clusterEntries([existingGroup, newNearby], 200);
+    const clusters = clusterEntries([existingGroup, newNearby], THRESHOLD);
     assert.equal(clusters.length, 1);
     assert.ok(clusters[0].existingGroup, 'cluster should reference the existing group');
     assert.equal(clusters[0].existingGroup.name, 'South March Highlands');
