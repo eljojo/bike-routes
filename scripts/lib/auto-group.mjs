@@ -1,5 +1,5 @@
 // auto-group.mjs
-import { clusterByConnectivity } from './cluster-entries.mjs';
+import { clusterByConnectivity, pathType } from './cluster-entries.mjs';
 import { pickClusterName } from './name-cluster.mjs';
 
 // Duplicate of bike-app-astro's slugifyBikePathName — must stay in sync
@@ -114,28 +114,37 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
   const CONCURRENCY = 6;
   async function nameCluster(cluster) {
     let parkName = null;
-    const { lat, lon } = cluster.centroid;
-    try {
-      const q = `[out:json][timeout:15];
+
+    // Only look up containing park/reserve for trail-type clusters
+    const types = cluster.members.map(m => pathType(m));
+    const trailCount = types.filter(t => t === 'trail').length;
+    const isTrailCluster = trailCount > types.length / 2;
+
+    if (isTrailCluster) {
+      const { lat, lon } = cluster.centroid;
+      try {
+        const q = `[out:json][timeout:15];
 is_in(${lat},${lon})->.a;
 area.a["leisure"~"nature_reserve|park"]["name"]->.b;
 area.a["boundary"="protected_area"]["name"]->.c;
 area.a["landuse"="forest"]["name"]->.d;
 (.b; .c; .d;);
 out tags;`;
-      const data = await queryOverpass(q);
-      if (data.elements.length > 0) {
-        const sorted = data.elements.sort((a, b) => {
-          const order = { nature_reserve: 0, protected_area: 1, park: 2, forest: 3 };
-          const oa = order[a.tags?.leisure] ?? order[a.tags?.boundary] ?? order[a.tags?.landuse] ?? 4;
-          const ob = order[b.tags?.leisure] ?? order[b.tags?.boundary] ?? order[b.tags?.landuse] ?? 4;
-          return oa - ob;
-        });
-        parkName = sorted[0].tags?.name || null;
+        const data = await queryOverpass(q);
+        if (data.elements.length > 0) {
+          const sorted = data.elements.sort((a, b) => {
+            const order = { nature_reserve: 0, protected_area: 1, park: 2, forest: 3 };
+            const oa = order[a.tags?.leisure] ?? order[a.tags?.boundary] ?? order[a.tags?.landuse] ?? 4;
+            const ob = order[b.tags?.leisure] ?? order[b.tags?.boundary] ?? order[b.tags?.landuse] ?? 4;
+            return oa - ob;
+          });
+          parkName = sorted[0].tags?.name || null;
+        }
+      } catch (err) {
+        // Park lookup failed — fall through to other naming strategies
       }
-    } catch (err) {
-      // Park lookup failed — fall through to other naming strategies
     }
+
     cluster.resolvedName = pickClusterName(cluster.members, parkName);
   }
 

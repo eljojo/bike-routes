@@ -17,15 +17,16 @@ describe('pickClusterName', () => {
     assert.equal(pickClusterName(members, null), 'NCC Trails');
   });
 
-  it('falls back to longest member name when no park and no operator', () => {
-    assert.equal(pickClusterName(southMarch.entries, null), 'DeerDrop Baypass');
+  it('falls back to most-ways member when no park and no operator', () => {
+    // All south march entries have 1 way each, so first non-generic wins
+    assert.equal(pickClusterName(southMarch.entries, null), 'Coconut Tree');
   });
 
   it('uses majority operator, not unanimous', () => {
     const members = [
-      { name: 'A', operator: 'NCC' },
-      { name: 'B', operator: 'NCC' },
-      { name: 'C', operator: 'Other' },
+      { name: 'A', highway: 'path', operator: 'NCC' },
+      { name: 'B', highway: 'path', operator: 'NCC' },
+      { name: 'C', highway: 'path', operator: 'Other' },
     ];
     assert.equal(pickClusterName(members, null), 'NCC Trails');
   });
@@ -52,5 +53,39 @@ describe('pickClusterName', () => {
       { name: 'Real Name' },
     ];
     assert.equal(pickClusterName(members, null), 'Real Name');
+  });
+
+  it('uses most-ways member name when no park name', () => {
+    const members = [
+      { name: 'Short St', highway: 'cycleway', _ways: [[1], [2]] },
+      { name: 'Long Avenue', highway: 'cycleway', _ways: [[1], [2], [3], [4], [5]] },
+      { name: 'Tiny Rd', highway: 'cycleway', _ways: [[1]] },
+    ];
+    assert.equal(pickClusterName(members, null), 'Long Avenue');
+  });
+
+  it('still uses park name for trail clusters', () => {
+    const members = [
+      { name: 'Trail A', highway: 'path', _ways: [[1]] },
+      { name: 'Trail B', highway: 'path', _ways: [[1], [2], [3]] },
+    ];
+    assert.equal(pickClusterName(members, 'Big Forest Park'), 'Big Forest Park');
+  });
+
+  it('uses operator for trail clusters without park', () => {
+    const members = [
+      { name: 'Trail A', highway: 'path', operator: 'NCC', _ways: [[1]] },
+      { name: 'Trail B', highway: 'path', operator: 'NCC', _ways: [[1], [2]] },
+    ];
+    assert.equal(pickClusterName(members, null), 'NCC Trails');
+  });
+
+  it('skips operator naming for urban clusters', () => {
+    const members = [
+      { name: 'Elgin Street', highway: 'cycleway', operator: 'OC Transpo', _ways: [[1], [2], [3]] },
+      { name: 'Rideau Street', highway: 'cycleway', operator: 'OC Transpo', _ways: [[1], [2], [3], [4], [5]] },
+    ];
+    // Should NOT be "OC Transpo Trails", should use most-ways
+    assert.equal(pickClusterName(members, null), 'Rideau Street');
   });
 });

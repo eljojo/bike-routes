@@ -10,7 +10,7 @@ const UNPAVED = new Set(['ground', 'gravel', 'dirt', 'earth', 'grass', 'sand', '
  * Entries of different types don't merge — trails stay with trails,
  * paved paths with paved paths, road lanes with road lanes.
  */
-function pathType(entry) {
+export function pathType(entry) {
   if (entry.parallel_to) return 'road';
   const hw = entry.highway;
   const surface = entry.surface;
