@@ -736,6 +736,14 @@ async function main() {
     }
     console.log(`\nTotal: ${grouped.length} entries (${grouped.filter(e => e.grouped_from).length} groups)`);
   } else {
+    // Compact anchors to bbox before writing — full endpoints are only needed in memory for clustering
+    for (const entry of grouped) {
+      if (entry.anchors?.length > 2) {
+        const lngs = entry.anchors.map(a => a[0]);
+        const lats = entry.anchors.map(a => a[1]);
+        entry.anchors = [[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]];
+      }
+    }
     const output = yaml.dump({ bike_paths: grouped }, { lineWidth: -1, noRefs: true });
     fs.writeFileSync(bikepathsPath, output);
     console.log(`\nWrote ${grouped.length} entries to ${bikepathsPath}`);

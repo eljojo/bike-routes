@@ -51,6 +51,16 @@ function sortKey(entry) {
   return `n${entry.name}`;
 }
 
+/** Collapse an array of anchors to bbox corners for compact YAML storage. */
+function bboxAnchors(anchors) {
+  const lngs = anchors.map(a => a[0]);
+  const lats = anchors.map(a => a[1]);
+  return [
+    [Math.min(...lngs), Math.min(...lats)],
+    [Math.max(...lngs), Math.max(...lats)],
+  ];
+}
+
 /**
  * Merge tags from multiple entries using most-common-value strategy.
  */
@@ -158,7 +168,7 @@ out tags;`;
           if (member.osm_relations) {
             group.osm_relations = [...new Set([...(group.osm_relations || []), ...member.osm_relations])];
           }
-          group.anchors = [...(group.anchors || []), ...(member.anchors || [])];
+          group.anchors = bboxAnchors([...(group.anchors || []), ...(member.anchors || [])]);
         }
         absorbedEntries.add(member);
       }
@@ -171,7 +181,7 @@ out tags;`;
       const groupEntry = {
         name: cluster.resolvedName,
         grouped_from: cluster.members.map(m => slugMap.get(m)),
-        anchors: cluster.members.flatMap(m => m.anchors || []),
+        anchors: bboxAnchors(cluster.members.flatMap(m => m.anchors || [])),
       };
 
       if (allOsmNames.length > 0) groupEntry.osm_names = allOsmNames;

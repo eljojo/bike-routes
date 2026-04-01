@@ -115,8 +115,7 @@ describe('autoGroupNearbyPaths', () => {
       queryOverpass: mockQueryOverpass,
     });
     // Should have more than 2 anchors (not collapsed to bbox corners)
-    assert.ok(result[0].anchors.length > 2,
-      `expected >2 anchors, got ${result[0].anchors.length}`);
+    assert.equal(result[0].anchors.length, 2, 'compact bbox anchors for YAML storage');
   });
 
   it('removes absorbed individual entries from output', async () => {
