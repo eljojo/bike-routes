@@ -1,10 +1,32 @@
 // cluster-entries.mjs
 import { haversineM, corridorWidth } from './geo.mjs';
 
-const MAX_CORRIDOR_WIDTH_M = 1000;
+const MAX_CORRIDOR_WIDTH_M = 2000;
+
+const UNPAVED = new Set(['ground', 'gravel', 'dirt', 'earth', 'grass', 'sand', 'mud', 'compacted', 'fine_gravel', 'woodchips', 'unpaved', 'dirt/sand']);
 
 /**
- * Cluster bikepaths.yml entries by anchor proximity with operator + corridor-width guards.
+ * Classify an entry as 'trail', 'paved', or 'road'.
+ * Entries of different types don't merge — trails stay with trails,
+ * paved paths with paved paths, road lanes with road lanes.
+ */
+function pathType(entry) {
+  if (entry.parallel_to) return 'road';
+  const hw = entry.highway;
+  const surface = entry.surface;
+  if (hw === 'path' || hw === 'footway') {
+    return (surface && !UNPAVED.has(surface)) ? 'paved' : 'trail';
+  }
+  if (hw === 'cycleway') {
+    return (surface && UNPAVED.has(surface)) ? 'trail' : 'paved';
+  }
+  // Roads with bike lanes (tertiary, secondary, etc.)
+  if (hw && hw !== 'path' && hw !== 'cycleway' && hw !== 'footway') return 'road';
+  return null; // unknown — compatible with anything
+}
+
+/**
+ * Cluster bikepaths.yml entries by anchor proximity with operator + type + corridor-width guards.
  *
  * @param {Array<{ name: string, anchors?: Array<[number, number]>, operator?: string, grouped_from?: string[], [k: string]: any }>} entries
  * @param {number} thresholdM — max distance between anchor points to cluster (default 200m)
@@ -33,11 +55,20 @@ export function clusterEntries(entries, thresholdM = 200) {
     return a === b;
   }
 
+  function typesCompatible(a, b) {
+    if (!a || !b) return true; // unknown type merges with anything
+    return a === b;
+  }
+
+  // Pre-compute path types
+  const entryTypes = withAnchors.map(({ entry }) => pathType(entry));
+
   function tryUnion(i, j) {
     const ri = find(i), rj = find(j);
     if (ri === rj) return;
 
     if (!operatorsCompatible(withAnchors[ri].entry.operator, withAnchors[rj].entry.operator)) return;
+    if (!typesCompatible(entryTypes[i], entryTypes[j])) return;
 
     // Corridor width guard: check the minor-axis extent of the merged anchor cloud
     const mergedAnchors = [...compAnchors[ri], ...compAnchors[rj]];

@@ -88,6 +88,33 @@ describe('clusterEntries', () => {
     assert.equal(clusters[0].members.length, 2);
   });
 
+  it('does not merge trail with paved cycleway', () => {
+    const entries = [
+      { name: 'Forest Trail', anchors: [[-75.945, 45.342]], highway: 'path', surface: 'ground' },
+      { name: 'City Cycleway', anchors: [[-75.944, 45.343]], highway: 'cycleway', surface: 'asphalt' },
+    ];
+    const clusters = clusterEntries(entries, THRESHOLD);
+    assert.equal(clusters.length, 0, 'trail and paved cycleway stay separate');
+  });
+
+  it('merges trails with other trails', () => {
+    const entries = [
+      { name: 'Trail A', anchors: [[-75.945, 45.342]], highway: 'path', surface: 'ground' },
+      { name: 'Trail B', anchors: [[-75.944, 45.343]], highway: 'path', surface: 'dirt' },
+    ];
+    const clusters = clusterEntries(entries, THRESHOLD);
+    assert.equal(clusters.length, 1);
+  });
+
+  it('does not merge road lane with trail', () => {
+    const entries = [
+      { name: 'Forest Path', anchors: [[-75.945, 45.342]], highway: 'path', surface: 'ground' },
+      { name: 'Main St', anchors: [[-75.944, 45.343]], parallel_to: 'Main Street', highway: 'cycleway' },
+    ];
+    const clusters = clusterEntries(entries, THRESHOLD);
+    assert.equal(clusters.length, 0, 'road lane and trail stay separate');
+  });
+
   it('absorbs new entry into existing grouped entry', () => {
     const existingGroup = {
       name: 'South March Highlands',
