@@ -41,42 +41,48 @@ import { haversineM } from './lib/geo.mjs';
 import { slugify } from './lib/slugify.mjs';
 import { loadCityAdapter } from './lib/city-adapter.mjs';
 import { chainSegments } from './lib/chain-segments.mjs';
+import { selectBestRoad } from './lib/select-best-road.mjs';
 import { defaultParallelLaneFilter } from './lib/city-adapter.mjs';
 
 // ---------------------------------------------------------------------------
-// CLI
+// CLI (only when run directly, not when imported)
 // ---------------------------------------------------------------------------
 
-const args = {};
-for (let i = 2; i < process.argv.length; i++) {
-  if (process.argv[i] === '--city') args.city = process.argv[++i];
-  if (process.argv[i] === '--dry-run') args.dryRun = true;
-}
-if (!args.city) {
-  console.error('Usage: node scripts/build-bikepaths.mjs --city <city>');
-  process.exit(1);
-}
+let args = {}, dataDir, bikepathsPath, bbox, adapter;
 
-const dataDir = path.resolve('..', args.city);
-const bikepathsPath = path.join(dataDir, 'bikepaths.yml');
+const isMain = process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/.*\//, ''));
+if (isMain) {
+  args = {};
+  for (let i = 2; i < process.argv.length; i++) {
+    if (process.argv[i] === '--city') args.city = process.argv[++i];
+    if (process.argv[i] === '--dry-run') args.dryRun = true;
+  }
+  if (!args.city) {
+    console.error('Usage: node scripts/build-bikepaths.mjs --city <city>');
+    process.exit(1);
+  }
 
-// Read city bounds from config.yml
-const configPath = path.join(dataDir, 'config.yml');
-if (!fs.existsSync(configPath)) {
-  console.error(`No config.yml found for city: ${args.city} (looked at ${configPath})`);
-  process.exit(1);
-}
-const cityConfig = yaml.load(fs.readFileSync(configPath, 'utf8'));
-if (!cityConfig.bounds) {
-  console.error(`No bounds defined in ${configPath}`);
-  process.exit(1);
-}
-// Use overpass_bounds if defined (tighter area for querying), otherwise bounds
-const bounds = cityConfig.overpass_bounds || cityConfig.bounds;
-const bbox = `${bounds.south},${bounds.west},${bounds.north},${bounds.east}`;
+  dataDir = path.resolve('..', args.city);
+  bikepathsPath = path.join(dataDir, 'bikepaths.yml');
 
-// Load city adapter for region-specific queries
-const adapter = loadCityAdapter(args.city);
+  // Read city bounds from config.yml
+  const configPath = path.join(dataDir, 'config.yml');
+  if (!fs.existsSync(configPath)) {
+    console.error(`No config.yml found for city: ${args.city} (looked at ${configPath})`);
+    process.exit(1);
+  }
+  const cityConfig = yaml.load(fs.readFileSync(configPath, 'utf8'));
+  if (!cityConfig.bounds) {
+    console.error(`No bounds defined in ${configPath}`);
+    process.exit(1);
+  }
+  // Use overpass_bounds if defined (tighter area for querying), otherwise bounds
+  const bounds = cityConfig.overpass_bounds || cityConfig.bounds;
+  bbox = `${bounds.south},${bounds.west},${bounds.north},${bounds.east}`;
+
+  // Load city adapter for region-specific queries
+  adapter = loadCityAdapter(args.city);
+}
 
 // ---------------------------------------------------------------------------
 // Step 1: Discover cycling relations from OSM
@@ -188,14 +194,14 @@ out tags center;`;
     const roadQ = `[out:json][timeout:15];
 way["highway"~"^(primary|secondary|tertiary|residential|unclassified)$"]["name"]
   (around:30,${lat},${lon});
-out tags 1;`;
+out tags center;`;
 
     try {
       const roadData = await queryOverpass(roadQ);
       if (roadData.elements.length === 0) continue;
-      const road = roadData.elements[0];
-      const roadName = road.tags?.name;
-      if (!roadName) continue;
+      const best = selectBestRoad(roadData.elements, { lat, lon });
+      if (!best) continue;
+      const roadName = best.name;
 
       results.push({
         roadName,
@@ -543,9 +549,9 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
     const { isOverlapping } = await import('./lib/spatial-dedup.mjs');
 
     // Load existing geometry for spatial dedup
-    const geoDir = path.resolve('.cache', 'bikepath-geometry', args.city);
+    const geoDir = args.city ? path.resolve('.cache', 'bikepath-geometry', args.city) : null;
     const existingGeometries = [];
-    if (fs.existsSync(geoDir)) {
+    if (geoDir && fs.existsSync(geoDir)) {
       for (const file of fs.readdirSync(geoDir).filter(f => f.endsWith('.geojson'))) {
         try {
           const geojson = JSON.parse(fs.readFileSync(path.join(geoDir, file), 'utf8'));
@@ -564,11 +570,27 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
     }
 
     let parallelAdded = 0;
+    let parallelMerged = 0;
     for (const candidate of parallelLanes) {
       const slug = slugify(candidate.name);
 
-      // Skip if name already exists
-      if (bySlug.has(slug) || byName.has(candidate.name.toLowerCase())) continue;
+      // If an entry with this name already exists, merge the parallel lane
+      // geometry into it rather than skipping. This way roads that have both
+      // painted lanes and a separated cycleway get the parallel geometry
+      // resolved too. We keep the existing (worse) facts — the road's
+      // highway/cycleway tags — to avoid overstating quality when only part
+      // of the path is separated infrastructure.
+      // TODO: in the future, mark these entries as mixed-quality so the UI
+      // can show "parts of this path are separated, others are painted lanes"
+      const existingEntry = bySlug.get(slug) || byName.get(candidate.name.toLowerCase());
+      if (existingEntry) {
+        if (!existingEntry.parallel_to) {
+          existingEntry.parallel_to = candidate.parallel_to;
+          parallelMerged++;
+          console.log(`  ~ merged parallel geometry into: ${existingEntry.name}`);
+        }
+        continue;
+      }
 
       // Skip if spatially overlapping existing geometry
       const candidatePts = candidate._chainCoords;
@@ -599,9 +621,9 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
       console.log(`  + parallel lane: ${candidate.name}`);
     }
 
-    if (parallelAdded > 0) {
+    if (parallelAdded > 0 || parallelMerged > 0) {
       added += parallelAdded;
-      console.log(`  Parallel lanes added: ${parallelAdded}`);
+      console.log(`  Parallel lanes added: ${parallelAdded}, merged into existing: ${parallelMerged}`);
     }
   }
 
@@ -685,7 +707,110 @@ async function main() {
   }
 }
 
-main().catch(err => {
-  console.error(err);
-  process.exit(1);
-});
+/**
+ * Testable pipeline entry point. Runs discovery + merge, returns entries array.
+ * No file I/O — caller decides what to do with the result.
+ *
+ * @param {object} opts
+ * @param {Function} opts.queryOverpass — async (q) => { elements: [] }
+ * @param {string} opts.bbox — "south,west,north,east"
+ * @param {object} opts.adapter — city adapter (from city-adapter.mjs)
+ * @param {Array} opts.existing — existing bikepaths.yml entries
+ * @param {string} [opts.cacheDir] — geometry cache dir for spatial dedup (optional)
+ * @returns {Promise<Array>} merged entries
+ */
+export async function buildBikepathsPipeline({ queryOverpass: qo, bbox: b, adapter: a, existing, cacheDir }) {
+  // Swap module-level bindings for the duration of this call
+  const savedQo = queryOverpass, savedBbox = bbox, savedAdapter = adapter;
+  // We can't reassign imports, so we call the inner functions directly.
+  // Instead, just run the pipeline steps inline using the provided deps.
+
+  const filter = (a.parallelLaneFilter || defaultParallelLaneFilter);
+
+  // Step 1: relations
+  const relQ = `[out:json][timeout:120];
+(
+  relation["route"="bicycle"](${b});
+  relation["type"="route"]["name"~"${a.relationNamePattern}"](${b});
+);
+out tags;`;
+  const relData = await qo(relQ);
+  const osmRelations = relData.elements.map(el => ({
+    id: el.id,
+    name: el.tags?.name || `relation-${el.id}`,
+    tags: el.tags || {},
+  }));
+
+  // Step 2: named ways
+  const queries = a.namedWayQueries(b);
+  const allWayElements = [];
+  for (const { label, q } of queries) {
+    try {
+      const data = await qo(q);
+      allWayElements.push(...data.elements);
+    } catch {}
+  }
+  const waysByName = new Map();
+  for (const el of allWayElements) {
+    const name = el.tags?.name;
+    if (!name) continue;
+    if (!waysByName.has(name)) waysByName.set(name, []);
+    waysByName.get(name).push(el);
+  }
+  const osmNamedWays = [];
+  for (const [name, ways] of waysByName) {
+    const lats = ways.filter(w => w.center).map(w => w.center.lat);
+    const lngs = ways.filter(w => w.center).map(w => w.center.lon);
+    if (lats.length === 0) continue;
+    osmNamedWays.push({
+      name,
+      wayCount: ways.length,
+      tags: mergeWayTags(ways),
+      anchors: [[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]],
+      osmNames: [name],
+    });
+  }
+
+  // Step 2b: parallel lanes
+  const plQ = `[out:json][timeout:120];
+way["highway"="cycleway"][!"name"][!"crossing"](${b});
+out tags center;`;
+  const plData = await qo(plQ);
+  const plCandidates = plData.elements.filter(el => filter(el.tags || {}));
+  let parallelLanes = [];
+  if (plCandidates.length > 0) {
+    const segments = plCandidates.map(el => ({ id: el.id, center: el.center, tags: el.tags || {} }));
+    const chains = chainSegments(segments, 50);
+    const results = [];
+    for (const chain of chains) {
+      const { lat, lon } = chain.midpoint;
+      const roadQ = `[out:json][timeout:15];
+way["highway"~"^(primary|secondary|tertiary|residential|unclassified)$"]["name"]
+  (around:30,${lat},${lon});
+out tags center;`;
+      try {
+        const roadData = await qo(roadQ);
+        if (roadData.elements.length === 0) continue;
+        const best = selectBestRoad(roadData.elements, { lat, lon });
+        if (!best) continue;
+        results.push({
+          roadName: best.name,
+          chain,
+          tags: mergeWayTags(chain.tags.map((t, i) => ({ tags: t, id: chain.segmentIds[i] }))),
+        });
+      } catch {}
+    }
+    parallelLanes = groupByRoadAndProximity(results, 500);
+  }
+
+  // Merge
+  const merged = await mergeData(existing, osmRelations, osmNamedWays, [], parallelLanes);
+  return merged;
+}
+
+if (isMain) {
+  main().catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+}
