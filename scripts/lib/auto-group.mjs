@@ -99,10 +99,10 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
   const clusters = clusterEntries(candidates, thresholdM);
   if (clusters.length === 0) return entries;
 
-  // Name each new cluster
-  for (const cluster of clusters) {
-    if (cluster.existingGroup) continue; // already named
-
+  // Name each new cluster (parallel, up to 6 concurrent Overpass queries)
+  const newClusters = clusters.filter(c => !c.existingGroup);
+  const CONCURRENCY = 6;
+  async function nameCluster(cluster) {
     let parkName = null;
     const { lat, lon } = cluster.centroid;
     try {
@@ -126,9 +126,18 @@ out tags;`;
     } catch (err) {
       // Park lookup failed — fall through to other naming strategies
     }
-
     cluster.resolvedName = pickClusterName(cluster.members, parkName);
   }
+
+  // Worker pool: run up to CONCURRENCY naming tasks at once
+  let i = 0;
+  async function worker() {
+    while (i < newClusters.length) {
+      const cluster = newClusters[i++];
+      await nameCluster(cluster);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, newClusters.length) }, () => worker()));
 
   // Build output: replace absorbed entries with group entries
   const absorbedEntries = new Set();

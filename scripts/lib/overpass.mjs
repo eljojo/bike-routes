@@ -51,7 +51,18 @@ export async function queryOverpass(query) {
     });
 
     if (res.ok) {
-      data = await res.json();
+      const contentType = res.headers.get('content-type') || '';
+      if (!contentType.includes('json')) {
+        // Server returned 200 but not JSON (e.g. HTML error page) — treat as server error
+        console.log(`[overpass] ${serverUrl} returned 200 but content-type=${contentType}, trying next server...`);
+        continue;
+      }
+      const parsed = await res.json();
+      if (parsed.remark && parsed.remark.includes('runtime error')) {
+        console.log(`[overpass] ${serverUrl} returned runtime error: ${parsed.remark.slice(0, 80)}, trying next server...`);
+        continue;
+      }
+      data = parsed;
       break;
     }
 
