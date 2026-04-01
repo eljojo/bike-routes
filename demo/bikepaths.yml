@@ -1,0 +1,9 @@
+bike_paths:
+  - name: Ciclovía Avenida Ecuador
+    osm_names: [Ciclovía Avenida Ecuador]
+    highway: cycleway
+    surface: paved
+    lit: "yes"
+    anchors:
+      - [-72.12, -36.59]
+      - [-72.09, -36.60]
