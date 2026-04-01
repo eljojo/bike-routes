@@ -1,5 +1,5 @@
 // auto-group.mjs
-import { clusterEntries } from './cluster-entries.mjs';
+import { clusterByConnectivity } from './cluster-entries.mjs';
 import { pickClusterName } from './name-cluster.mjs';
 
 // Duplicate of bike-app-astro's slugifyBikePathName — must stay in sync
@@ -92,7 +92,7 @@ function mergeTags(entries) {
  * @param {{ entries: Array, markdownSlugs: Set<string>, queryOverpass: Function }} config
  * @returns {Promise<Array>} — updated entries array (groups replace absorbed members)
  */
-export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass, thresholdM = 400 }) {
+export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass }) {
   // Compute slugs for all entries
   const slugMap = computeSlugs(entries);
 
@@ -106,7 +106,7 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
 
   if (candidates.length < 2) return entries;
 
-  const clusters = clusterEntries(candidates, thresholdM);
+  const clusters = clusterByConnectivity(candidates);
   if (clusters.length === 0) return entries;
 
   // Name each new cluster (parallel, up to 6 concurrent Overpass queries)
