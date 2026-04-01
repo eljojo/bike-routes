@@ -43,6 +43,7 @@ import { loadCityAdapter } from './lib/city-adapter.mjs';
 import { chainSegments } from './lib/chain-segments.mjs';
 import { selectBestRoad } from './lib/select-best-road.mjs';
 import { defaultParallelLaneFilter } from './lib/city-adapter.mjs';
+import { autoGroupNearbyPaths } from './lib/auto-group.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI (only when run directly, not when imported)
@@ -691,19 +692,34 @@ async function main() {
   const discoveredRelationIds = new Set(osmRelations.map(r => r.id));
   await enrichOutOfBoundsRelations(merged, discoveredRelationIds);
 
+  // Pass 3: Auto-group nearby trail segments
+  const bikePathsDir = path.join(dataDir, 'bike-paths');
+  const markdownSlugs = new Set();
+  if (fs.existsSync(bikePathsDir)) {
+    for (const f of fs.readdirSync(bikePathsDir)) {
+      if (f.endsWith('.md')) markdownSlugs.add(f.replace(/\.md$/, ''));
+    }
+  }
+
+  const grouped = await autoGroupNearbyPaths({
+    entries: merged,
+    markdownSlugs,
+    queryOverpass,
+  });
+
   if (args.dryRun) {
     console.log('\n--- DRY RUN — would write: ---');
-    const newEntries = merged.slice(existing.length);
+    const newEntries = grouped.filter(e => !existing.includes(e));
     for (const entry of newEntries) {
       const slug = entry.slug || slugify(entry.name);
-      const source = entry.osm_relations ? `relation ${entry.osm_relations[0]}` : entry.parallel_to ? `parallel to "${entry.parallel_to}"` : `name "${entry.osm_names?.[0] || entry.name}"`;
+      const source = entry.grouped_from ? `group of ${entry.grouped_from.length}` : entry.osm_relations ? `relation ${entry.osm_relations[0]}` : entry.parallel_to ? `parallel to "${entry.parallel_to}"` : `name "${entry.osm_names?.[0] || entry.name}"`;
       console.log(`  + ${slug}: ${entry.name} (${source})`);
     }
-    console.log(`\nTotal: ${existing.length} existing + ${newEntries.length} new = ${merged.length}`);
+    console.log(`\nTotal: ${grouped.length} entries (${grouped.filter(e => e.grouped_from).length} groups)`);
   } else {
-    const output = yaml.dump({ bike_paths: merged }, { lineWidth: -1, noRefs: true });
+    const output = yaml.dump({ bike_paths: grouped }, { lineWidth: -1, noRefs: true });
     fs.writeFileSync(bikepathsPath, output);
-    console.log(`\nWrote ${merged.length} entries to ${bikepathsPath}`);
+    console.log(`\nWrote ${grouped.length} entries to ${bikepathsPath}`);
   }
 }
 
