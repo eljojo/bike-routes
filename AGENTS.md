@@ -93,6 +93,18 @@ The auto-grouping in `scripts/lib/cluster-entries.mjs` merges entries whose OSM 
 - The algorithm does 80% of the work. Humans do the 20% via markdown.
 - `includes` assignments must be verified geographically by querying Overpass for real way coordinates — never by name-matching, never by using anchors from bikepaths.yml
 
+### Taxonomy: Networks vs Paths
+
+- **Path** — a single named cycling corridor with its own geometry (a `bike_paths` entry in bikepaths.yml). Gets a page if it meets the destination rule.
+- **Network** — a collection of paths forming a coherent system (`type: network` in bikepaths.yml, with a `members` array of path slugs). Comes from OSM `type=superroute` relations. Members keep their own pages; the network is an additional layer above them.
+- **`members` vs `grouped_from`** — `members` (networks) is additive: children keep their pages. `grouped_from` (trail clusters) is reductive: children lose their pages, absorbed into the group. Auto-grouping skips network members to prevent collision.
+- **Destination rule** — a path gets a standalone page only if length >= 1km. Below 1km, it appears on its parent network page but not as a standalone page. Markdown overrides both ways: a `.md` file forces a page; `hidden: true` suppresses one.
+- **Primary network** — when a path belongs to multiple superroutes, the most specific/local one is primary. The path's URL nests under its primary network.
+
+### bikepaths.yml is fully rewritten
+
+bikepaths.yml is regenerated from scratch on every build. No incremental merge — the pipeline discovers all data from OSM, computes networks and groups, enriches with Wikidata, and writes the complete file. Manual additions (out-of-bounds relations not discoverable by bbox queries) are stored in `manual-entries.yml` and merged into the pipeline input. Human overrides (names, descriptions, operator labels) belong in the markdown layer, not in bikepaths.yml.
+
 ## Relationship to the Astro App
 
 The Astro app references this repo via `CONTENT_DIR` env var (defaults to `../bike-routes`). The `CITY` env var selects which city folder to build (defaults to `ottawa`). The app uses custom content loaders to parse routes (GPX + media.yml), computes place-route proximity at build time, and generates static HTML. Changes to this repo trigger rebuilds via GitHub `repository_dispatch`.
