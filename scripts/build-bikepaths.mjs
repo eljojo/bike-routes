@@ -709,7 +709,11 @@ async function enrichOutOfBoundsRelations(entries, discoveredRelationIds) {
 // Super-networks (Capital Pathway, TCT) are NOT pages — they're metadata
 // that shows in the facts table and influences index grouping.
 // The real networks come from auto-grouping (type: network).
-function applySuperNetworks(entries, slugMap, networks) {
+// Turn OSM superroutes into real type: network entries.
+// Members that are already in an auto-group network stay there —
+// the auto-group network gets a super_network attribute for index grouping.
+// Only orphaned paths (not in any network) become direct members.
+function addSuperrouteNetworks(entries, slugMap, networks) {
   const byRelation = new Map();
   for (const entry of entries) {
     for (const relId of entry.osm_relations ?? []) {
@@ -717,38 +721,76 @@ function applySuperNetworks(entries, slugMap, networks) {
     }
   }
 
-  // Store super-network metadata for the Astro app
-  const superNetworks = [];
+  const superNetworkMeta = [];
 
   for (const network of networks) {
+    if (network._promoted) continue; // already handled as a promoted sub-superroute
+
     const name = network.name;
-    const slug = slugMap.get(network) || slugify(name);
+    const networkSlug = slugify(name);
 
-    const meta = {
-      name,
-      slug,
-    };
-    if (network.wikidata) meta.wikidata = network.wikidata;
-    if (network.wikipedia) meta.wikipedia = network.wikipedia;
-    if (network.operator) meta.operator = network.operator;
-    if (network.network) meta.network = network.network;
-    if (network.name_fr) meta.name_fr = network.name_fr;
-    if (network.wikidata_meta) meta.wikidata_meta = network.wikidata_meta;
-    superNetworks.push(meta);
-
-    // Apply super_network attribute to member entries
-    let assigned = 0;
+    // Resolve members: only paths NOT already in another network
+    const memberSlugs = [];
     for (const relId of network._member_relations || []) {
       const member = byRelation.get(relId);
-      if (member) {
-        member.super_network = slug;
-        assigned++;
+      if (!member) continue;
+
+      if (member.member_of) {
+        // Already in a network (auto-group or park) — tag the network
+        // with super_network for index grouping instead
+        const memberNetwork = entries.find(e =>
+          e.type === 'network' &&
+          e.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-') === member.member_of
+        );
+        if (memberNetwork && !memberNetwork.super_network) {
+          memberNetwork.super_network = networkSlug;
+        }
+        continue;
+      }
+
+      if (member.type === 'network') continue; // skip other networks
+
+      const memberSlug = slugMap.get(member);
+      if (memberSlug) {
+        memberSlugs.push(memberSlug);
+        member.member_of = networkSlug;
       }
     }
-    console.log(`  Super-network: ${name} (${assigned} entries tagged)`);
+
+    if (memberSlugs.length === 0) {
+      console.log(`  Skipping superroute network "${name}": no orphaned members`);
+      continue;
+    }
+
+    // Create the network entry
+    const networkEntry = {
+      name,
+      type: 'network',
+      members: memberSlugs,
+      osm_relations: network.osm_relations,
+    };
+    if (network.name_fr) networkEntry.name_fr = network.name_fr;
+    if (network.name_en) networkEntry.name_en = network.name_en;
+    if (network.operator) networkEntry.operator = network.operator;
+    if (network.network) networkEntry.network = network.network;
+    if (network.wikidata) networkEntry.wikidata = network.wikidata;
+    if (network.wikipedia) networkEntry.wikipedia = network.wikipedia;
+    if (network.cycle_network) networkEntry.cycle_network = network.cycle_network;
+
+    entries.push(networkEntry);
+    console.log(`  Superroute network: ${name} (${memberSlugs.length} members)`);
+
+    // Store metadata for YAML output
+    const meta = { name, slug: networkSlug };
+    if (network.wikidata) meta.wikidata = network.wikidata;
+    if (network.operator) meta.operator = network.operator;
+    if (network.name_fr) meta.name_fr = network.name_fr;
+    if (network.wikidata_meta) meta.wikidata_meta = network.wikidata_meta;
+    superNetworkMeta.push(meta);
   }
 
-  return superNetworks;
+  return superNetworkMeta;
 }
 
 // ---------------------------------------------------------------------------
@@ -1016,10 +1058,10 @@ out tags center;`;
         delete net._member_relations;
       }
 
-      // Apply remaining super-network attributes
+      // Turn remaining superroutes into real networks
       if (superNets.length > 0) {
-        console.log('Applying super-network attributes...');
-        superNetworks = applySuperNetworks(grouped, slugMap, superNets);
+        console.log('Creating superroute networks...');
+        superNetworks = addSuperrouteNetworks(grouped, slugMap, superNets);
       }
       slugMap = computeSlugs(grouped);
     }

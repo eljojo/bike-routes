@@ -19,7 +19,7 @@ bike_paths:
         - 45.456289
     osm_names:
       - Sentier des Voyageurs Pathway
-    super_network: capital-pathway
+    member_of: capital-pathway
   - name: Sentier du Lac Leamy Pathway
     osm_relations:
       - 215129
@@ -165,7 +165,6 @@ bike_paths:
     osm_names:
       - Sentier du Parc-de-la-Gatineau
     member_of: parc-de-la-gatineau
-    super_network: capital-pathway
   - name: Route Verte 1
     osm_relations:
       - 416115
@@ -197,7 +196,7 @@ bike_paths:
       - 1803929
     network: lcn
     ref: '2'
-    super_network: crosstown-bikeway-2
+    member_of: crosstown-bikeway-2
   - name: Sentier Trans-Canada Gatineau - Montréal
     osm_relations:
       - 2890229
@@ -205,7 +204,7 @@ bike_paths:
     name_en: Trans Canada Trail (Montréal to Gatineau)
     network: ncn
     ref: STC
-    super_network: sentier-trans-canadien-quebec
+    member_of: sentier-trans-canadien-quebec
   - name: Sentier du Lac-des-Fées
     osm_relations:
       - 2890258
@@ -279,7 +278,6 @@ bike_paths:
     operator: NCC
     network: rcn
     member_of: ottawa-river-pathway
-    super_network: capital-pathway
   - name: Watts Creek Pathway
     osm_relations:
       - 7175007
@@ -301,7 +299,6 @@ bike_paths:
     osm_names:
       - Watts Creek Pathway
     member_of: ncc-greenbelt
-    super_network: capital-pathway
   - name: Trillium Pathway
     osm_relations:
       - 7175029
@@ -382,7 +379,7 @@ bike_paths:
         - 45.4244887
     osm_names:
       - Rideau Canal Eastern Pathway
-    super_network: capital-pathway
+    member_of: capital-pathway
   - name: Experimental Farm Pathway
     osm_relations:
       - 7206821
@@ -402,7 +399,7 @@ bike_paths:
         - 45.3890728
     osm_names:
       - Experimental Farm Pathway
-    super_network: capital-pathway
+    member_of: capital-pathway
   - name: Pinecrest Creek Pathway
     osm_relations:
       - 7206822
@@ -428,7 +425,7 @@ bike_paths:
     operator: City of Ottawa
     network: lcn
     ref: '2'
-    super_network: crosstown-bikeway-2
+    member_of: crosstown-bikeway-2
   - name: Greenbelt Pathway West
     osm_relations:
       - 7248705
@@ -484,7 +481,7 @@ bike_paths:
         - 45.4418518
     osm_names:
       - Rideau River Eastern Pathway
-    super_network: capital-pathway
+    member_of: capital-pathway
   - name: Aviation Pathway
     osm_relations:
       - 7369758
@@ -503,7 +500,7 @@ bike_paths:
         - 45.4562381
     osm_names:
       - Aviation Pathway
-    super_network: capital-pathway
+    member_of: capital-pathway
   - name: Greenbelt Pathway East
     osm_relations:
       - 7369775
@@ -555,7 +552,7 @@ bike_paths:
       - 7371889
     network: ncn
     ref: TCT
-    super_network: trans-canada-trail-ottawa-area
+    member_of: trans-canada-trail-ottawa-area
   - name: New York Central Fitness Trail
     osm_relations:
       - 7410754
@@ -650,7 +647,7 @@ bike_paths:
       - 9502449
     network: ncn
     ref: TCT
-    super_network: trans-canada-trail-ottawa-area
+    member_of: trans-canada-trail-ottawa-area
   - name: Ottawa River Pathway (Trans Canada Trail)
     osm_relations:
       - 9502633
@@ -658,14 +655,12 @@ bike_paths:
     network: ncn
     ref: TCT
     member_of: ottawa-river-pathway
-    super_network: capital-pathway
   - name: Ottawa River Pathway (west)
     osm_relations:
       - 9502634
     name_fr: Sentier de la Rivière des Outaouais (Ouest)
     network: rcn
     member_of: ottawa-river-pathway
-    super_network: capital-pathway
   - name: Nepean Trail
     osm_relations:
       - 9599180
@@ -741,7 +736,7 @@ bike_paths:
     operator: NCC
     network: rcn
     ref: GPW
-    super_network: capital-pathway
+    member_of: capital-pathway
   - name: Britannia Winter Trail
     osm_relations:
       - 12138512
@@ -11653,7 +11648,6 @@ bike_paths:
     smoothness: good
     network: rcn
     operator: National Capital Commission
-    super_network: capital-pathway
   - name: NCC Greenbelt
     type: network
     members:
@@ -11819,7 +11813,6 @@ bike_paths:
     smoothness: good
     operator: NCC
     network: rcn
-    super_network: capital-pathway
   - name: Trans Canada Trail Trails
     type: network
     members:
@@ -12218,6 +12211,7 @@ bike_paths:
     width: '2'
     smoothness: very_bad
     network: mtb
+    super_network: capital-pathway
     mtb: true
   - name: Chelsea Creek Path Trails
     type: network
@@ -13567,21 +13561,69 @@ bike_paths:
     osm_relations:
       - 9502635
     name_fr: Sentier de la Rivière des Outaouais
+    super_network: trans-canada-trail-ottawa-area
+  - name: Sentier Trans-Canadien (Québec)
+    type: network
+    members:
+      - sentier-trans-canada-gatineau-montreal
+    osm_relations:
+      - 8274591
+    name_fr: Sentier Trans-Canadien (Québec)
+    name_en: Trans Canada Trail (Quebec)
+    network: ncn
+    cycle_network: CA:CA
+  - name: Trans Canada Trail (Ottawa area)
+    type: network
+    members:
+      - trans-canada-trail-bells-cornerswatts-creek
+      - ottawa-carleton-trailway
+    osm_relations:
+      - 9502450
+    network: ncn
+  - name: Crosstown Bikeway 2
+    type: network
+    members:
+      - laurier-segregated-bikelane
+      - eastwest-crosstown-bikeway
+    osm_relations:
+      - 10986224
+      - 10986223
+    network: lcn
+    cycle_network: CA:ON:Ottawa
+  - name: Capital Pathway
+    type: network
+    members:
+      - sentier-des-voyageurs-pathway
+      - rideau-canal-eastern-pathway
+      - experimental-farm-pathway
+      - rideau-river-eastern-pathway
+      - aviation-pathway
+      - greenbelt-pathway-west-barrhaven
+    osm_relations:
+      - 10990511
+    name_fr: Sentier de la capitale
+    name_en: Capital Pathway
+    operator: NCC
+    network: rcn
+    wikidata: Q5035630
+    wikipedia: en:Capital Pathway
+    cycle_network: CA:ON:NCC
+    wikidata_meta:
+      description_en: Bike path network in Ottawa-Gatineau, Canada
+      description_fr: réseau de pistes cyclables à Ottawa-Gatineau, Canada
+      length_km: 220
+      inception: 1970s
+      website: https://ncc-ccn.gc.ca/places/capital-pathway
 super_networks:
   - name: Sentier Trans-Canadien (Québec)
     slug: sentier-trans-canadien-quebec
-    network: ncn
     name_fr: Sentier Trans-Canadien (Québec)
   - name: Trans Canada Trail (Ottawa area)
     slug: trans-canada-trail-ottawa-area
-    network: ncn
   - name: Crosstown Bikeway 2
     slug: crosstown-bikeway-2
-    network: lcn
   - name: Capital Pathway
     slug: capital-pathway
     wikidata: Q5035630
-    wikipedia: en:Capital Pathway
     operator: NCC
-    network: rcn
     name_fr: Sentier de la capitale
