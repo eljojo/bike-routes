@@ -26,12 +26,13 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
     const adapter = loadCityAdapter('ottawa');
     const bbox = '45.15,-76.35,45.65,-75.35';
 
-    entries = await buildBikepathsPipeline({
+    const result = await buildBikepathsPipeline({
       queryOverpass: player,
       bbox,
       adapter,
       manualEntries: [],
     });
+    entries = result.entries;
   }, 30000);
 
   // Basic sanity

@@ -711,118 +711,25 @@ function loadMarkdownSlugs() {
 // Main
 // ---------------------------------------------------------------------------
 
-async function main() {
-  console.log(`Building bikepaths.yml for ${args.city} (bbox: ${bbox})`);
-
-  // Load manual additions
-  const manualEntries = loadManualEntries();
-
-  // Discover from OSM
-  const osmRelations = await discoverOsmRelations();
-  const osmNamedWays = await discoverOsmNamedWays();
-  const parallelLanes = await discoverParallelLanes();
-
-  // Build entries from scratch
-  const entries = buildEntries(osmRelations, osmNamedWays, parallelLanes, manualEntries);
-
-  // Enrich manual entries with out-of-bounds relation data
-  const discoveredRelationIds = new Set(osmRelations.map(r => r.id));
-  await enrichOutOfBoundsRelations(entries, discoveredRelationIds);
-
-  // Discover super-networks (OSM superroutes) — NOT added to entries.
-  // Super-networks become attributes, not entries. See applySuperNetworks below.
-  let networks = [];
-  if (adapter.discoverNetworks) {
-    console.log('Discovering super-networks (OSM superroutes)...');
-    networks = await discoverNetworks({ bbox, queryOverpass });
-  }
-
-  // Auto-group nearby trail segments
-  const markdownSlugs = loadMarkdownSlugs();
-  const grouped = await autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass, bbox });
-
-  // Centralized slug computation
-  let slugMap = computeSlugs(grouped);
-
-  // Apply OSM superroute data as super_network attributes.
-  // Super-networks are NOT pages — they're metadata for the facts table
-  // and index grouping. The real networks come from auto-grouping above.
-  let superNetworks = [];
-  if (networks.length > 0) {
-    console.log('Applying super-network attributes...');
-    superNetworks = applySuperNetworks(grouped, slugMap, networks);
-    // Recompute slugs — superroute entries are not added to grouped,
-    // but member_of from auto-grouping may have changed during the run
-    slugMap = computeSlugs(grouped);
-  }
-
-  // Wikidata enrichment
-  console.log('Enriching with Wikidata...');
-  const wdCount = await enrichWithWikidata(grouped);
-  if (wdCount > 0) console.log(`  Enriched ${wdCount} entries`);
-
-  // MTB detection — label trails that aren't road-bike-friendly
-  detectMtb(grouped);
-  const mtbCount = grouped.filter(e => e.mtb).length;
-  if (mtbCount > 0) console.log(`  Labelled ${mtbCount} entries as MTB`);
-
-  // Write output
-  const networkEntries = grouped.filter(e => e.type === 'network');
-  const memberEntries = grouped.filter(e => e.member_of);
-  if (args.dryRun) {
-    console.log('\n--- DRY RUN — would write: ---');
-    for (const entry of grouped) {
-      const slug = slugMap.get(entry) || slugify(entry.name);
-      const source = entry.type === 'network' ? `network (${entry.members?.length || 0} members)` :
-        entry.member_of ? `member of ${entry.member_of}` :
-        entry.osm_relations ? `relation ${entry.osm_relations[0]}` :
-        entry.parallel_to ? `parallel to "${entry.parallel_to}"` :
-        `name "${entry.osm_names?.[0] || entry.name}"`;
-      console.log(`  ${slug}: ${entry.name} (${source})`);
-    }
-    console.log(`\nTotal: ${grouped.length} entries (${networkEntries.length} networks, ${memberEntries.length} members, ${superNetworks.length} super-networks)`);
-  } else {
-    // Strip transient fields before YAML output
-    for (const entry of grouped) {
-      delete entry._ways;
-      delete entry._member_relations;
-    }
-    // Compact anchors to bbox before writing — full endpoints are only needed in memory for clustering
-    for (const entry of grouped) {
-      if (entry.anchors?.length > 2) {
-        const lngs = entry.anchors.map(a => a[0]);
-        const lats = entry.anchors.map(a => a[1]);
-        entry.anchors = [[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]];
-      }
-    }
-    const yamlData = { bike_paths: grouped };
-    if (superNetworks.length > 0) yamlData.super_networks = superNetworks;
-    const output = yaml.dump(yamlData, { lineWidth: -1, noRefs: true });
-    fs.writeFileSync(bikepathsPath, output);
-    console.log(`\nWrote ${grouped.length} entries (${networkEntries.length} networks, ${memberEntries.length} members) to ${bikepathsPath}`);
-  }
-}
-
 // ---------------------------------------------------------------------------
-// Testable pipeline entry point
+// The pipeline. One function, one code path. main() calls it with the real
+// Overpass client. Tests call it with a cassette player.
 // ---------------------------------------------------------------------------
 
 /**
- * Testable pipeline entry point. Runs the FULL pipeline — discovery, junction
- * ways, grouping, super-networks, wikidata, MTB detection. No file I/O.
+ * Run the full bikepaths pipeline. No file I/O — returns entries + metadata.
  *
  * @param {object} opts
  * @param {Function} opts.queryOverpass — async (q) => { elements: [] }
  * @param {string} opts.bbox — "south,west,north,east"
  * @param {object} opts.adapter — city adapter (from city-adapter.mjs)
- * @param {Array} [opts.manualEntries] — manual entries
+ * @param {Array} [opts.manualEntries] — out-of-bounds manual entries
  * @param {Set<string>} [opts.markdownSlugs] — slugs claimed by markdown
- * @returns {Promise<Array>} final entries (grouped, enriched, ready to write)
+ * @returns {Promise<{ entries: Array, superNetworks: Array, slugMap: Map }>}
  */
-export async function buildBikepathsPipeline({ queryOverpass: qo, bbox: b, adapter: a, manualEntries = [], markdownSlugs = new Set(), existing = [] }) {
-  const filter = (a.parallelLaneFilter || defaultParallelLaneFilter);
-
-  // Step 1: relations
+export async function buildBikepathsPipeline({ queryOverpass: qo, bbox: b, adapter: a, manualEntries = [], markdownSlugs = new Set() }) {
+  // Step 1: Discover cycling relations
+  console.log('Discovering cycling relations from OSM...');
   const relQ = `[out:json][timeout:120];
 (
   relation["route"="bicycle"](${b});
@@ -835,16 +742,22 @@ out tags;`;
     name: el.tags?.name || `relation-${el.id}`,
     tags: el.tags || {},
   }));
+  console.log(`  Found ${osmRelations.length} cycling relations`);
 
-  // Step 2: named ways
-  const queries = a.namedWayQueries(b);
+  // Step 2: Discover named cycling ways (with junction trail expansion)
+  console.log('Discovering named cycling ways from OSM...');
+  const namedWayQueries = a.namedWayQueries(b);
   const allWayElements = [];
-  for (const { label, q } of queries) {
+  for (const { label, q } of namedWayQueries) {
     try {
       const data = await qo(q);
+      console.log(`  ${label}: ${data.elements.length} ways`);
       allWayElements.push(...data.elements);
-    } catch {}
+    } catch (err) {
+      console.error(`  ${label}: failed (${err.message})`);
+    }
   }
+
   const waysByName = new Map();
   for (const el of allWayElements) {
     const name = el.tags?.name;
@@ -852,31 +765,87 @@ out tags;`;
     if (!waysByName.has(name)) waysByName.set(name, []);
     waysByName.get(name).push(el);
   }
+
+  // Fetch non-cycling junction ways that share nodes with cycling ways.
+  // Trails in parks connect through hiking-only segments (bicycle:no).
+  const cyclingWayIds = allWayElements.filter(e => e.id).map(e => e.id);
+  const allWaysByName = new Map();
+  if (cyclingWayIds.length > 0) {
+    const junctionQ = `[out:json][timeout:180];
+way(id:${cyclingWayIds.join(',')});
+node(w);
+way(bn)["name"]["highway"~"path|footway|cycleway"](${b});
+out geom tags;`;
+    try {
+      const junctionData = await qo(junctionQ);
+      const cyclingIdSet = new Set(cyclingWayIds);
+      for (const el of junctionData.elements) {
+        if (el.type !== 'way') continue;
+        if (cyclingIdSet.has(el.id)) continue;
+        const name = el.tags?.name;
+        if (!name) continue;
+        if (!allWaysByName.has(name)) allWaysByName.set(name, []);
+        allWaysByName.get(name).push(el);
+      }
+
+      let junctionCount = 0;
+      for (const [name, ways] of allWaysByName) {
+        if (waysByName.has(name)) continue;
+        const anchors = [];
+        for (const w of ways) {
+          if (w.geometry?.length >= 2) {
+            anchors.push([w.geometry[0].lon, w.geometry[0].lat]);
+            anchors.push([w.geometry[w.geometry.length - 1].lon, w.geometry[w.geometry.length - 1].lat]);
+          }
+        }
+        if (anchors.length > 0) {
+          waysByName.set(name, ways);
+          junctionCount++;
+        }
+      }
+      if (junctionCount > 0) console.log(`  Found ${junctionCount} non-cycling junction trails`);
+    } catch (err) {
+      console.error(`  Junction ways fetch failed: ${err.message}`);
+    }
+  }
+
   const osmNamedWays = [];
   for (const [name, ways] of waysByName) {
     const anchors = [];
     for (const w of ways) {
       if (w.geometry?.length >= 2) {
-        const first = w.geometry[0];
-        const last = w.geometry[w.geometry.length - 1];
-        anchors.push([first.lon, first.lat]);
-        anchors.push([last.lon, last.lat]);
+        anchors.push([w.geometry[0].lon, w.geometry[0].lat]);
+        anchors.push([w.geometry[w.geometry.length - 1].lon, w.geometry[w.geometry.length - 1].lat]);
       } else if (w.center) {
         anchors.push([w.center.lon, w.center.lat]);
       }
     }
     if (anchors.length === 0) continue;
+
+    const junctionWays = allWaysByName.get(name) || [];
+    const seenIds = new Set();
+    const combinedWays = [];
+    for (const w of [...ways, ...junctionWays]) {
+      if (!w.geometry?.length || w.geometry.length < 2) continue;
+      if (w.id && seenIds.has(w.id)) continue;
+      if (w.id) seenIds.add(w.id);
+      combinedWays.push(w.geometry);
+    }
+
     osmNamedWays.push({
       name,
       wayCount: ways.length,
       tags: mergeWayTags(ways),
       anchors,
       osmNames: [name],
-      _ways: ways.filter(w => w.geometry?.length >= 2).map(w => w.geometry),
+      _ways: combinedWays.length > 0 ? combinedWays : ways.filter(w => w.geometry?.length >= 2).map(w => w.geometry),
     });
   }
+  console.log(`  Found ${osmNamedWays.length} named cycling ways`);
 
-  // Step 2b: parallel lanes
+  // Step 2b: Discover unnamed parallel bike lanes
+  console.log('Discovering unnamed parallel bike lanes...');
+  const filter = (a.parallelLaneFilter || defaultParallelLaneFilter);
   const plQ = `[out:json][timeout:120];
 way["highway"="cycleway"][!"name"][!"crossing"](${b});
 out tags center;`;
@@ -906,30 +875,99 @@ out tags center;`;
       } catch {}
     }
     parallelLanes = groupByRoadAndProximity(results, 500);
+    console.log(`  ${parallelLanes.length} parallel lane candidates`);
   }
 
-  // Build entries from scratch
-  const seed = manualEntries.length > 0 ? manualEntries : existing;
-  const entries = buildEntries(osmRelations, osmNamedWays, parallelLanes, seed);
+  // Step 3: Build entries from scratch
+  console.log('Building entries from scratch...');
+  const entries = buildEntries(osmRelations, osmNamedWays, parallelLanes, manualEntries);
 
-  // Auto-group nearby trail segments
+  // Enrich manual entries whose relations fell outside bbox
+  const discoveredRelationIds = new Set(osmRelations.map(r => r.id));
+  await enrichOutOfBoundsRelations(entries, discoveredRelationIds);
+
+  // Step 4: Auto-group nearby trail segments (with park containment)
   const grouped = await autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass: qo, bbox: b });
 
-  // Centralized slug computation
+  // Step 5: Centralized slug computation
   let slugMap = computeSlugs(grouped);
 
-  // Super-network attributes (from OSM superroutes)
+  // Step 6: Super-network attributes (from OSM superroutes)
+  let superNetworks = [];
   if (a.discoverNetworks) {
+    console.log('Discovering super-networks (OSM superroutes)...');
     const networks = await discoverNetworks({ bbox: b, queryOverpass: qo });
-    applySuperNetworks(grouped, slugMap, networks);
-    slugMap = computeSlugs(grouped);
+    if (networks.length > 0) {
+      console.log('Applying super-network attributes...');
+      superNetworks = applySuperNetworks(grouped, slugMap, networks);
+      slugMap = computeSlugs(grouped);
+    }
   }
 
-  // Wikidata enrichment (skip in tests by default — needs real API)
-  // detectMtb
-  detectMtb(grouped);
+  // Step 7: Wikidata enrichment
+  console.log('Enriching with Wikidata...');
+  const wdCount = await enrichWithWikidata(grouped);
+  if (wdCount > 0) console.log(`  Enriched ${wdCount} entries`);
 
-  return grouped;
+  // Step 8: MTB detection
+  detectMtb(grouped);
+  const mtbCount = grouped.filter(e => e.mtb).length;
+  if (mtbCount > 0) console.log(`  Labelled ${mtbCount} entries as MTB`);
+
+  return { entries: grouped, superNetworks, slugMap };
+}
+
+// ---------------------------------------------------------------------------
+// main() — thin wrapper: load config, run pipeline, write YAML
+// ---------------------------------------------------------------------------
+
+async function main() {
+  console.log(`Building bikepaths.yml for ${args.city} (bbox: ${bbox})`);
+
+  const manualEntries = loadManualEntries();
+  const markdownSlugs = loadMarkdownSlugs();
+
+  const { entries, superNetworks, slugMap } = await buildBikepathsPipeline({
+    queryOverpass,
+    bbox,
+    adapter,
+    manualEntries,
+    markdownSlugs,
+  });
+
+  // Write output
+  const networkEntries = entries.filter(e => e.type === 'network');
+  const memberEntries = entries.filter(e => e.member_of);
+  if (args.dryRun) {
+    console.log('\n--- DRY RUN — would write: ---');
+    for (const entry of entries) {
+      const slug = slugMap.get(entry) || slugify(entry.name);
+      const source = entry.type === 'network' ? `network (${entry.members?.length || 0} members)` :
+        entry.member_of ? `member of ${entry.member_of}` :
+        entry.osm_relations ? `relation ${entry.osm_relations[0]}` :
+        entry.parallel_to ? `parallel to "${entry.parallel_to}"` :
+        `name "${entry.osm_names?.[0] || entry.name}"`;
+      console.log(`  ${slug}: ${entry.name} (${source})`);
+    }
+    console.log(`\nTotal: ${entries.length} entries (${networkEntries.length} networks, ${memberEntries.length} members, ${superNetworks.length} super-networks)`);
+  } else {
+    for (const entry of entries) {
+      delete entry._ways;
+      delete entry._member_relations;
+    }
+    for (const entry of entries) {
+      if (entry.anchors?.length > 2) {
+        const lngs = entry.anchors.map(a => a[0]);
+        const lats = entry.anchors.map(a => a[1]);
+        entry.anchors = [[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]];
+      }
+    }
+    const yamlData = { bike_paths: entries };
+    if (superNetworks.length > 0) yamlData.super_networks = superNetworks;
+    const output = yaml.dump(yamlData, { lineWidth: -1, noRefs: true });
+    fs.writeFileSync(bikepathsPath, output);
+    console.log(`\nWrote ${entries.length} entries (${networkEntries.length} networks, ${memberEntries.length} members) to ${bikepathsPath}`);
+  }
 }
 
 if (isMain) {
