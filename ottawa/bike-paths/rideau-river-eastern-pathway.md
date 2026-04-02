@@ -6,6 +6,7 @@ featured: true
 includes:
   - rideau-river-eastern-pathway
   - rideau-river-eastern-pathway-city-section
+  - rideau-river-drive
 ---
 
 [Roughly 12 km along the east bank of the Rideau River](https://www.alltrails.com/trail/canada/ontario/rideau-river-eastern-pathway), from Rideau Falls in the north — where the river drops into the Ottawa River — all the way south to Hog's Back Falls. Quieter than the [canal paths](/paths/rideau-canal) or the [Ottawa River path](/paths/ottawa-river-pathway), and a good option when you want a ride that feels a little more removed from the city.

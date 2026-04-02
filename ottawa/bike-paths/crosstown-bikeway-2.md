@@ -2,7 +2,6 @@
 name: Crosstown Bikeway 2
 vibe: "Practical east-west cycling across Ottawa's urban core"
 includes:
-  - east-west-crosstown-bikeway
   - crosstown-bikeway-2
 ---
 

@@ -7,12 +7,18 @@ includes:
   - greenbelt-pathway-west
   - greenbelt-pathway-west-barrhaven
   - greenbelt-pathway-east
-  - greenbelt-pathway-east-trail-44
-  - greenbelt-pathway-east-trail-42
-  - greenbelt-pathway-east-trail-40
   - greenbelt-pathway
+  - ottawa-greenbelt-trail
   - watts-creek-pathway
   - trans-canada-trail-bells-cornerswatts-creek
+  - ncc-greenbelt-1
+  - ncc-greenbelt-2
+  - ncc-greenbelt-3
+  - ncc-greenbelt-4
+  - ncc-greenbelt-5
+  - ncc-greenbelt-6
+  - ncc-greenbelt-7
+  - ncc-greenbelt-8
 ---
 
 Ottawa's Greenbelt is a 20,350-hectare ring of green space encircling the city — the [largest publicly owned greenbelt in the world](https://ncc-ccn.gc.ca/places/greenbelt). French planner [Jacques Gréber proposed it in 1950](https://en.wikipedia.org/wiki/Greenbelt_(Ottawa)) as part of his master plan for the capital, and the federal government started acquiring land in 1956. Two trail systems run through it — one on the western side, one on the eastern — both part of the Trans Canada Trail.

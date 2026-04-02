@@ -3,8 +3,8 @@ name: Sawmill Creek Pathway
 vibe: "A sheltered creek-side path through Ottawa's south end"
 stub: true
 includes:
-  - sawmill-creek-pathway
   - sawmill-creek-path
+  - brookfield-road
 ---
 
 Follows Sawmill Creek through Ottawa's south end, tucked into a green corridor that feels removed from the surrounding neighbourhoods.
