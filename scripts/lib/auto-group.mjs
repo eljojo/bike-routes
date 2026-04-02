@@ -113,13 +113,17 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
   // Compute slugs for all entries
   const slugMap = computeSlugs(entries);
 
-  // Identify candidates: have anchors, not claimed by markdown, not network members
+  // Identify candidates: have anchors, not claimed by markdown, not network members.
+  // Exclude parallel_to entries — those are road bike lanes, not trail systems.
   const candidates = entries.filter(entry => {
     const slug = slugMap.get(entry);
     if (markdownSlugs.has(slug)) return false;
     if (!entry.anchors || entry.anchors.length === 0) return false;
-    // Network members keep their own pages — don't absorb into auto-generated clusters.
     if (entry.member_of) return false;
+    if (entry.parallel_to) return false;
+    // Roads with bike lanes are not trail systems — exclude from clustering
+    const hw = entry.highway;
+    if (hw && ['tertiary', 'secondary', 'primary', 'residential', 'unclassified'].includes(hw)) return false;
     return true;
   });
 
@@ -262,7 +266,10 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
       const hasCollision = memberSlugsRaw.some(s => s === networkSlug) ||
         cluster.members.some(m => slugifyBikePathName(m.name) === networkSlug);
       if (hasCollision) {
-        networkName = networkName + ' Trails';
+        // Use "Trails" for trail-type clusters, "Network" for urban/paved
+        const types = cluster.members.map(m => pathType(m));
+        const isTrail = types.filter(t => t === 'trail').length > types.length / 2;
+        networkName = networkName + (isTrail ? ' Trails' : ' Network');
         networkSlug = slugifyBikePathName(networkName);
       }
 

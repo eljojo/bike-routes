@@ -57,7 +57,7 @@ bike_paths:
         - 45.447053
     osm_names:
       - Sentier du Ruisseau-de-la-Brasserie Pathway
-    member_of: sentier-du-ruisseau-de-la-brasserie-pathway-trails
+    member_of: sentier-du-ruisseau-de-la-brasserie-pathway-network
   - name: Sentier des Pionniers Pathway
     osm_relations:
       - 215131
@@ -77,7 +77,7 @@ bike_paths:
         - 45.436377
     osm_names:
       - Sentier des Pionniers Pathway
-    member_of: sentier-des-pionniers-pathway-trails
+    member_of: sentier-des-pionniers-pathway-network
   - name: Sentier de l'Île
     osm_relations:
       - 218656
@@ -97,7 +97,7 @@ bike_paths:
         - 45.4357817
     osm_names:
       - Sentier de l'Île
-    member_of: sentier-du-ruisseau-de-la-brasserie-pathway-trails
+    member_of: sentier-du-ruisseau-de-la-brasserie-pathway-network
   - name: Sentier du Ruisseau-Leamy
     osm_relations:
       - 222699
@@ -246,7 +246,7 @@ bike_paths:
         - 45.4303186
     osm_names:
       - Sentier du Corridor-Champlain
-    member_of: sentier-des-pionniers-pathway-trails
+    member_of: sentier-des-pionniers-pathway-network
   - name: Prescott Russell Trail Link
     osm_relations:
       - 3461068
@@ -359,7 +359,7 @@ bike_paths:
         - 45.4229488
     osm_names:
       - Rideau Canal Western Pathway
-    member_of: rideau-canal-western-pathway-trails
+    member_of: rideau-canal-western-pathway-network
   - name: Rideau Canal Eastern Pathway
     osm_relations:
       - 7206766
@@ -542,7 +542,7 @@ bike_paths:
         - 45.3524057
     osm_names:
       - Sawmill Creek Pathway
-    member_of: sawmill-creek-path-trails
+    member_of: sawmill-creek-path-network
   - name: Byron-Richmond path
     osm_relations:
       - 7370934
@@ -716,6 +716,7 @@ bike_paths:
       - 10985930
     network: lcn
     ref: '3'
+    member_of: ottawa-bikeways
   - name: Crosstown Bikeway 2
     osm_relations:
       - 10986223
@@ -726,6 +727,7 @@ bike_paths:
       - 10986755
     network: lcn
     ref: '5'
+    member_of: ottawa-bikeways
   - name: Rideau River Eastern Pathway (City section)
     osm_relations:
       - 10990510
@@ -865,7 +867,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     access: 'yes'
-    member_of: chief-william-commanda-bridge-trails
+    member_of: chief-william-commanda-bridge-network
   - name: Pont Chef-William-Commanda
     osm_names:
       - Pont Chef-William-Commanda
@@ -884,7 +886,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     access: 'yes'
-    member_of: chief-william-commanda-bridge-trails
+    member_of: chief-william-commanda-bridge-network
   - name: Ottawa River Pathway
     osm_names:
       - Ottawa River Pathway
@@ -954,7 +956,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
-    member_of: chemin-du-lac-leamy-trails
+    member_of: chemin-du-lac-leamy-network
   - name: Brookfield Pathway
     osm_names:
       - Brookfield Pathway
@@ -970,7 +972,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: sawmill-creek-path-trails
+    member_of: sawmill-creek-path-network
   - name: Prescott Russell Trail Link
     osm_names:
       - Prescott Russell Trail Link
@@ -1128,7 +1130,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: boulevard-maloney-sidepath-trails
+    member_of: boulevard-maloney-sidepath-network
   - name: Route Verte
     osm_names:
       - Route Verte
@@ -1187,7 +1189,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     parallel_to: Boulevard de la Gappe
-    member_of: boulevard-de-la-gappe-trails
   - name: Boulevard La Vérendrye Ouest
     osm_names:
       - Boulevard La Vérendrye Ouest
@@ -1205,7 +1206,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     parallel_to: Boulevard La Vérendrye Ouest
-    member_of: boulevard-la-verendrye-ouest-trails
   - name: Boulevard des Hautes-Plaines
     osm_names:
       - Boulevard des Hautes-Plaines
@@ -1223,7 +1223,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     parallel_to: Boulevard des Hautes-Plaines
-    member_of: boulevard-de-la-cite-des-jeunes-trails
   - name: 'Trail #52'
     osm_names:
       - 'Trail #52'
@@ -1352,7 +1351,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: boulevard-maloney-sidepath-trails
+    member_of: boulevard-maloney-sidepath-network
   - name: Sentier du Vallon
     osm_names:
       - Sentier du Vallon
@@ -1422,7 +1421,7 @@ bike_paths:
     cycleway: lane
     highway: cycleway
     bicycle: designated
-    member_of: pont-lady-aberdeen-trails
+    member_of: pont-lady-aberdeen-network
   - name: Piste 25
     osm_names:
       - Piste 25
@@ -1562,7 +1561,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: sawmill-creek-path-trails
+    member_of: sawmill-creek-path-network
   - name: Juno Beach Memorial Bridge
     osm_names:
       - Juno Beach Memorial Bridge
@@ -1595,7 +1594,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     parallel_to: Boulevard de la Cité-des-Jeunes
-    member_of: boulevard-de-la-cite-des-jeunes-trails
   - name: Accès au Pont
     osm_names:
       - Accès au Pont
@@ -1608,7 +1606,7 @@ bike_paths:
     width: '2'
     highway: cycleway
     bicycle: designated
-    member_of: pont-lady-aberdeen-trails
+    member_of: pont-lady-aberdeen-network
   - name: 'Trail #55'
     osm_names:
       - 'Trail #55'
@@ -1746,7 +1744,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
-    member_of: portage-bridge-cycle-track-trails
+    member_of: portage-bridge-cycle-track-network
   - name: Trillium Trail
     osm_names:
       - Trillium Trail
@@ -1827,7 +1825,7 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     highway: cycleway
-    member_of: portage-bridge-cycle-track-trails
+    member_of: portage-bridge-cycle-track-network
   - name: '54'
     osm_names:
       - '54'
@@ -1854,7 +1852,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     parallel_to: Rue Atawe
-    member_of: boulevard-de-la-carriere-trails
   - name: Pont couvert Brabant-Philippe
     osm_names:
       - Pont couvert Brabant-Philippe
@@ -1894,7 +1891,7 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     highway: cycleway
-    member_of: portage-bridge-cycle-track-trails
+    member_of: portage-bridge-cycle-track-network
   - name: Pont Major
     osm_names:
       - Pont Major
@@ -2164,7 +2161,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     parallel_to: Avenue Gatineau
-    member_of: boulevard-la-verendrye-ouest-trails
   - name: Rue de Sillery
     osm_names:
       - Rue de Sillery
@@ -2206,7 +2202,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     parallel_to: Boulevard Gréber
-    member_of: boulevard-de-la-gappe-trails
   - name: Chemin de la Savane
     osm_names:
       - Chemin de la Savane
@@ -2220,7 +2215,6 @@ bike_paths:
     cycleway: crossing
     highway: tertiary
     bicycle: designated
-    member_of: boulevard-de-la-gappe-trails
   - name: Boulevard Maloney Ouest
     osm_names:
       - Boulevard Maloney Ouest
@@ -2235,7 +2229,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     parallel_to: Boulevard Maloney Ouest
-    member_of: boulevard-de-la-gappe-trails
   - name: Rue Morin
     osm_names:
       - Rue Morin
@@ -2261,7 +2254,6 @@ bike_paths:
     highway: tertiary
     bicycle: designated
     parallel_to: Boulevard de la Carrière
-    member_of: boulevard-de-la-carriere-trails
   - name: Rue d'Edmonton
     osm_names:
       - Rue d'Edmonton
@@ -2302,7 +2294,6 @@ bike_paths:
     highway: tertiary
     bicycle: designated
     parallel_to: Chemin Old Chelsea
-    member_of: chemin-scott-trails
   - name: Blue Heron Trail
     osm_names:
       - Blue Heron Trail
@@ -3948,7 +3939,7 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: 'no'
-    member_of: rideau-canal-western-pathway-trails
+    member_of: rideau-canal-western-pathway-network
   - name: '#72B (Irish Whiskey)'
     osm_names:
       - '#72B (Irish Whiskey)'
@@ -4389,7 +4380,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: residential
-    member_of: boulevard-de-la-gappe-trails
   - name: Rue Saint-Josaphat
     osm_names:
       - Rue Saint-Josaphat
@@ -4412,7 +4402,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: boulevard-moussette-trails
   - name: Boulevard du Mont-Bleu
     osm_names:
       - Boulevard du Mont-Bleu
@@ -4425,7 +4414,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: tertiary
-    member_of: boulevard-moussette-trails
   - name: Rue d'Orsonnens
     osm_names:
       - Rue d'Orsonnens
@@ -4438,7 +4426,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: residential
-    member_of: boulevard-moussette-trails
   - name: Rue du Caveau
     osm_names:
       - Rue du Caveau
@@ -4451,7 +4438,6 @@ bike_paths:
     cycleway: lane
     highway: residential
     bicycle: 'yes'
-    member_of: boulevard-wilfrid-lavigne-trails
   - name: Chemin Scott
     osm_names:
       - Chemin Scott
@@ -4464,7 +4450,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Chemin Scott
-    member_of: chemin-scott-trails
   - name: Chemin Kingsmere
     osm_names:
       - Chemin Kingsmere
@@ -4488,7 +4473,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: boulevard-moussette-trails
   - name: Rue Saint-Rédempteur
     osm_names:
       - Rue Saint-Rédempteur
@@ -4501,7 +4485,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: secondary
-    member_of: boulevard-montclair-trails
   - name: Boulevard Fournier
     osm_names:
       - Boulevard Fournier
@@ -4527,7 +4510,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: CR 16A
-    member_of: bridge-street-trails
   - name: Perth Street
     osm_names:
       - Perth Street
@@ -4541,7 +4523,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: CR 16A
-    member_of: bridge-street-trails
   - name: Rue de Touraine
     osm_names:
       - Rue de Touraine
@@ -4553,7 +4534,6 @@ bike_paths:
     surface: asphalt
     cycleway: shared_lane
     highway: residential
-    member_of: boulevard-la-verendrye-ouest-trails
   - name: Boulevard Hurtubise
     osm_names:
       - Boulevard Hurtubise
@@ -4566,7 +4546,6 @@ bike_paths:
     cycleway: shared_lane
     highway: residential
     bicycle: designated
-    member_of: boulevard-hurtubise-trails
   - name: Rue Campeau
     osm_names:
       - Rue Campeau
@@ -4580,7 +4559,6 @@ bike_paths:
     cycleway: shared_lane
     highway: residential
     bicycle: designated
-    member_of: boulevard-hurtubise-trails
   - name: Sir-George-Étienne-Cartier Parkway
     osm_names:
       - Sir-George-Étienne-Cartier Parkway
@@ -4624,7 +4602,6 @@ bike_paths:
     incline: down
     cycleway: lane
     highway: tertiary
-    member_of: kanata-avenue-trails
   - name: Knudson Drive
     osm_names:
       - Knudson Drive
@@ -4639,7 +4616,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Knudson Drive
-    member_of: beaverbrook-road-trails
   - name: Teron Road
     osm_names:
       - Teron Road
@@ -4683,7 +4659,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Herzberg Road
-    member_of: herzberg-road-trails
   - name: Weslock Way
     osm_names:
       - Weslock Way
@@ -4697,7 +4672,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: beaverbrook-road-trails
   - name: March Road
     osm_names:
       - March Road
@@ -4714,7 +4688,6 @@ bike_paths:
     highway: secondary
     ref: '49'
     parallel_to: March Road
-    member_of: march-road-trails
   - name: Walden Drive
     osm_names:
       - Walden Drive
@@ -4728,7 +4701,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: beaverbrook-road-trails
   - name: Beaverbrook Road
     osm_names:
       - Beaverbrook Road
@@ -4742,7 +4714,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: beaverbrook-road-trails
   - name: Terry Fox Drive
     osm_names:
       - Terry Fox Drive
@@ -4773,7 +4744,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: kanata-avenue-trails
   - name: Castlefrank Road
     osm_names:
       - Castlefrank Road
@@ -4787,7 +4757,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: kanata-avenue-trails
   - name: McGibbon Drive
     osm_names:
       - McGibbon Drive
@@ -4828,7 +4797,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: hazeldean-road-trails
   - name: Michael Cowpland Drive
     osm_names:
       - Michael Cowpland Drive
@@ -4858,7 +4826,6 @@ bike_paths:
     highway: primary
     ref: '36'
     parallel_to: Hazeldean Road
-    member_of: hazeldean-road-trails
   - name: Shirley's Brook Drive
     osm_names:
       - Shirley's Brook Drive
@@ -4872,7 +4839,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: march-road-trails
   - name: Goulbourn Forced Road
     osm_names:
       - Goulbourn Forced Road
@@ -4887,7 +4853,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Goulbourn Forced Road
-    member_of: kanata-avenue-trails
   - name: Cedarview Road
     osm_names:
       - Cedarview Road
@@ -4954,7 +4919,6 @@ bike_paths:
     bicycle: 'yes'
     ref: '32'
     parallel_to: West Hunt Club Road
-    member_of: west-hunt-club-road-trails
   - name: Navaho Drive
     osm_names:
       - Navaho Drive
@@ -5041,7 +5005,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Highbury Park Drive
-    member_of: greenbank-road-trails
   - name: Island Park Drive
     osm_names:
       - Island Park Drive
@@ -5057,7 +5020,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Island Park Drive
-    member_of: island-park-drive-trails
   - name: Sherbourne Road
     osm_names:
       - Sherbourne Road
@@ -5072,7 +5034,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: tertiary
-    member_of: dovercourt-avenue-trails
   - name: Champlain Bridge
     osm_names:
       - Champlain Bridge
@@ -5089,7 +5050,6 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     description: centre lane is reversible - southbound in AM and northbound in PM. Centre lane is HOV 2+/bus/taxi only
-    member_of: island-park-drive-trails
   - name: Pont Champlain Bridge
     osm_names:
       - Pont Champlain Bridge
@@ -5107,7 +5067,6 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     description: centre lane is reversible - southbound in AM and northbound in PM. Centre lane is HOV 2+/bus/taxi only
-    member_of: island-park-drive-trails
     wikidata_meta:
       description_en: bridge across Ottawa River, near Ottawa, Ontario, Canada
       description_fr: pont traversant la rivière des Outaouais à Ottawa, Ontario, Canada
@@ -5125,7 +5084,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: tertiary
-    member_of: dovercourt-avenue-trails
   - name: Glebe Avenue
     osm_names:
       - Glebe Avenue
@@ -5141,7 +5099,6 @@ bike_paths:
     cycleway: lane
     highway: residential
     parallel_to: Glebe Avenue
-    member_of: bank-street-trails
   - name: Elgin Street
     osm_names:
       - Elgin Street
@@ -5157,7 +5114,6 @@ bike_paths:
     cycleway: shared_lane
     highway: secondary
     ref: '91'
-    member_of: sussex-drive-trails
   - name: Percy Street
     osm_names:
       - Percy Street
@@ -5174,7 +5130,6 @@ bike_paths:
     highway: residential
     bicycle: 'yes'
     parallel_to: Percy Street
-    member_of: montreal-road-trails
   - name: Somerset Street West
     osm_names:
       - Somerset Street West
@@ -5205,7 +5160,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: residential
-    member_of: bank-street-trails
   - name: Queen Street
     osm_names:
       - Queen Street
@@ -5251,7 +5205,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: secondary
-    member_of: montreal-road-trails
   - name: Laurier Avenue West
     osm_names:
       - Laurier Avenue West
@@ -5267,7 +5220,6 @@ bike_paths:
     highway: secondary
     ref: '48'
     parallel_to: Laurier Avenue West
-    member_of: sussex-drive-trails
   - name: Wellington Street
     osm_names:
       - Wellington Street
@@ -5286,7 +5238,6 @@ bike_paths:
     highway: primary
     ref: '34'
     parallel_to: Wellington Street
-    member_of: montreal-road-trails
     wikidata_meta:
       description_en: street in Ottawa, Canada
       description_fr: rue d'Ottawa (Canada)
@@ -5326,7 +5277,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: secondary
-    member_of: sussex-drive-trails
   - name: Cumberland Street
     osm_names:
       - Cumberland Street
@@ -5342,7 +5292,6 @@ bike_paths:
     cycleway: opposite_lane
     highway: unclassified
     parallel_to: Cumberland Street
-    member_of: sussex-drive-trails
   - name: Laurier Avenue East
     osm_names:
       - Laurier Avenue East
@@ -5357,7 +5306,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '48'
-    member_of: sussex-drive-trails
   - name: Belfast Road
     osm_names:
       - Belfast Road
@@ -5372,7 +5320,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Belfast Road
-    member_of: ogilvie-road-trails
   - name: Coventry Road
     osm_names:
       - Coventry Road
@@ -5389,7 +5336,6 @@ bike_paths:
     highway: secondary
     ref: '50'
     parallel_to: Coventry Road
-    member_of: ogilvie-road-trails
   - name: Trainyards Drive
     osm_names:
       - Trainyards Drive
@@ -5464,7 +5410,6 @@ bike_paths:
     cycleway: shared_lane
     highway: tertiary
     parallel_to: Beausoleil Drive
-    member_of: sussex-drive-trails
   - name: Cobourg Street
     osm_names:
       - Cobourg Street
@@ -5479,7 +5424,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Cobourg Street
-    member_of: sussex-drive-trails
   - name: Rideau Street
     osm_names:
       - Rideau Street
@@ -5496,7 +5440,6 @@ bike_paths:
     highway: primary
     ref: '34'
     parallel_to: Rideau Street
-    member_of: montreal-road-trails
   - name: Chapel Street
     osm_names:
       - Chapel Street
@@ -5510,7 +5453,6 @@ bike_paths:
     surface: asphalt
     cycleway: shared_lane
     highway: residential
-    member_of: montreal-road-trails
   - name: Coupal Street
     osm_names:
       - Coupal Street
@@ -5554,7 +5496,6 @@ bike_paths:
     operator: OC Transpo
     ref: '66'
     parallel_to: Lees Avenue
-    member_of: lees-avenue-trails
   - name: Hawthorne Avenue
     osm_names:
       - Hawthorne Avenue
@@ -5571,7 +5512,6 @@ bike_paths:
     highway: secondary
     ref: '91'
     parallel_to: Hawthorne Avenue
-    member_of: sussex-drive-trails
   - name: Princess Avenue
     osm_names:
       - Princess Avenue
@@ -5649,7 +5589,6 @@ bike_paths:
     highway: secondary
     ref: '26'
     parallel_to: St-Laurent Boulevard
-    member_of: hawthorne-road-trails
   - name: Hemlock Road
     osm_names:
       - Hemlock Road
@@ -5665,7 +5604,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '44'
-    member_of: beechwood-avenue-trails
   - name: Belcourt Boulevard
     osm_names:
       - Belcourt Boulevard
@@ -5680,7 +5618,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: tertiary
-    member_of: sunview-drive-trails
   - name: Jeanne-d'Arc Boulevard North
     osm_names:
       - Jeanne-d'Arc Boulevard North
@@ -5695,7 +5632,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Jeanne-d'Arc Boulevard North
-    member_of: jeanne-darc-boulevard-north-trails
   - name: Innes Road
     osm_names:
       - Innes Road
@@ -5712,7 +5648,6 @@ bike_paths:
     highway: secondary
     ref: '30'
     parallel_to: Innes Road
-    member_of: innes-road-trails
   - name: Sunview Drive
     osm_names:
       - Sunview Drive
@@ -5728,7 +5663,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: tertiary
-    member_of: sunview-drive-trails
   - name: Beechwood Avenue
     osm_names:
       - Beechwood Avenue
@@ -5745,7 +5679,6 @@ bike_paths:
     highway: secondary
     ref: '44'
     parallel_to: Beechwood Avenue
-    member_of: beechwood-avenue-trails
   - name: Montréal Road
     osm_names:
       - Montréal Road
@@ -5762,7 +5695,6 @@ bike_paths:
     highway: primary
     ref: '34'
     parallel_to: Montréal Road
-    member_of: montreal-road-trails
   - name: Hawthorne Road
     osm_names:
       - Hawthorne Road
@@ -5778,7 +5710,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '32'
-    member_of: hawthorne-road-trails
   - name: Lancaster Road
     osm_names:
       - Lancaster Road
@@ -5793,7 +5724,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: tertiary
-    member_of: hawthorne-road-trails
   - name: River Road
     osm_names:
       - River Road
@@ -5809,7 +5739,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '19'
-    member_of: riverside-drive-trails
   - name: Fallowfield Road
     osm_names:
       - Fallowfield Road
@@ -5840,7 +5769,6 @@ bike_paths:
     highway: tertiary
     ref: '13'
     parallel_to: Longfields Drive
-    member_of: woodroffe-avenue-trails
   - name: Leikin Drive
     osm_names:
       - Leikin Drive
@@ -5854,7 +5782,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: crestway-drive-trails
   - name: MacFarlane Road
     osm_names:
       - MacFarlane Road
@@ -5897,7 +5824,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '51'
-    member_of: meadowlands-drive-east-trails
   - name: Farlane Boulevard
     osm_names:
       - Farlane Boulevard
@@ -5911,7 +5837,6 @@ bike_paths:
     surface: asphalt
     cycleway: shared_lane
     highway: residential
-    member_of: farlane-boulevard-trails
   - name: Grant Carman Drive
     osm_names:
       - Grant Carman Drive
@@ -5941,7 +5866,6 @@ bike_paths:
     cycleway: shared_lane
     highway: secondary
     ref: '51'
-    member_of: meadowlands-drive-east-trails
   - name: Birchwood Drive
     osm_names:
       - Birchwood Drive
@@ -5984,7 +5908,6 @@ bike_paths:
     surface: asphalt
     cycleway: shared_lane
     highway: residential
-    member_of: farlane-boulevard-trails
   - name: Wallford Way
     osm_names:
       - Wallford Way
@@ -5998,7 +5921,6 @@ bike_paths:
     surface: asphalt
     cycleway: shared_lane
     highway: residential
-    member_of: farlane-boulevard-trails
   - name: Deer Park Road
     osm_names:
       - Deer Park Road
@@ -6083,7 +6005,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Portobello Boulevard
-    member_of: trim-road-trails
   - name: Valin Street
     osm_names:
       - Valin Street
@@ -6099,7 +6020,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Valin Street
-    member_of: trim-road-trails
   - name: Tenth Line Road
     osm_names:
       - Tenth Line Road
@@ -6147,7 +6067,6 @@ bike_paths:
     highway: secondary
     ref: '49'
     parallel_to: Eagleson Road
-    member_of: eagleson-road-trails
   - name: Fernbank Road
     osm_names:
       - Fernbank Road
@@ -6163,7 +6082,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Fernbank Road
-    member_of: eagleson-road-trails
   - name: Bank Street
     osm_names:
       - Bank Street
@@ -6181,7 +6099,6 @@ bike_paths:
     highway: primary
     ref: '31'
     parallel_to: Bank Street
-    member_of: bank-street-trails
     wikidata_meta:
       description_en: bridge in Canada
       description_fr: pont canadien
@@ -6237,7 +6154,6 @@ bike_paths:
     surface: paved
     cycleway: shared_lane
     highway: tertiary
-    member_of: rue-de-clarendon-trails
   - name: Chemin MacKechnie
     osm_names:
       - Chemin MacKechnie
@@ -6250,7 +6166,6 @@ bike_paths:
     surface: paved
     cycleway: shared_lane
     highway: unclassified
-    member_of: rue-de-clarendon-trails
   - name: Frank Kenny Road
     osm_names:
       - Frank Kenny Road
@@ -6279,7 +6194,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     bicycle: 'yes'
-    member_of: boulevard-wilfrid-lavigne-trails
   - name: Chemin de Montréal Ouest
     osm_names:
       - Chemin de Montréal Ouest
@@ -6343,7 +6257,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: unclassified
-    member_of: boulevard-de-la-cite-des-jeunes-trails
   - name: Tweddle Road
     osm_names:
       - Tweddle Road
@@ -6358,7 +6271,6 @@ bike_paths:
     cycleway: lane
     highway: unclassified
     parallel_to: Tweddle Road
-    member_of: jeanne-darc-boulevard-north-trails
   - name: Chemin du Lac-Meech
     osm_names:
       - Chemin du Lac-Meech
@@ -6382,7 +6294,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: boulevard-moussette-trails
   - name: Rue Jean-Proulx
     osm_names:
       - Rue Jean-Proulx
@@ -6407,7 +6318,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Chemin de la Mine
-    member_of: chemin-scott-trails
   - name: University Drive
     osm_names:
       - University Drive
@@ -6422,7 +6332,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: University Drive
-    member_of: university-drive-trails
   - name: Johnston Road
     osm_names:
       - Johnston Road
@@ -6436,7 +6345,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: conroy-road-trails
   - name: Chemin Eardley
     osm_names:
       - Chemin Eardley
@@ -6449,7 +6357,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Chemin Eardley
-    member_of: boulevard-wilfrid-lavigne-trails
   - name: Chemin Gold Mine Nord
     osm_names:
       - Chemin Gold Mine Nord
@@ -6461,7 +6368,6 @@ bike_paths:
     surface: unpaved
     cycleway: shared_lane
     highway: unclassified
-    member_of: rue-de-clarendon-trails
   - name: Boulevard Saint-René Est
     osm_names:
       - Boulevard Saint-René Est
@@ -6490,7 +6396,6 @@ bike_paths:
     highway: tertiary
     bicycle: 'yes'
     parallel_to: Crestway Drive
-    member_of: crestway-drive-trails
   - name: Chapman Mills Drive
     osm_names:
       - Chapman Mills Drive
@@ -6506,7 +6411,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Chapman Mills Drive
-    member_of: woodroffe-avenue-trails
   - name: Old Richmond Road
     osm_names:
       - Old Richmond Road
@@ -6539,7 +6443,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Fifth Avenue
-    member_of: bank-street-trails
   - name: Place Samuel-De Champlain
     osm_names:
       - Place Samuel-De Champlain
@@ -6552,7 +6455,6 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: primary
-    member_of: island-park-drive-trails
   - name: Merivale Road
     osm_names:
       - Merivale Road
@@ -6568,7 +6470,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '63'
-    member_of: merivale-road-trails
   - name: Kirkwood Avenue
     osm_names:
       - Kirkwood Avenue
@@ -6641,7 +6542,6 @@ bike_paths:
     cycleway: shared_lane
     highway: secondary
     ref: '71'
-    member_of: parkdale-avenue-trails
   - name: Wellington Street West
     osm_names:
       - Wellington Street West
@@ -6657,7 +6557,6 @@ bike_paths:
     cycleway: shared_lane
     highway: secondary
     ref: '36'
-    member_of: wellington-street-west-trails
   - name: Fisher Avenue
     osm_names:
       - Fisher Avenue
@@ -6703,7 +6602,6 @@ bike_paths:
     highway: primary
     ref: '97'
     parallel_to: Nicholas Street
-    member_of: mackenzie-king-bridge-trails
   - name: Boulevard Montclair
     osm_names:
       - Boulevard Montclair
@@ -6717,7 +6615,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Boulevard Montclair
-    member_of: boulevard-montclair-trails
   - name: Uplands Drive
     osm_names:
       - Uplands Drive
@@ -6731,7 +6628,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: secondary
-    member_of: uplands-drive-trails
   - name: Lester Road
     osm_names:
       - Lester Road
@@ -6746,7 +6642,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Lester Road
-    member_of: uplands-drive-trails
   - name: Boulevard des Grives
     osm_names:
       - Boulevard des Grives
@@ -6759,7 +6654,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Boulevard des Grives
-    member_of: boulevard-du-plateau-trails
   - name: Boulevard du Plateau
     osm_names:
       - Boulevard du Plateau
@@ -6773,7 +6667,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Boulevard du Plateau
-    member_of: boulevard-du-plateau-trails
   - name: Tyndall Street
     osm_names:
       - Tyndall Street
@@ -6787,7 +6680,6 @@ bike_paths:
     surface: asphalt
     cycleway: shared_lane
     highway: tertiary
-    member_of: parkdale-avenue-trails
   - name: Moodie Drive
     osm_names:
       - Moodie Drive
@@ -6821,7 +6713,6 @@ bike_paths:
     highway: secondary
     ref: '15'
     parallel_to: Woodroffe Avenue
-    member_of: woodroffe-avenue-trails
   - name: Renaud Road
     osm_names:
       - Renaud Road
@@ -6878,7 +6769,6 @@ bike_paths:
     cycleway: shared_lane
     highway: residential
     parallel_to: O'Connor Street
-    member_of: bank-street-trails
   - name: Boulevard Saint-Joseph
     osm_names:
       - Boulevard Saint-Joseph
@@ -6892,7 +6782,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Boulevard Saint-Joseph
-    member_of: boulevard-montclair-trails
   - name: Rue Gouin
     osm_names:
       - Rue Gouin
@@ -6917,7 +6806,6 @@ bike_paths:
     surface: asphalt
     cycleway: opposite_lane
     highway: residential
-    member_of: sussex-drive-trails
   - name: Rue Belleau
     osm_names:
       - Rue Belleau
@@ -6990,7 +6878,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '125'
-    member_of: conroy-road-trails
   - name: Holland Avenue
     osm_names:
       - Holland Avenue
@@ -7006,7 +6893,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     ref: '69'
-    member_of: parkdale-avenue-trails
   - name: Carp Road
     osm_names:
       - Carp Road
@@ -7022,7 +6908,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '5'
-    member_of: hazeldean-road-trails
   - name: Brian Coburn Boulevard
     osm_names:
       - Brian Coburn Boulevard
@@ -7053,7 +6938,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '26'
-    member_of: hawthorne-road-trails
   - name: Wajashk Private
     osm_names:
       - Wajashk Private
@@ -7082,7 +6966,6 @@ bike_paths:
     bicycle: 'yes'
     ref: '19'
     parallel_to: Riverside Drive
-    member_of: riverside-drive-trails
   - name: Mer Bleue Road
     osm_names:
       - Mer Bleue Road
@@ -7099,7 +6982,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '41'
-    member_of: innes-road-trails
   - name: Trim Road
     osm_names:
       - Trim Road
@@ -7117,7 +6999,6 @@ bike_paths:
     highway: secondary
     ref: '57'
     parallel_to: Trim Road
-    member_of: trim-road-trails
   - name: Rue Jos-Montferrand
     osm_names:
       - Rue Jos-Montferrand
@@ -7142,7 +7023,6 @@ bike_paths:
     surface: asphalt
     cycleway: shared_lane
     highway: residential
-    member_of: farlane-boulevard-trails
   - name: Stadium Way
     osm_names:
       - Stadium Way
@@ -7154,7 +7034,6 @@ bike_paths:
     surface: asphalt
     cycleway: shared_lane
     highway: unclassified
-    member_of: university-drive-trails
   - name: Boulevard de Lucerne
     osm_names:
       - Boulevard de Lucerne
@@ -7201,7 +7080,6 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
-    member_of: chemin-scott-trails
   - name: Rue Jacques-Cartier
     osm_names:
       - Rue Jacques-Cartier
@@ -7213,7 +7091,6 @@ bike_paths:
     surface: asphalt
     highway: residential
     parallel_to: Rue Jacques-Cartier
-    member_of: boulevard-de-la-gappe-trails
   - name: Rue Park
     osm_names:
       - Rue Park
@@ -7223,7 +7100,6 @@ bike_paths:
       - - -75.8443949
         - 45.3957505
     highway: secondary
-    member_of: boulevard-wilfrid-lavigne-trails
   - name: Carling Avenue
     osm_names:
       - Carling Avenue
@@ -7239,7 +7115,6 @@ bike_paths:
     highway: secondary
     ref: '38'
     parallel_to: Carling Avenue
-    member_of: herzberg-road-trails
   - name: Carling Avenue
     osm_names:
       - Carling Avenue
@@ -7255,7 +7130,6 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     ref: '38'
-    member_of: merivale-road-trails
   - name: Legget Drive
     osm_names:
       - Legget Drive
@@ -7293,7 +7167,6 @@ bike_paths:
     name_en: Seneca Street
     surface: asphalt
     highway: residential
-    member_of: seneca-street-trails
   - name: McLeod Street
     osm_names:
       - McLeod Street
@@ -7307,7 +7180,6 @@ bike_paths:
     surface: asphalt
     lit: 'yes'
     highway: residential
-    member_of: montreal-road-trails
   - name: Gladstone Avenue
     osm_names:
       - Gladstone Avenue
@@ -7320,7 +7192,6 @@ bike_paths:
     name_en: Gladstone Avenue
     surface: asphalt
     highway: residential
-    member_of: sussex-drive-trails
   - name: Lakeview Terrace
     osm_names:
       - Lakeview Terrace
@@ -7349,7 +7220,6 @@ bike_paths:
     highway: secondary
     ref: '40'
     parallel_to: Albert Street
-    member_of: mackenzie-king-bridge-trails
   - name: Sherwood Drive
     osm_names:
       - Sherwood Drive
@@ -7362,7 +7232,6 @@ bike_paths:
     name_en: Sherwood Drive
     surface: asphalt
     highway: tertiary
-    member_of: parkdale-avenue-trails
   - name: Cameron Avenue
     osm_names:
       - Cameron Avenue
@@ -7377,7 +7246,6 @@ bike_paths:
     lit: 'yes'
     highway: residential
     parallel_to: Cameron Avenue
-    member_of: seneca-street-trails
   - name: Slater Street
     osm_names:
       - Slater Street
@@ -7392,7 +7260,6 @@ bike_paths:
     lit: 'yes'
     highway: secondary
     parallel_to: Slater Street
-    member_of: mackenzie-king-bridge-trails
   - name: Mackenzie King Bridge
     osm_names:
       - Mackenzie King Bridge
@@ -7409,7 +7276,6 @@ bike_paths:
     lit: 'yes'
     highway: secondary
     bicycle: 'yes'
-    member_of: mackenzie-king-bridge-trails
     wikidata_meta:
       description_en: bridge in Canada
       description_fr: pont canadien
@@ -7425,7 +7291,6 @@ bike_paths:
     name_en: Université Private
     surface: asphalt
     highway: unclassified
-    member_of: copernicus-street-trails
   - name: Deschamps Avenue
     osm_names:
       - Deschamps Avenue
@@ -7451,7 +7316,7 @@ bike_paths:
     name_en: Jean-Jacques-Lussier Private
     surface: asphalt
     highway: pedestrian
-    member_of: copernicus-street-trails
+    member_of: jean-jacques-lussier-private-network
   - name: Copernicus Street
     osm_names:
       - Copernicus Street
@@ -7464,7 +7329,6 @@ bike_paths:
     name_en: Copernicus Street
     surface: asphalt
     highway: residential
-    member_of: copernicus-street-trails
   - name: Echo Drive
     osm_names:
       - Echo Drive
@@ -7491,7 +7355,6 @@ bike_paths:
     lit: 'yes'
     highway: residential
     bicycle: 'yes'
-    member_of: lees-avenue-trails
   - name: Woodfield Drive
     osm_names:
       - Woodfield Drive
@@ -7518,7 +7381,6 @@ bike_paths:
     surface: asphalt
     lit: 'yes'
     highway: residential
-    member_of: bank-street-trails
   - name: Lynda Lane
     osm_names:
       - Lynda Lane
@@ -7567,7 +7429,6 @@ bike_paths:
     lit: 'yes'
     highway: primary
     ref: '34'
-    member_of: montreal-road-trails
     name_en: Cummings Bridge
     wikidata_meta:
       description_en: bridge in Ottawa
@@ -7597,7 +7458,6 @@ bike_paths:
         - 45.4576794
     surface: asphalt
     highway: residential
-    member_of: boulevard-de-la-gappe-trails
   - name: Arlington Avenue
     osm_names:
       - Arlington Avenue
@@ -7644,7 +7504,6 @@ bike_paths:
     name_en: Louis-Pasteur Private
     surface: asphalt
     highway: residential
-    member_of: copernicus-street-trails
   - name: Mackenzie Avenue
     osm_names:
       - Mackenzie Avenue
@@ -7658,7 +7517,6 @@ bike_paths:
     surface: asphalt
     highway: secondary
     parallel_to: Mackenzie Avenue
-    member_of: montreal-road-trails
   - name: Boulevard Louise-Campagna
     osm_names:
       - Boulevard Louise-Campagna
@@ -7684,7 +7542,6 @@ bike_paths:
     highway: secondary
     ref: '13'
     parallel_to: Greenbank Road
-    member_of: greenbank-road-trails
   - name: Waller Street
     osm_names:
       - Waller Street
@@ -7699,7 +7556,6 @@ bike_paths:
     highway: primary
     ref: '97'
     parallel_to: Waller Street
-    member_of: mackenzie-king-bridge-trails
   - name: Garland Street
     osm_names:
       - Garland Street
@@ -7713,7 +7569,6 @@ bike_paths:
     surface: asphalt
     highway: residential
     parallel_to: Garland Street
-    member_of: wellington-street-west-trails
   - name: Bay Street
     osm_names:
       - Bay Street
@@ -7728,7 +7583,6 @@ bike_paths:
     lit: 'yes'
     highway: residential
     parallel_to: Bay Street
-    member_of: montreal-road-trails
   - name: Heron Road
     osm_names:
       - Heron Road
@@ -7763,7 +7617,6 @@ bike_paths:
     highway: primary
     ref: '44'
     parallel_to: St. Patrick Street
-    member_of: sussex-drive-trails
   - name: Ogilvie Road
     osm_names:
       - Ogilvie Road
@@ -7779,7 +7632,6 @@ bike_paths:
     highway: secondary
     ref: '50'
     parallel_to: Ogilvie Road
-    member_of: ogilvie-road-trails
   - name: Wilbrod Street
     osm_names:
       - Wilbrod Street
@@ -7793,7 +7645,6 @@ bike_paths:
     surface: asphalt
     lit: 'yes'
     highway: residential
-    member_of: sussex-drive-trails
   - name: Greenfield Avenue
     osm_names:
       - Greenfield Avenue
@@ -7808,7 +7659,6 @@ bike_paths:
     highway: secondary
     ref: '64'
     parallel_to: Greenfield Avenue
-    member_of: lees-avenue-trails
   - name: Marie-Curie Private
     osm_names:
       - Marie-Curie Private
@@ -7822,7 +7672,7 @@ bike_paths:
     surface: asphalt
     highway: pedestrian
     bicycle: 'yes'
-    member_of: copernicus-street-trails
+    member_of: jean-jacques-lussier-private-network
   - name: Mann Avenue
     osm_names:
       - Mann Avenue
@@ -7836,7 +7686,6 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     ref: '64'
-    member_of: lees-avenue-trails
   - name: Bearbrook Road
     osm_names:
       - Bearbrook Road
@@ -7865,7 +7714,6 @@ bike_paths:
     lit: 'yes'
     highway: secondary
     parallel_to: Strandherd Drive
-    member_of: strandherd-drive-trails
   - name: Hunt Club Road
     osm_names:
       - Hunt Club Road
@@ -7882,7 +7730,6 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     ref: '32'
-    member_of: west-hunt-club-road-trails
   - name: Bridle Path Drive
     osm_names:
       - Bridle Path Drive
@@ -7895,7 +7742,6 @@ bike_paths:
     name_en: Bridle Path Drive
     surface: asphalt
     highway: tertiary
-    member_of: west-hunt-club-road-trails
   - name: Smyth Road
     osm_names:
       - Smyth Road
@@ -7911,7 +7757,6 @@ bike_paths:
     highway: secondary
     ref: '72'
     parallel_to: Smyth Road
-    member_of: smyth-road-trails
   - name: Walkley Road
     osm_names:
       - Walkley Road
@@ -7967,7 +7812,6 @@ bike_paths:
     highway: secondary
     ref: '72'
     parallel_to: Main Street
-    member_of: smyth-road-trails
   - name: Boulevard de l'Hôpital
     osm_names:
       - Boulevard de l'Hôpital
@@ -7992,7 +7836,6 @@ bike_paths:
     name_en: Morgan's Grant Way
     surface: asphalt
     highway: tertiary
-    member_of: march-road-trails
   - name: Limebank Road
     osm_names:
       - Limebank Road
@@ -8008,7 +7851,6 @@ bike_paths:
     highway: secondary
     bicycle: 'yes'
     parallel_to: Limebank Road
-    member_of: limebank-road-trails
   - name: Earl Armstrong Road
     osm_names:
       - Earl Armstrong Road
@@ -8023,7 +7865,6 @@ bike_paths:
     highway: secondary
     bicycle: 'yes'
     parallel_to: Earl Armstrong Road
-    member_of: strandherd-drive-trails
   - name: Spratt Road
     osm_names:
       - Spratt Road
@@ -8037,7 +7878,6 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     bicycle: 'yes'
-    member_of: limebank-road-trails
   - name: Boulevard de Carrefour
     osm_names:
       - Boulevard de Carrefour
@@ -8076,7 +7916,6 @@ bike_paths:
     highway: secondary
     ref: 5A
     parallel_to: Stittsville Main Street
-    member_of: hazeldean-road-trails
   - name: Jeanne-d'Arc Boulevard South
     osm_names:
       - Jeanne-d'Arc Boulevard South
@@ -8090,7 +7929,6 @@ bike_paths:
     surface: asphalt
     highway: secondary
     ref: '55'
-    member_of: innes-road-trails
   - name: Old Montréal Road
     osm_names:
       - Old Montréal Road
@@ -8142,7 +7980,6 @@ bike_paths:
     lit: 'yes'
     highway: secondary
     parallel_to: Rue Principale
-    member_of: boulevard-wilfrid-lavigne-trails
   - name: Egan Road
     osm_names:
       - Egan Road
@@ -8155,7 +7992,6 @@ bike_paths:
     name_en: Egan Road
     surface: asphalt
     highway: residential
-    member_of: garner-avenue-trails
   - name: Garner Avenue
     osm_names:
       - Garner Avenue
@@ -8169,7 +8005,6 @@ bike_paths:
     surface: asphalt
     lit: 'no'
     highway: residential
-    member_of: garner-avenue-trails
   - name: Hobson Road
     osm_names:
       - Hobson Road
@@ -8182,7 +8017,6 @@ bike_paths:
     name_en: Hobson Road
     surface: asphalt
     highway: residential
-    member_of: garner-avenue-trails
   - name: Rue des Beaux-Arts
     osm_names:
       - Rue des Beaux-Arts
@@ -9328,7 +9162,6 @@ bike_paths:
     highway: footway
     bicycle: dismount
     parallel_to: Rue Saint-Louis
-    member_of: boulevard-de-la-gappe-trails
   - name: Rue du Barry
     osm_names:
       - Rue du Barry
@@ -9425,7 +9258,7 @@ bike_paths:
     surface: concrete
     highway: footway
     bicycle: dismount
-    member_of: chemin-du-lac-leamy-trails
+    member_of: chemin-du-lac-leamy-network
   - name: Rue de Verdun
     osm_names:
       - Rue de Verdun
@@ -11475,7 +11308,7 @@ bike_paths:
     smoothness: good
     network: lcn
     operator: NCC
-  - name: Sentier du Ruisseau-de-la-Brasserie Pathway Trails
+  - name: Sentier du Ruisseau-de-la-Brasserie Pathway Network
     type: network
     members:
       - sentier-du-ruisseau-de-la-brasserie-pathway
@@ -11497,7 +11330,7 @@ bike_paths:
     width: '2'
     network: lcn
     smoothness: good
-  - name: Sentier des Pionniers Pathway Trails
+  - name: Sentier des Pionniers Pathway Network
     type: network
     members:
       - sentier-des-pionniers-pathway
@@ -11520,6 +11353,7 @@ bike_paths:
     smoothness: good
     network: rcn
     operator: National Capital Commission
+    super_network: capital-pathway
   - name: NCC Greenbelt
     type: network
     members:
@@ -11564,19 +11398,19 @@ bike_paths:
       - trail-43-pine-grove-forestry-trail
       - trail-42
       - arboretum-loop
-      - cedarview-road
-      - bruin-road
-      - st-joseph-boulevard-2
-      - bearbrook-road
-      - moodie-drive
-      - robertson-road
       - watts-creek-pathway
       - ottawa-greenbelt-trail
       - greenbelt-pathway
       - greens-creek-bridge
       - '31'
       - sir-george-etienne-cartier-parkway-1
+      - cedarview-road
+      - bruin-road
+      - st-joseph-boulevard-2
       - old-richmond-road
+      - moodie-drive
+      - robertson-road
+      - bearbrook-road
       - john-sutherland-drive
       - anderson-road
       - tauvette-street
@@ -11626,12 +11460,6 @@ bike_paths:
       - Trail 43 - Pine Grove Forestry Trail
       - Trail 42
       - Arboretum Loop
-      - Cedarview Road
-      - Bruin Road
-      - St. Joseph Boulevard
-      - Bearbrook Road
-      - Moodie Drive
-      - Robertson Road
     osm_relations:
       - 3461068
       - 7248705
@@ -11663,7 +11491,7 @@ bike_paths:
     width: '2'
     smoothness: good
     mtb: true
-  - name: Rideau Canal Western Pathway Trails
+  - name: Rideau Canal Western Pathway Network
     type: network
     members:
       - rideau-canal-western-pathway
@@ -11685,6 +11513,7 @@ bike_paths:
     smoothness: good
     operator: NCC
     network: rcn
+    super_network: capital-pathway
   - name: Trans Canada Trail Trails
     type: network
     members:
@@ -11713,7 +11542,7 @@ bike_paths:
     width: '3'
     smoothness: good
     mtb: true
-  - name: Sawmill Creek Path Trails
+  - name: Sawmill Creek Path Network
     type: network
     members:
       - sawmill-creek-pathway
@@ -11754,7 +11583,7 @@ bike_paths:
     width: '2.5'
     smoothness: intermediate
     mtb: true
-  - name: Chief William Commanda Bridge Trails
+  - name: Chief William Commanda Bridge Network
     type: network
     members:
       - chief-william-commanda-bridge
@@ -11771,7 +11600,7 @@ bike_paths:
     highway: cycleway
     width: '4'
     smoothness: good
-  - name: Chemin du Lac-Leamy Trails
+  - name: Chemin du Lac-Leamy Network
     type: network
     members:
       - chemin-du-lac-leamy
@@ -12090,7 +11919,7 @@ bike_paths:
     highway: path
     width: '2.5'
     mtb: true
-  - name: Boulevard Maloney Sidepath Trails
+  - name: Boulevard Maloney Sidepath Network
     type: network
     members:
       - boulevard-maloney-sidepath
@@ -12108,76 +11937,6 @@ bike_paths:
     width: '2.5'
     smoothness: good
     lit: 'no'
-  - name: Boulevard de la Gappe Trails
-    type: network
-    members:
-      - boulevard-de-la-gappe
-      - boulevard-greber
-      - chemin-de-la-savane
-      - boulevard-maloney-ouest
-      - rue-saint-antoine
-      - rue-jacques-cartier
-      - rue-de-la-baie
-      - rue-saint-louis
-    anchors:
-      - - -75.7219184
-        - 45.4568862
-      - - -75.6980806
-        - 45.4783835
-    osm_names:
-      - Boulevard de la Gappe
-      - Boulevard Gréber
-      - Chemin de la Savane
-      - Boulevard Maloney Ouest
-      - Rue Saint-Antoine
-      - Rue Jacques-Cartier
-      - Rue de la Baie
-      - Rue Saint-Louis
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '2.5'
-    smoothness: good
-  - name: Boulevard La Vérendrye Ouest Trails
-    type: network
-    members:
-      - boulevard-la-verendrye-ouest
-      - avenue-gatineau
-      - rue-de-touraine
-    anchors:
-      - - -75.7241409
-        - 45.4788324
-      - - -75.7122303
-        - 45.4902627
-    osm_names:
-      - Boulevard La Vérendrye Ouest
-      - Avenue Gatineau
-      - Rue de Touraine
-    surface: asphalt
-    highway: cycleway
-    lit: 'no'
-    width: '2.5'
-    smoothness: good
-  - name: Boulevard de la Cité-des-Jeunes Trails
-    type: network
-    members:
-      - boulevard-des-hautes-plaines
-      - boulevard-de-la-cite-des-jeunes
-      - rue-gamelin
-    anchors:
-      - - -75.7847758
-        - 45.4416577
-      - - -75.7506006
-        - 45.4747071
-    osm_names:
-      - Boulevard des Hautes-Plaines
-      - Boulevard de la Cité-des-Jeunes
-      - Rue Gamelin
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '3'
-    smoothness: excellent
   - name: Osgoode-Leitrim Multi-use Pathway Trails
     type: network
     members:
@@ -12196,7 +11955,7 @@ bike_paths:
     width: '3'
     smoothness: good
     mtb: true
-  - name: Pont Lady-Aberdeen Trails
+  - name: Pont Lady-Aberdeen Network
     type: network
     members:
       - pont-lady-aberdeen
@@ -12212,7 +11971,7 @@ bike_paths:
     surface: asphalt
     highway: cycleway
     width: '2'
-  - name: Portage Bridge cycle track Trails
+  - name: Portage Bridge cycle track Network
     type: network
     members:
       - portage-bridge-cycle-track
@@ -12249,42 +12008,6 @@ bike_paths:
     highway: cycleway
     lit: 'no'
     mtb: true
-  - name: Boulevard de la Carrière Trails
-    type: network
-    members:
-      - rue-atawe
-      - boulevard-de-la-carriere
-    anchors:
-      - - -75.731351
-        - 45.4516873
-      - - -75.727771
-        - 45.4552675
-    osm_names:
-      - Rue Atawe
-      - Boulevard de la Carrière
-    surface: asphalt
-    highway: cycleway
-    width: '2.5'
-  - name: Chemin Scott Trails
-    type: network
-    members:
-      - chemin-old-chelsea
-      - chemin-scott
-      - chemin-de-la-mine
-      - chemin-notch
-    anchors:
-      - - -75.8146362
-        - 45.4775348
-      - - -75.7920486
-        - 45.5258838
-    osm_names:
-      - Chemin Old Chelsea
-      - Chemin Scott
-      - Chemin de la Mine
-      - Chemin Notch
-    surface: asphalt
-    highway: tertiary
-    lit: 'yes'
   - name: Kizell Pond Trail North Trails
     type: network
     members:
@@ -12511,853 +12234,21 @@ bike_paths:
     highway: path
     width: '0.5'
     mtb: true
-  - name: Boulevard Moussette Trails
+  - name: Jean-Jacques-Lussier Private Network
     type: network
     members:
-      - rue-isabelle
-      - boulevard-du-mont-bleu
-      - rue-dorsonnens
-      - boulevard-moussette
-      - boulevard-riel
-    anchors:
-      - - -75.7676689
-        - 45.433602
-      - - -75.7434188
-        - 45.4616187
-    osm_names:
-      - Rue Isabelle
-      - Boulevard du Mont-Bleu
-      - Rue d'Orsonnens
-      - Boulevard Moussette
-      - Boulevard Riel
-    surface: asphalt
-    highway: tertiary
-    lit: 'yes'
-  - name: Boulevard Wilfrid-Lavigne Trails
-    type: network
-    members:
-      - rue-du-caveau
-      - boulevard-wilfrid-lavigne
-      - chemin-eardley
-      - rue-park
-      - rue-principale
-    anchors:
-      - - -75.8553457
-        - 45.3949473
-      - - -75.828952
-        - 45.420658
-    osm_names:
-      - Rue du Caveau
-      - Boulevard Wilfrid-Lavigne
-      - Chemin Eardley
-      - Rue Park
-      - Rue Principale
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Boulevard Montclair Trails
-    type: network
-    members:
-      - rue-saint-redempteur
-      - boulevard-montclair
-      - boulevard-saint-joseph
-    anchors:
-      - - -75.7329974
-        - 45.4357802
-      - - -75.7221231
-        - 45.4410598
-    osm_names:
-      - Rue Saint-Rédempteur
-      - Boulevard Montclair
-      - Boulevard Saint-Joseph
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Bridge Street Trails
-    type: network
-    members:
-      - bridge-street
-      - perth-street
-    anchors:
-      - - -76.1988507
-        - 45.2166324
-      - - -76.195383
-        - 45.222156
-    osm_names:
-      - Bridge Street
-      - Perth Street
-    surface: asphalt
-    highway: secondary
-  - name: Boulevard Hurtubise Trails
-    type: network
-    members:
-      - boulevard-hurtubise
-      - rue-campeau
-    anchors:
-      - - -75.6329852
-        - 45.4759091
-      - - -75.6096597
-        - 45.4813514
-    osm_names:
-      - Boulevard Hurtubise
-      - Rue Campeau
-    highway: residential
-    width: '6'
-    surface: asphalt
-  - name: Kanata Avenue Trails
-    type: network
-    members:
-      - kanata-avenue
-      - winchester-drive
-      - castlefrank-road
-      - goulbourn-forced-road
-    anchors:
-      - - -75.9324011
-        - 45.2901517
-      - - -75.8841386
-        - 45.3272479
-    osm_names:
-      - Kanata Avenue
-      - Winchester Drive
-      - Castlefrank Road
-      - Goulbourn Forced Road
-    surface: asphalt
-    highway: tertiary
-  - name: Beaverbrook Road Trails
-    type: network
-    members:
-      - knudson-drive
-      - weslock-way
-      - walden-drive
-      - beaverbrook-road
-    anchors:
-      - - -75.9234681
-        - 45.3169755
-      - - -75.8993126
-        - 45.3325073
-    osm_names:
-      - Knudson Drive
-      - Weslock Way
-      - Walden Drive
-      - Beaverbrook Road
-    surface: asphalt
-    highway: tertiary
-  - name: Herzberg Road Trails
-    type: network
-    members:
-      - herzberg-road
-      - carling-avenue-2
-    anchors:
-      - - -75.9116424
-        - 45.3329492
-      - - -75.8500546
-        - 45.3551157
-    osm_names:
-      - Herzberg Road
-      - Carling Avenue
-    surface: asphalt
-    highway: tertiary
-    lit: 'yes'
-  - name: March Road Trails
-    type: network
-    members:
-      - march-road
-      - shirleys-brook-drive
-      - morgans-grant-way
-    anchors:
-      - - -75.9393554
-        - 45.3240245
-      - - -75.8879518
-        - 45.3604501
-    osm_names:
-      - March Road
-      - Shirley's Brook Drive
-      - Morgan's Grant Way
-    surface: asphalt
-    highway: tertiary
-    lit: 'yes'
-  - name: Hazeldean Road Trails
-    type: network
-    members:
-      - iber-road
-      - hazeldean-road
-      - carp-road
-      - stittsville-main-street
-    anchors:
-      - - -75.941859
-        - 45.2659364
-      - - -75.8895169
-        - 45.2973513
-    osm_names:
-      - Iber Road
-      - Hazeldean Road
-      - Carp Road
-      - Stittsville Main Street
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: West Hunt Club Road Trails
-    type: network
-    members:
-      - west-hunt-club-road
-      - hunt-club-road
-      - bridle-path-drive
-    anchors:
-      - - -75.8301307
-        - 45.3020393
-      - - -75.5916134
-        - 45.3764818
-    osm_names:
-      - West Hunt Club Road
-      - Hunt Club Road
-      - Bridle Path Drive
-    surface: asphalt
-    highway: primary
-    lit: 'yes'
-  - name: Greenbank Road Trails
-    type: network
-    members:
-      - highbury-park-drive
-      - greenbank-road
-    anchors:
-      - - -75.7541939
-        - 45.2423341
-      - - -75.7294285
-        - 45.2833023
-    osm_names:
-      - Highbury Park Drive
-      - Greenbank Road
-    surface: asphalt
-    highway: tertiary
-  - name: Island Park Drive Trails
-    type: network
-    members:
-      - island-park-drive
-      - champlain-bridge
-      - pont-champlain-bridge
-      - place-samuel-de-champlain
-    anchors:
-      - - -75.7665891
-        - 45.3892932
-      - - -75.7267104
-        - 45.4138942
-    osm_names:
-      - Island Park Drive
-      - Champlain Bridge
-      - Pont Champlain Bridge
-      - Place Samuel-De Champlain
-    surface: asphalt
-    highway: primary
-    lit: 'yes'
-  - name: Dovercourt Avenue Trails
-    type: network
-    members:
-      - sherbourne-road
-      - dovercourt-avenue
-    anchors:
-      - - -75.7707839
-        - 45.3759322
-      - - -75.7570085
-        - 45.3815605
-    osm_names:
-      - Sherbourne Road
-      - Dovercourt Avenue
-    surface: asphalt
-    highway: tertiary
-    lit: 'yes'
-  - name: Bank Street Trails
-    type: network
-    members:
-      - glebe-avenue
-      - first-avenue
-      - bank-street
-      - fifth-avenue
-      - oconnor-street
-      - holmwood-avenue
-    anchors:
-      - - -75.6958129
-        - 45.3205226
-      - - -75.5937791
-        - 45.4092192
-    osm_names:
-      - Glebe Avenue
-      - First Avenue
-      - Bank Street
-      - Fifth Avenue
-      - O'Connor Street
-      - Holmwood Avenue
-    surface: asphalt
-    highway: residential
-    lit: 'yes'
-  - name: Sussex Drive Trails
-    type: network
-    members:
-      - elgin-street
-      - laurier-avenue-west
-      - sussex-drive
-      - cumberland-street
-      - laurier-avenue-east
-      - beausoleil-drive
-      - cobourg-street
-      - hawthorne-avenue
-      - stewart-street
-      - gladstone-avenue
-      - st-patrick-street
-      - wilbrod-street
-    anchors:
-      - - -75.699367
-        - 45.4112487
-      - - -75.6757402
-        - 45.444516
-    osm_names:
-      - Elgin Street
-      - Laurier Avenue West
-      - Sussex Drive
-      - Cumberland Street
-      - Laurier Avenue East
-      - Beausoleil Drive
-      - Cobourg Street
-      - Hawthorne Avenue
-      - Stewart Street
-      - Gladstone Avenue
-      - St. Patrick Street
-      - Wilbrod Street
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Montréal Road Trails
-    type: network
-    members:
-      - percy-street
-      - lyon-street-north
-      - wellington-street
-      - rideau-street
-      - chapel-street
-      - montreal-road
-      - mcleod-street
-      - cummings-bridge
-      - mackenzie-avenue
-      - bay-street
-    anchors:
-      - - -75.7145919
-        - 45.4045544
-      - - -75.5862912
-        - 45.4505946
-    osm_names:
-      - Percy Street
-      - Lyon Street North
-      - Wellington Street
-      - Rideau Street
-      - Chapel Street
-      - Montréal Road
-      - McLeod Street
-      - Cummings Bridge
-      - Mackenzie Avenue
-      - Bay Street
-    surface: asphalt
-    highway: residential
-    lit: 'yes'
-  - name: Ogilvie Road Trails
-    type: network
-    members:
-      - belfast-road
-      - coventry-road
-      - ogilvie-road
-    anchors:
-      - - -75.6474051
-        - 45.4122258
-      - - -75.5938772
-        - 45.4472573
-    osm_names:
-      - Belfast Road
-      - Coventry Road
-      - Ogilvie Road
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Lees Avenue Trails
-    type: network
-    members:
-      - lees-avenue
-      - graham-avenue
-      - greenfield-avenue
-      - mann-avenue
-    anchors:
-      - - -75.6822812
-        - 45.4111476
-      - - -75.6691143
-        - 45.4192272
-    osm_names:
-      - Lees Avenue
-      - Graham Avenue
-      - Greenfield Avenue
-      - Mann Avenue
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-    operator: OC Transpo
-  - name: Hawthorne Road Trails
-    type: network
-    members:
-      - st-laurent-boulevard
-      - hawthorne-road
-      - lancaster-road
-      - russell-road
-    anchors:
-      - - -75.6517262
-        - 45.3717752
-      - - -75.595969
-        - 45.4496825
-    osm_names:
-      - St-Laurent Boulevard
-      - Hawthorne Road
-      - Lancaster Road
-      - Russell Road
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Beechwood Avenue Trails
-    type: network
-    members:
-      - hemlock-road
-      - beechwood-avenue
-    anchors:
-      - - -75.6778046
-        - 45.4383193
-      - - -75.651802
-        - 45.4498152
-    osm_names:
-      - Hemlock Road
-      - Beechwood Avenue
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Sunview Drive Trails
-    type: network
-    members:
-      - belcourt-boulevard
-      - sunview-drive
-    anchors:
-      - - -75.522285
-        - 45.4599439
-      - - -75.5099417
-        - 45.4714918
-    osm_names:
-      - Belcourt Boulevard
-      - Sunview Drive
-    surface: asphalt
-    highway: tertiary
-    lit: 'yes'
-    width: '10'
-  - name: Jeanne-d'Arc Boulevard North Trails
-    type: network
-    members:
-      - jeanne-darc-boulevard-north
-      - tweddle-road
-    anchors:
-      - - -75.502719
-        - 45.4905437
-      - - -75.4823627
-        - 45.4971387
-    osm_names:
-      - Jeanne-d'Arc Boulevard North
-      - Tweddle Road
-    surface: asphalt
-    highway: secondary
-  - name: Innes Road Trails
-    type: network
-    members:
-      - innes-road
-      - mer-bleue-road
-      - jeanne-darc-boulevard-south
-    anchors:
-      - - -75.6268865
-        - 45.4069243
-      - - -75.440591
-        - 45.4739653
-    osm_names:
-      - Innes Road
-      - Mer Bleue Road
-      - Jeanne-d'Arc Boulevard South
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-    width: '9.5'
-  - name: Riverside Drive Trails
-    type: network
-    members:
-      - river-road
-      - riverside-drive
-    anchors:
-      - - -75.7003539
-        - 45.2685925
-      - - -75.6649791
-        - 45.4086933
-    osm_names:
-      - River Road
-      - Riverside Drive
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Woodroffe Avenue Trails
-    type: network
-    members:
-      - longfields-drive
-      - chapman-mills-drive
-      - woodroffe-avenue
-    anchors:
-      - - -75.7611255
-        - 45.2551025
-      - - -75.7169584
-        - 45.3490053
-    osm_names:
-      - Longfields Drive
-      - Chapman Mills Drive
-      - Woodroffe Avenue
-    surface: asphalt
-    highway: tertiary
-    lit: 'yes'
-  - name: Crestway Drive Trails
-    type: network
-    members:
-      - leikin-drive
-      - crestway-drive
-    anchors:
-      - - -75.7155927
-        - 45.2776378
-      - - -75.7023592
-        - 45.3015986
-    osm_names:
-      - Leikin Drive
-      - Crestway Drive
-    surface: asphalt
-    highway: tertiary
-  - name: Meadowlands Drive East Trails
-    type: network
-    members:
-      - meadowlands-drive
-      - meadowlands-drive-east
-    anchors:
-      - - -75.7280698
-        - 45.3571262
-      - - -75.7076934
-        - 45.3643429
-    osm_names:
-      - Meadowlands Drive
-      - Meadowlands Drive East
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Farlane Boulevard Trails
-    type: network
-    members:
-      - farlane-boulevard
-      - beaver-ridge
-      - wallford-way
-      - warbonnet-drive
-    anchors:
-      - - -75.7308398
-        - 45.3595184
-      - - -75.7238112
-        - 45.3669287
-    osm_names:
-      - Farlane Boulevard
-      - Beaver Ridge
-      - Wallford Way
-      - Warbonnet Drive
-    surface: asphalt
-    highway: residential
-  - name: Trim Road Trails
-    type: network
-    members:
-      - portobello-boulevard
-      - valin-street
-      - trim-road
-    anchors:
-      - - -75.4796089
-        - 45.4219481
-      - - -75.4272293
-        - 45.4913522
-    osm_names:
-      - Portobello Boulevard
-      - Valin Street
-      - Trim Road
-    surface: asphalt
-    highway: tertiary
-    width: '8.5'
-    lit: 'yes'
-  - name: Eagleson Road Trails
-    type: network
-    members:
-      - eagleson-road
-      - fernbank-road
-    anchors:
-      - - -75.8712853
-        - 45.2727017
-      - - -75.8595054
-        - 45.2854892
-    osm_names:
-      - Eagleson Road
-      - Fernbank Road
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Rue de Clarendon Trails
-    type: network
-    members:
-      - rue-de-clarendon
-      - chemin-mackechnie
-      - chemin-gold-mine-nord
-    anchors:
-      - - -76.300129
-        - 45.5211703
-      - - -76.2033403
-        - 45.5352635
-    osm_names:
-      - Rue de Clarendon
-      - Chemin MacKechnie
-      - Chemin Gold Mine Nord
-    surface: paved
-    highway: unclassified
-  - name: University Drive Trails
-    type: network
-    members:
-      - university-drive
-      - stadium-way
-    anchors:
-      - - -75.6958688
-        - 45.3875148
-      - - -75.6925574
-        - 45.3885369
-    osm_names:
-      - University Drive
-      - Stadium Way
-    surface: asphalt
-    highway: tertiary
-  - name: Conroy Road Trails
-    type: network
-    members:
-      - johnston-road
-      - conroy-road
-    anchors:
-      - - -75.630619
-        - 45.3637307
-      - - -75.6187048
-        - 45.3837952
-    osm_names:
-      - Johnston Road
-      - Conroy Road
-    surface: asphalt
-    highway: tertiary
-    lit: 'yes'
-  - name: Merivale Road Trails
-    type: network
-    members:
-      - merivale-road
-      - carling-avenue-1
-    anchors:
-      - - -75.7421324
-        - 45.3642082
-      - - -75.7307018
-        - 45.3888302
-    osm_names:
-      - Merivale Road
-      - Carling Avenue
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Parkdale Avenue Trails
-    type: network
-    members:
-      - parkdale-avenue
-      - tyndall-street
-      - holland-avenue
-      - sherwood-drive
-    anchors:
-      - - -75.7349678
-        - 45.3938074
-      - - -75.7267512
-        - 45.4104236
-    osm_names:
-      - Parkdale Avenue
-      - Tyndall Street
-      - Holland Avenue
-      - Sherwood Drive
-    surface: asphalt
-    highway: tertiary
-    lit: 'yes'
-  - name: Wellington Street West Trails
-    type: network
-    members:
-      - wellington-street-west
-      - garland-street
-    anchors:
-      - - -75.7273469
-        - 45.4015309
-      - - -75.7225833
-        - 45.4061564
-    osm_names:
-      - Wellington Street West
-      - Garland Street
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Mackenzie King Bridge Trails
-    type: network
-    members:
-      - nicholas-street
-      - albert-street
-      - slater-street
-      - mackenzie-king-bridge
-      - waller-street
-    anchors:
-      - - -75.711792
-        - 45.413299
-      - - -75.6875591
-        - 45.4254177
-    osm_names:
-      - Nicholas Street
-      - Albert Street
-      - Slater Street
-      - Mackenzie King Bridge
-      - Waller Street
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Uplands Drive Trails
-    type: network
-    members:
-      - uplands-drive
-      - lester-road
-    anchors:
-      - - -75.6580128
-        - 45.3288984
-      - - -75.6490021
-        - 45.3316394
-    osm_names:
-      - Uplands Drive
-      - Lester Road
-    surface: asphalt
-    highway: secondary
-  - name: Boulevard du Plateau Trails
-    type: network
-    members:
-      - boulevard-des-grives
-      - boulevard-du-plateau
-    anchors:
-      - - -75.809812
-        - 45.4214639
-      - - -75.7803523
-        - 45.4441099
-    osm_names:
-      - Boulevard des Grives
-      - Boulevard du Plateau
-    surface: asphalt
-    highway: tertiary
-    lit: 'yes'
-  - name: Seneca Street Trails
-    type: network
-    members:
-      - seneca-street
-      - cameron-avenue
-    anchors:
-      - - -75.6915773
-        - 45.3886341
-      - - -75.6807993
-        - 45.3934399
-    osm_names:
-      - Seneca Street
-      - Cameron Avenue
-    surface: asphalt
-    highway: residential
-    lit: 'yes'
-  - name: Copernicus Street Trails
-    type: network
-    members:
-      - universite-private
       - jean-jacques-lussier-private
-      - copernicus-street
-      - louis-pasteur-private
       - marie-curie-private
     anchors:
-      - - -75.6831516
+      - - -75.6828042
         - 45.4213633
       - - -75.6810752
-        - 45.4241299
+        - 45.4222675
     osm_names:
-      - Université Private
       - Jean-Jacques-Lussier Private
-      - Copernicus Street
-      - Louis-Pasteur Private
       - Marie-Curie Private
     surface: asphalt
     highway: pedestrian
-  - name: Strandherd Drive Trails
-    type: network
-    members:
-      - strandherd-drive
-      - earl-armstrong-road
-    anchors:
-      - - -75.7463703
-        - 45.2689273
-      - - -75.6610543
-        - 45.2829443
-    osm_names:
-      - Strandherd Drive
-      - Earl Armstrong Road
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Smyth Road Trails
-    type: network
-    members:
-      - smyth-road
-      - main-street
-    anchors:
-      - - -75.6732412
-        - 45.3990595
-      - - -75.6242061
-        - 45.4014109
-    osm_names:
-      - Smyth Road
-      - Main Street
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Limebank Road Trails
-    type: network
-    members:
-      - limebank-road
-      - spratt-road
-    anchors:
-      - - -75.6887408
-        - 45.2760837
-      - - -75.6646024
-        - 45.3213794
-    osm_names:
-      - Limebank Road
-      - Spratt Road
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-  - name: Garner Avenue Trails
-    type: network
-    members:
-      - egan-road
-      - garner-avenue
-      - hobson-road
-    anchors:
-      - - -75.6882504
-        - 45.3693333
-      - - -75.6854835
-        - 45.371918
-    osm_names:
-      - Egan Road
-      - Garner Avenue
-      - Hobson Road
-    surface: asphalt
-    highway: residential
-    lit: 'no'
   - name: Coulicou Trails
     type: network
     members:
@@ -13450,6 +12341,7 @@ bike_paths:
       - 10986223
     network: lcn
     cycle_network: CA:ON:Ottawa
+    super_network: ottawa-bikeways
   - name: Capital Pathway
     type: network
     members:
@@ -13474,6 +12366,12 @@ bike_paths:
       length_km: 220
       inception: 1970s
       website: https://ncc-ccn.gc.ca/places/capital-pathway
+  - name: Ottawa Bikeways
+    type: network
+    members:
+      - crosstown-bikeway-3
+      - crosstown-bikeway-5
+    cycle_network: CA:ON:Ottawa
 super_networks:
   - name: Sentier Trans-Canadien (Québec)
     slug: sentier-trans-canadien-quebec
@@ -13487,3 +12385,5 @@ super_networks:
     wikidata: Q5035630
     operator: NCC
     name_fr: Sentier de la capitale
+  - name: Ottawa Bikeways
+    slug: ottawa-bikeways

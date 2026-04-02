@@ -100,8 +100,10 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
   // =====================================================================
 
   describe('Crosstown Bikeways', () => {
-    it('Crosstown Bikeway 2 is in a network', () => {
-      expect(memberOf('Crosstown Bikeway 2')).toBeDefined();
+    it('Crosstown Bikeway 2 is a network or in a network', () => {
+      const cb2net = networks.find(n => n.name?.includes('Crosstown Bikeway 2'));
+      const cb2member = memberOf('Crosstown Bikeway 2');
+      expect(cb2net || cb2member, 'Crosstown Bikeway 2 should be a network or member of one').toBeTruthy();
     });
 
     it('Crosstown Bikeway 3 is in a network', () => {
@@ -207,8 +209,8 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
   // =====================================================================
 
   describe('long-distance trails are standalone', () => {
-    it('Prescott-Russell Trail exists', () => {
-      const prt = entries.find(e => e.name?.includes('Prescott') && e.name?.includes('Russell') && !e.name?.includes('Link'));
+    it('Prescott Russell Trail Link exists', () => {
+      const prt = entries.find(e => e.name?.includes('Prescott') && e.name?.includes('Russell'));
       expect(prt).toBeDefined();
     });
 

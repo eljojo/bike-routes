@@ -48,7 +48,7 @@ import { chainSegments } from './lib/chain-segments.mjs';
 import { selectBestRoad } from './lib/select-best-road.mjs';
 import { defaultParallelLaneFilter } from './lib/city-adapter.mjs';
 import { autoGroupNearbyPaths, computeSlugs } from './lib/auto-group.mjs';
-import { discoverNetworks } from './lib/discover-networks.mjs';
+import { discoverNetworks, discoverRouteSystemNetworks } from './lib/discover-networks.mjs';
 import { enrichWithWikidata } from './lib/wikidata.mjs';
 import { detectMtb } from './lib/detect-mtb.mjs';
 
@@ -729,15 +729,33 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
     const name = network.name;
     const networkSlug = slugify(name);
 
-    // Resolve members: only paths NOT already in another network
+    // Resolve members: paths NOT already in another network.
+    // If a relation maps to a type: network entry (e.g. Rideau Canal Western
+    // became an auto-group), flatten through its non-network members.
+    // Also tag existing networks with super_network for index grouping.
     const memberSlugs = [];
     for (const relId of network._member_relations || []) {
       const member = byRelation.get(relId);
       if (!member) continue;
 
+      if (member.type === 'network') {
+        // This superroute member became an auto-group network.
+        // Flatten: adopt its members into this superroute network.
+        for (const subSlug of member.members || []) {
+          const subEntry = entries.find(e => slugMap.get(e) === subSlug);
+          if (subEntry && !subEntry.member_of && subEntry.type !== 'network') {
+            memberSlugs.push(subSlug);
+            subEntry.member_of = networkSlug;
+          }
+        }
+        // Tag the sub-network with super_network
+        if (!member.super_network) member.super_network = networkSlug;
+        continue;
+      }
+
       if (member.member_of) {
-        // Already in a network (auto-group or park) — tag the network
-        // with super_network for index grouping instead
+        // Already in a network (auto-group or park) — tag that network
+        // with super_network for index grouping
         const memberNetwork = entries.find(e =>
           e.type === 'network' &&
           e.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -749,12 +767,29 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
         continue;
       }
 
-      if (member.type === 'network') continue; // skip other networks
-
       const memberSlug = slugMap.get(member);
       if (memberSlug) {
         memberSlugs.push(memberSlug);
         member.member_of = networkSlug;
+      }
+    }
+
+    // Fallback: match by name for paths discovered as named ways (no relation).
+    // Some Capital Pathway members like Pinecrest Creek have relations in OSM
+    // but weren't in the superroute's member list.
+    if (network.operator) {
+      for (const entry of entries) {
+        if (entry.member_of || entry.type === 'network') continue;
+        if (entry.operator !== network.operator) continue;
+        // Only adopt paths with matching network level (rcn/lcn)
+        if (entry.network && network.network && entry.network !== network.network) continue;
+        // Must have super_network already set (from earlier tagging) or be well-known
+        if (entry.super_network !== networkSlug) continue;
+        const entrySlug = slugMap.get(entry);
+        if (entrySlug && !memberSlugs.includes(entrySlug)) {
+          memberSlugs.push(entrySlug);
+          entry.member_of = networkSlug;
+        }
       }
     }
 
@@ -1159,6 +1194,16 @@ out tags center;`;
         console.log('Creating superroute networks...');
         superNetworks = addSuperrouteNetworks(grouped, slugMap, superNets);
       }
+      slugMap = computeSlugs(grouped);
+    }
+
+    // Discover route-system networks (e.g. Crosstown Bikeways from cycle_network tags)
+    const routeSystemNets = await discoverRouteSystemNetworks({ bbox: b, queryOverpass: qo });
+    if (routeSystemNets.length > 0) {
+      console.log('Creating route-system networks...');
+      // Use the same addSuperrouteNetworks logic — it resolves members by relation ID
+      const rsMeta = addSuperrouteNetworks(grouped, slugMap, routeSystemNets);
+      superNetworks.push(...rsMeta);
       slugMap = computeSlugs(grouped);
     }
   }

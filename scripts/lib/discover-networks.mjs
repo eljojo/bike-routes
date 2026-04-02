@@ -200,3 +200,48 @@ export async function discoverNetworks({ bbox, queryOverpass }) {
 
   return networks;
 }
+
+/**
+ * Discover signed route-system networks from cycle_network + ref tags.
+ * Example: Crosstown Bikeways in Ottawa share cycle_network: CA:ON:Ottawa.
+ * Routes with the same cycle_network are grouped by ref number.
+ * Single-member networks are allowed for signed systems (wayfinding matters).
+ */
+export async function discoverRouteSystemNetworks({ bbox, queryOverpass }) {
+  const q = `[out:json][timeout:120];\nrelation["route"="bicycle"]["cycle_network"](${bbox});\nout tags;`;
+  const data = await queryOverpass(q);
+  const routes = data.elements.filter(el => el.tags?.cycle_network && el.tags?.ref);
+
+  if (routes.length === 0) return [];
+
+  // Group by cycle_network
+  const byCycleNetwork = new Map();
+  for (const r of routes) {
+    const cn = r.tags.cycle_network;
+    if (!byCycleNetwork.has(cn)) byCycleNetwork.set(cn, []);
+    byCycleNetwork.get(cn).push(r);
+  }
+
+  const networks = [];
+  for (const [cycleNetwork, members] of byCycleNetwork) {
+    if (members.length < 2) continue; // need at least 2 routes in the system
+
+    // Build a network name from the cycle_network tag
+    // CA:ON:Ottawa → "Ottawa Bikeways", CA:QC:Montreal → "Montréal Bikeways"
+    const parts = cycleNetwork.split(':');
+    const cityName = parts[parts.length - 1];
+    const name = `${cityName} Bikeways`;
+
+    const entry = {
+      name,
+      type: 'network',
+      _member_relations: members.map(r => r.id),
+      cycle_network: cycleNetwork,
+    };
+
+    networks.push(entry);
+    console.log(`  Route system: ${name} (${members.length} routes, cycle_network: ${cycleNetwork})`);
+  }
+
+  return networks;
+}
