@@ -64,6 +64,35 @@ ottawa/
 - Media: per-file licensing
 - Everything else (YAML, scripts, tooling): Apache 2.0
 
+## Bikepaths Pipeline (`scripts/build-bikepaths.mjs`)
+
+### Anchors are NOT coordinates
+
+`anchors` in bikepaths.yml are 1-2 bbox corner points used **only** for geographic scope in Overpass name lookups (`generate-route.mjs:fetchNamedWays`). They are NOT geometry. They are NOT suitable for:
+- Determining if two entries are near each other
+- Determining if an entry is "in" a park, neighbourhood, or region
+- Any spatial analysis, distance calculation, or geographic reasoning
+
+**If you need to know where something actually is, query Overpass for its real geometry.** The way coordinates from `out geom` queries are the source of truth. Anchors are a lossy summary that exists only to scope name-based lookups.
+
+This is not a suggestion. Every time an AI has used anchors for spatial reasoning in this project, the result has been wrong. Do not do it.
+
+### `_ways` is transient
+
+The `_ways` field (full way geometry from Overpass) exists only in memory during the build. It is stripped before writing bikepaths.yml. It is never persisted. If you need way geometry after the build, query Overpass again.
+
+### Clustering uses connectivity, not proximity
+
+The auto-grouping in `scripts/lib/cluster-entries.mjs` merges entries whose OSM ways share nodes or have endpoints within ~10m. It does NOT use anchor distance. Guards: operator compatibility, path type (trail/paved/road), corridor width (2km).
+
+### Markdown is the human override layer
+
+`ottawa/bike-paths/*.md` files override and extend what the algorithm produces:
+- `name` in frontmatter overrides the auto-generated group name
+- `includes` lists bikepaths.yml slugs that should be shown on this page — use this to merge things the algorithm split (e.g. disconnected trail clusters that are conceptually one system)
+- The algorithm does 80% of the work. Humans do the 20% via markdown.
+- `includes` assignments must be verified geographically by querying Overpass for real way coordinates — never by name-matching, never by using anchors from bikepaths.yml
+
 ## Relationship to the Astro App
 
 The Astro app references this repo via `CONTENT_DIR` env var (defaults to `../bike-routes`). The `CITY` env var selects which city folder to build (defaults to `ottawa`). The app uses custom content loaders to parse routes (GPX + media.yml), computes place-route proximity at build time, and generates static HTML. Changes to this repo trigger rebuilds via GitHub `repository_dispatch`.
