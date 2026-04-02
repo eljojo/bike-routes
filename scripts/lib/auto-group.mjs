@@ -160,20 +160,21 @@ out tags;`;
   }
   await Promise.all(Array.from({ length: Math.min(CONCURRENCY, newClusters.length) }, () => worker()));
 
-  // Build output: replace absorbed entries with group entries
-  const absorbedEntries = new Set();
-  const newGroupEntries = [];
+  // Build output: create network entries, members KEEP their entries.
+  // Networks v2: auto-groups ARE networks. Members keep their own pages
+  // and nest under the network URL. No more absorption.
+  const newNetworkEntries = [];
 
   for (const cluster of clusters) {
     if (cluster.existingGroup) {
-      // Extend existing group
+      // Extend existing network
       const group = cluster.existingGroup;
-      const existingFromSlugs = new Set(group.grouped_from || []);
+      const existingMembers = new Set(group.members || group.grouped_from || []);
       for (const member of cluster.newMembers) {
         const slug = slugMap.get(member);
-        if (!existingFromSlugs.has(slug)) {
-          group.grouped_from = group.grouped_from || [];
-          group.grouped_from.push(slug);
+        if (!existingMembers.has(slug)) {
+          if (!group.members) group.members = [...(group.grouped_from || [])];
+          group.members.push(slug);
           const memberOsmNames = member.osm_names || [member.name];
           group.osm_names = [...new Set([...(group.osm_names || []), ...memberOsmNames])];
           if (member.osm_relations) {
@@ -181,39 +182,49 @@ out tags;`;
           }
           group.anchors = bboxAnchors([...(group.anchors || []), ...(member.anchors || [])]);
         }
-        absorbedEntries.add(member);
+        member.member_of = slugMap.get(group);
       }
+      // Migrate grouped_from → members if not already done
+      if (group.grouped_from && !group.members) {
+        group.members = group.grouped_from;
+      }
+      delete group.grouped_from;
+      if (!group.type) group.type = 'network';
     } else {
-      // New group
+      // New network from cluster
       const tags = mergeTags(cluster.members);
       const allOsmNames = [...new Set(cluster.members.flatMap(m => m.osm_names || [m.name]))];
       const allOsmRelations = [...new Set(cluster.members.flatMap(m => m.osm_relations || []))];
+      const memberSlugs = cluster.members.map(m => slugMap.get(m));
 
-      const groupEntry = {
+      const networkEntry = {
         name: cluster.resolvedName,
-        grouped_from: cluster.members.map(m => slugMap.get(m)),
+        type: 'network',
+        members: memberSlugs,
         anchors: bboxAnchors(cluster.members.flatMap(m => m.anchors || [])),
       };
 
-      // Carry _ways from all members so this group can participate in
-      // further clustering rounds — without _ways, trails that share
-      // nodes with absorbed members can't find the connection.
+      // Carry _ways from all members for further clustering connectivity
       const allWays = cluster.members.flatMap(m => m._ways || []);
-      if (allWays.length > 0) groupEntry._ways = allWays;
+      if (allWays.length > 0) networkEntry._ways = allWays;
 
-      if (allOsmNames.length > 0) groupEntry.osm_names = allOsmNames;
-      if (allOsmRelations.length > 0) groupEntry.osm_relations = allOsmRelations;
+      if (allOsmNames.length > 0) networkEntry.osm_names = allOsmNames;
+      if (allOsmRelations.length > 0) networkEntry.osm_relations = allOsmRelations;
       for (const [key, val] of Object.entries(tags)) {
-        if (val) groupEntry[key] = val;
+        if (val) networkEntry[key] = val;
       }
 
-      newGroupEntries.push(groupEntry);
-      for (const m of cluster.members) absorbedEntries.add(m);
+      // Assign member_of on each member
+      const networkSlug = slugifyBikePathName(cluster.resolvedName);
+      for (const m of cluster.members) {
+        m.member_of = networkSlug;
+      }
+
+      newNetworkEntries.push(networkEntry);
     }
   }
 
-  // Filter out absorbed, append new groups
-  const result = entries.filter(e => !absorbedEntries.has(e));
-  result.push(...newGroupEntries);
+  // Members stay in the array. Network entries are appended.
+  const result = [...entries, ...newNetworkEntries];
   return result;
 }

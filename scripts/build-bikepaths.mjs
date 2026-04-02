@@ -639,20 +639,11 @@ async function enrichOutOfBoundsRelations(entries, discoveredRelationIds) {
 // Resolve network members
 // ---------------------------------------------------------------------------
 
-/**
- * Resolve network _member_relations to slugs and assign member_of to members.
- */
-// Resolve network _member_relations (relation IDs) to slugs using the
-// centralized slug map. Assigns member_of on member entries.
-//
-// Primary network: when a path belongs to multiple networks, the most
-// specific one wins (smallest member count). We process largest-first
-// so the smaller one overwrites.
-//
-// Only top-level superroutes reach here — sub-superroutes were already
-// flattened by discoverNetworks (see discover-networks.mjs).
-function resolveNetworkMembers(entries, slugMap, networks) {
-  // Build relation ID → entry lookup
+// Apply OSM superroute data as super_network attributes on entries.
+// Super-networks (Capital Pathway, TCT) are NOT pages — they're metadata
+// that shows in the facts table and influences index grouping.
+// The real networks come from auto-grouping (type: network).
+function applySuperNetworks(entries, slugMap, networks) {
   const byRelation = new Map();
   for (const entry of entries) {
     for (const relId of entry.osm_relations ?? []) {
@@ -660,76 +651,38 @@ function resolveNetworkMembers(entries, slugMap, networks) {
     }
   }
 
-  // Sort networks largest-first so smallest (most specific) overwrites
-  const sorted = [...networks].sort(
-    (a, b) => (b._member_relations?.length || 0) - (a._member_relations?.length || 0)
-  );
+  // Store super-network metadata for the Astro app
+  const superNetworks = [];
 
-  for (const network of sorted) {
-    const networkSlug = slugMap.get(network);
-    if (!networkSlug) continue;
+  for (const network of networks) {
+    const name = network.name;
+    const slug = slugMap.get(network) || slugify(name);
 
-    const memberSlugs = [];
+    const meta = {
+      name,
+      slug,
+    };
+    if (network.wikidata) meta.wikidata = network.wikidata;
+    if (network.wikipedia) meta.wikipedia = network.wikipedia;
+    if (network.operator) meta.operator = network.operator;
+    if (network.network) meta.network = network.network;
+    if (network.name_fr) meta.name_fr = network.name_fr;
+    if (network.wikidata_meta) meta.wikidata_meta = network.wikidata_meta;
+    superNetworks.push(meta);
+
+    // Apply super_network attribute to member entries
+    let assigned = 0;
     for (const relId of network._member_relations || []) {
       const member = byRelation.get(relId);
-      if (member && member.type !== 'network') {
-        const memberSlug = slugMap.get(member);
-        if (memberSlug) {
-          memberSlugs.push(memberSlug);
-          member.member_of = networkSlug;
-        }
+      if (member) {
+        member.super_network = slug;
+        assigned++;
       }
     }
-    network.members = memberSlugs;
-    delete network._member_relations;
+    console.log(`  Super-network: ${name} (${assigned} entries tagged)`);
   }
 
-  // Remove standalone entries for same-named routes absorbed into networks.
-  // When a network absorbed a child with the same name (see discover-networks.mjs),
-  // the child's relation ID was added to the network's osm_relations. But the
-  // child may also exist as a standalone entry from step 1 (discoverOsmRelations).
-  // Remove it — the network IS that path. This prevents slug collisions like
-  // "crosstown-bikeway-2-1" (route) vs "crosstown-bikeway-2-2" (network).
-  const networkRelationIds = new Set();
-  for (const network of networks) {
-    for (const relId of network.osm_relations || []) {
-      networkRelationIds.add(relId);
-    }
-  }
-  for (let i = entries.length - 1; i >= 0; i--) {
-    const entry = entries[i];
-    if (entry.type === 'network') continue;
-    // If ALL of this entry's relation IDs are owned by a network, remove it
-    if (entry.osm_relations?.length > 0 &&
-        entry.osm_relations.every(id => networkRelationIds.has(id))) {
-      entries.splice(i, 1);
-    }
-  }
-
-  // Drop networks whose members didn't resolve (outside bbox, filtered out).
-  // A network page with 0-1 members isn't useful — it's just metadata about
-  // the path belonging to a larger system, not a network worth its own page.
-  const MIN_RESOLVED_MEMBERS = 2;
-  const toDrop = networks.filter(n => (n.members?.length || 0) < MIN_RESOLVED_MEMBERS);
-  for (const network of toDrop) {
-    // Undo member_of on any entries that pointed to this network
-    const networkSlug = slugMap.get(network);
-    for (const entry of entries) {
-      if (entry.member_of === networkSlug) delete entry.member_of;
-    }
-    // Remove the network entry from the entries array
-    const idx = entries.indexOf(network);
-    if (idx !== -1) entries.splice(idx, 1);
-    console.log(`  Dropped network "${network.name}": only ${network.members?.length || 0} member(s) resolved`);
-  }
-  // Also remove from the networks array so the caller's count is accurate
-  for (const n of toDrop) {
-    const idx = networks.indexOf(n);
-    if (idx !== -1) networks.splice(idx, 1);
-  }
-
-  const assigned = entries.filter(e => e.member_of).length;
-  if (assigned > 0) console.log(`  Assigned primary network to ${assigned} entries`);
+  return superNetworks;
 }
 
 // ---------------------------------------------------------------------------
@@ -769,26 +722,30 @@ async function main() {
   const discoveredRelationIds = new Set(osmRelations.map(r => r.id));
   await enrichOutOfBoundsRelations(entries, discoveredRelationIds);
 
-  // Discover networks (superroutes)
+  // Discover super-networks (OSM superroutes) — NOT added to entries.
+  // Super-networks become attributes, not entries. See applySuperNetworks below.
   let networks = [];
   if (adapter.discoverNetworks) {
-    console.log('Discovering cycling networks...');
+    console.log('Discovering super-networks (OSM superroutes)...');
     networks = await discoverNetworks({ bbox, queryOverpass });
-    entries.push(...networks);
   }
 
   // Auto-group nearby trail segments
   const markdownSlugs = loadMarkdownSlugs();
   const grouped = await autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass });
 
-  // Centralized slug computation — first pass for member resolution
+  // Centralized slug computation
   let slugMap = computeSlugs(grouped);
 
-  // Resolve network members and assign member_of.
-  // This may remove entries (same-named routes absorbed into networks),
-  // so we recompute slugs afterward for clean URLs.
+  // Apply OSM superroute data as super_network attributes.
+  // Super-networks are NOT pages — they're metadata for the facts table
+  // and index grouping. The real networks come from auto-grouping above.
+  let superNetworks = [];
   if (networks.length > 0) {
-    resolveNetworkMembers(grouped, slugMap, networks);
+    console.log('Applying super-network attributes...');
+    superNetworks = applySuperNetworks(grouped, slugMap, networks);
+    // Recompute slugs — superroute entries are not added to grouped,
+    // but member_of from auto-grouping may have changed during the run
     slugMap = computeSlugs(grouped);
   }
 
@@ -803,18 +760,20 @@ async function main() {
   if (mtbCount > 0) console.log(`  Labelled ${mtbCount} entries as MTB`);
 
   // Write output
+  const networkEntries = grouped.filter(e => e.type === 'network');
+  const memberEntries = grouped.filter(e => e.member_of);
   if (args.dryRun) {
     console.log('\n--- DRY RUN — would write: ---');
     for (const entry of grouped) {
       const slug = slugMap.get(entry) || slugify(entry.name);
       const source = entry.type === 'network' ? `network (${entry.members?.length || 0} members)` :
-        entry.grouped_from ? `group of ${entry.grouped_from.length}` :
+        entry.member_of ? `member of ${entry.member_of}` :
         entry.osm_relations ? `relation ${entry.osm_relations[0]}` :
         entry.parallel_to ? `parallel to "${entry.parallel_to}"` :
         `name "${entry.osm_names?.[0] || entry.name}"`;
       console.log(`  ${slug}: ${entry.name} (${source})`);
     }
-    console.log(`\nTotal: ${grouped.length} entries (${grouped.filter(e => e.grouped_from).length} groups, ${networks.length} networks)`);
+    console.log(`\nTotal: ${grouped.length} entries (${networkEntries.length} networks, ${memberEntries.length} members, ${superNetworks.length} super-networks)`);
   } else {
     // Strip transient fields before YAML output
     for (const entry of grouped) {
@@ -829,9 +788,11 @@ async function main() {
         entry.anchors = [[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]];
       }
     }
-    const output = yaml.dump({ bike_paths: grouped }, { lineWidth: -1, noRefs: true });
+    const yamlData = { bike_paths: grouped };
+    if (superNetworks.length > 0) yamlData.super_networks = superNetworks;
+    const output = yaml.dump(yamlData, { lineWidth: -1, noRefs: true });
     fs.writeFileSync(bikepathsPath, output);
-    console.log(`\nWrote ${grouped.length} entries to ${bikepathsPath}`);
+    console.log(`\nWrote ${grouped.length} entries (${networkEntries.length} networks, ${memberEntries.length} members) to ${bikepathsPath}`);
   }
 }
 
