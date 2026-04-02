@@ -43,6 +43,7 @@ import { defaultParallelLaneFilter } from './lib/city-adapter.mjs';
 import { autoGroupNearbyPaths, computeSlugs } from './lib/auto-group.mjs';
 import { discoverNetworks } from './lib/discover-networks.mjs';
 import { enrichWithWikidata } from './lib/wikidata.mjs';
+import { detectMtb } from './lib/detect-mtb.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI (only when run directly, not when imported)
@@ -418,6 +419,8 @@ function extractOsmMetadata(tags) {
   if (tags.highway) meta.highway = tags.highway;
   if (tags.tracktype) meta.tracktype = tags.tracktype;
   if (tags['mtb:scale'] != null) meta['mtb:scale'] = tags['mtb:scale'];
+  if (tags['mtb:scale:imba'] != null) meta['mtb:scale:imba'] = tags['mtb:scale:imba'];
+  if (tags.bicycle) meta.bicycle = tags.bicycle;
 
   // Network and management
   if (tags.operator) meta.operator = tags.operator;
@@ -793,6 +796,11 @@ async function main() {
   console.log('Enriching with Wikidata...');
   const wdCount = await enrichWithWikidata(grouped);
   if (wdCount > 0) console.log(`  Enriched ${wdCount} entries`);
+
+  // MTB detection — label trails that aren't road-bike-friendly
+  detectMtb(grouped);
+  const mtbCount = grouped.filter(e => e.mtb).length;
+  if (mtbCount > 0) console.log(`  Labelled ${mtbCount} entries as MTB`);
 
   // Write output
   if (args.dryRun) {

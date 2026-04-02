@@ -10,6 +10,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
     operator: NCC
     anchors:
       - - -75.8729741
@@ -33,6 +34,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
     ref: '27'
     anchors:
       - - -75.7871841
@@ -51,6 +53,7 @@ bike_paths:
     surface: asphalt
     width: '2'
     highway: cycleway
+    bicycle: designated
     anchors:
       - - -75.738771
         - 45.4616694
@@ -74,6 +77,7 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     ref: '5'
     anchors:
       - - -75.7928928
@@ -88,6 +92,7 @@ bike_paths:
       - 416115
     wikidata: Q3444014
     website: https://www.routeverte.com/
+    bicycle: 'yes'
     network: ncn
     ref: RV1
     name_fr: route Verte 1
@@ -134,6 +139,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     anchors:
       - - -75.7527198
         - 45.4239564
@@ -153,6 +159,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     tracktype: grade2
+    bicycle: designated
     anchors:
       - - -75.5920165
         - 45.4130879
@@ -181,6 +188,7 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     operator: NCC
     anchors:
       - - -75.8892601
@@ -204,6 +212,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     mtb:scale: '0'
+    bicycle: designated
     operator: City of Ottawa
     anchors:
       - - -75.7249039
@@ -240,6 +249,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     anchors:
       - - -75.6984672
         - 45.3698546
@@ -259,6 +269,7 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     anchors:
       - - -75.763713
         - 45.353173
@@ -278,6 +289,7 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     anchors:
       - - -75.7864285
         - 45.3483954
@@ -315,6 +327,7 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     operator: NCC
     anchors:
       - - -75.6972126
@@ -334,6 +347,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     anchors:
       - - -75.6475
         - 45.4226087
@@ -387,6 +401,7 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     anchors:
       - - -75.4822684
         - 45.4587182
@@ -475,6 +490,7 @@ bike_paths:
     lit: 'yes'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
     anchors:
       - - -75.7324975
         - 45.3376973
@@ -501,6 +517,7 @@ bike_paths:
     width: '1'
     lit: 'no'
     highway: footway
+    bicycle: 'no'
     anchors:
       - - -75.7972648
         - 45.3662425
@@ -508,6 +525,7 @@ bike_paths:
         - 45.369012
     osm_names:
       - Mud Lake Trail
+    mtb: true
   - name: Greenboro Pathway
     osm_relations:
       - 10434447
@@ -583,6 +601,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     mtb:scale: '1'
+    bicycle: designated
     anchors:
       - - -75.8992252
         - 45.4797107
@@ -590,6 +609,7 @@ bike_paths:
         - 45.6152909
     osm_names:
       - Voie Verte Chelsea
+    mtb: true
   - name: Sentier du lac Leamy Skiing Trail
     osm_relations:
       - 15446553
@@ -620,6 +640,8 @@ bike_paths:
       - 20166047
     surface: ground
     highway: path
+    mtb:scale:imba: '2'
+    mtb: true
   - name: Monkey Trail
     osm_relations:
       - 20166048
@@ -641,6 +663,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
     operator: NCC
     network: Kichi Sibi
     description: 'Summer: cycle, walk, hike Winter: @skiheritageeast skate and classic grooming fat bike, xc ski'
@@ -658,6 +681,7 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: Sentier des Voyageurs
     osm_names:
       - Sentier des Voyageurs
@@ -674,6 +698,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: Sentier des Pionniers
     osm_names:
       - Sentier des Pionniers
@@ -690,6 +715,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: Pont Mãwandòseg
     osm_names:
       - Pont Mãwandòseg
@@ -704,6 +730,7 @@ bike_paths:
     width: '4'
     lit: 'no'
     highway: cycleway
+    bicycle: designated
   - name: Sentier du Lac-des-Fées Pathway
     osm_names:
       - Sentier du Lac-des-Fées Pathway
@@ -717,6 +744,7 @@ bike_paths:
     width: '2.5'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: Trans Canada Trail
     osm_names:
       - Trans Canada Trail
@@ -732,6 +760,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
   - name: Chemin de Masson
     osm_names:
       - Chemin de Masson
@@ -745,6 +774,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
     parallel_to: Chemin de Masson
   - name: Osgoode-Leitrim Multi-use Pathway
     osm_names:
@@ -761,6 +791,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     mtb:scale: '0'
+    bicycle: designated
   - name: Sentier du Vallon
     osm_names:
       - Sentier du Vallon
@@ -773,6 +804,7 @@ bike_paths:
     smoothness: excellent
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: PPJ Cycloparc
     osm_names:
       - PPJ Cycloparc
@@ -784,6 +816,7 @@ bike_paths:
     surface: fine_gravel
     width: '3'
     highway: cycleway
+    bicycle: designated
   - name: promenade Sentier du Parc de la Gatineau
     osm_names:
       - promenade Sentier du Parc de la Gatineau
@@ -800,6 +833,7 @@ bike_paths:
     segregated: 'no'
     cycleway: 'yes'
     highway: cycleway
+    bicycle: designated
     ref: '5'
   - name: Highbury Park Drive Bypass
     osm_names:
@@ -812,6 +846,7 @@ bike_paths:
     surface: asphalt
     width: '3'
     highway: cycleway
+    bicycle: designated
   - name: Corktown Footbridge
     osm_names:
       - Corktown Footbridge
@@ -828,6 +863,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     operator: City of Ottawa
     name_fr: Passerelle Corktown
     name_en: Corktown Footbridge
@@ -848,6 +884,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: Cardinal Creek Trail
     osm_names:
       - Cardinal Creek Trail
@@ -862,6 +899,7 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: Chemin de la Vallée-de-Wakefield
     osm_names:
       - Chemin de la Vallée-de-Wakefield
@@ -874,6 +912,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
   - name: Adàwe crossing
     osm_names:
       - Adàwe crossing
@@ -892,6 +931,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     operator: City of Ottawa
     wikidata_meta:
       description_en: Canadian bridge across the Rideau River in Ottawa
@@ -924,6 +964,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     network: Rideau Winter Trail
   - name: Flora Footbridge
     osm_names:
@@ -942,6 +983,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
     wikidata_meta:
       description_en: bridge in Ottawa, Canada
       description_fr: Passerelle pour piétons et vélos à Ottawa, Ontario, Canada
@@ -954,6 +996,7 @@ bike_paths:
       - - -76.0202864
         - 45.6007009
     highway: cycleway
+    bicycle: designated
   - name: Pont couvert Brabant-Philippe
     osm_names:
       - Pont couvert Brabant-Philippe
@@ -965,6 +1008,7 @@ bike_paths:
     surface: asphalt
     width: '2'
     highway: cycleway
+    bicycle: designated
   - name: Pont couvert Roland-Houët
     osm_names:
       - Pont couvert Roland-Houët
@@ -975,6 +1019,7 @@ bike_paths:
         - 45.4997571
     surface: asphalt
     highway: cycleway
+    bicycle: designated
   - name: Pont Couvert des Bénévoles
     osm_names:
       - Pont Couvert des Bénévoles
@@ -986,6 +1031,7 @@ bike_paths:
     surface: wood
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: Boulevard Alexandre-Taché
     osm_names:
       - Boulevard Alexandre-Taché
@@ -999,6 +1045,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
     parallel_to: Boulevard Alexandre-Taché
   - name: Boulevard des Allumettières
     osm_names:
@@ -1015,6 +1062,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
     parallel_to: Boulevard des Allumettières
   - name: Rue de Turin
     osm_names:
@@ -1029,6 +1077,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
   - name: Rue Laurier
     osm_names:
       - Rue Laurier
@@ -1056,6 +1105,7 @@ bike_paths:
     width: '3'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: Rockliffe Pathway
     osm_names:
       - Rockliffe Pathway
@@ -1071,6 +1121,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
   - name: Ottawa Greenbelt Trail
     osm_names:
       - Ottawa Greenbelt Trail
@@ -1085,6 +1136,7 @@ bike_paths:
     lit: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
     network: Pine Grove
   - name: Greenbelt Pathway
     osm_names:
@@ -1100,6 +1152,7 @@ bike_paths:
     lit: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
     network: Pine Grove
   - name: Chris TDL Bridge
     osm_names:
@@ -1124,6 +1177,8 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     mtb:scale: '1'
+    bicycle: designated
+    mtb: true
   - name: Community Pump Track
     osm_names:
       - Community Pump Track
@@ -1136,6 +1191,7 @@ bike_paths:
     smoothness: bad
     width: '0.5'
     highway: cycleway
+    bicycle: 'yes'
   - name: Green's Creek Bridge
     osm_names:
       - Green's Creek Bridge
@@ -1147,6 +1203,7 @@ bike_paths:
     surface: wood
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: Rue de Sillery
     osm_names:
       - Rue de Sillery
@@ -1158,6 +1215,7 @@ bike_paths:
     surface: asphalt
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: Rue des Flandres
     osm_names:
       - Rue des Flandres
@@ -1171,6 +1229,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
     parallel_to: Rue des Flandres
   - name: Rue Morin
     osm_names:
@@ -1195,6 +1254,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    bicycle: designated
   - name: Rue du Dôme
     osm_names:
       - Rue du Dôme
@@ -1207,6 +1267,7 @@ bike_paths:
     width: '2'
     segregated: 'no'
     highway: cycleway
+    bicycle: designated
   - name: '31'
     osm_names:
       - '31'
@@ -1219,6 +1280,7 @@ bike_paths:
     width: '2'
     lit: 'no'
     highway: path
+    bicycle: 'yes'
   - name: Marianne Wilkinson Bridge
     osm_names:
       - Marianne Wilkinson Bridge
@@ -1233,6 +1295,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: path
+    bicycle: 'yes'
   - name: Moore Farm Estate Pathway
     osm_names:
       - Moore Farm Estate Pathway
@@ -1244,6 +1307,7 @@ bike_paths:
     surface: fine_gravel
     width: '3'
     highway: path
+    bicycle: 'yes'
   - name: Campus Walkway
     osm_names:
       - Campus Walkway
@@ -1255,6 +1319,7 @@ bike_paths:
     surface: asphalt
     width: '3'
     highway: path
+    bicycle: 'yes'
   - name: Rotary Centennial Trail
     osm_names:
       - Rotary Centennial Trail
@@ -1266,6 +1331,7 @@ bike_paths:
     surface: fine_gravel
     segregated: 'no'
     highway: path
+    bicycle: designated
   - name: Trail 7
     osm_names:
       - Trail 7
@@ -1276,6 +1342,7 @@ bike_paths:
         - 45.484139
     surface: ground
     highway: path
+    bicycle: designated
   - name: Mississippi Riverwalk Trail
     osm_names:
       - Mississippi Riverwalk Trail
@@ -1287,6 +1354,7 @@ bike_paths:
     surface: fine_gravel
     segregated: 'no'
     highway: path
+    bicycle: designated
   - name: Byron Park Pathway
     osm_names:
       - Byron Park Pathway
@@ -1301,6 +1369,7 @@ bike_paths:
     incline: 0%
     segregated: 'no'
     highway: path
+    bicycle: 'yes'
   - name: Linear park
     osm_names:
       - Linear park
@@ -1315,6 +1384,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: path
+    bicycle: 'yes'
   - name: 'Trail #3'
     osm_names:
       - 'Trail #3'
@@ -1326,8 +1396,10 @@ bike_paths:
     surface: gravel
     highway: path
     mtb:scale: '2'
+    bicycle: designated
     ref: '3'
     name_en: Trail 3
+    mtb: true
   - name: Max Keeping Bridge
     osm_names:
       - Max Keeping Bridge
@@ -1343,6 +1415,7 @@ bike_paths:
     width: '3'
     lit: 'yes'
     highway: path
+    bicycle: 'yes'
   - name: Hickory Street Pedestrian Bridge
     osm_names:
       - Hickory Street Pedestrian Bridge
@@ -1357,6 +1430,7 @@ bike_paths:
     width: '3'
     lit: 'yes'
     highway: path
+    bicycle: 'yes'
   - name: Confederation Bridge
     osm_names:
       - Confederation Bridge
@@ -1368,6 +1442,7 @@ bike_paths:
     surface: wood
     width: '2'
     highway: path
+    bicycle: designated
   - name: Flooding detour
     osm_names:
       - Flooding detour
@@ -1381,6 +1456,8 @@ bike_paths:
     width: '1'
     highway: path
     mtb:scale: '3'
+    bicycle: 'yes'
+    mtb: true
   - name: Trail 61
     osm_names:
       - Trail 61
@@ -1392,6 +1469,7 @@ bike_paths:
     surface: ground
     width: '2'
     highway: path
+    bicycle: 'yes'
     network: Green Creek
     ref: '61'
   - name: Grande Allée
@@ -1404,6 +1482,7 @@ bike_paths:
         - 45.4096428
     surface: asphalt
     highway: path
+    bicycle: 'yes'
   - name: Hendrick Park Trail
     osm_names:
       - Hendrick Park Trail
@@ -1416,6 +1495,7 @@ bike_paths:
     width: '1'
     lit: 'no'
     highway: footway
+    bicycle: 'yes'
   - name: 'Sentier/Trail #36'
     osm_names:
       - 'Sentier/Trail #36'
@@ -1427,7 +1507,9 @@ bike_paths:
     incline: up
     highway: path
     mtb:scale: '3'
+    bicycle: designated
     ref: '36'
+    mtb: true
   - name: Trapper's Trail
     osm_names:
       - Trapper's Trail
@@ -1439,6 +1521,7 @@ bike_paths:
     name_fr: trainéé Trapper's
     surface: gravel
     highway: path
+    bicycle: 'yes'
   - name: Riverwalk
     osm_names:
       - Riverwalk
@@ -1449,6 +1532,7 @@ bike_paths:
         - 45.2288191
     surface: fine_gravel
     highway: path
+    bicycle: 'yes'
   - name: Chelsea Creek Path
     osm_names:
       - Chelsea Creek Path
@@ -1460,6 +1544,7 @@ bike_paths:
     surface: unpaved
     width: '2.5'
     highway: path
+    bicycle: 'yes'
     access: 'no'
   - name: Sumac Footbridge
     osm_names:
@@ -1472,6 +1557,7 @@ bike_paths:
     surface: wood
     width: '2.5'
     highway: path
+    bicycle: designated
   - name: Corkstown Road
     osm_names:
       - Corkstown Road
@@ -1486,6 +1572,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: path
+    bicycle: 'yes'
     parallel_to: Corkstown Road
   - name: New Path
     osm_names:
@@ -1497,6 +1584,7 @@ bike_paths:
         - 45.504401
     surface: gravel
     highway: path
+    bicycle: 'yes'
     access: 'no'
   - name: Dos d'Ane
     osm_names:
@@ -1508,6 +1596,7 @@ bike_paths:
         - 45.5040593
     surface: dirt/sand
     highway: path
+    bicycle: 'yes'
   - name: Rue Saint-Josaphat
     osm_names:
       - Rue Saint-Josaphat
@@ -1590,6 +1679,7 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: secondary
+    bicycle: 'yes'
     ref: '61'
     parallel_to: Terry Fox Drive
   - name: McGibbon Drive
@@ -1766,6 +1856,7 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: primary
+    bicycle: 'yes'
     ref: '73'
     parallel_to: Prince Of Wales Drive
   - name: Bronson Avenue
@@ -1784,6 +1875,7 @@ bike_paths:
     lit: 'yes'
     cycleway: shoulder
     highway: primary
+    bicycle: 'yes'
     ref: '79'
     parallel_to: Bronson Avenue
     wikidata_meta:
@@ -2182,6 +2274,7 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: secondary
+    bicycle: 'yes'
     access: 'yes'
     parallel_to: Booth Street
   - name: Rue Wìgwàs
@@ -2388,6 +2481,7 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: secondary
+    bicycle: 'yes'
     parallel_to: Cambrian Road
   - name: Rue Gouin
     osm_names:
@@ -2840,6 +2934,7 @@ bike_paths:
     smoothness: good
     width: '2.5'
     highway: footway
+    bicycle: 'yes'
   - name: Lover's Lane
     osm_names:
       - Lover's Lane
@@ -2852,6 +2947,7 @@ bike_paths:
     width: '1.5'
     lit: 'no'
     highway: footway
+    bicycle: 'yes'
   - name: Arden Brooks Bridge
     osm_names:
       - Arden Brooks Bridge
@@ -2863,6 +2959,7 @@ bike_paths:
     surface: concrete
     width: '2'
     highway: footway
+    bicycle: 'yes'
   - name: Richardson Ridge Nature Trail
     osm_names:
       - Richardson Ridge Nature Trail
@@ -2875,6 +2972,7 @@ bike_paths:
     width: '0.5'
     lit: 'no'
     highway: footway
+    bicycle: 'yes'
   - name: Hendrick Park Bridge
     osm_names:
       - Hendrick Park Bridge
@@ -2886,6 +2984,7 @@ bike_paths:
     surface: wood
     lit: 'no'
     highway: footway
+    bicycle: 'yes'
   - name: Spingbank trail
     osm_names:
       - Spingbank trail
@@ -2897,6 +2996,7 @@ bike_paths:
     surface: ground
     width: '2'
     highway: footway
+    bicycle: 'yes'
     access: private
   - name: Jackie Holzman Bridge
     osm_names:
@@ -2911,6 +3011,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: footway
+    bicycle: designated
   - name: Kizell Pond Trail South
     osm_names:
       - Kizell Pond Trail South
@@ -2921,6 +3022,7 @@ bike_paths:
         - 45.3198691
     surface: woodchips
     highway: footway
+    bicycle: 'yes'
   - name: Lien piétonnier
     osm_names:
       - Lien piétonnier
@@ -2931,6 +3033,7 @@ bike_paths:
         - 45.4813898
     surface: ground
     highway: footway
+    bicycle: 'yes'
   - name: Rue du Plein-Air
     osm_names:
       - Rue du Plein-Air
@@ -2941,6 +3044,7 @@ bike_paths:
         - 45.4697842
     surface: asphalt
     highway: footway
+    bicycle: 'yes'
   - name: RIP
     osm_names:
       - RIP
@@ -2951,6 +3055,7 @@ bike_paths:
         - 45.4892647
     surface: ground
     highway: footway
+    bicycle: 'yes'
   - name: Barberry Lane
     osm_names:
       - Barberry Lane
@@ -3000,6 +3105,7 @@ bike_paths:
         - 45.5270143
     surface: fine_gravel
     highway: footway
+    mtb: true
   - name: Trail 38
     osm_names:
       - Trail 38
@@ -3011,6 +3117,7 @@ bike_paths:
     lit: 'no'
     highway: path
     ref: '38'
+    mtb: true
   - name: Trail 28
     osm_names:
       - Trail 28
@@ -3022,6 +3129,7 @@ bike_paths:
     surface: ground
     highway: path
     ref: '28'
+    mtb: true
   - name: '#41 (de la Mine)'
     osm_names:
       - '#41 (de la Mine)'
@@ -3032,6 +3140,7 @@ bike_paths:
         - 45.468588
     surface: ground
     highway: path
+    mtb: true
   - name: Veterans Memorial Walkway
     osm_names:
       - Veterans Memorial Walkway
@@ -3042,6 +3151,7 @@ bike_paths:
         - 45.2202512
     width: '2'
     highway: footway
+    mtb: true
   - name: Boulevard Sacré-Coeur
     osm_names:
       - Boulevard Sacré-Coeur
@@ -3064,6 +3174,8 @@ bike_paths:
     width: '2'
     lit: 'no'
     highway: path
+    bicycle: 'no'
+    mtb: true
   - name: Trail 22B
     osm_names:
       - Trail 22B
@@ -3073,6 +3185,7 @@ bike_paths:
       - - -75.8527697
         - 45.4995216
     highway: path
+    mtb: true
   - name: Rue du Barry
     osm_names:
       - Rue du Barry
@@ -3093,6 +3206,7 @@ bike_paths:
         - 45.4673535
     surface: ground
     highway: path
+    mtb: true
   - name: Rue Hadley
     osm_names:
       - Rue Hadley
@@ -3122,6 +3236,7 @@ bike_paths:
       - - -75.7084255
         - 45.43811
     highway: footway
+    mtb: true
   - name: Rue Isidore-Ostiguy
     osm_names:
       - Rue Isidore-Ostiguy
@@ -3131,6 +3246,7 @@ bike_paths:
       - - -75.7185111
         - 45.4348513
     highway: footway
+    mtb: true
   - name: Dark Side
     osm_names:
       - Dark Side
@@ -3141,6 +3257,7 @@ bike_paths:
         - 45.3285137
     highway: path
     access: 'no'
+    mtb: true
   - name: Chemin Pine/trail
     osm_names:
       - Chemin Pine/trail
@@ -3153,6 +3270,7 @@ bike_paths:
     width: 1 m
     incline: 15%
     highway: path
+    mtb: true
   - name: William Street
     osm_names:
       - William Street
@@ -3188,6 +3306,7 @@ bike_paths:
     width: '2.5'
     highway: path
     mtb:scale: '1'
+    mtb: true
   - name: Rue de Cannes
     osm_names:
       - Rue de Cannes
@@ -5248,6 +5367,7 @@ bike_paths:
     operator: NCC
     network: KanataNordicCampground
     member_of: capital-pathway
+    mtb: true
   - name: Greenbelt Pathway East
     grouped_from:
       - greenbelt-pathway-east
@@ -5287,6 +5407,7 @@ bike_paths:
     smoothness: good
     network: Pine Grove
     member_of: capital-pathway
+    mtb: true
   - name: Sawmill Creek Path
     grouped_from:
       - sawmill-creek-pathway
@@ -5364,6 +5485,7 @@ bike_paths:
     surface: ground
     highway: footway
     width: '1'
+    mtb: true
   - name: Parc de la Gatineau
     grouped_from:
       - trail-56
@@ -5378,6 +5500,7 @@ bike_paths:
       - 'Trail #56B'
     surface: gravel
     highway: cycleway
+    mtb: true
   - name: Boulevard Maloney Sidepath
     grouped_from:
       - boulevard-maloney-sidepath
@@ -5553,6 +5676,7 @@ bike_paths:
     width: '2'
     smoothness: bad
     network: mtb
+    mtb: true
   - name: Trans-Canada Trail Ottawa
     grouped_from:
       - trans-canada-trail-ottawa
@@ -5576,6 +5700,7 @@ bike_paths:
     lit: 'no'
     width: '0.5'
     smoothness: good
+    mtb: true
   - name: Trail 26
     grouped_from:
       - trail-27
@@ -5609,6 +5734,7 @@ bike_paths:
     width: '2'
     smoothness: very_bad
     lit: 'no'
+    mtb: true
   - name: Pont Lady-Aberdeen
     grouped_from:
       - pont-lady-aberdeen
@@ -5656,6 +5782,7 @@ bike_paths:
     highway: path
     lit: 'no'
     width: '2'
+    mtb: true
   - name: Parc de la Gatineau
     grouped_from:
       - 45-powerline
@@ -5678,6 +5805,7 @@ bike_paths:
       - Foreplay
     surface: ground
     highway: cycleway
+    mtb: true
   - name: Route 105
     grouped_from:
       - route-105
@@ -5726,6 +5854,7 @@ bike_paths:
     surface: ground
     highway: cycleway
     lit: 'no'
+    mtb: true
   - name: Boulevard de la Carrière
     grouped_from:
       - rue-atawe
@@ -5779,6 +5908,7 @@ bike_paths:
     lit: 'no'
     width: '1'
     smoothness: intermediate
+    mtb: true
   - name: NCC Greenbelt
     grouped_from:
       - trail-23
@@ -5796,6 +5926,7 @@ bike_paths:
     lit: 'no'
     width: '1'
     smoothness: intermediate
+    mtb: true
   - name: NCC Greenbelt
     grouped_from:
       - trail-25
@@ -5817,6 +5948,7 @@ bike_paths:
     lit: 'no'
     width: '2'
     smoothness: intermediate
+    mtb: true
   - name: NCC Greenbelt
     grouped_from:
       - '50'
@@ -5839,6 +5971,7 @@ bike_paths:
     width: '2'
     network: Mer Bleue
     smoothness: intermediate
+    mtb: true
   - name: Parc de la Gatineau
     grouped_from:
       - 79b
@@ -5854,6 +5987,7 @@ bike_paths:
     surface: ground
     highway: path
     width: '1'
+    mtb: true
   - name: South March Highlands Conservation Forest
     grouped_from:
       - klondike
@@ -5921,6 +6055,7 @@ bike_paths:
     surface: ground
     highway: path
     width: '0.5'
+    mtb: true
   - name: Monk Environmental Park
     grouped_from:
       - trillium
@@ -5943,6 +6078,7 @@ bike_paths:
     highway: path
     lit: 'no'
     width: '2'
+    mtb: true
   - name: Beaverpond Park
     grouped_from:
       - marathon-ne
@@ -5960,6 +6096,7 @@ bike_paths:
     lit: 'no'
     width: '2'
     smoothness: intermediate
+    mtb: true
   - name: Kizell Pond Trail North
     grouped_from:
       - northwest-passage
@@ -5983,6 +6120,7 @@ bike_paths:
     surface: ground
     highway: path
     width: '0.5'
+    mtb: true
   - name: Parc de la Gatineau
     grouped_from:
       - sentiertrail-1
@@ -6001,6 +6139,7 @@ bike_paths:
     highway: path
     width: '1.5'
     smoothness: intermediate
+    mtb: true
   - name: Trans Canada Trail (36)
     grouped_from:
       - trans-canada-trail-36
@@ -6032,6 +6171,7 @@ bike_paths:
       - '32'
     surface: gravel
     highway: path
+    mtb: true
   - name: Major
     grouped_from:
       - major
@@ -6048,6 +6188,7 @@ bike_paths:
       - Rentre a Maison
     surface: dirt
     highway: path
+    mtb: true
   - name: No Exit
     grouped_from:
       - no-exit
@@ -6063,6 +6204,7 @@ bike_paths:
     surface: ground
     highway: path
     width: '0.5'
+    mtb: true
   - name: La Boucle
     grouped_from:
       - la-boucle
@@ -6102,6 +6244,7 @@ bike_paths:
     surface: dirt
     highway: path
     smoothness: bad
+    mtb: true
   - name: Molo
     grouped_from:
       - molo
@@ -6116,6 +6259,7 @@ bike_paths:
       - M&M
     surface: dirt
     highway: path
+    mtb: true
   - name: Extreme
     grouped_from:
       - extreme
@@ -6130,6 +6274,7 @@ bike_paths:
       - Rocky's
     surface: dirt
     highway: path
+    mtb: true
   - name: Boulevard Moussette
     grouped_from:
       - rue-isabelle
@@ -6981,6 +7126,7 @@ bike_paths:
     surface: ground
     highway: footway
     lit: 'no'
+    mtb: true
   - name: Deauville trail
     grouped_from:
       - deauville-trail
@@ -6995,6 +7141,7 @@ bike_paths:
       - L'Aventurier
     surface: ground
     highway: footway
+    mtb: true
   - name: Mississippi Valley Trail - ART Section
     grouped_from:
       - mississippi-valley-trail-art-section
@@ -7011,6 +7158,7 @@ bike_paths:
     highway: footway
     lit: 'no'
     width: '1'
+    mtb: true
   - name: Parc de la Gatineau
     grouped_from:
       - sentier-horizon
@@ -7026,3 +7174,4 @@ bike_paths:
     surface: ground
     highway: path
     width: '1'
+    mtb: true
