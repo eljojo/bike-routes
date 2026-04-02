@@ -291,28 +291,6 @@ bike_paths:
     network: lcn
     ref: '2'
     member_of: crosstown-bikeway-2-2
-  - name: Greenbelt Pathway West
-    osm_relations:
-      - 7248705
-    operator: NCC
-    network: rcn
-    ref: GPW
-    surface: fine_gravel
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-    tracktype: grade2
-    anchors:
-      - - -75.8759034
-        - 45.3025008
-      - - -75.6991722
-        - 45.3621251
-    osm_names:
-      - Greenbelt Pathway West
-    member_of: capital-pathway
   - name: Rideau Trail - Ottawa Section
     osm_relations:
       - 7360383
@@ -362,25 +340,6 @@ bike_paths:
         - 45.4562381
     osm_names:
       - Aviation Pathway
-    member_of: capital-pathway
-  - name: Greenbelt Pathway East
-    osm_relations:
-      - 7369775
-    network: lcn
-    ref: GPE
-    surface: fine_gravel
-    smoothness: good
-    width: '2'
-    lit: 'no'
-    cycleway: crossing
-    highway: cycleway
-    anchors:
-      - - -75.629003
-        - 45.3294621
-      - - -75.5679262
-        - 45.4697494
-    osm_names:
-      - Greenbelt Pathway East
     member_of: capital-pathway
   - name: Trans Canada Trail (Sussex Drive)
     osm_relations:
@@ -899,17 +858,6 @@ bike_paths:
     wikidata_meta:
       description_en: footbridge in Ottawa, Canada
       description_fr: pont pour piétons et vélos à Ottawa, Ontario, Canada
-  - name: 'Trail #53'
-    osm_names:
-      - 'Trail #53'
-    anchors:
-      - - -76.0111283
-        - 45.6256973
-      - - -75.943028
-        - 45.6433735
-    surface: ground
-    highway: cycleway
-    ref: '53'
   - name: Juno Beach Memorial Bridge
     osm_names:
       - Juno Beach Memorial Bridge
@@ -1314,19 +1262,6 @@ bike_paths:
     width: '2'
     segregated: 'no'
     highway: cycleway
-  - name: Trail 21
-    osm_names:
-      - Trail 21
-    anchors:
-      - - -75.8656275
-        - 45.314458
-      - - -75.8507489
-        - 45.3196511
-    surface: ground
-    smoothness: bad
-    width: '1'
-    lit: 'no'
-    highway: path
   - name: 'Sentier du Parc de la Gatineau Park Trail #30'
     osm_names:
       - 'Sentier du Parc de la Gatineau Park Trail #30'
@@ -1354,22 +1289,6 @@ bike_paths:
     width: '2'
     lit: 'no'
     highway: path
-  - name: Trail 50
-    osm_names:
-      - Trail 50
-    anchors:
-      - - -75.998981
-        - 45.5672289
-      - - -75.885638
-        - 45.5996354
-    name_en: Trail 50
-    alt_name: Trail 73
-    surface: ground
-    segregated: 'no'
-    highway: path
-    ref: '50'
-    smoothness: intermediate
-    width: '2'
   - name: Marianne Wilkinson Bridge
     osm_names:
       - Marianne Wilkinson Bridge
@@ -1488,21 +1407,6 @@ bike_paths:
     incline: 0%
     segregated: 'no'
     highway: path
-  - name: 'Trail #1'
-    osm_names:
-      - 'Trail #1'
-    anchors:
-      - - -76.0867979
-        - 45.3315928
-      - - -75.8646895
-        - 45.4924321
-    surface: gravel
-    smoothness: very_bad
-    width: '2'
-    lit: 'no'
-    highway: path
-    network: mtb
-    ref: '1'
   - name: Linear park
     osm_names:
       - Linear park
@@ -5057,7 +4961,7 @@ bike_paths:
       - ottawa-river-pathway-east
       - ottawa-river-pathway-trans-canada-trail
       - ottawa-river-pathway-west
-      - greenbelt-pathway-west
+      - ncc-greenbelt-5
       - greenbelt-pathway-west-barrhaven
     wikidata_meta:
       description_en: Bike path network in Ottawa-Gatineau, Canada
@@ -5065,48 +4969,33 @@ bike_paths:
       length_km: 220
       inception: 1970s
       website: https://ncc-ccn.gc.ca/places/capital-pathway
-  - name: Sentier du Lac Leamy Pathway
+  - name: Sentier du Ruisseau-de-la-Brasserie Pathway
     grouped_from:
       - sentier-du-lac-leamy-pathway
+      - sentier-du-ruisseau-de-la-brasserie-pathway
+      - sentier-de-lile
       - sentier-de-la-riviere-gatineau-pathway
     anchors:
-      - - -75.7275971
-        - 45.4472972
+      - - -75.72988
+        - 45.4245687
       - - -75.703136
         - 45.4617537
     osm_names:
       - Sentier du Lac Leamy Pathway
+      - Sentier du Ruisseau-de-la-Brasserie Pathway
+      - Sentier de l'Île
       - Sentier de la Rivière Gatineau Pathway
     osm_relations:
       - 215129
-    surface: asphalt
-    highway: cycleway
-    lit: 'no'
-    width: '3'
-    smoothness: good
-    network: lcn
-    operator: NCC
-  - name: Sentier du Ruisseau-de-la-Brasserie Pathway
-    grouped_from:
-      - sentier-du-ruisseau-de-la-brasserie-pathway
-      - sentier-de-lile
-    anchors:
-      - - -75.72988
-        - 45.4245687
-      - - -75.7097778
-        - 45.447053
-    osm_names:
-      - Sentier du Ruisseau-de-la-Brasserie Pathway
-      - Sentier de l'Île
-    osm_relations:
       - 215130
       - 218656
     surface: asphalt
     highway: cycleway
-    lit: 'yes'
+    lit: 'no'
     width: '2'
-    network: lcn
     smoothness: good
+    network: lcn
+    operator: NCC
   - name: Sentier des Pionniers Pathway
     grouped_from:
       - sentier-des-pionniers-pathway
@@ -5151,6 +5040,63 @@ bike_paths:
     smoothness: good
     operator: NCC
     network: rcn
+    member_of: capital-pathway
+  - name: NCC Greenbelt
+    grouped_from:
+      - greenbelt-pathway-west
+      - trail-21
+      - trail-10
+      - greenbelt-trail
+    anchors:
+      - - -75.8759034
+        - 45.3025008
+      - - -75.6991722
+        - 45.3621251
+    osm_names:
+      - Greenbelt Pathway West
+      - Trail 21
+      - Trail 10
+      - Greenbelt Trail
+    osm_relations:
+      - 7248705
+    surface: fine_gravel
+    highway: path
+    lit: 'no'
+    width: '1'
+    smoothness: bad
+    operator: NCC
+    network: rcn
+    member_of: capital-pathway
+  - name: Greenbelt Pathway East
+    grouped_from:
+      - greenbelt-pathway-east
+      - greenbelt-pathway-east-trail-44
+      - greenbelt-pathway-east-trail-42
+      - greenbelt-pathway-east-trail-40
+      - trail-44
+      - pine-grove-forestry-trail
+      - trail-43-pine-grove-forestry-trail
+    anchors:
+      - - -75.629003
+        - 45.3294621
+      - - -75.5679262
+        - 45.4697494
+    osm_names:
+      - Greenbelt Pathway East
+      - Greenbelt Pathway East / Trail 44
+      - Greenbelt Pathway East / Trail 42
+      - Greenbelt Pathway East / Trail 40
+      - Trail 44
+      - Pine Grove Forestry Trail
+      - Trail 43 - Pine Grove Forestry Trail
+    osm_relations:
+      - 7369775
+    surface: fine_gravel
+    highway: cycleway
+    lit: 'no'
+    width: '2'
+    smoothness: good
+    network: Pine Grove
     member_of: capital-pathway
   - name: Sawmill Creek Path
     grouped_from:
@@ -5304,28 +5250,45 @@ bike_paths:
     grouped_from:
       - trail-52
       - trail-57
+      - sentier-trail-51
+      - trail-53
+      - trail-47-hope-trail
+      - trail-51
       - trail-52-parc-de-la-gatineau-pathway
+      - trail-47
+      - trail-36-trans-canada-trail
+      - trail-50
     anchors:
-      - - -75.964203
-        - 45.582498
-      - - -75.9384142
-        - 45.6329522
+      - - -76.0136666
+        - 45.5272457
+      - - -75.8643952
+        - 45.6433735
     osm_names:
       - 'Trail #52'
       - Trail 57
+      - 'Sentier / Trail #51'
+      - 'Trail #53'
+      - Trail 47 (Hope Trail)
+      - 'Trail #51'
       - 'Trail #52 Parc de la Gatineau Pathway'
+      - Trail 47
+      - 'Trail #36 Trans Canada Trail'
+      - Trail 50
     surface: ground
     highway: cycleway
     lit: 'no'
-    width: '1.5'
+    width: '2'
     smoothness: bad
-  - name: NCC Greenbelt
+    network: mtb
+  - name: Trail 26
     grouped_from:
       - trail-27
       - trail-26
       - jack-pine-trail
       - trail-65
       - trail-66
+      - 68-missing-link
+      - trail-68
     anchors:
       - - -75.8174277
         - 45.2895852
@@ -5337,32 +5300,12 @@ bike_paths:
       - Jack Pine Trail
       - Trail 65
       - Trail 66
+      - '# 68 (Missing Link)'
+      - Trail 68
     surface: ground
     highway: path
     width: '2'
     smoothness: very_bad
-    lit: 'no'
-  - name: NCC Greenbelt
-    grouped_from:
-      - greenbelt-pathway-east-trail-44
-      - trail-44
-      - pine-grove-forestry-trail
-      - trail-43-pine-grove-forestry-trail
-    anchors:
-      - - -75.603202
-        - 45.3465457
-      - - -75.5842903
-        - 45.3578598
-    osm_names:
-      - Greenbelt Pathway East / Trail 44
-      - Trail 44
-      - Pine Grove Forestry Trail
-      - Trail 43 - Pine Grove Forestry Trail
-    surface: ground
-    highway: path
-    width: '2'
-    smoothness: good
-    network: Pine Grove
     lit: 'no'
   - name: Pont Lady-Aberdeen
     grouped_from:
@@ -5415,20 +5358,6 @@ bike_paths:
       - Chemin Cowden
     surface: ground
     highway: cycleway
-  - name: Parc de la Gatineau
-    grouped_from:
-      - sentier-trail-51
-      - trail-51
-    anchors:
-      - - -76.0136666
-        - 45.6151579
-      - - -75.983215
-        - 45.628233
-    osm_names:
-      - 'Sentier / Trail #51'
-      - 'Trail #51'
-    surface: ground
-    highway: cycleway
   - name: 'Trail #54'
     grouped_from:
       - trail-54
@@ -5442,25 +5371,6 @@ bike_paths:
       - 'Trail #54'
       - '54'
     highway: cycleway
-  - name: Parc de la Gatineau
-    grouped_from:
-      - trail-47-hope-trail
-      - trail-47
-      - trail-36-trans-canada-trail
-    anchors:
-      - - -75.9041589
-        - 45.5272457
-      - - -75.8643952
-        - 45.568983
-    osm_names:
-      - Trail 47 (Hope Trail)
-      - Trail 47
-      - 'Trail #36 Trans Canada Trail'
-    surface: ground
-    highway: cycleway
-    width: '2'
-    smoothness: very_bad
-    network: mtb
   - name: Route 105
     grouped_from:
       - route-105
@@ -5475,24 +5385,6 @@ bike_paths:
       - Chemin de Ste-Cécile-de-Masham
     surface: asphalt
     highway: cycleway
-  - name: NCC Greenbelt
-    grouped_from:
-      - greenbelt-pathway-east-trail-42
-      - greenbelt-pathway-east-trail-40
-    anchors:
-      - - -75.626421
-        - 45.33044
-      - - -75.612257
-        - 45.338158
-    osm_names:
-      - Greenbelt Pathway East / Trail 42
-      - Greenbelt Pathway East / Trail 40
-    surface: fine_gravel
-    highway: cycleway
-    network: Pine Grove
-    lit: 'no'
-    width: '3'
-    smoothness: good
   - name: Portage Bridge cycle track
     grouped_from:
       - portage-bridge-cycle-track
@@ -5654,16 +5546,18 @@ bike_paths:
   - name: NCC Greenbelt
     grouped_from:
       - trail-12
+      - trail-1
       - trail-12a
       - trail-11
       - trail-12b
     anchors:
-      - - -75.8713773
-        - 45.3328417
+      - - -76.0867979
+        - 45.3315928
       - - -75.8586028
-        - 45.3383429
+        - 45.4924321
     osm_names:
       - Trail 12
+      - 'Trail #1'
       - Trail 12a
       - Trail 11
       - Trail 12b
@@ -5672,7 +5566,7 @@ bike_paths:
     width: '1'
     network: KanataNordicCampground
     lit: 'no'
-    smoothness: good
+    smoothness: very_bad
   - name: NCC Greenbelt
     grouped_from:
       - '50'
@@ -5693,23 +5587,6 @@ bike_paths:
     width: '2'
     network: Mer Bleue
     smoothness: intermediate
-  - name: NCC Greenbelt
-    grouped_from:
-      - trail-10
-      - greenbelt-trail
-    anchors:
-      - - -75.873912
-        - 45.352571
-      - - -75.8599589
-        - 45.3614822
-    osm_names:
-      - Trail 10
-      - Greenbelt Trail
-    surface: fine_gravel
-    highway: path
-    lit: 'no'
-    width: '1'
-    smoothness: bad
   - name: Parc de la Gatineau
     grouped_from:
       - 79b
@@ -5913,20 +5790,6 @@ bike_paths:
     osm_names:
       - '# 76 (Skyridge)'
       - '# 76 (Jesse''s Girl)'
-    surface: ground
-    highway: path
-  - name: Parc de la Gatineau
-    grouped_from:
-      - 68-missing-link
-      - trail-68
-    anchors:
-      - - -75.8024799
-        - 45.451451
-      - - -75.7839542
-        - 45.4609278
-    osm_names:
-      - '# 68 (Missing Link)'
-      - Trail 68
     surface: ground
     highway: path
   - name: Major

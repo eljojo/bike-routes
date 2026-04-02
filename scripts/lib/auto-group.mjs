@@ -195,6 +195,12 @@ out tags;`;
         anchors: bboxAnchors(cluster.members.flatMap(m => m.anchors || [])),
       };
 
+      // Carry _ways from all members so this group can participate in
+      // further clustering rounds — without _ways, trails that share
+      // nodes with absorbed members can't find the connection.
+      const allWays = cluster.members.flatMap(m => m._ways || []);
+      if (allWays.length > 0) groupEntry._ways = allWays;
+
       if (allOsmNames.length > 0) groupEntry.osm_names = allOsmNames;
       if (allOsmRelations.length > 0) groupEntry.osm_relations = allOsmRelations;
       for (const [key, val] of Object.entries(tags)) {

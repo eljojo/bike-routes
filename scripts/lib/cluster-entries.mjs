@@ -1,7 +1,16 @@
 // cluster-entries.mjs
 import { haversineM, corridorWidth } from './geo.mjs';
 
-const MAX_CORRIDOR_WIDTH_M = 2000;
+// Type-based corridor width limits. Trails in parks span large areas
+// (Gatineau Park is 20km across) — a single limit blocks legitimate
+// connections. Urban paved cycleways need a tighter limit to prevent
+// mega-groups from chaining through shared intersection nodes.
+const CORRIDOR_WIDTH_BY_TYPE = {
+  trail: 20000,  // 20km — parks, forests, conservation areas
+  paved: 3000,   // 3km — urban MUPs, separated cycleways
+  road: 2000,    // 2km — parallel bike lanes along roads
+};
+const DEFAULT_CORRIDOR_WIDTH_M = 3000; // for null/unknown pathType
 
 const UNPAVED = new Set(['ground', 'gravel', 'dirt', 'earth', 'grass', 'sand', 'mud', 'compacted', 'fine_gravel', 'woodchips', 'unpaved', 'dirt/sand']);
 
@@ -73,7 +82,12 @@ export function clusterByConnectivity(entries) {
     if (!operatorsCompatible(withWays[ri].entry.operator, withWays[rj].entry.operator)) return;
     if (!typesCompatible(entryTypes[i], entryTypes[j])) return;
     const mergedPts = [...compEndpoints[ri], ...compEndpoints[rj]];
-    if (corridorWidth(mergedPts) > MAX_CORRIDOR_WIDTH_M) return;
+    // Use the wider limit of the two types — if one is a trail, use trail limit
+    const typeI = entryTypes[i], typeJ = entryTypes[j];
+    const limitI = CORRIDOR_WIDTH_BY_TYPE[typeI] ?? DEFAULT_CORRIDOR_WIDTH_M;
+    const limitJ = CORRIDOR_WIDTH_BY_TYPE[typeJ] ?? DEFAULT_CORRIDOR_WIDTH_M;
+    const limit = Math.max(limitI, limitJ);
+    if (corridorWidth(mergedPts) > limit) return;
     parent[ri] = rj;
     compEndpoints[rj] = mergedPts;
   }
