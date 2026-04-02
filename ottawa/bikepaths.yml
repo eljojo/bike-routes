@@ -797,7 +797,7 @@ bike_paths:
       - Voie Verte Chelsea
     segregated: 'no'
     mtb:scale: '1'
-    member_of: voie-verte-chelsea
+    member_of: voie-verte-chelsea-trails
     mtb: true
   - name: Sentier du lac Leamy Skiing Trail
     osm_relations:
@@ -849,7 +849,7 @@ bike_paths:
     width: '2.5'
     highway: cycleway
     bicycle: designated
-    member_of: voie-verte-chelsea
+    member_of: voie-verte-chelsea-trails
   - name: Chief William Commanda Bridge
     osm_names:
       - Chief William Commanda Bridge
@@ -1054,7 +1054,7 @@ bike_paths:
     highway: cycleway
     tracktype: grade2
     bicycle: designated
-    member_of: prescott-russell-trail-link
+    member_of: prescott-russell-trail-link-trails
   - name: Prescott Russell Trail Link
     osm_names:
       - Prescott Russell Trail Link
@@ -1071,7 +1071,7 @@ bike_paths:
     highway: cycleway
     tracktype: grade2
     bicycle: designated
-    member_of: prescott-russell-trail-link
+    member_of: prescott-russell-trail-link-trails
   - name: Greenbelt Pathway East
     osm_names:
       - Greenbelt Pathway East
@@ -1120,7 +1120,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: ottawa-valley-recreational-trail
+    member_of: ottawa-valley-recreational-trail-trails
   - name: Ottawa Valley Recreational Trail
     osm_names:
       - Ottawa Valley Recreational Trail
@@ -1135,7 +1135,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: ottawa-valley-recreational-trail
+    member_of: ottawa-valley-recreational-trail-trails
   - name: Ottawa Valley Recreational Trail
     osm_names:
       - Ottawa Valley Recreational Trail
@@ -1150,7 +1150,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: ottawa-valley-recreational-trail
+    member_of: ottawa-valley-recreational-trail-trails
   - name: Ottawa Valley Recreational Trail
     osm_names:
       - Ottawa Valley Recreational Trail
@@ -1165,7 +1165,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: ottawa-valley-recreational-trail
+    member_of: ottawa-valley-recreational-trail-trails
   - name: 'Trail #56'
     osm_names:
       - 'Trail #56'
@@ -1325,7 +1325,7 @@ bike_paths:
     highway: cycleway
     mtb:scale: '0'
     bicycle: designated
-    member_of: osgoode-leitrim-multi-use-pathway
+    member_of: osgoode-leitrim-multi-use-pathway-trails
   - name: Osgoode-Leitrim Multi-use Pathway
     osm_names:
       - Osgoode-Leitrim Multi-use Pathway
@@ -1342,7 +1342,7 @@ bike_paths:
     highway: cycleway
     mtb:scale: '0'
     bicycle: designated
-    member_of: osgoode-leitrim-multi-use-pathway
+    member_of: osgoode-leitrim-multi-use-pathway-trails
   - name: Trans-Canada Trail Ottawa
     osm_names:
       - Trans-Canada Trail Ottawa
@@ -2237,7 +2237,7 @@ bike_paths:
     highway: cycleway
     mtb:scale: '1'
     bicycle: designated
-    member_of: voie-verte-chelsea
+    member_of: voie-verte-chelsea-trails
     mtb: true
   - name: Community Pump Track
     osm_names:
@@ -2920,7 +2920,7 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: designated
-    member_of: ottawa-valley-recreational-trail
+    member_of: ottawa-valley-recreational-trail-trails
   - name: Klondike
     osm_names:
       - Klondike
@@ -3305,7 +3305,7 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: designated
-    member_of: ottawa-valley-recreational-trail
+    member_of: ottawa-valley-recreational-trail-trails
   - name: Byron Park Pathway
     osm_names:
       - Byron Park Pathway
@@ -4049,7 +4049,7 @@ bike_paths:
     surface: fine_gravel
     highway: path
     bicycle: 'yes'
-    member_of: ottawa-valley-recreational-trail
+    member_of: ottawa-valley-recreational-trail-trails
   - name: Rideau Canal Locks Crossing
     osm_names:
       - Rideau Canal Locks Crossing
@@ -8450,7 +8450,7 @@ bike_paths:
     lit: 'no'
     highway: footway
     bicycle: 'yes'
-    member_of: ottawa-valley-recreational-trail
+    member_of: ottawa-valley-recreational-trail-trails
   - name: Hendrick Park Bridge
     osm_names:
       - Hendrick Park Bridge
@@ -8476,7 +8476,7 @@ bike_paths:
     highway: footway
     bicycle: 'yes'
     access: private
-    member_of: ottawa-valley-recreational-trail
+    member_of: ottawa-valley-recreational-trail-trails
   - name: Middle footpath
     osm_names:
       - Middle footpath
@@ -8999,7 +8999,7 @@ bike_paths:
         - 45.2202512
     width: '2'
     highway: footway
-    member_of: ottawa-valley-recreational-trail
+    member_of: ottawa-valley-recreational-trail-trails
     mtb: true
   - name: Piranga - Sentier d'hiver
     osm_names:
@@ -9429,7 +9429,7 @@ bike_paths:
     highway: path
     mtb:scale: '2'
     mtb:scale:imba: '2'
-    member_of: ottawa-valley-recreational-trail
+    member_of: ottawa-valley-recreational-trail-trails
     mtb: true
   - name: Rue Saint-Louis
     osm_names:
@@ -9660,7 +9660,7 @@ bike_paths:
     width: 1 m
     incline: 15%
     highway: path
-    member_of: voie-verte-chelsea
+    member_of: voie-verte-chelsea-trails
     mtb: true
   - name: William Street
     osm_names:
@@ -9710,7 +9710,7 @@ bike_paths:
     width: '2.5'
     highway: path
     mtb:scale: '1'
-    member_of: voie-verte-chelsea
+    member_of: voie-verte-chelsea-trails
     mtb: true
   - name: L'Aventurier
     osm_names:
@@ -11605,7 +11605,7 @@ bike_paths:
     smoothness: good
     network: lcn
     operator: NCC
-  - name: Sentier du Ruisseau-de-la-Brasserie Pathway
+  - name: Sentier du Ruisseau-de-la-Brasserie Pathway Trails
     type: network
     members:
       - sentier-du-ruisseau-de-la-brasserie-pathway
@@ -11627,7 +11627,7 @@ bike_paths:
     width: '2'
     network: lcn
     smoothness: good
-  - name: Sentier des Pionniers Pathway
+  - name: Sentier des Pionniers Pathway Trails
     type: network
     members:
       - sentier-des-pionniers-pathway
@@ -11776,7 +11776,7 @@ bike_paths:
     operator: NCC
     super_network: capital-pathway
     mtb: true
-  - name: Prescott Russell Trail Link
+  - name: Prescott Russell Trail Link Trails
     type: network
     members:
       - prescott-russell-trail-link-2
@@ -11794,7 +11794,7 @@ bike_paths:
     width: '2'
     smoothness: good
     mtb: true
-  - name: Rideau Canal Western Pathway
+  - name: Rideau Canal Western Pathway Trails
     type: network
     members:
       - rideau-canal-western-pathway
@@ -11817,7 +11817,7 @@ bike_paths:
     operator: NCC
     network: rcn
     super_network: capital-pathway
-  - name: Trans Canada Trail
+  - name: Trans Canada Trail Trails
     type: network
     members:
       - trans-canada-trail
@@ -11845,7 +11845,7 @@ bike_paths:
     width: '3'
     smoothness: good
     mtb: true
-  - name: Sawmill Creek Path
+  - name: Sawmill Creek Path Trails
     type: network
     members:
       - sawmill-creek-pathway
@@ -11868,7 +11868,7 @@ bike_paths:
     smoothness: intermediate
     network: lcn
     lit: 'yes'
-  - name: Voie Verte Chelsea
+  - name: Voie Verte Chelsea Trails
     type: network
     members:
       - voie-verte-chelsea-2
@@ -11894,7 +11894,7 @@ bike_paths:
     smoothness: intermediate
     network: lcn
     mtb: true
-  - name: Chief William Commanda Bridge
+  - name: Chief William Commanda Bridge Trails
     type: network
     members:
       - chief-william-commanda-bridge
@@ -11911,7 +11911,7 @@ bike_paths:
     highway: cycleway
     width: '4'
     smoothness: good
-  - name: Chemin du Lac-Leamy
+  - name: Chemin du Lac-Leamy Trails
     type: network
     members:
       - chemin-du-lac-leamy
@@ -11928,7 +11928,7 @@ bike_paths:
     highway: cycleway
     width: '3'
     smoothness: excellent
-  - name: Ottawa Valley Recreational Trail
+  - name: Ottawa Valley Recreational Trail Trails
     type: network
     members:
       - ottawa-valley-recreational-trail-3
@@ -12216,7 +12216,7 @@ bike_paths:
     smoothness: very_bad
     network: mtb
     mtb: true
-  - name: Chelsea Creek Path
+  - name: Chelsea Creek Path Trails
     type: network
     members:
       - chelsea-creek-path
@@ -12233,7 +12233,7 @@ bike_paths:
     highway: path
     width: '2.5'
     mtb: true
-  - name: Boulevard Maloney Sidepath
+  - name: Boulevard Maloney Sidepath Trails
     type: network
     members:
       - boulevard-maloney-sidepath
@@ -12251,7 +12251,7 @@ bike_paths:
     width: '2.5'
     smoothness: good
     lit: 'no'
-  - name: Boulevard de la Gappe
+  - name: Boulevard de la Gappe Trails
     type: network
     members:
       - boulevard-de-la-gappe
@@ -12281,7 +12281,7 @@ bike_paths:
     lit: 'yes'
     width: '2.5'
     smoothness: good
-  - name: Boulevard La Vérendrye Ouest
+  - name: Boulevard La Vérendrye Ouest Trails
     type: network
     members:
       - boulevard-la-verendrye-ouest
@@ -12301,7 +12301,7 @@ bike_paths:
     lit: 'no'
     width: '2.5'
     smoothness: good
-  - name: Boulevard de la Cité-des-Jeunes
+  - name: Boulevard de la Cité-des-Jeunes Trails
     type: network
     members:
       - boulevard-des-hautes-plaines
@@ -12321,7 +12321,7 @@ bike_paths:
     lit: 'yes'
     width: '3'
     smoothness: excellent
-  - name: Osgoode-Leitrim Multi-use Pathway
+  - name: Osgoode-Leitrim Multi-use Pathway Trails
     type: network
     members:
       - osgoode-leitrim-multi-use-pathway-2
@@ -12339,7 +12339,7 @@ bike_paths:
     width: '3'
     smoothness: good
     mtb: true
-  - name: Pont Lady-Aberdeen
+  - name: Pont Lady-Aberdeen Trails
     type: network
     members:
       - pont-lady-aberdeen
@@ -12355,7 +12355,7 @@ bike_paths:
     surface: asphalt
     highway: cycleway
     width: '2'
-  - name: Portage Bridge cycle track
+  - name: Portage Bridge cycle track Trails
     type: network
     members:
       - portage-bridge-cycle-track
@@ -12392,7 +12392,7 @@ bike_paths:
     highway: cycleway
     lit: 'no'
     mtb: true
-  - name: Boulevard de la Carrière
+  - name: Boulevard de la Carrière Trails
     type: network
     members:
       - rue-atawe
@@ -12408,7 +12408,7 @@ bike_paths:
     surface: asphalt
     highway: cycleway
     width: '2.5'
-  - name: Chemin Scott
+  - name: Chemin Scott Trails
     type: network
     members:
       - chemin-old-chelsea
@@ -12428,7 +12428,7 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
-  - name: Kizell Pond Trail North
+  - name: Kizell Pond Trail North Trails
     type: network
     members:
       - blue-heron-trail
@@ -12578,7 +12578,7 @@ bike_paths:
     width: '2'
     smoothness: intermediate
     mtb: true
-  - name: La Boucle
+  - name: La Boucle Trails
     type: network
     members:
       - major
@@ -12637,7 +12637,7 @@ bike_paths:
     highway: path
     smoothness: bad
     mtb: true
-  - name: No Exit
+  - name: No Exit Trails
     type: network
     members:
       - no-exit
@@ -12654,7 +12654,7 @@ bike_paths:
     highway: path
     width: '0.5'
     mtb: true
-  - name: Boulevard Moussette
+  - name: Boulevard Moussette Trails
     type: network
     members:
       - rue-isabelle
@@ -12676,7 +12676,7 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
-  - name: Boulevard Wilfrid-Lavigne
+  - name: Boulevard Wilfrid-Lavigne Trails
     type: network
     members:
       - rue-du-caveau
@@ -12698,7 +12698,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Boulevard Montclair
+  - name: Boulevard Montclair Trails
     type: network
     members:
       - rue-saint-redempteur
@@ -12716,7 +12716,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Bridge Street
+  - name: Bridge Street Trails
     type: network
     members:
       - bridge-street
@@ -12731,7 +12731,7 @@ bike_paths:
       - Perth Street
     surface: asphalt
     highway: secondary
-  - name: Boulevard Hurtubise
+  - name: Boulevard Hurtubise Trails
     type: network
     members:
       - boulevard-hurtubise
@@ -12747,7 +12747,7 @@ bike_paths:
     highway: residential
     width: '6'
     surface: asphalt
-  - name: Kanata Avenue
+  - name: Kanata Avenue Trails
     type: network
     members:
       - kanata-avenue
@@ -12766,7 +12766,7 @@ bike_paths:
       - Goulbourn Forced Road
     surface: asphalt
     highway: tertiary
-  - name: Beaverbrook Road
+  - name: Beaverbrook Road Trails
     type: network
     members:
       - knudson-drive
@@ -12785,7 +12785,7 @@ bike_paths:
       - Beaverbrook Road
     surface: asphalt
     highway: tertiary
-  - name: Herzberg Road
+  - name: Herzberg Road Trails
     type: network
     members:
       - herzberg-road
@@ -12801,7 +12801,7 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
-  - name: March Road
+  - name: March Road Trails
     type: network
     members:
       - march-road
@@ -12819,7 +12819,7 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
-  - name: Hazeldean Road
+  - name: Hazeldean Road Trails
     type: network
     members:
       - iber-road
@@ -12839,7 +12839,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: West Hunt Club Road
+  - name: West Hunt Club Road Trails
     type: network
     members:
       - west-hunt-club-road
@@ -12857,7 +12857,7 @@ bike_paths:
     surface: asphalt
     highway: primary
     lit: 'yes'
-  - name: Greenbank Road
+  - name: Greenbank Road Trails
     type: network
     members:
       - highbury-park-drive
@@ -12872,7 +12872,7 @@ bike_paths:
       - Greenbank Road
     surface: asphalt
     highway: tertiary
-  - name: Island Park Drive
+  - name: Island Park Drive Trails
     type: network
     members:
       - island-park-drive
@@ -12892,7 +12892,7 @@ bike_paths:
     surface: asphalt
     highway: primary
     lit: 'yes'
-  - name: Dovercourt Avenue
+  - name: Dovercourt Avenue Trails
     type: network
     members:
       - sherbourne-road
@@ -12908,7 +12908,7 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
-  - name: Bank Street
+  - name: Bank Street Trails
     type: network
     members:
       - glebe-avenue
@@ -12932,7 +12932,7 @@ bike_paths:
     surface: asphalt
     highway: residential
     lit: 'yes'
-  - name: Sussex Drive
+  - name: Sussex Drive Trails
     type: network
     members:
       - elgin-street
@@ -12968,7 +12968,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Montréal Road
+  - name: Montréal Road Trails
     type: network
     members:
       - percy-street
@@ -13000,7 +13000,7 @@ bike_paths:
     surface: asphalt
     highway: residential
     lit: 'yes'
-  - name: Ogilvie Road
+  - name: Ogilvie Road Trails
     type: network
     members:
       - belfast-road
@@ -13018,7 +13018,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Lees Avenue
+  - name: Lees Avenue Trails
     type: network
     members:
       - lees-avenue
@@ -13039,7 +13039,7 @@ bike_paths:
     highway: secondary
     lit: 'yes'
     operator: OC Transpo
-  - name: Hawthorne Road
+  - name: Hawthorne Road Trails
     type: network
     members:
       - st-laurent-boulevard
@@ -13059,7 +13059,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Beechwood Avenue
+  - name: Beechwood Avenue Trails
     type: network
     members:
       - hemlock-road
@@ -13075,7 +13075,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Sunview Drive
+  - name: Sunview Drive Trails
     type: network
     members:
       - belcourt-boulevard
@@ -13092,7 +13092,7 @@ bike_paths:
     highway: tertiary
     lit: 'yes'
     width: '10'
-  - name: Jeanne-d'Arc Boulevard North
+  - name: Jeanne-d'Arc Boulevard North Trails
     type: network
     members:
       - jeanne-darc-boulevard-north
@@ -13107,7 +13107,7 @@ bike_paths:
       - Tweddle Road
     surface: asphalt
     highway: secondary
-  - name: Innes Road
+  - name: Innes Road Trails
     type: network
     members:
       - innes-road
@@ -13126,7 +13126,7 @@ bike_paths:
     highway: secondary
     lit: 'yes'
     width: '9.5'
-  - name: Riverside Drive
+  - name: Riverside Drive Trails
     type: network
     members:
       - river-road
@@ -13142,7 +13142,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Woodroffe Avenue
+  - name: Woodroffe Avenue Trails
     type: network
     members:
       - longfields-drive
@@ -13160,7 +13160,7 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
-  - name: Crestway Drive
+  - name: Crestway Drive Trails
     type: network
     members:
       - leikin-drive
@@ -13175,7 +13175,7 @@ bike_paths:
       - Crestway Drive
     surface: asphalt
     highway: tertiary
-  - name: Meadowlands Drive East
+  - name: Meadowlands Drive East Trails
     type: network
     members:
       - meadowlands-drive
@@ -13191,7 +13191,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Farlane Boulevard
+  - name: Farlane Boulevard Trails
     type: network
     members:
       - farlane-boulevard
@@ -13210,7 +13210,7 @@ bike_paths:
       - Warbonnet Drive
     surface: asphalt
     highway: residential
-  - name: Trim Road
+  - name: Trim Road Trails
     type: network
     members:
       - portobello-boulevard
@@ -13229,7 +13229,7 @@ bike_paths:
     highway: tertiary
     width: '8.5'
     lit: 'yes'
-  - name: Eagleson Road
+  - name: Eagleson Road Trails
     type: network
     members:
       - eagleson-road
@@ -13245,7 +13245,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Rue de Clarendon
+  - name: Rue de Clarendon Trails
     type: network
     members:
       - rue-de-clarendon
@@ -13262,7 +13262,7 @@ bike_paths:
       - Chemin Gold Mine Nord
     surface: paved
     highway: unclassified
-  - name: University Drive
+  - name: University Drive Trails
     type: network
     members:
       - university-drive
@@ -13277,7 +13277,7 @@ bike_paths:
       - Stadium Way
     surface: asphalt
     highway: tertiary
-  - name: Conroy Road
+  - name: Conroy Road Trails
     type: network
     members:
       - johnston-road
@@ -13293,7 +13293,7 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
-  - name: Merivale Road
+  - name: Merivale Road Trails
     type: network
     members:
       - merivale-road
@@ -13309,7 +13309,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Parkdale Avenue
+  - name: Parkdale Avenue Trails
     type: network
     members:
       - parkdale-avenue
@@ -13329,7 +13329,7 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
-  - name: Wellington Street West
+  - name: Wellington Street West Trails
     type: network
     members:
       - wellington-street-west
@@ -13345,7 +13345,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Mackenzie King Bridge
+  - name: Mackenzie King Bridge Trails
     type: network
     members:
       - nicholas-street
@@ -13367,7 +13367,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Uplands Drive
+  - name: Uplands Drive Trails
     type: network
     members:
       - uplands-drive
@@ -13382,7 +13382,7 @@ bike_paths:
       - Lester Road
     surface: asphalt
     highway: secondary
-  - name: Boulevard du Plateau
+  - name: Boulevard du Plateau Trails
     type: network
     members:
       - boulevard-des-grives
@@ -13398,7 +13398,7 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
-  - name: Seneca Street
+  - name: Seneca Street Trails
     type: network
     members:
       - seneca-street
@@ -13414,7 +13414,7 @@ bike_paths:
     surface: asphalt
     highway: residential
     lit: 'yes'
-  - name: Copernicus Street
+  - name: Copernicus Street Trails
     type: network
     members:
       - universite-private
@@ -13435,7 +13435,7 @@ bike_paths:
       - Marie-Curie Private
     surface: asphalt
     highway: pedestrian
-  - name: Strandherd Drive
+  - name: Strandherd Drive Trails
     type: network
     members:
       - strandherd-drive
@@ -13451,7 +13451,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Smyth Road
+  - name: Smyth Road Trails
     type: network
     members:
       - smyth-road
@@ -13467,7 +13467,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Limebank Road
+  - name: Limebank Road Trails
     type: network
     members:
       - limebank-road
@@ -13483,7 +13483,7 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
-  - name: Garner Avenue
+  - name: Garner Avenue Trails
     type: network
     members:
       - egan-road
@@ -13501,7 +13501,7 @@ bike_paths:
     surface: asphalt
     highway: residential
     lit: 'no'
-  - name: Coulicou
+  - name: Coulicou Trails
     type: network
     members:
       - coulicou
@@ -13524,7 +13524,7 @@ bike_paths:
     highway: footway
     lit: 'no'
     mtb: true
-  - name: Deauville trail
+  - name: Deauville trail Trails
     type: network
     members:
       - deauville-trail
@@ -13540,7 +13540,7 @@ bike_paths:
     surface: ground
     highway: footway
     mtb: true
-  - name: Rue Marston
+  - name: Rue Marston Trails
     type: network
     members:
       - rue-marston

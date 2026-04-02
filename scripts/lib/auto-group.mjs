@@ -251,12 +251,17 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
       let networkName = cluster.resolvedName;
       let networkSlug = slugifyBikePathName(networkName);
 
-      // If the network slug collides with a member slug, the member
-      // would be filtered as a self-reference. Disambiguate by appending "Trails".
+      // If the network slug collides with a member slug (exact or disambiguated),
+      // the member would be filtered as a self-reference. Disambiguate by
+      // appending "Trails". Check both exact match and base-slug match
+      // (e.g. network "La Boucle" → slug "la-boucle" collides with member
+      // slug "la-boucle" which might be disambiguated to "la-boucle-1").
       const memberSlugsRaw = cluster.members
         .filter(m => m.type !== 'network')
         .map(m => slugMap.get(m));
-      if (memberSlugsRaw.includes(networkSlug)) {
+      const hasCollision = memberSlugsRaw.some(s => s === networkSlug) ||
+        cluster.members.some(m => slugifyBikePathName(m.name) === networkSlug);
+      if (hasCollision) {
         networkName = networkName + ' Trails';
         networkSlug = slugifyBikePathName(networkName);
       }
@@ -264,7 +269,7 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
       const memberSlugs = memberSlugsRaw.filter(s => s && s !== networkSlug);
 
       const networkEntry = {
-        name: cluster.resolvedName,
+        name: networkName,
         type: 'network',
         members: memberSlugs,
         anchors: bboxAnchors(cluster.members.flatMap(m => m.anchors || [])),

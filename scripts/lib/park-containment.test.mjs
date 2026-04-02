@@ -146,6 +146,45 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
   // -----------------------------------------------------------------------
 
   // -----------------------------------------------------------------------
+  // No network should reference itself or other networks as members
+  // -----------------------------------------------------------------------
+
+  it('no network has itself as a member (self-reference)', () => {
+    const networks = entries.filter(e => e.type === 'network');
+    for (const net of networks) {
+      if (!net.members) continue;
+      const netSlug = net.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-');
+      for (const memberSlug of net.members) {
+        expect(memberSlug, `Network "${net.name}" references itself`).not.toBe(netSlug);
+      }
+    }
+  });
+
+  it('no network has another network as a member', () => {
+    const networks = entries.filter(e => e.type === 'network');
+    const networkSlugs = new Set();
+    for (const net of networks) {
+      const slug = net.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-');
+      networkSlugs.add(slug);
+    }
+
+    for (const net of networks) {
+      for (const memberSlug of net.members || []) {
+        const memberEntry = entries.find(e => {
+          const s = e.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-');
+          return s === memberSlug;
+        });
+        if (memberEntry?.type === 'network') {
+          expect.fail(`Network "${net.name}" has network "${memberEntry.name}" (${memberSlug}) as a member`);
+        }
+      }
+    }
+  });
+
+  // -----------------------------------------------------------------------
   // Ottawa River Pathway: 79% of geometry is outside any park.
   // It should NOT be adopted into the Greenbelt just because 9% passes through it.
   // -----------------------------------------------------------------------
