@@ -3,8 +3,9 @@
 /**
  * Build bikepaths.yml — the city's cycling infrastructure registry.
  *
- * Discovers cycling infrastructure from OSM and optionally enriches with
- * external data sources (e.g. Pedaleable catastro for Santiago).
+ * Discovers cycling infrastructure from OSM, builds entries from scratch
+ * on every run (no incremental merge with existing file), and optionally
+ * enriches with network discovery and Wikidata metadata.
  *
  * Region-specific behavior (OSM query patterns, external data sources) is
  * defined in lib/city-adapter.mjs.
@@ -13,24 +14,20 @@
  *   node scripts/build-bikepaths.mjs --city santiago
  *   node scripts/build-bikepaths.mjs --city ottawa --dry-run
  *
- * ## Merge philosophy
+ * ## Pipeline
  *
- * bikepaths.yml is machine-owned but accepts manual additions. The merge
- * logic is additive and preserves existing entries:
- *
- * - **Entries already in the file are never removed**, even if the script's
- *   OSM query no longer returns them (e.g. paths outside the city bounds).
- * - **Hand-edited fields take precedence** over OSM data. The script only
- *   fills in fields the entry doesn't already have.
- * - **Manual one-offs are welcome.** If a path exists in OSM but falls
- *   outside the query bounds (e.g. Prescott-Russell Trail is in a
- *   neighbouring county), add it manually with its osm_relations. The
- *   next script run will enrich it with any missing OSM metadata but
- *   won't remove or duplicate it. This effectively enlarges the scope
- *   of what the script manages.
- * - The script matches existing entries by relation ID first, then by
- *   slugified name. This prevents duplicates when an entry is added
- *   manually before the script discovers it.
+ * 1. loadManualEntries() — read manual-entries.yml sidecar
+ * 2. discoverOsmRelations() — OSM relations in bbox
+ * 3. discoverOsmNamedWays() — named cycling ways
+ * 4. discoverParallelLanes() — unnamed cycleways
+ * 5. buildEntries() — build from scratch (NO merge with existing)
+ * 6. enrichOutOfBoundsRelations() — for manual entries
+ * 7. discoverNetworks() — find superroutes, add network entries
+ * 8. autoGroupNearbyPaths() — cluster trails (skipping network members)
+ * 9. Centralized slug computation
+ * 10. resolveNetworkMembers() — _member_relations → slugs, assign member_of
+ * 11. enrichWithWikidata()
+ * 12. Write YAML (strip transient fields)
  */
 
 import fs from 'node:fs';
@@ -43,7 +40,9 @@ import { loadCityAdapter } from './lib/city-adapter.mjs';
 import { chainSegments } from './lib/chain-segments.mjs';
 import { selectBestRoad } from './lib/select-best-road.mjs';
 import { defaultParallelLaneFilter } from './lib/city-adapter.mjs';
-import { autoGroupNearbyPaths } from './lib/auto-group.mjs';
+import { autoGroupNearbyPaths, computeSlugs } from './lib/auto-group.mjs';
+import { discoverNetworks } from './lib/discover-networks.mjs';
+import { enrichWithWikidata } from './lib/wikidata.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI (only when run directly, not when imported)
@@ -86,7 +85,22 @@ if (isMain) {
 }
 
 // ---------------------------------------------------------------------------
-// Step 1: Discover cycling relations from OSM
+// Step 1: Load manual entries from sidecar file
+// ---------------------------------------------------------------------------
+
+function loadManualEntries() {
+  const manualPath = path.join(dataDir, 'manual-entries.yml');
+  if (!fs.existsSync(manualPath)) return [];
+  const data = yaml.load(fs.readFileSync(manualPath, 'utf8'));
+  const entries = data?.manual_entries || [];
+  if (entries.length > 0) {
+    console.log(`  Loaded ${entries.length} manual entries`);
+  }
+  return entries;
+}
+
+// ---------------------------------------------------------------------------
+// Step 2: Discover cycling relations from OSM
 // ---------------------------------------------------------------------------
 
 async function discoverOsmRelations() {
@@ -108,7 +122,7 @@ out tags;`;
 }
 
 // ---------------------------------------------------------------------------
-// Step 2: Discover named cycling ways not in relations
+// Step 3: Discover named cycling ways not in relations
 // ---------------------------------------------------------------------------
 
 async function discoverOsmNamedWays() {
@@ -167,7 +181,7 @@ async function discoverOsmNamedWays() {
 }
 
 // ---------------------------------------------------------------------------
-// Step 2b: Discover unnamed parallel bike lanes
+// Step 4: Discover unnamed parallel bike lanes
 // ---------------------------------------------------------------------------
 
 async function discoverParallelLanes() {
@@ -292,57 +306,7 @@ function mergeBboxes(a, b) {
 }
 
 // ---------------------------------------------------------------------------
-// Step 3: Fetch external data (catastro, etc.) — city-specific
-// ---------------------------------------------------------------------------
-
-async function fetchExternalData() {
-  if (!adapter.externalData) {
-    console.log('No external data source for this city, skipping.');
-    return [];
-  }
-
-  const { type, url } = adapter.externalData;
-  if (type !== 'catastro') {
-    console.log(`Unknown external data type: ${type}, skipping.`);
-    return [];
-  }
-
-  console.log('Fetching catastro from pedaleable.org...');
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed to fetch catastro: ${res.status}`);
-  const geojson = await res.json();
-
-  const segments = [];
-  for (const feature of geojson.features) {
-    const p = feature.properties;
-    if (p['_inválida'] === '1') continue;
-
-    const coords = feature.geometry.coordinates;
-    const firstLine = coords[0];
-    const lastLine = coords[coords.length - 1];
-    const start = firstLine[0].slice(0, 2);
-    const end = lastLine[lastLine.length - 1].slice(0, 2);
-
-    segments.push({
-      nombre: p.nombre || 'unnamed',
-      comuna: p._comuna || 'unknown',
-      quality: p._eval_graduada_pedal || null,
-      clasificacion: p._eval_graduada_pedal_clasif || null,
-      emplazamiento: p._emplazamiento || null,
-      ancho_cm: p._ancho_cm || null,
-      video: p.video || null,
-      surface_type: p._tipo || null,
-      start,
-      end,
-      center: [(start[0] + end[0]) / 2, (start[1] + end[1]) / 2],
-    });
-  }
-  console.log(`  Fetched ${segments.length} catastro segments`);
-  return segments;
-}
-
-// ---------------------------------------------------------------------------
-// Step 4: Load existing bikepaths.yml and merge
+// Metadata helpers
 // ---------------------------------------------------------------------------
 
 /**
@@ -419,14 +383,8 @@ function mergeWayTags(ways) {
   return merged;
 }
 
-function loadExisting() {
-  if (!fs.existsSync(bikepathsPath)) return [];
-  const { bike_paths } = yaml.load(fs.readFileSync(bikepathsPath, 'utf8'));
-  return bike_paths || [];
-}
-
 /**
- * Enrich an existing entry with OSM metadata, only adding fields it doesn't
+ * Enrich an entry with OSM metadata, only adding fields it doesn't
  * already have (hand-edited values take precedence).
  */
 function enrichEntry(entry, tags) {
@@ -436,50 +394,49 @@ function enrichEntry(entry, tags) {
   }
 }
 
-// TODO(anchors): mergeData preserves existing entries' anchors as-is. Since we now store
-// actual way endpoints (not bbox corners), existing entries keep their old bbox-style anchors
-// until the file is regenerated from scratch. This means touching trails won't cluster correctly
-// if their anchors predate the endpoint change. Fix: when an existing entry matches a discovered
-// entry, update its anchors to the discovered endpoints. Needs care to not overwrite manually
-// placed anchors. Related: cluster-entries.mjs TOUCHING_M threshold relies on real endpoints.
-async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments, parallelLanes = []) {
-  console.log('Merging data...');
+// ---------------------------------------------------------------------------
+// Step 5: Build entries from scratch (replaces mergeData)
+// ---------------------------------------------------------------------------
 
-  // Index existing entries by slug and relation ID
+/**
+ * Build entries from discovered OSM data and manual entries.
+ * No reference to any existing bikepaths.yml — built from scratch.
+ */
+function buildEntries(osmRelations, osmNamedWays, parallelLanes, manualEntries) {
+  console.log('Building entries from scratch...');
+
   const bySlug = new Map();
   const byRelation = new Map();
   const byName = new Map();
-  for (const entry of existing) {
-    const slug = entry.slug || slugify(entry.name);
+  const result = [];
+
+  // Add manual entries first
+  for (const entry of manualEntries) {
+    const slug = slugify(entry.name);
     bySlug.set(slug, entry);
     byName.set(entry.name.toLowerCase(), entry);
+    result.push(entry);
     if (entry.osm_relations) {
       for (const relId of entry.osm_relations) byRelation.set(relId, entry);
     }
   }
 
-  const result = [...existing];
-  let added = 0;
-
-  // Add OSM relations not already tracked
+  // Add OSM relations
   for (const rel of osmRelations) {
     if (byRelation.has(rel.id)) {
-      // Enrich existing entry with any missing metadata
       enrichEntry(byRelation.get(rel.id), rel.tags);
       continue;
     }
-    // Check by name too (might be tracked by name instead of relation)
     const slug = slugify(rel.name);
     if (bySlug.has(slug)) {
-      // Entry exists by name but missing the relation ID — add it
       const entry = bySlug.get(slug);
       if (!entry.osm_relations) entry.osm_relations = [];
       entry.osm_relations.push(rel.id);
       enrichEntry(entry, rel.tags);
+      byRelation.set(rel.id, entry);
       continue;
     }
 
-    // New entry with OSM metadata
     const meta = extractOsmMetadata(rel.tags);
     const entry = {
       name: rel.name,
@@ -489,38 +446,22 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
     result.push(entry);
     bySlug.set(slug, entry);
     byRelation.set(rel.id, entry);
-    added++;
+    byName.set(rel.name.toLowerCase(), entry);
   }
 
-  // Add named ways not already tracked (by name or slug)
+  // Add named ways
   for (const np of osmNamedWays) {
     const slug = slugify(np.name);
-    // Enrich existing entries with metadata from ways
-    const existingEntry = bySlug.get(slug) || byName.get(np.name.toLowerCase());
-    if (existingEntry) {
-      enrichEntry(existingEntry, np.tags);
-      // Update anchors to real endpoints if discovered data has more detail
-      if (np.anchors?.length > (existingEntry.anchors?.length || 0)) {
-        existingEntry.anchors = np.anchors;
+    const existing = bySlug.get(slug) || byName.get(np.name.toLowerCase());
+    if (existing) {
+      enrichEntry(existing, np.tags);
+      if (np.anchors?.length > (existing.anchors?.length || 0)) existing.anchors = np.anchors;
+      if (np._ways) existing._ways = np._ways;
+      if (!existing.osm_names) {
+        existing.osm_names = np.osmNames;
       }
-      if (np._ways) existingEntry._ways = np._ways;
       continue;
     }
-
-    // Check if any existing entry has this as an osm_name
-    let found = false;
-    for (const entry of existing) {
-      if (entry.osm_names?.some(n => n.toLowerCase() === np.name.toLowerCase())) {
-        enrichEntry(entry, np.tags);
-        if (np.anchors?.length > (entry.anchors?.length || 0)) {
-          entry.anchors = np.anchors;
-        }
-        if (np._ways) entry._ways = np._ways;
-        found = true;
-        break;
-      }
-    }
-    if (found) continue;
 
     const meta = extractOsmMetadata(np.tags);
     const entry = {
@@ -532,153 +473,50 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
     };
     result.push(entry);
     bySlug.set(slug, entry);
-    added++;
+    byName.set(np.name.toLowerCase(), entry);
   }
 
-  // Enrich entries with catastro data (Santiago-only for now)
-  let enriched = 0;
-  for (const seg of catastroSegments) {
-    if (!seg.osmWayId) continue;
-
-    // Find which entry this segment belongs to (by proximity to entry's anchors)
-    let bestEntry = null;
-    let bestDist = Infinity;
-    for (const entry of result) {
-      if (entry.anchors) {
-        for (const anchor of entry.anchors) {
-          const d = haversineM(seg.center, anchor);
-          if (d < bestDist) { bestDist = d; bestEntry = entry; }
-        }
+  // Add parallel lanes
+  let parallelAdded = 0;
+  let parallelMerged = 0;
+  for (const candidate of parallelLanes) {
+    const slug = slugify(candidate.name);
+    const existingEntry = bySlug.get(slug) || byName.get(candidate.name.toLowerCase());
+    if (existingEntry) {
+      if (!existingEntry.parallel_to) {
+        existingEntry.parallel_to = candidate.parallel_to;
+        parallelMerged++;
+        console.log(`  ~ merged parallel geometry into: ${existingEntry.name}`);
       }
+      continue;
     }
 
-    if (bestEntry && bestDist < 2000) {
-      if (!bestEntry.segments) bestEntry.segments = [];
-      // Don't add duplicate segments
-      const alreadyHas = bestEntry.segments.some(s => s.osm_way === seg.osmWayId);
-      if (!alreadyHas) {
-        const segEntry = { osm_way: seg.osmWayId };
-        if (seg.quality) segEntry.quality = seg.quality;
-        if (seg.video) segEntry.video = seg.video;
-        if (seg.surface_type) segEntry.surface_type = seg.surface_type;
-        if (seg.ancho_cm) segEntry.width_cm = seg.ancho_cm;
-        bestEntry.segments.push(segEntry);
-        enriched++;
-      }
+    const entry = {
+      name: candidate.name,
+      parallel_to: candidate.parallel_to,
+      highway: candidate.tags.highway || 'cycleway',
+      anchors: candidate.anchors,
+    };
+    for (const key of ['surface', 'lit', 'width', 'smoothness']) {
+      if (candidate.tags[key]) entry[key] = candidate.tags[key];
     }
+    result.push(entry);
+    bySlug.set(slug, entry);
+    byName.set(candidate.name.toLowerCase(), entry);
+    parallelAdded++;
+    console.log(`  + parallel lane: ${candidate.name}`);
   }
 
-  // --- Parallel lanes (pass 2: spatial dedup + merge) ---
-  if (parallelLanes.length > 0) {
-    const { isOverlapping } = await import('./lib/spatial-dedup.mjs');
-
-    // Load existing geometry for spatial dedup
-    const geoDir = args.city ? path.resolve('.cache', 'bikepath-geometry', args.city) : null;
-    const existingGeometries = [];
-    if (geoDir && fs.existsSync(geoDir)) {
-      for (const file of fs.readdirSync(geoDir).filter(f => f.endsWith('.geojson'))) {
-        try {
-          const geojson = JSON.parse(fs.readFileSync(path.join(geoDir, file), 'utf8'));
-          const pts = [];
-          for (const feature of geojson.features || []) {
-            const coords = feature.geometry?.coordinates || [];
-            const lines = feature.geometry?.type === 'LineString' ? [coords] :
-                          feature.geometry?.type === 'MultiLineString' ? coords : [];
-            for (const line of lines) {
-              for (const c of line) pts.push([c[1], c[0]]); // [lat, lng]
-            }
-          }
-          if (pts.length > 0) existingGeometries.push(pts);
-        } catch {}
-      }
-    }
-
-    let parallelAdded = 0;
-    let parallelMerged = 0;
-    for (const candidate of parallelLanes) {
-      const slug = slugify(candidate.name);
-
-      // If an entry with this name already exists, merge the parallel lane
-      // geometry into it rather than skipping. This way roads that have both
-      // painted lanes and a separated cycleway get the parallel geometry
-      // resolved too. We keep the existing (worse) facts — the road's
-      // highway/cycleway tags — to avoid overstating quality when only part
-      // of the path is separated infrastructure.
-      // TODO: in the future, mark these entries as mixed-quality so the UI
-      // can show "parts of this path are separated, others are painted lanes"
-      const existingEntry = bySlug.get(slug) || byName.get(candidate.name.toLowerCase());
-      if (existingEntry) {
-        if (!existingEntry.parallel_to) {
-          existingEntry.parallel_to = candidate.parallel_to;
-          parallelMerged++;
-          console.log(`  ~ merged parallel geometry into: ${existingEntry.name}`);
-        }
-        continue;
-      }
-
-      // Skip if spatially overlapping existing geometry
-      const candidatePts = candidate._chainCoords;
-      let dominated = false;
-      for (const existingPts of existingGeometries) {
-        if (isOverlapping(candidatePts, existingPts, 30, 0.5)) {
-          dominated = true;
-          break;
-        }
-      }
-      if (dominated) continue;
-
-      // Add new entry
-      const entry = {
-        name: candidate.name,
-        parallel_to: candidate.parallel_to,
-        highway: candidate.tags.highway || 'cycleway',
-        anchors: candidate.anchors,
-      };
-      // Add optional tags
-      for (const key of ['surface', 'lit', 'width', 'smoothness']) {
-        if (candidate.tags[key]) entry[key] = candidate.tags[key];
-      }
-      result.push(entry);
-      bySlug.set(slug, entry);
-      byName.set(candidate.name.toLowerCase(), entry);
-      parallelAdded++;
-      console.log(`  + parallel lane: ${candidate.name}`);
-    }
-
-    if (parallelAdded > 0 || parallelMerged > 0) {
-      added += parallelAdded;
-      console.log(`  Parallel lanes added: ${parallelAdded}, merged into existing: ${parallelMerged}`);
-    }
+  if (parallelAdded > 0 || parallelMerged > 0) {
+    console.log(`  Parallel lanes added: ${parallelAdded}, merged into existing: ${parallelMerged}`);
   }
 
-  // Re-attach _ways to existing group entries for connectivity clustering on re-runs.
-  const discoveredWaysByName = new Map();
-  for (const np of osmNamedWays) {
-    if (np._ways) discoveredWaysByName.set(np.name.toLowerCase(), np._ways);
-  }
-  for (const entry of result) {
-    if (entry.grouped_from && !entry._ways && entry.osm_names) {
-      const ways = [];
-      for (const osmName of entry.osm_names) {
-        const found = discoveredWaysByName.get(osmName.toLowerCase());
-        if (found) ways.push(...found);
-      }
-      if (ways.length > 0) entry._ways = ways;
-    }
-  }
-
-  console.log(`  Existing entries: ${existing.length}`);
-  console.log(`  New entries added: ${added}`);
-  if (catastroSegments.length > 0) {
-    console.log(`  Catastro segments matched: ${enriched}`);
-  }
-  console.log(`  Total entries: ${result.length}`);
-
+  console.log(`  Built ${result.length} entries from scratch`);
   return result;
 }
 
 // ---------------------------------------------------------------------------
-// Main
+// Enrich out-of-bounds relations
 // ---------------------------------------------------------------------------
 
 /**
@@ -687,9 +525,9 @@ async function mergeData(existing, osmRelations, osmNamedWays, catastroSegments,
  * This is what makes manual one-offs work: add a relation ID to the file,
  * and the next script run fills in name, surface, network, etc. from OSM.
  */
-async function enrichOutOfBoundsRelations(merged, discoveredRelationIds) {
+async function enrichOutOfBoundsRelations(entries, discoveredRelationIds) {
   const missing = [];
-  for (const entry of merged) {
+  for (const entry of entries) {
     for (const relId of entry.osm_relations ?? []) {
       if (!discoveredRelationIds.has(relId)) {
         missing.push({ relId, entry });
@@ -716,49 +554,130 @@ async function enrichOutOfBoundsRelations(merged, discoveredRelationIds) {
   }
 }
 
-async function main() {
-  console.log(`Building bikepaths.yml for ${args.city} (bbox: ${bbox})`);
+// ---------------------------------------------------------------------------
+// Resolve network members
+// ---------------------------------------------------------------------------
 
-  const existing = loadExisting();
-  const osmRelations = await discoverOsmRelations();
-  const osmNamedWays = await discoverOsmNamedWays();
-  const externalSegments = await fetchExternalData();
-  const parallelLanes = await discoverParallelLanes();
-
-  const merged = await mergeData(existing, osmRelations, osmNamedWays, externalSegments, parallelLanes);
-
-  // Enrich any manually added relations that fell outside the query bounds
-  const discoveredRelationIds = new Set(osmRelations.map(r => r.id));
-  await enrichOutOfBoundsRelations(merged, discoveredRelationIds);
-
-  // Pass 3: Auto-group nearby trail segments
-  const bikePathsDir = path.join(dataDir, 'bike-paths');
-  const markdownSlugs = new Set();
-  if (fs.existsSync(bikePathsDir)) {
-    for (const f of fs.readdirSync(bikePathsDir)) {
-      if (f.endsWith('.md')) markdownSlugs.add(f.replace(/\.md$/, ''));
+/**
+ * Resolve network _member_relations to slugs and assign member_of to members.
+ */
+function resolveNetworkMembers(entries, slugMap, networks) {
+  // Build relation ID → entry lookup
+  const byRelation = new Map();
+  for (const entry of entries) {
+    for (const relId of entry.osm_relations ?? []) {
+      byRelation.set(relId, entry);
     }
   }
 
-  const grouped = await autoGroupNearbyPaths({
-    entries: merged,
-    markdownSlugs,
-    queryOverpass,
-  });
+  // Sort networks largest-first so smallest (most specific) overwrites
+  const sorted = [...networks].sort(
+    (a, b) => (b._member_relations?.length || 0) - (a._member_relations?.length || 0)
+  );
 
+  for (const network of sorted) {
+    const networkSlug = slugMap.get(network);
+    if (!networkSlug) continue;
+
+    const memberSlugs = [];
+    for (const relId of network._member_relations || []) {
+      const member = byRelation.get(relId);
+      if (member && member.type !== 'network') {
+        const memberSlug = slugMap.get(member);
+        if (memberSlug) {
+          memberSlugs.push(memberSlug);
+          member.member_of = networkSlug;
+        }
+      }
+    }
+    network.members = memberSlugs;
+    delete network._member_relations;
+  }
+
+  const assigned = entries.filter(e => e.member_of).length;
+  if (assigned > 0) console.log(`  Assigned primary network to ${assigned} entries`);
+}
+
+// ---------------------------------------------------------------------------
+// Helper: load markdown slugs
+// ---------------------------------------------------------------------------
+
+function loadMarkdownSlugs() {
+  const bikePathsDir = path.join(dataDir, 'bike-paths');
+  const slugs = new Set();
+  if (fs.existsSync(bikePathsDir)) {
+    for (const f of fs.readdirSync(bikePathsDir)) {
+      if (f.endsWith('.md') && !f.includes('.fr.')) slugs.add(f.replace(/\.md$/, ''));
+    }
+  }
+  return slugs;
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+
+async function main() {
+  console.log(`Building bikepaths.yml for ${args.city} (bbox: ${bbox})`);
+
+  // Load manual additions
+  const manualEntries = loadManualEntries();
+
+  // Discover from OSM
+  const osmRelations = await discoverOsmRelations();
+  const osmNamedWays = await discoverOsmNamedWays();
+  const parallelLanes = await discoverParallelLanes();
+
+  // Build entries from scratch
+  const entries = buildEntries(osmRelations, osmNamedWays, parallelLanes, manualEntries);
+
+  // Enrich manual entries with out-of-bounds relation data
+  const discoveredRelationIds = new Set(osmRelations.map(r => r.id));
+  await enrichOutOfBoundsRelations(entries, discoveredRelationIds);
+
+  // Discover networks (superroutes)
+  let networks = [];
+  if (adapter.discoverNetworks) {
+    console.log('Discovering cycling networks...');
+    networks = await discoverNetworks({ bbox, queryOverpass });
+    entries.push(...networks);
+  }
+
+  // Auto-group nearby trail segments
+  const markdownSlugs = loadMarkdownSlugs();
+  const grouped = await autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass });
+
+  // Centralized slug computation
+  const slugMap = computeSlugs(grouped);
+
+  // Resolve network members and assign member_of
+  if (networks.length > 0) {
+    resolveNetworkMembers(grouped, slugMap, networks);
+  }
+
+  // Wikidata enrichment
+  console.log('Enriching with Wikidata...');
+  const wdCount = await enrichWithWikidata(grouped);
+  if (wdCount > 0) console.log(`  Enriched ${wdCount} entries`);
+
+  // Write output
   if (args.dryRun) {
     console.log('\n--- DRY RUN — would write: ---');
-    const newEntries = grouped.filter(e => !existing.includes(e));
-    for (const entry of newEntries) {
-      const slug = entry.slug || slugify(entry.name);
-      const source = entry.grouped_from ? `group of ${entry.grouped_from.length}` : entry.osm_relations ? `relation ${entry.osm_relations[0]}` : entry.parallel_to ? `parallel to "${entry.parallel_to}"` : `name "${entry.osm_names?.[0] || entry.name}"`;
-      console.log(`  + ${slug}: ${entry.name} (${source})`);
+    for (const entry of grouped) {
+      const slug = slugMap.get(entry) || slugify(entry.name);
+      const source = entry.type === 'network' ? `network (${entry.members?.length || 0} members)` :
+        entry.grouped_from ? `group of ${entry.grouped_from.length}` :
+        entry.osm_relations ? `relation ${entry.osm_relations[0]}` :
+        entry.parallel_to ? `parallel to "${entry.parallel_to}"` :
+        `name "${entry.osm_names?.[0] || entry.name}"`;
+      console.log(`  ${slug}: ${entry.name} (${source})`);
     }
-    console.log(`\nTotal: ${grouped.length} entries (${grouped.filter(e => e.grouped_from).length} groups)`);
+    console.log(`\nTotal: ${grouped.length} entries (${grouped.filter(e => e.grouped_from).length} groups, ${networks.length} networks)`);
   } else {
     // Strip transient fields before YAML output
     for (const entry of grouped) {
       delete entry._ways;
+      delete entry._member_relations;
     }
     // Compact anchors to bbox before writing — full endpoints are only needed in memory for clustering
     for (const entry of grouped) {
@@ -774,24 +693,22 @@ async function main() {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Testable pipeline entry point
+// ---------------------------------------------------------------------------
+
 /**
- * Testable pipeline entry point. Runs discovery + merge, returns entries array.
+ * Testable pipeline entry point. Runs discovery + build, returns entries array.
  * No file I/O — caller decides what to do with the result.
  *
  * @param {object} opts
  * @param {Function} opts.queryOverpass — async (q) => { elements: [] }
  * @param {string} opts.bbox — "south,west,north,east"
  * @param {object} opts.adapter — city adapter (from city-adapter.mjs)
- * @param {Array} opts.existing — existing bikepaths.yml entries
- * @param {string} [opts.cacheDir] — geometry cache dir for spatial dedup (optional)
- * @returns {Promise<Array>} merged entries
+ * @param {Array} [opts.manualEntries] — manual entries (replaces existing param)
+ * @returns {Promise<Array>} built entries
  */
-export async function buildBikepathsPipeline({ queryOverpass: qo, bbox: b, adapter: a, existing, cacheDir }) {
-  // Swap module-level bindings for the duration of this call
-  const savedQo = queryOverpass, savedBbox = bbox, savedAdapter = adapter;
-  // We can't reassign imports, so we call the inner functions directly.
-  // Instead, just run the pipeline steps inline using the provided deps.
-
+export async function buildBikepathsPipeline({ queryOverpass: qo, bbox: b, adapter: a, manualEntries = [], existing = [] }) {
   const filter = (a.parallelLaneFilter || defaultParallelLaneFilter);
 
   // Step 1: relations
@@ -880,9 +797,10 @@ out tags center;`;
     parallelLanes = groupByRoadAndProximity(results, 500);
   }
 
-  // Merge
-  const merged = await mergeData(existing, osmRelations, osmNamedWays, [], parallelLanes);
-  return merged;
+  // Build entries from scratch (backwards-compat: merge manual + existing as seed)
+  const seed = manualEntries.length > 0 ? manualEntries : existing;
+  const entries = buildEntries(osmRelations, osmNamedWays, parallelLanes, seed);
+  return entries;
 }
 
 if (isMain) {

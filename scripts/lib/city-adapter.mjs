@@ -59,6 +59,8 @@ const ottawa = {
   externalData: null,
 
   parallelLaneFilter: null,
+
+  discoverNetworks: true,
 };
 
 // ---------------------------------------------------------------------------

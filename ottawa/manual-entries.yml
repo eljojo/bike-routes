@@ -1,0 +1,3 @@
+# Out-of-bounds OSM relations and other manual additions.
+# Merged into pipeline input before discovery.
+manual_entries: []

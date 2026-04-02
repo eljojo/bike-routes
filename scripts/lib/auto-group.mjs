@@ -18,7 +18,7 @@ function slugifyBikePathName(name) {
  * Compute disambiguated slugs for an array of entries (matching Astro's logic).
  * Returns a Map<entry, slug>.
  */
-function computeSlugs(entries) {
+export function computeSlugs(entries) {
   const baseGroups = new Map();
   for (let i = 0; i < entries.length; i++) {
     const base = slugifyBikePathName(entries[i].name);
@@ -96,11 +96,13 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
   // Compute slugs for all entries
   const slugMap = computeSlugs(entries);
 
-  // Identify candidates: have anchors, not claimed by markdown
+  // Identify candidates: have anchors, not claimed by markdown, not network members
   const candidates = entries.filter(entry => {
     const slug = slugMap.get(entry);
     if (markdownSlugs.has(slug)) return false;
     if (!entry.anchors || entry.anchors.length === 0) return false;
+    // Network members keep their own pages — don't absorb into auto-generated clusters.
+    if (entry.member_of) return false;
     return true;
   });
 
