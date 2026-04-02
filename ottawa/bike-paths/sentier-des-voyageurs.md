@@ -3,8 +3,8 @@ name: Sentier des Voyageurs
 name_fr: Sentier des Voyageurs
 vibe: "Through the woods along the Ottawa River, connecting parks and beaches"
 includes:
-  - sentier-des-voyageurs
   - sentier-des-voyageurs-pathway
+  - sentier-des-voyageurs
 ---
 
 The main bike path in Gatineau — roughly 30 km along the north shore of the Ottawa River, linking the Hull and Aylmer sectors. Part of the Route Verte. The name honours the [historic route used by First Nations people, explorers, coureurs des bois, and Jesuit missionaries](https://www.bonjourquebec.com/en-us/listing/to-see-and-do/le-sentier-des-voyageurs/37yd).

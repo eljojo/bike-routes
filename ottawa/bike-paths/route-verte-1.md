@@ -4,7 +4,6 @@ wikipedia: en:Route verte
 vibe: "Quebec's national cycling route — from Gatineau to the Magdalen Islands"
 includes:
   - route-verte-1
-  - route-verte
 ---
 
 Route 1 of the [Route Verte](https://en.wikipedia.org/wiki/Route_verte), Quebec's provincial cycling network. It runs from Gatineau eastward through Montréal, Sherbrooke, Lévis, Rivière-du-Loup, Rimouski, and the Gaspé coast, all the way to the [Magdalen Islands by ferry](https://fr.wikipedia.org/wiki/Route_Verte_1) — the longest single route in the network, crossing eight administrative regions.

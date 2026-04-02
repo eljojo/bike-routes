@@ -6,19 +6,7 @@ featured: true
 includes:
   - sentier-du-parc-de-la-gatineau
   - promenade-sentier-du-parc-de-la-gatineau
-  - sentier-du-parc-de-la-gatineau-park-trail-30
-  - sentier-velo-de-montagne-parc-de-la-gatineau
-  - trail-1-ridge-road
-  - parc-de-la-gatineau-1
-  - parc-de-la-gatineau-2
-  - parc-de-la-gatineau-3
-  - parc-de-la-gatineau-4
-  - parc-de-la-gatineau-5
-  - parc-de-la-gatineau-6
-  - parc-de-la-gatineau-7
-  - parc-de-la-gatineau-8
-  - parc-de-la-gatineau-9
-  - parc-de-la-gatineau-10
+  - sentier-du-parc-de-la-gatineau-parkway
 ---
 
 The way into Gatineau Park by bike — and one of the most rewarding rides in the region. This path connects the urban Gatineau network to the park's 361-square-kilometre interior, where car-free parkways and serious climbs await.

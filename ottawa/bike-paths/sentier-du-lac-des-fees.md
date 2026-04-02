@@ -5,7 +5,6 @@ vibe: "A gentle loop around a quiet lake in Gatineau"
 includes:
   - sentier-du-lac-des-fees
   - sentier-du-lac-des-fees-pathway
-  - promenade-du-lac-des-fees
 ---
 
 A 4.7 km loop around Lac des Fées — a smaller, quieter lake tucked into the residential neighbourhoods just west of Hull. Peaceful ride with water views. Popular with local families.
