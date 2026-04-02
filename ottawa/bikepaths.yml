@@ -496,6 +496,18 @@ bike_paths:
       - 10334901
     operator: NCC
     network: lwn
+    surface: ground
+    smoothness: intermediate
+    width: '1'
+    lit: 'no'
+    highway: footway
+    anchors:
+      - - -75.7972648
+        - 45.3662425
+      - - -75.7916288
+        - 45.369012
+    osm_names:
+      - Mud Lake Trail
   - name: Greenboro Pathway
     osm_relations:
       - 10434447
@@ -692,20 +704,6 @@ bike_paths:
     width: '4'
     lit: 'no'
     highway: cycleway
-  - name: Chemin du Lac-Leamy
-    osm_names:
-      - Chemin du Lac-Leamy
-    anchors:
-      - - -75.7282034
-        - 45.440651
-      - - -75.7272738
-        - 45.4486677
-    surface: asphalt
-    smoothness: excellent
-    width: '3'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
   - name: Sentier du Lac-des-Fées Pathway
     osm_names:
       - Sentier du Lac-des-Fées Pathway
@@ -763,20 +761,6 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     mtb:scale: '0'
-  - name: Trans-Canada Trail Ottawa
-    osm_names:
-      - Trans-Canada Trail Ottawa
-    anchors:
-      - - -76.1086887
-        - 45.147819
-      - - -75.9207406
-        - 45.2581687
-    surface: fine_gravel
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
   - name: Sentier du Vallon
     osm_names:
       - Sentier du Vallon
@@ -850,17 +834,6 @@ bike_paths:
     wikidata_meta:
       description_en: footbridge in Ottawa, Canada
       description_fr: pont pour piétons et vélos à Ottawa, Ontario, Canada
-  - name: 'Trail #54'
-    osm_names:
-      - 'Trail #54'
-    anchors:
-      - - -76.0202864
-        - 45.5850318
-      - - -76.0085212
-        - 45.603352
-    highway: cycleway
-    mtb:scale: '1'
-    ref: '54'
   - name: Juno Beach Memorial Bridge
     osm_names:
       - Juno Beach Memorial Bridge
@@ -937,16 +910,6 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     operator: NCC
-  - name: Trillium Trail
-    osm_names:
-      - Trillium Trail
-    anchors:
-      - - -76.2574239
-        - 45.2490924
-      - - -76.2526022
-        - 45.2469496
-    surface: ground
-    highway: cycleway
   - name: Hospital Link Multi Use Pathway
     osm_names:
       - Hospital Link Multi Use Pathway
@@ -1147,17 +1110,6 @@ bike_paths:
       - - -75.4207644
         - 45.5880783
     highway: cycleway
-  - name: Forest Hike Trail
-    osm_names:
-      - Forest Hike Trail
-    anchors:
-      - - -76.2597689
-        - 45.2494275
-      - - -76.2587764
-        - 45.2487892
-    surface: ground
-    lit: 'no'
-    highway: cycleway
   - name: Voie Verte de Chelsea
     osm_names:
       - Voie Verte de Chelsea
@@ -1255,22 +1207,6 @@ bike_paths:
     width: '2'
     segregated: 'no'
     highway: cycleway
-  - name: 'Sentier du Parc de la Gatineau Park Trail #30'
-    osm_names:
-      - 'Sentier du Parc de la Gatineau Park Trail #30'
-    anchors:
-      - - -75.8435135
-        - 45.4907854
-      - - -75.842029
-        - 45.4965079
-    surface: gravel
-    smoothness: very_bad
-    width: '2'
-    lit: 'no'
-    highway: path
-    mtb:scale: '0'
-    network: mtb
-    ref: '30'
   - name: '31'
     osm_names:
       - '31'
@@ -1319,20 +1255,6 @@ bike_paths:
     surface: asphalt
     width: '3'
     highway: path
-  - name: 'Trail #40'
-    osm_names:
-      - 'Trail #40'
-    anchors:
-      - - -75.9234036
-        - 45.5274735
-      - - -75.8995751
-        - 45.5369834
-    surface: ground
-    lit: 'no'
-    incline: down
-    highway: path
-    mtb:scale: '2'
-    ref: '40'
   - name: Rotary Centennial Trail
     osm_names:
       - Rotary Centennial Trail
@@ -1344,17 +1266,6 @@ bike_paths:
     surface: fine_gravel
     segregated: 'no'
     highway: path
-  - name: Trail 74
-    osm_names:
-      - Trail 74
-    anchors:
-      - - -76.0130656
-        - 45.6039741
-      - - -76.0068889
-        - 45.6050159
-    surface: ground
-    width: '2'
-    highway: path
   - name: Trail 7
     osm_names:
       - Trail 7
@@ -1364,18 +1275,6 @@ bike_paths:
       - - -75.8349386
         - 45.484139
     surface: ground
-    highway: path
-  - name: 'Sentier/Trail #1'
-    osm_names:
-      - 'Sentier/Trail #1'
-    anchors:
-      - - -75.8166134
-        - 45.5016415
-      - - -75.8124556
-        - 45.5059189
-    surface: fine_gravel
-    smoothness: intermediate
-    width: '1.5'
     highway: path
   - name: Mississippi Riverwalk Trail
     osm_names:
@@ -1540,19 +1439,6 @@ bike_paths:
     name_fr: trainéé Trapper's
     surface: gravel
     highway: path
-  - name: Trail 8
-    osm_names:
-      - Trail 8
-    anchors:
-      - - -75.871743
-        - 45.3282051
-      - - -75.8712003
-        - 45.3314225
-    surface: ground
-    width: '1'
-    highway: path
-    network: KanataNordicCampground
-    ref: '8'
   - name: Riverwalk
     osm_names:
       - Riverwalk
@@ -1601,27 +1487,6 @@ bike_paths:
     segregated: 'no'
     highway: path
     parallel_to: Corkstown Road
-  - name: La Tour
-    osm_names:
-      - La Tour
-    anchors:
-      - - -75.7655466
-        - 45.516032
-      - - -75.7593707
-        - 45.5164611
-    surface: dirt
-    smoothness: bad
-    highway: path
-  - name: La Crete
-    osm_names:
-      - La Crete
-    anchors:
-      - - -75.7467706
-        - 45.5042493
-      - - -75.7432536
-        - 45.5048201
-    surface: dirt
-    highway: path
   - name: New Path
     osm_names:
       - New Path
@@ -2961,27 +2826,6 @@ bike_paths:
         - 45.4374886
     surface: asphalt
     highway: residential
-  - name: Coulicou
-    osm_names:
-      - Coulicou
-    anchors:
-      - - -75.8296319
-        - 45.4191359
-      - - -75.8206589
-        - 45.4265982
-    surface: ground
-    highway: footway
-    ref: '2'
-  - name: Deauville trail
-    osm_names:
-      - Deauville trail
-    anchors:
-      - - -75.6501809
-        - 45.6174421
-      - - -75.666152
-        - 45.6346972
-    surface: ground
-    highway: footway
   - name: Pont Macdonald-Cartier Bridge
     osm_names:
       - Pont Macdonald-Cartier Bridge
@@ -2995,16 +2839,6 @@ bike_paths:
     surface: concrete
     smoothness: good
     width: '2.5'
-    highway: footway
-  - name: M.O.
-    osm_names:
-      - M.O.
-    anchors:
-      - - -75.8530246
-        - 45.5428908
-      - - -75.8436923
-        - 45.5469
-    surface: ground
     highway: footway
   - name: Lover's Lane
     osm_names:
@@ -3039,28 +2873,6 @@ bike_paths:
         - 45.3217128
     surface: ground
     width: '0.5'
-    lit: 'no'
-    highway: footway
-  - name: Kizell Pond Trail North
-    osm_names:
-      - Kizell Pond Trail North
-    anchors:
-      - - -75.9377193
-        - 45.3263182
-      - - -75.9312187
-        - 45.3291081
-    surface: gravel
-    width: '0.5'
-    highway: footway
-  - name: Mississippi Valley Trail - ART Section
-    osm_names:
-      - Mississippi Valley Trail - ART Section
-    anchors:
-      - - -76.2056516
-        - 45.2309516
-      - - -76.2072213
-        - 45.2338654
-    surface: ground
     lit: 'no'
     highway: footway
   - name: Hendrick Park Bridge
@@ -3138,6 +2950,323 @@ bike_paths:
       - - -75.6339222
         - 45.4892647
     surface: ground
+    highway: footway
+  - name: Barberry Lane
+    osm_names:
+      - Barberry Lane
+    anchors:
+      - - -75.6086119
+        - 45.3959715
+      - - -75.6072681
+        - 45.3970682
+    name_fr: ruelle Barberry
+    name_en: Barberry Lane
+    surface: asphalt
+    width: '2'
+    highway: path
+  - name: Barrymore Lane
+    osm_names:
+      - Barrymore Lane
+    anchors:
+      - - -75.6111527
+        - 45.397489
+      - - -75.6098006
+        - 45.3983228
+    name_fr: ruelle Barrymore
+    name_en: Barrymore Lane
+    surface: asphalt
+    width: '2'
+    highway: path
+  - name: Delridge Lane
+    osm_names:
+      - Delridge Lane
+    anchors:
+      - - -75.6134193
+        - 45.3989078
+      - - -75.6123823
+        - 45.3996931
+    name_fr: ruelle Delridge
+    name_en: Delridge Lane
+    surface: asphalt
+    width: '3'
+    highway: path
+  - name: O'Brien Beach Path
+    osm_names:
+      - O'Brien Beach Path
+    anchors:
+      - - -75.8682432
+        - 45.5270781
+      - - -75.8645636
+        - 45.5270143
+    surface: fine_gravel
+    highway: footway
+  - name: Trail 38
+    osm_names:
+      - Trail 38
+    anchors:
+      - - -75.9140276
+        - 45.5316972
+      - - -75.9263938
+        - 45.5341129
+    lit: 'no'
+    highway: path
+    ref: '38'
+  - name: Trail 28
+    osm_names:
+      - Trail 28
+    anchors:
+      - - -75.8942568
+        - 45.5193123
+      - - -75.8887626
+        - 45.5243503
+    surface: ground
+    highway: path
+    ref: '28'
+  - name: '#41 (de la Mine)'
+    osm_names:
+      - '#41 (de la Mine)'
+    anchors:
+      - - -75.7831742
+        - 45.4652809
+      - - -75.782171
+        - 45.468588
+    surface: ground
+    highway: path
+  - name: Veterans Memorial Walkway
+    osm_names:
+      - Veterans Memorial Walkway
+    anchors:
+      - - -76.195028
+        - 45.2191602
+      - - -76.1959793
+        - 45.2202512
+    width: '2'
+    highway: footway
+  - name: Boulevard Sacré-Coeur
+    osm_names:
+      - Boulevard Sacré-Coeur
+    anchors:
+      - - -75.7087872
+        - 45.4371216
+      - - -75.7085435
+        - 45.4373717
+    surface: asphalt
+    highway: footway
+  - name: Trail 54, 73
+    osm_names:
+      - Trail 54, 73
+    anchors:
+      - - -75.9816713
+        - 45.5892851
+      - - -75.9796924
+        - 45.5854382
+    surface: ground
+    width: '2'
+    lit: 'no'
+    highway: path
+  - name: Trail 22B
+    osm_names:
+      - Trail 22B
+    anchors:
+      - - -75.852839
+        - 45.5003974
+      - - -75.8527697
+        - 45.4995216
+    highway: path
+  - name: Rue du Barry
+    osm_names:
+      - Rue du Barry
+    anchors:
+      - - -75.7124938
+        - 45.4880633
+      - - -75.7123655
+        - 45.487768
+    surface: asphalt
+    highway: footway
+  - name: '#43 (Boréale)'
+    osm_names:
+      - '#43 (Boréale)'
+    anchors:
+      - - -75.788951
+        - 45.471597
+      - - -75.789783
+        - 45.4673535
+    surface: ground
+    highway: path
+  - name: Rue Hadley
+    osm_names:
+      - Rue Hadley
+    anchors:
+      - - -75.7312612
+        - 45.4235406
+      - - -75.7309851
+        - 45.4237166
+    surface: asphalt
+    highway: footway
+  - name: Rue de Verdun
+    osm_names:
+      - Rue de Verdun
+    anchors:
+      - - -75.7092899
+        - 45.4346773
+      - - -75.709106
+        - 45.43469
+    surface: asphalt
+    highway: footway
+  - name: Rue Marston
+    osm_names:
+      - Rue Marston
+    anchors:
+      - - -75.7085891
+        - 45.4381255
+      - - -75.7084255
+        - 45.43811
+    highway: footway
+  - name: Rue Isidore-Ostiguy
+    osm_names:
+      - Rue Isidore-Ostiguy
+    anchors:
+      - - -75.7183881
+        - 45.4337247
+      - - -75.7185111
+        - 45.4348513
+    highway: footway
+  - name: Dark Side
+    osm_names:
+      - Dark Side
+    anchors:
+      - - -75.9503947
+        - 45.3285279
+      - - -75.9508082
+        - 45.3285137
+    highway: path
+    access: 'no'
+  - name: Chemin Pine/trail
+    osm_names:
+      - Chemin Pine/trail
+    anchors:
+      - - -75.8680573
+        - 45.5798682
+      - - -75.86669
+        - 45.5804857
+    surface: ground
+    width: 1 m
+    incline: 15%
+    highway: path
+  - name: William Street
+    osm_names:
+      - William Street
+    anchors:
+      - - -75.691098
+        - 45.4264745
+      - - -75.6911266
+        - 45.4265052
+    name_fr: rue William
+    name_en: William Street
+    surface: paving_stones
+    highway: footway
+  - name: Chemin de la Belle-Terre
+    osm_names:
+      - Chemin de la Belle-Terre
+    anchors:
+      - - -75.8089942
+        - 45.5167586
+      - - -75.8087091
+        - 45.5171723
+    surface: asphalt
+    highway: footway
+  - name: Voie vert de Chelsea
+    osm_names:
+      - Voie vert de Chelsea
+    anchors:
+      - - -75.753068
+        - 45.4809569
+      - - -75.752903
+        - 45.4809294
+    surface: gravel
+    smoothness: bad
+    width: '2.5'
+    highway: path
+    mtb:scale: '1'
+  - name: Rue de Cannes
+    osm_names:
+      - Rue de Cannes
+    anchors:
+      - - -75.7238073
+        - 45.4904184
+      - - -75.7239001
+        - 45.4901929
+    surface: asphalt
+    highway: footway
+  - name: Rue Clermont
+    osm_names:
+      - Rue Clermont
+    anchors:
+      - - -75.7027847
+        - 45.4772424
+      - - -75.7029543
+        - 45.4773359
+    surface: asphalt
+    highway: footway
+  - name: Rue Carmen
+    osm_names:
+      - Rue Carmen
+    anchors:
+      - - -75.7198402
+        - 45.4626869
+      - - -75.719601
+        - 45.4628695
+    surface: asphalt
+    highway: footway
+  - name: Rue Oxford
+    osm_names:
+      - Rue Oxford
+    anchors:
+      - - -75.7205136
+        - 45.4621485
+      - - -75.7202682
+        - 45.4623084
+    surface: asphalt
+    highway: footway
+  - name: Rue Mangin
+    osm_names:
+      - Rue Mangin
+    anchors:
+      - - -75.7264034
+        - 45.4403489
+      - - -75.7261141
+        - 45.440613
+    surface: asphalt
+    highway: footway
+  - name: Boulevard de la Technologie
+    osm_names:
+      - Boulevard de la Technologie
+    anchors:
+      - - -75.7740163
+        - 45.4746514
+      - - -75.7741818
+        - 45.4748839
+    surface: asphalt
+    highway: footway
+  - name: Chemin Ladyfield
+    osm_names:
+      - Chemin Ladyfield
+    anchors:
+      - - -75.8040205
+        - 45.5030208
+      - - -75.8039952
+        - 45.5031938
+    surface: asphalt
+    highway: footway
+  - name: Chemin Nordik
+    osm_names:
+      - Chemin Nordik
+    anchors:
+      - - -75.8055341
+        - 45.5029854
+      - - -75.8053405
+        - 45.5031112
+    surface: asphalt
     highway: footway
   - name: Pickwick Drive
     parallel_to: Pickwick Drive
@@ -4811,18 +4940,6 @@ bike_paths:
         - 45.4508904
       - - -75.7506436
         - 45.4514428
-  - name: Rue Saint-Louis
-    parallel_to: Rue Saint-Louis
-    highway: cycleway
-    anchors:
-      - - -75.7181838
-        - 45.4600091
-      - - -75.7181838
-        - 45.4600091
-    surface: asphalt
-    lit: 'yes'
-    width: '2.5'
-    smoothness: good
   - name: Old Second Line Road
     parallel_to: Old Second Line Road
     highway: cycleway
@@ -4959,7 +5076,7 @@ bike_paths:
       - ottawa-river-pathway-east
       - ottawa-river-pathway-trans-canada-trail
       - ottawa-river-pathway-west
-      - ncc-greenbelt-5
+      - greenbelt-pathway-west
       - greenbelt-pathway-west-barrhaven
     wikidata_meta:
       description_en: Bike path network in Ottawa-Gatineau, Canada
@@ -5039,31 +5156,97 @@ bike_paths:
     operator: NCC
     network: rcn
     member_of: capital-pathway
-  - name: NCC Greenbelt
+  - name: Greenbelt Pathway West
     grouped_from:
       - greenbelt-pathway-west
+      - trail-24
       - trail-21
+      - trail-12
+      - sentier-du-parc-de-la-gatineau-park-trail-30
       - trail-10
+      - trail-33
+      - trail-2
+      - sentier-du-parc-de-la-gatineau-parkway
+      - trail-4
       - greenbelt-trail
+      - trail-1
+      - trail-1b
+      - trail-1-ridge-road
+      - trail-14
+      - trail-12a
+      - trail-11
+      - trail-12b
+      - trail-8
+      - sentier-des-loups
+      - sentiertrail-8
+      - trail-18
+      - trail-9
+      - piste-12
+      - piste-31
+      - trail-20
+      - trail-22
+      - sentiertrail-17
+      - trail-34
+      - sentier-de-la-chute-de-luskville
+      - '10'
+      - sentier-trail-11
+      - ncc29
+      - kanata-nordic-trail-11
+      - kanata-nordic-snowshoe-trail
+      - trail-to-fire-tower
+      - trail-12-training-circle
     anchors:
-      - - -75.8759034
-        - 45.3025008
+      - - -76.0867979
+        - 45.2940019
       - - -75.6991722
-        - 45.3621251
+        - 45.5605291
     osm_names:
       - Greenbelt Pathway West
+      - Trail 24
       - Trail 21
+      - Trail 12
+      - 'Sentier du Parc de la Gatineau Park Trail #30'
       - Trail 10
+      - 'Trail #33'
+      - 'Trail #2'
+      - Sentier du Parc de la Gatineau Parkway
+      - Trail 4
       - Greenbelt Trail
+      - 'Trail #1'
+      - 'Trail #1B'
+      - 'Trail #1 Ridge Road'
+      - Trail 14
+      - Trail 12a
+      - Trail 11
+      - Trail 12b
+      - Trail 8
+      - Sentier des Loups
+      - 'Sentier/Trail #8'
+      - Trail 18
+      - 'Trail #9'
+      - Piste 12
+      - Piste 31
+      - Trail 20
+      - Trail 22
+      - 'Sentier/Trail #17'
+      - Trail 34
+      - Sentier de la Chute-de-Luskville
+      - '10'
+      - 'Sentier / Trail #11'
+      - NCC29
+      - Kanata Nordic Trail 11
+      - Kanata Nordic Snowshoe Trail
+      - Trail to Fire Tower
+      - Trail 12 Training Circle
     osm_relations:
       - 7248705
-    surface: fine_gravel
+    surface: ground
     highway: path
     lit: 'no'
     width: '1'
-    smoothness: bad
+    smoothness: very_bad
     operator: NCC
-    network: rcn
+    network: KanataNordicCampground
     member_of: capital-pathway
   - name: Greenbelt Pathway East
     grouped_from:
@@ -5071,26 +5254,34 @@ bike_paths:
       - greenbelt-pathway-east-trail-44
       - greenbelt-pathway-east-trail-42
       - greenbelt-pathway-east-trail-40
+      - trail-40
       - trail-44
       - pine-grove-forestry-trail
       - trail-43-pine-grove-forestry-trail
+      - trail-42
+      - trail-63
+      - arboretum-loop
     anchors:
-      - - -75.629003
+      - - -75.9234036
         - 45.3294621
       - - -75.5679262
-        - 45.4697494
+        - 45.5369834
     osm_names:
       - Greenbelt Pathway East
       - Greenbelt Pathway East / Trail 44
       - Greenbelt Pathway East / Trail 42
       - Greenbelt Pathway East / Trail 40
+      - 'Trail #40'
       - Trail 44
       - Pine Grove Forestry Trail
       - Trail 43 - Pine Grove Forestry Trail
+      - Trail 42
+      - Trail 63
+      - Arboretum Loop
     osm_relations:
       - 7369775
-    surface: fine_gravel
-    highway: cycleway
+    surface: ground
+    highway: path
     lit: 'no'
     width: '2'
     smoothness: good
@@ -5134,6 +5325,22 @@ bike_paths:
     highway: cycleway
     width: '4'
     smoothness: good
+  - name: Chemin du Lac-Leamy
+    grouped_from:
+      - chemin-du-lac-leamy
+      - boulevard-du-casino
+    anchors:
+      - - -75.7282494
+        - 45.440651
+      - - -75.7272738
+        - 45.4486758
+    osm_names:
+      - Chemin du Lac-Leamy
+      - Boulevard du Casino
+    surface: asphalt
+    highway: cycleway
+    width: '3'
+    smoothness: excellent
   - name: Ottawa Valley Recreational Trail
     grouped_from:
       - ottawa-valley-recreational-trail
@@ -5141,6 +5348,7 @@ bike_paths:
       - lower-path
       - lower-footpath
       - uppoer-footpath
+      - connector-path
     anchors:
       - - -76.3518819
         - 45.1488563
@@ -5152,6 +5360,7 @@ bike_paths:
       - Lower path
       - Lower footpath
       - Uppoer Footpath
+      - Connector path
     surface: ground
     highway: footway
     width: '1'
@@ -5205,16 +5414,26 @@ bike_paths:
     grouped_from:
       - boulevard-de-la-gappe
       - boulevard-greber
+      - chemin-de-la-savane
+      - boulevard-maloney-ouest
+      - rue-saint-antoine
       - rue-jacques-cartier
+      - rue-de-la-baie
+      - rue-saint-louis
     anchors:
-      - - -75.7212741
-        - 45.4577281
-      - - -75.7003109
+      - - -75.7219184
+        - 45.4568862
+      - - -75.6980806
         - 45.4783835
     osm_names:
       - Boulevard de la Gappe
       - Boulevard Gréber
+      - Chemin de la Savane
+      - Boulevard Maloney Ouest
+      - Rue Saint-Antoine
       - Rue Jacques-Cartier
+      - Rue de la Baie
+      - Rue Saint-Louis
     surface: asphalt
     highway: cycleway
     lit: 'yes'
@@ -5264,6 +5483,7 @@ bike_paths:
       - trail-57
       - sentier-trail-51
       - trail-53
+      - trail-54
       - trail-47-hope-trail
       - trail-55
       - trail-51
@@ -5271,6 +5491,25 @@ bike_paths:
       - trail-47
       - trail-36-trans-canada-trail
       - trail-50
+      - trail-74
+      - trail-72
+      - trail-71
+      - 72b-irish-cream
+      - 72b-irish-whiskey
+      - trail-73
+      - hat
+      - trail-36b
+      - carman-lake-lookout-trail
+      - trail-70
+      - gay-beach-trail
+      - 53b-bench
+      - 58-konnektor
+      - 58-glazer
+      - cross-over
+      - 59-moonshine
+      - sentier-52-du-parc-de-la-gatineau-parkway
+      - the-sweet-line
+      - chemin-cafferty
     anchors:
       - - -76.049404
         - 45.5272457
@@ -5281,6 +5520,7 @@ bike_paths:
       - Trail 57
       - 'Sentier / Trail #51'
       - 'Trail #53'
+      - 'Trail #54'
       - Trail 47 (Hope Trail)
       - 'Trail #55'
       - 'Trail #51'
@@ -5288,12 +5528,54 @@ bike_paths:
       - Trail 47
       - 'Trail #36 Trans Canada Trail'
       - Trail 50
+      - Trail 74
+      - Trail 72
+      - Trail 71
+      - '#72B (Irish Cream)'
+      - '#72B (Irish Whiskey)'
+      - Trail 73
+      - H.A.T.
+      - Trail 36b
+      - Carman Lake Lookout Trail
+      - Trail 70
+      - Gay Beach Trail
+      - '#53B (Bench)'
+      - '# 58 (Konnektor)'
+      - '#58 (Glazer)'
+      - Cross Over
+      - '# 59 (Moonshine)'
+      - Sentier 52 du Parc de la Gatineau Parkway
+      - The Sweet Line
+      - Chemin Cafferty
     surface: ground
-    highway: cycleway
+    highway: path
     lit: 'no'
     width: '2'
     smoothness: bad
     network: mtb
+  - name: Trans-Canada Trail Ottawa
+    grouped_from:
+      - trans-canada-trail-ottawa
+      - the-beast-trail
+      - jinx-link
+      - forest-walk
+      - oh-deer
+    anchors:
+      - - -76.1086887
+        - 45.147819
+      - - -75.9207406
+        - 45.2581687
+    osm_names:
+      - Trans-Canada Trail Ottawa
+      - The Beast Trail
+      - Jinx Link
+      - forest walk
+      - Oh-deer!
+    surface: ground
+    highway: path
+    lit: 'no'
+    width: '0.5'
+    smoothness: good
   - name: Trail 26
     grouped_from:
       - trail-27
@@ -5303,10 +5585,13 @@ bike_paths:
       - trail-66
       - 68-missing-link
       - trail-68
+      - sentier-des-caryers-hickory-trail
+      - whale
+      - trail-67
     anchors:
       - - -75.8174277
         - 45.2895852
-      - - -75.7716122
+      - - -75.7645085
         - 45.4624505
     osm_names:
       - Trail 27
@@ -5316,6 +5601,9 @@ bike_paths:
       - Trail 66
       - '# 68 (Missing Link)'
       - Trail 68
+      - Sentier des Caryers - Hickory Trail
+      - Whale
+      - Trail 67
     surface: ground
     highway: path
     width: '2'
@@ -5342,9 +5630,15 @@ bike_paths:
       - piste-35
       - trail-15-sentier-du-parc-de-la-gatineau-park-pathway
       - sentier-du-parc-de-la-gatineau-park-pathway-15
+      - 76-skyridge
+      - 76-jesses-girl
+      - hermit
+      - 78-monique
+      - la-chica
+      - 77-happy-valley
     anchors:
       - - -75.8444047
-        - 45.4679188
+        - 45.4609278
       - - -75.7911695
         - 45.4857605
     osm_names:
@@ -5352,6 +5646,12 @@ bike_paths:
       - 'Piste #35'
       - 'Trail #15 Sentier du Parc de la Gatineau Park Pathway'
       - 'Sentier du Parc de la Gatineau Park Pathway #15'
+      - '# 76 (Skyridge)'
+      - '# 76 (Jesse''s Girl)'
+      - Hermit
+      - '#78 (Monique)'
+      - La Chica
+      - '# 77 (Happy Valley)'
     surface: ground
     highway: path
     lit: 'no'
@@ -5361,15 +5661,21 @@ bike_paths:
       - 45-powerline
       - 44-mo
       - chemin-cowden
+      - mo
+      - bypass
+      - foreplay
     anchors:
       - - -75.8822303
         - 45.538408
-      - - -75.853593
+      - - -75.8436923
         - 45.5721159
     osm_names:
       - '#45 (Powerline)'
       - '#44 (M.O.)'
       - Chemin Cowden
+      - M.O.
+      - Bypass
+      - Foreplay
     surface: ground
     highway: cycleway
   - name: Route 105
@@ -5405,6 +5711,21 @@ bike_paths:
     lit: 'no'
     width: '2.5'
     smoothness: good
+  - name: Mill of Kintail Conservation Area
+    grouped_from:
+      - trillium-trail
+      - forest-hike-trail
+    anchors:
+      - - -76.2597689
+        - 45.2469496
+      - - -76.2526022
+        - 45.2494275
+    osm_names:
+      - Trillium Trail
+      - Forest Hike Trail
+    surface: ground
+    highway: cycleway
+    lit: 'no'
   - name: Boulevard de la Carrière
     grouped_from:
       - rue-atawe
@@ -5420,25 +5741,7 @@ bike_paths:
     surface: asphalt
     highway: cycleway
     width: '2.5'
-  - name: Chemin de la Savane
-    grouped_from:
-      - chemin-de-la-savane
-      - boulevard-maloney-ouest
-      - rue-saint-antoine
-      - rue-de-la-baie
-    anchors:
-      - - -75.7082871
-        - 45.4568862
-      - - -75.6980806
-        - 45.4742429
-    osm_names:
-      - Chemin de la Savane
-      - Boulevard Maloney Ouest
-      - Rue Saint-Antoine
-      - Rue de la Baie
-    surface: asphalt
-    highway: residential
-  - name: Chemin Old Chelsea
+  - name: Chemin Scott
     grouped_from:
       - chemin-old-chelsea
       - chemin-scott
@@ -5493,36 +5796,6 @@ bike_paths:
     lit: 'no'
     width: '1'
     smoothness: intermediate
-  - name: 'Trail #1 Ridge Road'
-    grouped_from:
-      - trail-24
-      - trail-33
-      - trail-2
-      - sentier-du-parc-de-la-gatineau-parkway
-      - trail-4
-      - trail-1b
-      - trail-1-ridge-road
-      - trail-14
-    anchors:
-      - - -75.995643
-        - 45.2940019
-      - - -75.8367827
-        - 45.5443893
-    osm_names:
-      - Trail 24
-      - 'Trail #33'
-      - 'Trail #2'
-      - Sentier du Parc de la Gatineau Parkway
-      - Trail 4
-      - 'Trail #1B'
-      - 'Trail #1 Ridge Road'
-      - Trail 14
-    surface: ground
-    highway: path
-    lit: 'no'
-    width: '2'
-    smoothness: intermediate
-    network: mtb
   - name: NCC Greenbelt
     grouped_from:
       - trail-25
@@ -5546,33 +5819,10 @@ bike_paths:
     smoothness: intermediate
   - name: NCC Greenbelt
     grouped_from:
-      - trail-12
-      - trail-1
-      - trail-12a
-      - trail-11
-      - trail-12b
-    anchors:
-      - - -76.0867979
-        - 45.3315928
-      - - -75.8586028
-        - 45.4924321
-    osm_names:
-      - Trail 12
-      - 'Trail #1'
-      - Trail 12a
-      - Trail 11
-      - Trail 12b
-    surface: ground
-    highway: path
-    width: '1'
-    network: KanataNordicCampground
-    lit: 'no'
-    smoothness: very_bad
-  - name: NCC Greenbelt
-    grouped_from:
       - '50'
       - moe-anderson-trail
       - '51'
+      - dewberry-trail
     anchors:
       - - -75.593049
         - 45.4010705
@@ -5582,6 +5832,7 @@ bike_paths:
       - '50'
       - Moe Anderson Trail
       - '51'
+      - Dewberry Trail
     surface: ground
     highway: path
     lit: 'no'
@@ -5709,45 +5960,47 @@ bike_paths:
     lit: 'no'
     width: '2'
     smoothness: intermediate
-  - name: Northwest Passage
+  - name: Kizell Pond Trail North
     grouped_from:
       - northwest-passage
       - lumberjack
       - marathon-nw
       - cow-path
       - skid-row
+      - kizell-pond-trail-north
     anchors:
       - - -75.9438974
         - 45.3256467
-      - - -75.9377877
-        - 45.3282383
+      - - -75.9312187
+        - 45.3291081
     osm_names:
       - Northwest Passage
       - Lumberjack
       - Marathon NW
       - Cow Path
       - Skid Row
+      - Kizell Pond Trail North
     surface: ground
     highway: path
     width: '0.5'
   - name: Parc de la Gatineau
     grouped_from:
-      - trail-72
-      - trail-71
-      - 72b-irish-cream
-      - 72b-irish-whiskey
+      - sentiertrail-1
+      - piste-60-raquette
+      - snowshoe-trail-61
     anchors:
-      - - -75.942415
-        - 45.5980693
-      - - -75.9173535
-        - 45.6305641
+      - - -75.8210625
+        - 45.5016415
+      - - -75.8124556
+        - 45.5059189
     osm_names:
-      - Trail 72
-      - Trail 71
-      - '#72B (Irish Cream)'
-      - '#72B (Irish Whiskey)'
-    surface: ground
+      - 'Sentier/Trail #1'
+      - Piste 60 (Raquette)
+      - Snowshoe Trail 61
+    surface: fine_gravel
     highway: path
+    width: '1.5'
+    smoothness: intermediate
   - name: Trans Canada Trail (36)
     grouped_from:
       - trans-canada-trail-36
@@ -5778,20 +6031,6 @@ bike_paths:
       - Piste 9
       - '32'
     surface: gravel
-    highway: path
-  - name: Parc de la Gatineau
-    grouped_from:
-      - 76-skyridge
-      - 76-jesses-girl
-    anchors:
-      - - -75.806576
-        - 45.4609278
-      - - -75.8024799
-        - 45.46405
-    osm_names:
-      - '# 76 (Skyridge)'
-      - '# 76 (Jesse''s Girl)'
-    surface: ground
     highway: path
   - name: Major
     grouped_from:
@@ -5829,31 +6068,37 @@ bike_paths:
       - la-boucle
       - '417'
       - molo-3
+      - la-tour
       - houleuse
       - molo-2
       - pont
       - montee
+      - la-crete
       - silly
       - marais
       - castor
       - la-pente
+      - rocheuse
     anchors:
       - - -75.765724
-        - 45.5055511
-      - - -75.743567
+        - 45.5042493
+      - - -75.7432536
         - 45.5186732
     osm_names:
       - La Boucle
       - '417'
       - Molo 3
+      - La Tour
       - Houleuse
       - Molo 2
       - Pont
       - Montee
+      - La Crete
       - Silly
       - Marais
       - Castor
       - La Pente
+      - Rocheuse
     surface: dirt
     highway: path
     smoothness: bad
@@ -6124,7 +6369,7 @@ bike_paths:
     surface: asphalt
     highway: primary
     lit: 'yes'
-  - name: Sherbourne Road
+  - name: Dovercourt Avenue
     grouped_from:
       - sherbourne-road
       - dovercourt-avenue
@@ -6519,7 +6764,7 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
-  - name: Tyndall Street
+  - name: Parkdale Avenue
     grouped_from:
       - parkdale-avenue
       - tyndall-street
@@ -6715,3 +6960,69 @@ bike_paths:
     surface: asphalt
     highway: residential
     lit: 'no'
+  - name: Coulicou
+    grouped_from:
+      - coulicou
+      - piranga-sentier-dhiver
+      - carouge
+      - vireo
+      - faucon
+    anchors:
+      - - -75.8339463
+        - 45.4191359
+      - - -75.8206589
+        - 45.4265982
+    osm_names:
+      - Coulicou
+      - Piranga - Sentier d'hiver
+      - Carouge
+      - Vireo
+      - Faucon
+    surface: ground
+    highway: footway
+    lit: 'no'
+  - name: Deauville trail
+    grouped_from:
+      - deauville-trail
+      - laventurier
+    anchors:
+      - - -75.670499
+        - 45.6174421
+      - - -75.6501809
+        - 45.6346972
+    osm_names:
+      - Deauville trail
+      - L'Aventurier
+    surface: ground
+    highway: footway
+  - name: Mississippi Valley Trail - ART Section
+    grouped_from:
+      - mississippi-valley-trail-art-section
+      - mississippi-valley-trail-bobs-run-loop-black
+    anchors:
+      - - -76.2072213
+        - 45.2309516
+      - - -76.2056516
+        - 45.2338654
+    osm_names:
+      - Mississippi Valley Trail - ART Section
+      - Mississippi Valley Trail - Bob's Run loop (Black)
+    surface: ground
+    highway: footway
+    lit: 'no'
+    width: '1'
+  - name: Parc de la Gatineau
+    grouped_from:
+      - sentier-horizon
+      - trail-19
+    anchors:
+      - - -75.850358
+        - 45.4966321
+      - - -75.8435193
+        - 45.5010832
+    osm_names:
+      - Sentier Horizon
+      - Trail 19
+    surface: ground
+    highway: path
+    width: '1'

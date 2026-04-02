@@ -151,9 +151,71 @@ async function discoverOsmNamedWays() {
     byName.get(name).push(el);
   }
 
+  // Fetch non-cycling ways that share nodes with discovered cycling ways.
+  // Trails in parks connect through hiking-only segments (bicycle:no) that
+  // cycling queries miss. Example: Gatineau Park Trail 73 is entirely
+  // bicycle:no but connects Trails 54, 74, and 50 at junction nodes.
+  // Without Trail 73's geometry, these cycling trails appear isolated.
+  //
+  // Strategy: get cycling way IDs → find their nodes → find other named
+  // ways touching those nodes → add as clustering-only entries.
+  const cyclingWayIds = allElements.filter(e => e.id).map(e => e.id);
+  const allWaysByName = new Map();
+  if (cyclingWayIds.length > 0) {
+    // Overpass: find named ways that share nodes with our cycling ways
+    const junctionQ = `[out:json][timeout:180];
+way(id:${cyclingWayIds.join(',')});
+node(w);
+way(bn)["name"]["highway"~"path|footway|cycleway"](${bbox});
+out geom tags;`;
+    try {
+      const junctionData = await queryOverpass(junctionQ);
+      const cyclingIdSet = new Set(cyclingWayIds);
+      for (const el of junctionData.elements) {
+        if (el.type !== 'way') continue;
+        if (cyclingIdSet.has(el.id)) continue; // already discovered
+        const name = el.tags?.name;
+        if (!name) continue;
+        if (!allWaysByName.has(name)) allWaysByName.set(name, []);
+        allWaysByName.get(name).push(el);
+      }
+
+      // Add non-bikeable trails as clustering-only entries
+      let junctionCount = 0;
+      for (const [name, ways] of allWaysByName) {
+        if (byName.has(name)) {
+          // Already discovered as cycling — merge extra ways for clustering
+          continue;
+        }
+        const anchors = [];
+        for (const w of ways) {
+          if (w.geometry?.length >= 2) {
+            anchors.push([w.geometry[0].lon, w.geometry[0].lat]);
+            anchors.push([w.geometry[w.geometry.length - 1].lon, w.geometry[w.geometry.length - 1].lat]);
+          }
+        }
+        if (anchors.length > 0) {
+          byName.set(name, ways);
+          junctionCount++;
+        }
+      }
+      if (junctionCount > 0) console.log(`  Found ${junctionCount} non-cycling junction trails`);
+    } catch (err) {
+      console.error(`  Junction ways fetch failed: ${err.message}`);
+    }
+  }
+
+  // Also build all-ways lookup for entries that already exist (cycling-discovered names)
+  // so their _ways include non-cycling segments for junction node connectivity.
+  for (const [name, ways] of allWaysByName) {
+    if (!byName.has(name)) continue; // already added above
+    // Merge junction ways into existing cycling ways for this name
+    const existing = allWaysByName.get(name) || [];
+    allWaysByName.set(name, [...existing]);
+  }
+
   const namedPaths = [];
   for (const [name, ways] of byName) {
-    // Use actual way endpoints as anchors (not bbox corners) so touching trails cluster
     const anchors = [];
     for (const w of ways) {
       if (w.geometry?.length >= 2) {
@@ -167,13 +229,28 @@ async function discoverOsmNamedWays() {
     }
     if (anchors.length === 0) continue;
 
+    // _ways uses ALL ways with this name (including non-cycling) for junction
+    // node connectivity. Combines cycling ways + junction ways (deduplicated by ID).
+    const junctionWays = allWaysByName.get(name) || [];
+    const seenIds = new Set();
+    const combinedWays = [];
+    for (const w of [...ways, ...junctionWays]) {
+      if (!w.geometry?.length || w.geometry.length < 2) continue;
+      if (w.id && seenIds.has(w.id)) continue;
+      if (w.id) seenIds.add(w.id);
+      combinedWays.push(w.geometry);
+    }
+    const waysForClustering = combinedWays.length > 0
+      ? combinedWays
+      : ways.filter(w => w.geometry?.length >= 2).map(w => w.geometry);
+
     namedPaths.push({
       name,
       wayCount: ways.length,
       tags: mergeWayTags(ways),
       anchors,
       osmNames: [name],
-      _ways: ways.filter(w => w.geometry?.length >= 2).map(w => w.geometry),
+      _ways: waysForClustering,
     });
   }
   console.log(`  Found ${namedPaths.length} named cycling ways`);
