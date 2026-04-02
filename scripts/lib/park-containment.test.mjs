@@ -145,6 +145,23 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
   // in ONE network, not split into la-boucle/major/molo/extreme
   // -----------------------------------------------------------------------
 
+  // -----------------------------------------------------------------------
+  // Park overrides type: Watts Creek (paved) is in the Greenbelt park,
+  // so it should be in the Greenbelt network even though the Greenbelt
+  // trails are unpaved.
+  // -----------------------------------------------------------------------
+
+  it('Watts Creek Pathway (paved) is in the Greenbelt network (same park)', () => {
+    const watts = entries.find(e => e.name === 'Watts Creek Pathway');
+    expect(watts, 'Watts Creek Pathway should exist').toBeDefined();
+    expect(watts.member_of, 'Watts Creek should be in a network').toBeDefined();
+    expect(watts.member_of).toMatch(/greenbelt/i);
+  });
+
+  // -----------------------------------------------------------------------
+  // La Boucle MTB network
+  // -----------------------------------------------------------------------
+
   it('La Boucle area MTB trails are all in one network', () => {
     const trailNames = [
       'La Boucle', 'Extreme', "Rocky's", 'Molo', 'M&M', 'Major',

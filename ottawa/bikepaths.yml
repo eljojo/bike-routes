@@ -77,6 +77,7 @@ bike_paths:
         - 45.436377
     osm_names:
       - Sentier des Pionniers Pathway
+    member_of: parc-de-la-gatineau
     super_network: capital-pathway
   - name: Sentier de l'Île
     osm_relations:
@@ -120,6 +121,7 @@ bike_paths:
         - 45.4715792
     osm_names:
       - Sentier du Ruisseau-Leamy
+    member_of: parc-de-la-gatineau
   - name: Sentier de la Rivière-Gatineau
     osm_relations:
       - 222700
@@ -163,6 +165,7 @@ bike_paths:
         - 45.4775348
     osm_names:
       - Sentier du Parc-de-la-Gatineau
+    member_of: parc-de-la-gatineau
     super_network: capital-pathway
   - name: Route Verte 1
     osm_relations:
@@ -225,6 +228,7 @@ bike_paths:
         - 45.4428413
     osm_names:
       - Sentier du Lac-des-Fées
+    member_of: parc-de-la-gatineau
   - name: Sentier du Corridor-Champlain
     osm_relations:
       - 2890360
@@ -296,6 +300,7 @@ bike_paths:
         - 45.3518061
     osm_names:
       - Watts Creek Pathway
+    member_of: ncc-greenbelt
     super_network: capital-pathway
   - name: Trillium Pathway
     osm_relations:
@@ -542,6 +547,7 @@ bike_paths:
         - 45.3524057
     osm_names:
       - Sawmill Creek Pathway
+    member_of: ncc-greenbelt
   - name: Byron-Richmond path
     osm_relations:
       - 7370934
@@ -890,6 +896,7 @@ bike_paths:
     operator: NCC
     network: Kichi Sibi
     description: 'Summer: cycle, walk, hike Winter: @skiheritageeast skate and classic grooming fat bike, xc ski'
+    member_of: ncc-greenbelt
   - name: Sentier de la Rivière Gatineau Pathway
     osm_names:
       - Sentier de la Rivière Gatineau Pathway
@@ -1002,6 +1009,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    member_of: parc-de-la-gatineau
   - name: Brookfield Pathway
     osm_names:
       - Brookfield Pathway
@@ -1334,6 +1342,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     ref: '5'
+    member_of: parc-de-la-gatineau
   - name: Piste 25
     osm_names:
       - Piste 25
@@ -1518,6 +1527,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     parallel_to: Boulevard de la Cité-des-Jeunes
+    member_of: parc-de-la-gatineau
   - name: Accès au Pont
     osm_names:
       - Accès au Pont
@@ -1761,6 +1771,7 @@ bike_paths:
         - 45.6007009
     highway: cycleway
     bicycle: designated
+    member_of: parc-de-la-gatineau
   - name: Rue Atawe
     osm_names:
       - Rue Atawe
@@ -1992,6 +2003,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     network: Pine Grove
+    member_of: ncc-greenbelt
   - name: Greenbelt Pathway
     osm_names:
       - Greenbelt Pathway
@@ -2008,6 +2020,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     network: Pine Grove
+    member_of: ncc-greenbelt
   - name: Chris TDL Bridge
     osm_names:
       - Chris TDL Bridge
@@ -2087,6 +2100,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    member_of: ncc-greenbelt
   - name: Avenue Gatineau
     osm_names:
       - Avenue Gatineau
@@ -2474,6 +2488,7 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: 'yes'
+    member_of: ncc-greenbelt
   - name: '50'
     osm_names:
       - '50'
@@ -3465,6 +3480,7 @@ bike_paths:
     width: '2'
     highway: path
     bicycle: designated
+    member_of: south-march-highlands-conservation-forest
   - name: Flooding detour
     osm_names:
       - Flooding detour
@@ -4488,6 +4504,7 @@ bike_paths:
     highway: primary
     operator: National Capital Commission
     parallel_to: Sir-George-Étienne-Cartier Parkway
+    member_of: ncc-greenbelt
   - name: Kanata Avenue
     osm_names:
       - Kanata Avenue
@@ -4797,6 +4814,7 @@ bike_paths:
     highway: primary
     ref: '16'
     parallel_to: Baseline Road
+    member_of: ncc-greenbelt
   - name: Richmond Road
     osm_names:
       - Richmond Road
@@ -4813,6 +4831,7 @@ bike_paths:
     highway: secondary
     ref: '36'
     parallel_to: Richmond Road
+    member_of: ncc-greenbelt
   - name: West Hunt Club Road
     osm_names:
       - West Hunt Club Road
@@ -5112,6 +5131,7 @@ bike_paths:
     bicycle: 'yes'
     ref: '73'
     parallel_to: Prince Of Wales Drive
+    member_of: ncc-greenbelt
   - name: Lyon Street North
     osm_names:
       - Lyon Street North
@@ -5572,6 +5592,7 @@ bike_paths:
     highway: secondary
     ref: '30'
     parallel_to: Innes Road
+    member_of: ncc-greenbelt
   - name: Sunview Drive
     osm_names:
       - Sunview Drive
@@ -5684,6 +5705,7 @@ bike_paths:
     highway: secondary
     ref: '12'
     parallel_to: Fallowfield Road
+    member_of: ncc-greenbelt
   - name: Longfields Drive
     osm_names:
       - Longfields Drive
@@ -6040,6 +6062,7 @@ bike_paths:
     highway: primary
     ref: '31'
     parallel_to: Bank Street
+    member_of: ncc-greenbelt
     wikidata_meta:
       description_en: bridge in Canada
       description_fr: pont canadien
@@ -6227,6 +6250,7 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
+    member_of: parc-de-la-gatineau
   - name: Boulevard Riel
     osm_names:
       - Boulevard Riel
@@ -6376,6 +6400,7 @@ bike_paths:
     highway: secondary
     ref: '59'
     parallel_to: Old Richmond Road
+    member_of: ncc-greenbelt
   - name: Fifth Avenue
     osm_names:
       - Fifth Avenue
@@ -6477,6 +6502,7 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     ref: '25'
+    member_of: ncc-greenbelt
   - name: Parkdale Avenue
     osm_names:
       - Parkdale Avenue
@@ -6840,6 +6866,7 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '125'
+    member_of: ncc-greenbelt
   - name: Holland Avenue
     osm_names:
       - Holland Avenue
@@ -7089,6 +7116,7 @@ bike_paths:
     bicycle: 'yes'
     ref: '38'
     parallel_to: Carling Avenue
+    member_of: ncc-greenbelt
   - name: Legget Drive
     osm_names:
       - Legget Drive
@@ -7839,6 +7867,7 @@ bike_paths:
     highway: secondary
     bicycle: 'yes'
     parallel_to: Limebank Road
+    member_of: ncc-greenbelt
   - name: Earl Armstrong Road
     osm_names:
       - Earl Armstrong Road
@@ -9549,6 +9578,7 @@ bike_paths:
     surface: asphalt
     width: '3'
     smoothness: good
+    member_of: parc-de-la-gatineau
   - name: Pont du Portage
     parallel_to: Pont du Portage
     highway: cycleway
@@ -9854,6 +9884,7 @@ bike_paths:
         - 45.3348705
     surface: asphalt
     width: '2.5'
+    member_of: ncc-greenbelt
   - name: Rue Wells
     parallel_to: Rue Wells
     highway: cycleway
@@ -9920,6 +9951,7 @@ bike_paths:
     lit: 'yes'
     width: '2.5'
     smoothness: good
+    member_of: ncc-greenbelt
   - name: Jockvale Road
     parallel_to: Jockvale Road
     highway: cycleway
@@ -9974,6 +10006,7 @@ bike_paths:
     lit: 'no'
     width: '3'
     smoothness: good
+    member_of: parc-de-la-gatineau
   - name: Rue Main
     parallel_to: Rue Main
     highway: cycleway
@@ -10210,6 +10243,7 @@ bike_paths:
         - 45.4200189
     surface: asphalt
     width: '2'
+    member_of: ncc-greenbelt
   - name: Brookfield Road
     parallel_to: Brookfield Road
     highway: cycleway
@@ -11217,6 +11251,7 @@ bike_paths:
     surface: fine_gravel
     width: '3'
     smoothness: intermediate
+    member_of: ncc-greenbelt
   - name: Rue du Golf
     parallel_to: Rue du Golf
     highway: cycleway
@@ -11361,6 +11396,29 @@ bike_paths:
       - woodroffe-avenue
       - moodie-drive
       - robertson-road
+      - watts-creek-pathway
+      - sawmill-creek-pathway
+      - ottawa-river-pathway
+      - ottawa-greenbelt-trail
+      - greenbelt-pathway
+      - greens-creek-bridge
+      - '31'
+      - sir-george-etienne-cartier-parkway
+      - baseline-road
+      - richmond-road
+      - prince-of-wales-drive
+      - innes-road
+      - fallowfield-road
+      - bank-street
+      - old-richmond-road
+      - albion-road
+      - conroy-road
+      - carling-avenue
+      - limebank-road
+      - john-sutherland-drive
+      - holly-acres-road
+      - anderson-road
+      - tauvette-street
     anchors:
       - - -76.0867979
         - 45.2551025
@@ -11544,6 +11602,17 @@ bike_paths:
       - chemin-kingsmere
       - trans-canada-trail-36
       - trail-36
+      - sentier-des-pionniers-pathway
+      - sentier-du-ruisseau-leamy
+      - sentier-du-parc-de-la-gatineau
+      - sentier-du-lac-des-fees
+      - sentier-du-lac-des-fees-pathway
+      - promenade-sentier-du-parc-de-la-gatineau
+      - boulevard-de-la-cite-des-jeunes
+      - '54'
+      - chemin-du-lac-meech
+      - boulevard-saint-raymond
+      - promenade-de-la-gatineau
     anchors:
       - - -76.0970316
         - 45.4471744
@@ -12057,6 +12126,7 @@ bike_paths:
       - beluga
       - forestbrook
       - dark-side
+      - confederation-bridge
     anchors:
       - - -75.967914
         - 45.3285137

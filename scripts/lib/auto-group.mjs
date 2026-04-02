@@ -1,7 +1,7 @@
 // auto-group.mjs
 import { clusterByConnectivity, pathType } from './cluster-entries.mjs';
 import { pickClusterName } from './name-cluster.mjs';
-import { fetchParkPolygons, splitClusterByPark } from './park-containment.mjs';
+import { fetchParkPolygons, splitClusterByPark, classifyByPark } from './park-containment.mjs';
 
 // Duplicate of bike-app-astro's slugifyBikePathName — must stay in sync
 function slugifyBikePathName(name) {
@@ -201,6 +201,7 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
       const merged = {
         members: sameNameClusters.flatMap(c => c.members),
         resolvedName: name,
+        _parkName: sameNameClusters[0]._parkName, // all share the same park
         existingGroup: null,
         newMembers: sameNameClusters.flatMap(c => c.members),
       };
@@ -277,6 +278,59 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
   }
 
   // Members stay in the array. Network entries are appended.
+  // Park adoption: entries not in any network but inside a park that has
+  // a network get adopted into it. This handles paved paths inside the
+  // Greenbelt, connectors inside Gatineau Park, etc. Park is the stronger
+  // signal — if you're in the park, you're in the network regardless of type.
+  if (parks.length > 0) {
+    // Build lookup: park name → network slug
+    const parkToNetworkSlug = new Map();
+    for (const cluster of allClustersToProcess) {
+      if (cluster._parkName && !cluster.existingGroup) {
+        const networkSlug = slugifyBikePathName(cluster.resolvedName);
+        parkToNetworkSlug.set(cluster._parkName, networkSlug);
+      }
+    }
+
+    // Find the network entry for each park
+    const networkBySlug = new Map();
+    for (const net of newNetworkEntries) {
+      const slug = slugifyBikePathName(net.name);
+      networkBySlug.set(slug, net);
+    }
+
+    let adopted = 0;
+    for (const entry of entries) {
+      if (entry.member_of) continue; // already in a network
+      if (entry.type === 'network') continue;
+      // Use _ways if available, otherwise fall back to anchors for
+      // relation entries that don't have way geometry.
+      let park = null;
+      if (entry._ways?.length > 0) {
+        park = classifyByPark(entry, parks);
+      } else if (entry.anchors?.length > 0) {
+        // Use anchors as approximate points
+        const fakeWays = [entry.anchors.map(a => ({ lat: a[1], lon: a[0] }))];
+        park = classifyByPark({ _ways: fakeWays }, parks);
+      }
+      if (!park) continue;
+
+      const networkSlug = parkToNetworkSlug.get(park);
+      if (!networkSlug) continue;
+
+      const network = networkBySlug.get(networkSlug);
+      if (!network) continue;
+
+      entry.member_of = networkSlug;
+      const entrySlug = slugMap.get(entry);
+      if (entrySlug && !network.members.includes(entrySlug)) {
+        network.members.push(entrySlug);
+      }
+      adopted++;
+    }
+    if (adopted > 0) console.log(`  Park adoption: ${adopted} entries added to park networks`);
+  }
+
   const result = [...entries, ...newNetworkEntries];
   return result;
 }
