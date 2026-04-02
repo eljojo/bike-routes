@@ -91,18 +91,135 @@ describe('buildNetworkEntry', () => {
 });
 
 describe('discoverNetworks', () => {
-  it('discovers Capital Pathway from fixture', async () => {
-    const superroutes = fixture.elements.filter(el => el.tags?.type === 'superroute');
+  // Helper: build a mock that returns the right children for each relation
+  function buildMockFromFixture() {
     const allRelations = fixture.elements.filter(el => el.type === 'relation');
-    const mockQuery = async (q) => {
-      if (q.includes('"superroute"')) return { elements: superroutes };
-      return { elements: allRelations };
-    };
+    const childrenByParent = new Map();
+    for (const rel of allRelations) {
+      const childIds = rel.members?.filter(m => m.type === 'relation').map(m => m.ref) || [];
+      if (childIds.length > 0) {
+        childrenByParent.set(rel.id, childIds.map(id => allRelations.find(r => r.id === id)).filter(Boolean));
+      }
+    }
+    const superroutes = allRelations.filter(el => el.tags?.type === 'superroute');
 
+    return async (q) => {
+      if (q.includes('"superroute"')) return { elements: superroutes };
+      const match = q.match(/relation\((\d+)\)/);
+      if (match) {
+        const id = parseInt(match[1], 10);
+        return { elements: childrenByParent.get(id) ?? [] };
+      }
+      return { elements: [] };
+    };
+  }
+
+  it('discovers Capital Pathway from fixture', async () => {
+    const mockQuery = buildMockFromFixture();
     const networks = await discoverNetworks({ bbox: '45.2,-76.4,45.6,-75.3', queryOverpass: mockQuery });
     const cp = networks.find(n => n.name === 'Capital Pathway');
     expect(cp).toBeDefined();
     expect(cp._member_relations.length).toBeGreaterThan(5);
     expect(cp.wikidata).toBe('Q5035630');
+  });
+
+  it('flattens sub-superroutes into parent — Ottawa River Pathway is NOT a network', async () => {
+    // Ottawa River Pathway (9502635) is a sub-superroute of Capital Pathway.
+    // It should NOT appear as a network — its children should be direct
+    // members of Capital Pathway instead.
+    const mockQuery = buildMockFromFixture();
+    const networks = await discoverNetworks({ bbox: '45.2,-76.4,45.6,-75.3', queryOverpass: mockQuery });
+    const orp = networks.find(n => n.name === 'Ottawa River Pathway');
+    expect(orp).toBeUndefined();
+
+    // But Ottawa River Pathway's children should be Capital Pathway members
+    const cp = networks.find(n => n.name === 'Capital Pathway');
+    // 7174864 = Ottawa River Pathway (east), child of the sub-superroute
+    expect(cp._member_relations).toContain(7174864);
+  });
+
+  it('absorbs same-named child route into network entry', async () => {
+    // Simulate: "Crosstown Bikeway 2" superroute contains a child also
+    // named "Crosstown Bikeway 2" plus two other routes.
+    // The same-named child should be absorbed (relation ID merged into
+    // network, not a separate member). Needs 2+ distinct to pass min-members.
+    const mockQuery = async (q) => {
+      if (q.includes('"superroute"')) {
+        return { elements: [{
+          type: 'relation', id: 100,
+          tags: { type: 'superroute', route: 'bicycle', name: 'Crosstown Bikeway 2' },
+          members: [
+            { type: 'relation', ref: 101 },
+            { type: 'relation', ref: 102 },
+            { type: 'relation', ref: 103 },
+          ],
+        }] };
+      }
+      if (q.includes('relation(100)')) {
+        return { elements: [
+          { type: 'relation', id: 101, tags: { type: 'route', name: 'Crosstown Bikeway 2' } },
+          { type: 'relation', id: 102, tags: { type: 'route', name: 'Laurier Segregated Bikelane' } },
+          { type: 'relation', id: 103, tags: { type: 'route', name: 'East-West Crosstown Bikeway' } },
+        ] };
+      }
+      return { elements: [] };
+    };
+
+    const networks = await discoverNetworks({ bbox: '0,0,1,1', queryOverpass: mockQuery });
+    expect(networks).toHaveLength(1);
+    const net = networks[0];
+    expect(net.name).toBe('Crosstown Bikeway 2');
+    // Same-named child (101) absorbed — its ID is in network's osm_relations
+    expect(net.osm_relations).toContain(101);
+    // Laurier and E-W Crosstown are distinct members
+    expect(net._member_relations).toEqual([102, 103]);
+    expect(net._member_relations).not.toContain(101);
+  });
+
+  it('strips "(super)" from OSM names', async () => {
+    const mockQuery = async (q) => {
+      if (q.includes('"superroute"')) {
+        return { elements: [{
+          type: 'relation', id: 200,
+          tags: { type: 'superroute', route: 'bicycle', name: 'Big Network (super)' },
+          members: [
+            { type: 'relation', ref: 201 },
+            { type: 'relation', ref: 202 },
+          ],
+        }] };
+      }
+      if (q.includes('relation(200)')) {
+        return { elements: [
+          { type: 'relation', id: 201, tags: { type: 'route', name: 'Algonquin Trail' } },
+          { type: 'relation', id: 202, tags: { type: 'route', name: 'OVRT' } },
+        ] };
+      }
+      return { elements: [] };
+    };
+
+    const networks = await discoverNetworks({ bbox: '0,0,1,1', queryOverpass: mockQuery });
+    expect(networks[0].name).toBe('Big Network');
+  });
+
+  it('skips networks with fewer than 2 distinct members', async () => {
+    // Superroute with 1 child that has a different name = 1 distinct member
+    const mockQuery = async (q) => {
+      if (q.includes('"superroute"')) {
+        return { elements: [{
+          type: 'relation', id: 300,
+          tags: { type: 'superroute', route: 'bicycle', name: 'Tiny Network' },
+          members: [{ type: 'relation', ref: 301 }],
+        }] };
+      }
+      if (q.includes('relation(300)')) {
+        return { elements: [
+          { type: 'relation', id: 301, tags: { type: 'route', name: 'Only Child' } },
+        ] };
+      }
+      return { elements: [] };
+    };
+
+    const networks = await discoverNetworks({ bbox: '0,0,1,1', queryOverpass: mockQuery });
+    expect(networks).toHaveLength(0);
   });
 });
