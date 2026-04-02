@@ -185,6 +185,16 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
   });
 
   // -----------------------------------------------------------------------
+  // Ottawa River Pathway should be its own network with east/west/TCT as members
+  // -----------------------------------------------------------------------
+
+  it('Ottawa River Pathway is a network with east/west/TCT members', () => {
+    const orpNetwork = entries.find(e => e.type === 'network' && e.name?.includes('Ottawa River Pathway'));
+    expect(orpNetwork, 'Should have an Ottawa River Pathway network').toBeDefined();
+    expect(orpNetwork.members?.length).toBeGreaterThanOrEqual(2);
+  });
+
+  // -----------------------------------------------------------------------
   // Ottawa River Pathway: 79% of geometry is outside any park.
   // It should NOT be adopted into the Greenbelt just because 9% passes through it.
   // -----------------------------------------------------------------------

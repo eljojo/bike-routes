@@ -278,6 +278,7 @@ bike_paths:
     name_fr: Sentier de la Rivière des Outaouais (Est)
     operator: NCC
     network: rcn
+    member_of: ottawa-river-pathway
     super_network: capital-pathway
   - name: Watts Creek Pathway
     osm_relations:
@@ -656,12 +657,14 @@ bike_paths:
     name_fr: Sentier de la Rivière des Outaouais (Sentier Transcanadien)
     network: ncn
     ref: TCT
+    member_of: ottawa-river-pathway
     super_network: capital-pathway
   - name: Ottawa River Pathway (west)
     osm_relations:
       - 9502634
     name_fr: Sentier de la Rivière des Outaouais (Ouest)
     network: rcn
+    member_of: ottawa-river-pathway
     super_network: capital-pathway
   - name: Nepean Trail
     osm_relations:
@@ -13555,6 +13558,15 @@ bike_paths:
       - Rue Isidore-Ostiguy
     highway: footway
     mtb: true
+  - name: Ottawa River Pathway
+    type: network
+    members:
+      - ottawa-river-pathway-east
+      - ottawa-river-pathway-trans-canada-trail
+      - ottawa-river-pathway-west
+    osm_relations:
+      - 9502635
+    name_fr: Sentier de la Rivière des Outaouais
 super_networks:
   - name: Sentier Trans-Canadien (Québec)
     slug: sentier-trans-canadien-quebec

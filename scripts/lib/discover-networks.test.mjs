@@ -123,19 +123,14 @@ describe('discoverNetworks', () => {
     expect(cp.wikidata).toBe('Q5035630');
   });
 
-  it('flattens sub-superroutes into parent — Ottawa River Pathway is NOT a network', async () => {
-    // Ottawa River Pathway (9502635) is a sub-superroute of Capital Pathway.
-    // It should NOT appear as a network — its children should be direct
-    // members of Capital Pathway instead.
+  it('promotes sub-superroutes with 3+ children to networks (Ottawa River Pathway)', async () => {
+    // Ottawa River Pathway (9502635) is a sub-superroute of Capital Pathway
+    // with 3 distinct sections (east/west/TCT). It gets promoted to its own network.
     const mockQuery = buildMockFromFixture();
     const networks = await discoverNetworks({ bbox: '45.2,-76.4,45.6,-75.3', queryOverpass: mockQuery });
     const orp = networks.find(n => n.name === 'Ottawa River Pathway');
-    expect(orp).toBeUndefined();
-
-    // But Ottawa River Pathway's children should be Capital Pathway members
-    const cp = networks.find(n => n.name === 'Capital Pathway');
-    // 7174864 = Ottawa River Pathway (east), child of the sub-superroute
-    expect(cp._member_relations).toContain(7174864);
+    expect(orp).toBeDefined();
+    expect(orp._member_relations.length).toBeGreaterThanOrEqual(2);
   });
 
   it('absorbs same-named child route into network entry', async () => {

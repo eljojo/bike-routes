@@ -108,20 +108,39 @@ export async function discoverNetworks({ bbox, queryOverpass }) {
   console.log(`  Found ${allSuperroutes.length} superroutes in OSM`);
 
   // Identify which superroutes are children of other superroutes.
-  // Sub-superroutes are NOT networks — they're paths split into sections.
-  // Only top-level superroutes (not a child of any other) become networks.
-  const allIds = new Set(allSuperroutes.map(sr => sr.id));
+  // Sub-superroutes are either:
+  //   - Real networks: children have DISTINCT names (Ottawa River Pathway
+  //     → east/west/TCT). Promoted to top-level.
+  //   - Organizational splits: children share the parent name (Greenbelt
+  //     Pathway West → main + Barrhaven). Flattened into parent.
+  const allById = new Map(allSuperroutes.map(sr => [sr.id, sr]));
   const childIds = new Set();
+  const promotedIds = new Set();
   for (const sr of allSuperroutes) {
     if (!sr.members) continue;
     for (const m of sr.members) {
-      if (m.type === 'relation' && allIds.has(m.ref)) {
-        childIds.add(m.ref);
+      if (m.type === 'relation' && allById.has(m.ref)) {
+        const child = allById.get(m.ref);
+        const parentName = (sr.tags?.name || '').toLowerCase();
+        const childName = (child.tags?.name || '').toLowerCase();
+
+        // Expand the sub-superroute to check if it's a real network.
+        // ORP has 3 distinct sections (east/west/TCT) → real network.
+        // Greenbelt West has 2 variants of the same trail → organizational split.
+        // Heuristic: 3+ leaf routes = real network.
+        const leaves = await expandSuperroute(child.id, queryOverpass);
+
+        if (leaves.length >= 3) {
+          promotedIds.add(m.ref);
+          console.log(`  Promoting "${child.tags?.name}" to network (distinct child names)`);
+        } else {
+          childIds.add(m.ref);
+        }
       }
     }
   }
-  const topLevel = allSuperroutes.filter(sr => !childIds.has(sr.id));
-  console.log(`  ${topLevel.length} top-level, ${childIds.size} sub-superroutes (flattened into parents)`);
+  const topLevel = allSuperroutes.filter(sr => !childIds.has(sr.id) || promotedIds.has(sr.id));
+  console.log(`  ${topLevel.length} top-level/promoted, ${childIds.size - promotedIds.size} flattened`);
 
   const networks = [];
   for (const sr of topLevel) {
@@ -169,6 +188,10 @@ export async function discoverNetworks({ bbox, queryOverpass }) {
     for (const child of sameNameChildren) {
       entry.osm_relations.push(child.id);
     }
+
+    // Promoted sub-superroutes become real network entries (type: network
+    // with members). Top-level superroutes are super-network attributes.
+    if (promotedIds.has(sr.id)) entry._promoted = true;
 
     networks.push(entry);
     const absorbed = sameNameChildren.length;

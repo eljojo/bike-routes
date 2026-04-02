@@ -976,8 +976,51 @@ out tags center;`;
     console.log('Discovering super-networks (OSM superroutes)...');
     const networks = await discoverNetworks({ bbox: b, queryOverpass: qo });
     if (networks.length > 0) {
-      console.log('Applying super-network attributes...');
-      superNetworks = applySuperNetworks(grouped, slugMap, networks);
+      // Promoted sub-superroutes (like Ottawa River Pathway) become real
+      // network entries with members. Top-level superroutes become attributes.
+      const promoted = networks.filter(n => n._promoted);
+      const superNets = networks.filter(n => !n._promoted);
+
+      // Add promoted networks as type: network entries
+      for (const net of promoted) {
+        const byRelation = new Map();
+        for (const entry of grouped) {
+          for (const relId of entry.osm_relations ?? []) byRelation.set(relId, entry);
+        }
+        const memberSlugs = [];
+        for (const relId of net._member_relations || []) {
+          const member = byRelation.get(relId);
+          if (member && member.type !== 'network') {
+            const memberSlug = slugMap.get(member);
+            if (memberSlug) {
+              memberSlugs.push(memberSlug);
+              member.member_of = slugify(net.name);
+            }
+          }
+        }
+        if (memberSlugs.length >= 2) {
+          const networkEntry = {
+            name: net.name,
+            type: 'network',
+            members: memberSlugs,
+            osm_relations: net.osm_relations,
+          };
+          if (net.name_fr) networkEntry.name_fr = net.name_fr;
+          if (net.operator) networkEntry.operator = net.operator;
+          if (net.wikidata) networkEntry.wikidata = net.wikidata;
+          if (net.wikipedia) networkEntry.wikipedia = net.wikipedia;
+          grouped.push(networkEntry);
+          console.log(`  Added promoted network: ${net.name} (${memberSlugs.length} members)`);
+        }
+        delete net._promoted;
+        delete net._member_relations;
+      }
+
+      // Apply remaining super-network attributes
+      if (superNets.length > 0) {
+        console.log('Applying super-network attributes...');
+        superNetworks = applySuperNetworks(grouped, slugMap, superNets);
+      }
       slugMap = computeSlugs(grouped);
     }
   }
