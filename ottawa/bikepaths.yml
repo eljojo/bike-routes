@@ -203,6 +203,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+    mtb:scale: '0'
     operator: City of Ottawa
     anchors:
       - - -75.7249039
@@ -569,6 +570,7 @@ bike_paths:
     width: '2.5'
     segregated: 'no'
     highway: cycleway
+    mtb:scale: '1'
     anchors:
       - - -75.8992252
         - 45.4797107
@@ -732,17 +734,6 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
-  - name: 'Trail #56'
-    osm_names:
-      - 'Trail #56'
-    anchors:
-      - - -76.0970316
-        - 45.5983821
-      - - -76.0558609
-        - 45.6041123
-    surface: gravel
-    highway: cycleway
-    ref: '56'
   - name: Chemin de Masson
     osm_names:
       - Chemin de Masson
@@ -771,6 +762,7 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     highway: cycleway
+    mtb:scale: '0'
   - name: Trans-Canada Trail Ottawa
     osm_names:
       - Trans-Canada Trail Ottawa
@@ -858,6 +850,17 @@ bike_paths:
     wikidata_meta:
       description_en: footbridge in Ottawa, Canada
       description_fr: pont pour piétons et vélos à Ottawa, Ontario, Canada
+  - name: 'Trail #54'
+    osm_names:
+      - 'Trail #54'
+    anchors:
+      - - -76.0202864
+        - 45.5850318
+      - - -76.0085212
+        - 45.603352
+    highway: cycleway
+    mtb:scale: '1'
+    ref: '54'
   - name: Juno Beach Memorial Bridge
     osm_names:
       - Juno Beach Memorial Bridge
@@ -872,16 +875,6 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
-  - name: 'Trail #55'
-    osm_names:
-      - 'Trail #55'
-    anchors:
-      - - -76.049404
-        - 45.606254
-      - - -76.0136666
-        - 45.6151579
-    highway: cycleway
-    ref: '55'
   - name: Cardinal Creek Trail
     osm_names:
       - Cardinal Creek Trail
@@ -989,6 +982,15 @@ bike_paths:
     wikidata_meta:
       description_en: bridge in Ottawa, Canada
       description_fr: Passerelle pour piétons et vélos à Ottawa, Ontario, Canada
+  - name: '54'
+    osm_names:
+      - '54'
+    anchors:
+      - - -76.020209
+        - 45.6005551
+      - - -76.0202864
+        - 45.6007009
+    highway: cycleway
   - name: Pont couvert Brabant-Philippe
     osm_names:
       - Pont couvert Brabant-Philippe
@@ -1091,16 +1093,6 @@ bike_paths:
     width: '3'
     segregated: 'no'
     highway: cycleway
-  - name: 'Trail #56B'
-    osm_names:
-      - 'Trail #56B'
-    anchors:
-      - - -76.0708694
-        - 45.590701
-      - - -76.067874
-        - 45.5983821
-    highway: cycleway
-    ref: 56B
   - name: Rockliffe Pathway
     osm_names:
       - Rockliffe Pathway
@@ -1179,6 +1171,7 @@ bike_paths:
     width: '0.3'
     segregated: 'no'
     highway: cycleway
+    mtb:scale: '1'
   - name: Community Pump Track
     osm_names:
       - Community Pump Track
@@ -1275,6 +1268,7 @@ bike_paths:
     width: '2'
     lit: 'no'
     highway: path
+    mtb:scale: '0'
     network: mtb
     ref: '30'
   - name: '31'
@@ -1337,6 +1331,7 @@ bike_paths:
     lit: 'no'
     incline: down
     highway: path
+    mtb:scale: '2'
     ref: '40'
   - name: Rotary Centennial Trail
     osm_names:
@@ -1431,6 +1426,7 @@ bike_paths:
         - 45.5186529
     surface: gravel
     highway: path
+    mtb:scale: '2'
     ref: '3'
     name_en: Trail 3
   - name: Max Keeping Bridge
@@ -1485,6 +1481,7 @@ bike_paths:
     smoothness: intermediate
     width: '1'
     highway: path
+    mtb:scale: '3'
   - name: Trail 61
     osm_names:
       - Trail 61
@@ -1530,6 +1527,7 @@ bike_paths:
         - 45.5263604
     incline: up
     highway: path
+    mtb:scale: '3'
     ref: '36'
   - name: Trapper's Trail
     osm_names:
@@ -5157,6 +5155,20 @@ bike_paths:
     surface: ground
     highway: footway
     width: '1'
+  - name: Parc de la Gatineau
+    grouped_from:
+      - trail-56
+      - trail-56b
+    anchors:
+      - - -76.0970316
+        - 45.590701
+      - - -76.0558609
+        - 45.6041123
+    osm_names:
+      - 'Trail #56'
+      - 'Trail #56B'
+    surface: gravel
+    highway: cycleway
   - name: Boulevard Maloney Sidepath
     grouped_from:
       - boulevard-maloney-sidepath
@@ -5253,13 +5265,14 @@ bike_paths:
       - sentier-trail-51
       - trail-53
       - trail-47-hope-trail
+      - trail-55
       - trail-51
       - trail-52-parc-de-la-gatineau-pathway
       - trail-47
       - trail-36-trans-canada-trail
       - trail-50
     anchors:
-      - - -76.0136666
+      - - -76.049404
         - 45.5272457
       - - -75.8643952
         - 45.6433735
@@ -5269,6 +5282,7 @@ bike_paths:
       - 'Sentier / Trail #51'
       - 'Trail #53'
       - Trail 47 (Hope Trail)
+      - 'Trail #55'
       - 'Trail #51'
       - 'Trail #52 Parc de la Gatineau Pathway'
       - Trail 47
@@ -5357,19 +5371,6 @@ bike_paths:
       - '#44 (M.O.)'
       - Chemin Cowden
     surface: ground
-    highway: cycleway
-  - name: 'Trail #54'
-    grouped_from:
-      - trail-54
-      - '54'
-    anchors:
-      - - -76.0202864
-        - 45.5850318
-      - - -76.0085212
-        - 45.603352
-    osm_names:
-      - 'Trail #54'
-      - '54'
     highway: cycleway
   - name: Route 105
     grouped_from:

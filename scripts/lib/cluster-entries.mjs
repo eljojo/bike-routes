@@ -27,7 +27,13 @@ export function pathType(entry) {
     return (surface && !UNPAVED.has(surface)) ? 'paved' : 'trail';
   }
   if (hw === 'cycleway') {
-    return (surface && UNPAVED.has(surface)) ? 'trail' : 'paved';
+    if (surface && UNPAVED.has(surface)) return 'trail';
+    // mtb:scale means it's a mountain bike trail regardless of highway tag —
+    // OSM mappers sometimes tag dirt trails as cycleway. Without this,
+    // trails like Gatineau Park Trail #55 get classified as 'paved' and
+    // can't cluster with their neighboring 'trail' entries.
+    if (entry['mtb:scale'] != null) return 'trail';
+    return 'paved';
   }
   // Roads with bike lanes (tertiary, secondary, etc.)
   if (hw && hw !== 'path' && hw !== 'cycleway' && hw !== 'footway') return 'road';

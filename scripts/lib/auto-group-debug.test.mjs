@@ -5,7 +5,7 @@
 
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { clusterByConnectivity } from './cluster-entries.mjs';
+import { clusterByConnectivity, pathType } from './cluster-entries.mjs';
 import { autoGroupNearbyPaths } from './auto-group.mjs';
 
 const fixture = JSON.parse(
@@ -193,6 +193,41 @@ describe('Gatineau Park Trail 53 clustering bug', () => {
       _ways: [[sharedNode, { lat: 45.419, lon: -75.69 }]],
     };
     const clusters = clusterByConnectivity([a, b]);
+    expect(clusters).toHaveLength(1);
+  });
+
+  // mtb:scale tag should override highway=cycleway → classify as trail
+  // Trail 55 in Gatineau Park is tagged highway=cycleway but has mtb:scale=1,
+  // meaning it's actually a dirt MTB trail. Without this heuristic, it gets
+  // classified as 'paved' and can't cluster with neighboring 'trail' entries.
+  it('cycleway with mtb:scale is classified as trail, not paved', () => {
+    expect(pathType({ highway: 'cycleway' })).toBe('paved');
+    expect(pathType({ highway: 'cycleway', 'mtb:scale': '1' })).toBe('trail');
+    expect(pathType({ highway: 'cycleway', 'mtb:scale': '0' })).toBe('trail');
+  });
+
+  it('Trail 55 (cycleway + mtb:scale) clusters with Trail 74 (path + ground)', () => {
+    const t55 = {
+      name: 'Trail #55', highway: 'cycleway', 'mtb:scale': '1',
+      anchors: [[-76.01, 45.61]],
+      _ways: [[
+        { lat: 45.61516, lon: -76.01367 },
+        { lat: 45.60397, lon: -76.01307 },  // shared with Trail 74
+      ]],
+    };
+    const t74 = {
+      name: 'Trail 74', highway: 'path', surface: 'ground',
+      anchors: [[-76.01, 45.60]],
+      _ways: [[
+        { lat: 45.60502, lon: -76.01307 },
+        { lat: 45.60397, lon: -76.01307 },  // shared node
+        { lat: 45.60397, lon: -76.00747 },
+      ]],
+    };
+    // Both should be 'trail' type
+    expect(pathType(t55)).toBe('trail');
+    expect(pathType(t74)).toBe('trail');
+    const clusters = clusterByConnectivity([t55, t74]);
     expect(clusters).toHaveLength(1);
   });
 

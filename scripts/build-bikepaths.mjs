@@ -340,6 +340,7 @@ function extractOsmMetadata(tags) {
   if (tags.cycleway) meta.cycleway = tags.cycleway;
   if (tags.highway) meta.highway = tags.highway;
   if (tags.tracktype) meta.tracktype = tags.tracktype;
+  if (tags['mtb:scale'] != null) meta['mtb:scale'] = tags['mtb:scale'];
 
   // Network and management
   if (tags.operator) meta.operator = tags.operator;
