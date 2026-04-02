@@ -19,6 +19,7 @@ includes:
   - parc-de-la-gatineau-8
   - parc-de-la-gatineau-9
   - parc-de-la-gatineau-10
+  - trail-74
 ---
 
 The way into Gatineau Park by bike — and one of the most rewarding rides in the region. This path connects the urban Gatineau network to the park's 361-square-kilometre interior, where car-free parkways and serious climbs await.
