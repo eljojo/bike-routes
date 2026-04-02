@@ -11,9 +11,6 @@
 
 /**
  * Ray-casting point-in-polygon test.
- * @param {{ lat: number, lon: number }} point
- * @param {Array<{ lat: number, lon: number }>} polygon — closed ring
- * @returns {boolean}
  */
 export function pointInPolygon(point, polygon) {
   const { lat, lon } = point;
@@ -31,12 +28,6 @@ export function pointInPolygon(point, polygon) {
 
 /**
  * Sample representative points from a trail's _ways geometry.
- * Takes every Nth point to keep the count manageable while covering
- * the trail's full extent.
- *
- * @param {Array<Array<{ lat, lon }>>} _ways
- * @param {number} [interval=5] — sample every Nth point
- * @returns {Array<{ lat: number, lon: number }>}
  */
 export function sampleTrailPoints(_ways, interval = 5) {
   if (!_ways || _ways.length === 0) return [];
@@ -45,7 +36,6 @@ export function sampleTrailPoints(_ways, interval = 5) {
     for (let i = 0; i < way.length; i += interval) {
       points.push(way[i]);
     }
-    // Always include the last point of each way
     if (way.length > 0) points.push(way[way.length - 1]);
   }
   return points;
@@ -53,16 +43,11 @@ export function sampleTrailPoints(_ways, interval = 5) {
 
 /**
  * Classify a trail entry by which park contains the majority of its geometry.
- *
- * @param {{ _ways: Array }} entry — trail with _ways geometry
- * @param {Array<{ name: string, polygon: Array<{ lat, lon }> }>} parks
- * @returns {string | null} — park name, or null if not in any park
  */
 export function classifyByPark(entry, parks) {
   const points = sampleTrailPoints(entry._ways);
   if (points.length === 0) return null;
 
-  // Count how many sampled points fall in each park
   const counts = new Map();
   for (const point of points) {
     for (const park of parks) {
@@ -74,7 +59,6 @@ export function classifyByPark(entry, parks) {
 
   if (counts.size === 0) return null;
 
-  // Majority wins
   let bestPark = null;
   let bestCount = 0;
   for (const [name, count] of counts) {
@@ -83,6 +67,64 @@ export function classifyByPark(entry, parks) {
       bestPark = name;
     }
   }
-
   return bestPark;
+}
+
+/**
+ * Fetch all park/nature_reserve/protected_area polygons in the bbox.
+ * Returns array of { name, polygon } for local point-in-polygon checks.
+ */
+export async function fetchParkPolygons(bbox, queryOverpass) {
+  const q = `[out:json][timeout:120];
+(
+  way["leisure"~"nature_reserve|park"]["name"](${bbox});
+  relation["leisure"~"nature_reserve|park"]["name"](${bbox});
+  relation["boundary"="protected_area"]["name"](${bbox});
+  relation["landuse"="forest"]["name"](${bbox});
+);
+out geom;`;
+
+  const data = await queryOverpass(q);
+  const parks = [];
+
+  for (const el of data.elements) {
+    const name = el.tags?.name;
+    if (!name) continue;
+
+    let polygon = null;
+    if (el.type === 'way' && el.geometry?.length >= 3) {
+      polygon = el.geometry;
+    } else if (el.type === 'relation' && el.members) {
+      // Relations: extract outer ring from members
+      const outerWays = el.members
+        .filter(m => m.type === 'way' && (m.role === 'outer' || m.role === ''))
+        .flatMap(m => m.geometry || []);
+      if (outerWays.length >= 3) polygon = outerWays;
+    }
+
+    if (polygon) {
+      parks.push({ name, polygon });
+    }
+  }
+
+  console.log(`  Fetched ${parks.length} park polygons for containment checks`);
+  return parks;
+}
+
+/**
+ * Split a connectivity cluster into sub-clusters by park membership.
+ * Members not in any park stay together in a null-park sub-cluster.
+ *
+ * @param {{ members: Array, centroid: object }} cluster
+ * @param {Array<{ name, polygon }>} parks
+ * @returns {Map<string|null, Array>} — park name → members
+ */
+export function splitClusterByPark(cluster, parks) {
+  const byPark = new Map();
+  for (const member of cluster.members) {
+    const park = classifyByPark(member, parks);
+    if (!byPark.has(park)) byPark.set(park, []);
+    byPark.get(park).push(member);
+  }
+  return byPark;
 }

@@ -1,6 +1,7 @@
 // auto-group.mjs
 import { clusterByConnectivity, pathType } from './cluster-entries.mjs';
 import { pickClusterName } from './name-cluster.mjs';
+import { fetchParkPolygons, splitClusterByPark } from './park-containment.mjs';
 
 // Duplicate of bike-app-astro's slugifyBikePathName — must stay in sync
 function slugifyBikePathName(name) {
@@ -86,13 +87,29 @@ function mergeTags(entries) {
   return result;
 }
 
+/** Derive a bbox string from entries' anchors for Overpass queries. */
+function deriveBbox(entries) {
+  let south = Infinity, west = Infinity, north = -Infinity, east = -Infinity;
+  for (const e of entries) {
+    for (const a of e.anchors || []) {
+      const [lng, lat] = a;
+      if (lat < south) south = lat;
+      if (lat > north) north = lat;
+      if (lng < west) west = lng;
+      if (lng > east) east = lng;
+    }
+  }
+  if (!isFinite(south)) return null;
+  return `${south},${west},${north},${east}`;
+}
+
 /**
  * Auto-group nearby trail segments. Pure function — no file I/O.
  *
  * @param {{ entries: Array, markdownSlugs: Set<string>, queryOverpass: Function }} config
  * @returns {Promise<Array>} — updated entries array (groups replace absorbed members)
  */
-export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass }) {
+export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass, bbox }) {
   // Compute slugs for all entries
   const slugMap = computeSlugs(entries);
 
@@ -111,59 +128,64 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
   const clusters = clusterByConnectivity(candidates);
   if (clusters.length === 0) return entries;
 
-  // Name each new cluster (parallel, up to 6 concurrent Overpass queries)
-  const newClusters = clusters.filter(c => !c.existingGroup);
-  const CONCURRENCY = 6;
-  async function nameCluster(cluster) {
-    let parkName = null;
+  // Fetch park polygons once for per-member classification.
+  // Determines which park each trail belongs to using actual geometry,
+  // NOT centroids. Fixes the bug where connectivity chains crossing
+  // park boundaries caused trails to be assigned to the wrong park.
+  if (!bbox) bbox = deriveBbox(candidates);
+  let parks = [];
+  if (bbox) {
+    try {
+      parks = await fetchParkPolygons(bbox, queryOverpass);
+    } catch (err) {
+      console.error(`  Park polygon fetch failed: ${err.message}`);
+    }
+  }
 
-    // Only look up containing park/reserve for trail-type clusters
-    const types = cluster.members.map(m => pathType(m));
-    const trailCount = types.filter(t => t === 'trail').length;
-    const isTrailCluster = trailCount > types.length / 2;
+  // Split clusters that span multiple parks. A connectivity cluster can
+  // chain across park boundaries — Trail 26 in the Greenbelt connects
+  // through intermediate trails to Trail 27 in Gatineau Park. The
+  // connectivity is real but they belong to different networks.
+  const newClusters = [];
+  for (const cluster of clusters) {
+    if (cluster.existingGroup) {
+      newClusters.push(cluster);
+      continue;
+    }
 
-    if (isTrailCluster) {
-      const { lat, lon } = cluster.centroid;
-      try {
-        const q = `[out:json][timeout:15];
-is_in(${lat},${lon})->.a;
-area.a["leisure"~"nature_reserve|park"]["name"]->.b;
-area.a["boundary"="protected_area"]["name"]->.c;
-area.a["landuse"="forest"]["name"]->.d;
-(.b; .c; .d;);
-out tags;`;
-        const data = await queryOverpass(q);
-        if (data.elements.length > 0) {
-          const sorted = data.elements.sort((a, b) => {
-            const order = { nature_reserve: 0, protected_area: 1, park: 2, forest: 3 };
-            const oa = order[a.tags?.leisure] ?? order[a.tags?.boundary] ?? order[a.tags?.landuse] ?? 4;
-            const ob = order[b.tags?.leisure] ?? order[b.tags?.boundary] ?? order[b.tags?.landuse] ?? 4;
-            return oa - ob;
-          });
-          parkName = sorted[0].tags?.name || null;
-        }
-      } catch (err) {
-        // Park lookup failed — fall through to other naming strategies
+    if (parks.length > 0) {
+      const byPark = splitClusterByPark(cluster, parks);
+      for (const [parkName, members] of byPark) {
+        if (members.length < 2) continue; // too small for a network
+        newClusters.push({
+          members,
+          resolvedName: parkName || pickClusterName(members, null),
+          _parkName: parkName,
+          existingGroup: null,
+          newMembers: members,
+        });
       }
-    }
-
-    cluster.resolvedName = pickClusterName(cluster.members, parkName);
-  }
-
-  // Worker pool: run up to CONCURRENCY naming tasks at once
-  let i = 0;
-  async function worker() {
-    while (i < newClusters.length) {
-      const cluster = newClusters[i++];
-      await nameCluster(cluster);
+    } else {
+      // No park data — fall back to old naming
+      newClusters.push(cluster);
     }
   }
-  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, newClusters.length) }, () => worker()));
 
-  // Park containment merge: clusters with the same resolved name are in the
-  // same park/forest/reserve. Merge them into one network. This handles
-  // North American parks where trail systems are disconnected islands linked
-  // by roads — a spatial fact, not a connectivity fact.
+  // Name clusters that don't have a park name yet (non-park or fallback)
+  const CONCURRENCY = 6;
+  const unnamed = newClusters.filter(c => !c.resolvedName && !c.existingGroup);
+  const queue = [...unnamed];
+  async function nameWorker() {
+    let cluster;
+    while ((cluster = queue.shift()) !== undefined) {
+      cluster.resolvedName = pickClusterName(cluster.members, null);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, queue.length) }, () => nameWorker()));
+
+  // Park containment merge: clusters in the same park that were split
+  // from different connectivity clusters should be one network.
+  // (Disconnected trail islands in the same park = one system.)
   const byName = new Map();
   for (const cluster of newClusters) {
     const name = cluster.resolvedName;

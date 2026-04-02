@@ -739,7 +739,7 @@ async function main() {
 
   // Auto-group nearby trail segments
   const markdownSlugs = loadMarkdownSlugs();
-  const grouped = await autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass });
+  const grouped = await autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass, bbox });
 
   // Centralized slug computation
   let slugMap = computeSlugs(grouped);
@@ -913,7 +913,7 @@ out tags center;`;
   const entries = buildEntries(osmRelations, osmNamedWays, parallelLanes, seed);
 
   // Auto-group nearby trail segments
-  const grouped = await autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass: qo });
+  const grouped = await autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass: qo, bbox: b });
 
   // Centralized slug computation
   let slugMap = computeSlugs(grouped);
