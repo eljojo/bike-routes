@@ -139,4 +139,32 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
       }
     }
   });
+
+  // -----------------------------------------------------------------------
+  // La Boucle MTB network: all trails near 45.51°N,-75.75°W should be
+  // in ONE network, not split into la-boucle/major/molo/extreme
+  // -----------------------------------------------------------------------
+
+  it('La Boucle area MTB trails are all in one network', () => {
+    const trailNames = [
+      'La Boucle', 'Extreme', "Rocky's", 'Molo', 'M&M', 'Major',
+      'JL Speciale', 'Rentre a Maison', '417', 'La Tour', 'Castor',
+      'Houleuse', 'Marais', 'Montee', 'Pont', 'Silly', 'La Crete',
+      'Molo 2', 'Molo 3', 'La Pente',
+    ];
+
+    const found = trailNames
+      .map(name => entries.find(e => e.name === name))
+      .filter(Boolean);
+
+    // Should find most of them
+    expect(found.length).toBeGreaterThan(15);
+
+    // All trails with member_of should point to the SAME network
+    const networks = new Set(found.map(e => e.member_of).filter(Boolean));
+    expect(
+      networks.size,
+      `La Boucle trails split into ${networks.size} networks: ${[...networks].join(', ')}. Should be 1.`
+    ).toBe(1);
+  });
 });

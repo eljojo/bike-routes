@@ -50,7 +50,15 @@ function typesCompatible(a, b) {
   return a === b;
 }
 
-const TOUCHING_M = 10;
+// Type-based endpoint proximity thresholds. Trail junctions in forests
+// are imprecise — endpoints 20-40m apart are clearly the same junction.
+// Urban paved paths are precisely mapped.
+const TOUCHING_M_BY_TYPE = {
+  trail: 1200, // forest trail systems — separate trailheads linked by unmarked paths
+  paved: 10,   // urban MUPs — precisely mapped
+  road: 10,    // parallel lanes — precise
+};
+const DEFAULT_TOUCHING_M = 10;
 
 export function clusterByConnectivity(entries) {
   const withWays = entries
@@ -118,8 +126,11 @@ export function clusterByConnectivity(entries) {
     }
   }
 
-  // Phase 2: Endpoint proximity (within TOUCHING_M)
-  const EP_GRID = 0.00015;
+  // Phase 2: Endpoint proximity — type-based threshold.
+  // Trail systems in forests have separate trailheads up to ~1km apart.
+  // Grid cell size covers the max threshold (1200m ≈ 0.011°).
+  const maxTouching = Math.max(...Object.values(TOUCHING_M_BY_TYPE), DEFAULT_TOUCHING_M);
+  const EP_GRID = maxTouching / 111320 * 1.1; // slightly larger than max threshold in degrees
   const epGrid = new Map();
   for (let ei = 0; ei < n; ei++) {
     for (const ep of entryEndpoints[ei]) {
@@ -141,7 +152,12 @@ export function clusterByConnectivity(entries) {
         if (eps[a].entryIdx === eps[b].entryIdx) continue;
         if (find(eps[a].entryIdx) === find(eps[b].entryIdx)) continue;
         const d = haversineM([eps[a].lon, eps[a].lat], [eps[b].lon, eps[b].lat]);
-        if (d <= TOUCHING_M) {
+        // Use the wider threshold of the two types
+        const typeA = entryTypes[eps[a].entryIdx];
+        const typeB = entryTypes[eps[b].entryIdx];
+        const limitA = TOUCHING_M_BY_TYPE[typeA] ?? DEFAULT_TOUCHING_M;
+        const limitB = TOUCHING_M_BY_TYPE[typeB] ?? DEFAULT_TOUCHING_M;
+        if (d <= Math.max(limitA, limitB)) {
           tryUnion(eps[a].entryIdx, eps[b].entryIdx);
         }
       }
