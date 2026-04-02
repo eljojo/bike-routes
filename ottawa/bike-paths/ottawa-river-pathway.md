@@ -18,7 +18,3 @@ Further west you pass Westboro Beach and its new pavilion, then continue through
 
 This is the path that connects almost everything. The [Rideau Canal paths](/paths/rideau-canal) branch south from here, the Trans Canada Trail overlaps in sections, and four bridges link you to the Gatineau side — including the Chief William Commanda Bridge, a converted rail crossing for people on foot and on bikes. It's part of a much bigger network — [over 200 km of MUPs](https://ncc-ccn.gc.ca/places/capital-pathway) stretching from Gatineau Park through the city and out to the [Greenbelt](/paths/greenbelt-pathway). If you're new to Ottawa cycling, this is where you start.
 
-### Rides on this path
-
-- [East-End Gravel Mixer](https://eljojo.bike/rides/2022/05/31-east-end-gravel-mixer) — gravel and pavement through the east end, with a long stretch along the river
-

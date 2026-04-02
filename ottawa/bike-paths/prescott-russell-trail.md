@@ -24,7 +24,3 @@ The same M&O railway corridor continues east across the Quebec border through Ri
 From Vaudreuil-Dorion, cycling infrastructure improves and you can follow established routes through the West Island into Montreal.
 
 If you're considering the full corridor: bring wider tires, be prepared to detour onto roads in places, and treat everything past Saint-Eugène as an adventure rather than a groomed trail. The railway corridor is there — it's just not all the way there yet.
-
-### Rides on this path
-
-- [Big Bog Excursion](https://eljojo.bike/rides/2023-06-04-big-bog-excursion/) — the Prescott Russell Trail as part of an "all-time classics" loop

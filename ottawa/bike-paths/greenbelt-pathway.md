@@ -36,8 +36,3 @@ The western trail connects to the Watts Creek path, which links onward to the Ki
 The eastern arm runs 12.5 km through protected forest and wetland on fine gravel. Narrower than the western section, and connects to the [Ottawa River path](/paths/ottawa-river-pathway) at its northern end. Quieter and less travelled, with a wilder feel.
 
 The [Mer Bleue Bog](https://ncc-ccn.gc.ca/places/mer-bleue) is the highlight of this section — a roughly 7,700-year-old peat bog and the largest in the National Capital Region. Scientists have been studying it for decades — it's [one of the most researched bogs in the world](https://en.wikipedia.org/wiki/Mer_Bleue_Bog), with a permanent station on site. Peat deposits reach up to 6 metres thick. The name means "blue sea" in French, from the fog that settles over the bog in the morning. A 1.2 km boardwalk trail leads into the bog itself — worth locking up the bike for.
-
-### Rides on this path
-
-- [Big Bog Excursion](https://eljojo.bike/rides/2023-06-04-big-bog-excursion/) — Mer Bleue, Prescott Russell Trail, Greenbelt, and a golf course shortcut
-- [Bruce Pit](https://eljojo.bike/rides/2021/10/09-150-bruce-pit) — loop through the western Greenbelt via Bruce Pit

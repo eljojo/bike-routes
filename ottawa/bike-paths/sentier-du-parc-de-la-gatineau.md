@@ -26,8 +26,3 @@ The way into Gatineau Park by bike — and one of the most rewarding rides in th
 From here you can reach [Pink Lake](https://ncc-ccn.gc.ca/places/pink-lake) — a meromictic lake whose upper and lower water layers never mix, named not for its colour but for the Pink family who settled nearby in 1826 — Meech Lake, and the Champlain Lookout. The NCC restricts vehicle access on the parkways most days from May through October, opening mornings exclusively to cyclists, runners, and skaters. That means long stretches of smooth, empty road through the forest with nothing but the sound of your chain.
 
 The climbing starts gradually and builds. Bring sugar. The descents can hit 60 km/h, so a jacket helps even on warm days. The Champlain Lookout sits at 335 metres atop the [Eardley Escarpment](https://ncc-ccn.gc.ca/places/eardley-escarpment) — the boundary between the Canadian Shield and the St. Lawrence Lowlands — and the views across the Ottawa Valley make the effort feel worth it, every time.
-
-### Rides on this path
-
-- [Taylor Lake camping](https://eljojo.bike/tours/taylor-lake-camping/) — bikepacking into the park, hard climbs in the dark, incredible reward
-- [Canadian Shield Bikepacking Summit](https://eljojo.bike/rides/2025/05/camping-at-the-canadian-shield-bikepacking-summit/23-heading-to-canadian-shield-bikepacking-summit) — bikepacking north through the park to the Summit
