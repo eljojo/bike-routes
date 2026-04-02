@@ -38,7 +38,6 @@ bike_paths:
         - 45.454388
     osm_names:
       - Sentier du Lac Leamy Pathway
-    member_of: parc-du-lac-leamy
   - name: Sentier du Ruisseau-de-la-Brasserie Pathway
     osm_relations:
       - 215130
@@ -57,7 +56,6 @@ bike_paths:
         - 45.447053
     osm_names:
       - Sentier du Ruisseau-de-la-Brasserie Pathway
-    member_of: sentier-du-ruisseau-de-la-brasserie-pathway-network
   - name: Sentier des Pionniers Pathway
     osm_relations:
       - 215131
@@ -97,7 +95,6 @@ bike_paths:
         - 45.4357817
     osm_names:
       - Sentier de l'Île
-    member_of: sentier-du-ruisseau-de-la-brasserie-pathway-network
   - name: Sentier du Ruisseau-Leamy
     osm_relations:
       - 222699
@@ -249,7 +246,6 @@ bike_paths:
         - 45.4303186
     osm_names:
       - Sentier du Corridor-Champlain
-    member_of: capital-pathway
   - name: Prescott Russell Trail Link
     osm_relations:
       - 3461068
@@ -270,7 +266,6 @@ bike_paths:
         - 45.4229112
     osm_names:
       - Prescott Russell Trail Link
-    member_of: ncc-greenbelt
   - name: Sentier vélo de Montagne - Parc de la Gatineau
     osm_relations:
       - 6198284
@@ -530,6 +525,8 @@ bike_paths:
         - 45.4697494
     osm_names:
       - Greenbelt Pathway East
+    smoothness: good
+    cycleway: crossing
     member_of: ncc-greenbelt
   - name: Trans Canada Trail (Sussex Drive)
     osm_relations:
@@ -554,7 +551,6 @@ bike_paths:
         - 45.3524057
     osm_names:
       - Sawmill Creek Pathway
-    member_of: sawmill-creek-path-network
   - name: Byron-Richmond path
     osm_relations:
       - 7370934
@@ -851,21 +847,6 @@ bike_paths:
     osm_relations:
       - 20166048
     ref: '21'
-  - name: Voie Verte Chelsea
-    osm_names:
-      - Voie Verte Chelsea
-    anchors:
-      - - -75.8992252
-        - 45.5705625
-      - - -75.8517575
-        - 45.6152909
-    name_en: Voie Verte Chelsea
-    surface: fine_gravel
-    smoothness: intermediate
-    width: '2.5'
-    highway: cycleway
-    bicycle: designated
-    member_of: voie-verte-chelsea-trails
   - name: Chief William Commanda Bridge
     osm_names:
       - Chief William Commanda Bridge
@@ -943,7 +924,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     operator: NCC
-    member_of: parc-du-lac-leamy
+    member_of: capital-pathway
   - name: Pont Mãwandòseg
     osm_names:
       - Pont Mãwandòseg
@@ -991,57 +972,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     member_of: sawmill-creek-path-network
-  - name: Prescott Russell Trail Link
-    osm_names:
-      - Prescott Russell Trail Link
-    anchors:
-      - - -75.4633396
-        - 45.414776
-      - - -75.4105344
-        - 45.4178261
-    surface: fine_gravel
-    smoothness: good
-    width: '2'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-    tracktype: grade2
-    bicycle: designated
-    member_of: prescott-russell-trail-link-trails
-  - name: Prescott Russell Trail Link
-    osm_names:
-      - Prescott Russell Trail Link
-    anchors:
-      - - -75.4105344
-        - 45.4151116
-      - - -75.2367483
-        - 45.4356278
-    surface: fine_gravel
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-    tracktype: grade2
-    bicycle: designated
-    member_of: prescott-russell-trail-link-trails
-  - name: Greenbelt Pathway East
-    osm_names:
-      - Greenbelt Pathway East
-    anchors:
-      - - -75.629003
-        - 45.3294621
-      - - -75.5679262
-        - 45.3713348
-    surface: fine_gravel
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    cycleway: crossing
-    highway: cycleway
-    bicycle: designated
-    network: Pine Grove
-    member_of: ncc-greenbelt
   - name: Trans Canada Trail
     osm_names:
       - Trans Canada Trail
@@ -3958,7 +3888,6 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: 'no'
-    member_of: capital-pathway
   - name: '#72B (Irish Whiskey)'
     osm_names:
       - '#72B (Irish Whiskey)'
@@ -9397,7 +9326,6 @@ bike_paths:
     width: 1 m
     incline: 15%
     highway: path
-    member_of: voie-verte-chelsea-trails
     mtb: true
   - name: William Street
     osm_names:
@@ -11305,86 +11233,10 @@ bike_paths:
       - - -75.5926015
         - 45.4995486
     surface: asphalt
-  - name: Parc du Lac-Leamy
-    type: network
-    _parkName: Parc du Lac-Leamy
-    members:
-      - sentier-du-lac-leamy-pathway
-      - sentier-de-la-riviere-gatineau-pathway
-    anchors:
-      - - -75.7364732
-        - 45.4472972
-      - - -75.703136
-        - 45.4725342
-    osm_names:
-      - Sentier du Lac Leamy Pathway
-      - Sentier de la Rivière Gatineau Pathway
-    osm_relations:
-      - 215129
-    surface: asphalt
-    highway: cycleway
-    lit: 'no'
-    width: '3'
-    smoothness: good
-    network: lcn
-    operator: NCC
-  - name: Sentier du Ruisseau-de-la-Brasserie Pathway Network
-    type: network
-    _parkName: null
-    members:
-      - sentier-du-ruisseau-de-la-brasserie-pathway
-      - sentier-de-lile
-    anchors:
-      - - -75.72988
-        - 45.4245687
-      - - -75.7097778
-        - 45.447053
-    osm_names:
-      - Sentier du Ruisseau-de-la-Brasserie Pathway
-      - Sentier de l'Île
-    osm_relations:
-      - 215130
-      - 218656
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '2'
-    network: lcn
-    smoothness: good
-  - name: Sentier des Pionniers Pathway Network
-    type: network
-    _parkName: null
-    members:
-      - sentier-des-pionniers-pathway
-      - sentier-du-corridor-champlain
-    anchors:
-      - - -75.8672581
-        - 45.4084931
-      - - -75.7311378
-        - 45.436377
-    osm_names:
-      - Sentier des Pionniers Pathway
-      - Sentier du Corridor-Champlain
-    osm_relations:
-      - 215131
-      - 2890360
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '2'
-    smoothness: good
-    network: rcn
-    operator: National Capital Commission
-    super_network: capital-pathway
   - name: NCC Greenbelt
     type: network
     _parkName: NCC Greenbelt
     members:
-      - prescott-russell-trail-link-3
-      - '50'
-      - moe-anderson-trail
-      - '51'
-      - dewberry-trail
       - greenbelt-pathway-west
       - trail-27-2
       - trail-23
@@ -11409,10 +11261,7 @@ bike_paths:
       - kanata-nordic-trail-11
       - kanata-nordic-snowshoe-trail
       - trail-12-training-circle
-      - greenbelt-pathway-east-2
-      - trail-61
-      - trail-63
-      - greenbelt-pathway-east-1
+      - greenbelt-pathway-east
       - greenbelt-pathway-east-trail-44
       - greenbelt-pathway-east-trail-42
       - greenbelt-pathway-east-trail-40
@@ -11421,6 +11270,12 @@ bike_paths:
       - trail-43-pine-grove-forestry-trail
       - trail-42
       - arboretum-loop
+      - '50'
+      - moe-anderson-trail
+      - '51'
+      - dewberry-trail
+      - trail-61
+      - trail-63
       - watts-creek-pathway
       - ottawa-greenbelt-trail
       - greenbelt-pathway
@@ -11440,14 +11295,9 @@ bike_paths:
     anchors:
       - - -75.8759034
         - 45.2781764
-      - - -75.4633396
+      - - -75.5436768
         - 45.4697494
     osm_names:
-      - Prescott Russell Trail Link
-      - '50'
-      - Moe Anderson Trail
-      - '51'
-      - Dewberry Trail
       - Greenbelt Pathway West
       - Trail 27
       - Trail 23
@@ -11473,8 +11323,6 @@ bike_paths:
       - Kanata Nordic Snowshoe Trail
       - Trail 12 Training Circle
       - Greenbelt Pathway East
-      - Trail 61
-      - Trail 63
       - Greenbelt Pathway East / Trail 44
       - Greenbelt Pathway East / Trail 42
       - Greenbelt Pathway East / Trail 40
@@ -11483,8 +11331,13 @@ bike_paths:
       - Trail 43 - Pine Grove Forestry Trail
       - Trail 42
       - Arboretum Loop
+      - '50'
+      - Moe Anderson Trail
+      - '51'
+      - Dewberry Trail
+      - Trail 61
+      - Trail 63
     osm_relations:
-      - 3461068
       - 7248705
       - 7369775
     surface: ground
@@ -11492,53 +11345,10 @@ bike_paths:
     lit: 'no'
     width: '1'
     smoothness: intermediate
+    operator: NCC
     network: Pine Grove
-    operator: NCC
     super_network: capital-pathway
     mtb: true
-  - name: Prescott Russell Trail Link Trails
-    type: network
-    _parkName: null
-    members:
-      - prescott-russell-trail-link-2
-      - prescott-russell-trail-link-1
-    anchors:
-      - - -75.4633396
-        - 45.414776
-      - - -75.2367483
-        - 45.4356278
-    osm_names:
-      - Prescott Russell Trail Link
-    surface: fine_gravel
-    highway: cycleway
-    lit: 'no'
-    width: '2'
-    smoothness: good
-    mtb: true
-  - name: Rideau Canal Western Pathway Network
-    type: network
-    _parkName: null
-    members:
-      - rideau-canal-western-pathway
-      - rideau-canal-locks-crossing
-    anchors:
-      - - -75.7068065
-        - 45.3839982
-      - - -75.6818665
-        - 45.4229488
-    osm_names:
-      - Rideau Canal Western Pathway
-      - Rideau Canal Locks Crossing
-    osm_relations:
-      - 7206688
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '1'
-    smoothness: good
-    operator: NCC
-    network: rcn
-    super_network: capital-pathway
   - name: Trans Canada Trail Trails
     type: network
     _parkName: null
@@ -11567,49 +11377,6 @@ bike_paths:
     lit: 'no'
     width: '3'
     smoothness: good
-    mtb: true
-  - name: Sawmill Creek Path Network
-    type: network
-    _parkName: null
-    members:
-      - sawmill-creek-pathway
-      - brookfield-pathway
-      - sawmill-creek-path
-    anchors:
-      - - -75.6847611
-        - 45.3524057
-      - - -75.6552573
-        - 45.3739909
-    osm_names:
-      - Sawmill Creek Pathway
-      - Brookfield Pathway
-      - Sawmill Creek Path
-    osm_relations:
-      - 7369960
-    surface: asphalt
-    highway: cycleway
-    width: '3'
-    smoothness: intermediate
-    network: lcn
-    lit: 'yes'
-  - name: Voie Verte Chelsea Trails
-    type: network
-    _parkName: null
-    members:
-      - voie-verte-chelsea-1
-      - chemin-pinetrail
-    anchors:
-      - - -75.8992252
-        - 45.5705625
-      - - -75.8517575
-        - 45.6152909
-    osm_names:
-      - Voie Verte Chelsea
-      - Chemin Pine/trail
-    surface: fine_gravel
-    highway: cycleway
-    width: '2.5'
-    smoothness: intermediate
     mtb: true
   - name: Chief William Commanda Bridge Network
     type: network
@@ -11645,6 +11412,25 @@ bike_paths:
       - Boulevard du Casino
     surface: asphalt
     highway: cycleway
+    width: '3'
+    smoothness: excellent
+  - name: Sawmill Creek Path Network
+    type: network
+    _parkName: null
+    members:
+      - brookfield-pathway
+      - sawmill-creek-path
+    anchors:
+      - - -75.6847611
+        - 45.353173
+      - - -75.656349
+        - 45.3739909
+    osm_names:
+      - Brookfield Pathway
+      - Sawmill Creek Path
+    surface: asphalt
+    highway: cycleway
+    lit: 'yes'
     width: '3'
     smoothness: excellent
   - name: Ottawa Valley Recreational Trail Trails
@@ -12396,9 +12182,7 @@ bike_paths:
     members:
       - sentier-des-voyageurs-pathway
       - sentier-des-pionniers-pathway
-      - sentier-du-corridor-champlain
       - rideau-canal-western-pathway
-      - rideau-canal-locks-crossing
       - rideau-canal-eastern-pathway
       - experimental-farm-pathway
       - rideau-river-eastern-pathway
@@ -12407,6 +12191,7 @@ bike_paths:
       - sentier-de-la-riviere-gatineau
       - pinecrest-creek-pathway
       - ottawa-river-pathway
+      - sentier-de-la-riviere-gatineau-pathway
       - mackenzie-cycle-track
     osm_relations:
       - 10990511

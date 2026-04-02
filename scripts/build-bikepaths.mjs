@@ -593,7 +593,12 @@ function buildEntries(osmRelations, osmNamedWays, parallelLanes, manualEntries) 
       // Don't merge entries that are far apart — they're different trails
       // with the same slug. E.g., "Trail 24" (Greenbelt, 45.30°N) and
       // "Trail #24" (Gatineau Park, 45.52°N) both slug to trail-24.
-      const tooFar = existing.anchors?.length > 0 && np.anchors?.length > 0 &&
+      // EXCEPTION: always merge into a relation entry with the same name.
+      // Relations are authoritative — a trail with a gap in the middle
+      // (Voie Verte Chelsea) should still be one entry.
+      const hasRelation = existing.osm_relations?.length > 0;
+      const tooFar = !hasRelation &&
+        existing.anchors?.length > 0 && np.anchors?.length > 0 &&
         haversineM(existing.anchors[0], np.anchors[0]) > 5000;
       if (tooFar) {
         // Different trail, same slug — create separate entry (slug will be disambiguated later)
