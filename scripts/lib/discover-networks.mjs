@@ -82,7 +82,10 @@ export function buildNetworkEntry({ id, name, tags, memberRoutes }) {
  * @returns {Promise<Array>} array of network entries
  */
 export async function discoverNetworks({ bbox, queryOverpass }) {
-  const q = `[out:json][timeout:120];\nrelation["type"="superroute"]["route"="bicycle"](${bbox});\nout body;`;
+  // Superroutes have only relation members (no ways), so bbox filtering
+  // on the superroute itself returns nothing. Instead: find all bicycle
+  // route relations in the bbox, then walk UP to their parent superroutes.
+  const q = `[out:json][timeout:120];\nrelation["route"="bicycle"](${bbox});\nrel(br)["type"="superroute"];\nout body;`;
   const data = await queryOverpass(q);
   const superroutes = data.elements.filter(el => el.tags?.type === 'superroute');
 
