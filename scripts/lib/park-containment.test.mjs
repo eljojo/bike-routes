@@ -146,6 +146,18 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
   // -----------------------------------------------------------------------
 
   // -----------------------------------------------------------------------
+  // Ottawa River Pathway: 79% of geometry is outside any park.
+  // It should NOT be adopted into the Greenbelt just because 9% passes through it.
+  // -----------------------------------------------------------------------
+
+  it('Ottawa River Pathway is NOT in the Greenbelt (mostly outside any park)', () => {
+    const orp = entries.find(e => e.name === 'Ottawa River Pathway' && !e.osm_relations);
+    if (orp) {
+      expect(orp.member_of || '(none)').not.toMatch(/greenbelt/i);
+    }
+  });
+
+  // -----------------------------------------------------------------------
   // Same trail name used in different parks: "Trail 26" exists in both
   // the Greenbelt (~45.30°N) and Gatineau Park (~45.46°N). They must
   // NOT be merged into one entry — they're different trails.

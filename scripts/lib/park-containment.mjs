@@ -48,19 +48,27 @@ export function classifyByPark(entry, parks) {
   const points = sampleTrailPoints(entry._ways);
   if (points.length === 0) return null;
 
+  // Count points per park, including "no park"
+  let outsideCount = 0;
   const counts = new Map();
   for (const point of points) {
+    let inAnyPark = false;
     for (const park of parks) {
       if (pointInPolygon(point, park.polygon)) {
         counts.set(park.name, (counts.get(park.name) || 0) + 1);
+        inAnyPark = true;
+        break; // first matching park wins (avoid double-counting overlapping polygons)
       }
     }
+    if (!inAnyPark) outsideCount++;
   }
 
   if (counts.size === 0) return null;
 
+  // Majority wins — but "outside all parks" counts too.
+  // Ottawa River Pathway: 79% outside, 9% Greenbelt → not a park trail.
   let bestPark = null;
-  let bestCount = 0;
+  let bestCount = outsideCount; // "no park" starts as the count to beat
   for (const [name, count] of counts) {
     if (count > bestCount) {
       bestCount = count;
