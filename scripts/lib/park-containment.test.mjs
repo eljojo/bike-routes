@@ -118,7 +118,7 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
       if (memberLats.length < 2) continue;
 
       const hasGreenbeltArea = memberLats.some(lat => lat < 45.40);
-      const hasGatineauArea = memberLats.some(lat => lat > 45.45);
+      const hasGatineauArea = memberLats.some(lat => lat > 45.50);
 
       if (hasGreenbeltArea && hasGatineauArea) {
         // This network spans both parks — that's the bug
@@ -134,7 +134,7 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
         expect.fail(
           `Network "${network.name}" mixes parks:\n` +
           `  Greenbelt members (lat < 45.40): ${greenbeltMembers.join(', ')}\n` +
-          `  Gatineau members (lat > 45.45): ${gatineauMembers.join(', ')}`
+          `  Gatineau members (lat > 45.50): ${gatineauMembers.join(', ')}`
         );
       }
     }

@@ -53,11 +53,11 @@ describe('buildBikepathsPipeline', () => {
       ['around:30', { elements: ROADS_NEAR_INTERSECTION }],
     ]);
 
-    const result = await buildBikepathsPipeline({
+    const { entries: result } = await buildBikepathsPipeline({
       queryOverpass,
       bbox: '45.15,-76.35,45.65,-75.35',
       adapter: OTTAWA_ADAPTER,
-      existing: [],
+      manualEntries: [],
     });
 
     const parallel = result.filter(e => e.parallel_to);
@@ -73,11 +73,11 @@ describe('buildBikepathsPipeline', () => {
       ['around:30', { elements: ROADS_NEAR_INTERSECTION }],
     ]);
 
-    const result = await buildBikepathsPipeline({
+    const { entries: result } = await buildBikepathsPipeline({
       queryOverpass,
       bbox: '45.15,-76.35,45.65,-75.35',
       adapter: OTTAWA_ADAPTER,
-      existing: [],
+      manualEntries: [],
     });
 
     const irwin = result.filter(e => e.name === 'Irwin Miller Street');
@@ -103,11 +103,11 @@ describe('buildBikepathsPipeline', () => {
       ['around:30', { elements: ROADS_NEAR_INTERSECTION }],
     ]);
 
-    const result = await buildBikepathsPipeline({
+    const { entries: result } = await buildBikepathsPipeline({
       queryOverpass,
       bbox: '45.15,-76.35,45.65,-75.35',
       adapter: OTTAWA_ADAPTER,
-      existing: [existingMcArthur],
+      manualEntries: [existingMcArthur],
     });
 
     const mcarthur = result.find(e => e.name === 'McArthur Avenue');

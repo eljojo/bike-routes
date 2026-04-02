@@ -1033,6 +1033,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    member_of: ncc-greenbelt
   - name: Ottawa Valley Recreational Trail
     osm_names:
       - Ottawa Valley Recreational Trail
@@ -2281,10 +2282,7 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: 'yes'
-    mtb:scale: '1'
-    ref: '24'
-    member_of: parc-de-la-gatineau
-    mtb: true
+    member_of: ncc-greenbelt
   - name: Trail 21
     osm_names:
       - Trail 21
@@ -3114,10 +3112,10 @@ bike_paths:
     osm_names:
       - 'Trail #1'
     anchors:
-      - - -76.0867979
-        - 45.3315928
-      - - -75.8646895
-        - 45.4924321
+      - - -75.8604502
+        - 45.4965079
+      - - -75.8165357
+        - 45.5043547
     surface: gravel
     smoothness: very_bad
     width: '2'
@@ -3127,7 +3125,7 @@ bike_paths:
     bicycle: designated
     network: mtb
     ref: '1'
-    member_of: ncc-greenbelt
+    member_of: parc-de-la-gatineau
   - name: Trans Canada Trail (36)
     osm_names:
       - Trans Canada Trail (36)
@@ -3185,6 +3183,22 @@ bike_paths:
     highway: path
     bicycle: designated
     member_of: parc-de-la-gatineau
+  - name: 'Trail #24'
+    osm_names:
+      - 'Trail #24'
+    anchors:
+      - - -75.930827
+        - 45.5206133
+      - - -75.9189272
+        - 45.5265359
+    surface: ground
+    smoothness: very_bad
+    highway: path
+    mtb:scale: '1'
+    bicycle: designated
+    ref: '24'
+    member_of: parc-de-la-gatineau
+    mtb: true
   - name: Piste 9
     osm_names:
       - Piste 9
@@ -3559,6 +3573,23 @@ bike_paths:
     highway: path
     bicycle: designated
     member_of: south-march-highlands-conservation-forest
+  - name: Trail 1
+    osm_names:
+      - Trail 1
+    anchors:
+      - - -76.0867979
+        - 45.3315928
+      - - -75.8646895
+        - 45.4924321
+    surface: ground
+    smoothness: good
+    width: '2'
+    lit: 'no'
+    highway: path
+    bicycle: 'yes'
+    network: KanataNordicCampground
+    ref: '1'
+    member_of: ncc-greenbelt
   - name: Major
     osm_names:
       - Major
@@ -8959,6 +8990,7 @@ bike_paths:
       - - -75.8527697
         - 45.4995216
     highway: path
+    member_of: parc-de-la-gatineau
     mtb: true
   - name: Arboretum Loop
     osm_names:
@@ -11251,7 +11283,7 @@ bike_paths:
       - trail-12
       - trail-10
       - greenbelt-trail
-      - trail-1
+      - trail-1-2
       - trail-12a
       - trail-11
       - trail-12b
@@ -11270,11 +11302,13 @@ bike_paths:
       - trail-42
       - trail-63
       - arboretum-loop
+      - trans-canada-trail
+      - trail-23
+      - trail-24-1
+      - old-quarry-trail
       - trail-27
       - trail-26
       - jack-pine-trail
-      - trail-23
-      - old-quarry-trail
       - trail-25
       - chipmunk-trail
       - beaver-trail
@@ -11309,7 +11343,7 @@ bike_paths:
       - Trail 12
       - Trail 10
       - Greenbelt Trail
-      - 'Trail #1'
+      - Trail 1
       - Trail 12a
       - Trail 11
       - Trail 12b
@@ -11328,11 +11362,13 @@ bike_paths:
       - Trail 42
       - Trail 63
       - Arboretum Loop
+      - Trans Canada Trail
+      - Trail 23
+      - Trail 24
+      - Old Quarry Trail
       - Trail 27
       - Trail 26
       - Jack Pine Trail
-      - Trail 23
-      - Old Quarry Trail
       - Trail 25
       - Chipmunk Trail
       - Beaver Trail
@@ -11363,7 +11399,7 @@ bike_paths:
     highway: path
     lit: 'no'
     width: '1'
-    smoothness: intermediate
+    smoothness: good
     operator: NCC
     network: Pine Grove
     super_network: capital-pathway
@@ -11371,16 +11407,19 @@ bike_paths:
   - name: Parc de la Gatineau
     type: network
     members:
-      - trail-24
       - sentier-du-parc-de-la-gatineau-park-trail-30
       - trail-33
       - trail-2
       - sentier-du-parc-de-la-gatineau-parkway
       - trail-4
+      - sentiertrail-1
+      - trail-1-1
+      - trail-24-2
       - trail-1b
       - trail-1-ridge-road
       - trail-14
       - sentier-des-loups
+      - piste-60-raquette
       - sentiertrail-8
       - trail-18
       - trail-9
@@ -11388,10 +11427,14 @@ bike_paths:
       - piste-31
       - trail-22
       - sentiertrail-17
+      - snowshoe-trail-61
+      - sentier-horizon
       - trail-34
       - sentier-de-la-chute-de-luskville
       - '10'
       - sentier-trail-11
+      - trail-19
+      - trail-22b
       - trail-to-fire-tower
       - trail-56
       - trail-56b
@@ -11455,31 +11498,29 @@ bike_paths:
       - chemin-kingsmere
       - 79b
       - 79-bresilienne
-      - sentiertrail-1
-      - piste-60-raquette
-      - snowshoe-trail-61
       - trans-canada-trail-36
       - trail-36
       - piste-9
       - '32'
-      - sentier-horizon
-      - trail-19
     anchors:
       - - -76.0970316
-        - 45.2940019
+        - 45.4471744
       - - -75.7645085
         - 45.6433735
     osm_names:
-      - Trail 24
       - 'Sentier du Parc de la Gatineau Park Trail #30'
       - 'Trail #33'
       - 'Trail #2'
       - Sentier du Parc de la Gatineau Parkway
       - Trail 4
+      - 'Sentier/Trail #1'
+      - 'Trail #1'
+      - 'Trail #24'
       - 'Trail #1B'
       - 'Trail #1 Ridge Road'
       - Trail 14
       - Sentier des Loups
+      - Piste 60 (Raquette)
       - 'Sentier/Trail #8'
       - Trail 18
       - 'Trail #9'
@@ -11487,10 +11528,14 @@ bike_paths:
       - Piste 31
       - Trail 22
       - 'Sentier/Trail #17'
+      - Snowshoe Trail 61
+      - Sentier Horizon
       - Trail 34
       - Sentier de la Chute-de-Luskville
       - '10'
       - 'Sentier / Trail #11'
+      - Trail 19
+      - Trail 22B
       - Trail to Fire Tower
       - 'Trail #56'
       - 'Trail #56B'
@@ -11554,15 +11599,10 @@ bike_paths:
       - Chemin Kingsmere
       - '#79B'
       - '#79 (Brésilienne)'
-      - 'Sentier/Trail #1'
-      - Piste 60 (Raquette)
-      - Snowshoe Trail 61
       - Trans Canada Trail (36)
       - Trail 36
       - Piste 9
       - '32'
-      - Sentier Horizon
-      - Trail 19
     surface: ground
     highway: path
     lit: 'no'

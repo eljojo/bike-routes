@@ -542,6 +542,18 @@ function buildEntries(osmRelations, osmNamedWays, parallelLanes, manualEntries) 
     const slug = slugify(np.name);
     const existing = bySlug.get(slug) || byName.get(np.name.toLowerCase());
     if (existing) {
+      // Don't merge entries that are far apart — they're different trails
+      // with the same slug. E.g., "Trail 24" (Greenbelt, 45.30°N) and
+      // "Trail #24" (Gatineau Park, 45.52°N) both slug to trail-24.
+      const tooFar = existing.anchors?.length > 0 && np.anchors?.length > 0 &&
+        haversineM(existing.anchors[0], np.anchors[0]) > 5000;
+      if (tooFar) {
+        // Different trail, same slug — create separate entry (slug will be disambiguated later)
+        const meta = extractOsmMetadata(np.tags);
+        const entry = { name: np.name, osm_names: np.osmNames, anchors: np.anchors, _ways: np._ways, ...meta };
+        result.push(entry);
+        continue;
+      }
       enrichEntry(existing, np.tags);
       if (np.anchors?.length > (existing.anchors?.length || 0)) existing.anchors = np.anchors;
       if (np._ways) existing._ways = np._ways;
