@@ -255,7 +255,7 @@ bike_paths:
     network: rcn
     ref: PRT
     surface: fine_gravel
-    smoothness: good
+    smoothness: intermediate
     width: '3'
     lit: 'no'
     segregated: 'no'
@@ -265,8 +265,8 @@ bike_paths:
     anchors:
       - - -75.5920165
         - 45.4130879
-      - - -75.2367483
-        - 45.4356278
+      - - -75.4633396
+        - 45.4229112
     osm_names:
       - Prescott Russell Trail Link
     member_of: ncc-greenbelt
@@ -510,16 +510,14 @@ bike_paths:
     network: lcn
     ref: GPE
     surface: fine_gravel
-    smoothness: good
-    width: '2'
+    width: '2.5'
     lit: 'no'
-    cycleway: crossing
     highway: cycleway
     bicycle: designated
     anchors:
-      - - -75.629003
-        - 45.3294621
-      - - -75.5679262
+      - - -75.577949
+        - 45.4348053
+      - - -75.5725034
         - 45.4697494
     osm_names:
       - Greenbelt Pathway East
@@ -789,17 +787,18 @@ bike_paths:
     surface: fine_gravel
     smoothness: intermediate
     width: '2.5'
-    segregated: 'no'
     highway: cycleway
-    mtb:scale: '1'
     bicycle: designated
     anchors:
-      - - -75.8992252
+      - - -75.7690636
         - 45.4797107
       - - -75.7503486
-        - 45.6152909
+        - 45.4883148
     osm_names:
       - Voie Verte Chelsea
+    segregated: 'no'
+    mtb:scale: '1'
+    member_of: voie-verte-chelsea
     mtb: true
   - name: Sentier du lac Leamy Skiing Trail
     osm_relations:
@@ -837,6 +836,20 @@ bike_paths:
     osm_relations:
       - 20166048
     ref: '21'
+  - name: Voie Verte Chelsea
+    osm_names:
+      - Voie Verte Chelsea
+    anchors:
+      - - -75.8992252
+        - 45.5705625
+      - - -75.8517575
+        - 45.6152909
+    name_en: Voie Verte Chelsea
+    surface: fine_gravel
+    smoothness: intermediate
+    width: '2.5'
+    highway: cycleway
+    bicycle: designated
   - name: Chief William Commanda Bridge
     osm_names:
       - Chief William Commanda Bridge
@@ -1026,6 +1039,57 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     member_of: sawmill-creek-path
+  - name: Prescott Russell Trail Link
+    osm_names:
+      - Prescott Russell Trail Link
+    anchors:
+      - - -75.4633396
+        - 45.414776
+      - - -75.4105344
+        - 45.4178261
+    surface: fine_gravel
+    smoothness: good
+    width: '2'
+    lit: 'no'
+    segregated: 'no'
+    highway: cycleway
+    tracktype: grade2
+    bicycle: designated
+    member_of: prescott-russell-trail-link
+  - name: Prescott Russell Trail Link
+    osm_names:
+      - Prescott Russell Trail Link
+    anchors:
+      - - -75.4105344
+        - 45.4151116
+      - - -75.2367483
+        - 45.4356278
+    surface: fine_gravel
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    segregated: 'no'
+    highway: cycleway
+    tracktype: grade2
+    bicycle: designated
+    member_of: prescott-russell-trail-link
+  - name: Greenbelt Pathway East
+    osm_names:
+      - Greenbelt Pathway East
+    anchors:
+      - - -75.629003
+        - 45.3294621
+      - - -75.5679262
+        - 45.3713348
+    surface: fine_gravel
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    cycleway: crossing
+    highway: cycleway
+    bicycle: designated
+    network: Pine Grove
+    member_of: ncc-greenbelt
   - name: Trans Canada Trail
     osm_names:
       - Trans Canada Trail
@@ -1047,10 +1111,55 @@ bike_paths:
     osm_names:
       - Ottawa Valley Recreational Trail
     anchors:
+      - - -76.2912812
+        - 45.2500264
+      - - -76.2186982
+        - 45.3287645
+    surface: fine_gravel
+    width: '3'
+    incline: 0%
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+    member_of: ottawa-valley-recreational-trail
+  - name: Ottawa Valley Recreational Trail
+    osm_names:
+      - Ottawa Valley Recreational Trail
+    anchors:
       - - -76.3518819
-        - 45.1488563
-      - - -76.1431895
+        - 45.3287645
+      - - -76.2912812
         - 45.4266719
+    surface: fine_gravel
+    width: '3'
+    incline: 0%
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+    member_of: ottawa-valley-recreational-trail
+  - name: Ottawa Valley Recreational Trail
+    osm_names:
+      - Ottawa Valley Recreational Trail
+    anchors:
+      - - -76.2186982
+        - 45.187537
+      - - -76.1603754
+        - 45.2500264
+    surface: fine_gravel
+    width: '3'
+    incline: 0%
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+    member_of: ottawa-valley-recreational-trail
+  - name: Ottawa Valley Recreational Trail
+    osm_names:
+      - Ottawa Valley Recreational Trail
+    anchors:
+      - - -76.1603754
+        - 45.187537
+      - - -76.1431895
+        - 45.1488563
     surface: fine_gravel
     width: '3'
     incline: 0%
@@ -1094,15 +1203,26 @@ bike_paths:
     anchors:
       - - -75.4976917
         - 45.5214507
+      - - -75.4864046
+        - 45.5239149
+    surface: asphalt
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    bicycle: designated
+  - name: Route Verte
+    osm_names:
+      - Route Verte
+    anchors:
+      - - -75.4300063
+        - 45.5421423
       - - -75.4209424
         - 45.5454843
     surface: asphalt
     width: '3'
     segregated: 'no'
-    cycleway: crossing
     highway: cycleway
     bicycle: designated
-    member_of: route-verte
   - name: Chemin de Masson
     osm_names:
       - Chemin de Masson
@@ -1195,8 +1315,8 @@ bike_paths:
       - Osgoode-Leitrim Multi-use Pathway
     anchors:
       - - -75.6331653
-        - 45.1444871
-      - - -75.611515
+        - 45.2106538
+      - - -75.6249858
         - 45.3162109
     surface: fine_gravel
     smoothness: good
@@ -1206,12 +1326,46 @@ bike_paths:
     highway: cycleway
     mtb:scale: '0'
     bicycle: designated
+    member_of: osgoode-leitrim-multi-use-pathway
+  - name: Osgoode-Leitrim Multi-use Pathway
+    osm_names:
+      - Osgoode-Leitrim Multi-use Pathway
+    anchors:
+      - - -75.6249858
+        - 45.1444871
+      - - -75.611515
+        - 45.2106538
+    surface: fine_gravel
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    segregated: 'no'
+    highway: cycleway
+    mtb:scale: '0'
+    bicycle: designated
+    member_of: osgoode-leitrim-multi-use-pathway
   - name: Trans-Canada Trail Ottawa
     osm_names:
       - Trans-Canada Trail Ottawa
     anchors:
       - - -76.1086887
         - 45.147819
+      - - -76.046145
+        - 45.1790208
+    surface: fine_gravel
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+    member_of: trans-canada-trail-ottawa
+  - name: Trans-Canada Trail Ottawa
+    osm_names:
+      - Trans-Canada Trail Ottawa
+    anchors:
+      - - -76.046145
+        - 45.1790208
       - - -75.9207406
         - 45.2581687
     surface: fine_gravel
@@ -1226,14 +1380,27 @@ bike_paths:
     osm_names:
       - Trail 27
     anchors:
+      - - -75.7748377
+        - 45.4624505
+      - - -75.7742165
+        - 45.4621892
+    surface: asphalt
+    width: '2'
+    segregated: 'yes'
+    highway: cycleway
+    bicycle: designated
+    member_of: parc-de-la-gatineau
+  - name: Trail 27
+    osm_names:
+      - Trail 27
+    anchors:
       - - -75.8174277
         - 45.3068512
-      - - -75.7742165
-        - 45.4624505
+      - - -75.809198
+        - 45.32486
     surface: ground
     smoothness: very_bad
     width: '2'
-    segregated: 'yes'
     highway: path
     bicycle: 'yes'
     ref: '27'
@@ -1841,7 +2008,6 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: route-verte
   - name: Pont Couvert des Bénévoles
     osm_names:
       - Pont Couvert des Bénévoles
@@ -2073,7 +2239,7 @@ bike_paths:
     highway: cycleway
     mtb:scale: '1'
     bicycle: designated
-    member_of: voie-verte-de-chelsea
+    member_of: voie-verte-chelsea
     mtb: true
   - name: Community Pump Track
     osm_names:
@@ -2364,18 +2530,33 @@ bike_paths:
     anchors:
       - - -75.8167325
         - 45.2895852
-      - - -75.7716122
-        - 45.4609
+      - - -75.8052537
+        - 45.3065218
     surface: ground
     smoothness: intermediate
     width: '1'
     lit: 'no'
+    highway: path
+    bicycle: 'yes'
+    member_of: ncc-greenbelt
+  - name: Trail 26
+    osm_names:
+      - Trail 26
+    anchors:
+      - - -75.7869037
+        - 45.4556737
+      - - -75.7716122
+        - 45.4609
+    surface: ground
+    smoothness: intermediate
+    width: '2'
+    lit: 'no'
     segregated: 'no'
     highway: path
     mtb:scale: '1'
-    bicycle: 'yes'
+    bicycle: designated
     ref: '26'
-    member_of: ncc-greenbelt
+    member_of: parc-de-la-gatineau
     mtb: true
   - name: Trail 12
     osm_names:
@@ -2511,12 +2692,11 @@ bike_paths:
     osm_names:
       - Trail 50
     anchors:
-      - - -75.998981
+      - - -75.9039558
         - 45.5672289
       - - -75.885638
-        - 45.5996354
+        - 45.5723603
     name_en: Trail 50
-    alt_name: Trail 73
     surface: ground
     segregated: 'no'
     highway: path
@@ -2527,6 +2707,19 @@ bike_paths:
     mtb:scale: '1'
     member_of: parc-de-la-gatineau
     mtb: true
+  - name: Trail 50
+    osm_names:
+      - Trail 50
+    anchors:
+      - - -75.998981
+        - 45.5892851
+      - - -75.981025
+        - 45.5996354
+    alt_name: Trail 73
+    surface: gravel
+    highway: path
+    bicycle: designated
+    member_of: parc-de-la-gatineau
   - name: Marianne Wilkinson Bridge
     osm_names:
       - Marianne Wilkinson Bridge
@@ -3602,10 +3795,10 @@ bike_paths:
     osm_names:
       - Trail 1
     anchors:
-      - - -76.0867979
+      - - -75.8718538
         - 45.3315928
       - - -75.8646895
-        - 45.4924321
+        - 45.337382
     surface: ground
     smoothness: good
     width: '2'
@@ -3615,6 +3808,19 @@ bike_paths:
     network: KanataNordicCampground
     ref: '1'
     member_of: ncc-greenbelt
+  - name: Trail 1
+    osm_names:
+      - Trail 1
+    anchors:
+      - - -76.0867979
+        - 45.4917569
+      - - -76.0788122
+        - 45.4924321
+    surface: ground
+    width: '0.8'
+    highway: path
+    bicycle: 'yes'
+    ref: '1'
   - name: Major
     osm_names:
       - Major
@@ -4492,19 +4698,31 @@ bike_paths:
     osm_names:
       - Sir-George-Étienne-Cartier Parkway
     anchors:
-      - - -75.687426
-        - 45.4510418
+      - - -75.5747883
+        - 45.456137
       - - -75.5728552
         - 45.4707127
     name_fr: promenade Sir-George-Étienne-Cartier
     name_en: Sir-George-Étienne-Cartier Parkway
     surface: asphalt
-    lit: 'yes'
     cycleway: lane
     highway: primary
     operator: National Capital Commission
     parallel_to: Sir-George-Étienne-Cartier Parkway
     member_of: ncc-greenbelt
+  - name: Sir-George-Étienne-Cartier Parkway
+    osm_names:
+      - Sir-George-Étienne-Cartier Parkway
+    anchors:
+      - - -75.6867577
+        - 45.4510418
+      - - -75.687426
+        - 45.4519601
+    name_fr: promenade Sir-George-Étienne-Cartier
+    name_en: Sir-George-Étienne-Cartier Parkway
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
   - name: Kanata Avenue
     osm_names:
       - Kanata Avenue
@@ -5502,8 +5720,8 @@ bike_paths:
     anchors:
       - - -75.5816305
         - 45.4520417
-      - - -75.4785815
-        - 45.4888767
+      - - -75.5491709
+        - 45.4612982
     name_fr: boulevard St. Joseph
     name_en: St. Joseph Boulevard
     surface: asphalt
@@ -5513,6 +5731,20 @@ bike_paths:
     ref: '34'
     parallel_to: St. Joseph Boulevard
     member_of: ncc-greenbelt
+  - name: St. Joseph Boulevard
+    osm_names:
+      - St. Joseph Boulevard
+    anchors:
+      - - -75.4952437
+        - 45.4859225
+      - - -75.4785815
+        - 45.4888767
+    name_fr: boulevard St. Joseph
+    name_en: St. Joseph Boulevard
+    surface: asphalt
+    cycleway: lane
+    highway: primary
+    ref: '34'
   - name: St-Laurent Boulevard
     osm_names:
       - St-Laurent Boulevard
@@ -6445,6 +6677,7 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '63'
+    member_of: merivale-road
   - name: Kirkwood Avenue
     osm_names:
       - Kirkwood Avenue
@@ -7106,6 +7339,22 @@ bike_paths:
     anchors:
       - - -75.9116424
         - 45.3380457
+      - - -75.8500546
+        - 45.3551157
+    name_fr: avenue Carling
+    name_en: Carling Avenue
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+    ref: '38'
+    parallel_to: Carling Avenue
+    member_of: ncc-greenbelt
+  - name: Carling Avenue
+    osm_names:
+      - Carling Avenue
+    anchors:
+      - - -75.7421324
+        - 45.3814087
       - - -75.7326232
         - 45.3868113
     name_fr: avenue Carling
@@ -7115,8 +7364,7 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     ref: '38'
-    parallel_to: Carling Avenue
-    member_of: ncc-greenbelt
+    member_of: merivale-road
   - name: Legget Drive
     osm_names:
       - Legget Drive
@@ -8597,12 +8845,10 @@ bike_paths:
     osm_names:
       - Trail 20
     anchors:
-      - - -75.9033241
+      - - -75.8610656
         - 45.32102
       - - -75.8527945
-        - 45.5202408
-    name_fr: Sentier 20
-    name_en: Trail 20
+        - 45.3291162
     surface: ground
     smoothness: impassable
     width: '1'
@@ -8610,6 +8856,20 @@ bike_paths:
     highway: path
     ref: '20'
     member_of: ncc-greenbelt
+    mtb: true
+  - name: Trail 20
+    osm_names:
+      - Trail 20
+    anchors:
+      - - -75.8967159
+        - 45.5118924
+      - - -75.9033241
+        - 45.5202408
+    name_fr: Sentier 20
+    name_en: Trail 20
+    surface: ground
+    highway: path
+    member_of: parc-de-la-gatineau
     mtb: true
   - name: '#41 (de la Mine)'
     osm_names:
@@ -9437,7 +9697,7 @@ bike_paths:
     width: '2.5'
     highway: path
     mtb:scale: '1'
-    member_of: voie-verte-de-chelsea
+    member_of: voie-verte-chelsea
     mtb: true
   - name: L'Aventurier
     osm_names:
@@ -11340,52 +11600,53 @@ bike_paths:
   - name: NCC Greenbelt
     type: network
     members:
-      - prescott-russell-trail-link
+      - prescott-russell-trail-link-3
       - '50'
       - moe-anderson-trail
       - '51'
       - dewberry-trail
       - greenbelt-pathway-west
-      - trail-27
+      - trans-canada-trail
+      - trail-27-2
+      - trail-23
+      - trail-24-1
       - trail-21
       - trail-25
       - chipmunk-trail
       - beaver-trail
-      - trail-26
+      - trail-26-2
       - trail-12
       - jack-pine-trail
       - lime-kiln-trail
       - trail-10
       - greenbelt-trail
       - trail-1-2
+      - old-quarry-trail
       - trail-12a
       - trail-11
       - trail-12b
       - trail-8
-      - trail-20
+      - trail-20-1
       - kanata-nordic-trail-11
       - kanata-nordic-snowshoe-trail
       - trail-12-training-circle
-      - greenbelt-pathway-east
+      - greenbelt-pathway-east-2
+      - trail-61
+      - trail-63
+      - greenbelt-pathway-east-1
       - greenbelt-pathway-east-trail-44
       - greenbelt-pathway-east-trail-42
       - greenbelt-pathway-east-trail-40
       - trail-44
       - pine-grove-forestry-trail
       - trail-43-pine-grove-forestry-trail
-      - trail-61
       - trail-42
-      - trail-63
       - arboretum-loop
-      - trans-canada-trail
-      - trail-23
-      - trail-24-1
-      - old-quarry-trail
       - cedarview-road
       - bruin-road
       - west-hunt-club-road
       - hunt-club-road
-      - st-joseph-boulevard
+      - st-joseph-boulevard-2
       - bearbrook-road
       - hawthorne-road
       - lancaster-road
@@ -11403,7 +11664,7 @@ bike_paths:
       - greenbelt-pathway
       - greens-creek-bridge
       - '31'
-      - sir-george-etienne-cartier-parkway
+      - sir-george-etienne-cartier-parkway-1
       - baseline-road
       - richmond-road
       - prince-of-wales-drive
@@ -11413,17 +11674,17 @@ bike_paths:
       - old-richmond-road
       - albion-road
       - conroy-road
-      - carling-avenue
+      - carling-avenue-2
       - limebank-road
       - john-sutherland-drive
       - holly-acres-road
       - anderson-road
       - tauvette-street
     anchors:
-      - - -76.0867979
+      - - -75.9203476
         - 45.2551025
-      - - -75.2367483
-        - 45.5202408
+      - - -75.4633396
+        - 45.4697494
     osm_names:
       - Prescott Russell Trail Link
       - '50'
@@ -11431,7 +11692,10 @@ bike_paths:
       - '51'
       - Dewberry Trail
       - Greenbelt Pathway West
+      - Trans Canada Trail
       - Trail 27
+      - Trail 23
+      - Trail 24
       - Trail 21
       - Trail 25
       - Chipmunk Trail
@@ -11443,6 +11707,7 @@ bike_paths:
       - Trail 10
       - Greenbelt Trail
       - Trail 1
+      - Old Quarry Trail
       - Trail 12a
       - Trail 11
       - Trail 12b
@@ -11452,20 +11717,16 @@ bike_paths:
       - Kanata Nordic Snowshoe Trail
       - Trail 12 Training Circle
       - Greenbelt Pathway East
+      - Trail 61
+      - Trail 63
       - Greenbelt Pathway East / Trail 44
       - Greenbelt Pathway East / Trail 42
       - Greenbelt Pathway East / Trail 40
       - Trail 44
       - Pine Grove Forestry Trail
       - Trail 43 - Pine Grove Forestry Trail
-      - Trail 61
       - Trail 42
-      - Trail 63
       - Arboretum Loop
-      - Trans Canada Trail
-      - Trail 23
-      - Trail 24
-      - Old Quarry Trail
       - Cedarview Road
       - Bruin Road
       - West Hunt Club Road
@@ -11489,247 +11750,54 @@ bike_paths:
     highway: path
     lit: 'no'
     width: '1'
-    smoothness: good
+    smoothness: intermediate
     network: Pine Grove
     operator: NCC
     super_network: capital-pathway
     mtb: true
-  - name: Parc de la Gatineau
+  - name: Prescott Russell Trail Link
     type: network
     members:
-      - piste-25
-      - sentier-du-parc-de-la-gatineau-park-trail-30
-      - piste-35
-      - trail-33
-      - 79b
-      - trail-2
-      - sentier-du-parc-de-la-gatineau-parkway
-      - trail-4
-      - trail-15-sentier-du-parc-de-la-gatineau-park-pathway
-      - sentier-du-parc-de-la-gatineau-park-pathway-15
-      - trail-7
-      - sentiertrail-1
-      - trail-65
-      - trail-1-1
-      - trail-24-2
-      - trail-1b
-      - 76-skyridge
-      - trail-3
-      - trail-1-ridge-road
-      - trail-14
-      - 79-bresilienne
-      - trail-66
-      - 68-missing-link
-      - trail-68
-      - 76-jesses-girl
-      - sentier-des-loups
-      - sentier-des-caryers-hickory-trail
-      - piste-60-raquette
-      - trail-38
-      - sentiertrail-8
-      - trail-28
-      - trail-18
-      - hermit
-      - trail-9
-      - piste-12
-      - piste-31
-      - 41-de-la-mine
-      - trail-22
-      - sentiertrail-17
-      - snowshoe-trail-61
-      - sentier-horizon
-      - trail-34
-      - sentier-de-la-chute-de-luskville
-      - whale
-      - 78-monique
-      - la-chica
-      - 77-happy-valley
-      - '10'
-      - sentier-trail-11
-      - trail-67
-      - trail-19
-      - trail-22b
-      - 43-boreale
-      - trail-to-fire-tower
-      - trail-56
-      - trail-52
-      - trail-57
-      - 45-powerline
-      - 44-mo
-      - sentier-trail-51
-      - trail-53
-      - trail-54
-      - trail-47-hope-trail
-      - trail-55
-      - trail-51
-      - trail-52-parc-de-la-gatineau-pathway
-      - trail-56b
-      - trail-47
-      - trail-36-trans-canada-trail
-      - trail-50
-      - trail-40
-      - trail-74
-      - trail-72
-      - trail-71
-      - chemin-cowden
-      - piste-9
-      - '32'
-      - sentiertrail-36
-      - 72b-irish-cream
-      - 72b-irish-whiskey
-      - mo
-      - trail-73
-      - obrien-beach-path
-      - hat
-      - bypass
-      - trail-36b
-      - carman-lake-lookout-trail
-      - trail-70
-      - trail-54-73
-      - gay-beach-trail
-      - 53b-bench
-      - 58-konnektor
-      - 58-glazer
-      - cross-over
-      - 59-moonshine
-      - sentier-52-du-parc-de-la-gatineau-parkway
-      - the-sweet-line
-      - foreplay
-      - chemin-cafferty
-      - route-105
-      - chemin-de-ste-cecile-de-masham
-      - chemin-old-chelsea
-      - chemin-kingsmere
-      - trans-canada-trail-36
-      - trail-36
-      - sentier-des-pionniers-pathway
-      - sentier-du-ruisseau-leamy
-      - sentier-du-parc-de-la-gatineau
-      - sentier-du-lac-des-fees
-      - sentier-du-lac-des-fees-pathway
-      - promenade-sentier-du-parc-de-la-gatineau
-      - boulevard-de-la-cite-des-jeunes
-      - '54'
-      - chemin-du-lac-meech
-      - boulevard-saint-raymond
-      - promenade-de-la-gatineau
+      - prescott-russell-trail-link-2
+      - prescott-russell-trail-link-1
     anchors:
-      - - -76.0970316
-        - 45.4471744
-      - - -75.7645085
-        - 45.6433735
+      - - -75.4633396
+        - 45.414776
+      - - -75.2367483
+        - 45.4356278
     osm_names:
-      - Piste 25
-      - 'Sentier du Parc de la Gatineau Park Trail #30'
-      - 'Piste #35'
-      - 'Trail #33'
-      - '#79B'
-      - 'Trail #2'
-      - Sentier du Parc de la Gatineau Parkway
-      - Trail 4
-      - 'Trail #15 Sentier du Parc de la Gatineau Park Pathway'
-      - 'Sentier du Parc de la Gatineau Park Pathway #15'
-      - Trail 7
-      - 'Sentier/Trail #1'
-      - Trail 65
-      - 'Trail #1'
-      - 'Trail #24'
-      - 'Trail #1B'
-      - '# 76 (Skyridge)'
-      - 'Trail #3'
-      - 'Trail #1 Ridge Road'
-      - Trail 14
-      - '#79 (Brésilienne)'
-      - Trail 66
-      - '# 68 (Missing Link)'
-      - Trail 68
-      - '# 76 (Jesse''s Girl)'
-      - Sentier des Loups
-      - Sentier des Caryers - Hickory Trail
-      - Piste 60 (Raquette)
-      - Trail 38
-      - 'Sentier/Trail #8'
-      - Trail 28
-      - Trail 18
-      - Hermit
-      - 'Trail #9'
-      - Piste 12
-      - Piste 31
-      - '#41 (de la Mine)'
-      - Trail 22
-      - 'Sentier/Trail #17'
-      - Snowshoe Trail 61
-      - Sentier Horizon
-      - Trail 34
-      - Sentier de la Chute-de-Luskville
-      - Whale
-      - '#78 (Monique)'
-      - La Chica
-      - '# 77 (Happy Valley)'
-      - '10'
-      - 'Sentier / Trail #11'
-      - Trail 67
-      - Trail 19
-      - Trail 22B
-      - '#43 (Boréale)'
-      - Trail to Fire Tower
-      - 'Trail #56'
-      - 'Trail #52'
-      - Trail 57
-      - '#45 (Powerline)'
-      - '#44 (M.O.)'
-      - 'Sentier / Trail #51'
-      - 'Trail #53'
-      - 'Trail #54'
-      - Trail 47 (Hope Trail)
-      - 'Trail #55'
-      - 'Trail #51'
-      - 'Trail #52 Parc de la Gatineau Pathway'
-      - 'Trail #56B'
-      - Trail 47
-      - 'Trail #36 Trans Canada Trail'
-      - Trail 50
-      - 'Trail #40'
-      - Trail 74
-      - Trail 72
-      - Trail 71
-      - Chemin Cowden
-      - Piste 9
-      - '32'
-      - 'Sentier/Trail #36'
-      - '#72B (Irish Cream)'
-      - '#72B (Irish Whiskey)'
-      - M.O.
-      - Trail 73
-      - O'Brien Beach Path
-      - H.A.T.
-      - Bypass
-      - Trail 36b
-      - Carman Lake Lookout Trail
-      - Trail 70
-      - Trail 54, 73
-      - Gay Beach Trail
-      - '#53B (Bench)'
-      - '# 58 (Konnektor)'
-      - '#58 (Glazer)'
-      - Cross Over
-      - '# 59 (Moonshine)'
-      - Sentier 52 du Parc de la Gatineau Parkway
-      - The Sweet Line
-      - Foreplay
-      - Chemin Cafferty
-      - Route 105
-      - Chemin de Ste-Cécile-de-Masham
-      - Chemin Old Chelsea
-      - Chemin Kingsmere
-      - Trans Canada Trail (36)
-      - Trail 36
+      - Prescott Russell Trail Link
+    surface: fine_gravel
+    highway: cycleway
+    lit: 'no'
+    width: '2'
+    smoothness: good
+    mtb: true
+  - name: Trans-Canada Trail Ottawa
+    type: network
+    members:
+      - trans-canada-trail-ottawa-2
+      - trans-canada-trail-ottawa-1
+      - the-beast-trail
+      - jinx-link
+      - forest-walk
+      - oh-deer
+    anchors:
+      - - -76.1086887
+        - 45.147819
+      - - -75.9207406
+        - 45.2581687
+    osm_names:
+      - Trans-Canada Trail Ottawa
+      - The Beast Trail
+      - Jinx Link
+      - forest walk
+      - Oh-deer!
     surface: ground
     highway: path
     lit: 'no'
-    width: '2'
-    smoothness: very_bad
-    network: mtb
+    width: '3'
+    smoothness: good
     mtb: true
   - name: Sawmill Creek Path
     type: network
@@ -11749,6 +11817,29 @@ bike_paths:
     lit: 'yes'
     width: '3'
     smoothness: excellent
+  - name: Voie Verte Chelsea
+    type: network
+    members:
+      - voie-verte-chelsea-2
+      - voie-verte-de-chelsea
+      - voie-vert-de-chelsea
+    anchors:
+      - - -75.7690636
+        - 45.4778974
+      - - -75.7487474
+        - 45.4883148
+    osm_names:
+      - Voie Verte Chelsea
+      - Voie Verte de Chelsea
+      - Voie vert de Chelsea
+    osm_relations:
+      - 15061552
+    surface: fine_gravel
+    highway: cycleway
+    width: '2.5'
+    smoothness: bad
+    network: lcn
+    mtb: true
   - name: Chief William Commanda Bridge
     type: network
     members:
@@ -11783,35 +11874,13 @@ bike_paths:
     highway: cycleway
     width: '3'
     smoothness: excellent
-  - name: Trans-Canada Trail Ottawa
-    type: network
-    members:
-      - trans-canada-trail-ottawa
-      - the-beast-trail
-      - jinx-link
-      - forest-walk
-      - oh-deer
-    anchors:
-      - - -76.1086887
-        - 45.147819
-      - - -75.9207406
-        - 45.2581687
-    osm_names:
-      - Trans-Canada Trail Ottawa
-      - The Beast Trail
-      - Jinx Link
-      - forest walk
-      - Oh-deer!
-    surface: ground
-    highway: path
-    lit: 'no'
-    width: '0.5'
-    smoothness: good
-    mtb: true
   - name: Ottawa Valley Recreational Trail
     type: network
     members:
-      - ottawa-valley-recreational-trail
+      - ottawa-valley-recreational-trail-3
+      - ottawa-valley-recreational-trail-4
+      - ottawa-valley-recreational-trail-2
+      - ottawa-valley-recreational-trail-1
       - rotary-centennial-trail
       - mississippi-riverwalk-trail
       - riverwalk
@@ -11834,8 +11903,8 @@ bike_paths:
       - Veterans Memorial Walkway
       - Mississippi Valley Trail - Bob's Run loop (Black)
     surface: fine_gravel
-    highway: path
-    width: '2'
+    highway: cycleway
+    width: '3'
     lit: 'no'
     mtb: true
   - name: Landsdowne Natural Heritage Park
@@ -11861,6 +11930,249 @@ bike_paths:
     highway: footway
     width: '1'
     mtb: true
+  - name: Parc de la Gatineau
+    type: network
+    members:
+      - trail-56
+      - trail-52
+      - trail-57
+      - piste-25
+      - 45-powerline
+      - 44-mo
+      - sentier-trail-51
+      - trail-53
+      - trail-54
+      - trail-47-hope-trail
+      - trail-55
+      - trail-51
+      - trail-52-parc-de-la-gatineau-pathway
+      - trail-56b
+      - trail-47
+      - trail-26-1
+      - sentier-du-parc-de-la-gatineau-park-trail-30
+      - piste-35
+      - trail-36-trans-canada-trail
+      - trail-50-1
+      - trail-50-2
+      - trail-33
+      - 79b
+      - trail-2
+      - sentier-du-parc-de-la-gatineau-parkway
+      - trail-4
+      - trail-15-sentier-du-parc-de-la-gatineau-park-pathway
+      - sentier-du-parc-de-la-gatineau-park-pathway-15
+      - trail-40
+      - trail-74
+      - trail-7
+      - sentiertrail-1
+      - trail-72
+      - trail-65
+      - trail-1-1
+      - trail-71
+      - chemin-cowden
+      - trail-24-2
+      - piste-9
+      - trail-1b
+      - 76-skyridge
+      - trail-3
+      - trail-1-ridge-road
+      - trail-14
+      - 79-bresilienne
+      - trail-66
+      - 68-missing-link
+      - trail-68
+      - '32'
+      - sentiertrail-36
+      - 72b-irish-cream
+      - 72b-irish-whiskey
+      - 76-jesses-girl
+      - mo
+      - sentier-des-loups
+      - trail-73
+      - sentier-des-caryers-hickory-trail
+      - obrien-beach-path
+      - piste-60-raquette
+      - trail-38
+      - sentiertrail-8
+      - trail-28
+      - trail-18
+      - hermit
+      - trail-9
+      - piste-12
+      - hat
+      - piste-31
+      - trail-20-2
+      - 41-de-la-mine
+      - trail-22
+      - bypass
+      - sentiertrail-17
+      - snowshoe-trail-61
+      - sentier-horizon
+      - trail-34
+      - sentier-de-la-chute-de-luskville
+      - whale
+      - 78-monique
+      - la-chica
+      - 77-happy-valley
+      - '10'
+      - sentier-trail-11
+      - trail-67
+      - trail-36b
+      - carman-lake-lookout-trail
+      - trail-70
+      - trail-19
+      - trail-54-73
+      - gay-beach-trail
+      - trail-22b
+      - 53b-bench
+      - 58-konnektor
+      - 58-glazer
+      - cross-over
+      - 59-moonshine
+      - 43-boreale
+      - sentier-52-du-parc-de-la-gatineau-parkway
+      - trail-to-fire-tower
+      - the-sweet-line
+      - foreplay
+      - chemin-cafferty
+      - route-105
+      - chemin-de-ste-cecile-de-masham
+      - chemin-old-chelsea
+      - chemin-kingsmere
+      - trans-canada-trail-36
+      - trail-36
+      - sentier-des-pionniers-pathway
+      - sentier-du-ruisseau-leamy
+      - sentier-du-parc-de-la-gatineau
+      - sentier-du-lac-des-fees
+      - sentier-du-lac-des-fees-pathway
+      - trail-27-1
+      - promenade-sentier-du-parc-de-la-gatineau
+      - boulevard-de-la-cite-des-jeunes
+      - '54'
+      - chemin-du-lac-meech
+      - boulevard-saint-raymond
+      - promenade-de-la-gatineau
+    anchors:
+      - - -76.0970316
+        - 45.4471744
+      - - -75.7645085
+        - 45.6433735
+    osm_names:
+      - 'Trail #56'
+      - 'Trail #52'
+      - Trail 57
+      - Piste 25
+      - '#45 (Powerline)'
+      - '#44 (M.O.)'
+      - 'Sentier / Trail #51'
+      - 'Trail #53'
+      - 'Trail #54'
+      - Trail 47 (Hope Trail)
+      - 'Trail #55'
+      - 'Trail #51'
+      - 'Trail #52 Parc de la Gatineau Pathway'
+      - 'Trail #56B'
+      - Trail 47
+      - Trail 26
+      - 'Sentier du Parc de la Gatineau Park Trail #30'
+      - 'Piste #35'
+      - 'Trail #36 Trans Canada Trail'
+      - Trail 50
+      - 'Trail #33'
+      - '#79B'
+      - 'Trail #2'
+      - Sentier du Parc de la Gatineau Parkway
+      - Trail 4
+      - 'Trail #15 Sentier du Parc de la Gatineau Park Pathway'
+      - 'Sentier du Parc de la Gatineau Park Pathway #15'
+      - 'Trail #40'
+      - Trail 74
+      - Trail 7
+      - 'Sentier/Trail #1'
+      - Trail 72
+      - Trail 65
+      - 'Trail #1'
+      - Trail 71
+      - Chemin Cowden
+      - 'Trail #24'
+      - Piste 9
+      - 'Trail #1B'
+      - '# 76 (Skyridge)'
+      - 'Trail #3'
+      - 'Trail #1 Ridge Road'
+      - Trail 14
+      - '#79 (Brésilienne)'
+      - Trail 66
+      - '# 68 (Missing Link)'
+      - Trail 68
+      - '32'
+      - 'Sentier/Trail #36'
+      - '#72B (Irish Cream)'
+      - '#72B (Irish Whiskey)'
+      - '# 76 (Jesse''s Girl)'
+      - M.O.
+      - Sentier des Loups
+      - Trail 73
+      - Sentier des Caryers - Hickory Trail
+      - O'Brien Beach Path
+      - Piste 60 (Raquette)
+      - Trail 38
+      - 'Sentier/Trail #8'
+      - Trail 28
+      - Trail 18
+      - Hermit
+      - 'Trail #9'
+      - Piste 12
+      - H.A.T.
+      - Piste 31
+      - Trail 20
+      - '#41 (de la Mine)'
+      - Trail 22
+      - Bypass
+      - 'Sentier/Trail #17'
+      - Snowshoe Trail 61
+      - Sentier Horizon
+      - Trail 34
+      - Sentier de la Chute-de-Luskville
+      - Whale
+      - '#78 (Monique)'
+      - La Chica
+      - '# 77 (Happy Valley)'
+      - '10'
+      - 'Sentier / Trail #11'
+      - Trail 67
+      - Trail 36b
+      - Carman Lake Lookout Trail
+      - Trail 70
+      - Trail 19
+      - Trail 54, 73
+      - Gay Beach Trail
+      - Trail 22B
+      - '#53B (Bench)'
+      - '# 58 (Konnektor)'
+      - '#58 (Glazer)'
+      - Cross Over
+      - '# 59 (Moonshine)'
+      - '#43 (Boréale)'
+      - Sentier 52 du Parc de la Gatineau Parkway
+      - Trail to Fire Tower
+      - The Sweet Line
+      - Foreplay
+      - Chemin Cafferty
+      - Route 105
+      - Chemin de Ste-Cécile-de-Masham
+      - Chemin Old Chelsea
+      - Chemin Kingsmere
+      - Trans Canada Trail (36)
+      - Trail 36
+    surface: ground
+    highway: path
+    lit: 'no'
+    width: '2'
+    smoothness: very_bad
+    network: mtb
+    mtb: true
   - name: Boulevard Maloney Sidepath
     type: network
     members:
@@ -11879,22 +12191,6 @@ bike_paths:
     width: '2.5'
     smoothness: good
     lit: 'no'
-  - name: Route Verte
-    type: network
-    members:
-      - route-verte
-      - pont-major
-    anchors:
-      - - -75.4976917
-        - 45.5214507
-      - - -75.4209424
-        - 45.5454843
-    osm_names:
-      - Route Verte
-      - Pont Major
-    surface: asphalt
-    highway: cycleway
-    width: '3'
   - name: Boulevard de la Gappe
     type: network
     members:
@@ -11961,6 +12257,24 @@ bike_paths:
     lit: 'yes'
     width: '3'
     smoothness: excellent
+  - name: Osgoode-Leitrim Multi-use Pathway
+    type: network
+    members:
+      - osgoode-leitrim-multi-use-pathway-2
+      - osgoode-leitrim-multi-use-pathway-1
+    anchors:
+      - - -75.6331653
+        - 45.1444871
+      - - -75.611515
+        - 45.3162109
+    osm_names:
+      - Osgoode-Leitrim Multi-use Pathway
+    surface: fine_gravel
+    highway: cycleway
+    lit: 'no'
+    width: '3'
+    smoothness: good
+    mtb: true
   - name: Pont Lady-Aberdeen
     type: network
     members:
@@ -12030,24 +12344,6 @@ bike_paths:
     surface: asphalt
     highway: cycleway
     width: '2.5'
-  - name: Voie Verte de Chelsea
-    type: network
-    members:
-      - voie-verte-de-chelsea
-      - voie-vert-de-chelsea
-    anchors:
-      - - -75.753068
-        - 45.4778974
-      - - -75.7487474
-        - 45.4809569
-    osm_names:
-      - Voie Verte de Chelsea
-      - Voie vert de Chelsea
-    surface: ground
-    highway: cycleway
-    width: '0.3'
-    smoothness: bad
-    mtb: true
   - name: Chemin Scott
     type: network
     members:
@@ -12809,6 +13105,22 @@ bike_paths:
       - Stadium Way
     surface: asphalt
     highway: tertiary
+  - name: Merivale Road
+    type: network
+    members:
+      - merivale-road
+      - carling-avenue-1
+    anchors:
+      - - -75.7421324
+        - 45.3642082
+      - - -75.7307018
+        - 45.3888302
+    osm_names:
+      - Merivale Road
+      - Carling Avenue
+    surface: asphalt
+    highway: secondary
+    lit: 'yes'
   - name: Parkdale Avenue
     type: network
     members:

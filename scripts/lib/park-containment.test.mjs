@@ -146,6 +146,42 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
   // -----------------------------------------------------------------------
 
   // -----------------------------------------------------------------------
+  // Same trail name used in different parks: "Trail 26" exists in both
+  // the Greenbelt (~45.30°N) and Gatineau Park (~45.46°N). They must
+  // NOT be merged into one entry — they're different trails.
+  // -----------------------------------------------------------------------
+
+  it('Trail 26 exists as separate entries for Greenbelt and Gatineau Park', () => {
+    // "Trail 26" is used in both the Greenbelt (~45.30N) and Gatineau Park (~45.46N).
+    // They must be separate entries, not one entry with mixed geometry.
+    const trail26entries = entries.filter(e => e.name === 'Trail 26');
+    expect(trail26entries.length, 'Should have 2+ Trail 26 entries (one per park)').toBeGreaterThanOrEqual(2);
+
+    // Each entry's anchors should be in ONE park, not spanning both
+    for (const entry of trail26entries) {
+      const lats = (entry.anchors || []).map(a => a[1]);
+      const minLat = Math.min(...lats);
+      const maxLat = Math.max(...lats);
+      const span = (maxLat - minLat) * 111; // rough km
+      expect(span, `Trail 26 entry spans ${span.toFixed(0)}km — should be <10km (one park)`).toBeLessThan(10);
+    }
+  });
+
+  it('Trail 20 exists as separate entries for Greenbelt and Gatineau Park', () => {
+    // Same issue: "Trail 20" used in both parks
+    const trail20entries = entries.filter(e => e.name === 'Trail 20');
+    expect(trail20entries.length, 'Should have 2+ Trail 20 entries (one per park)').toBeGreaterThanOrEqual(2);
+
+    for (const entry of trail20entries) {
+      const lats = (entry.anchors || []).map(a => a[1]);
+      const minLat = Math.min(...lats);
+      const maxLat = Math.max(...lats);
+      const span = (maxLat - minLat) * 111;
+      expect(span, `Trail 20 entry spans ${span.toFixed(0)}km — should be <10km (one park)`).toBeLessThan(10);
+    }
+  });
+
+  // -----------------------------------------------------------------------
   // Park overrides type: Watts Creek (paved) is in the Greenbelt park,
   // so it should be in the Greenbelt network even though the Greenbelt
   // trails are unpaved.

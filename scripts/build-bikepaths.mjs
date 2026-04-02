@@ -483,6 +483,53 @@ function enrichEntry(entry, tags) {
 }
 
 // ---------------------------------------------------------------------------
+/**
+ * Split ways with the same name into geographic clusters.
+ * "Trail 20" in the Greenbelt and "Trail 20" in Gatineau Park are
+ * different trails — don't merge them just because they share a name.
+ * Uses single-linkage clustering: two ways are in the same cluster if
+ * any of their geometry points are within maxDistM of each other.
+ */
+function splitWaysByProximity(ways, maxDistM) {
+  if (ways.length <= 1) return [ways];
+
+  // Get a representative point for each way (midpoint of geometry)
+  const points = ways.map(w => {
+    if (w.geometry?.length >= 2) {
+      const mid = w.geometry[Math.floor(w.geometry.length / 2)];
+      return [mid.lon, mid.lat];
+    }
+    if (w.center) return [w.center.lon, w.center.lat];
+    return null;
+  });
+
+  // Union-find
+  const parent = ways.map((_, i) => i);
+  function find(i) {
+    while (parent[i] !== i) { parent[i] = parent[parent[i]]; i = parent[i]; }
+    return i;
+  }
+
+  for (let i = 0; i < ways.length; i++) {
+    if (!points[i]) continue;
+    for (let j = i + 1; j < ways.length; j++) {
+      if (!points[j]) continue;
+      if (find(i) === find(j)) continue;
+      if (haversineM(points[i], points[j]) < maxDistM) {
+        parent[find(i)] = find(j);
+      }
+    }
+  }
+
+  const groups = new Map();
+  for (let i = 0; i < ways.length; i++) {
+    const root = find(i);
+    if (!groups.has(root)) groups.set(root, []);
+    groups.get(root).push(ways[i]);
+  }
+  return [...groups.values()];
+}
+
 // Step 5: Build entries from scratch (replaces mergeData)
 // ---------------------------------------------------------------------------
 
@@ -821,37 +868,56 @@ out geom tags;`;
     }
   }
 
+  // Build named way entries. Split same-named ways that are geographically
+  // far apart — "Trail 20" in the Greenbelt (45.32°N) and "Trail 20" in
+  // Gatineau Park (45.52°N) are different trails that happen to share a name.
+  const MAX_SAME_NAME_DISTANCE_M = 5000;
   const osmNamedWays = [];
   for (const [name, ways] of waysByName) {
-    const anchors = [];
-    for (const w of ways) {
-      if (w.geometry?.length >= 2) {
-        anchors.push([w.geometry[0].lon, w.geometry[0].lat]);
-        anchors.push([w.geometry[w.geometry.length - 1].lon, w.geometry[w.geometry.length - 1].lat]);
-      } else if (w.center) {
-        anchors.push([w.center.lon, w.center.lat]);
+    // Split ways into geographic clusters using single-linkage at 5km
+    const wayClusters = splitWaysByProximity(ways, MAX_SAME_NAME_DISTANCE_M);
+
+    for (const clusterWays of wayClusters) {
+      const anchors = [];
+      for (const w of clusterWays) {
+        if (w.geometry?.length >= 2) {
+          anchors.push([w.geometry[0].lon, w.geometry[0].lat]);
+          anchors.push([w.geometry[w.geometry.length - 1].lon, w.geometry[w.geometry.length - 1].lat]);
+        } else if (w.center) {
+          anchors.push([w.center.lon, w.center.lat]);
+        }
       }
-    }
-    if (anchors.length === 0) continue;
+      if (anchors.length === 0) continue;
 
-    const junctionWays = allWaysByName.get(name) || [];
-    const seenIds = new Set();
-    const combinedWays = [];
-    for (const w of [...ways, ...junctionWays]) {
-      if (!w.geometry?.length || w.geometry.length < 2) continue;
-      if (w.id && seenIds.has(w.id)) continue;
-      if (w.id) seenIds.add(w.id);
-      combinedWays.push(w.geometry);
-    }
+      // Include junction ways that are near THIS cluster, not all of them
+      const junctionWays = (allWaysByName.get(name) || []).filter(jw => {
+        if (!jw.geometry?.length) return false;
+        const jwCenter = jw.geometry[Math.floor(jw.geometry.length / 2)];
+        return clusterWays.some(cw => {
+          if (!cw.geometry?.length) return false;
+          const cwCenter = cw.geometry[Math.floor(cw.geometry.length / 2)];
+          return haversineM([jwCenter.lon, jwCenter.lat], [cwCenter.lon, cwCenter.lat]) < MAX_SAME_NAME_DISTANCE_M;
+        });
+      });
 
-    osmNamedWays.push({
-      name,
-      wayCount: ways.length,
-      tags: mergeWayTags(ways),
-      anchors,
-      osmNames: [name],
-      _ways: combinedWays.length > 0 ? combinedWays : ways.filter(w => w.geometry?.length >= 2).map(w => w.geometry),
-    });
+      const seenIds = new Set();
+      const combinedWays = [];
+      for (const w of [...clusterWays, ...junctionWays]) {
+        if (!w.geometry?.length || w.geometry.length < 2) continue;
+        if (w.id && seenIds.has(w.id)) continue;
+        if (w.id) seenIds.add(w.id);
+        combinedWays.push(w.geometry);
+      }
+
+      osmNamedWays.push({
+        name,
+        wayCount: clusterWays.length,
+        tags: mergeWayTags(clusterWays),
+        anchors,
+        osmNames: [name],
+        _ways: combinedWays.length > 0 ? combinedWays : clusterWays.filter(w => w.geometry?.length >= 2).map(w => w.geometry),
+      });
+    }
   }
   console.log(`  Found ${osmNamedWays.length} named cycling ways`);
 
