@@ -561,6 +561,15 @@ async function enrichOutOfBoundsRelations(entries, discoveredRelationIds) {
 /**
  * Resolve network _member_relations to slugs and assign member_of to members.
  */
+// Resolve network _member_relations (relation IDs) to slugs using the
+// centralized slug map. Assigns member_of on member entries.
+//
+// Primary network: when a path belongs to multiple networks, the most
+// specific one wins (smallest member count). We process largest-first
+// so the smaller one overwrites.
+//
+// Only top-level superroutes reach here — sub-superroutes were already
+// flattened by discoverNetworks (see discover-networks.mjs).
 function resolveNetworkMembers(entries, slugMap, networks) {
   // Build relation ID → entry lookup
   const byRelation = new Map();
@@ -592,6 +601,50 @@ function resolveNetworkMembers(entries, slugMap, networks) {
     }
     network.members = memberSlugs;
     delete network._member_relations;
+  }
+
+  // Remove standalone entries for same-named routes absorbed into networks.
+  // When a network absorbed a child with the same name (see discover-networks.mjs),
+  // the child's relation ID was added to the network's osm_relations. But the
+  // child may also exist as a standalone entry from step 1 (discoverOsmRelations).
+  // Remove it — the network IS that path. This prevents slug collisions like
+  // "crosstown-bikeway-2-1" (route) vs "crosstown-bikeway-2-2" (network).
+  const networkRelationIds = new Set();
+  for (const network of networks) {
+    for (const relId of network.osm_relations || []) {
+      networkRelationIds.add(relId);
+    }
+  }
+  for (let i = entries.length - 1; i >= 0; i--) {
+    const entry = entries[i];
+    if (entry.type === 'network') continue;
+    // If ALL of this entry's relation IDs are owned by a network, remove it
+    if (entry.osm_relations?.length > 0 &&
+        entry.osm_relations.every(id => networkRelationIds.has(id))) {
+      entries.splice(i, 1);
+    }
+  }
+
+  // Drop networks whose members didn't resolve (outside bbox, filtered out).
+  // A network page with 0-1 members isn't useful — it's just metadata about
+  // the path belonging to a larger system, not a network worth its own page.
+  const MIN_RESOLVED_MEMBERS = 2;
+  const toDrop = networks.filter(n => (n.members?.length || 0) < MIN_RESOLVED_MEMBERS);
+  for (const network of toDrop) {
+    // Undo member_of on any entries that pointed to this network
+    const networkSlug = slugMap.get(network);
+    for (const entry of entries) {
+      if (entry.member_of === networkSlug) delete entry.member_of;
+    }
+    // Remove the network entry from the entries array
+    const idx = entries.indexOf(network);
+    if (idx !== -1) entries.splice(idx, 1);
+    console.log(`  Dropped network "${network.name}": only ${network.members?.length || 0} member(s) resolved`);
+  }
+  // Also remove from the networks array so the caller's count is accurate
+  for (const n of toDrop) {
+    const idx = networks.indexOf(n);
+    if (idx !== -1) networks.splice(idx, 1);
   }
 
   const assigned = entries.filter(e => e.member_of).length;
@@ -647,12 +700,15 @@ async function main() {
   const markdownSlugs = loadMarkdownSlugs();
   const grouped = await autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass });
 
-  // Centralized slug computation
-  const slugMap = computeSlugs(grouped);
+  // Centralized slug computation — first pass for member resolution
+  let slugMap = computeSlugs(grouped);
 
-  // Resolve network members and assign member_of
+  // Resolve network members and assign member_of.
+  // This may remove entries (same-named routes absorbed into networks),
+  // so we recompute slugs afterward for clean URLs.
   if (networks.length > 0) {
     resolveNetworkMembers(grouped, slugMap, networks);
+    slugMap = computeSlugs(grouped);
   }
 
   // Wikidata enrichment

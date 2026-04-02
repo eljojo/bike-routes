@@ -100,6 +100,7 @@ The auto-grouping in `scripts/lib/cluster-entries.mjs` merges entries whose OSM 
 - **`members` vs `grouped_from`** — `members` (networks) is additive: children keep their pages. `grouped_from` (trail clusters) is reductive: children lose their pages, absorbed into the group. Auto-grouping skips network members to prevent collision.
 - **Destination rule** — a path gets a standalone page only if length >= 1km. Below 1km, it appears on its parent network page but not as a standalone page. Markdown overrides both ways: a `.md` file forces a page; `hidden: true` suppresses one.
 - **Primary network** — when a path belongs to multiple superroutes, the most specific/local one is primary. The path's URL nests under its primary network.
+- **Only top-level superroutes become networks.** A sub-superroute (child of another superroute) is NOT a network — it's a path split into sections by OSM mappers. Example: Ottawa River Pathway is a sub-superroute of Capital Pathway with east/west/TCT children. To a cyclist it's one path. Its children get flattened into Capital Pathway as direct members. Minimum 2 members in the bbox to qualify as a network.
 
 ### bikepaths.yml is fully rewritten
 

@@ -121,7 +121,6 @@ bike_paths:
     name_en: Trans Canada Trail (Montréal to Gatineau)
     network: ncn
     ref: STC
-    member_of: sentier-trans-canadien-quebec
   - name: Sentier du Lac-des-Fées
     osm_relations:
       - 2890258
@@ -170,7 +169,7 @@ bike_paths:
     name_fr: Sentier de la Rivière des Outaouais (Est)
     operator: NCC
     network: rcn
-    member_of: ottawa-river-pathway-2
+    member_of: capital-pathway
   - name: Watts Creek Pathway
     osm_relations:
       - 7175007
@@ -229,7 +228,6 @@ bike_paths:
         - 45.4195961
     osm_names:
       - O'Connor Bikeway
-    member_of: crosstown-bikeway-5-2
   - name: Rideau Canal Eastern Pathway
     osm_relations:
       - 7206766
@@ -314,7 +312,7 @@ bike_paths:
         - 45.3621251
     osm_names:
       - Greenbelt Pathway West
-    member_of: greenbelt-pathway-west-1
+    member_of: capital-pathway
   - name: Rideau Trail - Ottawa Section
     osm_relations:
       - 7360383
@@ -346,7 +344,7 @@ bike_paths:
         - 45.4418518
     osm_names:
       - Rideau River Eastern Pathway
-    member_of: rideau-river-eastern-pathway-1
+    member_of: capital-pathway
   - name: Aviation Pathway
     osm_relations:
       - 7369758
@@ -441,12 +439,10 @@ bike_paths:
       - 9351875
     network: rcn
     ref: AL
-    member_of: ottawa-valley-recreation-trail-super
   - name: Ottawa Valley Recreation Trail
     osm_relations:
       - 9351876
     network: rcn
-    member_of: ottawa-valley-recreation-trail-super
   - name: Sentier du loup
     osm_relations:
       - 9423919
@@ -502,13 +498,13 @@ bike_paths:
     name_fr: Sentier de la Rivière des Outaouais (Sentier Transcanadien)
     network: ncn
     ref: TCT
-    member_of: ottawa-river-pathway-2
+    member_of: trans-canada-trail-ottawa-area
   - name: Ottawa River Pathway (west)
     osm_relations:
       - 9502634
     name_fr: Sentier de la Rivière des Outaouais (Ouest)
     network: rcn
-    member_of: ottawa-river-pathway-2
+    member_of: capital-pathway
   - name: Nepean Trail
     osm_relations:
       - 9599180
@@ -549,30 +545,22 @@ bike_paths:
       - 10985930
     network: lcn
     ref: '3'
-  - name: Crosstown Bikeway 2
-    osm_relations:
-      - 10986223
-    network: lcn
-    ref: '2'
-    member_of: crosstown-bikeway-2-2
   - name: Crosstown Bikeway 5
     osm_relations:
       - 10986755
     network: lcn
     ref: '5'
-    member_of: crosstown-bikeway-5-2
   - name: Rideau River Eastern Pathway (City section)
     osm_relations:
       - 10990510
     network: lcn
-    member_of: rideau-river-eastern-pathway-1
   - name: Greenbelt Pathway West (Barrhaven)
     osm_relations:
       - 11009279
     operator: NCC
     network: rcn
     ref: GPW
-    member_of: greenbelt-pathway-west-1
+    member_of: capital-pathway
   - name: Britannia Winter Trail
     osm_relations:
       - 12138512
@@ -5023,25 +5011,6 @@ bike_paths:
       - - -75.5926015
         - 45.4995486
     surface: asphalt
-  - name: Sentier Trans-Canadien (Québec)
-    type: network
-    osm_relations:
-      - 8274591
-    name_fr: Sentier Trans-Canadien (Québec)
-    name_en: Trans Canada Trail (Quebec)
-    network: ncn
-    ref: STC
-    cycle_network: CA:CA
-    members:
-      - sentier-trans-canada-gatineau-montreal
-  - name: Ottawa Valley Recreation Trail (super)
-    type: network
-    osm_relations:
-      - 9352030
-    network: rcn
-    members:
-      - algonquin-trail
-      - ottawa-valley-recreation-trail
   - name: Trans Canada Trail (Ottawa area)
     type: network
     osm_relations:
@@ -5052,38 +5021,17 @@ bike_paths:
       - trans-canada-trail-bells-cornerswatts-creek
       - ottawa-carleton-trailway
       - ottawa-river-pathway-trans-canada-trail
-  - name: Ottawa River Pathway
-    type: network
-    osm_relations:
-      - 9502635
-    name_fr: Sentier de la Rivière des Outaouais
-    network: rcn
-    cycle_network: CA:ON:NCC
-    members:
-      - ottawa-river-pathway-east
-      - ottawa-river-pathway-trans-canada-trail
-      - ottawa-river-pathway-west
   - name: Crosstown Bikeway 2
     type: network
     osm_relations:
       - 10986224
+      - 10986223
     network: lcn
     ref: '2'
     cycle_network: CA:ON:Ottawa
     members:
       - laurier-segregated-bikelane
       - eastwest-crosstown-bikeway
-      - crosstown-bikeway-2-1
-  - name: Crosstown Bikeway 5
-    type: network
-    osm_relations:
-      - 10986756
-    network: lcn
-    ref: '5'
-    cycle_network: CA:ON:Ottawa
-    members:
-      - oconnor-bikeway
-      - crosstown-bikeway-5-1
   - name: Capital Pathway
     type: network
     osm_relations:
@@ -5103,13 +5051,13 @@ bike_paths:
       - rideau-canal-western-pathway
       - rideau-canal-eastern-pathway
       - experimental-farm-pathway
-      - rideau-river-eastern-pathway-2
+      - rideau-river-eastern-pathway
       - aviation-pathway
       - greenbelt-pathway-east
       - ottawa-river-pathway-east
       - ottawa-river-pathway-trans-canada-trail
       - ottawa-river-pathway-west
-      - greenbelt-pathway-west-2
+      - greenbelt-pathway-west
       - greenbelt-pathway-west-barrhaven
     wikidata_meta:
       description_en: Bike path network in Ottawa-Gatineau, Canada
@@ -5117,25 +5065,6 @@ bike_paths:
       length_km: 220
       inception: 1970s
       website: https://ncc-ccn.gc.ca/places/capital-pathway
-  - name: Rideau River Eastern Pathway
-    type: network
-    osm_relations:
-      - 10990512
-    name_fr: Sentier de l'Est de la rivière Rideau
-    name_en: Rideau River Eastern Pathway
-    network: lcn
-    members:
-      - rideau-river-eastern-pathway-2
-      - rideau-river-eastern-pathway-city-section
-  - name: Greenbelt Pathway West
-    type: network
-    osm_relations:
-      - 11009280
-    network: rcn
-    operator: NCC
-    members:
-      - greenbelt-pathway-west-2
-      - greenbelt-pathway-west-barrhaven
   - name: Sentier du Lac Leamy Pathway
     grouped_from:
       - sentier-du-lac-leamy-pathway
