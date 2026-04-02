@@ -3,6 +3,9 @@ name: Voie Verte Chelsea
 name_fr: Voie Verte Chelsea
 vibe: "Former rail line to Wakefield — flat gravel, river views, autumn colours"
 featured: true
+includes:
+  - voie-verte-chelsea-1
+  - voie-verte-chelsea-2
 ---
 
 A former railway line converted into a 22 km gravel trail running along the Gatineau River from Gatineau through Chelsea toward Wakefield. Flat, mostly by the river, and stunning in autumn — this is one of the most popular day rides from Ottawa.
