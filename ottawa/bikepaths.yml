@@ -16,6 +16,9 @@ bike_paths:
         - 45.379769
       - - -75.7014385
         - 45.456289
+    osm_names:
+      - Sentier des Voyageurs Pathway
+    member_of: capital-pathway
   - name: Sentier du Ruisseau-Leamy
     osm_relations:
       - 222699
@@ -36,6 +39,8 @@ bike_paths:
         - 45.4641933
       - - -75.7385699
         - 45.4715792
+    osm_names:
+      - Sentier du Ruisseau-Leamy
   - name: Sentier de la Rivière-Gatineau
     osm_relations:
       - 222700
@@ -46,14 +51,16 @@ bike_paths:
     surface: asphalt
     width: '2'
     highway: cycleway
-    smoothness: intermediate
-    lit: 'no'
-    segregated: 'no'
     anchors:
       - - -75.738771
         - 45.4616694
       - - -75.7275534
         - 45.471603
+    osm_names:
+      - Sentier de la Rivière Gatineau
+    smoothness: intermediate
+    lit: 'no'
+    segregated: 'no'
   - name: Sentier du Parc-de-la-Gatineau
     osm_relations:
       - 224841
@@ -73,6 +80,9 @@ bike_paths:
         - 45.4224904
       - - -75.7420488
         - 45.4775348
+    osm_names:
+      - Sentier du Parc-de-la-Gatineau
+    member_of: capital-pathway
   - name: Route Verte 1
     osm_relations:
       - 416115
@@ -80,6 +90,11 @@ bike_paths:
     website: https://www.routeverte.com/
     network: ncn
     ref: RV1
+    name_fr: route Verte 1
+    name_en: Route Verte 1
+    wikidata_meta:
+      description_fr: route cyclable au Québec (Canada)
+      inception: '2007'
   - name: Cycloparc PPJ
     osm_relations:
       - 1623089
@@ -98,6 +113,7 @@ bike_paths:
       - 1803929
     network: lcn
     ref: '2'
+    member_of: crosstown-bikeway-2-2
   - name: Sentier Trans-Canada Gatineau - Montréal
     osm_relations:
       - 2890229
@@ -105,6 +121,7 @@ bike_paths:
     name_en: Trans Canada Trail (Montréal to Gatineau)
     network: ncn
     ref: STC
+    member_of: sentier-trans-canadien-quebec
   - name: Sentier du Lac-des-Fées
     osm_relations:
       - 2890258
@@ -123,15 +140,8 @@ bike_paths:
         - 45.4239564
       - - -75.7348249
         - 45.4428413
-  - name: Prescott and Russell Recreational Trail
-    osm_relations:
-      - 3461055
-    network: rcn
-    ref: PRT
-    surface: fine_gravel
-    name_fr: Sentier récréatif de Prescott-Russell
-    name_en: Prescott and Russell Recreational Trail
-    wikidata: Q39049685
+    osm_names:
+      - Sentier du Lac-des-Fées
   - name: Prescott Russell Trail Link
     osm_relations:
       - 3461068
@@ -149,18 +159,8 @@ bike_paths:
         - 45.4130879
       - - -75.2367483
         - 45.4356278
-  - name: M&O Rail Corridor (Saint-Eugène to Vaudreuil-Dorion)
-    name_fr: Corridor ferroviaire M&O (Saint-Eugène à Vaudreuil-Dorion)
-    description: Former Montreal & Ottawa railway corridor through Rigaud, Hudson, and Vaudreuil-Dorion. Unmaintained in sections — ride at your own risk.
     osm_names:
-      - M&O Subdivision
-    anchors:
-      - - -74.718882
-        - 45.385657
-      - - -73.97573
-        - 45.518104
-    surface: variable
-    highway: proposed
+      - Prescott Russell Trail Link
   - name: Sentier vélo de Montagne - Parc de la Gatineau
     osm_relations:
       - 6198284
@@ -170,6 +170,7 @@ bike_paths:
     name_fr: Sentier de la Rivière des Outaouais (Est)
     operator: NCC
     network: rcn
+    member_of: ottawa-river-pathway-2
   - name: Watts Creek Pathway
     osm_relations:
       - 7175007
@@ -187,6 +188,9 @@ bike_paths:
         - 45.3265621
       - - -75.8123576
         - 45.3518061
+    osm_names:
+      - Watts Creek Pathway
+    member_of: capital-pathway
   - name: Trillium Pathway
     osm_relations:
       - 7175029
@@ -206,6 +210,8 @@ bike_paths:
         - 45.3961412
       - - -75.7071364
         - 45.4117816
+    osm_names:
+      - Trillium Pathway
   - name: O'Connor Bikeway
     osm_relations:
       - 7201612
@@ -221,6 +227,28 @@ bike_paths:
         - 45.4092192
       - - -75.6882715
         - 45.4195961
+    osm_names:
+      - O'Connor Bikeway
+    member_of: crosstown-bikeway-5-2
+  - name: Rideau Canal Eastern Pathway
+    osm_relations:
+      - 7206766
+    operator: NCC
+    network: rcn
+    surface: asphalt
+    smoothness: intermediate
+    width: '3'
+    lit: 'yes'
+    segregated: 'no'
+    highway: cycleway
+    anchors:
+      - - -75.6984672
+        - 45.3698546
+      - - -75.6805887
+        - 45.4244887
+    osm_names:
+      - Rideau Canal Eastern Pathway
+    member_of: capital-pathway
   - name: Experimental Farm Pathway
     osm_relations:
       - 7206821
@@ -237,6 +265,9 @@ bike_paths:
         - 45.353173
       - - -75.7110847
         - 45.3890728
+    osm_names:
+      - Experimental Farm Pathway
+    member_of: capital-pathway
   - name: Pinecrest Creek Pathway
     osm_relations:
       - 7206822
@@ -253,12 +284,15 @@ bike_paths:
         - 45.3483954
       - - -75.7633584
         - 45.3719227
+    osm_names:
+      - Pinecrest Creek Pathway
   - name: East–West Crosstown Bikeway
     osm_relations:
       - 7234399
     operator: City of Ottawa
     network: lcn
     ref: '2'
+    member_of: crosstown-bikeway-2-2
   - name: Greenbelt Pathway West
     osm_relations:
       - 7248705
@@ -278,6 +312,9 @@ bike_paths:
         - 45.3025008
       - - -75.6991722
         - 45.3621251
+    osm_names:
+      - Greenbelt Pathway West
+    member_of: greenbelt-pathway-west-1
   - name: Rideau Trail - Ottawa Section
     osm_relations:
       - 7360383
@@ -307,6 +344,9 @@ bike_paths:
         - 45.3707591
       - - -75.6614446
         - 45.4418518
+    osm_names:
+      - Rideau River Eastern Pathway
+    member_of: rideau-river-eastern-pathway-1
   - name: Aviation Pathway
     osm_relations:
       - 7369758
@@ -322,6 +362,9 @@ bike_paths:
         - 45.4226087
       - - -75.6259319
         - 45.4562381
+    osm_names:
+      - Aviation Pathway
+    member_of: capital-pathway
   - name: Greenbelt Pathway East
     osm_relations:
       - 7369775
@@ -338,6 +381,9 @@ bike_paths:
         - 45.3294621
       - - -75.5679262
         - 45.4697494
+    osm_names:
+      - Greenbelt Pathway East
+    member_of: capital-pathway
   - name: Trans Canada Trail (Sussex Drive)
     osm_relations:
       - 7369782
@@ -353,6 +399,7 @@ bike_paths:
       - 7371889
     network: ncn
     ref: TCT
+    member_of: trans-canada-trail-ottawa-area
   - name: New York Central Fitness Trail
     osm_relations:
       - 7410754
@@ -387,15 +434,19 @@ bike_paths:
         - 45.4587182
       - - -75.4593084
         - 45.4606832
+    osm_names:
+      - Trans-Orleans Pathway
   - name: Algonquin Trail
     osm_relations:
       - 9351875
     network: rcn
     ref: AL
+    member_of: ottawa-valley-recreation-trail-super
   - name: Ottawa Valley Recreation Trail
     osm_relations:
       - 9351876
     network: rcn
+    member_of: ottawa-valley-recreation-trail-super
   - name: Sentier du loup
     osm_relations:
       - 9423919
@@ -444,17 +495,20 @@ bike_paths:
       - 9502449
     network: ncn
     ref: TCT
+    member_of: trans-canada-trail-ottawa-area
   - name: Ottawa River Pathway (Trans Canada Trail)
     osm_relations:
       - 9502633
     name_fr: Sentier de la Rivière des Outaouais (Sentier Transcanadien)
     network: ncn
     ref: TCT
+    member_of: ottawa-river-pathway-2
   - name: Ottawa River Pathway (west)
     osm_relations:
       - 9502634
     name_fr: Sentier de la Rivière des Outaouais (Ouest)
     network: rcn
+    member_of: ottawa-river-pathway-2
   - name: Nepean Trail
     osm_relations:
       - 9599180
@@ -470,6 +524,8 @@ bike_paths:
         - 45.3376973
       - - -75.7238598
         - 45.3557672
+    osm_names:
+      - Nepean Trail
   - name: Confederation Pathway
     osm_relations:
       - 10155166
@@ -498,21 +554,25 @@ bike_paths:
       - 10986223
     network: lcn
     ref: '2'
+    member_of: crosstown-bikeway-2-2
   - name: Crosstown Bikeway 5
     osm_relations:
       - 10986755
     network: lcn
     ref: '5'
+    member_of: crosstown-bikeway-5-2
   - name: Rideau River Eastern Pathway (City section)
     osm_relations:
       - 10990510
     network: lcn
+    member_of: rideau-river-eastern-pathway-1
   - name: Greenbelt Pathway West (Barrhaven)
     osm_relations:
       - 11009279
     operator: NCC
     network: rcn
     ref: GPW
+    member_of: greenbelt-pathway-west-1
   - name: Britannia Winter Trail
     osm_relations:
       - 12138512
@@ -567,6 +627,8 @@ bike_paths:
         - 45.4797107
       - - -75.7503486
         - 45.6152909
+    osm_names:
+      - Voie Verte Chelsea
   - name: Sentier du lac Leamy Skiing Trail
     osm_relations:
       - 15446553
@@ -621,6 +683,20 @@ bike_paths:
     operator: NCC
     network: Kichi Sibi
     description: 'Summer: cycle, walk, hike Winter: @skiheritageeast skate and classic grooming fat bike, xc ski'
+  - name: Sentier du Ruisseau Leamy Pathway
+    osm_names:
+      - Sentier du Ruisseau Leamy Pathway
+    anchors:
+      - - -75.7652397
+        - 45.4705187
+      - - -75.7468492
+        - 45.4731249
+    surface: asphalt
+    smoothness: good
+    width: '2'
+    lit: 'no'
+    segregated: 'no'
+    highway: cycleway
   - name: Sentier des Voyageurs
     osm_names:
       - Sentier des Voyageurs
@@ -641,10 +717,10 @@ bike_paths:
     osm_names:
       - Sentier des Pionniers
     anchors:
-      - - -75.7446181
-        - 45.4328924
-      - - -75.7446181
-        - 45.4328924
+      - - -75.7442256
+        - 45.4325419
+      - - -75.7447872
+        - 45.4326862
     name_fr: Sentier des Pionniers
     name_en: Pionniers Pathway
     surface: asphalt
@@ -653,18 +729,61 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+  - name: Pont Mãwandòseg
+    osm_names:
+      - Pont Mãwandòseg
+    anchors:
+      - - -75.7079198
+        - 45.4497088
+      - - -75.7071608
+        - 45.4498604
+    name_fr: Pont Mãwandòseg
+    name_en: Mãwandòseg bridge
+    surface: asphalt
+    width: '4'
+    lit: 'no'
+    highway: cycleway
+  - name: Chemin du Lac-Leamy
+    osm_names:
+      - Chemin du Lac-Leamy
+    anchors:
+      - - -75.7282034
+        - 45.440651
+      - - -75.7272738
+        - 45.4486677
+    surface: asphalt
+    smoothness: excellent
+    width: '3'
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
   - name: Sentier du Lac-des-Fées Pathway
     osm_names:
       - Sentier du Lac-des-Fées Pathway
     anchors:
-      - - -75.7530414
-        - 45.4419172
-      - - -75.7530414
-        - 45.4419172
+      - - -75.7527198
+        - 45.4417437
+      - - -75.753363
+        - 45.4420907
     surface: asphalt
     smoothness: good
     width: '2.5'
     segregated: 'no'
+    highway: cycleway
+  - name: Trans Canada Trail
+    osm_names:
+      - Trans Canada Trail
+    anchors:
+      - - -75.9203476
+        - 45.2584337
+      - - -75.8451241
+        - 45.3174462
+    surface: fine_gravel
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    segregated: 'no'
+    cycleway: crossing
     highway: cycleway
   - name: 'Trail #56'
     osm_names:
@@ -677,6 +796,20 @@ bike_paths:
     surface: gravel
     highway: cycleway
     ref: '56'
+  - name: Chemin de Masson
+    osm_names:
+      - Chemin de Masson
+    anchors:
+      - - -75.4238183
+        - 45.5498704
+      - - -75.4131268
+        - 45.5747534
+    surface: asphalt
+    width: '2.5'
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    parallel_to: Chemin de Masson
   - name: Osgoode-Leitrim Multi-use Pathway
     osm_names:
       - Osgoode-Leitrim Multi-use Pathway
@@ -685,6 +818,20 @@ bike_paths:
         - 45.1444871
       - - -75.611515
         - 45.3162109
+    surface: fine_gravel
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    segregated: 'no'
+    highway: cycleway
+  - name: Trans-Canada Trail Ottawa
+    osm_names:
+      - Trans-Canada Trail Ottawa
+    anchors:
+      - - -76.1086887
+        - 45.147819
+      - - -75.9207406
+        - 45.2581687
     surface: fine_gravel
     smoothness: good
     width: '3'
@@ -707,10 +854,10 @@ bike_paths:
     osm_names:
       - PPJ Cycloparc
     anchors:
-      - - -76.3450219
-        - 45.5518244
-      - - -76.3450219
-        - 45.5518244
+      - - -76.3899149
+        - 45.5683853
+      - - -76.300129
+        - 45.5352635
     surface: fine_gravel
     width: '3'
     highway: cycleway
@@ -718,10 +865,10 @@ bike_paths:
     osm_names:
       - promenade Sentier du Parc de la Gatineau
     anchors:
-      - - -75.7900501
-        - 45.466676
-      - - -75.7900501
-        - 45.466676
+      - - -75.7903173
+        - 45.4659985
+      - - -75.789783
+        - 45.4673535
     name_fr: promenade Sentier du Parc de la Gatineau
     surface: asphalt
     smoothness: good
@@ -735,13 +882,35 @@ bike_paths:
     osm_names:
       - Highbury Park Drive Bypass
     anchors:
-      - - -75.7479081
-        - 45.2782422
-      - - -75.7479081
-        - 45.2782422
+      - - -75.7475445
+        - 45.2776794
+      - - -75.7482452
+        - 45.278805
     surface: asphalt
     width: '3'
     highway: cycleway
+  - name: Corktown Footbridge
+    osm_names:
+      - Corktown Footbridge
+    anchors:
+      - - -75.6847783
+        - 45.4203936
+      - - -75.6842848
+        - 45.4207161
+    wikipedia: en:Corktown Footbridge
+    wikidata: Q5170875
+    surface: concrete
+    smoothness: good
+    width: '5'
+    lit: 'yes'
+    segregated: 'no'
+    highway: cycleway
+    operator: City of Ottawa
+    name_fr: Passerelle Corktown
+    name_en: Corktown Footbridge
+    wikidata_meta:
+      description_en: footbridge in Ottawa, Canada
+      description_fr: pont pour piétons et vélos à Ottawa, Ontario, Canada
   - name: 'Trail #53'
     osm_names:
       - 'Trail #53'
@@ -753,6 +922,20 @@ bike_paths:
     surface: ground
     highway: cycleway
     ref: '53'
+  - name: Juno Beach Memorial Bridge
+    osm_names:
+      - Juno Beach Memorial Bridge
+    anchors:
+      - - -75.6572418
+        - 45.3542158
+      - - -75.6585549
+        - 45.3538423
+    surface: asphalt
+    smoothness: good
+    width: '4'
+    lit: 'yes'
+    segregated: 'no'
+    highway: cycleway
   - name: 'Trail #55'
     osm_names:
       - 'Trail #55'
@@ -793,10 +976,10 @@ bike_paths:
     osm_names:
       - Adàwe crossing
     anchors:
-      - - -75.6701267
-        - 45.4263419
-      - - -75.6701267
-        - 45.4263419
+      - - -75.6707638
+        - 45.4259661
+      - - -75.6694896
+        - 45.4267176
     name_fr: passerelle Adàwe
     name_en: Adàwe crossing
     wikipedia: en:Adàwe Crossing
@@ -808,6 +991,33 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     operator: City of Ottawa
+    wikidata_meta:
+      description_en: Canadian bridge across the Rideau River in Ottawa
+  - name: Mackenzie cycle track
+    osm_names:
+      - Mackenzie cycle track
+    anchors:
+      - - -75.6968529
+        - 45.4252568
+      - - -75.694008
+        - 45.428479
+    surface: asphalt
+    smoothness: excellent
+    width: '2.5'
+    lit: 'yes'
+    cycleway: crossing
+    highway: cycleway
+    operator: NCC
+  - name: Trillium Trail
+    osm_names:
+      - Trillium Trail
+    anchors:
+      - - -76.2574239
+        - 45.2490924
+      - - -76.2526022
+        - 45.2469496
+    surface: ground
+    highway: cycleway
   - name: Hospital Link Multi Use Pathway
     osm_names:
       - Hospital Link Multi Use Pathway
@@ -823,14 +1033,34 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     network: Rideau Winter Trail
+  - name: Flora Footbridge
+    osm_names:
+      - Flora Footbridge
+    anchors:
+      - - -75.6818947
+        - 45.4051697
+      - - -75.6802392
+        - 45.405104
+    name_fr: Passerelle Flora
+    name_en: Flora Footbridge
+    wikipedia: en:Passerelle Flora Footbridge
+    wikidata: Q56282907
+    surface: concrete
+    width: '5'
+    lit: 'yes'
+    segregated: 'no'
+    highway: cycleway
+    wikidata_meta:
+      description_en: bridge in Ottawa, Canada
+      description_fr: Passerelle pour piétons et vélos à Ottawa, Ontario, Canada
   - name: Pont couvert Brabant-Philippe
     osm_names:
       - Pont couvert Brabant-Philippe
     anchors:
-      - - -75.5941873
-        - 45.498343
-      - - -75.5941873
-        - 45.498343
+      - - -75.5944093
+        - 45.4984847
+      - - -75.5939654
+        - 45.4982013
     surface: asphalt
     width: '2'
     highway: cycleway
@@ -838,23 +1068,53 @@ bike_paths:
     osm_names:
       - Pont couvert Roland-Houët
     anchors:
-      - - -75.6045703
-        - 45.4998478
-      - - -75.6045703
-        - 45.4998478
+      - - -75.6046298
+        - 45.4999384
+      - - -75.6045108
+        - 45.4997571
     surface: asphalt
     highway: cycleway
   - name: Pont Couvert des Bénévoles
     osm_names:
       - Pont Couvert des Bénévoles
     anchors:
-      - - -75.6005784
-        - 45.5030544
-      - - -75.6005784
-        - 45.5030544
+      - - -75.6007111
+        - 45.502935
+      - - -75.6004456
+        - 45.5031738
     surface: wood
     segregated: 'no'
     highway: cycleway
+  - name: Boulevard Alexandre-Taché
+    osm_names:
+      - Boulevard Alexandre-Taché
+    anchors:
+      - - -75.7317905
+        - 45.4235176
+      - - -75.7229471
+        - 45.4243862
+    surface: asphalt
+    width: '3'
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    parallel_to: Boulevard Alexandre-Taché
+  - name: Boulevard des Allumettières
+    osm_names:
+      - Boulevard des Allumettières
+    anchors:
+      - - -75.7311378
+        - 45.4321141
+      - - -75.7257834
+        - 45.432427
+    surface: asphalt
+    smoothness: good
+    width: '4'
+    lit: 'yes'
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    parallel_to: Boulevard des Allumettières
   - name: Rue de Turin
     osm_names:
       - Rue de Turin
@@ -868,14 +1128,29 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
+  - name: Rue Laurier
+    osm_names:
+      - Rue Laurier
+    anchors:
+      - - -75.7092623
+        - 45.4346789
+      - - -75.7080436
+        - 45.4404486
+    surface: asphalt
+    smoothness: excellent
+    width: '1.5'
+    lit: 'yes'
+    cycleway: crossing
+    highway: cycleway
+    parallel_to: Rue Laurier
   - name: Belfast/Trainyards Pathway
     osm_names:
       - Belfast/Trainyards Pathway
     anchors:
-      - - -75.647357
-        - 45.4205029
-      - - -75.647357
-        - 45.4205029
+      - - -75.6475048
+        - 45.4212988
+      - - -75.6472092
+        - 45.419707
     surface: asphalt
     width: '3'
     segregated: 'no'
@@ -884,10 +1159,10 @@ bike_paths:
     osm_names:
       - 'Trail #56B'
     anchors:
-      - - -76.069139
-        - 45.5945416
-      - - -76.069139
-        - 45.5945416
+      - - -76.0708694
+        - 45.590701
+      - - -76.067874
+        - 45.5983821
     highway: cycleway
     ref: 56B
   - name: Rockliffe Pathway
@@ -909,10 +1184,10 @@ bike_paths:
     osm_names:
       - Ottawa Greenbelt Trail
     anchors:
-      - - -75.6115002
-        - 45.3393194
-      - - -75.6115002
-        - 45.3393194
+      - - -75.6114471
+        - 45.3393966
+      - - -75.6115533
+        - 45.3392423
     surface: asphalt
     smoothness: good
     width: '3'
@@ -924,10 +1199,10 @@ bike_paths:
     osm_names:
       - Greenbelt Pathway
     anchors:
-      - - -75.5900077
-        - 45.3612055
-      - - -75.5900077
-        - 45.3612055
+      - - -75.589962
+        - 45.361216
+      - - -75.5900535
+        - 45.361195
     surface: asphalt
     smoothness: intermediate
     width: '3'
@@ -939,19 +1214,30 @@ bike_paths:
     osm_names:
       - Chris TDL Bridge
     anchors:
-      - - -75.4208492
-        - 45.5885571
-      - - -75.4208492
-        - 45.5885571
+      - - -75.420934
+        - 45.589036
+      - - -75.4207644
+        - 45.5880783
+    highway: cycleway
+  - name: Forest Hike Trail
+    osm_names:
+      - Forest Hike Trail
+    anchors:
+      - - -76.2597689
+        - 45.2494275
+      - - -76.2587764
+        - 45.2487892
+    surface: ground
+    lit: 'no'
     highway: cycleway
   - name: Voie Verte de Chelsea
     osm_names:
       - Voie Verte de Chelsea
     anchors:
-      - - -75.749548
-        - 45.478804
-      - - -75.749548
-        - 45.478804
+      - - -75.7503486
+        - 45.4797107
+      - - -75.7487474
+        - 45.4778974
     surface: ground
     smoothness: bad
     width: '0.3'
@@ -961,10 +1247,10 @@ bike_paths:
     osm_names:
       - Community Pump Track
     anchors:
-      - - -75.6353986
-        - 45.3853757
-      - - -75.6353986
-        - 45.3853757
+      - - -75.6354119
+        - 45.3854134
+      - - -75.6354119
+        - 45.3854134
     surface: dirt
     smoothness: bad
     width: '0.5'
@@ -973,10 +1259,10 @@ bike_paths:
     osm_names:
       - Green's Creek Bridge
     anchors:
-      - - -75.5780046
-        - 45.4570961
-      - - -75.5780046
-        - 45.4570961
+      - - -75.5782113
+        - 45.4569903
+      - - -75.5777978
+        - 45.457202
     surface: wood
     segregated: 'no'
     highway: cycleway
@@ -984,11 +1270,60 @@ bike_paths:
     osm_names:
       - Rue de Sillery
     anchors:
-      - - -75.707916
-        - 45.4750147
-      - - -75.707916
-        - 45.4750147
+      - - -75.7079643
+        - 45.475042
+      - - -75.7078678
+        - 45.4749874
     surface: asphalt
+    segregated: 'no'
+    highway: cycleway
+  - name: Rue des Flandres
+    osm_names:
+      - Rue des Flandres
+    anchors:
+      - - -75.7173074
+        - 45.4693253
+      - - -75.717095
+        - 45.4694371
+    surface: asphalt
+    width: '2.5'
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    parallel_to: Rue des Flandres
+  - name: Rue Morin
+    osm_names:
+      - Rue Morin
+    anchors:
+      - - -75.7259456
+        - 45.4321141
+      - - -75.7257834
+        - 45.4323918
+    surface: asphalt
+    cycleway: crossing
+    highway: cycleway
+  - name: Rue d'Edmonton
+    osm_names:
+      - Rue d'Edmonton
+    anchors:
+      - - -75.7297324
+        - 45.4516873
+      - - -75.7294254
+        - 45.4520261
+    surface: asphalt
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+  - name: Rue du Dôme
+    osm_names:
+      - Rue du Dôme
+    anchors:
+      - - -75.749389
+        - 45.4705228
+      - - -75.7496229
+        - 45.4721124
+    surface: asphalt
+    width: '2'
     segregated: 'no'
     highway: cycleway
   - name: Trail 21
@@ -1031,6 +1366,22 @@ bike_paths:
     width: '2'
     lit: 'no'
     highway: path
+  - name: Trail 50
+    osm_names:
+      - Trail 50
+    anchors:
+      - - -75.998981
+        - 45.5672289
+      - - -75.885638
+        - 45.5996354
+    name_en: Trail 50
+    alt_name: Trail 73
+    surface: ground
+    segregated: 'no'
+    highway: path
+    ref: '50'
+    smoothness: intermediate
+    width: '2'
   - name: Marianne Wilkinson Bridge
     osm_names:
       - Marianne Wilkinson Bridge
@@ -1056,6 +1407,30 @@ bike_paths:
     surface: fine_gravel
     width: '3'
     highway: path
+  - name: Campus Walkway
+    osm_names:
+      - Campus Walkway
+    anchors:
+      - - -75.695858
+        - 45.3827975
+      - - -75.6953269
+        - 45.3834548
+    surface: asphalt
+    width: '3'
+    highway: path
+  - name: 'Trail #40'
+    osm_names:
+      - 'Trail #40'
+    anchors:
+      - - -75.9234036
+        - 45.5274735
+      - - -75.8995751
+        - 45.5369834
+    surface: ground
+    lit: 'no'
+    incline: down
+    highway: path
+    ref: '40'
   - name: Rotary Centennial Trail
     osm_names:
       - Rotary Centennial Trail
@@ -1077,6 +1452,28 @@ bike_paths:
         - 45.6050159
     surface: ground
     width: '2'
+    highway: path
+  - name: Trail 7
+    osm_names:
+      - Trail 7
+    anchors:
+      - - -75.8462422
+        - 45.4704394
+      - - -75.8349386
+        - 45.484139
+    surface: ground
+    highway: path
+  - name: 'Sentier/Trail #1'
+    osm_names:
+      - 'Sentier/Trail #1'
+    anchors:
+      - - -75.8166134
+        - 45.5016415
+      - - -75.8124556
+        - 45.5059189
+    surface: fine_gravel
+    smoothness: intermediate
+    width: '1.5'
     highway: path
   - name: Mississippi Riverwalk Trail
     osm_names:
@@ -1219,6 +1616,29 @@ bike_paths:
         - 45.4096428
     surface: asphalt
     highway: path
+  - name: Hendrick Park Trail
+    osm_names:
+      - Hendrick Park Trail
+    anchors:
+      - - -75.8089557
+        - 45.4950081
+      - - -75.8040269
+        - 45.5005092
+    surface: woodchips
+    width: '1'
+    lit: 'no'
+    highway: footway
+  - name: 'Sentier/Trail #36'
+    osm_names:
+      - 'Sentier/Trail #36'
+    anchors:
+      - - -75.8633873
+        - 45.5206468
+      - - -75.8563004
+        - 45.5263604
+    incline: up
+    highway: path
+    ref: '36'
   - name: Trapper's Trail
     osm_names:
       - Trapper's Trail
@@ -1243,6 +1663,16 @@ bike_paths:
     highway: path
     network: KanataNordicCampground
     ref: '8'
+  - name: Riverwalk
+    osm_names:
+      - Riverwalk
+    anchors:
+      - - -76.1996552
+        - 45.227248
+      - - -76.1981948
+        - 45.2288191
+    surface: fine_gravel
+    highway: path
   - name: Chelsea Creek Path
     osm_names:
       - Chelsea Creek Path
@@ -1281,6 +1711,27 @@ bike_paths:
     segregated: 'no'
     highway: path
     parallel_to: Corkstown Road
+  - name: La Tour
+    osm_names:
+      - La Tour
+    anchors:
+      - - -75.7655466
+        - 45.516032
+      - - -75.7593707
+        - 45.5164611
+    surface: dirt
+    smoothness: bad
+    highway: path
+  - name: La Crete
+    osm_names:
+      - La Crete
+    anchors:
+      - - -75.7467706
+        - 45.5042493
+      - - -75.7432536
+        - 45.5048201
+    surface: dirt
+    highway: path
   - name: New Path
     osm_names:
       - New Path
@@ -1292,17 +1743,84 @@ bike_paths:
     surface: gravel
     highway: path
     access: 'no'
+  - name: Dos d'Ane
+    osm_names:
+      - Dos d'Ane
+    anchors:
+      - - -75.739248
+        - 45.5039625
+      - - -75.7381484
+        - 45.5040593
+    surface: dirt/sand
+    highway: path
   - name: Rue Saint-Josaphat
     osm_names:
       - Rue Saint-Josaphat
     anchors:
-      - - -75.691943
-        - 45.4709785
-      - - -75.691943
-        - 45.4709785
+      - - -75.6909527
+        - 45.4675852
+      - - -75.6929334
+        - 45.4743719
     surface: asphalt
     cycleway: lane
     highway: residential
+  - name: Boulevard Fournier
+    osm_names:
+      - Boulevard Fournier
+    anchors:
+      - - -75.7077773
+        - 45.4514097
+      - - -75.7021149
+        - 45.4561922
+    surface: asphalt
+    cycleway: lane
+    highway: secondary
+    parallel_to: Boulevard Fournier
+  - name: Sir-George-Étienne-Cartier Parkway
+    osm_names:
+      - Sir-George-Étienne-Cartier Parkway
+    anchors:
+      - - -75.687426
+        - 45.4510418
+      - - -75.5728552
+        - 45.4707127
+    name_fr: promenade Sir-George-Étienne-Cartier
+    name_en: Sir-George-Étienne-Cartier Parkway
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: primary
+    operator: National Capital Commission
+    parallel_to: Sir-George-Étienne-Cartier Parkway
+  - name: Teron Road
+    osm_names:
+      - Teron Road
+    anchors:
+      - - -75.9046365
+        - 45.3227658
+      - - -75.8908476
+        - 45.3332262
+    name_fr: chemin Teron
+    name_en: Teron Road
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: tertiary
+  - name: Campeau Drive
+    osm_names:
+      - Campeau Drive
+    anchors:
+      - - -75.9178991
+        - 45.3095221
+      - - -75.8950138
+        - 45.3204585
+    name_fr: promenade Campeau
+    name_en: Campeau Drive
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: secondary
+    parallel_to: Campeau Drive
   - name: Terry Fox Drive
     osm_names:
       - Terry Fox Drive
@@ -1319,6 +1837,19 @@ bike_paths:
     highway: secondary
     ref: '61'
     parallel_to: Terry Fox Drive
+  - name: McGibbon Drive
+    osm_names:
+      - McGibbon Drive
+    anchors:
+      - - -75.9083712
+        - 45.3040133
+      - - -75.9015869
+        - 45.3078731
+    name_fr: promenade McGibbon
+    name_en: McGibbon Drive
+    surface: asphalt
+    cycleway: lane
+    highway: tertiary
   - name: Dunrobin Road
     osm_names:
       - Dunrobin Road
@@ -1333,6 +1864,65 @@ bike_paths:
     cycleway: unmarked_lane
     highway: secondary
     ref: '9'
+  - name: Michael Cowpland Drive
+    osm_names:
+      - Michael Cowpland Drive
+    anchors:
+      - - -75.877492
+        - 45.2837569
+      - - -75.869931
+        - 45.2865139
+    name_fr: promenade Michael Cowpland
+    name_en: Michael Cowpland Drive
+    surface: asphalt
+    cycleway: lane
+    highway: tertiary
+  - name: Baseline Road
+    osm_names:
+      - Baseline Road
+    anchors:
+      - - -75.8132583
+        - 45.3327761
+      - - -75.7299441
+        - 45.3657208
+    name_fr: chemin Baseline
+    name_en: Baseline Road
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: primary
+    ref: '16'
+    parallel_to: Baseline Road
+  - name: Richmond Road
+    osm_names:
+      - Richmond Road
+    anchors:
+      - - -75.8131936
+        - 45.3342998
+      - - -75.7783546
+        - 45.3740116
+    name_fr: chemin Richmond
+    name_en: Richmond Road
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: secondary
+    ref: '36'
+    parallel_to: Richmond Road
+  - name: Navaho Drive
+    osm_names:
+      - Navaho Drive
+    anchors:
+      - - -75.7587042
+        - 45.3544496
+      - - -75.7561282
+        - 45.3590689
+    name_fr: promenade Navaho
+    name_en: Navaho Drive
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: tertiary
   - name: Iris Street
     osm_names:
       - Iris Street
@@ -1348,6 +1938,102 @@ bike_paths:
     cycleway: shared_lane
     highway: tertiary
     parallel_to: Iris Street
+  - name: Steeple Chase Drive
+    osm_names:
+      - Steeple Chase Drive
+    anchors:
+      - - -75.85867
+        - 45.2915368
+      - - -75.8585745
+        - 45.2918072
+    name_fr: promenade Steeple Chase
+    name_en: Steeple Chase Drive
+    surface: asphalt
+    cycleway: lane
+    highway: tertiary
+    parallel_to: Steeple Chase Drive
+  - name: Stonehaven Drive
+    osm_names:
+      - Stonehaven Drive
+    anchors:
+      - - -75.8678063
+        - 45.2807996
+      - - -75.8402199
+        - 45.2910785
+    name_fr: promenade Stonehaven
+    name_en: Stonehaven Drive
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: tertiary
+    parallel_to: Stonehaven Drive
+  - name: Somerset Street West
+    osm_names:
+      - Somerset Street West
+    anchors:
+      - - -75.7205661
+        - 45.4064831
+      - - -75.685022
+        - 45.4202561
+    name_fr: rue Somerset Ouest
+    name_en: Somerset Street West
+    surface: asphalt
+    lit: 'yes'
+    cycleway: shared_lane
+    highway: secondary
+    ref: '36'
+    parallel_to: Somerset Street West
+  - name: Queen Street
+    osm_names:
+      - Queen Street
+    anchors:
+      - - -75.7089961
+        - 45.4170413
+      - - -75.6968862
+        - 45.4222455
+    name_fr: rue Queen
+    name_en: Queen Street
+    surface: asphalt
+    lit: 'yes'
+    cycleway: shared_lane
+    highway: tertiary
+  - name: Prince Of Wales Drive
+    osm_names:
+      - Prince Of Wales Drive
+    anchors:
+      - - -75.710235
+        - 45.2614555
+      - - -75.6998509
+        - 45.3961637
+    name_fr: promenade Prince Of Wales
+    name_en: Prince Of Wales Drive
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: primary
+    ref: '73'
+    parallel_to: Prince Of Wales Drive
+  - name: Bronson Avenue
+    osm_names:
+      - Bronson Avenue
+    anchors:
+      - - -75.6963429
+        - 45.3803447
+      - - -75.6866599
+        - 45.3951202
+    name_fr: avenue Bronson
+    name_en: Bronson Avenue
+    wikipedia: en:Bronson Avenue
+    wikidata: Q4097051
+    surface: asphalt
+    lit: 'yes'
+    cycleway: shoulder
+    highway: primary
+    ref: '79'
+    parallel_to: Bronson Avenue
+    wikidata_meta:
+      description_en: street in Ottawa, Canada
+      description_fr: avenue à Ottawa, Ontario
   - name: Trainyards Drive
     osm_names:
       - Trainyards Drive
@@ -1362,6 +2048,149 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Trainyards Drive
+  - name: Donald Street
+    osm_names:
+      - Donald Street
+    anchors:
+      - - -75.6672062
+        - 45.4270113
+      - - -75.6369313
+        - 45.429087
+    name_fr: rue Donald
+    name_en: Donald Street
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: tertiary
+    parallel_to: Donald Street
+  - name: Cyrville Road
+    osm_names:
+      - Cyrville Road
+    anchors:
+      - - -75.6353965
+        - 45.4164912
+      - - -75.6024075
+        - 45.4247094
+    name_fr: chemin Cyrville
+    name_en: Cyrville Road
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: secondary
+    parallel_to: Cyrville Road
+  - name: McArthur Avenue
+    osm_names:
+      - McArthur Avenue
+    anchors:
+      - - -75.6689991
+        - 45.4307357
+      - - -75.6421612
+        - 45.4327094
+    name_fr: avenue McArthur
+    name_en: McArthur Avenue
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: secondary
+    ref: '68'
+    parallel_to: McArthur Avenue
+  - name: Coupal Street
+    osm_names:
+      - Coupal Street
+    anchors:
+      - - -75.6724296
+        - 45.4361133
+      - - -75.6698189
+        - 45.4363754
+    name_fr: rue Coupal
+    name_en: Coupal Street
+    surface: asphalt
+    cycleway: shared_lane
+    highway: residential
+  - name: Somerset Street East
+    osm_names:
+      - Somerset Street East
+    anchors:
+      - - -75.6801762
+        - 45.422069
+      - - -75.6718059
+        - 45.425592
+    name_fr: rue Somerset Est
+    name_en: Somerset Street East
+    surface: asphalt
+    cycleway: shared_lane
+    highway: tertiary
+  - name: Princess Avenue
+    osm_names:
+      - Princess Avenue
+    anchors:
+      - - -75.692338
+        - 45.4445792
+      - - -75.6894074
+        - 45.4457002
+    name_fr: avenue Princess
+    name_en: Princess Avenue
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: primary
+  - name: Blair Road
+    osm_names:
+      - Blair Road
+    anchors:
+      - - -75.6232407
+        - 45.4311016
+      - - -75.6048716
+        - 45.4610532
+    name_fr: chemin Blair
+    name_en: Blair Road
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: secondary
+    ref: '27'
+  - name: Fallowfield Road
+    osm_names:
+      - Fallowfield Road
+    anchors:
+      - - -75.7860767
+        - 45.2754572
+      - - -75.7019101
+        - 45.3095307
+    name_fr: chemin Fallowfield
+    name_en: Fallowfield Road
+    surface: asphalt
+    cycleway: lane
+    highway: secondary
+    ref: '12'
+    parallel_to: Fallowfield Road
+  - name: MacFarlane Road
+    osm_names:
+      - MacFarlane Road
+    anchors:
+      - - -75.7170512
+        - 45.3233425
+      - - -75.7032145
+        - 45.331193
+    name_fr: chemin MacFarlane
+    name_en: MacFarlane Road
+    surface: asphalt
+    cycleway: lane
+    highway: tertiary
+  - name: Dynes Road
+    osm_names:
+      - Dynes Road
+    anchors:
+      - - -75.7131418
+        - 45.3665081
+      - - -75.7053851
+        - 45.3699235
+    name_fr: chemin Dynes
+    name_en: Dynes Road
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: tertiary
   - name: Grant Carman Drive
     osm_names:
       - Grant Carman Drive
@@ -1376,6 +2205,49 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: tertiary
+  - name: Birchwood Drive
+    osm_names:
+      - Birchwood Drive
+    anchors:
+      - - -75.7324975
+        - 45.3557672
+      - - -75.7334193
+        - 45.3568323
+    name_fr: promenade Birchwood
+    name_en: Birchwood Drive
+    surface: asphalt
+    cycleway: shared_lane
+    highway: residential
+  - name: Hog's Back Road
+    osm_names:
+      - Hog's Back Road
+    anchors:
+      - - -75.6989042
+        - 45.3696524
+      - - -75.698194
+        - 45.3700105
+    name_fr: chemin Hog's Back
+    name_en: Hog's Back Road
+    surface: asphalt
+    cycleway: lane
+    highway: secondary
+    operator: National Capital Commission
+    ref: '51'
+    parallel_to: Hog's Back Road
+  - name: Deer Park Road
+    osm_names:
+      - Deer Park Road
+    anchors:
+      - - -75.7182897
+        - 45.3645248
+      - - -75.7135416
+        - 45.3663411
+    name_fr: chemin Deer Park
+    name_en: Deer Park Road
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: residential
   - name: Alta Vista Drive
     osm_names:
       - Alta Vista Drive
@@ -1394,15 +2266,59 @@ bike_paths:
     osm_names:
       - D'Aoust Avenue
     anchors:
-      - - -75.6337419
-        - 45.3491021
-      - - -75.6337419
-        - 45.3491021
+      - - -75.6360136
+        - 45.3493249
+      - - -75.6314701
+        - 45.3493347
     name_fr: avenue D'Aoust
     name_en: D'Aoust Avenue
     surface: asphalt
     cycleway: lane
     highway: tertiary
+  - name: Des Épinettes Avenue
+    osm_names:
+      - Des Épinettes Avenue
+    anchors:
+      - - -75.5078936
+        - 45.461383
+      - - -75.4927984
+        - 45.4672762
+    name_fr: avenue des Épinettes
+    name_en: Des Épinettes Avenue
+    surface: asphalt
+    width: '11'
+    cycleway: lane
+    highway: tertiary
+  - name: Orchardview Avenue
+    osm_names:
+      - Orchardview Avenue
+    anchors:
+      - - -75.4785109
+        - 45.464989
+      - - -75.4767627
+        - 45.467972
+    name_fr: avenue Orchardview
+    name_en: Orchardview Avenue
+    surface: asphalt
+    width: '11'
+    cycleway: lane
+    highway: tertiary
+  - name: Tenth Line Road
+    osm_names:
+      - Tenth Line Road
+    anchors:
+      - - -75.4904777
+        - 45.4377246
+      - - -75.4745213
+        - 45.4655926
+    name_fr: chemin Tenth Line
+    name_en: Tenth Line Road
+    surface: asphalt
+    width: '9'
+    cycleway: lane
+    highway: secondary
+    ref: '47'
+    parallel_to: Tenth Line Road
   - name: Merkley Drive
     osm_names:
       - Merkley Drive
@@ -1418,6 +2334,32 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: tertiary
+  - name: Monk Street
+    osm_names:
+      - Monk Street
+    anchors:
+      - - -75.6860774
+        - 45.3974477
+      - - -75.6872712
+        - 45.3995231
+    name_fr: rue Monk
+    name_en: Monk Street
+    surface: asphalt
+    cycleway: lane
+    highway: residential
+  - name: Clémentine Boulevard
+    osm_names:
+      - Clémentine Boulevard
+    anchors:
+      - - -75.673958
+        - 45.3780804
+      - - -75.6732542
+        - 45.3820471
+    name_fr: boulevard Clémentine
+    name_en: Clémentine Boulevard
+    surface: asphalt
+    cycleway: shared_lane
+    highway: residential
   - name: Kilborn Avenue
     osm_names:
       - Kilborn Avenue
@@ -1432,18 +2374,181 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: tertiary
+  - name: Frank Kenny Road
+    osm_names:
+      - Frank Kenny Road
+    anchors:
+      - - -75.4416365
+        - 45.471479
+      - - -75.4360004
+        - 45.473284
+    name_fr: chemin Frank Kenny
+    name_en: Frank Kenny Road
+    surface: asphalt
+    cycleway: lane
+    highway: secondary
+    ref: '33'
+    parallel_to: Frank Kenny Road
+  - name: Chemin de Montréal Ouest
+    osm_names:
+      - Chemin de Montréal Ouest
+    anchors:
+      - - -75.4801899
+        - 45.526583
+      - - -75.4300063
+        - 45.5421423
+    surface: asphalt
+    cycleway: lane
+    highway: primary
+    ref: '148'
+    parallel_to: Chemin de Montréal Ouest
+  - name: Rue Maclaren Est
+    osm_names:
+      - Rue Maclaren Est
+    anchors:
+      - - -75.4097442
+        - 45.5842328
+      - - -75.4007183
+        - 45.5887843
+    surface: asphalt
+    cycleway: lane
+    highway: tertiary
+    parallel_to: Rue Maclaren Est
+  - name: Booth Street
+    osm_names:
+      - Booth Street
+    anchors:
+      - - -75.717498
+        - 45.418414
+      - - -75.7160864
+        - 45.4199031
+    name_fr: rue Booth
+    name_en: Booth Street
+    surface: asphalt
+    cycleway: lane
+    highway: secondary
+    access: 'yes'
+    parallel_to: Booth Street
+  - name: Rue Wìgwàs
+    osm_names:
+      - Rue Wìgwàs
+    anchors:
+      - - -75.7331156
+        - 45.4345219
+      - - -75.72988
+        - 45.4345523
+    surface: asphalt
+    cycleway: lane
+    highway: residential
+  - name: Chemin du Lac-Meech
+    osm_names:
+      - Chemin du Lac-Meech
+    anchors:
+      - - -75.8241078
+        - 45.5032651
+      - - -75.8125894
+        - 45.509489
+    surface: asphalt
+    cycleway: lane
+    highway: tertiary
   - name: Rue Jean-Proulx
     osm_names:
       - Rue Jean-Proulx
     anchors:
-      - - -75.7344227
-        - 45.4639817
-      - - -75.7344227
-        - 45.4639817
+      - - -75.7346148
+        - 45.4612529
+      - - -75.7356256
+        - 45.4667104
     surface: asphalt
     cycleway: lane
     highway: tertiary
     parallel_to: Rue Jean-Proulx
+  - name: Boulevard Saint-René Est
+    osm_names:
+      - Boulevard Saint-René Est
+    anchors:
+      - - -75.5884409
+        - 45.5051602
+      - - -75.5817461
+        - 45.5056978
+    surface: asphalt
+    width: '13'
+    cycleway: lane
+    highway: tertiary
+    parallel_to: Boulevard Saint-René Est
+  - name: Old Richmond Road
+    osm_names:
+      - Old Richmond Road
+    anchors:
+      - - -75.837959
+        - 45.2760436
+      - - -75.8321725
+        - 45.3025438
+    name_fr: chemin Old Richmond
+    name_en: Old Richmond Road
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: secondary
+    ref: '59'
+    parallel_to: Old Richmond Road
+  - name: Merivale Road
+    osm_names:
+      - Merivale Road
+    anchors:
+      - - -75.7344329
+        - 45.3642082
+      - - -75.7307018
+        - 45.3888302
+    name_fr: chemin Merivale
+    name_en: Merivale Road
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: secondary
+    ref: '63'
+  - name: Kirkwood Avenue
+    osm_names:
+      - Kirkwood Avenue
+    anchors:
+      - - -75.7410401
+        - 45.3795362
+      - - -75.7365885
+        - 45.3857075
+    name_fr: avenue Kirkwood
+    name_en: Kirkwood Avenue
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: secondary
+    ref: '67'
+    parallel_to: Kirkwood Avenue
+  - name: Boulevard Labrosse
+    osm_names:
+      - Boulevard Labrosse
+    anchors:
+      - - -75.6436472
+        - 45.5014242
+      - - -75.6426003
+        - 45.5082469
+    surface: asphalt
+    cycleway: lane
+    highway: secondary
+  - name: Byron Avenue
+    osm_names:
+      - Byron Avenue
+    anchors:
+      - - -75.7687541
+        - 45.3828689
+      - - -75.7308804
+        - 45.3979769
+    name_fr: avenue Byron
+    name_en: Byron Avenue
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: tertiary
+    parallel_to: Byron Avenue
   - name: Albion Road
     osm_names:
       - Albion Road
@@ -1475,6 +2580,20 @@ bike_paths:
     highway: secondary
     ref: '69'
     parallel_to: Fisher Avenue
+  - name: Fern Casey Street
+    osm_names:
+      - Fern Casey Street
+    anchors:
+      - - -75.5091422
+        - 45.4392003
+      - - -75.5078673
+        - 45.4407827
+    name_fr: rue Fern Casey
+    name_en: Fern Casey Street
+    surface: asphalt
+    cycleway: lane
+    highway: tertiary
+    parallel_to: Fern Casey Street
   - name: Renaud Road
     osm_names:
       - Renaud Road
@@ -1501,14 +2620,39 @@ bike_paths:
     cycleway: lane
     highway: primary
     ref: '148'
+  - name: Cambrian Road
+    osm_names:
+      - Cambrian Road
+    anchors:
+      - - -75.7353267
+        - 45.2533678
+      - - -75.7288097
+        - 45.2560749
+    name_fr: chemin Cambrian
+    name_en: Cambrian Road
+    surface: asphalt
+    cycleway: lane
+    highway: secondary
+    parallel_to: Cambrian Road
+  - name: Rue Gouin
+    osm_names:
+      - Rue Gouin
+    anchors:
+      - - -75.6603392
+        - 45.4865576
+      - - -75.6520627
+        - 45.4884327
+    surface: asphalt
+    cycleway: lane
+    highway: residential
   - name: Rue Belleau
     osm_names:
       - Rue Belleau
     anchors:
-      - - -75.7418512
-        - 45.4216049
-      - - -75.7418512
-        - 45.4216049
+      - - -75.741723
+        - 45.4207866
+      - - -75.7419794
+        - 45.4224232
     surface: asphalt
     cycleway: lane
     highway: residential
@@ -1526,18 +2670,281 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: tertiary
+  - name: Leitrim Road
+    osm_names:
+      - Leitrim Road
+    anchors:
+      - - -75.677783
+        - 45.2980631
+      - - -75.6254058
+        - 45.3194624
+    name_fr: chemin Leitrim
+    name_en: Leitrim Road
+    surface: asphalt
+    cycleway: lane
+    highway: secondary
+    ref: '14'
+    parallel_to: Leitrim Road
+  - name: Brian Coburn Boulevard
+    osm_names:
+      - Brian Coburn Boulevard
+    anchors:
+      - - -75.5234496
+        - 45.4323315
+      - - -75.447768
+        - 45.4573508
+    name_fr: boulevard Brian Coburn
+    name_en: Brian Coburn Boulevard
+    surface: asphalt
+    width: '7'
+    cycleway: lane
+    highway: secondary
+    parallel_to: Brian Coburn Boulevard
+  - name: Wajashk Private
+    osm_names:
+      - Wajashk Private
+    anchors:
+      - - -75.756973
+        - 45.3504349
+      - - -75.7540624
+        - 45.3515556
+    surface: asphalt
+    cycleway: shared_lane
+    highway: unclassified
+  - name: Rue Jos-Montferrand
+    osm_names:
+      - Rue Jos-Montferrand
+    anchors:
+      - - -75.7180295
+        - 45.42339
+      - - -75.7165863
+        - 45.4246806
+    surface: asphalt
+    cycleway: lane
+    highway: residential
+  - name: Boulevard de Lucerne
+    osm_names:
+      - Boulevard de Lucerne
+    anchors:
+      - - -75.8050912
+        - 45.386607
+      - - -75.7533969
+        - 45.4197631
+    surface: asphalt
+    lit: 'no'
+    cycleway: lane
+    highway: secondary
+  - name: Avenue de Buckingham
+    osm_names:
+      - Avenue de Buckingham
+    anchors:
+      - - -75.4195345
+        - 45.595737
+      - - -75.4185947
+        - 45.5938088
+    surface: asphalt
+    cycleway: lane
+    highway: tertiary
+  - name: Rue Le Gallois
+    osm_names:
+      - Rue Le Gallois
+    anchors:
+      - - -75.7396897
+        - 45.4998234
+      - - -75.7318149
+        - 45.4996486
+    surface: asphalt
+    cycleway: lane
+    highway: tertiary
+  - name: Legget Drive
+    osm_names:
+      - Legget Drive
+    anchors:
+      - - -75.9209411
+        - 45.3424164
+      - - -75.8994748
+        - 45.3494277
+    name_fr: promenade Legget
+    name_en: Legget Drive
+    surface: asphalt
+    highway: tertiary
+    parallel_to: Legget Drive
+  - name: Sebring Avenue
+    osm_names:
+      - Sebring Avenue
+    anchors:
+      - - -75.7413137
+        - 45.3861627
+      - - -75.7393715
+        - 45.3867767
+    name_fr: avenue Sebring
+    name_en: Sebring Avenue
+    surface: asphalt
+    highway: residential
+  - name: Lakeview Terrace
+    osm_names:
+      - Lakeview Terrace
+    anchors:
+      - - -75.6968517
+        - 45.3943523
+      - - -75.6967775
+        - 45.3941807
+    name_fr: terrasse Lakeview
+    name_en: Lakeview Terrace
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
+  - name: Deschamps Avenue
+    osm_names:
+      - Deschamps Avenue
+    anchors:
+      - - -75.6680604
+        - 45.4365104
+      - - -75.6619015
+        - 45.4370056
+    name_fr: avenue Deschamps
+    name_en: Deschamps Avenue
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+  - name: Echo Drive
+    osm_names:
+      - Echo Drive
+    anchors:
+      - - -75.6814739
+        - 45.4149685
+      - - -75.6803517
+        - 45.4168527
+    name_fr: promenade Echo
+    name_en: Echo Drive
+    surface: asphalt
+    highway: residential
+  - name: Woodfield Drive
+    osm_names:
+      - Woodfield Drive
+    anchors:
+      - - -75.7322011
+        - 45.33642
+      - - -75.7268746
+        - 45.337796
+    name_fr: promenade Woodfield
+    name_en: Woodfield Drive
+    surface: asphalt
+    highway: tertiary
+    parallel_to: Woodfield Drive
   - name: Lynda Lane
     osm_names:
       - Lynda Lane
     anchors:
-      - - -75.6475049
-        - 45.3974405
-      - - -75.6475049
-        - 45.3974405
+      - - -75.6483727
+        - 45.3954079
+      - - -75.6466487
+        - 45.3994731
     name_fr: ruelle Lynda
     name_en: Lynda Lane
     surface: asphalt
     highway: unclassified
+  - name: Rideau River Drive
+    osm_names:
+      - Rideau River Drive
+    anchors:
+      - - -75.6730069
+        - 45.4004102
+      - - -75.6725685
+        - 45.3996747
+    name_fr: promenade Rideau River
+    name_en: Rideau River Drive
+    surface: asphalt
+    highway: residential
+  - name: Rockcliffe Driveway
+    osm_names:
+      - Rockcliffe Driveway
+    anchors:
+      - - -75.6898932
+        - 45.4464634
+      - - -75.6870956
+        - 45.4507224
+    surface: asphalt
+    highway: unclassified
+  - name: Industrial Avenue
+    osm_names:
+      - Industrial Avenue
+    anchors:
+      - - -75.6300412
+        - 45.4061177
+      - - -75.6277089
+        - 45.4066147
+    name_fr: avenue Industrial
+    name_en: Industrial Avenue
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+    ref: '30'
+    parallel_to: Industrial Avenue
+  - name: Arlington Avenue
+    osm_names:
+      - Arlington Avenue
+    anchors:
+      - - -75.7019731
+        - 45.4062038
+      - - -75.7018072
+        - 45.4062753
+    name_fr: avenue Arlington
+    name_en: Arlington Avenue
+    surface: asphalt
+    highway: residential
+  - name: St. Andrew Street
+    osm_names:
+      - St. Andrew Street
+    anchors:
+      - - -75.6918771
+        - 45.4330573
+      - - -75.6917038
+        - 45.4331349
+    name_fr: rue St. Andrew
+    name_en: St. Andrew Street
+    surface: asphalt
+    highway: residential
+  - name: Chemin Jean-Paul Lemieux
+    osm_names:
+      - Chemin Jean-Paul Lemieux
+    anchors:
+      - - -75.7982457
+        - 45.4961752
+      - - -75.7952166
+        - 45.5036884
+    surface: asphalt
+    highway: residential
+  - name: Boulevard Louise-Campagna
+    osm_names:
+      - Boulevard Louise-Campagna
+    anchors:
+      - - -75.7734364
+        - 45.4288755
+      - - -75.7623133
+        - 45.4301058
+    surface: asphalt
+    highway: tertiary
+    parallel_to: Boulevard Louise-Campagna
+  - name: Heron Road
+    osm_names:
+      - Heron Road
+    anchors:
+      - - -75.7038399
+        - 45.3753251
+      - - -75.6813822
+        - 45.3775319
+    name_fr: chemin Heron
+    name_en: Heron Road
+    wikidata: Q5743531
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+    ref: '16'
+    parallel_to: Heron Road
+    wikidata_meta:
+      description_en: bridge in Canada
+      description_fr: pont canadien
   - name: Walkley Road
     osm_names:
       - Walkley Road
@@ -1552,6 +2959,33 @@ bike_paths:
     lit: 'yes'
     highway: primary
     ref: '74'
+  - name: Heatherington Road
+    osm_names:
+      - Heatherington Road
+    anchors:
+      - - -75.6524017
+        - 45.3724542
+      - - -75.643747
+        - 45.3778416
+    name_fr: chemin Heatherington
+    name_en: Heatherington Road
+    surface: asphalt
+    lit: 'yes'
+    highway: tertiary
+    parallel_to: Heatherington Road
+  - name: Onslow Crescent
+    osm_names:
+      - Onslow Crescent
+    anchors:
+      - - -75.670765
+        - 45.4037746
+      - - -75.6725709
+        - 45.406178
+    name_fr: croissant Onslow
+    name_en: Onslow Crescent
+    surface: asphalt
+    lit: 'yes'
+    highway: residential
   - name: Boulevard de l'Hôpital
     osm_names:
       - Boulevard de l'Hôpital
@@ -1564,14 +2998,87 @@ bike_paths:
     lit: 'yes'
     highway: secondary
     parallel_to: Boulevard de l'Hôpital
+  - name: Boulevard de Carrefour
+    osm_names:
+      - Boulevard de Carrefour
+    anchors:
+      - - -75.6813125
+        - 45.4859366
+      - - -75.6748174
+        - 45.4864343
+    surface: asphalt
+    highway: tertiary
+    parallel_to: Boulevard de Carrefour
+  - name: Huntmar Drive
+    osm_names:
+      - Huntmar Drive
+    anchors:
+      - - -75.9197552
+        - 45.2832418
+      - - -75.9119153
+        - 45.2884347
+    name_fr: promenade Huntmar
+    name_en: Huntmar Drive
+    surface: asphalt
+    highway: secondary
+    parallel_to: Huntmar Drive
+  - name: Old Montréal Road
+    osm_names:
+      - Old Montréal Road
+    anchors:
+      - - -75.4768266
+        - 45.4891908
+      - - -75.4731043
+        - 45.4916685
+    name_fr: chemin Old Montréal
+    name_en: Old Montréal Road
+    surface: asphalt
+    highway: secondary
+    ref: '34'
+    parallel_to: Old Montréal Road
+  - name: Bridgestone Drive
+    osm_names:
+      - Bridgestone Drive
+    anchors:
+      - - -75.8586714
+        - 45.2902407
+      - - -75.858578
+        - 45.2905042
+    name_fr: promenade Bridgestone
+    name_en: Bridgestone Drive
+    surface: asphalt
+    highway: tertiary
+    parallel_to: Bridgestone Drive
+  - name: Sir Frederick Banting Driveway
+    osm_names:
+      - Sir Frederick Banting Driveway
+    anchors:
+      - - -75.7393303
+        - 45.4018455
+      - - -75.7393285
+        - 45.4016309
+    name_fr: promenade Sir Frederick Banting
+    name_en: Sir Frederick Banting Driveway
+    surface: asphalt
+    highway: unclassified
+  - name: Rue des Beaux-Arts
+    osm_names:
+      - Rue des Beaux-Arts
+    anchors:
+      - - -75.8081122
+        - 45.4369324
+      - - -75.8044972
+        - 45.4374886
+    surface: asphalt
+    highway: residential
   - name: Coulicou
     osm_names:
       - Coulicou
     anchors:
-      - - -75.8251454
-        - 45.422867
-      - - -75.8251454
-        - 45.422867
+      - - -75.8296319
+        - 45.4191359
+      - - -75.8206589
+        - 45.4265982
     surface: ground
     highway: footway
     ref: '2'
@@ -1579,20 +3086,20 @@ bike_paths:
     osm_names:
       - Deauville trail
     anchors:
-      - - -75.6598341
-        - 45.6259086
-      - - -75.6598341
-        - 45.6259086
+      - - -75.6501809
+        - 45.6174421
+      - - -75.666152
+        - 45.6346972
     surface: ground
     highway: footway
   - name: Pont Macdonald-Cartier Bridge
     osm_names:
       - Pont Macdonald-Cartier Bridge
     anchors:
-      - - -75.7030041
-        - 45.4371596
-      - - -75.7030041
-        - 45.4371596
+      - - -75.7069541
+        - 45.4381944
+      - - -75.6990542
+        - 45.4361249
     name_fr: Pont Macdonald-Cartier
     name_en: Macdonald-Cartier Bridge
     surface: concrete
@@ -1603,20 +3110,20 @@ bike_paths:
     osm_names:
       - M.O.
     anchors:
-      - - -75.8483585
-        - 45.5454284
-      - - -75.8483585
-        - 45.5454284
+      - - -75.8530246
+        - 45.5428908
+      - - -75.8436923
+        - 45.5469
     surface: ground
     highway: footway
   - name: Lover's Lane
     osm_names:
       - Lover's Lane
     anchors:
-      - - -75.6769838
-        - 45.4284636
-      - - -75.6769838
-        - 45.4284636
+      - - -75.6773434
+        - 45.4288959
+      - - -75.6766241
+        - 45.4280313
     surface: asphalt
     width: '1.5'
     lit: 'no'
@@ -1625,55 +3132,111 @@ bike_paths:
     osm_names:
       - Arden Brooks Bridge
     anchors:
-      - - -75.5591484
-        - 45.2611546
-      - - -75.5591484
-        - 45.2611546
+      - - -75.5591993
+        - 45.2611395
+      - - -75.5590974
+        - 45.2611697
     surface: concrete
     width: '2'
+    highway: footway
+  - name: Richardson Ridge Nature Trail
+    osm_names:
+      - Richardson Ridge Nature Trail
+    anchors:
+      - - -75.9380992
+        - 45.3174432
+      - - -75.9328856
+        - 45.3217128
+    surface: ground
+    width: '0.5'
+    lit: 'no'
+    highway: footway
+  - name: Kizell Pond Trail North
+    osm_names:
+      - Kizell Pond Trail North
+    anchors:
+      - - -75.9377193
+        - 45.3263182
+      - - -75.9312187
+        - 45.3291081
+    surface: gravel
+    width: '0.5'
+    highway: footway
+  - name: Mississippi Valley Trail - ART Section
+    osm_names:
+      - Mississippi Valley Trail - ART Section
+    anchors:
+      - - -76.2056516
+        - 45.2309516
+      - - -76.2072213
+        - 45.2338654
+    surface: ground
+    lit: 'no'
     highway: footway
   - name: Hendrick Park Bridge
     osm_names:
       - Hendrick Park Bridge
     anchors:
-      - - -75.8061829
-        - 45.4976783
-      - - -75.8061829
-        - 45.4976783
+      - - -75.8062861
+        - 45.4976894
+      - - -75.8060797
+        - 45.4976672
     surface: wood
     lit: 'no'
     highway: footway
+  - name: Spingbank trail
+    osm_names:
+      - Spingbank trail
+    anchors:
+      - - -76.2052068
+        - 45.2331243
+      - - -76.2022547
+        - 45.2358246
+    surface: ground
+    width: '2'
+    highway: footway
+    access: private
   - name: Jackie Holzman Bridge
     osm_names:
       - Jackie Holzman Bridge
     anchors:
-      - - -75.7307894
-        - 45.3939681
-      - - -75.7307894
-        - 45.3939681
+      - - -75.7310754
+        - 45.3940847
+      - - -75.7305034
+        - 45.3938515
     surface: concrete
     width: '3'
     lit: 'yes'
     segregated: 'no'
     highway: footway
+  - name: Kizell Pond Trail South
+    osm_names:
+      - Kizell Pond Trail South
+    anchors:
+      - - -75.9393931
+        - 45.3228933
+      - - -75.9450007
+        - 45.3198691
+    surface: woodchips
+    highway: footway
   - name: Lien piétonnier
     osm_names:
       - Lien piétonnier
     anchors:
-      - - -75.7936478
-        - 45.4806552
-      - - -75.7936478
-        - 45.4806552
+      - - -75.793981
+        - 45.4799206
+      - - -75.7932937
+        - 45.4813898
     surface: ground
     highway: footway
   - name: Rue du Plein-Air
     osm_names:
       - Rue du Plein-Air
     anchors:
-      - - -75.7791525
-        - 45.469794
-      - - -75.7791525
-        - 45.469794
+      - - -75.7791263
+        - 45.4698038
+      - - -75.7791788
+        - 45.4697842
     surface: asphalt
     highway: footway
   - name: RIP
@@ -1698,616 +3261,6 @@ bike_paths:
     lit: 'no'
     width: '3'
     smoothness: good
-  - name: Rue des Frênes
-    parallel_to: Rue des Frênes
-    highway: cycleway
-    anchors:
-      - - -75.7695048
-        - 45.4369398
-      - - -75.7695048
-        - 45.4369398
-    surface: asphalt
-    lit: 'yes'
-    width: '3'
-    smoothness: good
-  - name: Rue Lahaie
-    parallel_to: Rue Lahaie
-    highway: cycleway
-    anchors:
-      - - -75.6763036
-        - 45.4998025
-      - - -75.6763036
-        - 45.4998025
-    surface: asphalt
-    width: '2.5'
-  - name: Rue Davidson Ouest
-    parallel_to: Rue Davidson Ouest
-    highway: cycleway
-    anchors:
-      - - -75.6626708
-        - 45.5055011
-      - - -75.6604188
-        - 45.506589
-    surface: asphalt
-    lit: 'yes'
-    width: '3'
-  - name: Rue Bellehumeur
-    parallel_to: Rue Bellehumeur
-    highway: cycleway
-    anchors:
-      - - -75.6929778
-        - 45.4805781
-      - - -75.6929778
-        - 45.4805781
-    surface: asphalt
-    width: '2.5'
-  - name: Rue du Belvédère
-    parallel_to: Rue du Belvédère
-    highway: cycleway
-    anchors:
-      - - -75.6994533
-        - 45.4997224
-      - - -75.6994533
-        - 45.4997224
-    surface: asphalt
-    width: '2.5'
-  - name: Fairwinds Terrace
-    parallel_to: Fairwinds Terrace
-    highway: cycleway
-    anchors:
-      - - -75.5590814
-        - 45.4780966
-      - - -75.5590814
-        - 45.4780966
-    surface: asphalt
-    lit: 'no'
-    width: '3'
-    smoothness: good
-  - name: Chemin McConnell
-    parallel_to: Chemin McConnell
-    highway: cycleway
-    anchors:
-      - - -75.8014388
-        - 45.4128353
-      - - -75.8014388
-        - 45.4128353
-    surface: asphalt
-    lit: 'yes'
-    width: '2.5'
-    smoothness: good
-  - name: Plante Drive
-    parallel_to: Plante Drive
-    highway: cycleway
-    anchors:
-      - - -75.6595537
-        - 45.3539904
-      - - -75.6591275
-        - 45.3540181
-    surface: asphalt
-    lit: 'yes'
-    width: '2.5'
-    smoothness: good
-  - name: Pheasant Run Drive
-    parallel_to: Pheasant Run Drive
-    highway: cycleway
-    anchors:
-      - - -75.7779774
-        - 45.2768894
-      - - -75.7779774
-        - 45.2768894
-    surface: asphalt
-    width: '3'
-    smoothness: good
-  - name: Holly Acres Road
-    parallel_to: Holly Acres Road
-    highway: cycleway
-    anchors:
-      - - -75.8157672
-        - 45.3433459
-      - - -75.8109897
-        - 45.3449926
-    surface: asphalt
-    lit: 'yes'
-    width: '2.5'
-    smoothness: good
-  - name: Jockvale Road
-    parallel_to: Jockvale Road
-    highway: cycleway
-    anchors:
-      - - -75.7613056
-        - 45.2710696
-      - - -75.7562674
-        - 45.2727416
-    surface: asphalt
-    width: '3'
-    smoothness: good
-  - name: Chemin D'Amour
-    parallel_to: Chemin D'Amour
-    highway: cycleway
-    anchors:
-      - - -75.7896149
-        - 45.4137181
-      - - -75.7896149
-        - 45.4137181
-    surface: asphalt
-    lit: 'yes'
-    width: '2.5'
-    smoothness: good
-  - name: Chemin Riverside
-    parallel_to: Chemin Riverside
-    highway: cycleway
-    anchors:
-      - - -75.927589
-        - 45.6431383
-      - - -75.927589
-        - 45.6431383
-    surface: asphalt
-  - name: Innovation Drive
-    parallel_to: Innovation Drive
-    highway: cycleway
-    anchors:
-      - - -75.9303944
-        - 45.342275
-      - - -75.9248792
-        - 45.3430939
-    surface: asphalt
-    width: '3'
-  - name: Blasdell Avenue
-    parallel_to: Blasdell Avenue
-    highway: cycleway
-    anchors:
-      - - -75.6487272
-        - 45.4548338
-      - - -75.6482902
-        - 45.4549996
-    surface: asphalt
-    width: '2.4'
-  - name: Brady Avenue
-    parallel_to: Brady Avenue
-    highway: cycleway
-    anchors:
-      - - -75.9424487
-        - 45.343388
-      - - -75.9424487
-        - 45.343388
-    surface: asphalt
-    width: '3'
-  - name: Systemhouse Street
-    parallel_to: Systemhouse Street
-    highway: cycleway
-    anchors:
-      - - -75.7802996
-        - 45.2685573
-      - - -75.7797724
-        - 45.2687528
-    surface: asphalt
-    lit: 'yes'
-    width: '1.5'
-    smoothness: excellent
-  - name: Rainrock Crescent
-    parallel_to: Rainrock Crescent
-    highway: cycleway
-    anchors:
-      - - -75.5145456
-        - 45.4377221
-      - - -75.5145456
-        - 45.4377221
-    surface: asphalt
-    width: '3'
-    smoothness: excellent
-  - name: Junction Avenue
-    parallel_to: Junction Avenue
-    highway: cycleway
-    anchors:
-      - - -75.6773688
-        - 45.3740587
-      - - -75.6773688
-        - 45.3740587
-    surface: asphalt
-    lit: 'yes'
-    width: '3'
-  - name: Rideau Valley Drive South
-    parallel_to: Rideau Valley Drive South
-    highway: cycleway
-    anchors:
-      - - -75.6498728
-        - 45.152675
-      - - -75.6483499
-        - 45.1556791
-    surface: asphalt
-    width: '3'
-  - name: Provence Avenue
-    parallel_to: Provence Avenue
-    highway: cycleway
-    anchors:
-      - - -75.4577116
-        - 45.4609253
-      - - -75.4576448
-        - 45.4611742
-    surface: asphalt
-    width: '4'
-  - name: Rue Front
-    parallel_to: Rue Front
-    highway: cycleway
-    anchors:
-      - - -75.857207
-        - 45.4120202
-      - - -75.857207
-        - 45.4120202
-    surface: asphalt
-  - name: Rue Georges
-    parallel_to: Rue Georges
-    highway: cycleway
-    anchors:
-      - - -75.4203628
-        - 45.5870393
-      - - -75.4203628
-        - 45.5870393
-    width: '2'
-  - name: Rue de Fréville
-    parallel_to: Rue de Fréville
-    highway: cycleway
-    anchors:
-      - - -75.5720628
-        - 45.4985428
-      - - -75.5720628
-        - 45.4985428
-    surface: asphalt
-    width: '3'
-  - name: Boulevard Maloney Est
-    parallel_to: Boulevard Maloney Est
-    highway: cycleway
-    anchors:
-      - - -75.5864605
-        - 45.4927441
-      - - -75.5864605
-        - 45.4927441
-    surface: asphalt
-    width: '3'
-  - name: Rue de la Fabrique
-    parallel_to: Rue de la Fabrique
-    highway: cycleway
-    anchors:
-      - - -75.8617457
-        - 45.4102098
-      - - -75.8617457
-        - 45.4102098
-    surface: asphalt
-    width: '3'
-  - name: Rue des Hautes-Rives
-    parallel_to: Rue des Hautes-Rives
-    highway: cycleway
-    anchors:
-      - - -75.8661857
-        - 45.407652
-      - - -75.8661857
-        - 45.407652
-    surface: asphalt
-    width: '2.5'
-  - name: Rue Filiatreault
-    parallel_to: Rue Filiatreault
-    highway: cycleway
-    anchors:
-      - - -75.6757549
-        - 45.49251
-      - - -75.6757549
-        - 45.49251
-    surface: asphalt
-    width: '3'
-  - name: Rue du Père-Bériault
-    parallel_to: Rue du Père-Bériault
-    highway: cycleway
-    anchors:
-      - - -75.7427831
-        - 45.4904353
-      - - -75.7427831
-        - 45.4904353
-    surface: asphalt
-    lit: 'no'
-    width: '2.5'
-    smoothness: good
-  - name: Chemin Allen
-    parallel_to: Chemin Allen
-    highway: cycleway
-    anchors:
-      - - -75.7841044
-        - 45.4112371
-      - - -75.7841044
-        - 45.4112371
-    surface: asphalt
-    width: '2.5'
-    smoothness: good
-  - name: Chemin Pink
-    parallel_to: Chemin Pink
-    highway: cycleway
-    anchors:
-      - - -75.8074305
-        - 45.4423051
-      - - -75.8074305
-        - 45.4423051
-    surface: asphalt
-    width: '3'
-  - name: Rue de Vernon
-    parallel_to: Rue de Vernon
-    highway: cycleway
-    anchors:
-      - - -75.7998197
-        - 45.4428682
-      - - -75.7998079
-        - 45.4429047
-    surface: asphalt
-    width: '3'
-  - name: Palladium Drive
-    parallel_to: Palladium Drive
-    highway: cycleway
-    anchors:
-      - - -75.9406822
-        - 45.29561
-      - - -75.9404225
-        - 45.2961531
-    surface: asphalt
-    width: '2'
-    smoothness: good
-  - name: Twist Way
-    parallel_to: Twist Way
-    highway: cycleway
-    anchors:
-      - - -75.8920442
-        - 45.2809871
-      - - -75.8920442
-        - 45.2809871
-    surface: asphalt
-    width: '1'
-  - name: Barnsdale Road
-    parallel_to: Barnsdale Road
-    highway: cycleway
-    anchors:
-      - - -75.7118501
-        - 45.2406819
-      - - -75.7118501
-        - 45.2406819
-    surface: asphalt
-    width: '3'
-  - name: Young Street East
-    parallel_to: Young Street East
-    highway: cycleway
-    anchors:
-      - - -75.7121436
-        - 45.4021029
-      - - -75.7121436
-        - 45.4021029
-    surface: asphalt
-    lit: 'yes'
-    width: '2.5'
-  - name: Elevation Road
-    parallel_to: Elevation Road
-    highway: cycleway
-    anchors:
-      - - -75.7458347
-        - 45.2382141
-      - - -75.7457194
-        - 45.2382692
-    surface: asphalt
-    width: '3'
-  - name: Rue de la Pineraie
-    parallel_to: Rue de la Pineraie
-    highway: cycleway
-    anchors:
-      - - -75.6200313
-        - 45.5973491
-      - - -75.6200313
-        - 45.5973491
-    surface: asphalt
-  - name: Borrisokane Road
-    parallel_to: Borrisokane Road
-    highway: cycleway
-    anchors:
-      - - -75.7676305
-        - 45.2585716
-      - - -75.7673056
-        - 45.2586308
-    surface: asphalt
-    width: '1.5'
-  - name: Promenade du Lac-des-Fées
-    parallel_to: Promenade du Lac-des-Fées
-    highway: cycleway
-    anchors:
-      - - -75.7383004
-        - 45.4271435
-      - - -75.7383004
-        - 45.4271435
-    surface: asphalt
-  - name: Rue Cathcart
-    parallel_to: Rue Cathcart
-    highway: cycleway
-    anchors:
-      - - -75.8562867
-        - 45.3959335
-      - - -75.8562867
-        - 45.3959335
-    surface: asphalt
-  - name: Kelly Farm Drive
-    parallel_to: Kelly Farm Drive
-    highway: cycleway
-    anchors:
-      - - -75.6128559
-        - 45.3250279
-      - - -75.612432
-        - 45.3251771
-    surface: asphalt
-    width: '2'
-  - name: Cappamore Drive
-    parallel_to: Cappamore Drive
-    highway: cycleway
-    anchors:
-      - - -75.7326574
-        - 45.2355748
-      - - -75.7326038
-        - 45.2356306
-    surface: asphalt
-    width: '1'
-  - name: Huntsville Drive
-    parallel_to: Huntsville Drive
-    highway: cycleway
-    anchors:
-      - - -75.9441885
-        - 45.3176383
-      - - -75.9441885
-        - 45.3176383
-    surface: asphalt
-  - name: Chemin Denis
-    parallel_to: Chemin Denis
-    highway: cycleway
-    anchors:
-      - - -75.7666951
-        - 45.5234982
-      - - -75.7659063
-        - 45.526058
-    surface: asphalt
-  - name: Montée des Érables
-    parallel_to: Montée des Érables
-    highway: cycleway
-    anchors:
-      - - -75.7438583
-        - 45.5372197
-      - - -75.7438583
-        - 45.5372197
-    surface: asphalt
-  - name: Rue des Fleurs
-    parallel_to: Rue des Fleurs
-    highway: cycleway
-    anchors:
-      - - -75.6061554
-        - 45.5066294
-      - - -75.6061554
-        - 45.5066294
-    surface: asphalt
-    width: '3'
-  - name: Meynell Road
-    parallel_to: Meynell Road
-    highway: cycleway
-    anchors:
-      - - -75.8409223
-        - 45.1807115
-      - - -75.8409223
-        - 45.1807115
-  - name: Johnwoods Street
-    parallel_to: Johnwoods Street
-    highway: cycleway
-    anchors:
-      - - -75.9258116
-        - 45.2805039
-      - - -75.9258116
-        - 45.2805039
-  - name: Rideau Road
-    parallel_to: Rideau Road
-    highway: cycleway
-    anchors:
-      - - -75.5803747
-        - 45.2965025
-      - - -75.5796108
-        - 45.297054
-    surface: asphalt
-  - name: Mitch Owens Road
-    parallel_to: Mitch Owens Road
-    highway: cycleway
-    anchors:
-      - - -75.5708133
-        - 45.2790853
-      - - -75.5693597
-        - 45.2801673
-    surface: asphalt
-  - name: East Acres Road
-    parallel_to: East Acres Road
-    highway: cycleway
-    anchors:
-      - - -75.5868709
-        - 45.4476278
-      - - -75.5868709
-        - 45.4476278
-    surface: asphalt
-    width: '3'
-  - name: Ahearn Avenue
-    parallel_to: Ahearn Avenue
-    highway: cycleway
-    anchors:
-      - - -75.8007588
-        - 45.3609767
-      - - -75.8007588
-        - 45.3609767
-    surface: asphalt
-  - name: Casey Avenue
-    parallel_to: Casey Avenue
-    highway: cycleway
-    anchors:
-      - - -75.5935914
-        - 45.4601813
-      - - -75.5935914
-        - 45.4601813
-    surface: asphalt
-  - name: Rue du Golf
-    parallel_to: Rue du Golf
-    highway: cycleway
-    anchors:
-      - - -75.8155016
-        - 45.4053716
-      - - -75.8155016
-        - 45.4053716
-    surface: asphalt
-  - name: Blais Road
-    parallel_to: Blais Road
-    highway: cycleway
-    anchors:
-      - - -75.590394
-        - 45.3136018
-      - - -75.5895747
-        - 45.3140889
-    surface: asphalt
-  - name: Rue de la Fondrière
-    parallel_to: Rue de la Fondrière
-    highway: cycleway
-    anchors:
-      - - -75.7671006
-        - 45.473198
-      - - -75.7671006
-        - 45.473198
-    surface: asphalt
-    lit: 'yes'
-    width: '3'
-    smoothness: excellent
-  - name: Impasse de la Côte-d'Or
-    parallel_to: Impasse de la Côte-d'Or
-    highway: cycleway
-    anchors:
-      - - -75.6631986
-        - 45.4996023
-      - - -75.6631986
-        - 45.4996023
-    surface: asphalt
-    width: '3'
-  - name: Richardson Side Road
-    parallel_to: Richardson Side Road
-    highway: cycleway
-    anchors:
-      - - -75.9468222
-        - 45.3091633
-      - - -75.946003
-        - 45.3097338
-    surface: asphalt
-    width: '3'
-  - name: Trail 40
-    osm_names:
-      - Trail 40
-    anchors:
-      - - -75.9234036
-        - 45.5274735
-      - - -75.8995751
-        - 45.5369834
-    surface: ground
-    incline: down
-    highway: path
-    lit: 'no'
-    ref: '40'
   - name: Bellman Drive
     parallel_to: Bellman Drive
     highway: cycleway
@@ -2341,17 +3294,6 @@ bike_paths:
     surface: asphalt
     lit: 'yes'
     width: '2'
-  - name: Boulevard Fournier
-    parallel_to: Boulevard Fournier
-    highway: cycleway
-    anchors:
-      - - -75.7077773
-        - 45.4514097
-      - - -75.7021149
-        - 45.4561922
-    surface: asphalt
-    width: '2'
-    cycleway: lane
   - name: Rue Saint-Florent
     parallel_to: Rue Saint-Florent
     highway: cycleway
@@ -2386,6 +3328,16 @@ bike_paths:
     lit: 'no'
     width: '3'
     smoothness: good
+  - name: Gilligan Road
+    parallel_to: Gilligan Road
+    highway: cycleway
+    anchors:
+      - - -75.6285229
+        - 45.3149961
+      - - -75.6285229
+        - 45.3149961
+    surface: asphalt
+    width: '2'
   - name: Tremblay Road
     parallel_to: Tremblay Road
     highway: cycleway
@@ -2397,6 +3349,16 @@ bike_paths:
     surface: asphalt
     width: '3'
     smoothness: good
+  - name: promenade Vanier Parkway
+    parallel_to: promenade Vanier Parkway
+    highway: cycleway
+    anchors:
+      - - -75.6616396
+        - 45.422499
+      - - -75.6608001
+        - 45.4226375
+    surface: asphalt
+    width: '3'
   - name: Assomption Street
     parallel_to: Assomption Street
     highway: cycleway
@@ -2450,38 +3412,27 @@ bike_paths:
         - 45.4998025
     surface: asphalt
     width: '2.5'
-  - name: Somerset Street West
-    parallel_to: Somerset Street West
+  - name: Rue Davidson Ouest
+    parallel_to: Rue Davidson Ouest
     highway: cycleway
     anchors:
-      - - -75.7205661
-        - 45.4064831
-      - - -75.685022
-        - 45.4202561
+      - - -75.6626708
+        - 45.5055011
+      - - -75.6604188
+        - 45.506589
     surface: asphalt
     lit: 'yes'
     width: '3'
-    smoothness: good
-    name_fr: rue Somerset Ouest
-    name_en: Somerset Street West
-    cycleway: shared_lane
-    ref: '36'
-  - name: Hog's Back Road
-    parallel_to: Hog's Back Road
+  - name: Rue du Belvédère
+    parallel_to: Rue du Belvédère
     highway: cycleway
     anchors:
-      - - -75.6989042
-        - 45.3696524
-      - - -75.698194
-        - 45.3700105
+      - - -75.6994533
+        - 45.4997224
+      - - -75.6994533
+        - 45.4997224
     surface: asphalt
-    width: '2'
-    smoothness: intermediate
-    name_fr: chemin Hog's Back
-    name_en: Hog's Back Road
-    cycleway: lane
-    operator: National Capital Commission
-    ref: '51'
+    width: '2.5'
   - name: Rue Major
     parallel_to: Rue Major
     highway: cycleway
@@ -2525,6 +3476,18 @@ bike_paths:
     surface: concrete
     lit: 'yes'
     width: '2'
+    smoothness: good
+  - name: Fairwinds Terrace
+    parallel_to: Fairwinds Terrace
+    highway: cycleway
+    anchors:
+      - - -75.5590814
+        - 45.4780966
+      - - -75.5590814
+        - 45.4780966
+    surface: asphalt
+    lit: 'no'
+    width: '3'
     smoothness: good
   - name: Berrigan Drive
     parallel_to: Berrigan Drive
@@ -2580,6 +3543,51 @@ bike_paths:
     lit: 'no'
     width: '2.5'
     smoothness: good
+  - name: Chemin McConnell
+    parallel_to: Chemin McConnell
+    highway: cycleway
+    anchors:
+      - - -75.8014388
+        - 45.4128353
+      - - -75.8014388
+        - 45.4128353
+    surface: asphalt
+    lit: 'yes'
+    width: '2.5'
+    smoothness: good
+  - name: Plante Drive
+    parallel_to: Plante Drive
+    highway: cycleway
+    anchors:
+      - - -75.6595537
+        - 45.3539904
+      - - -75.6591275
+        - 45.3540181
+    surface: asphalt
+    lit: 'yes'
+    width: '2.5'
+    smoothness: good
+  - name: Rue Georges-Lebel
+    parallel_to: Rue Georges-Lebel
+    highway: cycleway
+    anchors:
+      - - -75.8060151
+        - 45.4029945
+      - - -75.8060151
+        - 45.4029945
+    surface: asphalt
+    lit: 'no'
+    width: '2.5'
+  - name: John Sutherland Drive
+    parallel_to: John Sutherland Drive
+    highway: cycleway
+    anchors:
+      - - -75.8093701
+        - 45.3348705
+      - - -75.8093701
+        - 45.3348705
+    surface: asphalt
+    width: '2.5'
   - name: Rue Wells
     parallel_to: Rue Wells
     highway: cycleway
@@ -2601,34 +3609,28 @@ bike_paths:
     lit: 'yes'
     width: '3'
     smoothness: good
-  - name: Baseline Road
-    parallel_to: Baseline Road
+  - name: Pheasant Run Drive
+    parallel_to: Pheasant Run Drive
     highway: cycleway
     anchors:
-      - - -75.8132583
-        - 45.3327761
-      - - -75.7299441
-        - 45.3657208
+      - - -75.7779774
+        - 45.2768894
+      - - -75.7779774
+        - 45.2768894
     surface: asphalt
     width: '3'
     smoothness: good
-    name_fr: chemin Baseline
-    name_en: Baseline Road
-    lit: 'yes'
-    cycleway: lane
-    ref: '16'
-  - name: Rue des Flandres
-    parallel_to: Rue des Flandres
+  - name: Rue de Cavalière
+    parallel_to: Rue de Cavalière
     highway: cycleway
     anchors:
-      - - -75.7173074
-        - 45.4693253
-      - - -75.717095
-        - 45.4694371
+      - - -75.7255631
+        - 45.4707183
+      - - -75.7250261
+        - 45.4707403
     surface: asphalt
     width: '2'
-    segregated: 'no'
-    cycleway: crossing
+    smoothness: good
   - name: Rue de Picardie
     parallel_to: Rue de Picardie
     highway: cycleway
@@ -2640,6 +3642,29 @@ bike_paths:
     surface: asphalt
     width: '2.5'
     smoothness: good
+  - name: Holly Acres Road
+    parallel_to: Holly Acres Road
+    highway: cycleway
+    anchors:
+      - - -75.8157672
+        - 45.3433459
+      - - -75.8109897
+        - 45.3449926
+    surface: asphalt
+    lit: 'yes'
+    width: '2.5'
+    smoothness: good
+  - name: Jockvale Road
+    parallel_to: Jockvale Road
+    highway: cycleway
+    anchors:
+      - - -75.7613056
+        - 45.2710696
+      - - -75.7562674
+        - 45.2727416
+    surface: asphalt
+    width: '3'
+    smoothness: good
   - name: Impasse Henri
     parallel_to: Impasse Henri
     highway: cycleway
@@ -2650,6 +3675,15 @@ bike_paths:
         - 45.5893523
     surface: asphalt
     width: '2.5'
+  - name: Chemin Riverside
+    parallel_to: Chemin Riverside
+    highway: cycleway
+    anchors:
+      - - -75.927589
+        - 45.6431383
+      - - -75.927589
+        - 45.6431383
+    surface: asphalt
   - name: Pont Alexandra
     parallel_to: Pont Alexandra
     highway: cycleway
@@ -2712,6 +3746,18 @@ bike_paths:
         - 45.4055723
     surface: asphalt
     width: '1.5'
+  - name: Churchill Avenue North
+    parallel_to: Churchill Avenue North
+    highway: cycleway
+    anchors:
+      - - -75.7496311
+        - 45.3806144
+      - - -75.747045
+        - 45.3853531
+    surface: asphalt
+    lit: 'yes'
+    width: '1.5'
+    smoothness: good
   - name: Jersey Street
     parallel_to: Jersey Street
     highway: cycleway
@@ -2724,6 +3770,16 @@ bike_paths:
     lit: 'no'
     width: '3'
     smoothness: good
+  - name: Innovation Drive
+    parallel_to: Innovation Drive
+    highway: cycleway
+    anchors:
+      - - -75.9303944
+        - 45.342275
+      - - -75.9248792
+        - 45.3430939
+    surface: asphalt
+    width: '3'
   - name: Glacier Street
     parallel_to: Glacier Street
     highway: cycleway
@@ -2756,6 +3812,16 @@ bike_paths:
         - 45.4337505
     surface: asphalt
     width: '3'
+  - name: Blasdell Avenue
+    parallel_to: Blasdell Avenue
+    highway: cycleway
+    anchors:
+      - - -75.6487272
+        - 45.4548338
+      - - -75.6482902
+        - 45.4549996
+    surface: asphalt
+    width: '2.4'
   - name: Millennium Boulevard
     parallel_to: Millennium Boulevard
     highway: cycleway
@@ -2780,21 +3846,6 @@ bike_paths:
     lit: 'no'
     width: '2'
     smoothness: good
-  - name: Old Montréal Road
-    parallel_to: Old Montréal Road
-    highway: cycleway
-    anchors:
-      - - -75.4768266
-        - 45.4891908
-      - - -75.4731043
-        - 45.4916685
-    surface: asphalt
-    lit: 'no'
-    width: '3'
-    smoothness: excellent
-    name_fr: chemin Old Montréal
-    name_en: Old Montréal Road
-    ref: '34'
   - name: Blue Willow Crescent
     parallel_to: Blue Willow Crescent
     highway: cycleway
@@ -2840,6 +3891,16 @@ bike_paths:
     lit: 'no'
     width: '3'
     smoothness: excellent
+  - name: Robert Grant Avenue
+    parallel_to: Robert Grant Avenue
+    highway: cycleway
+    anchors:
+      - - -75.8961875
+        - 45.2739105
+      - - -75.8951784
+        - 45.2746615
+    surface: asphalt
+    width: '3'
   - name: Caprihani Way
     parallel_to: Caprihani Way
     highway: cycleway
@@ -2852,59 +3913,6 @@ bike_paths:
     lit: 'no'
     width: '2'
     smoothness: good
-  - name: Cambrian Road
-    parallel_to: Cambrian Road
-    highway: cycleway
-    anchors:
-      - - -75.7353267
-        - 45.2533678
-      - - -75.7288097
-        - 45.2560749
-    surface: asphalt
-    width: '2'
-    smoothness: good
-    name_fr: chemin Cambrian
-    name_en: Cambrian Road
-    cycleway: lane
-  - name: Bridgestone Drive
-    parallel_to: Bridgestone Drive
-    highway: cycleway
-    anchors:
-      - - -75.8586714
-        - 45.2902407
-      - - -75.858578
-        - 45.2905042
-    surface: asphalt
-    width: '3'
-    name_fr: promenade Bridgestone
-    name_en: Bridgestone Drive
-  - name: Steeple Chase Drive
-    parallel_to: Steeple Chase Drive
-    highway: cycleway
-    anchors:
-      - - -75.85867
-        - 45.2915368
-      - - -75.8585745
-        - 45.2918072
-    surface: asphalt
-    width: '3'
-    name_fr: promenade Steeple Chase
-    name_en: Steeple Chase Drive
-    cycleway: lane
-  - name: Stonehaven Drive
-    parallel_to: Stonehaven Drive
-    highway: cycleway
-    anchors:
-      - - -75.8678063
-        - 45.2807996
-      - - -75.8402199
-        - 45.2910785
-    surface: asphalt
-    width: '3'
-    name_fr: promenade Stonehaven
-    name_en: Stonehaven Drive
-    lit: 'yes'
-    cycleway: lane
   - name: Shefford Road
     parallel_to: Shefford Road
     highway: cycleway
@@ -2916,6 +3924,16 @@ bike_paths:
     surface: asphalt
     width: '3'
     smoothness: good
+  - name: Brady Avenue
+    parallel_to: Brady Avenue
+    highway: cycleway
+    anchors:
+      - - -75.9424487
+        - 45.343388
+      - - -75.9424487
+        - 45.343388
+    surface: asphalt
+    width: '3'
   - name: Anderson Road
     parallel_to: Anderson Road
     highway: cycleway
@@ -2926,40 +3944,6 @@ bike_paths:
         - 45.4200189
     surface: asphalt
     width: '2'
-  - name: Bronson Avenue
-    parallel_to: Bronson Avenue
-    highway: cycleway
-    anchors:
-      - - -75.6963429
-        - 45.3803447
-      - - -75.6866599
-        - 45.3951202
-    surface: asphalt
-    lit: 'yes'
-    width: '1.5'
-    smoothness: good
-    name_fr: avenue Bronson
-    name_en: Bronson Avenue
-    wikipedia: en:Bronson Avenue
-    wikidata: Q4097051
-    cycleway: shoulder
-    ref: '79'
-  - name: Prince Of Wales Drive
-    parallel_to: Prince Of Wales Drive
-    highway: cycleway
-    anchors:
-      - - -75.710235
-        - 45.2614555
-      - - -75.6998509
-        - 45.3961637
-    surface: asphalt
-    lit: 'yes'
-    width: '2'
-    smoothness: good
-    name_fr: promenade Prince Of Wales
-    name_en: Prince Of Wales Drive
-    cycleway: lane
-    ref: '73'
   - name: Brookfield Road
     parallel_to: Brookfield Road
     highway: cycleway
@@ -2971,51 +3955,6 @@ bike_paths:
     surface: asphalt
     width: '2.5'
     smoothness: excellent
-  - name: Booth Street
-    parallel_to: Booth Street
-    highway: cycleway
-    anchors:
-      - - -75.717498
-        - 45.418414
-      - - -75.7160864
-        - 45.4199031
-    surface: asphalt
-    lit: 'yes'
-    width: '1.5'
-    smoothness: good
-    name_fr: rue Booth
-    name_en: Booth Street
-    cycleway: lane
-    access: 'yes'
-  - name: Campeau Drive
-    parallel_to: Campeau Drive
-    highway: cycleway
-    anchors:
-      - - -75.9178991
-        - 45.3095221
-      - - -75.8950138
-        - 45.3204585
-    surface: asphalt
-    lit: 'yes'
-    width: '3'
-    smoothness: good
-    name_fr: promenade Campeau
-    name_en: Campeau Drive
-    cycleway: lane
-  - name: Cyrville Road
-    parallel_to: Cyrville Road
-    highway: cycleway
-    anchors:
-      - - -75.6353965
-        - 45.4164912
-      - - -75.6024075
-        - 45.4247094
-    surface: asphalt
-    width: '2'
-    name_fr: chemin Cyrville
-    name_en: Cyrville Road
-    lit: 'yes'
-    cycleway: lane
   - name: Boulevard des Trembles
     parallel_to: Boulevard des Trembles
     highway: cycleway
@@ -3026,20 +3965,6 @@ bike_paths:
         - 45.4264934
     surface: asphalt
     width: '3'
-  - name: Tenth Line Road
-    parallel_to: Tenth Line Road
-    highway: cycleway
-    anchors:
-      - - -75.4904777
-        - 45.4377246
-      - - -75.4745213
-        - 45.4655926
-    surface: asphalt
-    width: '3'
-    name_fr: chemin Tenth Line
-    name_en: Tenth Line Road
-    cycleway: lane
-    ref: '47'
   - name: Clegg Street
     parallel_to: Clegg Street
     highway: cycleway
@@ -3050,35 +3975,6 @@ bike_paths:
         - 45.4077652
     surface: asphalt
     width: '3'
-  - name: Fern Casey Street
-    parallel_to: Fern Casey Street
-    highway: cycleway
-    anchors:
-      - - -75.5091422
-        - 45.4392003
-      - - -75.5078673
-        - 45.4407827
-    surface: asphalt
-    width: '3'
-    smoothness: excellent
-    name_fr: rue Fern Casey
-    name_en: Fern Casey Street
-    cycleway: lane
-  - name: Donald Street
-    parallel_to: Donald Street
-    highway: cycleway
-    anchors:
-      - - -75.6672062
-        - 45.4270113
-      - - -75.6369313
-        - 45.429087
-    surface: asphalt
-    lit: 'yes'
-    width: '3'
-    smoothness: good
-    name_fr: rue Donald
-    name_en: Donald Street
-    cycleway: lane
   - name: Lavoie Street
     parallel_to: Lavoie Street
     highway: cycleway
@@ -3091,6 +3987,16 @@ bike_paths:
     lit: 'no'
     width: '3'
     smoothness: excellent
+  - name: Bathgate Drive
+    parallel_to: Bathgate Drive
+    highway: cycleway
+    anchors:
+      - - -75.6197727
+        - 45.4367459
+      - - -75.6197727
+        - 45.4367459
+    surface: asphalt
+    width: '3'
   - name: Liska Street
     parallel_to: Liska Street
     highway: cycleway
@@ -3103,6 +4009,27 @@ bike_paths:
     lit: 'no'
     width: '3'
     smoothness: excellent
+  - name: Junction Avenue
+    parallel_to: Junction Avenue
+    highway: cycleway
+    anchors:
+      - - -75.6773688
+        - 45.3740587
+      - - -75.6773688
+        - 45.3740587
+    surface: asphalt
+    lit: 'yes'
+    width: '3'
+  - name: Rideau Valley Drive South
+    parallel_to: Rideau Valley Drive South
+    highway: cycleway
+    anchors:
+      - - -75.6498728
+        - 45.152675
+      - - -75.6483499
+        - 45.1556791
+    surface: asphalt
+    width: '3'
   - name: Klondike Road
     parallel_to: Klondike Road
     highway: cycleway
@@ -3125,22 +4052,18 @@ bike_paths:
     lit: 'no'
     width: '2'
     smoothness: intermediate
-  - name: Richmond Road
-    parallel_to: Richmond Road
+  - name: Country Glen Way
+    parallel_to: Country Glen Way
     highway: cycleway
     anchors:
-      - - -75.8131936
-        - 45.3342998
-      - - -75.7783546
-        - 45.3740116
+      - - -75.9330586
+        - 45.302826
+      - - -75.9323774
+        - 45.3030874
     surface: asphalt
-    width: '1.5'
-    smoothness: good
-    name_fr: chemin Richmond
-    name_en: Richmond Road
     lit: 'yes'
-    cycleway: lane
-    ref: '36'
+    width: '2'
+    smoothness: excellent
   - name: Melanson Crescent
     parallel_to: Melanson Crescent
     highway: cycleway
@@ -3189,6 +4112,16 @@ bike_paths:
     lit: 'no'
     width: '3'
     smoothness: excellent
+  - name: Rue Paul-Gauguin
+    parallel_to: Rue Paul-Gauguin
+    highway: cycleway
+    anchors:
+      - - -75.6168489
+        - 45.5022818
+      - - -75.6160184
+        - 45.5029105
+    surface: asphalt
+    width: '2'
   - name: Rue Edgar-Degas
     parallel_to: Rue Edgar-Degas
     highway: cycleway
@@ -3197,6 +4130,26 @@ bike_paths:
         - 45.5008964
       - - -75.6151018
         - 45.5008964
+    surface: asphalt
+    width: '2'
+  - name: Provence Avenue
+    parallel_to: Provence Avenue
+    highway: cycleway
+    anchors:
+      - - -75.4577116
+        - 45.4609253
+      - - -75.4576448
+        - 45.4611742
+    surface: asphalt
+    width: '4'
+  - name: Rue de la Caraque
+    parallel_to: Rue de la Caraque
+    highway: cycleway
+    anchors:
+      - - -75.5881633
+        - 45.4990708
+      - - -75.5880412
+        - 45.4992924
     surface: asphalt
     width: '2'
   - name: Roy Errington Way
@@ -3249,6 +4202,15 @@ bike_paths:
         - 45.4142919
     surface: asphalt
     width: '3'
+  - name: Rue Front
+    parallel_to: Rue Front
+    highway: cycleway
+    anchors:
+      - - -75.857207
+        - 45.4120202
+      - - -75.857207
+        - 45.4120202
+    surface: asphalt
   - name: Queen Elizabeth Driveway
     parallel_to: Queen Elizabeth Driveway
     highway: cycleway
@@ -3261,6 +4223,15 @@ bike_paths:
     lit: 'yes'
     width: '3'
     smoothness: excellent
+  - name: Rue Georges
+    parallel_to: Rue Georges
+    highway: cycleway
+    anchors:
+      - - -75.4203628
+        - 45.5870393
+      - - -75.4203628
+        - 45.5870393
+    width: '2'
   - name: Avenue du Cheval-Blanc
     parallel_to: Avenue du Cheval-Blanc
     highway: cycleway
@@ -3270,6 +4241,26 @@ bike_paths:
       - - -75.5812863
         - 45.5051193
     surface: asphalt
+  - name: Rue de Fréville
+    parallel_to: Rue de Fréville
+    highway: cycleway
+    anchors:
+      - - -75.5720628
+        - 45.4985428
+      - - -75.5720628
+        - 45.4985428
+    surface: asphalt
+    width: '3'
+  - name: Boulevard Maloney Est
+    parallel_to: Boulevard Maloney Est
+    highway: cycleway
+    anchors:
+      - - -75.5864605
+        - 45.4927441
+      - - -75.5864605
+        - 45.4927441
+    surface: asphalt
+    width: '3'
   - name: Rue Saint-Sauveur
     parallel_to: Rue Saint-Sauveur
     highway: cycleway
@@ -3280,18 +4271,6 @@ bike_paths:
         - 45.4790531
     surface: asphalt
     width: '3'
-  - name: Woodfield Drive
-    parallel_to: Woodfield Drive
-    highway: cycleway
-    anchors:
-      - - -75.7322011
-        - 45.33642
-      - - -75.7268746
-        - 45.337796
-    surface: asphalt
-    width: '1.5'
-    name_fr: promenade Woodfield
-    name_en: Woodfield Drive
   - name: Wàbisheshì Private
     parallel_to: Wàbisheshì Private
     highway: cycleway
@@ -3302,22 +4281,6 @@ bike_paths:
         - 45.3518866
     surface: asphalt
     width: '3'
-  - name: Heron Road
-    parallel_to: Heron Road
-    highway: cycleway
-    anchors:
-      - - -75.7038399
-        - 45.3753251
-      - - -75.6813822
-        - 45.3775319
-    surface: asphalt
-    lit: 'yes'
-    width: '1.5'
-    smoothness: good
-    name_fr: chemin Heron
-    name_en: Heron Road
-    wikidata: Q5743531
-    ref: '16'
   - name: Navan Road
     parallel_to: Navan Road
     highway: cycleway
@@ -3339,20 +4302,17 @@ bike_paths:
         - 45.4158195
     surface: asphalt
     width: '1.5'
-  - name: Industrial Avenue
-    parallel_to: Industrial Avenue
+  - name: Bentbrook Crescent
+    parallel_to: Bentbrook Crescent
     highway: cycleway
     anchors:
-      - - -75.6300412
-        - 45.4061177
-      - - -75.6277089
-        - 45.4066147
+      - - -75.7528159
+        - 45.2695122
+      - - -75.7528159
+        - 45.2695122
     surface: asphalt
-    width: '1.5'
-    name_fr: avenue Industrial
-    name_en: Industrial Avenue
-    lit: 'yes'
-    ref: '30'
+    width: '3'
+    smoothness: good
   - name: Mikinak Road
     parallel_to: Mikinak Road
     highway: cycleway
@@ -3373,6 +4333,27 @@ bike_paths:
         - 45.4315321
     surface: asphalt
     width: '2'
+  - name: Rue de la Fabrique
+    parallel_to: Rue de la Fabrique
+    highway: cycleway
+    anchors:
+      - - -75.8617457
+        - 45.4102098
+      - - -75.8617457
+        - 45.4102098
+    surface: asphalt
+    width: '3'
+  - name: Boulevard de la Cité
+    parallel_to: Boulevard de la Cité
+    highway: cycleway
+    anchors:
+      - - -75.6790228
+        - 45.4743723
+      - - -75.6773137
+        - 45.477265
+    surface: asphalt
+    lit: 'yes'
+    width: '2.5'
   - name: Rue Lamarche
     parallel_to: Rue Lamarche
     highway: cycleway
@@ -3462,6 +4443,39 @@ bike_paths:
         - 45.4008872
     surface: asphalt
     width: '2.5'
+  - name: Rue du Père-Bériault
+    parallel_to: Rue du Père-Bériault
+    highway: cycleway
+    anchors:
+      - - -75.7427831
+        - 45.4904353
+      - - -75.7427831
+        - 45.4904353
+    surface: asphalt
+    lit: 'no'
+    width: '2.5'
+    smoothness: good
+  - name: Chemin Allen
+    parallel_to: Chemin Allen
+    highway: cycleway
+    anchors:
+      - - -75.7841044
+        - 45.4112371
+      - - -75.7841044
+        - 45.4112371
+    surface: asphalt
+    width: '2.5'
+    smoothness: good
+  - name: Chemin Pink
+    parallel_to: Chemin Pink
+    highway: cycleway
+    anchors:
+      - - -75.8074305
+        - 45.4423051
+      - - -75.8074305
+        - 45.4423051
+    surface: asphalt
+    width: '3'
   - name: Rosingdale Street
     parallel_to: Rosingdale Street
     highway: cycleway
@@ -3493,6 +4507,17 @@ bike_paths:
         - 45.4292147
     surface: asphalt
     width: '3'
+  - name: Palladium Drive
+    parallel_to: Palladium Drive
+    highway: cycleway
+    anchors:
+      - - -75.9406822
+        - 45.29561
+      - - -75.9404225
+        - 45.2961531
+    surface: asphalt
+    width: '2'
+    smoothness: good
   - name: Abbott Street East
     parallel_to: Abbott Street East
     highway: cycleway
@@ -3513,19 +4538,6 @@ bike_paths:
         - 45.4995718
     surface: asphalt
     width: '3'
-  - name: Rue Laurier
-    parallel_to: Rue Laurier
-    highway: cycleway
-    anchors:
-      - - -75.7092623
-        - 45.4346789
-      - - -75.7080436
-        - 45.4404486
-    surface: asphalt
-    lit: 'yes'
-    width: '1.5'
-    smoothness: excellent
-    cycleway: crossing
   - name: Boulevard Maisonneuve
     parallel_to: Boulevard Maisonneuve
     highway: cycleway
@@ -3534,6 +4546,16 @@ bike_paths:
         - 45.4326374
       - - -75.7124667
         - 45.4326374
+  - name: CrossKeys Place
+    parallel_to: CrossKeys Place
+    highway: cycleway
+    anchors:
+      - - -75.7859234
+        - 45.2702177
+      - - -75.7857572
+        - 45.2702402
+    surface: asphalt
+    width: '2'
   - name: CitiGate Drive
     parallel_to: CitiGate Drive
     highway: cycleway
@@ -3556,6 +4578,18 @@ bike_paths:
     lit: 'yes'
     width: '3'
     smoothness: excellent
+  - name: Blair Towers Place
+    parallel_to: Blair Towers Place
+    highway: cycleway
+    anchors:
+      - - -75.6040866
+        - 45.4349397
+      - - -75.6040866
+        - 45.4349397
+    surface: asphalt
+    lit: 'yes'
+    width: '3'
+    smoothness: good
   - name: Serrano Street
     parallel_to: Serrano Street
     highway: cycleway
@@ -3578,6 +4612,17 @@ bike_paths:
         - 45.4104486
     surface: asphalt
     width: '2'
+  - name: Young Street East
+    parallel_to: Young Street East
+    highway: cycleway
+    anchors:
+      - - -75.7121436
+        - 45.4021029
+      - - -75.7121436
+        - 45.4021029
+    surface: asphalt
+    lit: 'yes'
+    width: '2.5'
   - name: Derreen Avenue
     parallel_to: Derreen Avenue
     highway: cycleway
@@ -3588,21 +4633,6 @@ bike_paths:
         - 45.2871566
     surface: asphalt
     width: '1.5'
-  - name: McArthur Avenue
-    parallel_to: McArthur Avenue
-    highway: cycleway
-    anchors:
-      - - -75.6689991
-        - 45.4307357
-      - - -75.6421612
-        - 45.4327094
-    surface: asphalt
-    width: '1.5'
-    name_fr: avenue McArthur
-    name_en: McArthur Avenue
-    lit: 'yes'
-    cycleway: lane
-    ref: '68'
   - name: Rue Bédard
     parallel_to: Rue Bédard
     highway: cycleway
@@ -3612,21 +4642,16 @@ bike_paths:
       - - -75.7527214
         - 45.4501047
     surface: asphalt
-  - name: Byron Avenue
-    parallel_to: Byron Avenue
+  - name: Elevation Road
+    parallel_to: Elevation Road
     highway: cycleway
     anchors:
-      - - -75.7687541
-        - 45.3828689
-      - - -75.7308804
-        - 45.3979769
+      - - -75.7458347
+        - 45.2382141
+      - - -75.7457194
+        - 45.2382692
     surface: asphalt
-    width: '2'
-    smoothness: excellent
-    name_fr: avenue Byron
-    name_en: Byron Avenue
-    lit: 'yes'
-    cycleway: lane
+    width: '3'
   - name: City Centre Avenue
     parallel_to: City Centre Avenue
     highway: cycleway
@@ -3637,20 +4662,6 @@ bike_paths:
         - 45.4093309
     surface: asphalt
     width: '1.5'
-  - name: Frank Kenny Road
-    parallel_to: Frank Kenny Road
-    highway: cycleway
-    anchors:
-      - - -75.4416365
-        - 45.471479
-      - - -75.4360004
-        - 45.473284
-    surface: asphalt
-    width: '1.5'
-    name_fr: chemin Frank Kenny
-    name_en: Frank Kenny Road
-    cycleway: lane
-    ref: '33'
   - name: Kippen Place
     parallel_to: Kippen Place
     highway: cycleway
@@ -3684,6 +4695,24 @@ bike_paths:
     lit: 'no'
     width: '3'
     smoothness: good
+  - name: Rue de la Pineraie
+    parallel_to: Rue de la Pineraie
+    highway: cycleway
+    anchors:
+      - - -75.6200313
+        - 45.5973491
+      - - -75.6200313
+        - 45.5973491
+    surface: asphalt
+  - name: Route du Carrefour
+    parallel_to: Route du Carrefour
+    highway: cycleway
+    anchors:
+      - - -75.6174336
+        - 45.5933786
+      - - -75.6174336
+        - 45.5933786
+    surface: asphalt
   - name: Preston Street
     parallel_to: Preston Street
     highway: cycleway
@@ -3704,6 +4733,35 @@ bike_paths:
         - 45.4225121
     surface: concrete
     width: '1.5'
+  - name: Borrisokane Road
+    parallel_to: Borrisokane Road
+    highway: cycleway
+    anchors:
+      - - -75.7677193
+        - 45.2585716
+      - - -75.7672146
+        - 45.2597054
+    surface: asphalt
+    width: '1.5'
+  - name: Cardinal Creek Drive
+    parallel_to: Cardinal Creek Drive
+    highway: cycleway
+    anchors:
+      - - -75.4678081
+        - 45.5018308
+      - - -75.4678081
+        - 45.5018308
+    surface: asphalt
+    width: '3'
+  - name: Promenade du Lac-des-Fées
+    parallel_to: Promenade du Lac-des-Fées
+    highway: cycleway
+    anchors:
+      - - -75.7383004
+        - 45.4271435
+      - - -75.7383004
+        - 45.4271435
+    surface: asphalt
   - name: Lett Street
     parallel_to: Lett Street
     highway: cycleway
@@ -3712,6 +4770,54 @@ bike_paths:
         - 45.4149348
       - - -75.7122698
         - 45.4149348
+  - name: Richardson Side Road
+    parallel_to: Richardson Side Road
+    highway: cycleway
+    anchors:
+      - - -75.9468222
+        - 45.3091633
+      - - -75.946003
+        - 45.3097338
+    surface: asphalt
+    width: '3'
+  - name: Cappamore Drive
+    parallel_to: Cappamore Drive
+    highway: cycleway
+    anchors:
+      - - -75.7326574
+        - 45.2355748
+      - - -75.7326038
+        - 45.2356306
+    surface: asphalt
+    width: '1'
+  - name: Chemin Denis
+    parallel_to: Chemin Denis
+    highway: cycleway
+    anchors:
+      - - -75.7666951
+        - 45.5234982
+      - - -75.7659063
+        - 45.526058
+    surface: asphalt
+  - name: Montée des Érables
+    parallel_to: Montée des Érables
+    highway: cycleway
+    anchors:
+      - - -75.7438583
+        - 45.5372197
+      - - -75.7438583
+        - 45.5372197
+    surface: asphalt
+  - name: Rue des Fleurs
+    parallel_to: Rue des Fleurs
+    highway: cycleway
+    anchors:
+      - - -75.6061554
+        - 45.5066294
+      - - -75.6061554
+        - 45.5066294
+    surface: asphalt
+    width: '3'
   - name: Rue des Jacinthes
     parallel_to: Rue des Jacinthes
     highway: cycleway
@@ -3732,6 +4838,35 @@ bike_paths:
     surface: asphalt
     width: '3'
     smoothness: intermediate
+  - name: Town Square Place
+    parallel_to: Town Square Place
+    highway: cycleway
+    anchors:
+      - - -75.6692523
+        - 45.2769234
+      - - -75.6684651
+        - 45.2782871
+    surface: asphalt
+  - name: Rue Nancy-Elliott
+    parallel_to: Rue Nancy-Elliott
+    highway: cycleway
+    anchors:
+      - - -75.7970809
+        - 45.4017452
+      - - -75.7970809
+        - 45.4017452
+    surface: asphalt
+    width: '2.5'
+  - name: Boulevard de l'Amérique-Française
+    parallel_to: Boulevard de l'Amérique-Française
+    highway: cycleway
+    anchors:
+      - - -75.8025828
+        - 45.4281979
+      - - -75.802128
+        - 45.4320455
+    surface: asphalt
+    width: '2.5'
   - name: Rue Seto
     parallel_to: Rue Seto
     highway: cycleway
@@ -3752,6 +4887,22 @@ bike_paths:
         - 45.3998349
     surface: asphalt
     smoothness: good
+  - name: Meynell Road
+    parallel_to: Meynell Road
+    highway: cycleway
+    anchors:
+      - - -75.8409223
+        - 45.1807115
+      - - -75.8409223
+        - 45.1807115
+  - name: Johnwoods Street
+    parallel_to: Johnwoods Street
+    highway: cycleway
+    anchors:
+      - - -75.9258116
+        - 45.2805039
+      - - -75.9258116
+        - 45.2805039
   - name: Mac Street
     parallel_to: Mac Street
     highway: cycleway
@@ -3782,6 +4933,25 @@ bike_paths:
     lit: 'yes'
     width: '2.5'
     smoothness: good
+  - name: Old Second Line Road
+    parallel_to: Old Second Line Road
+    highway: cycleway
+    anchors:
+      - - -75.9476485
+        - 45.3474202
+      - - -75.9476485
+        - 45.3474202
+    surface: asphalt
+    width: '3'
+  - name: Ahearn Avenue
+    parallel_to: Ahearn Avenue
+    highway: cycleway
+    anchors:
+      - - -75.8007588
+        - 45.3609767
+      - - -75.8007588
+        - 45.3609767
+    surface: asphalt
   - name: Tauvette Street
     parallel_to: Tauvette Street
     highway: cycleway
@@ -3793,6 +4963,15 @@ bike_paths:
     surface: fine_gravel
     width: '3'
     smoothness: intermediate
+  - name: Rue du Golf
+    parallel_to: Rue du Golf
+    highway: cycleway
+    anchors:
+      - - -75.8155016
+        - 45.4053716
+      - - -75.8155016
+        - 45.4053716
+    surface: asphalt
   - name: Rue du Sous-Bois
     parallel_to: Rue du Sous-Bois
     highway: cycleway
@@ -3803,6 +4982,18 @@ bike_paths:
         - 45.5080885
     surface: asphalt
     width: '2.5'
+  - name: Rue de la Fondrière
+    parallel_to: Rue de la Fondrière
+    highway: cycleway
+    anchors:
+      - - -75.7671006
+        - 45.473198
+      - - -75.7671006
+        - 45.473198
+    surface: asphalt
+    lit: 'yes'
+    width: '3'
+    smoothness: excellent
   - name: Rue Broad
     parallel_to: Rue Broad
     highway: cycleway
@@ -3811,6 +5002,16 @@ bike_paths:
         - 45.4072001
       - - -75.8471003
         - 45.4072001
+    surface: asphalt
+    width: '3'
+  - name: Impasse de la Côte-d'Or
+    parallel_to: Impasse de la Côte-d'Or
+    highway: cycleway
+    anchors:
+      - - -75.6631986
+        - 45.4996023
+      - - -75.6631986
+        - 45.4996023
     surface: asphalt
     width: '3'
   - name: Rue de la Frégate
@@ -3822,1784 +5023,119 @@ bike_paths:
       - - -75.5926015
         - 45.4995486
     surface: asphalt
-  - name: Rideau Canal Eastern Pathway
+  - name: Sentier Trans-Canadien (Québec)
+    type: network
     osm_relations:
-      - 7206766
-    operator: NCC
+      - 8274591
+    name_fr: Sentier Trans-Canadien (Québec)
+    name_en: Trans Canada Trail (Quebec)
+    network: ncn
+    ref: STC
+    cycle_network: CA:CA
+    members:
+      - sentier-trans-canada-gatineau-montreal
+  - name: Ottawa Valley Recreation Trail (super)
+    type: network
+    osm_relations:
+      - 9352030
     network: rcn
-    surface: asphalt
-    smoothness: intermediate
-    width: '3'
-    lit: 'yes'
-    segregated: 'no'
-    highway: cycleway
-    anchors:
-      - - -75.6984672
-        - 45.3698546
-      - - -75.6805887
-        - 45.4244887
-  - name: Sentier du Ruisseau Leamy Pathway
-    osm_names:
-      - Sentier du Ruisseau Leamy Pathway
-    anchors:
-      - - -75.7652397
-        - 45.4705187
-      - - -75.7468492
-        - 45.4731249
-    surface: asphalt
-    smoothness: good
-    width: '2'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-  - name: Pont Mãwandòseg
-    osm_names:
-      - Pont Mãwandòseg
-    anchors:
-      - - -75.7079198
-        - 45.4497088
-      - - -75.7071608
-        - 45.4498604
-    name_fr: Pont Mãwandòseg
-    name_en: Mãwandòseg bridge
-    surface: asphalt
-    width: '4'
-    lit: 'no'
-    highway: cycleway
-  - name: Chemin du Lac-Leamy
-    osm_names:
-      - Chemin du Lac-Leamy
-    anchors:
-      - - -75.7282034
-        - 45.440651
-      - - -75.7272738
-        - 45.4486677
-    surface: asphalt
-    smoothness: excellent
-    width: '3'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-  - name: Trans Canada Trail
-    osm_names:
-      - Trans Canada Trail
-    anchors:
-      - - -75.9203476
-        - 45.2584337
-      - - -75.8451241
-        - 45.3174462
-    surface: fine_gravel
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-  - name: Chemin de Masson
-    osm_names:
-      - Chemin de Masson
-    anchors:
-      - - -75.4238183
-        - 45.5498704
-      - - -75.4131268
-        - 45.5747534
-    surface: asphalt
-    width: '2.5'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-    parallel_to: Chemin de Masson
-  - name: Trans-Canada Trail Ottawa
-    osm_names:
-      - Trans-Canada Trail Ottawa
-    anchors:
-      - - -76.1086887
-        - 45.147819
-      - - -75.9207406
-        - 45.2581687
-    surface: fine_gravel
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-  - name: Corktown Footbridge
-    osm_names:
-      - Corktown Footbridge
-    anchors:
-      - - -75.6847783
-        - 45.4203936
-      - - -75.6842848
-        - 45.4207161
-    wikipedia: en:Corktown Footbridge
-    wikidata: Q5170875
-    surface: concrete
-    smoothness: good
-    width: '5'
-    lit: 'yes'
-    segregated: 'no'
-    highway: cycleway
-    operator: City of Ottawa
-  - name: Juno Beach Memorial Bridge
-    osm_names:
-      - Juno Beach Memorial Bridge
-    anchors:
-      - - -75.6572418
-        - 45.3542158
-      - - -75.6585549
-        - 45.3538423
-    surface: asphalt
-    smoothness: good
-    width: '4'
-    lit: 'yes'
-    segregated: 'no'
-    highway: cycleway
-  - name: Mackenzie cycle track
-    osm_names:
-      - Mackenzie cycle track
-    anchors:
-      - - -75.6968529
-        - 45.4252568
-      - - -75.694008
-        - 45.428479
-    surface: asphalt
-    smoothness: excellent
-    width: '2.5'
-    lit: 'yes'
-    cycleway: crossing
-    highway: cycleway
+    members:
+      - algonquin-trail
+      - ottawa-valley-recreation-trail
+  - name: Trans Canada Trail (Ottawa area)
+    type: network
+    osm_relations:
+      - 9502450
+    network: ncn
+    ref: TCT
+    members:
+      - trans-canada-trail-bells-cornerswatts-creek
+      - ottawa-carleton-trailway
+      - ottawa-river-pathway-trans-canada-trail
+  - name: Ottawa River Pathway
+    type: network
+    osm_relations:
+      - 9502635
+    name_fr: Sentier de la Rivière des Outaouais
+    network: rcn
+    cycle_network: CA:ON:NCC
+    members:
+      - ottawa-river-pathway-east
+      - ottawa-river-pathway-trans-canada-trail
+      - ottawa-river-pathway-west
+  - name: Crosstown Bikeway 2
+    type: network
+    osm_relations:
+      - 10986224
+    network: lcn
+    ref: '2'
+    cycle_network: CA:ON:Ottawa
+    members:
+      - laurier-segregated-bikelane
+      - eastwest-crosstown-bikeway
+      - crosstown-bikeway-2-1
+  - name: Crosstown Bikeway 5
+    type: network
+    osm_relations:
+      - 10986756
+    network: lcn
+    ref: '5'
+    cycle_network: CA:ON:Ottawa
+    members:
+      - oconnor-bikeway
+      - crosstown-bikeway-5-1
+  - name: Capital Pathway
+    type: network
+    osm_relations:
+      - 10990511
+    name_fr: Sentier de la capitale
+    name_en: Capital Pathway
+    network: rcn
     operator: NCC
-  - name: Trillium Trail
-    osm_names:
-      - Trillium Trail
-    anchors:
-      - - -76.2574239
-        - 45.2490924
-      - - -76.2526022
-        - 45.2469496
-    surface: ground
-    highway: cycleway
-  - name: Flora Footbridge
-    osm_names:
-      - Flora Footbridge
-    anchors:
-      - - -75.6818947
-        - 45.4051697
-      - - -75.6802392
-        - 45.405104
-    name_fr: Passerelle Flora
-    name_en: Flora Footbridge
-    wikipedia: en:Passerelle Flora Footbridge
-    wikidata: Q56282907
-    surface: concrete
-    width: '5'
-    lit: 'yes'
-    segregated: 'no'
-    highway: cycleway
-  - name: Boulevard Alexandre-Taché
-    osm_names:
-      - Boulevard Alexandre-Taché
-    anchors:
-      - - -75.7317905
-        - 45.4235176
-      - - -75.7229471
-        - 45.4243862
-    surface: asphalt
-    width: '3'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-    parallel_to: Boulevard Alexandre-Taché
-  - name: Boulevard des Allumettières
-    osm_names:
-      - Boulevard des Allumettières
-    anchors:
-      - - -75.7311378
-        - 45.4321141
-      - - -75.7257834
-        - 45.432427
-    surface: asphalt
-    smoothness: good
-    width: '4'
-    lit: 'yes'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-    parallel_to: Boulevard des Allumettières
-  - name: Forest Hike Trail
-    osm_names:
-      - Forest Hike Trail
-    anchors:
-      - - -76.2597689
-        - 45.2494275
-      - - -76.2587764
-        - 45.2487892
-    surface: ground
-    lit: 'no'
-    highway: cycleway
-  - name: Rue Morin
-    osm_names:
-      - Rue Morin
-    anchors:
-      - - -75.7259456
-        - 45.4321141
-      - - -75.7257834
-        - 45.4323918
-    surface: asphalt
-    cycleway: crossing
-    highway: cycleway
-  - name: Rue d'Edmonton
-    osm_names:
-      - Rue d'Edmonton
-    anchors:
-      - - -75.7297324
-        - 45.4516873
-      - - -75.7294254
-        - 45.4520261
-    surface: asphalt
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-  - name: Rue du Dôme
-    osm_names:
-      - Rue du Dôme
-    anchors:
-      - - -75.749389
-        - 45.4705228
-      - - -75.7496229
-        - 45.4721124
-    surface: asphalt
-    width: '2'
-    segregated: 'no'
-    highway: cycleway
-  - name: Trail 50
-    osm_names:
-      - Trail 50
-    anchors:
-      - - -75.998981
-        - 45.5672289
-      - - -75.885638
-        - 45.5996354
-    name_en: Trail 50
-    alt_name: Trail 73
-    surface: ground
-    segregated: 'no'
-    highway: path
-    ref: '50'
-    smoothness: intermediate
-    width: '2'
-  - name: Campus Walkway
-    osm_names:
-      - Campus Walkway
-    anchors:
-      - - -75.695858
-        - 45.3827975
-      - - -75.6953269
-        - 45.3834548
-    surface: asphalt
-    width: '3'
-    highway: path
-  - name: Trail 7
-    osm_names:
-      - Trail 7
-    anchors:
-      - - -75.8462422
-        - 45.4704394
-      - - -75.8349386
-        - 45.484139
-    surface: ground
-    highway: path
-  - name: 'Sentier/Trail #1'
-    osm_names:
-      - 'Sentier/Trail #1'
-    anchors:
-      - - -75.8166134
-        - 45.5016415
-      - - -75.8124556
-        - 45.5059189
-    surface: fine_gravel
-    smoothness: intermediate
-    width: '1.5'
-    highway: path
-  - name: Hendrick Park Trail
-    osm_names:
-      - Hendrick Park Trail
-    anchors:
-      - - -75.8089557
-        - 45.4950081
-      - - -75.8040269
-        - 45.5005092
-    surface: woodchips
-    width: '1'
-    lit: 'no'
-    highway: footway
-  - name: 'Sentier/Trail #36'
-    osm_names:
-      - 'Sentier/Trail #36'
-    anchors:
-      - - -75.8633873
-        - 45.5206468
-      - - -75.8563004
-        - 45.5263604
-    incline: up
-    highway: path
-    ref: '36'
-  - name: Riverwalk
-    osm_names:
-      - Riverwalk
-    anchors:
-      - - -76.1996552
-        - 45.227248
-      - - -76.1981948
-        - 45.2288191
-    surface: fine_gravel
-    highway: path
-  - name: La Tour
-    osm_names:
-      - La Tour
-    anchors:
-      - - -75.7655466
-        - 45.516032
-      - - -75.7593707
-        - 45.5164611
-    surface: dirt
-    smoothness: bad
-    highway: path
-  - name: La Crete
-    osm_names:
-      - La Crete
-    anchors:
-      - - -75.7467706
-        - 45.5042493
-      - - -75.7432536
-        - 45.5048201
-    surface: dirt
-    highway: path
-  - name: Dos d'Ane
-    osm_names:
-      - Dos d'Ane
-    anchors:
-      - - -75.739248
-        - 45.5039625
-      - - -75.7381484
-        - 45.5040593
-    surface: dirt/sand
-    highway: path
-  - name: Sir-George-Étienne-Cartier Parkway
-    osm_names:
-      - Sir-George-Étienne-Cartier Parkway
-    anchors:
-      - - -75.687426
-        - 45.4510418
-      - - -75.5728552
-        - 45.4707127
-    name_fr: promenade Sir-George-Étienne-Cartier
-    name_en: Sir-George-Étienne-Cartier Parkway
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: primary
-    operator: National Capital Commission
-    parallel_to: Sir-George-Étienne-Cartier Parkway
-  - name: Teron Road
-    osm_names:
-      - Teron Road
-    anchors:
-      - - -75.9046365
-        - 45.3227658
-      - - -75.8908476
-        - 45.3332262
-    name_fr: chemin Teron
-    name_en: Teron Road
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: tertiary
-  - name: McGibbon Drive
-    osm_names:
-      - McGibbon Drive
-    anchors:
-      - - -75.9083712
-        - 45.3040133
-      - - -75.9015869
-        - 45.3078731
-    name_fr: promenade McGibbon
-    name_en: McGibbon Drive
-    surface: asphalt
-    cycleway: lane
-    highway: tertiary
-  - name: Michael Cowpland Drive
-    osm_names:
-      - Michael Cowpland Drive
-    anchors:
-      - - -75.877492
-        - 45.2837569
-      - - -75.869931
-        - 45.2865139
-    name_fr: promenade Michael Cowpland
-    name_en: Michael Cowpland Drive
-    surface: asphalt
-    cycleway: lane
-    highway: tertiary
-  - name: Navaho Drive
-    osm_names:
-      - Navaho Drive
-    anchors:
-      - - -75.7587042
-        - 45.3544496
-      - - -75.7561282
-        - 45.3590689
-    name_fr: promenade Navaho
-    name_en: Navaho Drive
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: tertiary
-  - name: Queen Street
-    osm_names:
-      - Queen Street
-    anchors:
-      - - -75.7089961
-        - 45.4170413
-      - - -75.6968862
-        - 45.4222455
-    name_fr: rue Queen
-    name_en: Queen Street
-    surface: asphalt
-    lit: 'yes'
-    cycleway: shared_lane
-    highway: tertiary
-  - name: Coupal Street
-    osm_names:
-      - Coupal Street
-    anchors:
-      - - -75.6724296
-        - 45.4361133
-      - - -75.6698189
-        - 45.4363754
-    name_fr: rue Coupal
-    name_en: Coupal Street
-    surface: asphalt
-    cycleway: shared_lane
-    highway: residential
-  - name: Somerset Street East
-    osm_names:
-      - Somerset Street East
-    anchors:
-      - - -75.6801762
-        - 45.422069
-      - - -75.6718059
-        - 45.425592
-    name_fr: rue Somerset Est
-    name_en: Somerset Street East
-    surface: asphalt
-    cycleway: shared_lane
-    highway: tertiary
-  - name: Princess Avenue
-    osm_names:
-      - Princess Avenue
-    anchors:
-      - - -75.692338
-        - 45.4445792
-      - - -75.6894074
-        - 45.4457002
-    name_fr: avenue Princess
-    name_en: Princess Avenue
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: primary
-  - name: Blair Road
-    osm_names:
-      - Blair Road
-    anchors:
-      - - -75.6232407
-        - 45.4311016
-      - - -75.6048716
-        - 45.4610532
-    name_fr: chemin Blair
-    name_en: Blair Road
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: secondary
-    ref: '27'
-  - name: St-Laurent Boulevard
-    osm_names:
-      - St-Laurent Boulevard
-    anchors:
-      - - -75.6517262
-        - 45.3896579
-      - - -75.6179158
-        - 45.4496825
-    name_fr: boulevard St-Laurent
-    name_en: St-Laurent Boulevard
-    alt_name: St. Laurent Boulevard
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: secondary
-    ref: '26'
-    parallel_to: St-Laurent Boulevard
-  - name: Hawthorne Road
-    osm_names:
-      - Hawthorne Road
-    anchors:
-      - - -75.6056802
-        - 45.3717752
-      - - -75.595969
-        - 45.389103
-    name_fr: chemin Hawthorne
-    name_en: Hawthorne Road
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: secondary
-    ref: '32'
-  - name: Fallowfield Road
-    osm_names:
-      - Fallowfield Road
-    anchors:
-      - - -75.7860767
-        - 45.2754572
-      - - -75.7019101
-        - 45.3095307
-    name_fr: chemin Fallowfield
-    name_en: Fallowfield Road
-    surface: asphalt
-    cycleway: lane
-    highway: secondary
-    ref: '12'
-    parallel_to: Fallowfield Road
-  - name: MacFarlane Road
-    osm_names:
-      - MacFarlane Road
-    anchors:
-      - - -75.7170512
-        - 45.3233425
-      - - -75.7032145
-        - 45.331193
-    name_fr: chemin MacFarlane
-    name_en: MacFarlane Road
-    surface: asphalt
-    cycleway: lane
-    highway: tertiary
-  - name: Dynes Road
-    osm_names:
-      - Dynes Road
-    anchors:
-      - - -75.7131418
-        - 45.3665081
-      - - -75.7053851
-        - 45.3699235
-    name_fr: chemin Dynes
-    name_en: Dynes Road
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: tertiary
-  - name: Birchwood Drive
-    osm_names:
-      - Birchwood Drive
-    anchors:
-      - - -75.7324975
-        - 45.3557672
-      - - -75.7334193
-        - 45.3568323
-    name_fr: promenade Birchwood
-    name_en: Birchwood Drive
-    surface: asphalt
-    cycleway: shared_lane
-    highway: residential
-  - name: Deer Park Road
-    osm_names:
-      - Deer Park Road
-    anchors:
-      - - -75.7182897
-        - 45.3645248
-      - - -75.7135416
-        - 45.3663411
-    name_fr: chemin Deer Park
-    name_en: Deer Park Road
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: residential
-  - name: Des Épinettes Avenue
-    osm_names:
-      - Des Épinettes Avenue
-    anchors:
-      - - -75.5078936
-        - 45.461383
-      - - -75.4927984
-        - 45.4672762
-    name_fr: avenue des Épinettes
-    name_en: Des Épinettes Avenue
-    surface: asphalt
-    width: '11'
-    cycleway: lane
-    highway: tertiary
-  - name: Orchardview Avenue
-    osm_names:
-      - Orchardview Avenue
-    anchors:
-      - - -75.4785109
-        - 45.464989
-      - - -75.4767627
-        - 45.467972
-    name_fr: avenue Orchardview
-    name_en: Orchardview Avenue
-    surface: asphalt
-    width: '11'
-    cycleway: lane
-    highway: tertiary
-  - name: Monk Street
-    osm_names:
-      - Monk Street
-    anchors:
-      - - -75.6860774
-        - 45.3974477
-      - - -75.6872712
-        - 45.3995231
-    name_fr: rue Monk
-    name_en: Monk Street
-    surface: asphalt
-    cycleway: lane
-    highway: residential
-  - name: Clémentine Boulevard
-    osm_names:
-      - Clémentine Boulevard
-    anchors:
-      - - -75.673958
-        - 45.3780804
-      - - -75.6732542
-        - 45.3820471
-    name_fr: boulevard Clémentine
-    name_en: Clémentine Boulevard
-    surface: asphalt
-    cycleway: shared_lane
-    highway: residential
-  - name: Chemin de Montréal Ouest
-    osm_names:
-      - Chemin de Montréal Ouest
-    anchors:
-      - - -75.4801899
-        - 45.526583
-      - - -75.4300063
-        - 45.5421423
-    surface: asphalt
-    cycleway: lane
-    highway: primary
-    ref: '148'
-    parallel_to: Chemin de Montréal Ouest
-  - name: Rue Maclaren Est
-    osm_names:
-      - Rue Maclaren Est
-    anchors:
-      - - -75.4097442
-        - 45.5842328
-      - - -75.4007183
-        - 45.5887843
-    surface: asphalt
-    cycleway: lane
-    highway: tertiary
-    parallel_to: Rue Maclaren Est
-  - name: Rue Wìgwàs
-    osm_names:
-      - Rue Wìgwàs
-    anchors:
-      - - -75.7331156
-        - 45.4345219
-      - - -75.72988
-        - 45.4345523
-    surface: asphalt
-    cycleway: lane
-    highway: residential
-  - name: Chemin du Lac-Meech
-    osm_names:
-      - Chemin du Lac-Meech
-    anchors:
-      - - -75.8241078
-        - 45.5032651
-      - - -75.8125894
-        - 45.509489
-    surface: asphalt
-    cycleway: lane
-    highway: tertiary
-  - name: Boulevard Saint-René Est
-    osm_names:
-      - Boulevard Saint-René Est
-    anchors:
-      - - -75.5884409
-        - 45.5051602
-      - - -75.5817461
-        - 45.5056978
-    surface: asphalt
-    width: '13'
-    cycleway: lane
-    highway: tertiary
-    parallel_to: Boulevard Saint-René Est
-  - name: Old Richmond Road
-    osm_names:
-      - Old Richmond Road
-    anchors:
-      - - -75.837959
-        - 45.2760436
-      - - -75.8321725
-        - 45.3025438
-    name_fr: chemin Old Richmond
-    name_en: Old Richmond Road
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: secondary
-    ref: '59'
-    parallel_to: Old Richmond Road
-  - name: Merivale Road
-    osm_names:
-      - Merivale Road
-    anchors:
-      - - -75.7344329
-        - 45.3642082
-      - - -75.7307018
-        - 45.3888302
-    name_fr: chemin Merivale
-    name_en: Merivale Road
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: secondary
-    ref: '63'
-  - name: Kirkwood Avenue
-    osm_names:
-      - Kirkwood Avenue
-    anchors:
-      - - -75.7410401
-        - 45.3795362
-      - - -75.7365885
-        - 45.3857075
-    name_fr: avenue Kirkwood
-    name_en: Kirkwood Avenue
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: secondary
-    ref: '67'
-    parallel_to: Kirkwood Avenue
-  - name: Boulevard Labrosse
-    osm_names:
-      - Boulevard Labrosse
-    anchors:
-      - - -75.6436472
-        - 45.5014242
-      - - -75.6426003
-        - 45.5082469
-    surface: asphalt
-    cycleway: lane
-    highway: secondary
-  - name: Rue Gouin
-    osm_names:
-      - Rue Gouin
-    anchors:
-      - - -75.6603392
-        - 45.4865576
-      - - -75.6520627
-        - 45.4884327
-    surface: asphalt
-    cycleway: lane
-    highway: residential
-  - name: Leitrim Road
-    osm_names:
-      - Leitrim Road
-    anchors:
-      - - -75.677783
-        - 45.2980631
-      - - -75.6254058
-        - 45.3194624
-    name_fr: chemin Leitrim
-    name_en: Leitrim Road
-    surface: asphalt
-    cycleway: lane
-    highway: secondary
-    ref: '14'
-    parallel_to: Leitrim Road
-  - name: Brian Coburn Boulevard
-    osm_names:
-      - Brian Coburn Boulevard
-    anchors:
-      - - -75.5234496
-        - 45.4323315
-      - - -75.447768
-        - 45.4573508
-    name_fr: boulevard Brian Coburn
-    name_en: Brian Coburn Boulevard
-    surface: asphalt
-    width: '7'
-    cycleway: lane
-    highway: secondary
-    parallel_to: Brian Coburn Boulevard
-  - name: Wajashk Private
-    osm_names:
-      - Wajashk Private
-    anchors:
-      - - -75.756973
-        - 45.3504349
-      - - -75.7540624
-        - 45.3515556
-    surface: asphalt
-    cycleway: shared_lane
-    highway: unclassified
-  - name: Rue Jos-Montferrand
-    osm_names:
-      - Rue Jos-Montferrand
-    anchors:
-      - - -75.7180295
-        - 45.42339
-      - - -75.7165863
-        - 45.4246806
-    surface: asphalt
-    cycleway: lane
-    highway: residential
-  - name: Boulevard de Lucerne
-    osm_names:
-      - Boulevard de Lucerne
-    anchors:
-      - - -75.8050912
-        - 45.386607
-      - - -75.7533969
-        - 45.4197631
-    surface: asphalt
-    lit: 'no'
-    cycleway: lane
-    highway: secondary
-  - name: Avenue de Buckingham
-    osm_names:
-      - Avenue de Buckingham
-    anchors:
-      - - -75.4195345
-        - 45.595737
-      - - -75.4185947
-        - 45.5938088
-    surface: asphalt
-    cycleway: lane
-    highway: tertiary
-  - name: Rue Le Gallois
-    osm_names:
-      - Rue Le Gallois
-    anchors:
-      - - -75.7396897
-        - 45.4998234
-      - - -75.7318149
-        - 45.4996486
-    surface: asphalt
-    cycleway: lane
-    highway: tertiary
-  - name: Carling Avenue
-    osm_names:
-      - Carling Avenue
-    anchors:
-      - - -75.9116424
-        - 45.3380457
-      - - -75.7326232
-        - 45.3868113
-    name_fr: avenue Carling
-    name_en: Carling Avenue
-    surface: asphalt
-    lit: 'yes'
-    highway: primary
-    ref: '38'
-    parallel_to: Carling Avenue
-  - name: Sebring Avenue
-    osm_names:
-      - Sebring Avenue
-    anchors:
-      - - -75.7413137
-        - 45.3861627
-      - - -75.7393715
-        - 45.3867767
-    name_fr: avenue Sebring
-    name_en: Sebring Avenue
-    surface: asphalt
-    highway: residential
-  - name: Lakeview Terrace
-    osm_names:
-      - Lakeview Terrace
-    anchors:
-      - - -75.6968517
-        - 45.3943523
-      - - -75.6967775
-        - 45.3941807
-    name_fr: terrasse Lakeview
-    name_en: Lakeview Terrace
-    surface: asphalt
-    lit: 'yes'
-    highway: residential
-  - name: Deschamps Avenue
-    osm_names:
-      - Deschamps Avenue
-    anchors:
-      - - -75.6680604
-        - 45.4365104
-      - - -75.6619015
-        - 45.4370056
-    name_fr: avenue Deschamps
-    name_en: Deschamps Avenue
-    surface: asphalt
-    lit: 'yes'
-    highway: tertiary
-  - name: Echo Drive
-    osm_names:
-      - Echo Drive
-    anchors:
-      - - -75.6814739
-        - 45.4149685
-      - - -75.6803517
-        - 45.4168527
-    name_fr: promenade Echo
-    name_en: Echo Drive
-    surface: asphalt
-    highway: residential
-  - name: Rideau River Drive
-    osm_names:
-      - Rideau River Drive
-    anchors:
-      - - -75.6730069
-        - 45.4004102
-      - - -75.6725685
-        - 45.3996747
-    name_fr: promenade Rideau River
-    name_en: Rideau River Drive
-    surface: asphalt
-    highway: residential
-  - name: Rockcliffe Driveway
-    osm_names:
-      - Rockcliffe Driveway
-    anchors:
-      - - -75.6898932
-        - 45.4464634
-      - - -75.6870956
-        - 45.4507224
-    surface: asphalt
-    highway: unclassified
-  - name: Arlington Avenue
-    osm_names:
-      - Arlington Avenue
-    anchors:
-      - - -75.7019731
-        - 45.4062038
-      - - -75.7018072
-        - 45.4062753
-    name_fr: avenue Arlington
-    name_en: Arlington Avenue
-    surface: asphalt
-    highway: residential
-  - name: St. Andrew Street
-    osm_names:
-      - St. Andrew Street
-    anchors:
-      - - -75.6918771
-        - 45.4330573
-      - - -75.6917038
-        - 45.4331349
-    name_fr: rue St. Andrew
-    name_en: St. Andrew Street
-    surface: asphalt
-    highway: residential
-  - name: Chemin Jean-Paul Lemieux
-    osm_names:
-      - Chemin Jean-Paul Lemieux
-    anchors:
-      - - -75.7982457
-        - 45.4961752
-      - - -75.7952166
-        - 45.5036884
-    surface: asphalt
-    highway: residential
-  - name: Boulevard Louise-Campagna
-    osm_names:
-      - Boulevard Louise-Campagna
-    anchors:
-      - - -75.7734364
-        - 45.4288755
-      - - -75.7623133
-        - 45.4301058
-    surface: asphalt
-    highway: tertiary
-    parallel_to: Boulevard Louise-Campagna
-  - name: Heatherington Road
-    osm_names:
-      - Heatherington Road
-    anchors:
-      - - -75.6524017
-        - 45.3724542
-      - - -75.643747
-        - 45.3778416
-    name_fr: chemin Heatherington
-    name_en: Heatherington Road
-    surface: asphalt
-    lit: 'yes'
-    highway: tertiary
-    parallel_to: Heatherington Road
-  - name: Onslow Crescent
-    osm_names:
-      - Onslow Crescent
-    anchors:
-      - - -75.670765
-        - 45.4037746
-      - - -75.6725709
-        - 45.406178
-    name_fr: croissant Onslow
-    name_en: Onslow Crescent
-    surface: asphalt
-    lit: 'yes'
-    highway: residential
-  - name: Boulevard de Carrefour
-    osm_names:
-      - Boulevard de Carrefour
-    anchors:
-      - - -75.6813125
-        - 45.4859366
-      - - -75.6748174
-        - 45.4864343
-    surface: asphalt
-    highway: tertiary
-    parallel_to: Boulevard de Carrefour
-  - name: Huntmar Drive
-    osm_names:
-      - Huntmar Drive
-    anchors:
-      - - -75.9197552
-        - 45.2832418
-      - - -75.9119153
-        - 45.2884347
-    name_fr: promenade Huntmar
-    name_en: Huntmar Drive
-    surface: asphalt
-    highway: secondary
-    parallel_to: Huntmar Drive
-  - name: Sir Frederick Banting Driveway
-    osm_names:
-      - Sir Frederick Banting Driveway
-    anchors:
-      - - -75.7393303
-        - 45.4018455
-      - - -75.7393285
-        - 45.4016309
-    name_fr: promenade Sir Frederick Banting
-    name_en: Sir Frederick Banting Driveway
-    surface: asphalt
-    highway: unclassified
-  - name: Rue des Beaux-Arts
-    osm_names:
-      - Rue des Beaux-Arts
-    anchors:
-      - - -75.8081122
-        - 45.4369324
-      - - -75.8044972
-        - 45.4374886
-    surface: asphalt
-    highway: residential
-  - name: Richardson Ridge Nature Trail
-    osm_names:
-      - Richardson Ridge Nature Trail
-    anchors:
-      - - -75.9380992
-        - 45.3174432
-      - - -75.9328856
-        - 45.3217128
-    surface: ground
-    width: '0.5'
-    lit: 'no'
-    highway: footway
-  - name: Kizell Pond Trail North
-    osm_names:
-      - Kizell Pond Trail North
-    anchors:
-      - - -75.9377193
-        - 45.3263182
-      - - -75.9312187
-        - 45.3291081
-    surface: gravel
-    width: '0.5'
-    highway: footway
-  - name: Mississippi Valley Trail - ART Section
-    osm_names:
-      - Mississippi Valley Trail - ART Section
-    anchors:
-      - - -76.2056516
-        - 45.2309516
-      - - -76.2072213
-        - 45.2338654
-    surface: ground
-    lit: 'no'
-    highway: footway
-  - name: Spingbank trail
-    osm_names:
-      - Spingbank trail
-    anchors:
-      - - -76.2052068
-        - 45.2331243
-      - - -76.2022547
-        - 45.2358246
-    surface: ground
-    width: '2'
-    highway: footway
-    access: private
-  - name: Kizell Pond Trail South
-    osm_names:
-      - Kizell Pond Trail South
-    anchors:
-      - - -75.9393931
-        - 45.3228933
-      - - -75.9450007
-        - 45.3198691
-    surface: woodchips
-    highway: footway
-  - name: Gilligan Road
-    parallel_to: Gilligan Road
-    highway: cycleway
-    anchors:
-      - - -75.6285229
-        - 45.3149961
-      - - -75.6285229
-        - 45.3149961
-    surface: asphalt
-    width: '2'
-  - name: promenade Vanier Parkway
-    parallel_to: promenade Vanier Parkway
-    highway: cycleway
-    anchors:
-      - - -75.6616396
-        - 45.422499
-      - - -75.6608001
-        - 45.4226375
-    surface: asphalt
-    width: '3'
-  - name: Rue Georges-Lebel
-    parallel_to: Rue Georges-Lebel
-    highway: cycleway
-    anchors:
-      - - -75.8060151
-        - 45.4029945
-      - - -75.8060151
-        - 45.4029945
-    surface: asphalt
-    lit: 'no'
-    width: '2.5'
-  - name: John Sutherland Drive
-    parallel_to: John Sutherland Drive
-    highway: cycleway
-    anchors:
-      - - -75.8093701
-        - 45.3348705
-      - - -75.8093701
-        - 45.3348705
-    surface: asphalt
-    width: '2.5'
-  - name: Rue de Cavalière
-    parallel_to: Rue de Cavalière
-    highway: cycleway
-    anchors:
-      - - -75.7255631
-        - 45.4707183
-      - - -75.7250261
-        - 45.4707403
-    surface: asphalt
-    width: '2'
-    smoothness: good
-  - name: Churchill Avenue North
-    parallel_to: Churchill Avenue North
-    highway: cycleway
-    anchors:
-      - - -75.7496311
-        - 45.3806144
-      - - -75.747045
-        - 45.3853531
-    surface: asphalt
-    lit: 'yes'
-    width: '1.5'
-    smoothness: good
-  - name: Robert Grant Avenue
-    parallel_to: Robert Grant Avenue
-    highway: cycleway
-    anchors:
-      - - -75.8961875
-        - 45.2739105
-      - - -75.8951784
-        - 45.2746615
-    surface: asphalt
-    width: '3'
-  - name: Bathgate Drive
-    parallel_to: Bathgate Drive
-    highway: cycleway
-    anchors:
-      - - -75.6197727
-        - 45.4367459
-      - - -75.6197727
-        - 45.4367459
-    surface: asphalt
-    width: '3'
-  - name: Country Glen Way
-    parallel_to: Country Glen Way
-    highway: cycleway
-    anchors:
-      - - -75.9330586
-        - 45.302826
-      - - -75.9323774
-        - 45.3030874
-    surface: asphalt
-    lit: 'yes'
-    width: '2'
-    smoothness: excellent
-  - name: Rue Paul-Gauguin
-    parallel_to: Rue Paul-Gauguin
-    highway: cycleway
-    anchors:
-      - - -75.6168489
-        - 45.5022818
-      - - -75.6160184
-        - 45.5029105
-    surface: asphalt
-    width: '2'
-  - name: Rue de la Caraque
-    parallel_to: Rue de la Caraque
-    highway: cycleway
-    anchors:
-      - - -75.5881633
-        - 45.4990708
-      - - -75.5880412
-        - 45.4992924
-    surface: asphalt
-    width: '2'
-  - name: Bentbrook Crescent
-    parallel_to: Bentbrook Crescent
-    highway: cycleway
-    anchors:
-      - - -75.7528159
-        - 45.2695122
-      - - -75.7528159
-        - 45.2695122
-    surface: asphalt
-    width: '3'
-    smoothness: good
-  - name: Boulevard de la Cité
-    parallel_to: Boulevard de la Cité
-    highway: cycleway
-    anchors:
-      - - -75.6790228
-        - 45.4743723
-      - - -75.6773137
-        - 45.477265
-    surface: asphalt
-    lit: 'yes'
-    width: '2.5'
-  - name: CrossKeys Place
-    parallel_to: CrossKeys Place
-    highway: cycleway
-    anchors:
-      - - -75.7859234
-        - 45.2702177
-      - - -75.7857572
-        - 45.2702402
-    surface: asphalt
-    width: '2'
-  - name: Blair Towers Place
-    parallel_to: Blair Towers Place
-    highway: cycleway
-    anchors:
-      - - -75.6040866
-        - 45.4349397
-      - - -75.6040866
-        - 45.4349397
-    surface: asphalt
-    lit: 'yes'
-    width: '3'
-    smoothness: good
-  - name: Route du Carrefour
-    parallel_to: Route du Carrefour
-    highway: cycleway
-    anchors:
-      - - -75.6174336
-        - 45.5933786
-      - - -75.6174336
-        - 45.5933786
-    surface: asphalt
-  - name: Cardinal Creek Drive
-    parallel_to: Cardinal Creek Drive
-    highway: cycleway
-    anchors:
-      - - -75.4678081
-        - 45.5018308
-      - - -75.4678081
-        - 45.5018308
-    surface: asphalt
-    width: '3'
-  - name: Town Square Place
-    parallel_to: Town Square Place
-    highway: cycleway
-    anchors:
-      - - -75.6692523
-        - 45.2769234
-      - - -75.6684651
-        - 45.2782871
-    surface: asphalt
-  - name: Rue Nancy-Elliott
-    parallel_to: Rue Nancy-Elliott
-    highway: cycleway
-    anchors:
-      - - -75.7970809
-        - 45.4017452
-      - - -75.7970809
-        - 45.4017452
-    surface: asphalt
-    width: '2.5'
-  - name: Boulevard de l'Amérique-Française
-    parallel_to: Boulevard de l'Amérique-Française
-    highway: cycleway
-    anchors:
-      - - -75.8025828
-        - 45.4281979
-      - - -75.802128
-        - 45.4320455
-    surface: asphalt
-    width: '2.5'
-  - name: Old Second Line Road
-    parallel_to: Old Second Line Road
-    highway: cycleway
-    anchors:
-      - - -75.9476485
-        - 45.3474202
-      - - -75.9476485
-        - 45.3474202
-    surface: asphalt
-    width: '3'
-  - name: Parc de la Gatineau
-    grouped_from:
-      - trail-57
-      - trail-52
-      - trail-52-parc-de-la-gatineau-pathway
-    anchors:
-      - - -75.964203
-        - 45.582498
-      - - -75.9386218
-        - 45.6329522
-    osm_names:
-      - Trail 57
-      - 'Trail #52'
-      - 'Trail #52 Parc de la Gatineau Pathway'
-    surface: ground
-    highway: cycleway
-    lit: 'no'
-    width: '1.5'
-    smoothness: bad
-  - name: Parc de la Gatineau
-    grouped_from:
-      - 44-mo
-      - 45-powerline
-      - chemin-cowden
-    anchors:
-      - - -75.8822303
-        - 45.540867
-      - - -75.853593
-        - 45.5721159
-    osm_names:
-      - '#44 (M.O.)'
-      - '#45 (Powerline)'
-      - Chemin Cowden
-    surface: ground
-    highway: cycleway
-  - name: Parc de la Gatineau
-    grouped_from:
-      - trail-47-hope-trail
-      - trail-47
-      - trail-36-trans-canada-trail
-    anchors:
-      - - -75.9041589
-        - 45.5272457
-      - - -75.8643952
-        - 45.568983
-    osm_names:
-      - Trail 47 (Hope Trail)
-      - Trail 47
-      - 'Trail #36 Trans Canada Trail'
-    surface: ground
-    highway: cycleway
-    width: '2'
-    smoothness: very_bad
-    network: mtb
-  - name: 'Trail #1 Ridge Road'
-    grouped_from:
-      - trail-24
-      - trail-33
-      - trail-2
-      - sentier-du-parc-de-la-gatineau-parkway
-      - trail-4
-      - trail-1b
-      - trail-1-ridge-road
-      - trail-14
-    anchors:
-      - - -75.995643
-        - 45.2940019
-      - - -75.8367827
-        - 45.5443893
-    osm_names:
-      - Trail 24
-      - 'Trail #33'
-      - 'Trail #2'
-      - Sentier du Parc de la Gatineau Parkway
-      - Trail 4
-      - 'Trail #1B'
-      - 'Trail #1 Ridge Road'
-      - Trail 14
-    surface: ground
-    highway: path
-    lit: 'no'
-    width: '2'
-    smoothness: intermediate
-    network: mtb
-  - name: Parc de la Gatineau
-    grouped_from:
-      - 68-missing-link
-      - trail-68
-    anchors:
-      - - -75.8024799
-        - 45.451451
-      - - -75.7839542
-        - 45.4609278
-    osm_names:
-      - '#68 (Missing Link)'
-      - Trail 68
-    surface: ground
-    highway: path
-  - name: Mackenzie King Bridge
-    grouped_from:
-      - nicholas-street
-      - albert-street
-      - slater-street
-      - waller-street
-      - mackenzie-king-bridge
-    anchors:
-      - - -75.711792
-        - 45.413299
-      - - -75.6780957
-        - 45.4252513
-    osm_names:
-      - Nicholas Street
-      - Albert Street
-      - Slater Street
-      - Waller Street
-      - Mackenzie King Bridge
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '3'
-    smoothness: excellent
-  - name: Riverside Drive
-    grouped_from:
-      - riverside-drive
-      - river-road
-    anchors:
-      - - -75.7003539
-        - 45.2685925
-      - - -75.6649791
-        - 45.4086933
-    osm_names:
-      - Riverside Drive
-      - River Road
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '2.5'
-    smoothness: intermediate
-  - name: Montréal Road
-    grouped_from:
-      - montreal-road
-      - percy-street
-      - lyon-street-north
-      - wellington-street
-      - rideau-street
-      - chapel-street
-      - mcleod-street
-      - cummings-bridge
-      - mackenzie-avenue
-      - bay-street
-    anchors:
-      - - -75.7145919
-        - 45.4045544
-      - - -75.5862912
-        - 45.4505946
-    osm_names:
-      - Montréal Road
-      - Percy Street
-      - Lyon Street North
-      - Wellington Street
-      - Rideau Street
-      - Chapel Street
-      - McLeod Street
-      - Cummings Bridge
-      - Mackenzie Avenue
-      - Bay Street
-    surface: asphalt
-    highway: primary
-    lit: 'yes'
-    width: '2'
-    smoothness: intermediate
-  - name: Boulevard de la Cité-des-Jeunes
-    grouped_from:
-      - boulevard-des-hautes-plaines
-      - boulevard-de-la-cite-des-jeunes
-      - rue-gamelin
-    anchors:
-      - - -75.7847758
-        - 45.4416577
-      - - -75.7506006
-        - 45.4747071
-    osm_names:
-      - Boulevard des Hautes-Plaines
-      - Boulevard de la Cité-des-Jeunes
-      - Rue Gamelin
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '3'
-    smoothness: good
-  - name: Crestway Drive
-    grouped_from:
-      - crestway-drive
-      - leikin-drive
-    anchors:
-      - - -75.7155927
-        - 45.2776378
-      - - -75.7023592
-        - 45.3015986
-    osm_names:
-      - Crestway Drive
-      - Leikin Drive
-    surface: asphalt
-    highway: cycleway
-    width: '3'
-  - name: Route 105
-    grouped_from:
-      - route-105
-      - chemin-de-ste-cecile-de-masham
-    anchors:
-      - - -75.9461266
-        - 45.6234727
-      - - -75.9335389
-        - 45.6396556
-    osm_names:
-      - Route 105
-      - Chemin de Ste-Cécile-de-Masham
-    surface: asphalt
-    highway: cycleway
-  - name: West Hunt Club Road
-    grouped_from:
-      - west-hunt-club-road
-      - hunt-club-road
-      - bridle-path-drive
-    anchors:
-      - - -75.8301307
-        - 45.3020393
-      - - -75.5916134
-        - 45.3764818
-    osm_names:
-      - West Hunt Club Road
-      - Hunt Club Road
-      - Bridle Path Drive
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '3'
-    smoothness: good
-  - name: Bank Street
-    grouped_from:
-      - bank-street
-      - glebe-avenue
-      - first-avenue
-      - fifth-avenue
-      - oconnor-street
-      - holmwood-avenue
-    anchors:
-      - - -75.6958129
-        - 45.3205226
-      - - -75.5937791
-        - 45.4092192
-    osm_names:
-      - Bank Street
-      - Glebe Avenue
-      - First Avenue
-      - Fifth Avenue
-      - O'Connor Street
-      - Holmwood Avenue
-    surface: asphalt
-    highway: residential
-    lit: 'yes'
-    width: '1.5'
-    smoothness: good
-  - name: Garland Street
-    grouped_from:
-      - garland-street
-      - wellington-street-west
-    anchors:
-      - - -75.7273469
-        - 45.4015309
-      - - -75.7225833
-        - 45.4059873
-    osm_names:
-      - Garland Street
-      - Wellington Street West
-    surface: asphalt
-    highway: cycleway
-    width: '1.5'
-    lit: 'yes'
-  - name: Chemin Old Chelsea
-    grouped_from:
-      - chemin-scott
-      - chemin-old-chelsea
-      - chemin-kingsmere
-      - chemin-de-la-mine
-      - chemin-notch
-    anchors:
-      - - -75.8146362
-        - 45.4775348
-      - - -75.7920486
-        - 45.5258838
-    osm_names:
-      - Chemin Scott
-      - Chemin Old Chelsea
-      - Chemin Kingsmere
-      - Chemin de la Mine
-      - Chemin Notch
-    surface: asphalt
-    highway: tertiary
-    width: '2.5'
-    lit: 'yes'
-  - name: Island Park Drive
-    grouped_from:
-      - island-park-drive
-      - champlain-bridge
-      - pont-champlain-bridge
-      - place-samuel-de-champlain
-    anchors:
-      - - -75.7665891
-        - 45.3892932
-      - - -75.7267104
-        - 45.4138942
-    osm_names:
-      - Island Park Drive
-      - Champlain Bridge
-      - Pont Champlain Bridge
-      - Place Samuel-De Champlain
-    surface: asphalt
-    highway: primary
-    lit: 'yes'
-    width: '1.5'
-  - name: Sussex Drive
-    grouped_from:
-      - hawthorne-avenue
-      - laurier-avenue-west
-      - cumberland-street
-      - elgin-street
-      - sussex-drive
-      - laurier-avenue-east
-      - beausoleil-drive
-      - cobourg-street
-      - stewart-street
-      - gladstone-avenue
-      - st-patrick-street
-      - wilbrod-street
-    anchors:
-      - - -75.699367
-        - 45.4112487
-      - - -75.6757402
-        - 45.444516
-    osm_names:
-      - Hawthorne Avenue
-      - Laurier Avenue West
-      - Cumberland Street
-      - Elgin Street
-      - Sussex Drive
-      - Laurier Avenue East
-      - Beausoleil Drive
-      - Cobourg Street
-      - Stewart Street
-      - Gladstone Avenue
-      - St. Patrick Street
-      - Wilbrod Street
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '1.5'
-    smoothness: good
-  - name: Beaverbrook Road
-    grouped_from:
-      - knudson-drive
-      - weslock-way
-      - walden-drive
-      - beaverbrook-road
-    anchors:
-      - - -75.9234681
-        - 45.3169755
-      - - -75.8993126
-        - 45.3325073
-    osm_names:
-      - Knudson Drive
-      - Weslock Way
-      - Walden Drive
-      - Beaverbrook Road
-    surface: asphalt
-    highway: tertiary
-    width: '1.5'
-  - name: Herzberg Road
-    grouped_from:
-      - legget-drive
-      - herzberg-road
-    anchors:
-      - - -75.9209411
-        - 45.3329492
-      - - -75.8935248
-        - 45.3494277
-    osm_names:
-      - Legget Drive
-      - Herzberg Road
-    surface: asphalt
-    highway: cycleway
-  - name: Seneca Street
-    grouped_from:
-      - cameron-avenue
-      - seneca-street
-    anchors:
-      - - -75.6915773
-        - 45.3886341
-      - - -75.6807993
-        - 45.3934399
-    osm_names:
-      - Cameron Avenue
-      - Seneca Street
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    smoothness: intermediate
-  - name: Russell Road
-    grouped_from:
-      - smyth-road
-      - lancaster-road
-      - russell-road
-      - main-street
-    anchors:
-      - - -75.6732412
-        - 45.3890655
-      - - -75.6047647
-        - 45.4022549
-    osm_names:
-      - Smyth Road
-      - Lancaster Road
-      - Russell Road
-      - Main Street
-    surface: asphalt
-    highway: secondary
-    lit: 'yes'
-    smoothness: excellent
+    wikidata: Q5035630
+    wikipedia: en:Capital Pathway
+    cycle_network: CA:ON:NCC
+    members:
+      - sentier-des-voyageurs-pathway
+      - sentier-des-pionniers-pathway
+      - sentier-du-parc-de-la-gatineau
+      - watts-creek-pathway
+      - rideau-canal-western-pathway
+      - rideau-canal-eastern-pathway
+      - experimental-farm-pathway
+      - rideau-river-eastern-pathway-2
+      - aviation-pathway
+      - greenbelt-pathway-east
+      - ottawa-river-pathway-east
+      - ottawa-river-pathway-trans-canada-trail
+      - ottawa-river-pathway-west
+      - greenbelt-pathway-west-2
+      - greenbelt-pathway-west-barrhaven
+    wikidata_meta:
+      description_en: Bike path network in Ottawa-Gatineau, Canada
+      description_fr: réseau de pistes cyclables à Ottawa-Gatineau, Canada
+      length_km: 220
+      inception: 1970s
+      website: https://ncc-ccn.gc.ca/places/capital-pathway
+  - name: Rideau River Eastern Pathway
+    type: network
+    osm_relations:
+      - 10990512
+    name_fr: Sentier de l'Est de la rivière Rideau
+    name_en: Rideau River Eastern Pathway
+    network: lcn
+    members:
+      - rideau-river-eastern-pathway-2
+      - rideau-river-eastern-pathway-city-section
+  - name: Greenbelt Pathway West
+    type: network
+    osm_relations:
+      - 11009280
+    network: rcn
+    operator: NCC
+    members:
+      - greenbelt-pathway-west-2
+      - greenbelt-pathway-west-barrhaven
   - name: Sentier du Lac Leamy Pathway
     grouped_from:
       - sentier-du-lac-leamy-pathway
@@ -5664,6 +5200,7 @@ bike_paths:
     smoothness: good
     network: rcn
     operator: National Capital Commission
+    member_of: capital-pathway
   - name: Rideau Canal Western Pathway
     grouped_from:
       - rideau-canal-western-pathway
@@ -5685,6 +5222,7 @@ bike_paths:
     smoothness: good
     operator: NCC
     network: rcn
+    member_of: capital-pathway
   - name: Sawmill Creek Path
     grouped_from:
       - sawmill-creek-pathway
@@ -5814,6 +5352,44 @@ bike_paths:
     lit: 'no'
     width: '2.5'
     smoothness: good
+  - name: Boulevard de la Cité-des-Jeunes
+    grouped_from:
+      - boulevard-des-hautes-plaines
+      - boulevard-de-la-cite-des-jeunes
+      - rue-gamelin
+    anchors:
+      - - -75.7847758
+        - 45.4416577
+      - - -75.7506006
+        - 45.4747071
+    osm_names:
+      - Boulevard des Hautes-Plaines
+      - Boulevard de la Cité-des-Jeunes
+      - Rue Gamelin
+    surface: asphalt
+    highway: cycleway
+    lit: 'yes'
+    width: '3'
+    smoothness: excellent
+  - name: Parc de la Gatineau
+    grouped_from:
+      - trail-52
+      - trail-57
+      - trail-52-parc-de-la-gatineau-pathway
+    anchors:
+      - - -75.964203
+        - 45.582498
+      - - -75.9384142
+        - 45.6329522
+    osm_names:
+      - 'Trail #52'
+      - Trail 57
+      - 'Trail #52 Parc de la Gatineau Pathway'
+    surface: ground
+    highway: cycleway
+    lit: 'no'
+    width: '1.5'
+    smoothness: bad
   - name: NCC Greenbelt
     grouped_from:
       - trail-27
@@ -5896,6 +5472,22 @@ bike_paths:
     width: '2'
   - name: Parc de la Gatineau
     grouped_from:
+      - 45-powerline
+      - 44-mo
+      - chemin-cowden
+    anchors:
+      - - -75.8822303
+        - 45.538408
+      - - -75.853593
+        - 45.5721159
+    osm_names:
+      - '#45 (Powerline)'
+      - '#44 (M.O.)'
+      - Chemin Cowden
+    surface: ground
+    highway: cycleway
+  - name: Parc de la Gatineau
+    grouped_from:
       - sentier-trail-51
       - trail-51
     anchors:
@@ -5920,6 +5512,39 @@ bike_paths:
     osm_names:
       - 'Trail #54'
       - '54'
+    highway: cycleway
+  - name: Parc de la Gatineau
+    grouped_from:
+      - trail-47-hope-trail
+      - trail-47
+      - trail-36-trans-canada-trail
+    anchors:
+      - - -75.9041589
+        - 45.5272457
+      - - -75.8643952
+        - 45.568983
+    osm_names:
+      - Trail 47 (Hope Trail)
+      - Trail 47
+      - 'Trail #36 Trans Canada Trail'
+    surface: ground
+    highway: cycleway
+    width: '2'
+    smoothness: very_bad
+    network: mtb
+  - name: Route 105
+    grouped_from:
+      - route-105
+      - chemin-de-ste-cecile-de-masham
+    anchors:
+      - - -75.9461266
+        - 45.6234727
+      - - -75.9335389
+        - 45.6396556
+    osm_names:
+      - Route 105
+      - Chemin de Ste-Cécile-de-Masham
+    surface: asphalt
     highway: cycleway
   - name: NCC Greenbelt
     grouped_from:
@@ -5991,6 +5616,27 @@ bike_paths:
       - Rue de la Baie
     surface: asphalt
     highway: residential
+  - name: Chemin Old Chelsea
+    grouped_from:
+      - chemin-old-chelsea
+      - chemin-scott
+      - chemin-kingsmere
+      - chemin-de-la-mine
+      - chemin-notch
+    anchors:
+      - - -75.8146362
+        - 45.4775348
+      - - -75.7920486
+        - 45.5258838
+    osm_names:
+      - Chemin Old Chelsea
+      - Chemin Scott
+      - Chemin Kingsmere
+      - Chemin de la Mine
+      - Chemin Notch
+    surface: asphalt
+    highway: tertiary
+    lit: 'yes'
   - name: Blue Heron Trail
     grouped_from:
       - blue-heron-trail
@@ -6025,6 +5671,36 @@ bike_paths:
     lit: 'no'
     width: '1'
     smoothness: intermediate
+  - name: 'Trail #1 Ridge Road'
+    grouped_from:
+      - trail-24
+      - trail-33
+      - trail-2
+      - sentier-du-parc-de-la-gatineau-parkway
+      - trail-4
+      - trail-1b
+      - trail-1-ridge-road
+      - trail-14
+    anchors:
+      - - -75.995643
+        - 45.2940019
+      - - -75.8367827
+        - 45.5443893
+    osm_names:
+      - Trail 24
+      - 'Trail #33'
+      - 'Trail #2'
+      - Sentier du Parc de la Gatineau Parkway
+      - Trail 4
+      - 'Trail #1B'
+      - 'Trail #1 Ridge Road'
+      - Trail 14
+    surface: ground
+    highway: path
+    lit: 'no'
+    width: '2'
+    smoothness: intermediate
+    network: mtb
   - name: NCC Greenbelt
     grouped_from:
       - trail-25
@@ -6310,6 +5986,20 @@ bike_paths:
       - '# 76 (Jesse''s Girl)'
     surface: ground
     highway: path
+  - name: Parc de la Gatineau
+    grouped_from:
+      - 68-missing-link
+      - trail-68
+    anchors:
+      - - -75.8024799
+        - 45.451451
+      - - -75.7839542
+        - 45.4609278
+    osm_names:
+      - '# 68 (Missing Link)'
+      - Trail 68
+    surface: ground
+    highway: path
   - name: Major
     grouped_from:
       - major
@@ -6508,6 +6198,39 @@ bike_paths:
       - Goulbourn Forced Road
     surface: asphalt
     highway: tertiary
+  - name: Beaverbrook Road
+    grouped_from:
+      - knudson-drive
+      - weslock-way
+      - walden-drive
+      - beaverbrook-road
+    anchors:
+      - - -75.9234681
+        - 45.3169755
+      - - -75.8993126
+        - 45.3325073
+    osm_names:
+      - Knudson Drive
+      - Weslock Way
+      - Walden Drive
+      - Beaverbrook Road
+    surface: asphalt
+    highway: tertiary
+  - name: Carling Avenue
+    grouped_from:
+      - herzberg-road
+      - carling-avenue
+    anchors:
+      - - -75.9116424
+        - 45.3329492
+      - - -75.7326232
+        - 45.3868113
+    osm_names:
+      - Herzberg Road
+      - Carling Avenue
+    surface: asphalt
+    highway: tertiary
+    lit: 'yes'
   - name: March Road
     grouped_from:
       - march-road
@@ -6558,6 +6281,23 @@ bike_paths:
       - Bruin Road
     surface: asphalt
     highway: secondary
+  - name: West Hunt Club Road
+    grouped_from:
+      - west-hunt-club-road
+      - hunt-club-road
+      - bridle-path-drive
+    anchors:
+      - - -75.8301307
+        - 45.3020393
+      - - -75.5916134
+        - 45.3764818
+    osm_names:
+      - West Hunt Club Road
+      - Hunt Club Road
+      - Bridle Path Drive
+    surface: asphalt
+    highway: primary
+    lit: 'yes'
   - name: Greenbank Road
     grouped_from:
       - highbury-park-drive
@@ -6572,6 +6312,25 @@ bike_paths:
       - Greenbank Road
     surface: asphalt
     highway: tertiary
+  - name: Island Park Drive
+    grouped_from:
+      - island-park-drive
+      - champlain-bridge
+      - pont-champlain-bridge
+      - place-samuel-de-champlain
+    anchors:
+      - - -75.7665891
+        - 45.3892932
+      - - -75.7267104
+        - 45.4138942
+    osm_names:
+      - Island Park Drive
+      - Champlain Bridge
+      - Pont Champlain Bridge
+      - Place Samuel-De Champlain
+    surface: asphalt
+    highway: primary
+    lit: 'yes'
   - name: Sherbourne Road
     grouped_from:
       - sherbourne-road
@@ -6586,6 +6345,95 @@ bike_paths:
       - Dovercourt Avenue
     surface: asphalt
     highway: tertiary
+    lit: 'yes'
+  - name: Bank Street
+    grouped_from:
+      - glebe-avenue
+      - first-avenue
+      - bank-street
+      - fifth-avenue
+      - oconnor-street
+      - holmwood-avenue
+    anchors:
+      - - -75.6958129
+        - 45.3205226
+      - - -75.5937791
+        - 45.4092192
+    osm_names:
+      - Glebe Avenue
+      - First Avenue
+      - Bank Street
+      - Fifth Avenue
+      - O'Connor Street
+      - Holmwood Avenue
+    surface: asphalt
+    highway: residential
+    lit: 'yes'
+  - name: Sussex Drive
+    grouped_from:
+      - elgin-street
+      - laurier-avenue-west
+      - sussex-drive
+      - cumberland-street
+      - laurier-avenue-east
+      - beausoleil-drive
+      - cobourg-street
+      - hawthorne-avenue
+      - stewart-street
+      - gladstone-avenue
+      - st-patrick-street
+      - wilbrod-street
+    anchors:
+      - - -75.699367
+        - 45.4112487
+      - - -75.6757402
+        - 45.444516
+    osm_names:
+      - Elgin Street
+      - Laurier Avenue West
+      - Sussex Drive
+      - Cumberland Street
+      - Laurier Avenue East
+      - Beausoleil Drive
+      - Cobourg Street
+      - Hawthorne Avenue
+      - Stewart Street
+      - Gladstone Avenue
+      - St. Patrick Street
+      - Wilbrod Street
+    surface: asphalt
+    highway: secondary
+    lit: 'yes'
+  - name: Montréal Road
+    grouped_from:
+      - percy-street
+      - lyon-street-north
+      - wellington-street
+      - rideau-street
+      - chapel-street
+      - montreal-road
+      - mcleod-street
+      - cummings-bridge
+      - mackenzie-avenue
+      - bay-street
+    anchors:
+      - - -75.7145919
+        - 45.4045544
+      - - -75.5862912
+        - 45.4505946
+    osm_names:
+      - Percy Street
+      - Lyon Street North
+      - Wellington Street
+      - Rideau Street
+      - Chapel Street
+      - Montréal Road
+      - McLeod Street
+      - Cummings Bridge
+      - Mackenzie Avenue
+      - Bay Street
+    surface: asphalt
+    highway: residential
     lit: 'yes'
   - name: Ogilvie Road
     grouped_from:
@@ -6638,6 +6486,25 @@ bike_paths:
       - Bearbrook Road
     surface: asphalt
     highway: primary
+    lit: 'yes'
+  - name: Hawthorne Road
+    grouped_from:
+      - st-laurent-boulevard
+      - hawthorne-road
+      - lancaster-road
+      - russell-road
+    anchors:
+      - - -75.6517262
+        - 45.3717752
+      - - -75.595969
+        - 45.4496825
+    osm_names:
+      - St-Laurent Boulevard
+      - Hawthorne Road
+      - Lancaster Road
+      - Russell Road
+    surface: asphalt
+    highway: secondary
     lit: 'yes'
   - name: Beechwood Avenue
     grouped_from:
@@ -6702,6 +6569,21 @@ bike_paths:
     highway: secondary
     lit: 'yes'
     width: '9.5'
+  - name: Riverside Drive
+    grouped_from:
+      - river-road
+      - riverside-drive
+    anchors:
+      - - -75.7003539
+        - 45.2685925
+      - - -75.6649791
+        - 45.4086933
+    osm_names:
+      - River Road
+      - Riverside Drive
+    surface: asphalt
+    highway: secondary
+    lit: 'yes'
   - name: Woodroffe Avenue
     grouped_from:
       - longfields-drive
@@ -6719,6 +6601,20 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
+  - name: Crestway Drive
+    grouped_from:
+      - leikin-drive
+      - crestway-drive
+    anchors:
+      - - -75.7155927
+        - 45.2776378
+      - - -75.7023592
+        - 45.3015986
+    osm_names:
+      - Leikin Drive
+      - Crestway Drive
+    surface: asphalt
+    highway: tertiary
   - name: Meadowlands Drive East
     grouped_from:
       - meadowlands-drive
@@ -6849,6 +6745,42 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     lit: 'yes'
+  - name: Wellington Street West
+    grouped_from:
+      - wellington-street-west
+      - garland-street
+    anchors:
+      - - -75.7273469
+        - 45.4015309
+      - - -75.7225833
+        - 45.4061564
+    osm_names:
+      - Wellington Street West
+      - Garland Street
+    surface: asphalt
+    highway: secondary
+    lit: 'yes'
+  - name: Mackenzie King Bridge
+    grouped_from:
+      - nicholas-street
+      - albert-street
+      - slater-street
+      - mackenzie-king-bridge
+      - waller-street
+    anchors:
+      - - -75.711792
+        - 45.413299
+      - - -75.6875591
+        - 45.4254177
+    osm_names:
+      - Nicholas Street
+      - Albert Street
+      - Slater Street
+      - Mackenzie King Bridge
+      - Waller Street
+    surface: asphalt
+    highway: secondary
+    lit: 'yes'
   - name: Uplands Drive
     grouped_from:
       - uplands-drive
@@ -6893,6 +6825,21 @@ bike_paths:
     surface: asphalt
     highway: secondary
     lit: 'yes'
+  - name: Seneca Street
+    grouped_from:
+      - seneca-street
+      - cameron-avenue
+    anchors:
+      - - -75.6915773
+        - 45.3886341
+      - - -75.6807993
+        - 45.3934399
+    osm_names:
+      - Seneca Street
+      - Cameron Avenue
+    surface: asphalt
+    highway: residential
+    lit: 'yes'
   - name: Copernicus Street
     grouped_from:
       - universite-private
@@ -6925,6 +6872,21 @@ bike_paths:
     osm_names:
       - Strandherd Drive
       - Earl Armstrong Road
+    surface: asphalt
+    highway: secondary
+    lit: 'yes'
+  - name: Smyth Road
+    grouped_from:
+      - smyth-road
+      - main-street
+    anchors:
+      - - -75.6732412
+        - 45.3990595
+      - - -75.6242061
+        - 45.4014109
+    osm_names:
+      - Smyth Road
+      - Main Street
     surface: asphalt
     highway: secondary
     lit: 'yes'
