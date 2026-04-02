@@ -160,12 +160,42 @@ out tags;`;
   }
   await Promise.all(Array.from({ length: Math.min(CONCURRENCY, newClusters.length) }, () => worker()));
 
+  // Park containment merge: clusters with the same resolved name are in the
+  // same park/forest/reserve. Merge them into one network. This handles
+  // North American parks where trail systems are disconnected islands linked
+  // by roads — a spatial fact, not a connectivity fact.
+  const byName = new Map();
+  for (const cluster of newClusters) {
+    const name = cluster.resolvedName;
+    if (!byName.has(name)) byName.set(name, []);
+    byName.get(name).push(cluster);
+  }
+  const mergedClusters = [];
+  for (const [name, sameNameClusters] of byName) {
+    if (sameNameClusters.length === 1) {
+      mergedClusters.push(sameNameClusters[0]);
+    } else {
+      // Merge all same-name clusters into one
+      const merged = {
+        members: sameNameClusters.flatMap(c => c.members),
+        resolvedName: name,
+        existingGroup: null,
+        newMembers: sameNameClusters.flatMap(c => c.members),
+      };
+      mergedClusters.push(merged);
+      console.log(`  Merged ${sameNameClusters.length} "${name}" clusters (${merged.members.length} members total)`);
+    }
+  }
+  // Also keep clusters that had existing groups (they weren't in newClusters)
+  const existingGroupClusters = clusters.filter(c => c.existingGroup);
+
   // Build output: create network entries, members KEEP their entries.
   // Networks v2: auto-groups ARE networks. Members keep their own pages
   // and nest under the network URL. No more absorption.
+  const allClustersToProcess = [...existingGroupClusters, ...mergedClusters];
   const newNetworkEntries = [];
 
-  for (const cluster of clusters) {
+  for (const cluster of allClustersToProcess) {
     if (cluster.existingGroup) {
       // Extend existing network
       const group = cluster.existingGroup;

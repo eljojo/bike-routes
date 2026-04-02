@@ -11544,16 +11544,132 @@ bike_paths:
     members:
       - trail-56
       - trail-56b
+      - trail-52
+      - trail-57
+      - sentier-trail-51
+      - trail-53
+      - trail-54
+      - trail-47-hope-trail
+      - trail-55
+      - trail-51
+      - trail-52-parc-de-la-gatineau-pathway
+      - trail-47
+      - trail-36-trans-canada-trail
+      - trail-50
+      - trail-74
+      - trail-72
+      - trail-71
+      - 72b-irish-cream
+      - 72b-irish-whiskey
+      - trail-73
+      - hat
+      - trail-36b
+      - carman-lake-lookout-trail
+      - trail-70
+      - gay-beach-trail
+      - 53b-bench
+      - 58-konnektor
+      - 58-glazer
+      - cross-over
+      - 59-moonshine
+      - sentier-52-du-parc-de-la-gatineau-parkway
+      - the-sweet-line
+      - chemin-cafferty
+      - piste-25
+      - piste-35
+      - trail-15-sentier-du-parc-de-la-gatineau-park-pathway
+      - sentier-du-parc-de-la-gatineau-park-pathway-15
+      - 76-skyridge
+      - 76-jesses-girl
+      - hermit
+      - 78-monique
+      - la-chica
+      - 77-happy-valley
+      - 45-powerline
+      - 44-mo
+      - chemin-cowden
+      - mo
+      - bypass
+      - foreplay
+      - 79b
+      - 79-bresilienne
+      - sentiertrail-1
+      - piste-60-raquette
+      - snowshoe-trail-61
+      - piste-9
+      - '32'
+      - sentier-horizon
+      - trail-19
     anchors:
       - - -76.0970316
-        - 45.590701
-      - - -76.0558609
-        - 45.6041123
+        - 45.4609278
+      - - -75.7911695
+        - 45.6433735
     osm_names:
       - 'Trail #56'
       - 'Trail #56B'
-    surface: gravel
-    highway: cycleway
+      - 'Trail #52'
+      - Trail 57
+      - 'Sentier / Trail #51'
+      - 'Trail #53'
+      - 'Trail #54'
+      - Trail 47 (Hope Trail)
+      - 'Trail #55'
+      - 'Trail #51'
+      - 'Trail #52 Parc de la Gatineau Pathway'
+      - Trail 47
+      - 'Trail #36 Trans Canada Trail'
+      - Trail 50
+      - Trail 74
+      - Trail 72
+      - Trail 71
+      - '#72B (Irish Cream)'
+      - '#72B (Irish Whiskey)'
+      - Trail 73
+      - H.A.T.
+      - Trail 36b
+      - Carman Lake Lookout Trail
+      - Trail 70
+      - Gay Beach Trail
+      - '#53B (Bench)'
+      - '# 58 (Konnektor)'
+      - '#58 (Glazer)'
+      - Cross Over
+      - '# 59 (Moonshine)'
+      - Sentier 52 du Parc de la Gatineau Parkway
+      - The Sweet Line
+      - Chemin Cafferty
+      - Piste 25
+      - 'Piste #35'
+      - 'Trail #15 Sentier du Parc de la Gatineau Park Pathway'
+      - 'Sentier du Parc de la Gatineau Park Pathway #15'
+      - '# 76 (Skyridge)'
+      - '# 76 (Jesse''s Girl)'
+      - Hermit
+      - '#78 (Monique)'
+      - La Chica
+      - '# 77 (Happy Valley)'
+      - '#45 (Powerline)'
+      - '#44 (M.O.)'
+      - Chemin Cowden
+      - M.O.
+      - Bypass
+      - Foreplay
+      - '#79B'
+      - '#79 (Brésilienne)'
+      - 'Sentier/Trail #1'
+      - Piste 60 (Raquette)
+      - Snowshoe Trail 61
+      - Piste 9
+      - '32'
+      - Sentier Horizon
+      - Trail 19
+    surface: ground
+    highway: path
+    lit: 'no'
+    width: '2'
+    smoothness: bad
+    network: mtb
     mtb: true
   - name: Boulevard Maloney Sidepath
     type: network
@@ -11659,84 +11775,6 @@ bike_paths:
     lit: 'yes'
     width: '3'
     smoothness: excellent
-  - name: Parc de la Gatineau
-    type: network
-    members:
-      - trail-52
-      - trail-57
-      - sentier-trail-51
-      - trail-53
-      - trail-54
-      - trail-47-hope-trail
-      - trail-55
-      - trail-51
-      - trail-52-parc-de-la-gatineau-pathway
-      - trail-47
-      - trail-36-trans-canada-trail
-      - trail-50
-      - trail-74
-      - trail-72
-      - trail-71
-      - 72b-irish-cream
-      - 72b-irish-whiskey
-      - trail-73
-      - hat
-      - trail-36b
-      - carman-lake-lookout-trail
-      - trail-70
-      - gay-beach-trail
-      - 53b-bench
-      - 58-konnektor
-      - 58-glazer
-      - cross-over
-      - 59-moonshine
-      - sentier-52-du-parc-de-la-gatineau-parkway
-      - the-sweet-line
-      - chemin-cafferty
-    anchors:
-      - - -76.049404
-        - 45.5272457
-      - - -75.8643952
-        - 45.6433735
-    osm_names:
-      - 'Trail #52'
-      - Trail 57
-      - 'Sentier / Trail #51'
-      - 'Trail #53'
-      - 'Trail #54'
-      - Trail 47 (Hope Trail)
-      - 'Trail #55'
-      - 'Trail #51'
-      - 'Trail #52 Parc de la Gatineau Pathway'
-      - Trail 47
-      - 'Trail #36 Trans Canada Trail'
-      - Trail 50
-      - Trail 74
-      - Trail 72
-      - Trail 71
-      - '#72B (Irish Cream)'
-      - '#72B (Irish Whiskey)'
-      - Trail 73
-      - H.A.T.
-      - Trail 36b
-      - Carman Lake Lookout Trail
-      - Trail 70
-      - Gay Beach Trail
-      - '#53B (Bench)'
-      - '# 58 (Konnektor)'
-      - '#58 (Glazer)'
-      - Cross Over
-      - '# 59 (Moonshine)'
-      - Sentier 52 du Parc de la Gatineau Parkway
-      - The Sweet Line
-      - Chemin Cafferty
-    surface: ground
-    highway: path
-    lit: 'no'
-    width: '2'
-    smoothness: bad
-    network: mtb
-    mtb: true
   - name: Trans-Canada Trail Ottawa
     type: network
     members:
@@ -11813,64 +11851,6 @@ bike_paths:
     surface: asphalt
     highway: cycleway
     width: '2'
-  - name: Parc de la Gatineau
-    type: network
-    members:
-      - piste-25
-      - piste-35
-      - trail-15-sentier-du-parc-de-la-gatineau-park-pathway
-      - sentier-du-parc-de-la-gatineau-park-pathway-15
-      - 76-skyridge
-      - 76-jesses-girl
-      - hermit
-      - 78-monique
-      - la-chica
-      - 77-happy-valley
-    anchors:
-      - - -75.8444047
-        - 45.4609278
-      - - -75.7911695
-        - 45.4857605
-    osm_names:
-      - Piste 25
-      - 'Piste #35'
-      - 'Trail #15 Sentier du Parc de la Gatineau Park Pathway'
-      - 'Sentier du Parc de la Gatineau Park Pathway #15'
-      - '# 76 (Skyridge)'
-      - '# 76 (Jesse''s Girl)'
-      - Hermit
-      - '#78 (Monique)'
-      - La Chica
-      - '# 77 (Happy Valley)'
-    surface: ground
-    highway: path
-    lit: 'no'
-    width: '2'
-    mtb: true
-  - name: Parc de la Gatineau
-    type: network
-    members:
-      - 45-powerline
-      - 44-mo
-      - chemin-cowden
-      - mo
-      - bypass
-      - foreplay
-    anchors:
-      - - -75.8822303
-        - 45.538408
-      - - -75.8436923
-        - 45.5721159
-    osm_names:
-      - '#45 (Powerline)'
-      - '#44 (M.O.)'
-      - Chemin Cowden
-      - M.O.
-      - Bypass
-      - Foreplay
-    surface: ground
-    highway: cycleway
-    mtb: true
   - name: Route 105
     type: network
     members:
@@ -11985,56 +11965,26 @@ bike_paths:
     members:
       - trail-23
       - old-quarry-trail
-    anchors:
-      - - -75.8742147
-        - 45.3016656
-      - - -75.8537488
-        - 45.3109272
-    osm_names:
-      - Trail 23
-      - Old Quarry Trail
-    surface: ground
-    highway: path
-    lit: 'no'
-    width: '1'
-    smoothness: intermediate
-    mtb: true
-  - name: NCC Greenbelt
-    type: network
-    members:
       - trail-25
       - chipmunk-trail
       - beaver-trail
       - lime-kiln-trail
-    anchors:
-      - - -75.8355751
-        - 45.2781764
-      - - -75.8137736
-        - 45.2998547
-    osm_names:
-      - Trail 25
-      - Chipmunk Trail
-      - Beaver Trail
-      - Lime Kiln Trail
-    surface: ground
-    highway: path
-    lit: 'no'
-    width: '2'
-    smoothness: intermediate
-    mtb: true
-  - name: NCC Greenbelt
-    type: network
-    members:
       - '50'
       - moe-anderson-trail
       - '51'
       - dewberry-trail
     anchors:
-      - - -75.593049
-        - 45.4010705
+      - - -75.8742147
+        - 45.2781764
       - - -75.5436768
         - 45.4109456
     osm_names:
+      - Trail 23
+      - Old Quarry Trail
+      - Trail 25
+      - Chipmunk Trail
+      - Beaver Trail
+      - Lime Kiln Trail
       - '50'
       - Moe Anderson Trail
       - '51'
@@ -12043,25 +11993,8 @@ bike_paths:
     highway: path
     lit: 'no'
     width: '2'
-    network: Mer Bleue
     smoothness: intermediate
-    mtb: true
-  - name: Parc de la Gatineau
-    type: network
-    members:
-      - 79b
-      - 79-bresilienne
-    anchors:
-      - - -75.8313006
-        - 45.480075
-      - - -75.822986
-        - 45.4931855
-    osm_names:
-      - '#79B'
-      - '#79 (Brésilienne)'
-    surface: ground
-    highway: path
-    width: '1'
+    network: Mer Bleue
     mtb: true
   - name: South March Highlands Conservation Forest
     type: network
@@ -12200,26 +12133,6 @@ bike_paths:
     highway: path
     width: '0.5'
     mtb: true
-  - name: Parc de la Gatineau
-    type: network
-    members:
-      - sentiertrail-1
-      - piste-60-raquette
-      - snowshoe-trail-61
-    anchors:
-      - - -75.8210625
-        - 45.5016415
-      - - -75.8124556
-        - 45.5059189
-    osm_names:
-      - 'Sentier/Trail #1'
-      - Piste 60 (Raquette)
-      - Snowshoe Trail 61
-    surface: fine_gravel
-    highway: path
-    width: '1.5'
-    smoothness: intermediate
-    mtb: true
   - name: Trans Canada Trail (36)
     type: network
     members:
@@ -12238,22 +12151,6 @@ bike_paths:
     smoothness: very_bad
     network: mtb
     width: '2'
-  - name: Parc de la Gatineau
-    type: network
-    members:
-      - piste-9
-      - '32'
-    anchors:
-      - - -75.8647781
-        - 45.5059683
-      - - -75.8598281
-        - 45.5132694
-    osm_names:
-      - Piste 9
-      - '32'
-    surface: gravel
-    highway: path
-    mtb: true
   - name: Major
     type: network
     members:
@@ -13295,23 +13192,6 @@ bike_paths:
     surface: ground
     highway: footway
     lit: 'no'
-    width: '1'
-    mtb: true
-  - name: Parc de la Gatineau
-    type: network
-    members:
-      - sentier-horizon
-      - trail-19
-    anchors:
-      - - -75.850358
-        - 45.4966321
-      - - -75.8435193
-        - 45.5010832
-    osm_names:
-      - Sentier Horizon
-      - Trail 19
-    surface: ground
-    highway: path
     width: '1'
     mtb: true
 super_networks:
