@@ -33,7 +33,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
-import { queryOverpass } from './lib/overpass.mjs';
+import { queryOverpass as _queryOverpass, createRecorder } from './lib/overpass.mjs';
+
+// Record all Overpass calls to a cassette in .cache/ (gitignored) for test replay.
+// Usage: RECORD_OVERPASS=ottawa node scripts/build-bikepaths.mjs --city ottawa
+// Replay: createPlayer('ottawa') in tests
+const queryOverpass = process.env.RECORD_OVERPASS
+  ? createRecorder(process.env.RECORD_OVERPASS)
+  : _queryOverpass;
 import { haversineM } from './lib/geo.mjs';
 import { slugify } from './lib/slugify.mjs';
 import { loadCityAdapter } from './lib/city-adapter.mjs';
@@ -801,17 +808,18 @@ async function main() {
 // ---------------------------------------------------------------------------
 
 /**
- * Testable pipeline entry point. Runs discovery + build, returns entries array.
- * No file I/O — caller decides what to do with the result.
+ * Testable pipeline entry point. Runs the FULL pipeline — discovery, junction
+ * ways, grouping, super-networks, wikidata, MTB detection. No file I/O.
  *
  * @param {object} opts
  * @param {Function} opts.queryOverpass — async (q) => { elements: [] }
  * @param {string} opts.bbox — "south,west,north,east"
  * @param {object} opts.adapter — city adapter (from city-adapter.mjs)
- * @param {Array} [opts.manualEntries] — manual entries (replaces existing param)
- * @returns {Promise<Array>} built entries
+ * @param {Array} [opts.manualEntries] — manual entries
+ * @param {Set<string>} [opts.markdownSlugs] — slugs claimed by markdown
+ * @returns {Promise<Array>} final entries (grouped, enriched, ready to write)
  */
-export async function buildBikepathsPipeline({ queryOverpass: qo, bbox: b, adapter: a, manualEntries = [], existing = [] }) {
+export async function buildBikepathsPipeline({ queryOverpass: qo, bbox: b, adapter: a, manualEntries = [], markdownSlugs = new Set(), existing = [] }) {
   const filter = (a.parallelLaneFilter || defaultParallelLaneFilter);
 
   // Step 1: relations
@@ -900,10 +908,28 @@ out tags center;`;
     parallelLanes = groupByRoadAndProximity(results, 500);
   }
 
-  // Build entries from scratch (backwards-compat: merge manual + existing as seed)
+  // Build entries from scratch
   const seed = manualEntries.length > 0 ? manualEntries : existing;
   const entries = buildEntries(osmRelations, osmNamedWays, parallelLanes, seed);
-  return entries;
+
+  // Auto-group nearby trail segments
+  const grouped = await autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass: qo });
+
+  // Centralized slug computation
+  let slugMap = computeSlugs(grouped);
+
+  // Super-network attributes (from OSM superroutes)
+  if (a.discoverNetworks) {
+    const networks = await discoverNetworks({ bbox: b, queryOverpass: qo });
+    applySuperNetworks(grouped, slugMap, networks);
+    slugMap = computeSlugs(grouped);
+  }
+
+  // Wikidata enrichment (skip in tests by default — needs real API)
+  // detectMtb
+  detectMtb(grouped);
+
+  return grouped;
 }
 
 if (isMain) {

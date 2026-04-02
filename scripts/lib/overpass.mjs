@@ -24,6 +24,46 @@ function cacheKey(query) {
 }
 
 /**
+ * Create a recording wrapper around queryOverpass.
+ * Saves all queries/responses to a cassette file in .cache/ (gitignored).
+ *
+ * Record: RECORD_OVERPASS=ottawa node scripts/build-bikepaths.mjs --city ottawa
+ * Replay: createPlayer('ottawa') in tests — skips if cassette not found.
+ */
+export function createRecorder(name) {
+  const cassettePath = join(CACHE_DIR, `cassette-${name}.json`);
+  mkdirSync(CACHE_DIR, { recursive: true });
+  const calls = [];
+  const recorder = async (query) => {
+    const data = await queryOverpass(query);
+    calls.push({ query, data });
+    writeFileSync(cassettePath, JSON.stringify(calls));
+    return data;
+  };
+  return recorder;
+}
+
+/**
+ * Create a replay function from a recorded cassette in .cache/.
+ * Returns null if cassette doesn't exist (test should skip).
+ */
+export function createPlayer(name) {
+  const cassettePath = join(CACHE_DIR, `cassette-${name}.json`);
+  if (!existsSync(cassettePath)) return null;
+  const calls = JSON.parse(readFileSync(cassettePath, 'utf8'));
+  const byQuery = new Map(calls.map(c => [c.query, c.data]));
+  return async (query) => {
+    const data = byQuery.get(query);
+    if (data) return data;
+    const normalized = query.replace(/\s+/g, ' ').trim();
+    for (const [q, d] of byQuery) {
+      if (q.replace(/\s+/g, ' ').trim() === normalized) return d;
+    }
+    return { elements: [] };
+  };
+}
+
+/**
  * POST a query to Overpass, caching results to disk.
  * Returns parsed JSON response.
  */
