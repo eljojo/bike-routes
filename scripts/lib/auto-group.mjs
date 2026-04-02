@@ -248,7 +248,20 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
       const tags = mergeTags(cluster.members);
       const allOsmNames = [...new Set(cluster.members.flatMap(m => m.osm_names || [m.name]))];
       const allOsmRelations = [...new Set(cluster.members.flatMap(m => m.osm_relations || []))];
-      const memberSlugs = cluster.members.map(m => slugMap.get(m));
+      let networkName = cluster.resolvedName;
+      let networkSlug = slugifyBikePathName(networkName);
+
+      // If the network slug collides with a member slug, the member
+      // would be filtered as a self-reference. Disambiguate by appending "Trails".
+      const memberSlugsRaw = cluster.members
+        .filter(m => m.type !== 'network')
+        .map(m => slugMap.get(m));
+      if (memberSlugsRaw.includes(networkSlug)) {
+        networkName = networkName + ' Trails';
+        networkSlug = slugifyBikePathName(networkName);
+      }
+
+      const memberSlugs = memberSlugsRaw.filter(s => s && s !== networkSlug);
 
       const networkEntry = {
         name: cluster.resolvedName,
@@ -267,10 +280,9 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
         if (val) networkEntry[key] = val;
       }
 
-      // Assign member_of on each member
-      const networkSlug = slugifyBikePathName(cluster.resolvedName);
+      // Assign member_of on each member (skip other networks)
       for (const m of cluster.members) {
-        m.member_of = networkSlug;
+        if (m.type !== 'network') m.member_of = networkSlug;
       }
 
       newNetworkEntries.push(networkEntry);
