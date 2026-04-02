@@ -4,6 +4,10 @@ name_fr: Sentier Prescott-Russell
 vibe: "Rail trail from Ottawa to the Quebec border — and the corridor keeps going toward Montreal"
 featured: true
 wikipedia: en:Prescott and Russell Recreational Trail
+includes:
+  - prescott-russell-trail-link-1
+  - prescott-russell-trail-link-2
+  - prescott-russell-trail-link-3
 ---
 
 A [72-kilometre trail](https://www.sentierprtrail.com/en/about) linking Ottawa's eastern edge to the rural communities of Prescott and Russell counties, running from Hammond in the west to Saint-Eugène at the Quebec border in the east. Mostly stone dust with short paved sections near the towns. Part of the Trans Canada Trail.

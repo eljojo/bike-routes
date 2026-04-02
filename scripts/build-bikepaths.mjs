@@ -867,7 +867,22 @@ function loadMarkdownSlugs() {
   const slugs = new Set();
   if (fs.existsSync(bikePathsDir)) {
     for (const f of fs.readdirSync(bikePathsDir)) {
-      if (f.endsWith('.md') && !f.includes('.fr.')) slugs.add(f.replace(/\.md$/, ''));
+      if (!f.endsWith('.md') || f.includes('.fr.')) continue;
+      slugs.add(f.replace(/\.md$/, ''));
+      // Parse includes from frontmatter — claims those slugs too
+      try {
+        const content = fs.readFileSync(path.join(bikePathsDir, f), 'utf8');
+        const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
+        if (fmMatch) {
+          const includes = fmMatch[1].match(/includes:\n((?:\s+-\s+.+\n?)*)/);
+          if (includes) {
+            for (const line of includes[1].split('\n')) {
+              const slug = line.replace(/^\s+-\s+/, '').trim();
+              if (slug) slugs.add(slug);
+            }
+          }
+        }
+      } catch {}
     }
   }
   return slugs;
