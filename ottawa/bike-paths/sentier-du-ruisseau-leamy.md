@@ -5,6 +5,7 @@ vibe: "Creek-side path to Leamy Lake Beach — one of the best swim spots by bik
 includes:
   - sentier-du-ruisseau-leamy
   - sentier-du-ruisseau-leamy-pathway
+  - sentier-du-ruisseau-de-la-brasserie-pathway
 ---
 
 Leamy Creek path (NCC route 27) follows the creek through a green corridor in Gatineau, connecting the Ottawa River paths to Leamy Lake Park. A comfortable ride with tree cover for most of the way, linking up with the [Sentier des Voyageurs](/paths/sentier-des-voyageurs) and the Route Verte.
