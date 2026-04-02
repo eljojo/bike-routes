@@ -210,7 +210,10 @@ export async function discoverNetworks({ bbox, queryOverpass }) {
 export async function discoverRouteSystemNetworks({ bbox, queryOverpass }) {
   const q = `[out:json][timeout:120];\nrelation["route"="bicycle"]["cycle_network"](${bbox});\nout tags;`;
   const data = await queryOverpass(q);
-  const routes = data.elements.filter(el => el.tags?.cycle_network && el.tags?.ref);
+  const routes = data.elements.filter(el =>
+    el.tags?.cycle_network &&
+    (el.tags?.ref || el.tags?.lcn_ref || el.tags?.rcn_ref || el.tags?.ncn_ref)
+  );
 
   if (routes.length === 0) return [];
 

@@ -433,6 +433,7 @@ function extractOsmMetadata(tags) {
   if (tags.operator) meta.operator = tags.operator;
   if (tags.network) meta.network = tags.network;
   if (tags.ref) meta.ref = tags.ref;
+  if (tags.cycle_network) meta.cycle_network = tags.cycle_network;
 
   // Route info (relations)
   if (tags.distance) meta.distance = tags.distance;
@@ -721,6 +722,23 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
     }
   }
 
+  // Snapshot: entries in park-based networks should not be reassigned.
+  // Park containment is the strongest signal. Auto-group networks CAN be
+  // flattened into superroute networks.
+  const parkNetworkSlugs = new Set();
+  for (const entry of entries) {
+    if (entry.type === 'network' && entry._parkName) {
+      const slug = slugMap.get(entry) || slugify(entry.name);
+      parkNetworkSlugs.add(slug);
+    }
+  }
+  const parkMembers = new Set();
+  for (const entry of entries) {
+    if (entry.member_of && parkNetworkSlugs.has(entry.member_of)) {
+      parkMembers.add(entry);
+    }
+  }
+
   const superNetworkMeta = [];
 
   for (const network of networks) {
@@ -741,9 +759,13 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
       if (member.type === 'network') {
         // This superroute member became an auto-group network.
         // Flatten: adopt its members into this superroute network.
+        const memberNetSlug = slugMap.get(member) || slugify(member.name);
         for (const subSlug of member.members || []) {
           const subEntry = entries.find(e => slugMap.get(e) === subSlug);
-          if (subEntry && !subEntry.member_of && subEntry.type !== 'network') {
+          if (!subEntry || subEntry.type === 'network') continue;
+          // Don't reassign entries that were in a network before superroute resolution
+          if (parkMembers.has(subEntry)) continue;
+          if (subEntry.member_of === memberNetSlug || !subEntry.member_of) {
             memberSlugs.push(subSlug);
             subEntry.member_of = networkSlug;
           }
@@ -755,7 +777,7 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
 
       if (member.member_of) {
         // Already in a network (auto-group or park) — tag that network
-        // with super_network for index grouping
+        // with super_network for index grouping. Don't reassign.
         const memberNetwork = entries.find(e =>
           e.type === 'network' &&
           e.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -764,9 +786,16 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
         if (memberNetwork && !memberNetwork.super_network) {
           memberNetwork.super_network = networkSlug;
         }
+        // Tag the entry itself for reference but don't move it
+        if (!member.super_network) member.super_network = networkSlug;
         continue;
       }
 
+      // Don't reassign entries that were already in a network before this step
+      if (parkMembers.has(member)) {
+        if (!member.super_network) member.super_network = networkSlug;
+        continue;
+      }
       const memberSlug = slugMap.get(member);
       if (memberSlug) {
         memberSlugs.push(memberSlug);
@@ -774,17 +803,18 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
       }
     }
 
-    // Fallback: match by name for paths discovered as named ways (no relation).
-    // Some Capital Pathway members like Pinecrest Creek have relations in OSM
-    // but weren't in the superroute's member list.
+    // Fallback: adopt orphaned paths with matching operator.
+    // Catches paths like Pinecrest Creek (NCC, cycleway) that aren't in
+    // the OSM superroute member list but clearly belong to the system.
     if (network.operator) {
       for (const entry of entries) {
         if (entry.member_of || entry.type === 'network') continue;
-        if (entry.operator !== network.operator) continue;
-        // Only adopt paths with matching network level (rcn/lcn)
-        if (entry.network && network.network && entry.network !== network.network) continue;
-        // Must have super_network already set (from earlier tagging) or be well-known
-        if (entry.super_network !== networkSlug) continue;
+        // Operator must match (handles NCC variants)
+        const op = entry.operator || '';
+        const netOp = network.operator || '';
+        if (!op || (!op.includes(netOp) && !netOp.includes(op))) continue;
+        // Must be cycling infrastructure
+        if (entry.highway !== 'cycleway' && entry.highway !== 'path') continue;
         const entrySlug = slugMap.get(entry);
         if (entrySlug && !memberSlugs.includes(entrySlug)) {
           memberSlugs.push(entrySlug);

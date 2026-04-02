@@ -278,6 +278,7 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
       const networkEntry = {
         name: networkName,
         type: 'network',
+        _parkName: cluster._parkName || null,
         members: memberSlugs,
         anchors: bboxAnchors(cluster.members.flatMap(m => m.anchors || [])),
       };

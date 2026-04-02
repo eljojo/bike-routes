@@ -77,7 +77,7 @@ bike_paths:
         - 45.436377
     osm_names:
       - Sentier des Pionniers Pathway
-    member_of: sentier-des-pionniers-pathway-network
+    member_of: capital-pathway
   - name: Sentier de l'Île
     osm_relations:
       - 218656
@@ -142,6 +142,7 @@ bike_paths:
         - 45.471603
     osm_names:
       - Sentier de la Rivière-Gatineau
+    member_of: capital-pathway
   - name: Sentier du Parc-de-la-Gatineau
     osm_relations:
       - 224841
@@ -165,6 +166,7 @@ bike_paths:
     osm_names:
       - Sentier du Parc-de-la-Gatineau
     member_of: parc-de-la-gatineau
+    super_network: capital-pathway
   - name: Route Verte 1
     osm_relations:
       - 416115
@@ -173,6 +175,7 @@ bike_paths:
     bicycle: 'yes'
     network: ncn
     ref: RV1
+    cycle_network: ca:qc:rv
     name_fr: route Verte 1
     name_en: Route Verte 1
     wikidata_meta:
@@ -246,7 +249,7 @@ bike_paths:
         - 45.4303186
     osm_names:
       - Sentier du Corridor-Champlain
-    member_of: sentier-des-pionniers-pathway-network
+    member_of: capital-pathway
   - name: Prescott Russell Trail Link
     osm_relations:
       - 3461068
@@ -278,6 +281,7 @@ bike_paths:
     operator: NCC
     network: rcn
     member_of: ottawa-river-pathway
+    super_network: capital-pathway
   - name: Watts Creek Pathway
     osm_relations:
       - 7175007
@@ -299,6 +303,7 @@ bike_paths:
     osm_names:
       - Watts Creek Pathway
     member_of: ncc-greenbelt
+    super_network: capital-pathway
   - name: Trillium Pathway
     osm_relations:
       - 7175029
@@ -326,6 +331,7 @@ bike_paths:
     osm_relations:
       - 7201612
     network: lcn
+    cycle_network: CA:ON:Ottawa
     surface: asphalt
     smoothness: excellent
     width: '3'
@@ -339,11 +345,13 @@ bike_paths:
         - 45.4195961
     osm_names:
       - O'Connor Bikeway
+    member_of: ottawa-bikeways
   - name: Rideau Canal Western Pathway
     osm_relations:
       - 7206688
     operator: NCC
     network: rcn
+    cycle_network: CA:ON:NCC
     surface: asphalt
     smoothness: good
     width: '3'
@@ -359,12 +367,13 @@ bike_paths:
         - 45.4229488
     osm_names:
       - Rideau Canal Western Pathway
-    member_of: rideau-canal-western-pathway-network
+    member_of: capital-pathway
   - name: Rideau Canal Eastern Pathway
     osm_relations:
       - 7206766
     operator: NCC
     network: rcn
+    cycle_network: CA:ON:NCC
     surface: asphalt
     smoothness: intermediate
     width: '3'
@@ -385,6 +394,7 @@ bike_paths:
       - 7206821
     operator: NCC
     network: rcn
+    cycle_network: CA:ON:NCC
     surface: asphalt
     smoothness: good
     width: '3'
@@ -405,6 +415,7 @@ bike_paths:
       - 7206822
     operator: NCC
     network: lcn
+    cycle_network: CA:ON:NCC
     surface: asphalt
     smoothness: good
     width: '3'
@@ -419,6 +430,7 @@ bike_paths:
         - 45.3719227
     osm_names:
       - Pinecrest Creek Pathway
+    member_of: capital-pathway
   - name: East–West Crosstown Bikeway
     osm_relations:
       - 7234399
@@ -655,12 +667,14 @@ bike_paths:
     network: ncn
     ref: TCT
     member_of: ottawa-river-pathway
+    super_network: trans-canada-trail-ottawa-area
   - name: Ottawa River Pathway (west)
     osm_relations:
       - 9502634
     name_fr: Sentier de la Rivière des Outaouais (Ouest)
     network: rcn
     member_of: ottawa-river-pathway
+    super_network: capital-pathway
   - name: Nepean Trail
     osm_relations:
       - 9599180
@@ -716,17 +730,20 @@ bike_paths:
       - 10985930
     network: lcn
     ref: '3'
+    cycle_network: CA:ON:Ottawa
     member_of: ottawa-bikeways
   - name: Crosstown Bikeway 2
     osm_relations:
       - 10986223
     network: lcn
     ref: '2'
+    cycle_network: CA:ON:Ottawa
   - name: Crosstown Bikeway 5
     osm_relations:
       - 10986755
     network: lcn
     ref: '5'
+    cycle_network: CA:ON:Ottawa
     member_of: ottawa-bikeways
   - name: Rideau River Eastern Pathway (City section)
     osm_relations:
@@ -908,6 +925,7 @@ bike_paths:
     operator: NCC
     network: Kichi Sibi
     description: 'Summer: cycle, walk, hike Winter: @skiheritageeast skate and classic grooming fat bike, xc ski'
+    member_of: capital-pathway
   - name: Sentier de la Rivière Gatineau Pathway
     osm_names:
       - Sentier de la Rivière Gatineau Pathway
@@ -1714,6 +1732,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     operator: NCC
+    member_of: capital-pathway
   - name: Greenbelt Pathway East / Trail 40
     osm_names:
       - Greenbelt Pathway East / Trail 40
@@ -3939,7 +3958,7 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: 'no'
-    member_of: rideau-canal-western-pathway-network
+    member_of: capital-pathway
   - name: '#72B (Irish Whiskey)'
     osm_names:
       - '#72B (Irish Whiskey)'
@@ -11288,6 +11307,7 @@ bike_paths:
     surface: asphalt
   - name: Parc du Lac-Leamy
     type: network
+    _parkName: Parc du Lac-Leamy
     members:
       - sentier-du-lac-leamy-pathway
       - sentier-de-la-riviere-gatineau-pathway
@@ -11310,6 +11330,7 @@ bike_paths:
     operator: NCC
   - name: Sentier du Ruisseau-de-la-Brasserie Pathway Network
     type: network
+    _parkName: null
     members:
       - sentier-du-ruisseau-de-la-brasserie-pathway
       - sentier-de-lile
@@ -11332,6 +11353,7 @@ bike_paths:
     smoothness: good
   - name: Sentier des Pionniers Pathway Network
     type: network
+    _parkName: null
     members:
       - sentier-des-pionniers-pathway
       - sentier-du-corridor-champlain
@@ -11356,6 +11378,7 @@ bike_paths:
     super_network: capital-pathway
   - name: NCC Greenbelt
     type: network
+    _parkName: NCC Greenbelt
     members:
       - prescott-russell-trail-link-3
       - '50'
@@ -11475,6 +11498,7 @@ bike_paths:
     mtb: true
   - name: Prescott Russell Trail Link Trails
     type: network
+    _parkName: null
     members:
       - prescott-russell-trail-link-2
       - prescott-russell-trail-link-1
@@ -11493,6 +11517,7 @@ bike_paths:
     mtb: true
   - name: Rideau Canal Western Pathway Network
     type: network
+    _parkName: null
     members:
       - rideau-canal-western-pathway
       - rideau-canal-locks-crossing
@@ -11516,6 +11541,7 @@ bike_paths:
     super_network: capital-pathway
   - name: Trans Canada Trail Trails
     type: network
+    _parkName: null
     members:
       - trans-canada-trail
       - trans-canada-trail-ottawa-2
@@ -11544,6 +11570,7 @@ bike_paths:
     mtb: true
   - name: Sawmill Creek Path Network
     type: network
+    _parkName: null
     members:
       - sawmill-creek-pathway
       - brookfield-pathway
@@ -11567,6 +11594,7 @@ bike_paths:
     lit: 'yes'
   - name: Voie Verte Chelsea Trails
     type: network
+    _parkName: null
     members:
       - voie-verte-chelsea-1
       - chemin-pinetrail
@@ -11585,6 +11613,7 @@ bike_paths:
     mtb: true
   - name: Chief William Commanda Bridge Network
     type: network
+    _parkName: null
     members:
       - chief-william-commanda-bridge
       - pont-chef-william-commanda
@@ -11602,6 +11631,7 @@ bike_paths:
     smoothness: good
   - name: Chemin du Lac-Leamy Network
     type: network
+    _parkName: null
     members:
       - chemin-du-lac-leamy
       - boulevard-du-casino
@@ -11619,6 +11649,7 @@ bike_paths:
     smoothness: excellent
   - name: Ottawa Valley Recreational Trail Trails
     type: network
+    _parkName: null
     members:
       - ottawa-valley-recreational-trail-3
       - ottawa-valley-recreational-trail-4
@@ -11652,6 +11683,7 @@ bike_paths:
     mtb: true
   - name: Landsdowne Natural Heritage Park
     type: network
+    _parkName: Landsdowne Natural Heritage Park
     members:
       - middle-footpath
       - lower-path
@@ -11675,6 +11707,7 @@ bike_paths:
     mtb: true
   - name: Parc de la Gatineau
     type: network
+    _parkName: Parc de la Gatineau
     members:
       - trail-56
       - trail-52
@@ -11904,6 +11937,7 @@ bike_paths:
     mtb: true
   - name: Chelsea Creek Path Trails
     type: network
+    _parkName: null
     members:
       - chelsea-creek-path
       - lien-pietonnier
@@ -11921,6 +11955,7 @@ bike_paths:
     mtb: true
   - name: Boulevard Maloney Sidepath Network
     type: network
+    _parkName: null
     members:
       - boulevard-maloney-sidepath
       - tecumseh-bicycle-path
@@ -11939,6 +11974,7 @@ bike_paths:
     lit: 'no'
   - name: Osgoode-Leitrim Multi-use Pathway Trails
     type: network
+    _parkName: null
     members:
       - osgoode-leitrim-multi-use-pathway-2
       - osgoode-leitrim-multi-use-pathway-1
@@ -11957,6 +11993,7 @@ bike_paths:
     mtb: true
   - name: Pont Lady-Aberdeen Network
     type: network
+    _parkName: null
     members:
       - pont-lady-aberdeen
       - acces-au-pont
@@ -11973,6 +12010,7 @@ bike_paths:
     width: '2'
   - name: Portage Bridge cycle track Network
     type: network
+    _parkName: null
     members:
       - portage-bridge-cycle-track
       - piste-cyclable-pont-du-portage
@@ -11993,6 +12031,7 @@ bike_paths:
     smoothness: good
   - name: Mill of Kintail Conservation Area
     type: network
+    _parkName: Mill of Kintail Conservation Area
     members:
       - trillium-trail
       - forest-hike-trail
@@ -12010,6 +12049,7 @@ bike_paths:
     mtb: true
   - name: Kizell Pond Trail North Trails
     type: network
+    _parkName: null
     members:
       - blue-heron-trail
       - northwest-passage
@@ -12043,6 +12083,7 @@ bike_paths:
     mtb: true
   - name: South March Highlands Conservation Forest
     type: network
+    _parkName: South March Highlands Conservation Forest
     members:
       - klondike
       - porcupine
@@ -12115,6 +12156,7 @@ bike_paths:
     mtb: true
   - name: Monk Environmental Park
     type: network
+    _parkName: Monk Environmental Park
     members:
       - trillium
       - trillium-woods-trail
@@ -12141,6 +12183,7 @@ bike_paths:
     mtb: true
   - name: Beaverpond Park
     type: network
+    _parkName: Beaverpond Park
     members:
       - marathon-ne
       - stone-dust-path
@@ -12160,6 +12203,7 @@ bike_paths:
     mtb: true
   - name: La Boucle Trails
     type: network
+    _parkName: null
     members:
       - major
       - la-boucle
@@ -12219,6 +12263,7 @@ bike_paths:
     mtb: true
   - name: No Exit Trails
     type: network
+    _parkName: null
     members:
       - no-exit
       - carp-barrens-trail
@@ -12236,6 +12281,7 @@ bike_paths:
     mtb: true
   - name: Jean-Jacques-Lussier Private Network
     type: network
+    _parkName: null
     members:
       - jean-jacques-lussier-private
       - marie-curie-private
@@ -12251,6 +12297,7 @@ bike_paths:
     highway: pedestrian
   - name: Coulicou Trails
     type: network
+    _parkName: null
     members:
       - coulicou
       - piranga-sentier-dhiver
@@ -12274,6 +12321,7 @@ bike_paths:
     mtb: true
   - name: Deauville trail Trails
     type: network
+    _parkName: null
     members:
       - deauville-trail
       - laventurier
@@ -12290,6 +12338,7 @@ bike_paths:
     mtb: true
   - name: Rue Marston Trails
     type: network
+    _parkName: null
     members:
       - rue-marston
       - rue-isidore-ostiguy
@@ -12346,11 +12395,19 @@ bike_paths:
     type: network
     members:
       - sentier-des-voyageurs-pathway
+      - sentier-des-pionniers-pathway
+      - sentier-du-corridor-champlain
+      - rideau-canal-western-pathway
+      - rideau-canal-locks-crossing
       - rideau-canal-eastern-pathway
       - experimental-farm-pathway
       - rideau-river-eastern-pathway
       - aviation-pathway
       - greenbelt-pathway-west-barrhaven
+      - sentier-de-la-riviere-gatineau
+      - pinecrest-creek-pathway
+      - ottawa-river-pathway
+      - mackenzie-cycle-track
     osm_relations:
       - 10990511
     name_fr: Sentier de la capitale
@@ -12369,6 +12426,7 @@ bike_paths:
   - name: Ottawa Bikeways
     type: network
     members:
+      - oconnor-bikeway
       - crosstown-bikeway-3
       - crosstown-bikeway-5
     cycle_network: CA:ON:Ottawa
