@@ -4,9 +4,6 @@ name_fr: Sentier de la Rivière-Gatineau
 vibe: "Following the Gatineau River north toward Chelsea and the hills"
 stub: true
 operator: Commission de la capitale nationale / National Capital Commission
-includes:
-  - sentier-de-la-riviere-gatineau
-  - sentier-de-la-riviere-gatineau-pathway
 ---
 
 Follows the Gatineau River north from where it meets the Ottawa River. The river is wide here and the views shift as you ride upstream.

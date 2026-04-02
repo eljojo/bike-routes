@@ -1,8 +1,6 @@
 ---
 name: Algonquin Trail
 vibe: "219 km of former CP rail line through the Ottawa Valley — the longest rail trail in Ontario"
-includes:
-  - algonquin-trail
 ---
 
 The Renfrew County section of the [Ottawa Valley Recreational Trail](/paths/ottawa-valley-recreation-trail), running 219 kilometres from Arnprior through Pembroke and onward to the Township of Papineau-Cameron border, through 10 municipalities. When combined with the Lanark County section to the south, the full corridor stretches [296 km from near Smiths Falls to Mattawa](https://ontariobiketrails.com/item/ottawa-valley-rail-trail/) — the longest rail trail in Ontario.

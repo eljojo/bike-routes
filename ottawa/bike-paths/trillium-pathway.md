@@ -3,8 +3,6 @@ name: Trillium Pathway
 name_fr: Sentier Trillium
 vibe: "Flat, smooth, and lit — following the O-Train corridor through the city's core"
 stub: true
-includes:
-  - trillium-pathway
 ---
 
 Perfectly flat path running alongside the O-Train Trillium Line (Line 2) corridor through Little Italy. Zero-percent grade the entire way — accessible to everyone.

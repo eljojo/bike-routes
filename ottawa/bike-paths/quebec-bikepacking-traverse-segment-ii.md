@@ -2,8 +2,6 @@
 name: Québec Bikepacking Traverse — Segment II
 name_fr: Traversée bikepacking du Québec — Segment II
 vibe: "Gravel and forest roads from Gatineau Park to Mont-Tremblant — the local gateway to Canada's longest bikepacking route"
-includes:
-  - quebec-bikepacking-traverse-segment-ii
 ---
 
 Segment II of the [Québec Bikepacking Traverse](https://www.bikepacking.quebec/english/itineraire-qcbt/) (QcBT) — a [3,060-kilometre route from Rouyn-Noranda to the Gaspé Peninsula](https://www.bikepackadventures.ca/bikepacking-routes/quebec-bikepacking-traverse), the longest bikepacking route in Canada. Created by Etienne Théroux, the full traverse is 80% gravel, crosses 11 tourism regions and 10 national parks, with 35,900 metres of elevation gain.

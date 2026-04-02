@@ -3,9 +3,6 @@ name: Rideau Canal Pathway
 wikipedia: en:Capital Pathway
 vibe: "Both sides of the canal, from Dow's Lake to the locks"
 featured: true
-includes:
-  - rideau-canal-western-pathway
-  - rideau-canal-eastern-pathway
 ---
 
 Two paths run along the Rideau Canal, one on each side, from Dow's Lake north to the locks at the river. The canal is a [UNESCO World Heritage Site](https://whc.unesco.org/en/list/1221/) — a 202-km waterway from Ottawa to Kingston, built in the 1820s and still operating its original hand-cranked locks.

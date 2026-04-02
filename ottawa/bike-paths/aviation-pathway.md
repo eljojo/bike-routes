@@ -3,8 +3,6 @@ name: Aviation Pathway
 wikipedia: en:Capital Pathway
 vibe: "A lit, paved connector through Ottawa's east end — linking neighbourhoods to the river"
 stub: true
-includes:
-  - aviation-pathway
 ---
 
 Five kilometres of flat, straight path through Ottawa's east end, running alongside the [Aviation Parkway](https://en.wikipedia.org/wiki/Aviation_Parkway_(Ottawa)) from Highway 417 up to Rockcliffe Airport and the [Ottawa River path](/paths/ottawa-river-pathway). Woods and open fields on both sides. No hills, no surprises — just a clean line north-south through a part of the city that most cyclists skip.

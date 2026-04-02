@@ -3,9 +3,6 @@ name: Sentier des Pionniers
 name_fr: Sentier des Pionniers
 vibe: "Paved connector through Gatineau — linking Hull to the eastern pathways"
 stub: true
-includes:
-  - sentier-des-pionniers
-  - sentier-des-pionniers-pathway
 ---
 
 Runs through Gatineau's Aylmer sector, running alongside Boulevard des Allumettières. Not the most scenic ride in the city — much of it passes through residential streets — but it gets you places. People use it to commute and to connect between the bigger paths.

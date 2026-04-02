@@ -2,9 +2,6 @@
 name: Ottawa Valley Recreation Trail
 vibe: "The Trans Canada Trail continues southwest from Carleton Place to Smiths Falls"
 stub: true
-includes:
-  - ottawa-valley-recreation-trail
-  - ottawa-valley-recreational-trail
 ---
 
 Where the [Ottawa-Carleton Trailway](/paths/ottawa-carleton-trailway) ends in Carleton Place, this trail keeps going. Built on a former Canadian Pacific line, the [OVRT](https://www.ontariotrails.on.ca/trail/ottawa-valley-recreational-trail) stretches 296 km from Smiths Falls all the way to Mattawa — the longest rail trail in Ontario. The section from Carleton Place to Smiths Falls is about 25 km of flat crushed stone.

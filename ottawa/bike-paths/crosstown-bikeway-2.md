@@ -1,8 +1,6 @@
 ---
 name: Crosstown Bikeway 2
 vibe: "Practical east-west cycling across Ottawa's urban core"
-includes:
-  - crosstown-bikeway-2
 ---
 
 A 12-kilometre east-west cycling corridor between Westboro and Vanier, cutting across Ottawa's urban core. Unlike the river and canal paths that follow waterways, this bikeway uses city streets — segregated lanes, quiet residential roads, and pathway connectors — to create a practical crosstown route. It was designated as Crosstown Bikeway #2 in the 2013 Ottawa Cycling Plan.

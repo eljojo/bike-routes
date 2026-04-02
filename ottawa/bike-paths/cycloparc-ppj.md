@@ -4,9 +4,6 @@ name_fr: Cycloparc PPJ
 wikipedia: fr:Cycloparc PPJ
 vibe: "Rail trail through rural Quebec — the Pontiac Pacific Junction Railway reborn"
 featured: true
-includes:
-  - cycloparc-ppj
-  - ppj-cycloparc
 ---
 
 A 92-km rail trail on the Quebec side, running through the Pontiac region of the Outaouais northwest of Gatineau. The PPJ — named after the old Pontiac Pacific Junction Railway — offers long stretches of crushed stone trail through rural Quebec countryside, from Wyman in the east to Allumette Island in the west.

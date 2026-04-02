@@ -2,8 +2,6 @@
 name: Experimental Farm Pathway
 vibe: "Paved path through Ottawa's century-old research farm — fields, gardens, and quiet"
 featured: true
-includes:
-  - experimental-farm-pathway
 ---
 
 A path through the Central Experimental Farm — 427 hectares of working farmland, gardens, and open space right in the middle of Ottawa. The farm has been here since 1886 and was [designated a National Historic Site in 1998](https://www.pc.gc.ca/apps/dfhd/page_nhs_eng.aspx?id=1818). Cycling through its fields and ornamental gardens is one of the city's quieter pleasures.
