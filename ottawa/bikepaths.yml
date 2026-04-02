@@ -118,7 +118,7 @@ bike_paths:
       - - -75.7871841
         - 45.4641933
       - - -75.7385699
-        - 45.4715792
+        - 45.4731249
     osm_names:
       - Sentier du Ruisseau-Leamy
   - name: Sentier de la Rivière-Gatineau
@@ -129,7 +129,10 @@ bike_paths:
     operator: CCN NCC
     network: lcn
     surface: asphalt
-    width: '2'
+    smoothness: intermediate
+    width: '3'
+    lit: 'no'
+    segregated: 'no'
     highway: cycleway
     bicycle: designated
     anchors:
@@ -138,10 +141,7 @@ bike_paths:
       - - -75.7275534
         - 45.471603
     osm_names:
-      - Sentier de la Rivière Gatineau
-    smoothness: intermediate
-    lit: 'no'
-    segregated: 'no'
+      - Sentier de la Rivière-Gatineau
   - name: Sentier du Parc-de-la-Gatineau
     osm_relations:
       - 224841
@@ -220,7 +220,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     anchors:
-      - - -75.7527198
+      - - -75.753363
         - 45.4239564
       - - -75.7348249
         - 45.4428413
@@ -788,14 +788,13 @@ bike_paths:
     bicycle: designated
     anchors:
       - - -75.7690636
-        - 45.4797107
-      - - -75.7503486
+        - 45.4778974
+      - - -75.7487474
         - 45.4883148
     osm_names:
       - Voie Verte Chelsea
     segregated: 'no'
     mtb:scale: '1'
-    member_of: voie-verte-chelsea-trails
     mtb: true
   - name: Sentier du lac Leamy Skiing Trail
     osm_relations:
@@ -911,10 +910,10 @@ bike_paths:
     osm_names:
       - Sentier de la Rivière Gatineau Pathway
     anchors:
-      - - -75.7275971
+      - - -75.7364732
         - 45.4542123
       - - -75.703136
-        - 45.4617537
+        - 45.4725342
     surface: asphalt
     smoothness: good
     width: '2.5'
@@ -925,55 +924,6 @@ bike_paths:
     bicycle: designated
     operator: NCC
     member_of: parc-du-lac-leamy
-  - name: Sentier du Ruisseau Leamy Pathway
-    osm_names:
-      - Sentier du Ruisseau Leamy Pathway
-    anchors:
-      - - -75.7652397
-        - 45.4705187
-      - - -75.7468492
-        - 45.4731249
-    surface: asphalt
-    smoothness: good
-    width: '2'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-  - name: Sentier des Voyageurs
-    osm_names:
-      - Sentier des Voyageurs
-    anchors:
-      - - -75.7295277
-        - 45.4221976
-      - - -75.7064904
-        - 45.4377622
-    name_fr: Sentier des Voyageurs
-    name_en: Voyageurs Pathway
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    lit: 'yes'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-  - name: Sentier des Pionniers
-    osm_names:
-      - Sentier des Pionniers
-    anchors:
-      - - -75.7442256
-        - 45.4325419
-      - - -75.7447872
-        - 45.4326862
-    name_fr: Sentier des Pionniers
-    name_en: Pionniers Pathway
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    lit: 'yes'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
   - name: Pont Mãwandòseg
     osm_names:
       - Pont Mãwandòseg
@@ -1005,21 +955,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     member_of: chemin-du-lac-leamy-trails
-  - name: Sentier du Lac-des-Fées Pathway
-    osm_names:
-      - Sentier du Lac-des-Fées Pathway
-    anchors:
-      - - -75.7527198
-        - 45.4417437
-      - - -75.753363
-        - 45.4420907
-    surface: asphalt
-    smoothness: good
-    width: '2.5'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    member_of: parc-de-la-gatineau
   - name: Brookfield Pathway
     osm_names:
       - Brookfield Pathway
@@ -1488,25 +1423,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     member_of: pont-lady-aberdeen-trails
-  - name: promenade Sentier du Parc de la Gatineau
-    osm_names:
-      - promenade Sentier du Parc de la Gatineau
-    anchors:
-      - - -75.7903173
-        - 45.4659985
-      - - -75.789783
-        - 45.4673535
-    name_fr: promenade Sentier du Parc de la Gatineau
-    surface: asphalt
-    smoothness: good
-    width: '2.5'
-    lit: 'no'
-    segregated: 'no'
-    cycleway: 'yes'
-    highway: cycleway
-    bicycle: designated
-    ref: '5'
-    member_of: parc-de-la-gatineau
   - name: Piste 25
     osm_names:
       - Piste 25
@@ -1631,18 +1547,6 @@ bike_paths:
     ref: '54'
     member_of: parc-de-la-gatineau
     mtb: true
-  - name: Trail 47 (Hope Trail)
-    osm_names:
-      - Trail 47 (Hope Trail)
-    anchors:
-      - - -75.8824459
-        - 45.5578264
-      - - -75.8833688
-        - 45.5397017
-    surface: ground
-    highway: cycleway
-    bicycle: designated
-    member_of: parc-de-la-gatineau
   - name: Sawmill Creek Path
     osm_names:
       - Sawmill Creek Path
@@ -2124,7 +2028,7 @@ bike_paths:
       - Trail 47
     anchors:
       - - -75.891423
-        - 45.557394
+        - 45.5397017
       - - -75.8824459
         - 45.568983
     surface: ground
@@ -2220,23 +2124,6 @@ bike_paths:
     bicycle: designated
     ref: '366'
     member_of: parc-de-la-gatineau
-  - name: Voie Verte de Chelsea
-    osm_names:
-      - Voie Verte de Chelsea
-    anchors:
-      - - -75.7503486
-        - 45.4797107
-      - - -75.7487474
-        - 45.4778974
-    surface: ground
-    smoothness: bad
-    width: '0.3'
-    segregated: 'no'
-    highway: cycleway
-    mtb:scale: '1'
-    bicycle: designated
-    member_of: voie-verte-chelsea-trails
-    mtb: true
   - name: Community Pump Track
     osm_names:
       - Community Pump Track
@@ -9695,21 +9582,6 @@ bike_paths:
     highway: footway
     member_of: la-boucle-trails
     mtb: true
-  - name: Voie vert de Chelsea
-    osm_names:
-      - Voie vert de Chelsea
-    anchors:
-      - - -75.753068
-        - 45.4809569
-      - - -75.752903
-        - 45.4809294
-    surface: gravel
-    smoothness: bad
-    width: '2.5'
-    highway: path
-    mtb:scale: '1'
-    member_of: voie-verte-chelsea-trails
-    mtb: true
   - name: L'Aventurier
     osm_names:
       - L'Aventurier
@@ -11587,10 +11459,10 @@ bike_paths:
       - sentier-du-lac-leamy-pathway
       - sentier-de-la-riviere-gatineau-pathway
     anchors:
-      - - -75.7275971
+      - - -75.7364732
         - 45.4472972
       - - -75.703136
-        - 45.4617537
+        - 45.4725342
     osm_names:
       - Sentier du Lac Leamy Pathway
       - Sentier de la Rivière Gatineau Pathway
@@ -11867,28 +11739,20 @@ bike_paths:
   - name: Voie Verte Chelsea Trails
     type: network
     members:
-      - voie-verte-chelsea-2
-      - voie-verte-de-chelsea
-      - voie-vert-de-chelsea
       - voie-verte-chelsea-1
       - chemin-pinetrail
     anchors:
       - - -75.8992252
-        - 45.4778974
-      - - -75.7487474
+        - 45.5705625
+      - - -75.8517575
         - 45.6152909
     osm_names:
       - Voie Verte Chelsea
-      - Voie Verte de Chelsea
-      - Voie vert de Chelsea
       - Chemin Pine/trail
-    osm_relations:
-      - 15061552
     surface: fine_gravel
     highway: cycleway
     width: '2.5'
     smoothness: intermediate
-    network: lcn
     mtb: true
   - name: Chief William Commanda Bridge Trails
     type: network
@@ -11992,7 +11856,6 @@ bike_paths:
       - sentier-trail-51
       - trail-53
       - trail-54
-      - trail-47-hope-trail
       - trail-55
       - trail-51
       - trail-52-parc-de-la-gatineau-pathway
@@ -12088,9 +11951,7 @@ bike_paths:
       - trans-canada-trail-36
       - trail-36
       - sentier-du-parc-de-la-gatineau
-      - sentier-du-lac-des-fees-pathway
       - trail-27-1
-      - promenade-sentier-du-parc-de-la-gatineau
       - '54'
       - chemin-de-ste-cecile-de-masham
       - chemin-kingsmere
@@ -12111,7 +11972,6 @@ bike_paths:
       - 'Sentier / Trail #51'
       - 'Trail #53'
       - 'Trail #54'
-      - Trail 47 (Hope Trail)
       - 'Trail #55'
       - 'Trail #51'
       - 'Trail #52 Parc de la Gatineau Pathway'

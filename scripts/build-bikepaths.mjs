@@ -961,6 +961,102 @@ out geom tags;`;
       });
     }
   }
+  // Token-based name similarity for fragment merging.
+  // Tokenize, hard-reject on numeric mismatch, soft Dice with edit-distance-1 tolerance.
+  function namesAreSimilar(a, b) {
+    const tokenize = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase().replace(/\(.*?\)/g, '').match(/[a-z0-9]+/g) || [];
+    const editDist1 = (s, t) => {
+      if (Math.abs(s.length - t.length) > 1) return false;
+      let diffs = 0;
+      if (s.length === t.length) {
+        for (let i = 0; i < s.length; i++) { if (s[i] !== t[i]) diffs++; }
+        return diffs === 1;
+      }
+      // length differs by 1 — check for single insertion
+      const [short, long] = s.length < t.length ? [s, t] : [t, s];
+      let si = 0;
+      for (let li = 0; li < long.length; li++) {
+        if (short[si] === long[li]) si++;
+        else diffs++;
+        if (diffs > 1) return false;
+      }
+      return true;
+    };
+
+    const tokA = tokenize(a), tokB = tokenize(b);
+    if (tokA.length < 2 || tokB.length < 2) return false;
+
+    // Hard reject: if any numeric token in A has no match in B
+    const numA = tokA.filter(t => /^\d+$/.test(t));
+    const numB = tokB.filter(t => /^\d+$/.test(t));
+    if (numA.length > 0 || numB.length > 0) {
+      if (numA.sort().join(',') !== numB.sort().join(',')) return false;
+    }
+
+    // Soft Dice: tokens match if identical or (both >= 4 chars and edit distance 1)
+    const usedB = new Set();
+    let matched = 0;
+    for (const ta of tokA) {
+      for (let j = 0; j < tokB.length; j++) {
+        if (usedB.has(j)) continue;
+        const tb = tokB[j];
+        if (ta === tb || (ta.length >= 4 && tb.length >= 4 && editDist1(ta, tb))) {
+          matched++;
+          usedB.add(j);
+          break;
+        }
+      }
+    }
+    const dice = (2 * matched) / (tokA.length + tokB.length);
+    return dice >= 0.85 && matched >= 2;
+  }
+
+  // Merge small fragments into nearby larger entries with similar names.
+  // "Voie Verte de Chelsea" (0.2km) is a typo variant of "Voie Verte Chelsea"
+  // (22km). Relative to the trail length, the fragment is insignificant.
+  // Absorb it: merge its _ways into the larger entry and drop it.
+  const absorbed = new Set();
+  for (let i = 0; i < osmNamedWays.length; i++) {
+    const small = osmNamedWays[i];
+    if (absorbed.has(i)) continue;
+    for (let j = 0; j < osmNamedWays.length; j++) {
+      if (i === j || absorbed.has(j)) continue;
+      const large = osmNamedWays[j];
+      if (large.wayCount <= small.wayCount) continue; // large must be bigger
+
+      // Skip exact same name — splitWaysByProximity already decided
+      // these are different trails in different parks.
+      if (small.name === large.name) continue;
+      if (slugify(small.name) === slugify(large.name)) continue;
+
+      // Token-based soft Dice similarity (Codex recommendation).
+      // Language-agnostic, handles typos (vert/verte), particles (de/du),
+      // parentheticals. Hard rejects numeric token mismatches (Trail 22 ≠ Trail 24).
+      if (!namesAreSimilar(small.name, large.name)) continue;
+
+      // Geographically close?
+      if (!small.anchors?.length || !large.anchors?.length) continue;
+      if (haversineM(small.anchors[0], large.anchors[0]) > 10000) continue;
+
+      // Small relative to large? (< 20% way count)
+      if (small.wayCount > large.wayCount * 0.2) continue;
+
+      // Absorb: merge small's _ways into large, drop small
+      large._ways = [...(large._ways || []), ...(small._ways || [])];
+      large.anchors = [...large.anchors, ...small.anchors];
+      absorbed.add(i);
+      break;
+    }
+  }
+  if (absorbed.size > 0) {
+    const before = osmNamedWays.length;
+    for (const idx of [...absorbed].sort((a, b) => b - a)) {
+      osmNamedWays.splice(idx, 1);
+    }
+    console.log(`  Merged ${absorbed.size} small fragments into larger entries (${before} → ${osmNamedWays.length})`);
+  }
+
   console.log(`  Found ${osmNamedWays.length} named cycling ways`);
 
   // Step 2b: Discover unnamed parallel bike lanes
