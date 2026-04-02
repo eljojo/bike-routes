@@ -4,6 +4,26 @@ bike_paths:
     highway: cycleway
     surface: paved
     lit: "yes"
+    member_of: red-de-ciclovias
     anchors:
       - [-72.12, -36.59]
       - [-72.09, -36.60]
+  - name: Ciclovía Avenida Brasil
+    highway: cycleway
+    surface: asphalt
+    member_of: red-de-ciclovias
+    anchors:
+      - [-72.11, -36.60]
+      - [-72.10, -36.61]
+  - name: Red de Ciclovías
+    type: network
+    highway: cycleway
+    operator: Municipalidad
+    network: lcn
+    members:
+      - ciclovia-avenida-ecuador
+      - ciclovia-avenida-brasil
+    wikidata_meta:
+      description_en: Urban cycling network in Chillán
+      length_km: 8
+      inception: 2010s
