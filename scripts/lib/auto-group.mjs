@@ -216,10 +216,50 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
   // Also keep clusters that had existing groups (they weren't in newClusters)
   const existingGroupClusters = clusters.filter(c => c.existingGroup);
 
-  // Build output: create network entries, members KEEP their entries.
-  // Networks v2: auto-groups ARE networks. Members keep their own pages
-  // and nest under the network URL. No more absorption.
-  const allClustersToProcess = [...existingGroupClusters, ...mergedClusters];
+  // Spur absorption: if a cluster has only 1 member that qualifies as
+  // a standalone page (>= 1km), absorb the rest into it. A network
+  // needs at least 2 page-worthy members. Otherwise it's just one trail
+  // with minor spurs — not a network.
+  const PAGE_MIN_LENGTH_M = 1000;
+  function entryLength(entry) {
+    if (!entry._ways?.length) return 0;
+    let total = 0;
+    for (const way of entry._ways) {
+      for (let i = 1; i < way.length; i++) {
+        const dlat = (way[i].lat - way[i - 1].lat) * 111320;
+        const dlng = (way[i].lon - way[i - 1].lon) * 111320 * Math.cos(way[i].lat * Math.PI / 180);
+        total += Math.sqrt(dlat * dlat + dlng * dlng);
+      }
+    }
+    return total;
+  }
+
+  const absorptionClusters = [];
+  const networkClusters = [];
+  for (const cluster of [...existingGroupClusters, ...mergedClusters]) {
+    if (cluster.existingGroup || cluster.members.length < 2) {
+      networkClusters.push(cluster);
+      continue;
+    }
+    const lengths = cluster.members.map(m => entryLength(m));
+    const pageWorthy = cluster.members.filter((_, i) => lengths[i] >= PAGE_MIN_LENGTH_M);
+    if (pageWorthy.length <= 1 && pageWorthy.length < cluster.members.length) {
+      // 0 or 1 page-worthy member — absorb spurs into the longest member
+      const longestIdx = lengths.indexOf(Math.max(...lengths));
+      const dominant = cluster.members[longestIdx];
+      const spurs = cluster.members.filter((_, i) => i !== longestIdx);
+      for (const spur of spurs) {
+        dominant.osm_names = [...new Set([...(dominant.osm_names || [dominant.name]), ...(spur.osm_names || [spur.name])])];
+        if (spur._ways) dominant._ways = [...(dominant._ways || []), ...spur._ways];
+        dominant.anchors = bboxAnchors([...(dominant.anchors || []), ...(spur.anchors || [])]);
+      }
+      absorptionClusters.push({ dominant, spurs });
+    } else {
+      networkClusters.push(cluster);
+    }
+  }
+  const absorbedEntries = new Set(absorptionClusters.flatMap(c => c.spurs));
+  const allClustersToProcess = networkClusters;
   const newNetworkEntries = [];
 
   for (const cluster of allClustersToProcess) {
@@ -355,6 +395,6 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
     if (adopted > 0) console.log(`  Park adoption: ${adopted} entries added to park networks`);
   }
 
-  const result = [...entries, ...newNetworkEntries];
+  const result = [...entries.filter(e => !absorbedEntries.has(e)), ...newNetworkEntries];
   return result;
 }

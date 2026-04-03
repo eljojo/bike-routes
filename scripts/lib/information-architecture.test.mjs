@@ -414,38 +414,15 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       expect(net.members).not.toContain('parc-de-la-gatineau');
     });
 
-    // --- Beaverpond Park self-reference investigation ---
+    // --- Beaverpond Park: no network (only 1 page-worthy member) ---
 
-    it('there are exactly two entries named "Beaverpond Park" — one network, one path', () => {
-      const bpEntries = entries.filter(e => e.name === 'Beaverpond Park');
-      expect(bpEntries.length).toBe(2);
-      expect(bpEntries.filter(e => e.type === 'network').length).toBe(1);
-      expect(bpEntries.filter(e => !e.type).length).toBe(1);
-    });
-
-    it('the non-network Beaverpond Park came from unnamed chain discovery', () => {
-      const pathEntry = entries.find(e => e.name === 'Beaverpond Park' && !e.type);
-      expect(pathEntry).toBeDefined();
-      expect(pathEntry.osm_names).toContain('Beaverpond Park');
-      expect(pathEntry.osm_relations).toBeUndefined();
-    });
-
-    it('the non-network Beaverpond Park is not a parallel lane', () => {
-      const pathEntry = entries.find(e => e.name === 'Beaverpond Park' && !e.type);
-      expect(pathEntry).toBeDefined();
-      expect(pathEntry.parallel_to).toBeUndefined();
-    });
-
-    it('the Beaverpond Park network was created by park containment', () => {
-      const net = networks.find(n => n.name === 'Beaverpond Park');
-      expect(net).toBeDefined();
-      expect(net._parkName).toBeDefined();
-    });
-
-    it('the non-network Beaverpond Park is NOT adopted into the park network (guard prevents self-ref)', () => {
-      const pathEntry = entries.find(e => e.name === 'Beaverpond Park' && !e.type);
-      expect(pathEntry).toBeDefined();
-      expect(pathEntry.member_of).toBeUndefined();
+    it('Beaverpond Park is a path entry, not a network (spurs absorbed)', () => {
+      // The Beaverpond Park cluster had only 1 member >= 1km.
+      // The rest were tiny spurs — absorbed into the dominant member.
+      const bpNet = networks.find(n => n.name === 'Beaverpond Park');
+      expect(bpNet, 'Should not be a network — only 1 page-worthy member').toBeUndefined();
+      const bpPath = entries.find(e => e.name === 'Beaverpond Park' && !e.type);
+      expect(bpPath, 'Should still exist as a path entry').toBeDefined();
     });
 
     it('no network has zero members (zombie from superroute flattening)', () => {
@@ -471,6 +448,16 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
           `"${slug}" is in ${netNames.length} networks: ${netNames.join(', ')}`
         ).toBe(1);
       }
+    });
+
+    it('No Exit (0.18km spur) is absorbed into Carp Barrens Trail, not a separate network member', () => {
+      // When a cluster has one dominant trail (3.2km) and tiny spurs
+      // (0.18km), the spurs should be absorbed into the dominant entry.
+      // Not a network — one trail with minor offshoots.
+      const noExitNetwork = networks.find(n => n.name?.includes('No Exit'));
+      expect(noExitNetwork, 'No Exit should not be a network').toBeUndefined();
+      const cbt = entries.find(e => e.name === 'Carp Barrens Trail' && !e.type);
+      expect(cbt, 'Carp Barrens Trail should exist').toBeDefined();
     });
 
     it('Greenbelt Pathway West is in NCC Greenbelt, not Bruce Pit', () => {

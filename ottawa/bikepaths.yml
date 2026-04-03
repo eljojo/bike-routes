@@ -867,29 +867,11 @@ bike_paths:
   - name: Chief William Commanda Bridge
     osm_names:
       - Chief William Commanda Bridge
-    anchors:
-      - - -75.7288443
-        - 45.4113978
-      - - -75.7251347
-        - 45.4172262
-    name_fr: Pont Chef-William-Commanda
-    name_en: Chief William Commanda Bridge
-    surface: wood
-    smoothness: good
-    width: '4'
-    incline: 0%
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    access: 'yes'
-    member_of: chief-william-commanda-bridge-network
-  - name: Pont Chef-William-Commanda
-    osm_names:
       - Pont Chef-William-Commanda
     anchors:
-      - - -75.7288443
-        - 45.4172262
       - - -75.7304146
+        - 45.4113978
+      - - -75.7251347
         - 45.4196937
     name_fr: Pont Chef-William-Commanda
     name_en: Chief William Commanda Bridge
@@ -901,7 +883,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     access: 'yes'
-    member_of: chief-william-commanda-bridge-network
   - name: Ottawa River Pathway
     osm_names:
       - Ottawa River Pathway
@@ -960,11 +941,12 @@ bike_paths:
   - name: Chemin du Lac-Leamy
     osm_names:
       - Chemin du Lac-Leamy
+      - Boulevard du Casino
     anchors:
-      - - -75.7282034
+      - - -75.7282494
         - 45.440651
       - - -75.7272738
-        - 45.4486677
+        - 45.4486758
     surface: asphalt
     smoothness: excellent
     width: '3'
@@ -972,23 +954,6 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
-    member_of: chemin-du-lac-leamy-network
-  - name: Brookfield Pathway
-    osm_names:
-      - Brookfield Pathway
-    anchors:
-      - - -75.6847611
-        - 45.3735713
-      - - -75.6785781
-        - 45.3739909
-    surface: asphalt
-    smoothness: excellent
-    width: '3'
-    lit: 'yes'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    member_of: sawmill-creek-path-network
   - name: Trans Canada Trail
     osm_names:
       - Trans Canada Trail
@@ -1294,10 +1259,11 @@ bike_paths:
   - name: Pont Lady-Aberdeen
     osm_names:
       - Pont Lady-Aberdeen
+      - Accès au Pont
     anchors:
       - - -75.7021755
         - 45.4560277
-      - - -75.7001316
+      - - -75.7000785
         - 45.4577494
     name_fr: Pont Lady-Aberdeen
     name_en: Lady Aberdeen Bridge
@@ -1307,7 +1273,6 @@ bike_paths:
     cycleway: lane
     highway: cycleway
     bicycle: designated
-    member_of: pont-lady-aberdeen-network
   - name: Piste 25
     osm_names:
       - Piste 25
@@ -1435,11 +1400,12 @@ bike_paths:
   - name: Sawmill Creek Path
     osm_names:
       - Sawmill Creek Path
+      - Brookfield Pathway
     anchors:
-      - - -75.6798125
+      - - -75.6847611
         - 45.353173
       - - -75.656349
-        - 45.3738413
+        - 45.3739909
     surface: asphalt
     smoothness: good
     width: '3'
@@ -1447,7 +1413,6 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: sawmill-creek-path-network
   - name: Juno Beach Memorial Bridge
     osm_names:
       - Juno Beach Memorial Bridge
@@ -1480,19 +1445,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     parallel_to: Boulevard de la Cité-des-Jeunes
-  - name: Accès au Pont
-    osm_names:
-      - Accès au Pont
-    anchors:
-      - - -75.7001316
-        - 45.4575555
-      - - -75.7000785
-        - 45.4576084
-    surface: asphalt
-    width: '2'
-    highway: cycleway
-    bicycle: designated
-    member_of: pont-lady-aberdeen-network
   - name: 'Trail #55'
     osm_names:
       - 'Trail #55'
@@ -1620,6 +1572,8 @@ bike_paths:
   - name: Portage Bridge cycle track
     osm_names:
       - Portage Bridge cycle track
+      - Piste cyclable, Pont du Portage
+      - Piste cyclable
     anchors:
       - - -75.7139702
         - 45.4191979
@@ -1631,19 +1585,6 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
-    member_of: portage-bridge-cycle-track-network
-  - name: Trillium Trail
-    osm_names:
-      - Trillium Trail
-    anchors:
-      - - -76.2574239
-        - 45.2490924
-      - - -76.2526022
-        - 45.2469496
-    surface: ground
-    highway: cycleway
-    bicycle: designated
-    member_of: mill-of-kintail-conservation-area
   - name: Hospital Link Multi Use Pathway
     osm_names:
       - Hospital Link Multi Use Pathway
@@ -1696,23 +1637,6 @@ bike_paths:
     ref: '51'
     member_of: parc-de-la-gatineau
     mtb: true
-  - name: Piste cyclable, Pont du Portage
-    osm_names:
-      - Piste cyclable, Pont du Portage
-    anchors:
-      - - -75.713769
-        - 45.4231274
-      - - -75.7139702
-        - 45.4241003
-    name_fr: Piste cyclable, Pont du Portage
-    name_en: Portage Bridge cycle track
-    surface: concrete
-    smoothness: good
-    width: '2.5'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-    member_of: portage-bridge-cycle-track-network
   - name: '54'
     osm_names:
       - '54'
@@ -1762,23 +1686,6 @@ bike_paths:
     surface: asphalt
     highway: cycleway
     bicycle: designated
-  - name: Piste cyclable
-    osm_names:
-      - Piste cyclable
-    anchors:
-      - - -75.713769
-        - 45.4231274
-      - - -75.7131387
-        - 45.421678
-    name_fr: Piste cyclable
-    name_en: Portage Bridge cycle track
-    surface: concrete
-    smoothness: good
-    width: '2.5'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-    member_of: portage-bridge-cycle-track-network
   - name: Pont Major
     osm_names:
       - Pont Major
@@ -1984,16 +1891,16 @@ bike_paths:
   - name: Forest Hike Trail
     osm_names:
       - Forest Hike Trail
+      - Trillium Trail
     anchors:
       - - -76.2597689
+        - 45.2469496
+      - - -76.2526022
         - 45.2494275
-      - - -76.2587764
-        - 45.2487892
     surface: ground
     lit: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: mill-of-kintail-conservation-area
   - name: Chemin de Ste-Cécile-de-Masham
     osm_names:
       - Chemin de Ste-Cécile-de-Masham
@@ -2182,21 +2089,6 @@ bike_paths:
     highway: tertiary
     bicycle: designated
     parallel_to: Chemin Old Chelsea
-  - name: Blue Heron Trail
-    osm_names:
-      - Blue Heron Trail
-    anchors:
-      - - -75.9243287
-        - 45.3377637
-      - - -75.9199569
-        - 45.3423153
-    surface: fine_gravel
-    smoothness: intermediate
-    width: '2'
-    lit: 'no'
-    highway: path
-    bicycle: 'yes'
-    member_of: kizell-pond-trail-north-trails
   - name: Trail 23
     osm_names:
       - Trail 23
@@ -2835,6 +2727,7 @@ bike_paths:
   - name: Marathon NE
     osm_names:
       - Marathon NE
+      - Stone Dust Path
     anchors:
       - - -75.931036
         - 45.3295731
@@ -2847,7 +2740,6 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: 'no'
-    member_of: beaverpond-park
   - name: Bailout
     osm_names:
       - Bailout
@@ -2952,47 +2844,6 @@ bike_paths:
     highway: path
     bicycle: designated
     member_of: south-march-highlands-conservation-forest
-  - name: Northwest Passage
-    osm_names:
-      - Northwest Passage
-    anchors:
-      - - -75.9428547
-        - 45.3262973
-      - - -75.9395984
-        - 45.3282383
-    surface: ground
-    width: '0.5'
-    highway: path
-    bicycle: 'yes'
-    member_of: kizell-pond-trail-north-trails
-  - name: Stone Dust Path
-    osm_names:
-      - Stone Dust Path
-    anchors:
-      - - -75.9309547
-        - 45.3296068
-      - - -75.9255755
-        - 45.3311704
-    surface: fine_gravel
-    smoothness: intermediate
-    width: '2'
-    highway: path
-    bicycle: 'yes'
-    access: permissive
-    member_of: beaverpond-park
-  - name: Lumberjack
-    osm_names:
-      - Lumberjack
-    anchors:
-      - - -75.9399772
-        - 45.3257659
-      - - -75.9395984
-        - 45.3282383
-    surface: ground
-    width: '0.5'
-    highway: path
-    bicycle: 'yes'
-    member_of: kizell-pond-trail-north-trails
   - name: Trail 74
     osm_names:
       - Trail 74
@@ -3527,19 +3378,6 @@ bike_paths:
     network: Green Creek
     ref: '61'
     member_of: ncc-greenbelt
-  - name: Marathon NW
-    osm_names:
-      - Marathon NW
-    anchors:
-      - - -75.9436259
-        - 45.3262973
-      - - -75.9428547
-        - 45.3269187
-    surface: ground
-    width: '0.5'
-    highway: path
-    bicycle: 'yes'
-    member_of: kizell-pond-trail-north-trails
   - name: Garter Belt
     osm_names:
       - Garter Belt
@@ -3838,34 +3676,20 @@ bike_paths:
     highway: path
     bicycle: designated
     member_of: parc-de-la-gatineau
-  - name: No Exit
-    osm_names:
-      - No Exit
-    anchors:
-      - - -76.0676696
-        - 45.3804197
-      - - -76.0673586
-        - 45.3812585
-    surface: ground
-    width: '0.5'
-    highway: path
-    bicycle: 'yes'
-    description: mountain bike path
-    member_of: no-exit-trails
   - name: Carp Barrens Trail
     osm_names:
       - Carp Barrens Trail
+      - No Exit
     anchors:
       - - -76.0754742
-        - 45.3856392
-      - - -76.0737888
+        - 45.3804197
+      - - -76.0673586
         - 45.3868104
     surface: ground
     width: '0.5'
     highway: path
     bicycle: 'yes'
     description: mountain bike path
-    member_of: no-exit-trails
   - name: '# 76 (Jesse''s Girl)'
     osm_names:
       - '# 76 (Jesse''s Girl)'
@@ -3943,17 +3767,17 @@ bike_paths:
   - name: Chelsea Creek Path
     osm_names:
       - Chelsea Creek Path
+      - Lien piétonnier
     anchors:
       - - -75.79846
-        - 45.5008412
-      - - -75.79808
+        - 45.4799206
+      - - -75.7932937
         - 45.501118
     surface: unpaved
     width: '2.5'
     highway: path
     bicycle: 'yes'
     access: 'no'
-    member_of: chelsea-creek-path-trails
   - name: Staycation
     osm_names:
       - Staycation
@@ -7274,16 +7098,16 @@ bike_paths:
   - name: Jean-Jacques-Lussier Private
     osm_names:
       - Jean-Jacques-Lussier Private
+      - Marie-Curie Private
     anchors:
       - - -75.6828042
         - 45.4213633
-      - - -75.6819853
+      - - -75.6810752
         - 45.4222675
     name_fr: privé Jean-Jacques-Lussier
     name_en: Jean-Jacques-Lussier Private
     surface: asphalt
     highway: pedestrian
-    member_of: jean-jacques-lussier-private-network
   - name: Copernicus Street
     osm_names:
       - Copernicus Street
@@ -7626,20 +7450,6 @@ bike_paths:
     highway: secondary
     ref: '64'
     parallel_to: Greenfield Avenue
-  - name: Marie-Curie Private
-    osm_names:
-      - Marie-Curie Private
-    anchors:
-      - - -75.6819853
-        - 45.4213633
-      - - -75.6810752
-        - 45.4216966
-    name_fr: privé Marie-Curie
-    name_en: Marie-Curie Private
-    surface: asphalt
-    highway: pedestrian
-    bicycle: 'yes'
-    member_of: jean-jacques-lussier-private-network
   - name: Mann Avenue
     osm_names:
       - Mann Avenue
@@ -8019,8 +7829,12 @@ bike_paths:
   - name: Coulicou
     osm_names:
       - Coulicou
+      - Piranga - Sentier d'hiver
+      - Carouge
+      - Vireo
+      - Faucon
     anchors:
-      - - -75.8296319
+      - - -75.8339463
         - 45.4191359
       - - -75.8206589
         - 45.4265982
@@ -8028,19 +7842,19 @@ bike_paths:
     highway: footway
     bicycle: 'yes'
     ref: '2'
-    member_of: coulicou-trails
+    member_of: crosstown-bikeway-2
   - name: Deauville trail
     osm_names:
       - Deauville trail
+      - L'Aventurier
     anchors:
-      - - -75.6501809
+      - - -75.670499
         - 45.6174421
-      - - -75.666152
+      - - -75.6501809
         - 45.6346972
     surface: ground
     highway: footway
     bicycle: 'yes'
-    member_of: deauville-trail-trails
   - name: Pont Macdonald-Cartier Bridge
     osm_names:
       - Pont Macdonald-Cartier Bridge
@@ -8056,32 +7870,6 @@ bike_paths:
     width: '2.5'
     highway: footway
     bicycle: 'yes'
-  - name: Cow Path
-    osm_names:
-      - Cow Path
-    anchors:
-      - - -75.9378406
-        - 45.3263531
-      - - -75.9438974
-        - 45.3256467
-    surface: woodchips
-    width: '0.5'
-    highway: footway
-    bicycle: 'yes'
-    member_of: kizell-pond-trail-north-trails
-  - name: Skid Row
-    osm_names:
-      - Skid Row
-    anchors:
-      - - -75.9377877
-        - 45.3270284
-      - - -75.9419301
-        - 45.3260844
-    surface: woodchips
-    width: '0.5'
-    highway: footway
-    bicycle: 'yes'
-    member_of: kizell-pond-trail-north-trails
   - name: M.O.
     osm_names:
       - M.O.
@@ -8119,33 +7907,26 @@ bike_paths:
     width: '2'
     highway: footway
     bicycle: 'yes'
-  - name: Richardson Ridge Nature Trail
-    osm_names:
-      - Richardson Ridge Nature Trail
-    anchors:
-      - - -75.9380992
-        - 45.3174432
-      - - -75.9328856
-        - 45.3217128
-    surface: ground
-    width: '0.5'
-    lit: 'no'
-    highway: footway
-    bicycle: 'yes'
-    member_of: kizell-pond-trail-north-trails
   - name: Kizell Pond Trail North
     osm_names:
       - Kizell Pond Trail North
+      - Blue Heron Trail
+      - Northwest Passage
+      - Lumberjack
+      - Marathon NW
+      - Cow Path
+      - Skid Row
+      - Richardson Ridge Nature Trail
+      - Kizell Pond Trail South
     anchors:
-      - - -75.9377193
-        - 45.3263182
-      - - -75.9312187
-        - 45.3291081
+      - - -75.9450007
+        - 45.3174432
+      - - -75.9199569
+        - 45.3423153
     surface: gravel
     width: '0.5'
     highway: footway
     bicycle: 'yes'
-    member_of: kizell-pond-trail-north-trails
   - name: Mississippi Valley Trail - ART Section
     osm_names:
       - Mississippi Valley Trail - ART Section
@@ -8185,55 +7966,22 @@ bike_paths:
     bicycle: 'yes'
     access: private
     member_of: ottawa-valley-recreational-trail-trails
-  - name: Middle footpath
-    osm_names:
-      - Middle footpath
-    anchors:
-      - - -76.2034764
-        - 45.2360488
-      - - -76.2059803
-        - 45.2379493
-    surface: ground
-    highway: footway
-    bicycle: 'yes'
-    member_of: landsdowne-natural-heritage-park
-  - name: Lower path
-    osm_names:
-      - Lower path
-    anchors:
-      - - -76.2051023
-        - 45.2359954
-      - - -76.2048477
-        - 45.2362663
-    surface: ground
-    highway: footway
-    bicycle: 'yes'
-    member_of: landsdowne-natural-heritage-park
-  - name: Lower footpath
-    osm_names:
-      - Lower footpath
-    anchors:
-      - - -76.2059803
-        - 45.2379493
-      - - -76.2048477
-        - 45.2362663
-    surface: ground
-    highway: footway
-    bicycle: 'yes'
-    member_of: landsdowne-natural-heritage-park
   - name: Uppoer Footpath
     osm_names:
       - Uppoer Footpath
+      - Middle footpath
+      - Lower path
+      - Lower footpath
+      - Connector path
     anchors:
-      - - -76.205572
-        - 45.2381372
-      - - -76.204281
-        - 45.2367972
+      - - -76.2064321
+        - 45.2359954
+      - - -76.2034764
+        - 45.2382299
     surface: ground
     width: '1'
     highway: footway
     bicycle: 'yes'
-    member_of: landsdowne-natural-heritage-park
   - name: Jackie Holzman Bridge
     osm_names:
       - Jackie Holzman Bridge
@@ -8248,30 +7996,6 @@ bike_paths:
     segregated: 'no'
     highway: footway
     bicycle: designated
-  - name: Kizell Pond Trail South
-    osm_names:
-      - Kizell Pond Trail South
-    anchors:
-      - - -75.9393931
-        - 45.3228933
-      - - -75.9450007
-        - 45.3198691
-    surface: woodchips
-    highway: footway
-    bicycle: 'yes'
-    member_of: kizell-pond-trail-north-trails
-  - name: Lien piétonnier
-    osm_names:
-      - Lien piétonnier
-    anchors:
-      - - -75.793981
-        - 45.4799206
-      - - -75.7932937
-        - 45.4813898
-    surface: ground
-    highway: footway
-    bicycle: 'yes'
-    member_of: chelsea-creek-path-trails
   - name: La Pente
     osm_names:
       - La Pente
@@ -8709,49 +8433,6 @@ bike_paths:
     highway: footway
     member_of: ottawa-valley-recreational-trail-trails
     mtb: true
-  - name: Piranga - Sentier d'hiver
-    osm_names:
-      - Piranga - Sentier d'hiver
-    anchors:
-      - - -75.8265886
-        - 45.4221433
-      - - -75.8339463
-        - 45.4234698
-    surface: ground
-    lit: 'no'
-    highway: footway
-    ref: '11'
-    seasonal: winter
-    member_of: coulicou-trails
-    mtb: true
-  - name: Carouge
-    osm_names:
-      - Carouge
-    anchors:
-      - - -75.8237153
-        - 45.4203607
-      - - -75.826602
-        - 45.4224265
-    surface: ground
-    lit: 'no'
-    highway: footway
-    ref: '5'
-    member_of: coulicou-trails
-    mtb: true
-  - name: Vireo
-    osm_names:
-      - Vireo
-    anchors:
-      - - -75.8266772
-        - 45.4227528
-      - - -75.8261671
-        - 45.4262873
-    surface: ground
-    lit: 'no'
-    highway: footway
-    ref: '7'
-    member_of: coulicou-trails
-    mtb: true
   - name: Whale
     osm_names:
       - Whale
@@ -8962,19 +8643,6 @@ bike_paths:
     ref: '19'
     member_of: parc-de-la-gatineau
     mtb: true
-  - name: Faucon
-    osm_names:
-      - Faucon
-    anchors:
-      - - -75.8283204
-        - 45.4234481
-      - - -75.8269489
-        - 45.4248756
-    surface: ground
-    highway: footway
-    ref: '6'
-    member_of: coulicou-trails
-    mtb: true
   - name: Boulevard Sacré-Coeur
     osm_names:
       - Boulevard Sacré-Coeur
@@ -9112,19 +8780,6 @@ bike_paths:
     bicycle: 'no'
     member_of: ncc-greenbelt
     mtb: true
-  - name: Connector path
-    osm_names:
-      - Connector path
-    anchors:
-      - - -76.2064321
-        - 45.2367379
-      - - -76.2042886
-        - 45.2382299
-    surface: ground
-    width: '1'
-    highway: footway
-    member_of: landsdowne-natural-heritage-park
-    mtb: true
   - name: Mississippi Valley Trail - Bob's Run loop (Black)
     osm_names:
       - Mississippi Valley Trail - Bob's Run loop (Black)
@@ -9241,18 +8896,6 @@ bike_paths:
     highway: path
     member_of: parc-de-la-gatineau
     mtb: true
-  - name: Boulevard du Casino
-    osm_names:
-      - Boulevard du Casino
-    anchors:
-      - - -75.7282494
-        - 45.4486653
-      - - -75.728041
-        - 45.4486758
-    surface: concrete
-    highway: footway
-    bicycle: dismount
-    member_of: chemin-du-lac-leamy-network
   - name: Rue de Verdun
     osm_names:
       - Rue de Verdun
@@ -9263,27 +8906,16 @@ bike_paths:
         - 45.43469
     surface: asphalt
     highway: footway
-  - name: Rue Marston
-    osm_names:
-      - Rue Marston
-    anchors:
-      - - -75.7085891
-        - 45.4381255
-      - - -75.7084255
-        - 45.43811
-    highway: footway
-    member_of: rue-marston-trails
-    mtb: true
   - name: Rue Isidore-Ostiguy
     osm_names:
       - Rue Isidore-Ostiguy
+      - Rue Marston
     anchors:
-      - - -75.7183881
-        - 45.4337247
       - - -75.7185111
-        - 45.4348513
+        - 45.4337247
+      - - -75.7084255
+        - 45.4381255
     highway: footway
-    member_of: rue-marston-trails
     mtb: true
   - name: forest walk
     osm_names:
@@ -9407,19 +9039,6 @@ bike_paths:
     smoothness: bad
     highway: footway
     member_of: la-boucle-trails
-    mtb: true
-  - name: L'Aventurier
-    osm_names:
-      - L'Aventurier
-    anchors:
-      - - -75.670499
-        - 45.6334602
-      - - -75.6673758
-        - 45.6313584
-    surface: dirt
-    highway: footway
-    access: unknown
-    member_of: deauville-trail-trails
     mtb: true
   - name: Chemin Cafferty
     osm_names:
@@ -11953,61 +11572,6 @@ bike_paths:
     width: '3'
     smoothness: good
     mtb: true
-  - name: Chief William Commanda Bridge Network
-    type: network
-    _parkName: null
-    members:
-      - chief-william-commanda-bridge
-      - pont-chef-william-commanda
-    anchors:
-      - - -75.7304146
-        - 45.4113978
-      - - -75.7251347
-        - 45.4196937
-    osm_names:
-      - Chief William Commanda Bridge
-      - Pont Chef-William-Commanda
-    surface: wood
-    highway: cycleway
-    width: '4'
-    smoothness: good
-  - name: Chemin du Lac-Leamy Network
-    type: network
-    _parkName: null
-    members:
-      - chemin-du-lac-leamy
-      - boulevard-du-casino
-    anchors:
-      - - -75.7282494
-        - 45.440651
-      - - -75.7272738
-        - 45.4486758
-    osm_names:
-      - Chemin du Lac-Leamy
-      - Boulevard du Casino
-    surface: asphalt
-    highway: cycleway
-    width: '3'
-    smoothness: excellent
-  - name: Sawmill Creek Path Network
-    type: network
-    _parkName: null
-    members:
-      - brookfield-pathway
-      - sawmill-creek-path
-    anchors:
-      - - -75.6847611
-        - 45.353173
-      - - -75.656349
-        - 45.3739909
-    osm_names:
-      - Brookfield Pathway
-      - Sawmill Creek Path
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '3'
-    smoothness: excellent
   - name: Ottawa Valley Recreational Trail Trails
     type: network
     _parkName: null
@@ -12040,30 +11604,6 @@ bike_paths:
     highway: path
     width: '2'
     lit: 'no'
-    mtb: true
-  - name: Landsdowne Natural Heritage Park
-    type: network
-    _parkName: Landsdowne Natural Heritage Park
-    members:
-      - middle-footpath
-      - lower-path
-      - lower-footpath
-      - uppoer-footpath
-      - connector-path
-    anchors:
-      - - -76.2064321
-        - 45.2359954
-      - - -76.2034764
-        - 45.2382299
-    osm_names:
-      - Middle footpath
-      - Lower path
-      - Lower footpath
-      - Uppoer Footpath
-      - Connector path
-    surface: ground
-    highway: footway
-    width: '1'
     mtb: true
   - name: Parc de la Gatineau
     type: network
@@ -12305,24 +11845,6 @@ bike_paths:
     network: mtb
     super_network: capital-pathway
     mtb: true
-  - name: Chelsea Creek Path Trails
-    type: network
-    _parkName: null
-    members:
-      - chelsea-creek-path
-      - lien-pietonnier
-    anchors:
-      - - -75.79846
-        - 45.4799206
-      - - -75.7932937
-        - 45.501118
-    osm_names:
-      - Chelsea Creek Path
-      - Lien piétonnier
-    surface: unpaved
-    highway: path
-    width: '2.5'
-    mtb: true
   - name: Boulevard Maloney Sidepath Network
     type: network
     _parkName: null
@@ -12344,96 +11866,6 @@ bike_paths:
     width: '2.5'
     smoothness: good
     lit: 'no'
-  - name: Pont Lady-Aberdeen Network
-    type: network
-    _parkName: null
-    members:
-      - pont-lady-aberdeen
-      - acces-au-pont
-    anchors:
-      - - -75.7021755
-        - 45.4560277
-      - - -75.7000785
-        - 45.4577494
-    osm_names:
-      - Pont Lady-Aberdeen
-      - Accès au Pont
-    surface: asphalt
-    highway: cycleway
-    width: '2'
-  - name: Portage Bridge cycle track Network
-    type: network
-    _parkName: null
-    members:
-      - portage-bridge-cycle-track
-      - piste-cyclable-pont-du-portage
-      - piste-cyclable
-    anchors:
-      - - -75.7139702
-        - 45.4191979
-      - - -75.7110374
-        - 45.4245263
-    osm_names:
-      - Portage Bridge cycle track
-      - Piste cyclable, Pont du Portage
-      - Piste cyclable
-    surface: concrete
-    highway: cycleway
-    lit: 'no'
-    width: '2.5'
-    smoothness: good
-  - name: Mill of Kintail Conservation Area
-    type: network
-    _parkName: Mill of Kintail Conservation Area
-    members:
-      - trillium-trail
-      - forest-hike-trail
-    anchors:
-      - - -76.2597689
-        - 45.2469496
-      - - -76.2526022
-        - 45.2494275
-    osm_names:
-      - Trillium Trail
-      - Forest Hike Trail
-    surface: ground
-    highway: cycleway
-    lit: 'no'
-    mtb: true
-  - name: Kizell Pond Trail North Trails
-    type: network
-    _parkName: null
-    members:
-      - blue-heron-trail
-      - northwest-passage
-      - lumberjack
-      - marathon-nw
-      - cow-path
-      - skid-row
-      - richardson-ridge-nature-trail
-      - kizell-pond-trail-north
-      - kizell-pond-trail-south
-    anchors:
-      - - -75.9450007
-        - 45.3174432
-      - - -75.9199569
-        - 45.3423153
-    osm_names:
-      - Blue Heron Trail
-      - Northwest Passage
-      - Lumberjack
-      - Marathon NW
-      - Cow Path
-      - Skid Row
-      - Richardson Ridge Nature Trail
-      - Kizell Pond Trail North
-      - Kizell Pond Trail South
-    surface: ground
-    highway: footway
-    lit: 'no'
-    width: '0.5'
-    smoothness: intermediate
-    mtb: true
   - name: South March Highlands Conservation Forest
     type: network
     _parkName: South March Highlands Conservation Forest
@@ -12534,26 +11966,6 @@ bike_paths:
     lit: 'no'
     width: '2'
     mtb: true
-  - name: Beaverpond Park
-    type: network
-    _parkName: Beaverpond Park
-    members:
-      - marathon-ne
-      - stone-dust-path
-    anchors:
-      - - -75.931036
-        - 45.3295731
-      - - -75.9184089
-        - 45.3331874
-    osm_names:
-      - Marathon NE
-      - Stone Dust Path
-    surface: ground
-    highway: path
-    lit: 'no'
-    width: '2'
-    smoothness: intermediate
-    mtb: true
   - name: La Boucle Trails
     type: network
     _parkName: null
@@ -12615,97 +12027,6 @@ bike_paths:
     surface: dirt
     highway: path
     smoothness: bad
-    mtb: true
-  - name: No Exit Trails
-    type: network
-    _parkName: null
-    members:
-      - no-exit
-      - carp-barrens-trail
-    anchors:
-      - - -76.0754742
-        - 45.3804197
-      - - -76.0673586
-        - 45.3868104
-    osm_names:
-      - No Exit
-      - Carp Barrens Trail
-    surface: ground
-    highway: path
-    width: '0.5'
-    mtb: true
-  - name: Jean-Jacques-Lussier Private Network
-    type: network
-    _parkName: null
-    members:
-      - jean-jacques-lussier-private
-      - marie-curie-private
-    anchors:
-      - - -75.6828042
-        - 45.4213633
-      - - -75.6810752
-        - 45.4222675
-    osm_names:
-      - Jean-Jacques-Lussier Private
-      - Marie-Curie Private
-    surface: asphalt
-    highway: pedestrian
-  - name: Coulicou Trails
-    type: network
-    _parkName: null
-    members:
-      - coulicou
-      - piranga-sentier-dhiver
-      - carouge
-      - vireo
-      - faucon
-    anchors:
-      - - -75.8339463
-        - 45.4191359
-      - - -75.8206589
-        - 45.4265982
-    osm_names:
-      - Coulicou
-      - Piranga - Sentier d'hiver
-      - Carouge
-      - Vireo
-      - Faucon
-    surface: ground
-    highway: footway
-    lit: 'no'
-    mtb: true
-  - name: Deauville trail Trails
-    type: network
-    _parkName: null
-    members:
-      - deauville-trail
-      - laventurier
-    anchors:
-      - - -75.670499
-        - 45.6174421
-      - - -75.6501809
-        - 45.6346972
-    osm_names:
-      - Deauville trail
-      - L'Aventurier
-    surface: ground
-    highway: footway
-    mtb: true
-  - name: Rue Marston Trails
-    type: network
-    _parkName: null
-    members:
-      - rue-marston
-      - rue-isidore-ostiguy
-    anchors:
-      - - -75.7185111
-        - 45.4337247
-      - - -75.7084255
-        - 45.4381255
-    osm_names:
-      - Rue Marston
-      - Rue Isidore-Ostiguy
-    highway: footway
     mtb: true
   - name: Ottawa River Pathway
     type: network
@@ -12772,6 +12093,7 @@ bike_paths:
     members:
       - laurier-segregated-bikelane
       - eastwest-crosstown-bikeway
+      - coulicou
     osm_relations:
       - 10986224
       - 10986223
