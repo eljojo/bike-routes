@@ -340,8 +340,13 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
       const network = networkBySlug.get(networkSlug);
       if (!network) continue;
 
-      entry.member_of = networkSlug;
       const entrySlug = slugMap.get(entry);
+      // Skip if the entry's slug matches the network slug — adopting it
+      // would create a self-referencing network (entry named after the park
+      // gets adopted into a network with the same park name)
+      if (entrySlug === networkSlug) continue;
+
+      entry.member_of = networkSlug;
       if (entrySlug && !network.members.includes(entrySlug)) {
         network.members.push(entrySlug);
       }

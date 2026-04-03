@@ -239,6 +239,117 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       }
     });
 
+    it('no self-referencing networks remain after park adoption guard', () => {
+      const selfRefs = [];
+      for (const net of networks) {
+        if (!net.members) continue;
+        const netSlug = net.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-');
+        if (net.members.includes(netSlug)) selfRefs.push(net.name);
+      }
+      expect(selfRefs).toEqual([]);
+    });
+
+    // --- Parc de la Gatineau self-reference investigation ---
+
+    it('there are exactly two entries named "Parc de la Gatineau" — one network, one path', () => {
+      const gatineauEntries = entries.filter(e => e.name === 'Parc de la Gatineau');
+      expect(gatineauEntries.length).toBe(2);
+      expect(gatineauEntries.filter(e => e.type === 'network').length).toBe(1);
+      expect(gatineauEntries.filter(e => !e.type).length).toBe(1);
+    });
+
+    it('the non-network Parc de la Gatineau came from unnamed chain discovery (osm_names includes the park name)', () => {
+      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && !e.type);
+      expect(pathEntry).toBeDefined();
+      expect(pathEntry.osm_names).toContain('Parc de la Gatineau');
+      expect(pathEntry.osm_relations).toBeUndefined();
+    });
+
+    it('the non-network Parc de la Gatineau is not a parallel lane', () => {
+      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && !e.type);
+      expect(pathEntry).toBeDefined();
+      expect(pathEntry.parallel_to).toBeUndefined();
+    });
+
+    it('the Parc de la Gatineau network was created by park containment', () => {
+      const net = networks.find(n => n.name === 'Parc de la Gatineau');
+      expect(net).toBeDefined();
+      expect(net._parkName).toBeDefined();
+    });
+
+    it('the Cité-des-Jeunes parallel lane exists (proving Step 2b found that cycleway)', () => {
+      const citeEntry = entries.find(e =>
+        (e.name?.includes('Cité-des-Jeunes') || e.name?.includes('Cite-des-Jeunes')) &&
+        !e.type
+      );
+      expect(citeEntry, 'Should have a Cité-des-Jeunes entry').toBeDefined();
+    });
+
+    it('the non-network Parc de la Gatineau is NOT adopted into the park network (guard prevents self-ref)', () => {
+      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && !e.type);
+      expect(pathEntry).toBeDefined();
+      expect(pathEntry.member_of).toBeUndefined();
+    });
+
+    it('way 53309796 should be in a Cité-des-Jeunes entry (parallel lane)', () => {
+      const citeEntry = entries.find(e =>
+        (e.name?.includes('Cité-des-Jeunes') || e.name?.includes('Cite-des-Jeunes')) &&
+        !e.type
+      );
+      expect(citeEntry, 'way 53309796 should be in a Cité-des-Jeunes entry').toBeDefined();
+    });
+
+    it('the non-network Parc de la Gatineau path entry has 6 anchors (= 3 ways in the chain)', () => {
+      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && !e.type);
+      expect(pathEntry).toBeDefined();
+      // Step 2c adds 2 anchor points per way. 6 anchors = 3 ways.
+      // This is a multi-way chain mixing cycleway and path ways.
+      // Not all of them are in Step 2b (only highway=cycleway).
+      expect(pathEntry.anchors.length).toBe(6);
+    });
+
+    it('the Parc de la Gatineau network does not contain itself as a member', () => {
+      const net = networks.find(n => n.name === 'Parc de la Gatineau');
+      expect(net).toBeDefined();
+      expect(net.members.length).toBeGreaterThan(10);
+      expect(net.members).not.toContain('parc-de-la-gatineau');
+    });
+
+    // --- Beaverpond Park self-reference investigation ---
+
+    it('there are exactly two entries named "Beaverpond Park" — one network, one path', () => {
+      const bpEntries = entries.filter(e => e.name === 'Beaverpond Park');
+      expect(bpEntries.length).toBe(2);
+      expect(bpEntries.filter(e => e.type === 'network').length).toBe(1);
+      expect(bpEntries.filter(e => !e.type).length).toBe(1);
+    });
+
+    it('the non-network Beaverpond Park came from unnamed chain discovery', () => {
+      const pathEntry = entries.find(e => e.name === 'Beaverpond Park' && !e.type);
+      expect(pathEntry).toBeDefined();
+      expect(pathEntry.osm_names).toContain('Beaverpond Park');
+      expect(pathEntry.osm_relations).toBeUndefined();
+    });
+
+    it('the non-network Beaverpond Park is not a parallel lane', () => {
+      const pathEntry = entries.find(e => e.name === 'Beaverpond Park' && !e.type);
+      expect(pathEntry).toBeDefined();
+      expect(pathEntry.parallel_to).toBeUndefined();
+    });
+
+    it('the Beaverpond Park network was created by park containment', () => {
+      const net = networks.find(n => n.name === 'Beaverpond Park');
+      expect(net).toBeDefined();
+      expect(net._parkName).toBeDefined();
+    });
+
+    it('the non-network Beaverpond Park is NOT adopted into the park network (guard prevents self-ref)', () => {
+      const pathEntry = entries.find(e => e.name === 'Beaverpond Park' && !e.type);
+      expect(pathEntry).toBeDefined();
+      expect(pathEntry.member_of).toBeUndefined();
+    });
+
     it('no network has zero members (zombie from superroute flattening)', () => {
       for (const net of networks) {
         expect(
@@ -369,6 +480,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       expect(entry, 'Should have a Houlahan area path').toBeDefined();
     });
 
+
     it('4.3km chain near Lytle Park exists', () => {
       // 7 ways, gravel+asphalt, 45.28,-75.80
       const entry = entries.find(e =>
@@ -424,6 +536,62 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
         !e.type
       );
       expect(entry, 'Should have a Springhurst Park path').toBeDefined();
+    });
+
+    // --- Naming correctness (spot-checked by human) ---
+
+    it('way/310874848 is named Moffat Park, not Mooney\'s Bay Park', () => {
+      // The pipeline names this "Mooney's Bay Park" via is_in but the
+      // path is actually in Moffat Park
+      const entry = entries.find(e =>
+        e.name?.toLowerCase().includes('moffat') && !e.type
+      );
+      expect(entry, 'Should have a Moffat Park path').toBeDefined();
+    });
+
+    it('way/160958126 should be part of the Experimental Farm, not standalone', () => {
+      // This path runs through the Central Experimental Farm and should
+      // be grouped with it, not named "National Capital Commission Driveway"
+      const entry = entries.find(e =>
+        e.name === 'National Capital Commission Driveway' && !e.type
+      );
+      expect(entry, 'Should not exist as a standalone NCC Driveway entry').toBeUndefined();
+    });
+
+    it('way/672322811 is named Parc de la Blanche, not Parc du Drakkar', () => {
+      const entry = entries.find(e =>
+        e.name?.toLowerCase().includes('blanche') && !e.type
+      );
+      expect(entry, 'Should have a Parc de la Blanche path').toBeDefined();
+    });
+
+    it('way/80205794 (Petrie Island) should be part of Ottawa River Pathway, not standalone', () => {
+      // This path near Petrie Island should be joined with Ottawa River Pathway
+      const entry = entries.find(e =>
+        e.name === 'Petrie Island Park' && !e.type
+      );
+      expect(entry, 'Should not exist as standalone Petrie Island Park entry').toBeUndefined();
+    });
+
+    it('way/68609629 is correctly named Beaverpond Park', () => {
+      const entry = entries.find(e =>
+        e.name === 'Beaverpond Park' && !e.type
+      );
+      expect(entry).toBeDefined();
+    });
+
+    it('way/509010455 is correctly named Ben Franklin Park East', () => {
+      const entry = entries.find(e =>
+        e.name?.includes('Ben Franklin') && !e.type
+      );
+      expect(entry).toBeDefined();
+    });
+
+    it('way/544451389 is correctly named Limebank Road', () => {
+      const entry = entries.find(e =>
+        e.name?.includes('Limebank') && !e.type
+      );
+      expect(entry).toBeDefined();
     });
   });
 
