@@ -264,6 +264,16 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       }
     });
 
+    it('Greenbelt Pathway West (Barrhaven) is in the Greenbelt, not Capital Pathway', () => {
+      // Barrhaven is a relation-only entry. Without anchor enrichment from
+      // relation geometry, park containment can't classify it and the
+      // superroute resolution grabs it into Capital Pathway.
+      const barrhaven = entries.find(e => e.name?.includes('Barrhaven'));
+      expect(barrhaven, 'Barrhaven should exist').toBeDefined();
+      expect(barrhaven.member_of, 'Barrhaven should be in a network').toBeDefined();
+      expect(barrhaven.member_of).toMatch(/greenbelt/i);
+    });
+
     it('no road (primary/secondary/tertiary) is adopted into a cycling network via ref', () => {
       const roadHighways = new Set(['primary', 'secondary', 'tertiary', 'residential', 'unclassified']);
       for (const entry of entries) {
