@@ -252,7 +252,7 @@ bike_paths:
     network: rcn
     ref: PRT
     surface: fine_gravel
-    smoothness: intermediate
+    smoothness: good
     width: '3'
     lit: 'no'
     segregated: 'no'
@@ -262,8 +262,8 @@ bike_paths:
     anchors:
       - - -75.5920165
         - 45.4130879
-      - - -75.4633396
-        - 45.4229112
+      - - -75.2367483
+        - 45.4356278
     osm_names:
       - Prescott Russell Trail Link
   - name: Sentier vélo de Montagne - Parc de la Gatineau
@@ -447,16 +447,16 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
-    tracktype: grade2
     bicycle: designated
     anchors:
       - - -75.8759034
-        - 45.3025008
-      - - -75.6991722
+        - 45.3196511
+      - - -75.8522551
         - 45.3621251
     osm_names:
       - Greenbelt Pathway West
-    member_of: ncc-greenbelt
+    tracktype: grade2
+    member_of: bruce-pit
   - name: Rideau Trail - Ottawa Section
     osm_relations:
       - 7360383
@@ -813,17 +813,17 @@ bike_paths:
     surface: fine_gravel
     smoothness: intermediate
     width: '2.5'
+    segregated: 'no'
     highway: cycleway
+    mtb:scale: '1'
     bicycle: designated
     anchors:
-      - - -75.7690636
+      - - -75.8992252
         - 45.4778974
       - - -75.7487474
-        - 45.4883148
+        - 45.6152909
     osm_names:
       - Voie Verte Chelsea
-    segregated: 'no'
-    mtb:scale: '1'
     mtb: true
   - name: Sentier du lac Leamy Skiing Trail
     osm_relations:
@@ -908,8 +908,8 @@ bike_paths:
     anchors:
       - - -75.8125194
         - 45.3519888
-      - - -75.4832853
-        - 45.4972344
+      - - -75.698028
+        - 45.4290479
     name_fr: Sentier de la Rivière des Outaouais
     surface: asphalt
     smoothness: good
@@ -917,11 +917,11 @@ bike_paths:
     lit: 'no'
     incline: 0%
     segregated: 'no'
-    cycleway: crossing
     highway: cycleway
     bicycle: designated
     operator: NCC
     network: Kichi Sibi
+    cycleway: crossing
     description: 'Summer: cycle, walk, hike Winter: @skiheritageeast skate and classic grooming fat bike, xc ski'
     member_of: ottawa-river-pathway
   - name: Sentier de la Rivière Gatineau Pathway
@@ -1010,55 +1010,10 @@ bike_paths:
     osm_names:
       - Ottawa Valley Recreational Trail
     anchors:
-      - - -76.2912812
-        - 45.2500264
-      - - -76.2186982
-        - 45.3287645
-    surface: fine_gravel
-    width: '3'
-    incline: 0%
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    member_of: ottawa-valley-recreational-trail-trails
-  - name: Ottawa Valley Recreational Trail
-    osm_names:
-      - Ottawa Valley Recreational Trail
-    anchors:
       - - -76.3518819
-        - 45.3287645
-      - - -76.2912812
-        - 45.4266719
-    surface: fine_gravel
-    width: '3'
-    incline: 0%
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    member_of: ottawa-valley-recreational-trail-trails
-  - name: Ottawa Valley Recreational Trail
-    osm_names:
-      - Ottawa Valley Recreational Trail
-    anchors:
-      - - -76.2186982
-        - 45.187537
-      - - -76.1603754
-        - 45.2500264
-    surface: fine_gravel
-    width: '3'
-    incline: 0%
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    member_of: ottawa-valley-recreational-trail-trails
-  - name: Ottawa Valley Recreational Trail
-    osm_names:
-      - Ottawa Valley Recreational Trail
-    anchors:
-      - - -76.1603754
-        - 45.187537
-      - - -76.1431895
         - 45.1488563
+      - - -76.1431895
+        - 45.4266719
     surface: fine_gravel
     width: '3'
     incline: 0%
@@ -1211,8 +1166,8 @@ bike_paths:
       - Osgoode-Leitrim Multi-use Pathway
     anchors:
       - - -75.6331653
-        - 45.2106538
-      - - -75.6249858
+        - 45.1444871
+      - - -75.611515
         - 45.3162109
     surface: fine_gravel
     smoothness: good
@@ -1222,46 +1177,12 @@ bike_paths:
     highway: cycleway
     mtb:scale: '0'
     bicycle: designated
-    member_of: osgoode-leitrim-multi-use-pathway-trails
-  - name: Osgoode-Leitrim Multi-use Pathway
-    osm_names:
-      - Osgoode-Leitrim Multi-use Pathway
-    anchors:
-      - - -75.6249858
-        - 45.1444871
-      - - -75.611515
-        - 45.2106538
-    surface: fine_gravel
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-    mtb:scale: '0'
-    bicycle: designated
-    member_of: osgoode-leitrim-multi-use-pathway-trails
   - name: Trans-Canada Trail Ottawa
     osm_names:
       - Trans-Canada Trail Ottawa
     anchors:
       - - -76.1086887
         - 45.147819
-      - - -76.046145
-        - 45.1790208
-    surface: fine_gravel
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    member_of: trans-canada-trail-trails
-  - name: Trans-Canada Trail Ottawa
-    osm_names:
-      - Trans-Canada Trail Ottawa
-    anchors:
-      - - -76.046145
-        - 45.1790208
       - - -75.9207406
         - 45.2581687
     surface: fine_gravel
@@ -1547,8 +1468,8 @@ bike_paths:
       - Boulevard de la Cité-des-Jeunes
     anchors:
       - - -75.7847758
-        - 45.4429188
-      - - -75.7506006
+        - 45.4697842
+      - - -75.7789854
         - 45.4743395
     surface: asphalt
     smoothness: good
@@ -2016,6 +1937,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    member_of: ottawa-river-pathway
   - name: Ottawa Greenbelt Trail
     osm_names:
       - Ottawa Greenbelt Trail
@@ -2159,8 +2081,8 @@ bike_paths:
       - Boulevard Gréber
     anchors:
       - - -75.7009698
-        - 45.4577281
-      - - -75.7003109
+        - 45.476601
+      - - -75.700845
         - 45.4783835
     surface: asphalt
     segregated: 'no'
@@ -4840,8 +4762,8 @@ bike_paths:
     anchors:
       - - -75.8132583
         - 45.3327761
-      - - -75.7299441
-        - 45.3657208
+      - - -75.7880373
+        - 45.3409965
     name_fr: chemin Baseline
     name_en: Baseline Road
     surface: asphalt
@@ -4850,6 +4772,20 @@ bike_paths:
     highway: primary
     ref: '16'
     parallel_to: Baseline Road
+  - name: Baseline Road
+    osm_names:
+      - Baseline Road
+    anchors:
+      - - -75.7318042
+        - 45.3649225
+      - - -75.7299441
+        - 45.3657208
+    name_fr: chemin Baseline
+    name_en: Baseline Road
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+    ref: '16'
   - name: Richmond Road
     osm_names:
       - Richmond Road
@@ -5101,8 +5037,8 @@ bike_paths:
     anchors:
       - - -75.7205661
         - 45.4064831
-      - - -75.685022
-        - 45.4202561
+      - - -75.7105559
+        - 45.4094897
     name_fr: rue Somerset Ouest
     name_en: Somerset Street West
     surface: asphalt
@@ -5542,8 +5478,8 @@ bike_paths:
       - St-Laurent Boulevard
     anchors:
       - - -75.6517262
-        - 45.3896579
-      - - -75.6179158
+        - 45.4200017
+      - - -75.6348297
         - 45.4496825
     name_fr: boulevard St-Laurent
     name_en: St-Laurent Boulevard
@@ -5554,6 +5490,22 @@ bike_paths:
     highway: secondary
     ref: '26'
     parallel_to: St-Laurent Boulevard
+  - name: St-Laurent Boulevard
+    osm_names:
+      - St-Laurent Boulevard
+    anchors:
+      - - -75.6243245
+        - 45.3896579
+      - - -75.6179158
+        - 45.4014347
+    name_fr: boulevard St-Laurent
+    name_en: St-Laurent Boulevard
+    alt_name: St. Laurent Boulevard
+    surface: asphalt
+    lit: 'yes'
+    cycleway: lane
+    highway: tertiary
+    ref: '26'
   - name: Hemlock Road
     osm_names:
       - Hemlock Road
@@ -5650,8 +5602,8 @@ bike_paths:
     anchors:
       - - -75.6702031
         - 45.432925
-      - - -75.5862912
-        - 45.4505946
+      - - -75.6231296
+        - 45.4473072
     name_fr: chemin de Montréal
     name_en: Montréal Road
     surface: asphalt
@@ -5695,15 +5647,16 @@ bike_paths:
     anchors:
       - - -75.7003539
         - 45.2685925
-      - - -75.6885457
-        - 45.3214558
+      - - -75.6939819
+        - 45.2922054
     name_fr: chemin River
     name_en: River Road
     surface: asphalt
-    lit: 'yes'
+    lit: 'no'
     cycleway: lane
     highway: secondary
     ref: '19'
+    member_of: ncc-greenbelt
   - name: Fallowfield Road
     osm_names:
       - Fallowfield Road
@@ -6052,8 +6005,8 @@ bike_paths:
       - Bank Street
     anchors:
       - - -75.686544
-        - 45.3205226
-      - - -75.5937791
+        - 45.3848934
+      - - -75.6727285
         - 45.3998224
     name_fr: rue Bank
     name_en: Bank Street
@@ -6067,6 +6020,20 @@ bike_paths:
     wikidata_meta:
       description_en: bridge in Canada
       description_fr: pont canadien
+  - name: Bank Street
+    osm_names:
+      - Bank Street
+    anchors:
+      - - -75.6022702
+        - 45.3205226
+      - - -75.5937791
+        - 45.3350896
+    name_fr: rue Bank
+    name_en: Bank Street
+    surface: asphalt
+    lit: 'yes'
+    highway: primary
+    ref: '31'
   - name: Monk Street
     osm_names:
       - Monk Street
@@ -6482,16 +6449,16 @@ bike_paths:
       - Albion Road
     anchors:
       - - -75.6424415
-        - 45.3085829
-      - - -75.6169006
+        - 45.3376548
+      - - -75.6337139
         - 45.3528928
     name_fr: chemin Albion
     name_en: Albion Road
     surface: asphalt
-    lit: 'yes'
     cycleway: lane
     highway: tertiary
     ref: '25'
+    lit: 'yes'
   - name: Parkdale Avenue
     osm_names:
       - Parkdale Avenue
@@ -6800,10 +6767,10 @@ bike_paths:
     osm_names:
       - Leitrim Road
     anchors:
-      - - -75.677783
-        - 45.2980631
-      - - -75.6254058
-        - 45.3194624
+      - - -75.6436545
+        - 45.3163065
+      - - -75.6332177
+        - 45.3339077
     name_fr: chemin Leitrim
     name_en: Leitrim Road
     surface: asphalt
@@ -6886,8 +6853,8 @@ bike_paths:
     anchors:
       - - -75.5234496
         - 45.4323315
-      - - -75.447768
-        - 45.4573508
+      - - -75.4941136
+        - 45.446796
     name_fr: boulevard Brian Coburn
     name_en: Brian Coburn Boulevard
     surface: asphalt
@@ -6925,19 +6892,33 @@ bike_paths:
     osm_names:
       - Riverside Drive
     anchors:
-      - - -75.6937917
-        - 45.3213238
-      - - -75.6649791
-        - 45.4086933
+      - - -75.691695
+        - 45.3730745
+      - - -75.6908579
+        - 45.3788346
     name_fr: promenade Riverside
     name_en: Riverside Drive
     surface: asphalt
     lit: 'yes'
     cycleway: lane
     highway: primary
-    bicycle: 'yes'
     ref: '19'
     parallel_to: Riverside Drive
+  - name: Riverside Drive
+    osm_names:
+      - Riverside Drive
+    anchors:
+      - - -75.6937917
+        - 45.3213238
+      - - -75.6885457
+        - 45.336015
+    name_fr: promenade Riverside
+    name_en: Riverside Drive
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
+    bicycle: 'yes'
+    ref: '19'
   - name: Mer Bleue Road
     osm_names:
       - Mer Bleue Road
@@ -6958,19 +6939,32 @@ bike_paths:
     osm_names:
       - Trim Road
     anchors:
-      - - -75.4796089
+      - - -75.4292327
         - 45.4219481
       - - -75.4272293
+        - 45.4256013
+    name_fr: chemin Trim
+    name_en: Trim Road
+    surface: asphalt
+    cycleway: lane
+    highway: secondary
+    ref: '28'
+    parallel_to: Trim Road
+  - name: Trim Road
+    osm_names:
+      - Trim Road
+    anchors:
+      - - -75.4796089
+        - 45.4579886
+      - - -75.4471627
         - 45.4913522
     name_fr: chemin Trim
     name_en: Trim Road
     surface: asphalt
     width: '9.5'
     lit: 'yes'
-    cycleway: lane
     highway: secondary
     ref: '57'
-    parallel_to: Trim Road
   - name: Rue Jos-Montferrand
     osm_names:
       - Rue Jos-Montferrand
@@ -7078,8 +7072,8 @@ bike_paths:
     anchors:
       - - -75.9116424
         - 45.3380457
-      - - -75.8500546
-        - 45.3551157
+      - - -75.8946171
+        - 45.3393791
     name_fr: avenue Carling
     name_en: Carling Avenue
     surface: asphalt
@@ -7087,6 +7081,7 @@ bike_paths:
     highway: secondary
     ref: '38'
     parallel_to: Carling Avenue
+    member_of: ncc-greenbelt
   - name: Carling Avenue
     osm_names:
       - Carling Avenue
@@ -7726,8 +7721,8 @@ bike_paths:
     anchors:
       - - -75.6729959
         - 45.3990595
-      - - -75.6242061
-        - 45.4014109
+      - - -75.6688211
+        - 45.4005023
     name_fr: chemin Smyth
     name_en: Smyth Road
     surface: asphalt
@@ -7739,8 +7734,8 @@ bike_paths:
     osm_names:
       - Walkley Road
     anchors:
-      - - -75.6876723
-        - 45.3606506
+      - - -75.6322508
+        - 45.3829129
       - - -75.630619
         - 45.3837359
     name_fr: chemin Walkley
@@ -7748,6 +7743,20 @@ bike_paths:
     surface: asphalt
     lit: 'yes'
     highway: primary
+    ref: '74'
+  - name: Walkley Road
+    osm_names:
+      - Walkley Road
+    anchors:
+      - - -75.6876723
+        - 45.3606506
+      - - -75.6867551
+        - 45.3608165
+    name_fr: chemin Walkley
+    name_en: Walkley Road
+    surface: asphalt
+    lit: 'yes'
+    highway: secondary
     ref: '74'
   - name: Heatherington Road
     osm_names:
@@ -8837,6 +8846,7 @@ bike_paths:
     width: '1'
     lit: 'no'
     highway: path
+    member_of: bruce-pit
     mtb: true
   - name: Trail 42
     osm_names:
@@ -11788,11 +11798,63 @@ bike_paths:
       - - -75.5926015
         - 45.4995486
     surface: asphalt
+  - name: Bruce Pit
+    type: network
+    _parkName: Bruce Pit
+    members:
+      - greenbelt-pathway-west
+      - ncc29
+    anchors:
+      - - -75.8759034
+        - 45.3196164
+      - - -75.7944581
+        - 45.3621251
+    osm_names:
+      - Greenbelt Pathway West
+      - NCC29
+    osm_relations:
+      - 7248705
+    surface: fine_gravel
+    highway: cycleway
+    lit: 'no'
+    width: '1'
+    smoothness: good
+    operator: NCC
+    network: rcn
+    super_network: capital-pathway
+    mtb: true
+  - name: Trans Canada Trail Trails
+    type: network
+    _parkName: null
+    members:
+      - trans-canada-trail
+      - trans-canada-trail-ottawa
+      - the-beast-trail
+      - jinx-link
+      - forest-walk
+      - oh-deer
+    anchors:
+      - - -76.1086887
+        - 45.147819
+      - - -75.8451241
+        - 45.3174462
+    osm_names:
+      - Trans Canada Trail
+      - Trans-Canada Trail Ottawa
+      - The Beast Trail
+      - Jinx Link
+      - forest walk
+      - Oh-deer!
+    surface: ground
+    highway: path
+    lit: 'no'
+    width: '3'
+    smoothness: good
+    mtb: true
   - name: NCC Greenbelt
     type: network
     _parkName: NCC Greenbelt
     members:
-      - greenbelt-pathway-west
       - trail-27-2
       - trail-23
       - trail-24-1
@@ -11804,8 +11866,6 @@ bike_paths:
       - trail-12
       - jack-pine-trail
       - lime-kiln-trail
-      - trail-10
-      - greenbelt-trail
       - trail-1-2
       - old-quarry-trail
       - trail-12a
@@ -11831,6 +11891,8 @@ bike_paths:
       - moe-anderson-trail
       - '51'
       - dewberry-trail
+      - trail-10
+      - greenbelt-trail
       - trail-61
       - trail-63
       - watts-creek-pathway
@@ -11847,18 +11909,19 @@ bike_paths:
       - cedarview-road
       - bruin-road
       - st-joseph-boulevard-2
+      - river-road
       - old-richmond-road
       - moodie-drive
       - robertson-road
+      - carling-avenue-2
       - bearbrook-road
       - greenbank-road-2
     anchors:
-      - - -75.8759034
+      - - -75.8742147
         - 45.2781764
       - - -75.5436768
         - 45.4697494
     osm_names:
-      - Greenbelt Pathway West
       - Trail 27
       - Trail 23
       - Trail 24
@@ -11870,8 +11933,6 @@ bike_paths:
       - Trail 12
       - Jack Pine Trail
       - Lime Kiln Trail
-      - Trail 10
-      - Greenbelt Trail
       - Trail 1
       - Old Quarry Trail
       - Trail 12a
@@ -11897,48 +11958,19 @@ bike_paths:
       - Moe Anderson Trail
       - '51'
       - Dewberry Trail
+      - Trail 10
+      - Greenbelt Trail
       - Trail 61
       - Trail 63
     osm_relations:
-      - 7248705
       - 7369775
     surface: ground
     highway: path
-    lit: 'no'
     width: '1'
     smoothness: intermediate
-    operator: NCC
+    lit: 'no'
     network: Pine Grove
     super_network: capital-pathway
-    mtb: true
-  - name: Trans Canada Trail Trails
-    type: network
-    _parkName: null
-    members:
-      - trans-canada-trail
-      - trans-canada-trail-ottawa-2
-      - trans-canada-trail-ottawa-1
-      - the-beast-trail
-      - jinx-link
-      - forest-walk
-      - oh-deer
-    anchors:
-      - - -76.1086887
-        - 45.147819
-      - - -75.8451241
-        - 45.3174462
-    osm_names:
-      - Trans Canada Trail
-      - Trans-Canada Trail Ottawa
-      - The Beast Trail
-      - Jinx Link
-      - forest walk
-      - Oh-deer!
-    surface: ground
-    highway: path
-    lit: 'no'
-    width: '3'
-    smoothness: good
     mtb: true
   - name: Chief William Commanda Bridge Network
     type: network
@@ -11999,10 +12031,7 @@ bike_paths:
     type: network
     _parkName: null
     members:
-      - ottawa-valley-recreational-trail-3
-      - ottawa-valley-recreational-trail-4
-      - ottawa-valley-recreational-trail-2
-      - ottawa-valley-recreational-trail-1
+      - ottawa-valley-recreational-trail
       - rotary-centennial-trail
       - mississippi-riverwalk-trail
       - riverwalk
@@ -12028,7 +12057,7 @@ bike_paths:
       - St. James Woods
     surface: fine_gravel
     highway: path
-    width: '3'
+    width: '2'
     lit: 'no'
     mtb: true
   - name: Landsdowne Natural Heritage Park
@@ -12334,25 +12363,6 @@ bike_paths:
     width: '2.5'
     smoothness: good
     lit: 'no'
-  - name: Osgoode-Leitrim Multi-use Pathway Trails
-    type: network
-    _parkName: null
-    members:
-      - osgoode-leitrim-multi-use-pathway-2
-      - osgoode-leitrim-multi-use-pathway-1
-    anchors:
-      - - -75.6331653
-        - 45.1444871
-      - - -75.611515
-        - 45.3162109
-    osm_names:
-      - Osgoode-Leitrim Multi-use Pathway
-    surface: fine_gravel
-    highway: cycleway
-    lit: 'no'
-    width: '3'
-    smoothness: good
-    mtb: true
   - name: Pont Lady-Aberdeen Network
     type: network
     _parkName: null
@@ -12723,6 +12733,7 @@ bike_paths:
       - ottawa-river-pathway-trans-canada-trail
       - ottawa-river-pathway-west
       - ottawa-river-pathway-2
+      - rockliffe-pathway
       - ottawa-river-pathway-1
     osm_relations:
       - 9502635

@@ -486,24 +486,18 @@ function enrichEntry(entry, tags) {
 
 // ---------------------------------------------------------------------------
 /**
- * Split ways with the same name into geographic clusters.
+ * Split ways with the same name into connected components.
  * "Trail 20" in the Greenbelt and "Trail 20" in Gatineau Park are
- * different trails — don't merge them just because they share a name.
- * Uses single-linkage clustering: two ways are in the same cluster if
- * any of their geometry points are within maxDistM of each other.
+ * different trails — they share a name but have no geometric connection.
+ * OVRT is one 30km trail — its ways chain continuously via shared nodes.
+ *
+ * Uses real geometry: shared OSM nodes first, then endpoint proximity
+ * (100m tolerance) as a fallback for mapping gaps. Never midpoints.
  */
-function splitWaysByProximity(ways, maxDistM) {
-  if (ways.length <= 1) return [ways];
+const ENDPOINT_SNAP_M = 100;
 
-  // Get a representative point for each way (midpoint of geometry)
-  const points = ways.map(w => {
-    if (w.geometry?.length >= 2) {
-      const mid = w.geometry[Math.floor(w.geometry.length / 2)];
-      return [mid.lon, mid.lat];
-    }
-    if (w.center) return [w.center.lon, w.center.lat];
-    return null;
-  });
+function splitWaysByConnectivity(ways) {
+  if (ways.length <= 1) return [ways];
 
   // Union-find
   const parent = ways.map((_, i) => i);
@@ -511,14 +505,87 @@ function splitWaysByProximity(ways, maxDistM) {
     while (parent[i] !== i) { parent[i] = parent[parent[i]]; i = parent[i]; }
     return i;
   }
+  function union(a, b) {
+    const ra = find(a), rb = find(b);
+    if (ra !== rb) parent[ra] = rb;
+  }
+
+  // Phase 1: merge ways that share an OSM node
+  const nodeToWay = new Map();
+  for (let i = 0; i < ways.length; i++) {
+    for (const nodeId of ways[i].nodes || []) {
+      if (nodeToWay.has(nodeId)) {
+        union(i, nodeToWay.get(nodeId));
+      } else {
+        nodeToWay.set(nodeId, i);
+      }
+    }
+  }
+
+  // Phase 2: merge ways whose endpoints are within ENDPOINT_SNAP_M
+  // Uses real endpoint coordinates from geometry, not midpoints.
+  const endpoints = ways.map(w => {
+    if (!w.geometry?.length) return null;
+    const g = w.geometry;
+    return [
+      { lat: g[0].lat, lon: g[0].lon },
+      { lat: g[g.length - 1].lat, lon: g[g.length - 1].lon },
+    ];
+  });
 
   for (let i = 0; i < ways.length; i++) {
-    if (!points[i]) continue;
+    if (!endpoints[i]) continue;
     for (let j = i + 1; j < ways.length; j++) {
-      if (!points[j]) continue;
+      if (!endpoints[j]) continue;
       if (find(i) === find(j)) continue;
-      if (haversineM(points[i], points[j]) < maxDistM) {
-        parent[find(i)] = find(j);
+      // Check all 4 endpoint pairs
+      for (const a of endpoints[i]) {
+        for (const b of endpoints[j]) {
+          const dlat = (a.lat - b.lat) * 111320;
+          const dlng = (a.lon - b.lon) * 111320 * Math.cos(a.lat * Math.PI / 180);
+          if (dlat * dlat + dlng * dlng < ENDPOINT_SNAP_M * ENDPOINT_SNAP_M) {
+            union(i, j);
+          }
+        }
+      }
+    }
+  }
+
+  // Phase 3: merge components whose real geometry bounding boxes are
+  // within 2km. Catches road bike lanes with intersection gaps — the
+  // segments are disconnected but clearly the same road facility.
+  // Uses bbox edges (real geometry extent), not midpoints or centers.
+  const BBOX_MERGE_M = 2000;
+  const bboxOf = (indices) => {
+    let s = Infinity, n = -Infinity, w = Infinity, e = -Infinity;
+    for (const i of indices) {
+      for (const pt of ways[i].geometry || []) {
+        if (pt.lat < s) s = pt.lat;
+        if (pt.lat > n) n = pt.lat;
+        if (pt.lon < w) w = pt.lon;
+        if (pt.lon > e) e = pt.lon;
+      }
+    }
+    return { s, n, w, e };
+  };
+  const components = new Map();
+  for (let i = 0; i < ways.length; i++) {
+    const root = find(i);
+    if (!components.has(root)) components.set(root, []);
+    components.get(root).push(i);
+  }
+  const roots = [...components.keys()];
+  const bboxes = new Map(roots.map(r => [r, bboxOf(components.get(r))]));
+  for (let i = 0; i < roots.length; i++) {
+    for (let j = i + 1; j < roots.length; j++) {
+      if (find(roots[i]) === find(roots[j])) continue;
+      const a = bboxes.get(roots[i]), b = bboxes.get(roots[j]);
+      // Min distance between bbox edges (not centers)
+      const latGap = Math.max(0, Math.max(a.s, b.s) - Math.min(a.n, b.n)) * 111320;
+      const lonGap = Math.max(0, Math.max(a.w, b.w) - Math.min(a.e, b.e)) * 111320 *
+        Math.cos(((a.s + a.n) / 2) * Math.PI / 180);
+      if (Math.sqrt(latGap * latGap + lonGap * lonGap) < BBOX_MERGE_M) {
+        union(roots[i], roots[j]);
       }
     }
   }
@@ -1040,11 +1107,12 @@ out geom tags;`;
   // Build named way entries. Split same-named ways that are geographically
   // far apart — "Trail 20" in the Greenbelt (45.32°N) and "Trail 20" in
   // Gatineau Park (45.52°N) are different trails that happen to share a name.
-  const MAX_SAME_NAME_DISTANCE_M = 5000;
   const osmNamedWays = [];
   for (const [name, ways] of waysByName) {
-    // Split ways into geographic clusters using single-linkage at 5km
-    const wayClusters = splitWaysByProximity(ways, MAX_SAME_NAME_DISTANCE_M);
+    // Split same-named ways into connected components using real geometry.
+    // Shared OSM nodes + 100m endpoint snap. OVRT (one continuous trail)
+    // stays one entry. Trail 20 in different parks stays separate.
+    const wayClusters = splitWaysByConnectivity(ways);
 
     for (const clusterWays of wayClusters) {
       const anchors = [];
@@ -1058,15 +1126,27 @@ out geom tags;`;
       }
       if (anchors.length === 0) continue;
 
-      // Include junction ways that are near THIS cluster, not all of them
+      // Include junction ways that share nodes or have endpoints near
+      // THIS cluster's ways (not all junction ways with the same name).
+      const clusterNodeIds = new Set(clusterWays.flatMap(w => w.nodes || []));
       const junctionWays = (allWaysByName.get(name) || []).filter(jw => {
+        // Shared nodes
+        if (jw.nodes?.some(n => clusterNodeIds.has(n))) return true;
+        // Endpoint proximity (100m)
         if (!jw.geometry?.length) return false;
-        const jwCenter = jw.geometry[Math.floor(jw.geometry.length / 2)];
-        return clusterWays.some(cw => {
-          if (!cw.geometry?.length) return false;
-          const cwCenter = cw.geometry[Math.floor(cw.geometry.length / 2)];
-          return haversineM([jwCenter.lon, jwCenter.lat], [cwCenter.lon, cwCenter.lat]) < MAX_SAME_NAME_DISTANCE_M;
-        });
+        const jwEps = [jw.geometry[0], jw.geometry[jw.geometry.length - 1]];
+        for (const cw of clusterWays) {
+          if (!cw.geometry?.length) continue;
+          const cwEps = [cw.geometry[0], cw.geometry[cw.geometry.length - 1]];
+          for (const a of jwEps) {
+            for (const b of cwEps) {
+              const dlat = (a.lat - b.lat) * 111320;
+              const dlng = (a.lon - b.lon) * 111320 * Math.cos(a.lat * Math.PI / 180);
+              if (dlat * dlat + dlng * dlng < 10000) return true; // 100m
+            }
+          }
+        }
+        return false;
       });
 
       const seenIds = new Set();
@@ -1152,7 +1232,7 @@ out geom tags;`;
       const large = osmNamedWays[j];
       if (large.wayCount <= small.wayCount) continue; // large must be bigger
 
-      // Skip exact same name — splitWaysByProximity already decided
+      // Skip exact same name — splitWaysByConnectivity already decided
       // these are different trails in different parks.
       if (small.name === large.name) continue;
       if (slugify(small.name) === slugify(large.name)) continue;
@@ -1449,18 +1529,36 @@ out geom tags;`;
             }
           }
         }
-        // Absorb same-named entries that aren't relation members.
-        // These are named ways (from Step 2a) that share the network name
-        // but aren't in the OSM relation — e.g. standalone "Ottawa River
-        // Pathway" fragments that should be in the ORP network.
+        // Absorb same-named entries and merge same-named auto-group networks.
+        // Standalone fragments get member_of. Auto-group networks with the
+        // same base name (e.g. "Ottawa River Pathway Network") get their
+        // members transferred and the auto-group network is emptied.
         const netNameLower = net.name.toLowerCase();
         const netSlug = slugify(net.name);
+
+        // First: merge any auto-group network with the same base name
+        for (const entry of grouped) {
+          if (entry.type !== 'network') continue;
+          if (entry === net) continue;
+          const entryNameLower = entry.name?.toLowerCase().replace(/ (trails|network)$/i, '');
+          if (entryNameLower !== netNameLower) continue;
+          // Transfer members from auto-group network to promoted network
+          for (const mSlug of entry.members || []) {
+            if (!memberSlugs.includes(mSlug)) {
+              memberSlugs.push(mSlug);
+              const mEntry = grouped.find(e => slugMap.get(e) === mSlug);
+              if (mEntry) mEntry.member_of = netSlug;
+            }
+          }
+          entry.members = []; // will be cleaned up as zombie
+        }
+
+        // Then: absorb orphaned same-named entries
         for (const entry of grouped) {
           if (entry.type === 'network') continue;
           if (entry.member_of) continue;
           if (entry.name?.toLowerCase() !== netNameLower) continue;
           const entrySlug = slugMap.get(entry);
-          // Skip if slug matches network slug (would be self-reference)
           if (entrySlug === netSlug) continue;
           if (entrySlug && !memberSlugs.includes(entrySlug)) {
             memberSlugs.push(entrySlug);

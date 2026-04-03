@@ -301,6 +301,24 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
     it('Algonquin Trail exists', () => {
       expect(entries.find(e => e.name === 'Algonquin Trail')).toBeDefined();
     });
+
+    it('Ottawa Valley Recreational Trail is ONE entry, not split into 4', () => {
+      // OVRT is a continuous 30km rail trail. Its ways chain via shared
+      // nodes. splitWaysByConnectivity should keep it as one entry.
+      const ovrt = entries.filter(e =>
+        e.name === 'Ottawa Valley Recreational Trail' && !e.type
+      );
+      expect(ovrt.length, `OVRT has ${ovrt.length} entries, should be 1`).toBe(1);
+    });
+
+    it('Trail 20 in Greenbelt and Gatineau Park are separate entries', () => {
+      // These share a name but are in different parks with no geometric
+      // connection. splitWaysByConnectivity should keep them separate.
+      const trail20 = entries.filter(e =>
+        e.name === 'Trail 20' && !e.type
+      );
+      expect(trail20.length, 'Trail 20 should have 2 entries (Greenbelt + Gatineau)').toBe(2);
+    });
   });
 
   // =====================================================================
