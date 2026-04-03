@@ -328,16 +328,10 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
     for (const entry of entries) {
       if (entry.member_of) continue; // already in a network
       if (entry.type === 'network') continue;
-      // Use _ways if available, otherwise fall back to anchors for
-      // relation entries that don't have way geometry.
-      let park = null;
-      if (entry._ways?.length > 0) {
-        park = classifyByPark(entry, parks);
-      } else if (entry.anchors?.length > 0) {
-        // Use anchors as approximate points
-        const fakeWays = [entry.anchors.map(a => ({ lat: a[1], lon: a[0] }))];
-        park = classifyByPark({ _ways: fakeWays }, parks);
-      }
+      // Classify by actual geometry only — never use anchors for spatial
+      // reasoning (see AGENTS.md). Entries without _ways can't be classified.
+      if (!entry._ways?.length) continue;
+      const park = classifyByPark(entry, parks);
       if (!park) continue;
 
       const networkSlug = parkToNetworkSlug.get(park);

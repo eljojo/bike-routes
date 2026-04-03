@@ -1217,37 +1217,34 @@ out tags center;`;
   const discoveredRelationIds = new Set(osmRelations.map(r => r.id));
   await enrichOutOfBoundsRelations(entries, discoveredRelationIds);
 
-  // Enrich relation entries missing anchors — fetch one way's geometry
-  // so park containment can classify them. Without this, entries like
-  // "Greenbelt Pathway West (Barrhaven)" have no coordinates and can't
-  // be assigned to any park.
-  const needAnchors = entries.filter(e => e.osm_relations?.length > 0 && !e.anchors?.length && !e._ways?.length);
-  if (needAnchors.length > 0) {
-    const relIds = needAnchors.flatMap(e => e.osm_relations);
+  // Enrich relation entries with _ways (transient geometry) for park
+  // containment. NOT anchors — anchors are for Overpass name lookups only
+  // (see AGENTS.md). _ways is stripped before YAML output.
+  const needWays = entries.filter(e => e.osm_relations?.length > 0 && !e._ways?.length);
+  if (needWays.length > 0) {
+    const relIds = needWays.flatMap(e => e.osm_relations);
     const q = `[out:json][timeout:120];\n(\n${relIds.map(id => `  relation(${id});`).join('\n')}\n);\nout geom;`;
     try {
       const data = await qo(q);
       const byId = new Map();
       for (const el of data.elements) {
         if (!byId.has(el.id) && el.members) {
-          // Extract first way geometry as anchor
+          // Extract way geometries as _ways for spatial operations
+          const ways = [];
           for (const m of el.members) {
             if (m.type === 'way' && m.geometry?.length >= 2) {
-              byId.set(el.id, [
-                [m.geometry[0].lon, m.geometry[0].lat],
-                [m.geometry[m.geometry.length - 1].lon, m.geometry[m.geometry.length - 1].lat],
-              ]);
-              break;
+              ways.push(m.geometry);
             }
           }
+          if (ways.length > 0) byId.set(el.id, ways);
         }
       }
       let enriched = 0;
-      for (const entry of needAnchors) {
+      for (const entry of needWays) {
         for (const relId of entry.osm_relations) {
-          const anchors = byId.get(relId);
-          if (anchors) {
-            entry.anchors = anchors;
+          const ways = byId.get(relId);
+          if (ways) {
+            entry._ways = ways;
             enriched++;
             break;
           }
@@ -1289,6 +1286,15 @@ out tags center;`;
             const memberSlug = slugMap.get(member);
             if (memberSlug) {
               memberSlugs.push(memberSlug);
+              // Remove from old network's members if reassigning
+              if (member.member_of) {
+                const oldNet = grouped.find(e =>
+                  e.type === 'network' && e.members?.includes(memberSlug)
+                );
+                if (oldNet) {
+                  oldNet.members = oldNet.members.filter(s => s !== memberSlug);
+                }
+              }
               member.member_of = slugify(net.name);
             }
           }

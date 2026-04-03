@@ -269,6 +269,7 @@ bike_paths:
   - name: Sentier vélo de Montagne - Parc de la Gatineau
     osm_relations:
       - 6198284
+    member_of: parc-de-la-gatineau
   - name: Ottawa River Pathway (east)
     osm_relations:
       - 7174864
@@ -561,7 +562,8 @@ bike_paths:
       - 7371889
     network: ncn
     ref: TCT
-    member_of: trans-canada-trail-ottawa-area
+    member_of: ncc-greenbelt
+    super_network: trans-canada-trail-ottawa-area
   - name: New York Central Fitness Trail
     osm_relations:
       - 7410754
@@ -616,41 +618,49 @@ bike_paths:
     operator: NCC/CCN
     network: lwn
     ref: '62'
+    member_of: parc-de-la-gatineau
   - name: Luskville Falls Trail
     osm_relations:
       - 9423923
     operator: NCC/CCN
     network: lwn
+    member_of: parc-de-la-gatineau
   - name: Champlain Trail
     osm_relations:
       - 9423924
     operator: NCC/CCN
     network: lwn
+    member_of: parc-de-la-gatineau
   - name: King Mountain Trail
     osm_relations:
       - 9423925
     operator: NCC/CCN
     network: lwn
+    member_of: parc-de-la-gatineau
   - name: Waterfall and Lauriault Trail
     osm_relations:
       - 9423926
     operator: NCC/CCN
     network: lwn
+    member_of: parc-de-la-gatineau
   - name: Sugarbush Trail
     osm_relations:
       - 9423927
     operator: NCC/CCN
     network: lwn
+    member_of: parc-de-la-gatineau
   - name: Pink Lake Trail
     osm_relations:
       - 9423928
     operator: NCC/CCN
     network: lwn
+    member_of: parc-de-la-gatineau
   - name: Pioneers Trail
     osm_relations:
       - 9423929
     operator: NCC/CCN
     network: lwn
+    member_of: parc-de-la-gatineau
   - name: Ottawa-Carleton Trailway
     osm_relations:
       - 9502449
@@ -699,6 +709,7 @@ bike_paths:
     osm_relations:
       - 10267022
     seasonal: winter
+    member_of: ncc-greenbelt
   - name: Mud Lake Trail
     osm_relations:
       - 10334901
@@ -752,7 +763,8 @@ bike_paths:
     operator: NCC
     network: rcn
     ref: GPW
-    member_of: capital-pathway
+    member_of: ncc-greenbelt
+    super_network: capital-pathway
   - name: Britannia Winter Trail
     osm_relations:
       - 12138512
@@ -765,6 +777,7 @@ bike_paths:
     website: https://owwt.wordpress.com/
     operator: Kanata Nordic
     seasonal: winter
+    member_of: ncc-greenbelt
   - name: Rideau Winter Trail
     osm_relations:
       - 12161928
@@ -829,6 +842,7 @@ bike_paths:
     osm_relations:
       - 18517643
     network: lcn
+    member_of: ncc-greenbelt
   - name: relation-18537256
     osm_relations:
       - 18537256
@@ -843,11 +857,13 @@ bike_paths:
     surface: ground
     highway: path
     mtb:scale:imba: '2'
+    member_of: parc-de-la-gatineau
     mtb: true
   - name: Monkey Trail
     osm_relations:
       - 20166048
     ref: '21'
+    member_of: parc-de-la-gatineau
   - name: Chief William Commanda Bridge
     osm_names:
       - Chief William Commanda Bridge
@@ -9807,7 +9823,6 @@ bike_paths:
         - 45.3348705
     surface: asphalt
     width: '2.5'
-    member_of: ncc-greenbelt
   - name: Rue Wells
     parallel_to: Rue Wells
     highway: cycleway
@@ -9928,7 +9943,6 @@ bike_paths:
     lit: 'no'
     width: '3'
     smoothness: good
-    member_of: parc-de-la-gatineau
   - name: Rue Main
     parallel_to: Rue Main
     highway: cycleway
@@ -10165,7 +10179,6 @@ bike_paths:
         - 45.4200189
     surface: asphalt
     width: '2'
-    member_of: ncc-greenbelt
   - name: Brookfield Road
     parallel_to: Brookfield Road
     highway: cycleway
@@ -11173,7 +11186,6 @@ bike_paths:
     surface: fine_gravel
     width: '3'
     smoothness: intermediate
-    member_of: ncc-greenbelt
   - name: Rue du Golf
     parallel_to: Rue du Golf
     highway: cycleway
@@ -11278,6 +11290,11 @@ bike_paths:
       - trail-61
       - trail-63
       - watts-creek-pathway
+      - trans-canada-trail-bells-cornerswatts-creek
+      - shirley-bay-ski-trail
+      - greenbelt-pathway-west-barrhaven
+      - ottawa-west-winter-trail
+      - ottawa-carleton-trailway-east
       - ottawa-greenbelt-trail
       - greenbelt-pathway
       - greens-creek-bridge
@@ -11290,9 +11307,6 @@ bike_paths:
       - moodie-drive
       - robertson-road
       - bearbrook-road
-      - john-sutherland-drive
-      - anderson-road
-      - tauvette-street
     anchors:
       - - -75.8759034
         - 45.2781764
@@ -11348,7 +11362,7 @@ bike_paths:
     smoothness: intermediate
     operator: NCC
     network: Pine Grove
-    super_network: capital-pathway
+    super_network: trans-canada-trail-ottawa-area
     mtb: true
   - name: Trans Canada Trail Trails
     type: network
@@ -11600,12 +11614,22 @@ bike_paths:
       - trans-canada-trail-36
       - trail-36
       - sentier-du-parc-de-la-gatineau
+      - sentier-velo-de-montagne-parc-de-la-gatineau
+      - sentier-du-loup
+      - luskville-falls-trail
+      - champlain-trail
+      - king-mountain-trail
+      - waterfall-and-lauriault-trail
+      - sugarbush-trail
+      - pink-lake-trail
+      - pioneers-trail
+      - salamander
+      - monkey-trail
       - trail-27-1
       - '54'
       - chemin-de-ste-cecile-de-masham
       - chemin-kingsmere
       - chemin-du-lac-meech
-      - promenade-de-la-gatineau
     anchors:
       - - -76.0970316
         - 45.4471744
@@ -12162,7 +12186,6 @@ bike_paths:
   - name: Trans Canada Trail (Ottawa area)
     type: network
     members:
-      - trans-canada-trail-bells-cornerswatts-creek
       - ottawa-carleton-trailway
       - trans-canada-trail-sussex-drive
     osm_relations:
@@ -12189,7 +12212,6 @@ bike_paths:
       - experimental-farm-pathway
       - rideau-river-eastern-pathway
       - aviation-pathway
-      - greenbelt-pathway-west-barrhaven
       - sentier-de-la-riviere-gatineau
       - pinecrest-creek-pathway
       - ottawa-river-pathway
