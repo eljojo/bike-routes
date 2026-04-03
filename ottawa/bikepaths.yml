@@ -323,6 +323,7 @@ bike_paths:
         - 45.4117816
     osm_names:
       - Trillium Pathway
+    member_of: capital-pathway
   - name: O'Connor Bikeway
     osm_relations:
       - 7201612
@@ -12073,6 +12074,7 @@ bike_paths:
       - pinecrest-creek-pathway
       - sentier-de-la-riviere-gatineau-pathway
       - mackenzie-cycle-track
+      - trillium-pathway
     osm_relations:
       - 10990511
     name_fr: Sentier de la capitale

@@ -9,7 +9,7 @@
 
 import { describe, it, expect, beforeAll } from 'vitest';
 import { createPlayer } from './overpass.mjs';
-import { buildBikepathsPipeline } from '../build-bikepaths.mjs';
+import { buildBikepathsPipeline, parseMarkdownOverrides } from '../build-bikepaths.mjs';
 import { loadCityAdapter } from './city-adapter.mjs';
 
 const player = createPlayer('ottawa');
@@ -22,10 +22,13 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
 
   beforeAll(async () => {
     const adapter = loadCityAdapter('ottawa');
+    const bikePathsDir = new URL('../../ottawa/bike-paths', import.meta.url).pathname;
+    const markdownOverrides = parseMarkdownOverrides(bikePathsDir);
     const result = await buildBikepathsPipeline({
       queryOverpass: player,
       bbox: '45.15,-76.35,45.65,-75.35',
       adapter,
+      markdownOverrides,
     });
     entries = result.entries;
     networks = entries.filter(e => e.type === 'network');
@@ -59,6 +62,14 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
     it('has members', () => {
       const cp = network('Capital Pathway');
       expect(cp?.members?.length).toBeGreaterThanOrEqual(10);
+    });
+
+    it('Trillium Pathway is a member of Capital Pathway (markdown member_of override)', () => {
+      const tp = entries.find(e => e.name === 'Trillium Pathway' && !e.type);
+      expect(tp).toBeDefined();
+      expect(tp.member_of).toBe('capital-pathway');
+      const cp = network('Capital Pathway');
+      expect(cp.members).toContain('trillium-pathway');
     });
 
     it('Ottawa River Pathway (east) is under Capital Pathway, not floating under NCC', () => {

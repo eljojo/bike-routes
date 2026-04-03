@@ -1,6 +1,7 @@
 ---
 name: Trillium Pathway
 name_fr: Sentier Trillium
+member_of: capital-pathway
 vibe: "Flat, smooth, and lit — following the O-Train corridor through the city's core"
 stub: true
 ---

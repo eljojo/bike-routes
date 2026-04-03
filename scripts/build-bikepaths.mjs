@@ -1002,6 +1002,27 @@ function loadMarkdownSlugs() {
   return slugs;
 }
 
+/**
+ * Parse markdown frontmatter overrides into a structured map.
+ * Currently supports: member_of.
+ */
+export function parseMarkdownOverrides(bikePathsDir) {
+  const overrides = new Map();
+  if (!bikePathsDir || !fs.existsSync(bikePathsDir)) return overrides;
+  for (const f of fs.readdirSync(bikePathsDir).filter(f => f.endsWith('.md') && !f.includes('.fr.'))) {
+    const content = fs.readFileSync(path.join(bikePathsDir, f), 'utf8');
+    const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
+    if (!fmMatch) continue;
+    let fm;
+    try { fm = yaml.load(fmMatch[1]); } catch { continue; }
+    const mdSlug = f.replace('.md', '');
+    const override = {};
+    if (fm?.member_of) override.member_of = fm.member_of;
+    if (Object.keys(override).length > 0) overrides.set(mdSlug, override);
+  }
+  return overrides;
+}
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
@@ -1020,9 +1041,10 @@ function loadMarkdownSlugs() {
  * @param {object} opts.adapter — city adapter (from city-adapter.mjs)
  * @param {Array} [opts.manualEntries] — out-of-bounds manual entries
  * @param {Set<string>} [opts.markdownSlugs] — slugs claimed by markdown
+ * @param {Map<string, {member_of?: string}>} [opts.markdownOverrides] — frontmatter overrides by slug
  * @returns {Promise<{ entries: Array, superNetworks: Array, slugMap: Map }>}
  */
-export async function buildBikepathsPipeline({ queryOverpass: qo, bbox: b, adapter: a, manualEntries = [], markdownSlugs = new Set() }) {
+export async function buildBikepathsPipeline({ queryOverpass: qo, bbox: b, adapter: a, manualEntries = [], markdownSlugs = new Set(), markdownOverrides = new Map() }) {
   // Step 1: Discover cycling relations
   console.log('Discovering cycling relations from OSM...');
   const relQ = `[out:json][timeout:120];
@@ -1613,6 +1635,43 @@ out geom tags;`;
   const mtbCount = grouped.filter(e => e.mtb).length;
   if (mtbCount > 0) console.log(`  Labelled ${mtbCount} entries as MTB`);
 
+  // Step 9: Apply markdown member_of overrides
+  if (markdownOverrides.size > 0) {
+    for (const [mdSlug, override] of markdownOverrides) {
+      if (!override.member_of) continue;
+
+      const entry = grouped.find(e => slugMap.get(e) === mdSlug);
+      if (!entry || entry.type === 'network') continue;
+
+      const targetNet = grouped.find(e =>
+        e.type === 'network' &&
+        (slugMap.get(e) === override.member_of || slugify(e.name) === override.member_of)
+      );
+      if (!targetNet) {
+        throw new Error(
+          `Markdown override: ${mdSlug} has member_of: "${override.member_of}" ` +
+          `but no network with that slug exists. Check ${mdSlug}.md frontmatter.`
+        );
+      }
+
+      // Remove from old network's member list
+      if (entry.member_of) {
+        const oldNet = grouped.find(e =>
+          e.type === 'network' &&
+          (slugMap.get(e) === entry.member_of || slugify(e.name) === entry.member_of)
+        );
+        if (oldNet?.members) {
+          oldNet.members = oldNet.members.filter(s => s !== mdSlug);
+        }
+      }
+
+      entry.member_of = override.member_of;
+      if (!targetNet.members.includes(mdSlug)) {
+        targetNet.members.push(mdSlug);
+      }
+    }
+  }
+
   // Cleanup: remove zombie networks with 0 members (flattened into superroute)
   const zombies = grouped.filter(e => e.type === 'network' && (!e.members || e.members.length === 0));
   if (zombies.length > 0) {
@@ -1635,6 +1694,8 @@ async function main() {
 
   const manualEntries = loadManualEntries();
   const markdownSlugs = loadMarkdownSlugs();
+  const bikePathsDir = path.join(dataDir, 'bike-paths');
+  const markdownOverrides = parseMarkdownOverrides(bikePathsDir);
 
   const { entries, superNetworks, slugMap } = await buildBikepathsPipeline({
     queryOverpass,
@@ -1642,6 +1703,7 @@ async function main() {
     adapter,
     manualEntries,
     markdownSlugs,
+    markdownOverrides,
   });
 
   // Write output
