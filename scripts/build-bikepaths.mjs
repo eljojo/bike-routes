@@ -832,6 +832,32 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
       }
     }
 
+    // Ref matching: orphaned entries sharing a `ref` tag with existing members
+    // belong to the same route system. E.g., ref: GPW ties Greenbelt Pathway
+    // West (Barrhaven) to the Greenbelt network. More specific than operator.
+    const memberRefs = new Set();
+    for (const slug of memberSlugs) {
+      const memberEntry = entries.find(e => slugMap.get(e) === slug);
+      if (memberEntry?.ref) memberRefs.add(memberEntry.ref);
+    }
+    if (memberRefs.size > 0) {
+      for (const entry of entries) {
+        if (entry.member_of || entry.type === 'network') continue;
+        if (parkMembers.has(entry)) continue;
+        if (!entry.ref || !memberRefs.has(entry.ref)) continue;
+        // Exclude roads — they have ref tags (route numbers) that would
+        // cause false matches. Allow entries without highway (relation-only).
+        const roadHw = ['primary', 'secondary', 'tertiary', 'residential', 'unclassified'];
+        if (entry.highway && roadHw.includes(entry.highway)) continue;
+        const entrySlug = slugMap.get(entry);
+        if (entrySlug && entrySlug !== networkSlug && !memberSlugs.includes(entrySlug)) {
+          memberSlugs.push(entrySlug);
+          entry.member_of = networkSlug;
+          console.log(`    ref match: ${entry.name} (ref: ${entry.ref}) → ${networkSlug}`);
+        }
+      }
+    }
+
     if (memberSlugs.length === 0) {
       console.log(`  Skipping superroute network "${name}": no orphaned members`);
       continue;

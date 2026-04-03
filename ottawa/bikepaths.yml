@@ -534,6 +534,7 @@ bike_paths:
     network: ncn
     ref: TCT
     description: The Trans Canada Trail follows Sussex Drive
+    member_of: trans-canada-trail-ottawa-area
   - name: Sawmill Creek Pathway
     osm_relations:
       - 7369960
@@ -12163,6 +12164,7 @@ bike_paths:
     members:
       - trans-canada-trail-bells-cornerswatts-creek
       - ottawa-carleton-trailway
+      - trans-canada-trail-sussex-drive
     osm_relations:
       - 9502450
     network: ncn

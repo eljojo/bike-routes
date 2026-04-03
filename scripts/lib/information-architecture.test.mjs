@@ -264,6 +264,25 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       }
     });
 
+    it('no road (primary/secondary/tertiary) is adopted into a cycling network via ref', () => {
+      const roadHighways = new Set(['primary', 'secondary', 'tertiary', 'residential', 'unclassified']);
+      for (const entry of entries) {
+        if (!entry.member_of || entry.type === 'network') continue;
+        if (entry.highway && roadHighways.has(entry.highway)) {
+          // Roads can be in park networks (park adoption) but should NOT be
+          // in superroute/route-system networks
+          const net = networks.find(n => {
+            const slug = n.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+              .toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-');
+            return slug === entry.member_of;
+          });
+          if (net && !net._parkName) {
+            expect.fail(`Road "${entry.name}" (hw: ${entry.highway}) in non-park network "${net?.name}" — ref matching should exclude roads`);
+          }
+        }
+      }
+    });
+
     it('no network has another network as a member', () => {
       for (const net of networks) {
         for (const memberSlug of net.members || []) {
