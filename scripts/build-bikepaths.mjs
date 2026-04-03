@@ -638,6 +638,12 @@ function buildEntries(osmRelations, osmNamedWays, parallelLanes, manualEntries) 
     if (existingEntry) {
       if (!existingEntry.parallel_to) {
         existingEntry.parallel_to = candidate.parallel_to;
+        // Copy cycleway infrastructure tags that the road entry may lack
+        for (const key of ['surface', 'lit', 'width', 'smoothness', 'segregated']) {
+          if (candidate.tags[key] && !existingEntry[key]) {
+            existingEntry[key] = candidate.tags[key];
+          }
+        }
         parallelMerged++;
         console.log(`  ~ merged parallel geometry into: ${existingEntry.name}`);
       }
