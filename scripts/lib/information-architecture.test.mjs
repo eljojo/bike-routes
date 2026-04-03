@@ -541,8 +541,9 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
     // --- Naming correctness (spot-checked by human) ---
 
     it('way/310874848 is named Moffat Park, not Mooney\'s Bay Park', () => {
-      // The pipeline names this "Mooney's Bay Park" via is_in but the
-      // path is actually in Moffat Park
+      // Root cause: is_in returns nothing. Nearby 500m returns
+      // ["Mooney's Bay Park", "Moffatt Farm Veterans Park"]. Pipeline
+      // picks first. Correct park is second in the list.
       const entry = entries.find(e =>
         e.name?.toLowerCase().includes('moffat') && !e.type
       );
@@ -550,8 +551,9 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
     });
 
     it('way/160958126 should be part of the Experimental Farm, not standalone', () => {
-      // This path runs through the Central Experimental Farm and should
-      // be grouped with it, not named "National Capital Commission Driveway"
+      // Root cause: is_in returns nothing. No parks within 500m (the
+      // Experimental Farm is not tagged leisure=park in OSM). Falls
+      // through to road naming: "National Capital Commission Driveway".
       const entry = entries.find(e =>
         e.name === 'National Capital Commission Driveway' && !e.type
       );
@@ -559,6 +561,9 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
     });
 
     it('way/672322811 is named Parc de la Blanche, not Parc du Drakkar', () => {
+      // Root cause: is_in returns nothing. Nearby 500m returns only
+      // "Parc du Drakkar". "Parc de la Blanche" either isn't within
+      // 500m or isn't tagged leisure=park in OSM.
       const entry = entries.find(e =>
         e.name?.toLowerCase().includes('blanche') && !e.type
       );
@@ -566,7 +571,11 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
     });
 
     it('way/80205794 (Petrie Island) should be part of Ottawa River Pathway, not standalone', () => {
-      // This path near Petrie Island should be joined with Ottawa River Pathway
+      // Root cause: the chain (6 ways, longest=way/479744018) has its
+      // midpoint near "Petrie Island Park" (first of 4 nearby parks).
+      // But the user says this should be grouped with ORP — a clustering
+      // issue, not a naming issue. The chain should connect to ORP
+      // during auto-grouping.
       const entry = entries.find(e =>
         e.name === 'Petrie Island Park' && !e.type
       );
