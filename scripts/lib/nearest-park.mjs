@@ -1,6 +1,6 @@
 /**
- * Find the nearest park to a chain of ways by real geometry-to-geometry distance.
- * Used by the pipeline for naming unnamed chains, and by tests to verify correctness.
+ * Geometry-to-geometry distance utilities for naming unnamed chains.
+ * Used by the pipeline and by tests — same function, same answer.
  */
 
 /**
@@ -24,18 +24,22 @@ export function minGeomDist(geomA, geomB) {
 }
 
 /**
- * Rank park candidates by minimum geometry-to-geometry distance to a chain.
+ * Rank Overpass elements by minimum geometry-to-geometry distance to a chain.
+ * Works for parks, roads, or any features with .geometry and .tags.name.
  * @param {Array<{lat: number, lon: number}>} chainPts - all points from the chain's ways
- * @param {Array<object>} parkElements - Overpass elements with .geometry and .tags.name
+ * @param {Array<object>} elements - Overpass elements with .geometry and .tags.name
  * @returns {Array<{name: string, dist: number}>} sorted closest-first
  */
-export function rankParksByGeomDistance(chainPts, parkElements) {
-  const ranked = parkElements
+export function rankByGeomDistance(chainPts, elements) {
+  const ranked = elements
     .filter(el => el.geometry?.length > 0 || el.members)
     .map(el => {
-      const parkCoords = el.geometry || el.members?.flatMap(m => m.geometry || []) || [];
-      return { name: el.tags?.name, dist: minGeomDist(chainPts, parkCoords) };
+      const coords = el.geometry || el.members?.flatMap(m => m.geometry || []) || [];
+      return { name: el.tags?.name, dist: minGeomDist(chainPts, coords) };
     });
   ranked.sort((a, b) => a.dist - b.dist);
   return ranked;
 }
+
+// Keep old name as alias for tests that already import it
+export const rankParksByGeomDistance = rankByGeomDistance;

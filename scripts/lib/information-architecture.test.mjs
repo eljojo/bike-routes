@@ -500,13 +500,14 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       expect(entry, 'Should have a Greenbank area path (not parallel lane)').toBeDefined();
     });
 
-    it('4.0km chain near Keith M Boyd Park / Russell Exhibition exists', () => {
-      // 3 ways, asphalt, 45.26,-75.36 — near both parks
+    it('4.0km chain near J. Henry Tweed Conservation Area exists', () => {
+      // 3 ways, asphalt, 45.26,-75.36
+      // https://www.openstreetmap.org/way/69630903
       const entry = entries.find(e =>
-        (e.name?.toLowerCase().includes('boyd') || e.name?.toLowerCase().includes('russell exhibition')) &&
+        (e.name?.toLowerCase().includes('tweed') || e.name?.toLowerCase().includes('conservation')) &&
         !e.type
       );
-      expect(entry, 'Should have a path named after Boyd Park or Russell Exhibition').toBeDefined();
+      expect(entry, 'Should have a J. Henry Tweed Conservation Area path').toBeDefined();
     });
 
     it('1.8km cycleway parallel to Boulevard de la Cité-des-Jeunes exists', () => {

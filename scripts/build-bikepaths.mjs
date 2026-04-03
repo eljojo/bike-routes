@@ -51,7 +51,7 @@ import { autoGroupNearbyPaths, computeSlugs } from './lib/auto-group.mjs';
 import { discoverNetworks, discoverRouteSystemNetworks } from './lib/discover-networks.mjs';
 import { enrichWithWikidata } from './lib/wikidata.mjs';
 import { detectMtb } from './lib/detect-mtb.mjs';
-import { rankParksByGeomDistance } from './lib/nearest-park.mjs';
+import { rankByGeomDistance } from './lib/nearest-park.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI (only when run directly, not when imported)
@@ -1264,10 +1264,15 @@ out geom tags;`;
     const chainWayIds = indices.map(i => unchainedWays[i].id).join(',');
     const chainPts = indices.flatMap(i => unchainedWays[i].geometry);
 
-    // Name from containing park via is_in (sample multiple points along chain)
+    // Name the chain from the closest named feature by real geometry.
+    // Query parks (500m) and roads (100m) around the chain's actual ways,
+    // then pick whichever is closest. A road 20m away beats a park 300m
+    // away — the chain parallels the road, not the park.
     let chainName = null;
+
+    // 1. Check containment first (is_in) — if the chain is INSIDE a park,
+    //    that's the strongest signal. Sample multiple points along the chain.
     try {
-      // Sample start, middle, and end of each way in the chain
       const samplePts = [];
       for (const i of indices) {
         const g = unchainedWays[i].geometry;
@@ -1275,15 +1280,14 @@ out geom tags;`;
       }
       for (const pt of samplePts) {
         if (chainName) break;
-        const isInQ = `[out:json][timeout:15];
+        try {
+          const isInData = await qo(`[out:json][timeout:15];
 is_in(${pt.lat},${pt.lon})->.a;
 area.a["leisure"~"park|nature_reserve"]["name"]->.b;
 area.a["landuse"~"recreation_ground"]["name"]->.c;
 area.a["natural"="wood"]["name"]->.d;
 (.b; .c; .d;);
-out tags;`;
-        try {
-          const isInData = await qo(isInQ);
+out tags;`);
           if (isInData.elements.length > 0) {
             chainName = isInData.elements[0].tags?.name;
           }
@@ -1291,10 +1295,11 @@ out tags;`;
       }
     } catch {}
 
-    // Fallback: nearby park or wooded area within 500m of the chain's
-    // real geometry. Uses Overpass around with way references — searches
-    // within 500m of the actual way shapes, not a single point.
+    // 2. If not inside a park, find the closest named feature — park or road.
+    //    Both are queried using the chain's real geometry, and the closest
+    //    by geometry-to-geometry distance wins.
     if (!chainName) {
+      const candidates = [];
       try {
         const nearParkQ = `[out:json][timeout:15];
 way(id:${chainWayIds})->.chain;
@@ -1304,25 +1309,18 @@ way["natural"="wood"]["name"](around.chain:500);
 relation["natural"="wood"]["name"](around.chain:500););
 out geom tags;`;
         const nearParkData = await qo(nearParkQ);
-        if (nearParkData.elements.length > 0) {
-          const ranked = rankParksByGeomDistance(chainPts, nearParkData.elements);
-          if (ranked.length > 0) chainName = ranked[0].name;
-        }
+        candidates.push(...rankByGeomDistance(chainPts, nearParkData.elements));
       } catch {}
-    }
-
-    // Fallback: nearby named road (search along chain geometry, not a point)
-    if (!chainName) {
       try {
         const roadQ = `[out:json][timeout:15];
 way(id:${chainWayIds})->.chain;
 way["highway"~"^(primary|secondary|tertiary|residential)$"]["name"](around.chain:100);
-out tags;`;
+out geom tags;`;
         const roadData = await qo(roadQ);
-        if (roadData.elements.length > 0) {
-          chainName = roadData.elements[0].tags?.name;
-        }
+        candidates.push(...rankByGeomDistance(chainPts, roadData.elements));
       } catch {}
+      candidates.sort((a, b) => a.dist - b.dist);
+      if (candidates.length > 0) chainName = candidates[0].name;
     }
 
     if (!chainName) continue;
