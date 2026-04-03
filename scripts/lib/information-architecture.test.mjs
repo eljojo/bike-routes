@@ -334,6 +334,89 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
   });
 
   // =====================================================================
+  // 9. UNNAMED CYCLING CHAINS — should be discovered and named
+  //    from nearby context (parks, roads)
+  // =====================================================================
+
+  describe('unnamed cycling chains get meaningful names', () => {
+    // These are real unnamed cycling chains >= 1.9km discovered by
+    // scanning Ottawa. The name comes from nearby parks/roads.
+
+    it('7km chain near Rue Davidson Ouest exists', () => {
+      // 8 ways, asphalt, 45.51,-75.67 — parallel to Rue Davidson Ouest
+      const entry = entries.find(e =>
+        e.name?.toLowerCase().includes('davidson') &&
+        !e.type
+      );
+      expect(entry, 'Should have a Davidson area path').toBeDefined();
+    });
+
+    it('5.8km chain in Parc Queen exists', () => {
+      // 6 ways, ground+asphalt, 45.41,-75.88
+      const entry = entries.find(e =>
+        e.name?.toLowerCase().includes('queen') &&
+        !e.type
+      );
+      expect(entry, 'Should have a Parc Queen path').toBeDefined();
+    });
+
+    it('4.5km chain near West Houlahan Park exists', () => {
+      // 13 ways, 45.27,-75.76
+      const entry = entries.find(e =>
+        e.name?.toLowerCase().includes('houlahan') &&
+        !e.type
+      );
+      expect(entry, 'Should have a Houlahan area path').toBeDefined();
+    });
+
+    it('4.3km chain near Lytle Park exists', () => {
+      // 7 ways, gravel+asphalt, 45.28,-75.80
+      const entry = entries.find(e =>
+        e.name?.toLowerCase().includes('lytle') &&
+        !e.type
+      );
+      expect(entry, 'Should have a Lytle area path').toBeDefined();
+    });
+
+    it('4.1km chain along Greenbank Road exists', () => {
+      // 1 way, asphalt, 45.31,-75.77
+      const entry = entries.find(e =>
+        e.name?.toLowerCase().includes('greenbank') &&
+        !e.type &&
+        !e.parallel_to
+      );
+      expect(entry, 'Should have a Greenbank area path (not parallel lane)').toBeDefined();
+    });
+
+    it('4.0km chain in Keith M Boyd Park exists', () => {
+      // 3 ways, asphalt, 45.26,-75.36
+      const entry = entries.find(e =>
+        e.name?.toLowerCase().includes('boyd') &&
+        !e.type
+      );
+      expect(entry, 'Should have a Keith M Boyd Park path').toBeDefined();
+    });
+
+    it('3.6km chain at Lac-Beauchamp exists', () => {
+      // 4 ways, asphalt, 45.49,-75.62
+      const entry = entries.find(e =>
+        e.name?.toLowerCase().includes('beauchamp') &&
+        !e.type
+      );
+      expect(entry, 'Should have a Lac-Beauchamp path').toBeDefined();
+    });
+
+    it('3.4km chain at Springhurst Park exists', () => {
+      // 31 ways, 45.41,-75.67
+      const entry = entries.find(e =>
+        e.name?.toLowerCase().includes('springhurst') &&
+        !e.type
+      );
+      expect(entry, 'Should have a Springhurst Park path').toBeDefined();
+    });
+  });
+
+  // =====================================================================
   // 9. NETWORK NAMING — no "Trails" suffix on road networks
   // =====================================================================
 
