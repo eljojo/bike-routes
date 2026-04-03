@@ -3,6 +3,8 @@ name: Greenbelt Pathway
 wikipedia: en:Capital Pathway
 vibe: "A ring of gravel trail through forest, wetland, and farmland encircling the city"
 featured: true
+includes:
+  - greenbelt-pathway-west-barrhaven
 ---
 
 Ottawa's Greenbelt is a 20,350-hectare ring of green space encircling the city — the [largest publicly owned greenbelt in the world](https://ncc-ccn.gc.ca/places/greenbelt). French planner [Jacques Gréber proposed it in 1950](https://en.wikipedia.org/wiki/Greenbelt_(Ottawa)) as part of his master plan for the capital, and the federal government started acquiring land in 1956. Two trail systems run through it — one on the western side, one on the eastern — both part of the Trans Canada Trail.
