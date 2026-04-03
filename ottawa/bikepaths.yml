@@ -1095,7 +1095,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: pont-lady-aberdeen-network
+    member_of: boulevard-maloney-sidepath-network
   - name: Route Verte
     osm_names:
       - Route Verte
@@ -1316,7 +1316,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: pont-lady-aberdeen-network
+    member_of: boulevard-maloney-sidepath-network
   - name: Sentier du Vallon
     osm_names:
       - Sentier du Vallon
@@ -4695,9 +4695,6 @@ bike_paths:
     highway: secondary
     bicycle: 'yes'
     ref: '61'
-    smoothness: good
-    width: '3'
-    segregated: 'no'
     parallel_to: Terry Fox Drive
   - name: Winchester Drive
     osm_names:
@@ -6813,6 +6810,8 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '14'
+    width: '0.5'
+    bicycle: designated
     parallel_to: Leitrim Road
   - name: Robertson Road
     osm_names:
@@ -6829,6 +6828,11 @@ bike_paths:
     cycleway: lane
     highway: primary
     ref: '36'
+    smoothness: good
+    width: '3'
+    segregated: 'no'
+    bicycle: designated
+    network: Ottawa West Winter Trail
     parallel_to: Robertson Road
     member_of: ncc-greenbelt
   - name: Conroy Road
@@ -7681,6 +7685,9 @@ bike_paths:
     surface: asphalt
     lit: 'yes'
     highway: secondary
+    smoothness: good
+    width: '1.5'
+    bicycle: designated
     parallel_to: Strandherd Drive
   - name: Hunt Club Road
     osm_names:
@@ -7698,6 +7705,9 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     ref: '32'
+    width: '0.5'
+    smoothness: good
+    segregated: 'no'
   - name: Bridle Path Drive
     osm_names:
       - Bridle Path Drive
@@ -9131,6 +9141,10 @@ bike_paths:
     surface: asphalt
     highway: footway
     bicycle: dismount
+    smoothness: excellent
+    width: '3'
+    lit: 'yes'
+    segregated: 'no'
     parallel_to: Rue Saint-Louis
   - name: Rue du Barry
     osm_names:
@@ -9413,12 +9427,18 @@ bike_paths:
     osm_names:
       - Rue de Cannes
     anchors:
-      - - -75.7238073
-        - 45.4904184
-      - - -75.7239001
-        - 45.4901929
+      - - -75.7388235
+        - 45.4902627
+      - - -75.7241409
+        - 45.4925589
     surface: asphalt
     highway: footway
+    smoothness: good
+    width: '2.5'
+    lit: 'no'
+    incline: 'yes'
+    segregated: 'no'
+    bicycle: designated
   - name: Rue Clermont
     osm_names:
       - Rue Clermont
@@ -9520,9 +9540,9 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-  - name: Troyes Park
+  - name: Beauclaire Park
     osm_names:
-      - Troyes Park
+      - Beauclaire Park
     anchors:
       - - -75.5329823
         - 45.482387
@@ -9533,9 +9553,9 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     network: Ski Heritage East Trail
-  - name: Timberview Way
+  - name: Mill Hill Road
     osm_names:
-      - Timberview Way
+      - Mill Hill Road
     anchors:
       - - -75.853701
         - 45.308744
@@ -9564,9 +9584,9 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     member_of: ncc-greenbelt
-  - name: Sir-George-Étienne-Cartier Parkway
+  - name: Rockcliffe Park
     osm_names:
-      - Sir-George-Étienne-Cartier Parkway
+      - Rockcliffe Park
     anchors:
       - - -75.6791858
         - 45.4570437
@@ -9580,9 +9600,9 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     network: Ski Heritage East Trail
-  - name: Parc du Cosmos
+  - name: Corridor du Ruisseau-des-Fées
     osm_names:
-      - Parc du Cosmos
+      - Corridor du Ruisseau-des-Fées
     anchors:
       - - -75.785622
         - 45.4363066
@@ -9595,9 +9615,9 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-  - name: Medhurst Park
+  - name: Foxmeadow Lane
     osm_names:
-      - Medhurst Park
+      - Foxmeadow Lane
     anchors:
       - - -75.7488733
         - 45.3291845
@@ -9609,9 +9629,9 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-  - name: Hurdman Park
+  - name: Strathcona Park
     osm_names:
-      - Hurdman Park
+      - Strathcona Park
     anchors:
       - - -75.6742353
         - 45.4153761
@@ -9624,9 +9644,9 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-  - name: Mahoney Park
+  - name: Workman Avenue
     osm_names:
-      - Mahoney Park
+      - Workman Avenue
     anchors:
       - - -75.7610733
         - 45.3927134
@@ -9655,10 +9675,9 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: parc-de-la-gatineau
-  - name: Voyageur Park
+  - name: Father Richard Ward Park
     osm_names:
-      - Voyageur Park
+      - Father Richard Ward Park
     anchors:
       - - -75.5561571
         - 45.4686953
@@ -9671,23 +9690,9 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     network: Ski Heritage East Trail
-  - name: Trappers Park
+  - name: Greenboro Park
     osm_names:
-      - Trappers Park
-    anchors:
-      - - -75.6541333
-        - 45.3340408
-      - - -75.6437575
-        - 45.3514225
-    surface: fine_gravel
-    width: '0.5'
-    lit: 'no'
-    highway: cycleway
-    bicycle: designated
-    member_of: ncc-greenbelt
-  - name: R. George Pushman Park
-    osm_names:
-      - R. George Pushman Park
+      - Greenboro Park
     anchors:
       - - -75.6476998
         - 45.3606002
@@ -9715,10 +9720,9 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: 'yes'
-    member_of: beaverpond-park
-  - name: Russell Exhibition ground
+  - name: J. Henry Tweed Conservation Area
     osm_names:
-      - Russell Exhibition ground
+      - J. Henry Tweed Conservation Area
     anchors:
       - - -75.3861166
         - 45.2628911
@@ -9747,9 +9751,9 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-  - name: Petrie Island Park
+  - name: Ottawa River Pathway
     osm_names:
-      - Petrie Island Park
+      - Ottawa River Pathway
     anchors:
       - - -75.522705
         - 45.4885961
@@ -9763,9 +9767,9 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     network: Ski Heritage East Trail
-  - name: Invention Park
+  - name: Invention Boulevard
     osm_names:
-      - Invention Park
+      - Invention Boulevard
     anchors:
       - - -75.9424644
         - 45.374948
@@ -9776,9 +9780,9 @@ bike_paths:
     width: '2'
     highway: path
     bicycle: 'yes'
-  - name: Rue Hill
+  - name: Parc Lattion
     osm_names:
-      - Rue Hill
+      - Parc Lattion
     anchors:
       - - -75.914264
         - 45.4001639
@@ -9790,25 +9794,9 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: 'yes'
-  - name: Parc de Trigance
+  - name: Rue Lafrance
     osm_names:
-      - Parc de Trigance
-    anchors:
-      - - -75.7388235
-        - 45.4902627
-      - - -75.7241409
-        - 45.4925589
-    surface: asphalt
-    smoothness: good
-    width: '2.5'
-    lit: 'no'
-    incline: 'yes'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-  - name: Parc des Deux-Ravins
-    osm_names:
-      - Parc des Deux-Ravins
+      - Rue Lafrance
     anchors:
       - - -75.6825185
         - 45.4906576
@@ -9819,9 +9807,9 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-  - name: Parc Bélisle
+  - name: Rue Riviera
     osm_names:
-      - Parc Bélisle
+      - Rue Riviera
     anchors:
       - - -75.6624335
         - 45.4836806
@@ -9832,7 +9820,18 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: pont-lady-aberdeen-network
+    member_of: boulevard-maloney-sidepath-network
+  - name: St. James Woods
+    osm_names:
+      - St. James Woods
+    anchors:
+      - - -76.158343
+        - 45.1489372
+      - - -76.1511309
+        - 45.1534611
+    highway: path
+    bicycle: 'yes'
+    member_of: ottawa-valley-recreational-trail-trails
   - name: National Capital Commission Driveway
     osm_names:
       - National Capital Commission Driveway
@@ -9847,9 +9846,9 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: 'yes'
-  - name: Neill Nesbitt Park
+  - name: Montana Way
     osm_names:
-      - Neill Nesbitt Park
+      - Montana Way
     anchors:
       - - -75.7464309
         - 45.2853718
@@ -9862,9 +9861,9 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-  - name: Redpath Park
+  - name: Holitzner Way
     osm_names:
-      - Redpath Park
+      - Holitzner Way
     anchors:
       - - -75.7156543
         - 45.2785647
@@ -9876,25 +9875,9 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: 'yes'
-  - name: Owl Park
+  - name: Moffatt Farm Veterans Park
     osm_names:
-      - Owl Park
-    anchors:
-      - - -75.6627541
-        - 45.3506364
-      - - -75.6539107
-        - 45.3605158
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    lit: 'yes'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    member_of: sawmill-creek-path-network
-  - name: Mooney's Bay Park
-    osm_names:
-      - Mooney's Bay Park
+      - Moffatt Farm Veterans Park
     anchors:
       - - -75.7001624
         - 45.3577927
@@ -9905,9 +9888,9 @@ bike_paths:
     width: '3'
     highway: path
     bicycle: 'yes'
-  - name: Manordale Park
+  - name: Conover Street
     osm_names:
-      - Manordale Park
+      - Conover Street
     anchors:
       - - -75.7792861
         - 45.3274566
@@ -9931,22 +9914,6 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-  - name: Rockcliffe Park
-    osm_names:
-      - Rockcliffe Park
-    anchors:
-      - - -75.7000785
-        - 45.4576084
-      - - -75.6728197
-        - 45.4735567
-    surface: asphalt
-    smoothness: excellent
-    width: '3'
-    lit: 'yes'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    member_of: pont-lady-aberdeen-network
   - name: Ben Franklin Park East
     osm_names:
       - Ben Franklin Park East
@@ -9958,6 +9925,21 @@ bike_paths:
     surface: asphalt
     smoothness: good
     width: '3'
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+  - name: Blanding Street
+    osm_names:
+      - Blanding Street
+    anchors:
+      - - -75.9445765
+        - 45.3178929
+      - - -75.9419079
+        - 45.3381773
+    surface: asphalt
+    smoothness: good
+    width: '3'
+    lit: 'yes'
     segregated: 'no'
     highway: cycleway
     bicycle: designated
@@ -9977,9 +9959,9 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     member_of: ncc-greenbelt
-  - name: Parc du Drakkar
+  - name: Parc de la Blanche
     osm_names:
-      - Parc du Drakkar
+      - Parc de la Blanche
     anchors:
       - - -75.5994195
         - 45.4978779
@@ -9990,10 +9972,9 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    member_of: parc-du-drakkar-trails
-  - name: Parc de la Ferme-Dalton
+  - name: Montée Dalton
     osm_names:
-      - Parc de la Ferme-Dalton
+      - Montée Dalton
     anchors:
       - - -75.5890045
         - 45.5092739
@@ -10005,10 +9986,10 @@ bike_paths:
     highway: cycleway
     tracktype: grade2
     bicycle: designated
-    member_of: parc-du-drakkar-trails
-  - name: Montée des Érables
+    parallel_to: Montée Dalton
+  - name: Rue des Pins
     osm_names:
-      - Montée des Érables
+      - Rue des Pins
     anchors:
       - - -75.7406711
         - 45.5224356
@@ -10017,10 +9998,9 @@ bike_paths:
     surface: asphalt
     highway: cycleway
     bicycle: designated
-    parallel_to: Montée des Érables
-  - name: Parc André Laurendeau Park
+  - name: May Street
     osm_names:
-      - Parc André Laurendeau Park
+      - May Street
     anchors:
       - - -75.6623689
         - 45.4312121
@@ -10030,22 +10010,9 @@ bike_paths:
     width: '1.5'
     highway: cycleway
     bicycle: 'yes'
-  - name: Fraser Fields Parkette
+  - name: Trillium Park
     osm_names:
-      - Fraser Fields Parkette
-    anchors:
-      - - -75.767267
-        - 45.2597192
-      - - -75.75138
-        - 45.2686684
-    surface: asphalt
-    smoothness: good
-    width: '1.5'
-    highway: cycleway
-    bicycle: designated
-  - name: Jasmine Park
-    osm_names:
-      - Jasmine Park
+      - Trillium Park
     anchors:
       - - -75.6071101
         - 45.4326664
@@ -10056,9 +10023,9 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-  - name: Parc des Grands-Jardins
+  - name: Rue de la Tire
     osm_names:
-      - Parc des Grands-Jardins
+      - Rue de la Tire
     anchors:
       - - -75.7450027
         - 45.503374
@@ -11193,16 +11160,6 @@ bike_paths:
       - - -75.6394514
         - 45.5053061
     surface: asphalt
-  - name: Montée Dalton
-    parallel_to: Montée Dalton
-    highway: cycleway
-    anchors:
-      - - -75.5888489
-        - 45.5072458
-      - - -75.5888489
-        - 45.5072458
-    surface: fine_gravel
-    width: '1'
   - name: Rue Josaphat-Laframboise
     parallel_to: Rue Josaphat-Laframboise
     highway: cycleway
@@ -11618,6 +11575,15 @@ bike_paths:
       - - -75.7659063
         - 45.526058
     surface: asphalt
+  - name: Montée des Érables
+    parallel_to: Montée des Érables
+    highway: cycleway
+    anchors:
+      - - -75.7438583
+        - 45.5372197
+      - - -75.7438583
+        - 45.5372197
+    surface: asphalt
   - name: Rue des Fleurs
     parallel_to: Rue des Fleurs
     highway: cycleway
@@ -11849,7 +11815,7 @@ bike_paths:
       - kanata-nordic-trail-11
       - kanata-nordic-snowshoe-trail
       - trail-12-training-circle
-      - timberview-way
+      - mill-hill-road
       - ncc-aubrey-moodie-park
       - greenbelt-pathway-east
       - greenbelt-pathway-east-trail-44
@@ -11884,7 +11850,6 @@ bike_paths:
       - moodie-drive
       - robertson-road
       - bearbrook-road
-      - trappers-park
       - greenbank-road-2
     anchors:
       - - -75.8759034
@@ -11916,7 +11881,7 @@ bike_paths:
       - Kanata Nordic Trail 11
       - Kanata Nordic Snowshoe Trail
       - Trail 12 Training Circle
-      - Timberview Way
+      - Mill Hill Road
       - NCC Aubrey Moodie Park
       - Greenbelt Pathway East
       - Greenbelt Pathway East / Trail 44
@@ -12016,21 +11981,19 @@ bike_paths:
     members:
       - brookfield-pathway
       - sawmill-creek-path
-      - owl-park
     anchors:
       - - -75.6847611
-        - 45.3506364
-      - - -75.6539107
+        - 45.353173
+      - - -75.656349
         - 45.3739909
     osm_names:
       - Brookfield Pathway
       - Sawmill Creek Path
-      - Owl Park
     surface: asphalt
     highway: cycleway
     lit: 'yes'
     width: '3'
-    smoothness: good
+    smoothness: excellent
   - name: Ottawa Valley Recreational Trail Trails
     type: network
     _parkName: null
@@ -12046,6 +12009,7 @@ bike_paths:
       - spingbank-trail
       - veterans-memorial-walkway
       - mississippi-valley-trail-bobs-run-loop-black
+      - st-james-woods
     anchors:
       - - -76.3518819
         - 45.1477864
@@ -12060,8 +12024,9 @@ bike_paths:
       - Spingbank trail
       - Veterans Memorial Walkway
       - Mississippi Valley Trail - Bob's Run loop (Black)
+      - St. James Woods
     surface: fine_gravel
-    highway: cycleway
+    highway: path
     width: '3'
     lit: 'no'
     mtb: true
@@ -12213,7 +12178,6 @@ bike_paths:
       - chemin-de-ste-cecile-de-masham
       - chemin-kingsmere
       - chemin-du-lac-meech
-      - parc-de-la-gatineau
     anchors:
       - - -76.0970316
         - 45.4471744
@@ -12348,28 +12312,22 @@ bike_paths:
     highway: path
     width: '2.5'
     mtb: true
-  - name: Pont Lady-Aberdeen Network
+  - name: Boulevard Maloney Sidepath Network
     type: network
     _parkName: null
     members:
       - boulevard-maloney-sidepath
       - tecumseh-bicycle-path
-      - pont-lady-aberdeen
-      - acces-au-pont
-      - parc-belisle
-      - rockcliffe-park
+      - rue-riviera
     anchors:
-      - - -75.7021755
-        - 45.4560277
+      - - -75.6740266
+        - 45.4735567
       - - -75.646079
         - 45.4843225
     osm_names:
       - Boulevard Maloney Sidepath
       - Tecumseh bicycle path
-      - Pont Lady-Aberdeen
-      - Accès au Pont
-      - Parc Bélisle
-      - Rockcliffe Park
+      - Rue Riviera
     surface: asphalt
     highway: cycleway
     width: '2.5'
@@ -12394,6 +12352,23 @@ bike_paths:
     width: '3'
     smoothness: good
     mtb: true
+  - name: Pont Lady-Aberdeen Network
+    type: network
+    _parkName: null
+    members:
+      - pont-lady-aberdeen
+      - acces-au-pont
+    anchors:
+      - - -75.7021755
+        - 45.4560277
+      - - -75.7000785
+        - 45.4577494
+    osm_names:
+      - Pont Lady-Aberdeen
+      - Accès au Pont
+    surface: asphalt
+    highway: cycleway
+    width: '2'
   - name: Portage Bridge cycle track Network
     type: network
     _parkName: null
@@ -12573,7 +12548,6 @@ bike_paths:
     members:
       - marathon-ne
       - stone-dust-path
-      - beaverpond-park
     anchors:
       - - -75.931036
         - 45.3295731
@@ -12615,7 +12589,7 @@ bike_paths:
       - dos-dane
       - la-pente
       - rocheuse
-      - parc-des-grands-jardins
+      - rue-de-la-tire
     anchors:
       - - -75.765724
         - 45.5010379
@@ -12645,7 +12619,7 @@ bike_paths:
       - Dos d'Ane
       - La Pente
       - Rocheuse
-      - Parc des Grands-Jardins
+      - Rue de la Tire
     surface: dirt
     highway: path
     smoothness: bad
@@ -12741,25 +12715,6 @@ bike_paths:
       - Rue Isidore-Ostiguy
     highway: footway
     mtb: true
-  - name: Parc du Drakkar Trails
-    type: network
-    _parkName: null
-    members:
-      - parc-du-drakkar
-      - parc-de-la-ferme-dalton
-    anchors:
-      - - -75.6004456
-        - 45.4978779
-      - - -75.5816822
-        - 45.5092739
-    osm_names:
-      - Parc du Drakkar
-      - Parc de la Ferme-Dalton
-    surface: fine_gravel
-    highway: cycleway
-    width: '2'
-    smoothness: bad
-    mtb: true
   - name: Ottawa River Pathway
     type: network
     members:
@@ -12811,7 +12766,7 @@ bike_paths:
       - aviation-pathway
       - sentier-de-la-riviere-gatineau
       - pinecrest-creek-pathway
-      - ottawa-river-pathway
+      - ottawa-river-pathway-2
       - sentier-de-la-riviere-gatineau-pathway
       - mackenzie-cycle-track
     osm_relations:
