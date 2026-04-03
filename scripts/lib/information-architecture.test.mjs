@@ -388,13 +388,24 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       expect(entry, 'Should have a Greenbank area path (not parallel lane)').toBeDefined();
     });
 
-    it('4.0km chain in Keith M Boyd Park exists', () => {
-      // 3 ways, asphalt, 45.26,-75.36
+    it('4.0km chain near Keith M Boyd Park / Russell Exhibition exists', () => {
+      // 3 ways, asphalt, 45.26,-75.36 — near both parks
       const entry = entries.find(e =>
-        e.name?.toLowerCase().includes('boyd') &&
+        (e.name?.toLowerCase().includes('boyd') || e.name?.toLowerCase().includes('russell exhibition')) &&
         !e.type
       );
-      expect(entry, 'Should have a Keith M Boyd Park path').toBeDefined();
+      expect(entry, 'Should have a path named after Boyd Park or Russell Exhibition').toBeDefined();
+    });
+
+    it('1.8km cycleway parallel to Boulevard de la Cité-des-Jeunes exists', () => {
+      // way/53309796, asphalt, 45.46,-75.77 — inside Gatineau Park area
+      // but actually parallel to Boulevard de la Cité-des-Jeunes
+      const entry = entries.find(e =>
+        e.name?.toLowerCase().includes('cite-des-jeunes') ||
+        e.name?.toLowerCase().includes('cité-des-jeunes') ||
+        e.name?.toLowerCase().includes('cite des jeunes')
+      );
+      expect(entry, 'Should have a Cité-des-Jeunes area path').toBeDefined();
     });
 
     it('3.6km chain at Lac-Beauchamp exists', () => {
