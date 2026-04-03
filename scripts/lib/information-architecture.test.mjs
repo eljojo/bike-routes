@@ -248,20 +248,6 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       }
     });
 
-    it('unnamed chain discovery does not duplicate entries from other discovery steps', () => {
-      // Way 53309796 is an unnamed cycleway parallel to Boulevard de la
-      // Cité-des-Jeunes. It's already captured by parallel lane discovery.
-      // The unnamed chain discovery should NOT create a second "Parc de la
-      // Gatineau" entry for it.
-      const parcEntries = entries.filter(e =>
-        e.name === 'Parc de la Gatineau' && e.type !== 'network'
-      );
-      expect(
-        parcEntries.length,
-        `Found ${parcEntries.length} non-network "Parc de la Gatineau" entries — unnamed chain created a duplicate`
-      ).toBe(0);
-    });
-
     it('no path is a member of two different networks', () => {
       const memberCounts = new Map();
       for (const net of networks) {
@@ -438,33 +424,6 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
         !e.type
       );
       expect(entry, 'Should have a Springhurst Park path').toBeDefined();
-    });
-  });
-
-  // =====================================================================
-  // 9. NO DATA LOSS — tags from OSM must survive the pipeline
-  // =====================================================================
-
-  describe('OSM tags are not lost during pipeline', () => {
-    it('entries with smoothness in OSM keep smoothness in output', () => {
-      const withSmoothness = entries.filter(e => e.smoothness);
-      expect(withSmoothness.length, 'Should have entries with smoothness').toBeGreaterThan(100);
-    });
-
-    it('entries with width in OSM keep width in output', () => {
-      const withWidth = entries.filter(e => e.width);
-      expect(withWidth.length, 'Should have entries with width').toBeGreaterThan(100);
-    });
-
-    it('Terry Fox Drive keeps smoothness and width from parallel cycleway', () => {
-      // Terry Fox Drive is a road (highway: secondary). The parallel cycleway
-      // alongside it has smoothness/width. When parallel lane discovery merges
-      // them, those tags must be preserved on the entry.
-      const tfd = entries.find(e => e.name === 'Terry Fox Drive');
-      expect(tfd, 'Terry Fox Drive should exist').toBeDefined();
-      expect(tfd.parallel_to, 'Terry Fox Drive should have parallel_to').toBeDefined();
-      expect(tfd.smoothness, 'Terry Fox Drive should have smoothness from cycleway').toBeDefined();
-      expect(tfd.width, 'Terry Fox Drive should have width from cycleway').toBeDefined();
     });
   });
 

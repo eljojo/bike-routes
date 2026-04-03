@@ -1818,7 +1818,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     parallel_to: Rue Atawe
-    smoothness: excellent
   - name: Pont couvert Brabant-Philippe
     osm_names:
       - Pont couvert Brabant-Philippe
@@ -2221,8 +2220,6 @@ bike_paths:
     highway: tertiary
     bicycle: designated
     parallel_to: Boulevard de la Carrière
-    width: '3'
-    smoothness: excellent
   - name: Rue d'Edmonton
     osm_names:
       - Rue d'Edmonton
@@ -2263,7 +2260,6 @@ bike_paths:
     highway: tertiary
     bicycle: designated
     parallel_to: Chemin Old Chelsea
-    segregated: 'no'
   - name: Blue Heron Trail
     osm_names:
       - Blue Heron Trail
@@ -4089,8 +4085,6 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     parallel_to: Corkstown Road
-    width: '2'
-    smoothness: intermediate
   - name: La Tour
     osm_names:
       - La Tour
@@ -4421,8 +4415,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Chemin Scott
-    width: '2.5'
-    segregated: 'no'
   - name: Chemin Kingsmere
     osm_names:
       - Chemin Kingsmere
@@ -4470,7 +4462,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Boulevard Fournier
-    width: '2'
   - name: Bridge Street
     osm_names:
       - Bridge Street
@@ -4548,9 +4539,6 @@ bike_paths:
     highway: primary
     operator: National Capital Commission
     parallel_to: Sir-George-Étienne-Cartier Parkway
-    lit: 'no'
-    width: '2'
-    segregated: 'no'
     member_of: ncc-greenbelt
   - name: Sir-George-Étienne-Cartier Parkway
     osm_names:
@@ -4593,7 +4581,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Knudson Drive
-    width: '1.5'
   - name: Teron Road
     osm_names:
       - Teron Road
@@ -4623,9 +4610,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Campeau Drive
-    width: '3'
-    smoothness: good
-    segregated: 'no'
   - name: Herzberg Road
     osm_names:
       - Herzberg Road
@@ -4640,8 +4624,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Herzberg Road
-    width: '2'
-    smoothness: excellent
   - name: Weslock Way
     osm_names:
       - Weslock Way
@@ -4671,8 +4653,6 @@ bike_paths:
     highway: secondary
     ref: '49'
     parallel_to: March Road
-    width: '2'
-    smoothness: excellent
   - name: Walden Drive
     osm_names:
       - Walden Drive
@@ -4814,7 +4794,6 @@ bike_paths:
     highway: primary
     ref: '36'
     parallel_to: Hazeldean Road
-    width: '1.5'
   - name: Shirley's Brook Drive
     osm_names:
       - Shirley's Brook Drive
@@ -4842,8 +4821,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Goulbourn Forced Road
-    width: '3'
-    smoothness: good
   - name: Cedarview Road
     osm_names:
       - Cedarview Road
@@ -4859,9 +4836,6 @@ bike_paths:
     highway: secondary
     ref: '23'
     parallel_to: Cedarview Road
-    width: '3'
-    smoothness: good
-    segregated: 'no'
     member_of: ncc-greenbelt
   - name: Baseline Road
     osm_names:
@@ -4879,9 +4853,6 @@ bike_paths:
     highway: primary
     ref: '16'
     parallel_to: Baseline Road
-    width: '3'
-    smoothness: good
-    segregated: 'no'
   - name: Richmond Road
     osm_names:
       - Richmond Road
@@ -4898,8 +4869,6 @@ bike_paths:
     highway: secondary
     ref: '36'
     parallel_to: Richmond Road
-    width: '1.5'
-    smoothness: good
   - name: West Hunt Club Road
     osm_names:
       - West Hunt Club Road
@@ -4918,9 +4887,6 @@ bike_paths:
     bicycle: 'yes'
     ref: '32'
     parallel_to: West Hunt Club Road
-    width: '3'
-    smoothness: good
-    segregated: 'no'
   - name: Navaho Drive
     osm_names:
       - Navaho Drive
@@ -4964,8 +4930,6 @@ bike_paths:
     cycleway: shared_lane
     highway: tertiary
     parallel_to: Iris Street
-    width: '4'
-    smoothness: excellent
   - name: Steeple Chase Drive
     osm_names:
       - Steeple Chase Drive
@@ -4980,8 +4944,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Steeple Chase Drive
-    width: '3'
-    segregated: 'yes'
   - name: Stonehaven Drive
     osm_names:
       - Stonehaven Drive
@@ -4997,8 +4959,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Stonehaven Drive
-    width: '3'
-    segregated: 'yes'
   - name: Highbury Park Drive
     osm_names:
       - Highbury Park Drive
@@ -5013,8 +4973,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Highbury Park Drive
-    width: '3'
-    segregated: 'no'
   - name: Island Park Drive
     osm_names:
       - Island Park Drive
@@ -5030,7 +4988,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Island Park Drive
-    width: '1.5'
   - name: Sherbourne Road
     osm_names:
       - Sherbourne Road
@@ -5110,8 +5067,6 @@ bike_paths:
     cycleway: lane
     highway: residential
     parallel_to: Glebe Avenue
-    width: '3'
-    smoothness: excellent
   - name: Elgin Street
     osm_names:
       - Elgin Street
@@ -5143,9 +5098,6 @@ bike_paths:
     highway: residential
     bicycle: 'yes'
     parallel_to: Percy Street
-    width: '2.5'
-    smoothness: intermediate
-    segregated: 'no'
   - name: Somerset Street West
     osm_names:
       - Somerset Street West
@@ -5162,9 +5114,6 @@ bike_paths:
     highway: secondary
     ref: '36'
     parallel_to: Somerset Street West
-    width: '3'
-    smoothness: good
-    segregated: 'no'
   - name: First Avenue
     osm_names:
       - First Avenue
@@ -5210,8 +5159,6 @@ bike_paths:
     bicycle: 'yes'
     ref: '73'
     parallel_to: Prince Of Wales Drive
-    width: '2'
-    smoothness: good
   - name: Lyon Street North
     osm_names:
       - Lyon Street North
@@ -5241,9 +5188,6 @@ bike_paths:
     highway: secondary
     ref: '48'
     parallel_to: Laurier Avenue West
-    lit: 'yes'
-    width: '1.5'
-    smoothness: good
   - name: Wellington Street
     osm_names:
       - Wellington Street
@@ -5262,7 +5206,6 @@ bike_paths:
     highway: primary
     ref: '34'
     parallel_to: Wellington Street
-    width: '1.5'
     wikidata_meta:
       description_en: street in Ottawa, Canada
       description_fr: rue d'Ottawa (Canada)
@@ -5285,9 +5228,6 @@ bike_paths:
     bicycle: 'yes'
     ref: '79'
     parallel_to: Bronson Avenue
-    width: '1.5'
-    smoothness: good
-    segregated: 'no'
     wikidata_meta:
       description_en: street in Ottawa, Canada
       description_fr: avenue à Ottawa, Ontario
@@ -5320,7 +5260,6 @@ bike_paths:
     cycleway: opposite_lane
     highway: unclassified
     parallel_to: Cumberland Street
-    width: '1.5'
   - name: Laurier Avenue East
     osm_names:
       - Laurier Avenue East
@@ -5349,10 +5288,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Belfast Road
-    lit: 'yes'
-    width: '1.5'
-    smoothness: good
-    segregated: 'no'
   - name: Coventry Road
     osm_names:
       - Coventry Road
@@ -5369,7 +5304,6 @@ bike_paths:
     highway: secondary
     ref: '50'
     parallel_to: Coventry Road
-    width: '1.5'
   - name: Trainyards Drive
     osm_names:
       - Trainyards Drive
@@ -5384,8 +5318,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Trainyards Drive
-    width: '3'
-    segregated: 'no'
   - name: Donald Street
     osm_names:
       - Donald Street
@@ -5401,9 +5333,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Donald Street
-    width: '3'
-    smoothness: good
-    segregated: 'no'
   - name: Cyrville Road
     osm_names:
       - Cyrville Road
@@ -5419,8 +5348,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Cyrville Road
-    width: '2'
-    segregated: 'no'
   - name: McArthur Avenue
     osm_names:
       - McArthur Avenue
@@ -5437,7 +5364,6 @@ bike_paths:
     highway: secondary
     ref: '68'
     parallel_to: McArthur Avenue
-    width: '1.5'
   - name: Beausoleil Drive
     osm_names:
       - Beausoleil Drive
@@ -5452,7 +5378,6 @@ bike_paths:
     cycleway: shared_lane
     highway: tertiary
     parallel_to: Beausoleil Drive
-    width: '2'
   - name: Cobourg Street
     osm_names:
       - Cobourg Street
@@ -5467,7 +5392,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Cobourg Street
-    width: '1.5'
   - name: Rideau Street
     osm_names:
       - Rideau Street
@@ -5484,7 +5408,6 @@ bike_paths:
     highway: primary
     ref: '34'
     parallel_to: Rideau Street
-    width: '3'
   - name: Chapel Street
     osm_names:
       - Chapel Street
@@ -5541,9 +5464,6 @@ bike_paths:
     operator: OC Transpo
     ref: '66'
     parallel_to: Lees Avenue
-    width: '3'
-    smoothness: excellent
-    segregated: 'no'
   - name: Hawthorne Avenue
     osm_names:
       - Hawthorne Avenue
@@ -5605,9 +5525,6 @@ bike_paths:
     highway: primary
     ref: '34'
     parallel_to: St. Joseph Boulevard
-    width: '3'
-    smoothness: excellent
-    segregated: 'no'
     member_of: ncc-greenbelt
   - name: St. Joseph Boulevard
     osm_names:
@@ -5640,7 +5557,6 @@ bike_paths:
     highway: secondary
     ref: '26'
     parallel_to: St-Laurent Boulevard
-    width: '1.5'
   - name: Hemlock Road
     osm_names:
       - Hemlock Road
@@ -5684,9 +5600,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Jeanne-d'Arc Boulevard North
-    width: '3'
-    smoothness: excellent
-    segregated: 'no'
   - name: Innes Road
     osm_names:
       - Innes Road
@@ -5703,7 +5616,6 @@ bike_paths:
     highway: secondary
     ref: '30'
     parallel_to: Innes Road
-    width: '1.5'
   - name: Sunview Drive
     osm_names:
       - Sunview Drive
@@ -5735,7 +5647,6 @@ bike_paths:
     highway: secondary
     ref: '44'
     parallel_to: Beechwood Avenue
-    width: '2'
   - name: Montréal Road
     osm_names:
       - Montréal Road
@@ -5752,8 +5663,6 @@ bike_paths:
     highway: primary
     ref: '34'
     parallel_to: Montréal Road
-    width: '2'
-    segregated: 'no'
   - name: Hawthorne Road
     osm_names:
       - Hawthorne Road
@@ -5813,9 +5722,6 @@ bike_paths:
     highway: secondary
     ref: '12'
     parallel_to: Fallowfield Road
-    width: '3'
-    smoothness: excellent
-    segregated: 'no'
   - name: Longfields Drive
     osm_names:
       - Longfields Drive
@@ -5831,7 +5737,6 @@ bike_paths:
     highway: tertiary
     ref: '13'
     parallel_to: Longfields Drive
-    width: '2'
   - name: Leikin Drive
     osm_names:
       - Leikin Drive
@@ -5958,8 +5863,6 @@ bike_paths:
     operator: National Capital Commission
     ref: '51'
     parallel_to: Hog's Back Road
-    width: '2'
-    smoothness: intermediate
   - name: Beaver Ridge
     osm_names:
       - Beaver Ridge
@@ -6070,9 +5973,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Portobello Boulevard
-    lit: 'no'
-    smoothness: good
-    segregated: 'no'
   - name: Valin Street
     osm_names:
       - Valin Street
@@ -6088,9 +5988,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Valin Street
-    lit: 'no'
-    smoothness: good
-    segregated: 'no'
   - name: Tenth Line Road
     osm_names:
       - Tenth Line Road
@@ -6107,7 +6004,6 @@ bike_paths:
     highway: secondary
     ref: '47'
     parallel_to: Tenth Line Road
-    segregated: 'no'
   - name: Merkley Drive
     osm_names:
       - Merkley Drive
@@ -6139,8 +6035,6 @@ bike_paths:
     highway: secondary
     ref: '49'
     parallel_to: Eagleson Road
-    width: '3'
-    segregated: 'no'
   - name: Fernbank Road
     osm_names:
       - Fernbank Road
@@ -6156,8 +6050,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Fernbank Road
-    width: '2'
-    smoothness: excellent
   - name: Bank Street
     osm_names:
       - Bank Street
@@ -6175,8 +6067,6 @@ bike_paths:
     highway: primary
     ref: '31'
     parallel_to: Bank Street
-    width: '1.5'
-    smoothness: good
     wikidata_meta:
       description_en: bridge in Canada
       description_fr: pont canadien
@@ -6259,7 +6149,6 @@ bike_paths:
     highway: secondary
     ref: '33'
     parallel_to: Frank Kenny Road
-    width: '1.5'
   - name: Boulevard Wilfrid-Lavigne
     osm_names:
       - Boulevard Wilfrid-Lavigne
@@ -6298,7 +6187,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Rue Maclaren Est
-    segregated: 'yes'
   - name: Booth Street
     osm_names:
       - Booth Street
@@ -6315,9 +6203,6 @@ bike_paths:
     bicycle: 'yes'
     access: 'yes'
     parallel_to: Booth Street
-    lit: 'yes'
-    width: '1.5'
-    smoothness: good
   - name: Rue Wìgwàs
     osm_names:
       - Rue Wìgwàs
@@ -6354,8 +6239,6 @@ bike_paths:
     cycleway: lane
     highway: unclassified
     parallel_to: Tweddle Road
-    width: '2.5'
-    segregated: 'no'
   - name: Chemin du Lac-Meech
     osm_names:
       - Chemin du Lac-Meech
@@ -6403,9 +6286,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Chemin de la Mine
-    lit: 'no'
-    width: '2.5'
-    smoothness: good
   - name: University Drive
     osm_names:
       - University Drive
@@ -6420,7 +6300,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: University Drive
-    width: '1.5'
   - name: Johnston Road
     osm_names:
       - Johnston Road
@@ -6446,8 +6325,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Chemin Eardley
-    width: '2.5'
-    segregated: 'no'
   - name: Chemin Gold Mine Nord
     osm_names:
       - Chemin Gold Mine Nord
@@ -6472,7 +6349,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Boulevard Saint-René Est
-    segregated: 'no'
   - name: Crestway Drive
     osm_names:
       - Crestway Drive
@@ -6488,8 +6364,6 @@ bike_paths:
     highway: tertiary
     bicycle: 'yes'
     parallel_to: Crestway Drive
-    width: '3'
-    segregated: 'no'
   - name: Chapman Mills Drive
     osm_names:
       - Chapman Mills Drive
@@ -6505,7 +6379,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Chapman Mills Drive
-    width: '1.5'
   - name: Old Richmond Road
     osm_names:
       - Old Richmond Road
@@ -6522,9 +6395,6 @@ bike_paths:
     highway: secondary
     ref: '59'
     parallel_to: Old Richmond Road
-    width: '2.5'
-    smoothness: good
-    segregated: 'no'
     member_of: ncc-greenbelt
   - name: Fifth Avenue
     osm_names:
@@ -6541,7 +6411,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Fifth Avenue
-    width: '1.5'
   - name: Place Samuel-De Champlain
     osm_names:
       - Place Samuel-De Champlain
@@ -6585,7 +6454,6 @@ bike_paths:
     highway: secondary
     ref: '67'
     parallel_to: Kirkwood Avenue
-    width: '1.5'
   - name: Boulevard Labrosse
     osm_names:
       - Boulevard Labrosse
@@ -6612,8 +6480,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Byron Avenue
-    width: '2'
-    smoothness: excellent
   - name: Albion Road
     osm_names:
       - Albion Road
@@ -6675,7 +6541,6 @@ bike_paths:
     highway: secondary
     ref: '69'
     parallel_to: Fisher Avenue
-    width: '1.5'
   - name: Fern Casey Street
     osm_names:
       - Fern Casey Street
@@ -6690,8 +6555,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Fern Casey Street
-    width: '3'
-    smoothness: excellent
   - name: Nicholas Street
     osm_names:
       - Nicholas Street
@@ -6707,10 +6570,6 @@ bike_paths:
     highway: primary
     ref: '97'
     parallel_to: Nicholas Street
-    lit: 'yes'
-    width: '3'
-    smoothness: excellent
-    segregated: 'yes'
   - name: Boulevard Montclair
     osm_names:
       - Boulevard Montclair
@@ -6724,7 +6583,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Boulevard Montclair
-    segregated: 'no'
   - name: Uplands Drive
     osm_names:
       - Uplands Drive
@@ -6764,8 +6622,6 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     parallel_to: Boulevard des Grives
-    width: '2'
-    segregated: 'no'
   - name: Boulevard du Plateau
     osm_names:
       - Boulevard du Plateau
@@ -6779,9 +6635,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Boulevard du Plateau
-    width: '3'
-    smoothness: good
-    segregated: 'no'
   - name: Tyndall Street
     osm_names:
       - Tyndall Street
@@ -6811,7 +6664,6 @@ bike_paths:
     highway: secondary
     ref: '59'
     parallel_to: Moodie Drive
-    width: '2'
     member_of: ncc-greenbelt
   - name: Woodroffe Avenue
     osm_names:
@@ -6829,9 +6681,6 @@ bike_paths:
     highway: secondary
     ref: '15'
     parallel_to: Woodroffe Avenue
-    width: '3'
-    smoothness: good
-    segregated: 'no'
   - name: Renaud Road
     osm_names:
       - Renaud Road
@@ -6846,7 +6695,6 @@ bike_paths:
     cycleway: shared_lane
     highway: tertiary
     parallel_to: Renaud Road
-    width: '2'
   - name: Chemin de Montréal Est
     osm_names:
       - Chemin de Montréal Est
@@ -6874,9 +6722,6 @@ bike_paths:
     highway: secondary
     bicycle: 'yes'
     parallel_to: Cambrian Road
-    width: '2'
-    smoothness: good
-    segregated: 'no'
   - name: O'Connor Street
     osm_names:
       - O'Connor Street
@@ -6892,7 +6737,6 @@ bike_paths:
     cycleway: shared_lane
     highway: residential
     parallel_to: O'Connor Street
-    width: '1.5'
   - name: Boulevard Saint-Joseph
     osm_names:
       - Boulevard Saint-Joseph
@@ -6970,7 +6814,6 @@ bike_paths:
     highway: secondary
     ref: '14'
     parallel_to: Leitrim Road
-    width: '2'
   - name: Robertson Road
     osm_names:
       - Robertson Road
@@ -6987,9 +6830,6 @@ bike_paths:
     highway: primary
     ref: '36'
     parallel_to: Robertson Road
-    width: '3'
-    smoothness: good
-    segregated: 'no'
     member_of: ncc-greenbelt
   - name: Conroy Road
     osm_names:
@@ -7051,9 +6891,6 @@ bike_paths:
     cycleway: lane
     highway: secondary
     parallel_to: Brian Coburn Boulevard
-    lit: 'yes'
-    smoothness: excellent
-    segregated: 'no'
   - name: Russell Road
     osm_names:
       - Russell Road
@@ -7097,9 +6934,6 @@ bike_paths:
     bicycle: 'yes'
     ref: '19'
     parallel_to: Riverside Drive
-    width: '2.5'
-    smoothness: intermediate
-    segregated: 'no'
   - name: Mer Bleue Road
     osm_names:
       - Mer Bleue Road
@@ -7133,8 +6967,6 @@ bike_paths:
     highway: secondary
     ref: '57'
     parallel_to: Trim Road
-    smoothness: excellent
-    segregated: 'no'
   - name: Rue Jos-Montferrand
     osm_names:
       - Rue Jos-Montferrand
@@ -7227,9 +7059,6 @@ bike_paths:
     surface: asphalt
     highway: residential
     parallel_to: Rue Jacques-Cartier
-    width: '3'
-    smoothness: excellent
-    segregated: 'no'
   - name: Rue Park
     osm_names:
       - Rue Park
@@ -7254,8 +7083,6 @@ bike_paths:
     highway: secondary
     ref: '38'
     parallel_to: Carling Avenue
-    width: '2'
-    smoothness: intermediate
   - name: Carling Avenue
     osm_names:
       - Carling Avenue
@@ -7361,7 +7188,6 @@ bike_paths:
     highway: secondary
     ref: '40'
     parallel_to: Albert Street
-    width: '1.5'
   - name: Sherwood Drive
     osm_names:
       - Sherwood Drive
@@ -7388,7 +7214,6 @@ bike_paths:
     lit: 'yes'
     highway: residential
     parallel_to: Cameron Avenue
-    smoothness: intermediate
   - name: Slater Street
     osm_names:
       - Slater Street
@@ -7403,7 +7228,6 @@ bike_paths:
     lit: 'yes'
     highway: secondary
     parallel_to: Slater Street
-    width: '3'
   - name: Mackenzie King Bridge
     osm_names:
       - Mackenzie King Bridge
@@ -7512,7 +7336,6 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     parallel_to: Woodfield Drive
-    width: '1.5'
   - name: Holmwood Avenue
     osm_names:
       - Holmwood Avenue
@@ -7593,7 +7416,6 @@ bike_paths:
     highway: secondary
     ref: '30'
     parallel_to: Industrial Avenue
-    width: '1.5'
   - name: Rue de la Baie
     osm_names:
       - Rue de la Baie
@@ -7663,8 +7485,6 @@ bike_paths:
     surface: asphalt
     highway: secondary
     parallel_to: Mackenzie Avenue
-    width: '3'
-    smoothness: good
   - name: Boulevard Louise-Campagna
     osm_names:
       - Boulevard Louise-Campagna
@@ -7676,9 +7496,6 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     parallel_to: Boulevard Louise-Campagna
-    lit: 'yes'
-    width: '2'
-    segregated: 'no'
   - name: Greenbank Road
     osm_names:
       - Greenbank Road
@@ -7693,9 +7510,6 @@ bike_paths:
     highway: secondary
     ref: '13'
     parallel_to: Greenbank Road
-    width: '3'
-    smoothness: excellent
-    segregated: 'no'
   - name: Waller Street
     osm_names:
       - Waller Street
@@ -7710,8 +7524,6 @@ bike_paths:
     highway: primary
     ref: '97'
     parallel_to: Waller Street
-    width: '3'
-    segregated: 'no'
   - name: Garland Street
     osm_names:
       - Garland Street
@@ -7725,7 +7537,6 @@ bike_paths:
     surface: asphalt
     highway: residential
     parallel_to: Garland Street
-    width: '1.5'
   - name: Bay Street
     osm_names:
       - Bay Street
@@ -7740,7 +7551,6 @@ bike_paths:
     lit: 'yes'
     highway: residential
     parallel_to: Bay Street
-    width: '1.5'
   - name: Heron Road
     osm_names:
       - Heron Road
@@ -7757,8 +7567,6 @@ bike_paths:
     highway: primary
     ref: '16'
     parallel_to: Heron Road
-    width: '1.5'
-    smoothness: good
     wikidata_meta:
       description_en: bridge in Canada
       description_fr: pont canadien
@@ -7777,7 +7585,6 @@ bike_paths:
     highway: primary
     ref: '44'
     parallel_to: St. Patrick Street
-    width: '1.5'
   - name: Ogilvie Road
     osm_names:
       - Ogilvie Road
@@ -7793,9 +7600,6 @@ bike_paths:
     highway: secondary
     ref: '50'
     parallel_to: Ogilvie Road
-    width: '3'
-    smoothness: good
-    segregated: 'no'
   - name: Wilbrod Street
     osm_names:
       - Wilbrod Street
@@ -7823,9 +7627,6 @@ bike_paths:
     highway: secondary
     ref: '64'
     parallel_to: Greenfield Avenue
-    width: '1.80'
-    smoothness: excellent
-    segregated: 'no'
   - name: Marie-Curie Private
     osm_names:
       - Marie-Curie Private
@@ -7881,8 +7682,6 @@ bike_paths:
     lit: 'yes'
     highway: secondary
     parallel_to: Strandherd Drive
-    width: '1.5'
-    smoothness: excellent
   - name: Hunt Club Road
     osm_names:
       - Hunt Club Road
@@ -7926,7 +7725,6 @@ bike_paths:
     highway: secondary
     ref: '72'
     parallel_to: Smyth Road
-    smoothness: excellent
   - name: Walkley Road
     osm_names:
       - Walkley Road
@@ -7955,7 +7753,6 @@ bike_paths:
     lit: 'yes'
     highway: tertiary
     parallel_to: Heatherington Road
-    width: '1.5'
   - name: Onslow Crescent
     osm_names:
       - Onslow Crescent
@@ -7983,10 +7780,6 @@ bike_paths:
     highway: secondary
     ref: '72'
     parallel_to: Main Street
-    lit: 'yes'
-    width: '1.5'
-    smoothness: excellent
-    segregated: 'no'
   - name: Boulevard de l'Hôpital
     osm_names:
       - Boulevard de l'Hôpital
@@ -7999,8 +7792,6 @@ bike_paths:
     lit: 'yes'
     highway: secondary
     parallel_to: Boulevard de l'Hôpital
-    width: '2.5'
-    segregated: 'yes'
   - name: Morgan's Grant Way
     osm_names:
       - Morgan's Grant Way
@@ -8044,7 +7835,6 @@ bike_paths:
     highway: secondary
     bicycle: 'yes'
     parallel_to: Earl Armstrong Road
-    segregated: 'no'
   - name: Spratt Road
     osm_names:
       - Spratt Road
@@ -8069,8 +7859,6 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     parallel_to: Boulevard de Carrefour
-    width: '3'
-    segregated: 'no'
   - name: Huntmar Drive
     osm_names:
       - Huntmar Drive
@@ -8084,8 +7872,6 @@ bike_paths:
     surface: asphalt
     highway: secondary
     parallel_to: Huntmar Drive
-    width: '2'
-    smoothness: good
   - name: Stittsville Main Street
     osm_names:
       - Stittsville Main Street
@@ -8100,9 +7886,6 @@ bike_paths:
     highway: secondary
     ref: 5A
     parallel_to: Stittsville Main Street
-    lit: 'yes'
-    width: '4'
-    segregated: 'no'
   - name: Jeanne-d'Arc Boulevard South
     osm_names:
       - Jeanne-d'Arc Boulevard South
@@ -8130,10 +7913,6 @@ bike_paths:
     highway: secondary
     ref: '34'
     parallel_to: Old Montréal Road
-    lit: 'no'
-    width: '3'
-    smoothness: excellent
-    segregated: 'no'
   - name: Bridgestone Drive
     osm_names:
       - Bridgestone Drive
@@ -8147,8 +7926,6 @@ bike_paths:
     surface: asphalt
     highway: tertiary
     parallel_to: Bridgestone Drive
-    width: '3'
-    segregated: 'yes'
   - name: Sir Frederick Banting Driveway
     osm_names:
       - Sir Frederick Banting Driveway
@@ -9355,10 +9132,6 @@ bike_paths:
     highway: footway
     bicycle: dismount
     parallel_to: Rue Saint-Louis
-    lit: 'yes'
-    width: '2.5'
-    smoothness: good
-    segregated: 'no'
   - name: Rue du Barry
     osm_names:
       - Rue du Barry
