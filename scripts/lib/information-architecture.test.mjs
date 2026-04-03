@@ -239,6 +239,31 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       }
     });
 
+    it('no network has zero members (zombie from superroute flattening)', () => {
+      for (const net of networks) {
+        expect(
+          net.members?.length,
+          `Network "${net.name}" has 0 members — zombie entry that should have been cleaned up`
+        ).toBeGreaterThan(0);
+      }
+    });
+
+    it('no path is a member of two different networks', () => {
+      const memberCounts = new Map();
+      for (const net of networks) {
+        for (const slug of net.members || []) {
+          if (!memberCounts.has(slug)) memberCounts.set(slug, []);
+          memberCounts.get(slug).push(net.name);
+        }
+      }
+      for (const [slug, netNames] of memberCounts) {
+        expect(
+          netNames.length,
+          `"${slug}" is in ${netNames.length} networks: ${netNames.join(', ')}`
+        ).toBe(1);
+      }
+    });
+
     it('no network has another network as a member', () => {
       for (const net of networks) {
         for (const memberSlug of net.members || []) {

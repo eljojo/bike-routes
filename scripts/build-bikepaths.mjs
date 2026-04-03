@@ -773,6 +773,10 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
           if (subEntry.member_of === memberNetSlug || !subEntry.member_of) {
             memberSlugs.push(subSlug);
             subEntry.member_of = networkSlug;
+            // Remove from old network's members list
+            if (member.members) {
+              member.members = member.members.filter(s => s !== subSlug);
+            }
           }
         }
         // Tag the sub-network with super_network
@@ -1267,6 +1271,16 @@ out tags center;`;
   detectMtb(grouped);
   const mtbCount = grouped.filter(e => e.mtb).length;
   if (mtbCount > 0) console.log(`  Labelled ${mtbCount} entries as MTB`);
+
+  // Cleanup: remove zombie networks with 0 members (flattened into superroute)
+  const zombies = grouped.filter(e => e.type === 'network' && (!e.members || e.members.length === 0));
+  if (zombies.length > 0) {
+    for (const z of zombies) {
+      const idx = grouped.indexOf(z);
+      if (idx !== -1) grouped.splice(idx, 1);
+    }
+    console.log(`  Removed ${zombies.length} empty networks`);
+  }
 
   return { entries: grouped, superNetworks, slugMap };
 }
