@@ -1209,6 +1209,128 @@ out tags center;`;
     console.log(`  ${parallelLanes.length} parallel lane candidates`);
   }
 
+  // Step 2c: Discover unnamed cycling chains (park paths, greenway corridors)
+  console.log('Discovering unnamed cycling chains...');
+  const MIN_CHAIN_LENGTH_M = 1500;
+  const unchainedQ = `[out:json][timeout:120];
+way["highway"~"cycleway|path"]["bicycle"~"designated|yes"][!"name"][!"crossing"](${b});
+out geom tags;`;
+  const unchainedData = await qo(unchainedQ);
+  const unchainedWays = unchainedData.elements.filter(w => w.geometry?.length >= 2);
+
+  const ucEpIndex = new Map();
+  for (let i = 0; i < unchainedWays.length; i++) {
+    const g = unchainedWays[i].geometry;
+    for (const pt of [g[0], g[g.length - 1]]) {
+      const key = pt.lat.toFixed(7) + ',' + pt.lon.toFixed(7);
+      if (!ucEpIndex.has(key)) ucEpIndex.set(key, []);
+      ucEpIndex.get(key).push(i);
+    }
+  }
+  const ucParent = Array.from({ length: unchainedWays.length }, (_, i) => i);
+  function ucFind(x) { while (ucParent[x] !== x) { ucParent[x] = ucParent[ucParent[x]]; x = ucParent[x]; } return x; }
+  for (const [, indices] of ucEpIndex) {
+    for (let i = 1; i < indices.length; i++) {
+      const ra = ucFind(indices[0]), rb = ucFind(indices[i]);
+      if (ra !== rb) ucParent[ra] = rb;
+    }
+  }
+
+  const ucGroups = new Map();
+  for (let i = 0; i < unchainedWays.length; i++) {
+    const root = ucFind(i);
+    if (!ucGroups.has(root)) ucGroups.set(root, []);
+    ucGroups.get(root).push(i);
+  }
+
+  function wayLength(g) {
+    let len = 0;
+    for (let i = 1; i < g.length; i++) {
+      const dlat = (g[i].lat - g[i - 1].lat) * 111320;
+      const dlng = (g[i].lon - g[i - 1].lon) * 111320 * Math.cos(g[i].lat * Math.PI / 180);
+      len += Math.sqrt(dlat * dlat + dlng * dlng);
+    }
+    return len;
+  }
+
+  const unnamedChains = [];
+  for (const [, indices] of ucGroups) {
+    let totalLen = 0;
+    for (const i of indices) totalLen += wayLength(unchainedWays[i].geometry);
+    if (totalLen < MIN_CHAIN_LENGTH_M) continue;
+
+    const longest = indices.reduce((a, b) =>
+      wayLength(unchainedWays[a].geometry) > wayLength(unchainedWays[b].geometry) ? a : b
+    );
+    const mid = unchainedWays[longest].geometry[Math.floor(unchainedWays[longest].geometry.length / 2)];
+
+    // Name from containing park via is_in
+    let chainName = null;
+    try {
+      const isInQ = `[out:json][timeout:15];
+is_in(${mid.lat},${mid.lon})->.a;
+area.a["leisure"~"park|nature_reserve"]["name"]->.b;
+area.a["landuse"~"recreation_ground"]["name"]->.c;
+(.b; .c;);
+out tags;`;
+      const isInData = await qo(isInQ);
+      if (isInData.elements.length > 0) {
+        chainName = isInData.elements[0].tags?.name;
+      }
+    } catch {}
+
+    // Fallback: nearby park within 500m
+    if (!chainName) {
+      try {
+        const nearParkQ = `[out:json][timeout:15];
+(way["leisure"="park"]["name"](around:500,${mid.lat},${mid.lon});
+relation["leisure"="park"]["name"](around:500,${mid.lat},${mid.lon}););
+out tags;`;
+        const nearParkData = await qo(nearParkQ);
+        if (nearParkData.elements.length > 0) {
+          chainName = nearParkData.elements[0].tags?.name;
+        }
+      } catch {}
+    }
+
+    // Fallback: nearby named road
+    if (!chainName) {
+      try {
+        const roadQ = `[out:json][timeout:15];
+way["highway"~"^(primary|secondary|tertiary|residential)$"]["name"](around:100,${mid.lat},${mid.lon});
+out tags;`;
+        const roadData = await qo(roadQ);
+        if (roadData.elements.length > 0) {
+          chainName = roadData.elements[0].tags?.name;
+        }
+      } catch {}
+    }
+
+    if (!chainName) continue;
+
+    const _ways = indices.map(i => unchainedWays[i].geometry);
+    const anchors = [];
+    for (const i of indices) {
+      const g = unchainedWays[i].geometry;
+      anchors.push([g[0].lon, g[0].lat]);
+      anchors.push([g[g.length - 1].lon, g[g.length - 1].lat]);
+    }
+    const tags = mergeWayTags(indices.map(i => unchainedWays[i]));
+
+    osmNamedWays.push({
+      name: chainName,
+      wayCount: indices.length,
+      tags,
+      anchors,
+      osmNames: [chainName],
+      _ways,
+    });
+    unnamedChains.push(chainName);
+  }
+  if (unnamedChains.length > 0) {
+    console.log(`  Found ${unnamedChains.length} unnamed chains >= ${MIN_CHAIN_LENGTH_M / 1000}km`);
+  }
+
   // Step 3: Build entries from scratch
   console.log('Building entries from scratch...');
   const entries = buildEntries(osmRelations, osmNamedWays, parallelLanes, manualEntries);
