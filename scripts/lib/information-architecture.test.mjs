@@ -550,10 +550,13 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       expect(entry, 'Should have a Moffat Park path').toBeDefined();
     });
 
-    it('way/160958126 should be part of the Experimental Farm, not standalone', () => {
-      // Root cause: is_in returns nothing. No parks within 500m (the
-      // Experimental Farm is not tagged leisure=park in OSM). Falls
-      // through to road naming: "National Capital Commission Driveway".
+    it('way/160958126 should be part of Experimental Farm Pathway, not standalone', () => {
+      // Root cause: Experimental Farm Pathway already exists in
+      // bikepaths.yml (relation 7206821, member of Capital Pathway).
+      // Way/160958126 is an unnamed path that should be absorbed into
+      // it during clustering — but isn't connecting. The path should
+      // share nodes or have endpoints within threshold of the relation's
+      // ways. This is a clustering connectivity issue.
       const entry = entries.find(e =>
         e.name === 'National Capital Commission Driveway' && !e.type
       );
@@ -561,9 +564,10 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
     });
 
     it('way/672322811 is named Parc de la Blanche, not Parc du Drakkar', () => {
-      // Root cause: is_in returns nothing. Nearby 500m returns only
-      // "Parc du Drakkar". "Parc de la Blanche" either isn't within
-      // 500m or isn't tagged leisure=park in OSM.
+      // Root cause: Parc de la Blanche (way/671955999) is tagged
+      // natural=wood, NOT leisure=park. The nearby park query only
+      // searches leisure=park, so it finds Parc du Drakkar instead.
+      // Fix: broaden the nearby query to include natural=wood areas.
       const entry = entries.find(e =>
         e.name?.toLowerCase().includes('blanche') && !e.type
       );
