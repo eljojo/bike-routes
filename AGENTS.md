@@ -92,6 +92,7 @@ The auto-grouping in `scripts/lib/cluster-entries.mjs` merges entries whose OSM 
 `ottawa/bike-paths/*.md` files override and extend what the algorithm produces:
 - `name` in frontmatter overrides the auto-generated group name
 - `includes` lists bikepaths.yml slugs that should be shown on this page — use this to merge things the algorithm split (e.g. disconnected trail clusters that are conceptually one system)
+- `member_of` assigns an entry to a network the algorithm didn't discover
 - The algorithm does 80% of the work. Humans do the 20% via markdown.
 - `includes` assignments must be verified geographically by querying Overpass for real way coordinates — never by name-matching, never by using anchors from bikepaths.yml
 
