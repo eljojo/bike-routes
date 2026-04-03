@@ -741,12 +741,6 @@ bike_paths:
     ref: '3'
     cycle_network: CA:ON:Ottawa
     member_of: ottawa-bikeways
-  - name: Crosstown Bikeway 2
-    osm_relations:
-      - 10986223
-    network: lcn
-    ref: '2'
-    cycle_network: CA:ON:Ottawa
   - name: Crosstown Bikeway 5
     osm_relations:
       - 10986755

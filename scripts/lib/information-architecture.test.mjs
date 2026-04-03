@@ -64,6 +64,17 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       expect(cp?.members?.length).toBeGreaterThanOrEqual(10);
     });
 
+    it('Crosstown Bikeway 2 has no standalone duplicate (same-named route absorbed into network)', () => {
+      // The CB2 superroute (10986224) absorbed CB2 route (10986223) into
+      // its osm_relations, but the standalone route entry still exists.
+      // There should be exactly one CB2: the network.
+      const cb2 = entries.filter(e => e.name === 'Crosstown Bikeway 2');
+      const cb2Network = cb2.filter(e => e.type === 'network');
+      const cb2Standalone = cb2.filter(e => !e.type);
+      expect(cb2Network.length, 'Should have 1 CB2 network').toBe(1);
+      expect(cb2Standalone.length, 'Should have 0 standalone CB2 entries').toBe(0);
+    });
+
     it('Trillium Pathway is a member of Capital Pathway (markdown member_of override)', () => {
       const tp = entries.find(e => e.name === 'Trillium Pathway' && !e.type);
       expect(tp).toBeDefined();

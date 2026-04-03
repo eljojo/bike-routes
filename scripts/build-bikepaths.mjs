@@ -1635,7 +1635,35 @@ out geom tags;`;
   const mtbCount = grouped.filter(e => e.mtb).length;
   if (mtbCount > 0) console.log(`  Labelled ${mtbCount} entries as MTB`);
 
-  // Step 9: Apply markdown member_of overrides
+  // Step 9a: Remove standalone entries that duplicate a same-named network.
+  // e.g. "Crosstown Bikeway 2" route (relation 10986223) is redundant with
+  // the "Crosstown Bikeway 2" network (which absorbed 10986223 into its osm_relations).
+  {
+    const networksByName = new Map();
+    for (const e of grouped) {
+      if (e.type !== 'network') continue;
+      networksByName.set(e.name.toLowerCase(), e);
+    }
+    const before = grouped.length;
+    for (let i = grouped.length - 1; i >= 0; i--) {
+      const e = grouped[i];
+      if (e.type === 'network') continue;
+      if (e.member_of) continue;
+      if (!e.osm_relations?.length) continue;
+      const net = networksByName.get(e.name.toLowerCase());
+      if (!net) continue;
+      const netRelIds = new Set(net.osm_relations ?? []);
+      if (e.osm_relations.every(id => netRelIds.has(id))) {
+        grouped.splice(i, 1);
+      }
+    }
+    if (grouped.length < before) {
+      console.log(`  Removed ${before - grouped.length} same-named entries absorbed into networks`);
+      slugMap = computeSlugs(grouped);
+    }
+  }
+
+  // Step 9b: Apply markdown member_of overrides
   if (markdownOverrides.size > 0) {
     for (const [mdSlug, override] of markdownOverrides) {
       if (!override.member_of) continue;
