@@ -747,9 +747,20 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
 
   const superNetworkMeta = [];
 
-  for (const network of networks) {
-    if (network._promoted) continue; // already handled as a promoted sub-superroute
+  // Sort networks least-specific-first so the most specific (local)
+  // network processes last and wins super_network assignment.
+  // ncn (national) < rcn (regional) < lcn (local) < unknown.
+  // Capital Pathway (rcn) should beat Trans Canada Trail (ncn).
+  const NET_PRIORITY = { ncn: 0, rcn: 1, lcn: 2 };
+  const sortedNetworks = [...networks]
+    .filter(n => !n._promoted)
+    .sort((a, b) => {
+      const pa = NET_PRIORITY[a.network] ?? 3;
+      const pb = NET_PRIORITY[b.network] ?? 3;
+      return pa - pb;
+    });
 
+  for (const network of sortedNetworks) {
     const name = network.name;
     const networkSlug = slugify(name);
 
@@ -780,8 +791,9 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
             }
           }
         }
-        // Tag the sub-network with super_network
-        if (!member.super_network) member.super_network = networkSlug;
+        // Tag the sub-network with super_network (most specific wins —
+        // networks are sorted largest-first so smaller overwrites larger)
+        member.super_network = networkSlug;
         continue;
       }
 
@@ -793,17 +805,16 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
           e.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
             .toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-') === member.member_of
         );
-        if (memberNetwork && !memberNetwork.super_network) {
+        if (memberNetwork) {
           memberNetwork.super_network = networkSlug;
         }
-        // Tag the entry itself for reference but don't move it
-        if (!member.super_network) member.super_network = networkSlug;
+        member.super_network = networkSlug;
         continue;
       }
 
       // Don't reassign entries that were already in a network before this step
       if (parkMembers.has(member)) {
-        if (!member.super_network) member.super_network = networkSlug;
+        member.super_network = networkSlug;
         continue;
       }
       const memberSlug = slugMap.get(member);
@@ -1438,6 +1449,25 @@ out geom tags;`;
             }
           }
         }
+        // Absorb same-named entries that aren't relation members.
+        // These are named ways (from Step 2a) that share the network name
+        // but aren't in the OSM relation — e.g. standalone "Ottawa River
+        // Pathway" fragments that should be in the ORP network.
+        const netNameLower = net.name.toLowerCase();
+        const netSlug = slugify(net.name);
+        for (const entry of grouped) {
+          if (entry.type === 'network') continue;
+          if (entry.member_of) continue;
+          if (entry.name?.toLowerCase() !== netNameLower) continue;
+          const entrySlug = slugMap.get(entry);
+          // Skip if slug matches network slug (would be self-reference)
+          if (entrySlug === netSlug) continue;
+          if (entrySlug && !memberSlugs.includes(entrySlug)) {
+            memberSlugs.push(entrySlug);
+            entry.member_of = netSlug;
+          }
+        }
+
         if (memberSlugs.length >= 2) {
           const networkEntry = {
             name: net.name,

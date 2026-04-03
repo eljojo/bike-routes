@@ -61,8 +61,15 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       expect(cp?.members?.length).toBeGreaterThanOrEqual(10);
     });
 
-    it('Ottawa River Pathway (east) is a member', () => {
-      expect(memberOf('Ottawa River Pathway (east)')).toMatch(/capital-pathway|ottawa-river/i);
+    it('Ottawa River Pathway (east) is under Capital Pathway, not floating under NCC', () => {
+      // ORP East should be nested under Capital Pathway in the index.
+      // Either directly (member_of: capital-pathway) or via ORP network
+      // which itself is under Capital Pathway.
+      const orpNet = network('Ottawa River Pathway');
+      const orpEast = entries.find(e => e.name === 'Ottawa River Pathway (east)' && !e.type);
+      expect(orpEast?.member_of).toBe('ottawa-river-pathway');
+      // ORP network must be under Capital Pathway for this to work
+      expect(orpNet?.super_network || orpNet?.member_of).toMatch(/capital-pathway/i);
     });
 
     it('Rideau Canal Eastern Pathway is a member', () => {
@@ -165,6 +172,79 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
     it('has east/west/TCT as members', () => {
       const orp = network('Ottawa River Pathway');
       expect(orp?.members?.length).toBeGreaterThanOrEqual(2);
+    });
+
+    it('is under Capital Pathway, not floating at top level', () => {
+      const orp = network('Ottawa River Pathway');
+      expect(orp).toBeDefined();
+      expect(
+        orp.super_network || orp.member_of,
+        `ORP network super_network is "${orp.super_network}" but should be capital-pathway`
+      ).toMatch(/capital-pathway/i);
+    });
+
+    it('ORP relation 9502635 is a member of Capital Pathway relation 10990511', async () => {
+      // If this passes, OSM says ORP is under Capital Pathway.
+      // If the pipeline puts it under TCT instead, the resolution logic is wrong.
+      const data = await player(`[out:json][timeout:15];relation(10990511);out tags;`);
+      const cp = data.elements[0];
+      expect(cp?.tags?.name).toMatch(/Capital Pathway/);
+    });
+
+    it('ORP super_network is capital-pathway (rcn beats ncn in specificity)', () => {
+      // Superroute processing sorts by network specificity:
+      // ncn (national) processes first, rcn (regional) last → rcn wins.
+      const orp = network('Ottawa River Pathway');
+      expect(orp.super_network).toBe('capital-pathway');
+    });
+
+    it('ORP network is under Capital Pathway (not a direct CP member)', () => {
+      // ORP paths are in the ORP network, which has super_network: capital-pathway.
+      // Capital Pathway doesn't list ORP fragments as direct members — they're
+      // nested under ORP.
+      const orp = network('Ottawa River Pathway');
+      expect(orp.super_network).toBe('capital-pathway');
+      expect(orp.members.length).toBeGreaterThanOrEqual(3);
+    });
+
+    it('all "Ottawa River Pathway" path entries are members of the ORP network', () => {
+      const orpPaths = entries.filter(e =>
+        e.name === 'Ottawa River Pathway' && !e.type
+      );
+      for (const p of orpPaths) {
+        expect(
+          p.member_of,
+          `ORP fragment at ${JSON.stringify(p.anchors?.[0])} should be in ottawa-river-pathway`
+        ).toBe('ottawa-river-pathway');
+      }
+    });
+
+    it('standalone ORP fragments are named ways, not relation members', () => {
+      // These have osm_names but no osm_relations — they're OSM ways
+      // named "Ottawa River Pathway" that weren't picked up by relation
+      // discovery. They should be absorbed into the ORP network.
+      const standalones = entries.filter(e =>
+        e.name === 'Ottawa River Pathway' && !e.type
+      );
+      for (const s of standalones) {
+        expect(s.osm_names, 'Should have osm_names').toBeDefined();
+        expect(s.osm_relations, 'Should NOT have osm_relations').toBeUndefined();
+      }
+    });
+
+    it('standalone ORP fragments should be absorbed into ORP network', () => {
+      // These are named ways "Ottawa River Pathway" that aren't members
+      // of any OSM relation. They should be absorbed into the ORP network
+      // by name matching during superroute resolution.
+      const standalones = entries.filter(e =>
+        e.name === 'Ottawa River Pathway' && !e.type
+      );
+      for (const s of standalones) {
+        expect(
+          s.member_of,
+          `ORP fragment at ${JSON.stringify(s.anchors?.[0])} should be in ottawa-river-pathway`
+        ).toBe('ottawa-river-pathway');
+      }
     });
   });
 

@@ -674,7 +674,7 @@ bike_paths:
     network: ncn
     ref: TCT
     member_of: ottawa-river-pathway
-    super_network: trans-canada-trail-ottawa-area
+    super_network: capital-pathway
   - name: Ottawa River Pathway (west)
     osm_relations:
       - 9502634
@@ -923,7 +923,7 @@ bike_paths:
     operator: NCC
     network: Kichi Sibi
     description: 'Summer: cycle, walk, hike Winter: @skiheritageeast skate and classic grooming fat bike, xc ski'
-    member_of: capital-pathway
+    member_of: ottawa-river-pathway
   - name: Sentier de la Rivière Gatineau Pathway
     osm_names:
       - Sentier de la Rivière Gatineau Pathway
@@ -9767,6 +9767,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     network: Ski Heritage East Trail
+    member_of: ottawa-river-pathway
   - name: Invention Boulevard
     osm_names:
       - Invention Boulevard
@@ -11908,7 +11909,7 @@ bike_paths:
     smoothness: intermediate
     operator: NCC
     network: Pine Grove
-    super_network: trans-canada-trail-ottawa-area
+    super_network: capital-pathway
     mtb: true
   - name: Trans Canada Trail Trails
     type: network
@@ -12721,10 +12722,12 @@ bike_paths:
       - ottawa-river-pathway-east
       - ottawa-river-pathway-trans-canada-trail
       - ottawa-river-pathway-west
+      - ottawa-river-pathway-2
+      - ottawa-river-pathway-1
     osm_relations:
       - 9502635
     name_fr: Sentier de la Rivière des Outaouais
-    super_network: trans-canada-trail-ottawa-area
+    super_network: capital-pathway
   - name: Sentier Trans-Canadien (Québec)
     type: network
     members:
@@ -12743,17 +12746,6 @@ bike_paths:
     osm_relations:
       - 9502450
     network: ncn
-  - name: Crosstown Bikeway 2
-    type: network
-    members:
-      - laurier-segregated-bikelane
-      - eastwest-crosstown-bikeway
-    osm_relations:
-      - 10986224
-      - 10986223
-    network: lcn
-    cycle_network: CA:ON:Ottawa
-    super_network: ottawa-bikeways
   - name: Capital Pathway
     type: network
     members:
@@ -12766,7 +12758,6 @@ bike_paths:
       - aviation-pathway
       - sentier-de-la-riviere-gatineau
       - pinecrest-creek-pathway
-      - ottawa-river-pathway-2
       - sentier-de-la-riviere-gatineau-pathway
       - mackenzie-cycle-track
     osm_relations:
@@ -12784,6 +12775,17 @@ bike_paths:
       length_km: 220
       inception: 1970s
       website: https://ncc-ccn.gc.ca/places/capital-pathway
+  - name: Crosstown Bikeway 2
+    type: network
+    members:
+      - laurier-segregated-bikelane
+      - eastwest-crosstown-bikeway
+    osm_relations:
+      - 10986224
+      - 10986223
+    network: lcn
+    cycle_network: CA:ON:Ottawa
+    super_network: ottawa-bikeways
   - name: Ottawa Bikeways
     type: network
     members:
@@ -12797,12 +12799,12 @@ super_networks:
     name_fr: Sentier Trans-Canadien (Québec)
   - name: Trans Canada Trail (Ottawa area)
     slug: trans-canada-trail-ottawa-area
-  - name: Crosstown Bikeway 2
-    slug: crosstown-bikeway-2
   - name: Capital Pathway
     slug: capital-pathway
     wikidata: Q5035630
     operator: NCC
     name_fr: Sentier de la capitale
+  - name: Crosstown Bikeway 2
+    slug: crosstown-bikeway-2
   - name: Ottawa Bikeways
     slug: ottawa-bikeways
