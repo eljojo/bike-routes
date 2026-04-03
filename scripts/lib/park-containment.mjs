@@ -48,7 +48,11 @@ export function classifyByPark(entry, parks) {
   const points = sampleTrailPoints(entry._ways);
   if (points.length === 0) return null;
 
-  // Count points per park, including "no park"
+  // Count points per park, including "no park".
+  // When parks overlap (Bruce Pit is inside NCC Greenbelt), count the
+  // point for the LARGEST containing park. A 21km trail passing through
+  // a tiny dog park belongs to the Greenbelt, not to the dog park.
+  // Parks must be sorted largest-first before calling this function.
   let outsideCount = 0;
   const counts = new Map();
   for (const point of points) {
@@ -57,7 +61,7 @@ export function classifyByPark(entry, parks) {
       if (pointInPolygon(point, park.polygon)) {
         counts.set(park.name, (counts.get(park.name) || 0) + 1);
         inAnyPark = true;
-        break; // first matching park wins (avoid double-counting overlapping polygons)
+        break; // largest matching park wins (parks are sorted largest-first)
       }
     }
     if (!inAnyPark) outsideCount++;
@@ -111,9 +115,23 @@ out geom;`;
     }
 
     if (polygon) {
-      parks.push({ name, polygon });
+      // Compute polygon extent (larger parks have larger extent)
+      let minLat = Infinity, maxLat = -Infinity, minLon = Infinity, maxLon = -Infinity;
+      for (const pt of polygon) {
+        if (pt.lat < minLat) minLat = pt.lat;
+        if (pt.lat > maxLat) maxLat = pt.lat;
+        if (pt.lon < minLon) minLon = pt.lon;
+        if (pt.lon > maxLon) maxLon = pt.lon;
+      }
+      const extent = (maxLat - minLat) * (maxLon - minLon);
+      parks.push({ name, polygon, extent });
     }
   }
+
+  // Sort largest-first so classifyByPark prefers the biggest containing
+  // park. A trail passing through a tiny dog park inside a large
+  // conservation area belongs to the conservation area.
+  parks.sort((a, b) => b.extent - a.extent);
 
   console.log(`  Fetched ${parks.length} park polygons for containment checks`);
   return parks;

@@ -473,6 +473,17 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       }
     });
 
+    it('Greenbelt Pathway West is in NCC Greenbelt, not Bruce Pit', () => {
+      // GPW is a 21km trail through the Greenbelt. It passes through
+      // Bruce Pit (a small dog park) but belongs to the Greenbelt system.
+      // Park containment classified it as Bruce Pit because GPW's geometry
+      // intersects Bruce Pit's polygon. But the trail is much larger than
+      // the park — it should be in the NCC Greenbelt network.
+      const gpw = entries.find(e => e.name === 'Greenbelt Pathway West' && !e.type);
+      expect(gpw).toBeDefined();
+      expect(gpw.member_of, 'GPW should be in NCC Greenbelt, not Bruce Pit').toBe('ncc-greenbelt');
+    });
+
     it('Greenbelt Pathway West (Barrhaven) is in the Greenbelt, not Capital Pathway', () => {
       // Barrhaven is a relation-only entry. Without anchor enrichment from
       // relation geometry, park containment can't classify it and the

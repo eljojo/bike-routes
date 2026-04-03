@@ -456,7 +456,7 @@ bike_paths:
     osm_names:
       - Greenbelt Pathway West
     tracktype: grade2
-    member_of: bruce-pit
+    member_of: ncc-greenbelt
   - name: Rideau Trail - Ottawa Section
     osm_relations:
       - 7360383
@@ -8846,7 +8846,7 @@ bike_paths:
     width: '1'
     lit: 'no'
     highway: path
-    member_of: bruce-pit
+    member_of: ncc-greenbelt
     mtb: true
   - name: Trail 42
     osm_names:
@@ -11798,63 +11798,11 @@ bike_paths:
       - - -75.5926015
         - 45.4995486
     surface: asphalt
-  - name: Bruce Pit
-    type: network
-    _parkName: Bruce Pit
-    members:
-      - greenbelt-pathway-west
-      - ncc29
-    anchors:
-      - - -75.8759034
-        - 45.3196164
-      - - -75.7944581
-        - 45.3621251
-    osm_names:
-      - Greenbelt Pathway West
-      - NCC29
-    osm_relations:
-      - 7248705
-    surface: fine_gravel
-    highway: cycleway
-    lit: 'no'
-    width: '1'
-    smoothness: good
-    operator: NCC
-    network: rcn
-    super_network: capital-pathway
-    mtb: true
-  - name: Trans Canada Trail Trails
-    type: network
-    _parkName: null
-    members:
-      - trans-canada-trail
-      - trans-canada-trail-ottawa
-      - the-beast-trail
-      - jinx-link
-      - forest-walk
-      - oh-deer
-    anchors:
-      - - -76.1086887
-        - 45.147819
-      - - -75.8451241
-        - 45.3174462
-    osm_names:
-      - Trans Canada Trail
-      - Trans-Canada Trail Ottawa
-      - The Beast Trail
-      - Jinx Link
-      - forest walk
-      - Oh-deer!
-    surface: ground
-    highway: path
-    lit: 'no'
-    width: '3'
-    smoothness: good
-    mtb: true
   - name: NCC Greenbelt
     type: network
     _parkName: NCC Greenbelt
     members:
+      - greenbelt-pathway-west
       - trail-27-2
       - trail-23
       - trail-24-1
@@ -11873,6 +11821,7 @@ bike_paths:
       - trail-12b
       - trail-8
       - trail-20-1
+      - ncc29
       - kanata-nordic-trail-11
       - kanata-nordic-snowshoe-trail
       - trail-12-training-circle
@@ -11917,11 +11866,12 @@ bike_paths:
       - bearbrook-road
       - greenbank-road-2
     anchors:
-      - - -75.8742147
+      - - -75.8759034
         - 45.2781764
       - - -75.5436768
         - 45.4697494
     osm_names:
+      - Greenbelt Pathway West
       - Trail 27
       - Trail 23
       - Trail 24
@@ -11940,6 +11890,7 @@ bike_paths:
       - Trail 12b
       - Trail 8
       - Trail 20
+      - NCC29
       - Kanata Nordic Trail 11
       - Kanata Nordic Snowshoe Trail
       - Trail 12 Training Circle
@@ -11963,14 +11914,44 @@ bike_paths:
       - Trail 61
       - Trail 63
     osm_relations:
+      - 7248705
       - 7369775
     surface: ground
     highway: path
+    lit: 'no'
     width: '1'
     smoothness: intermediate
-    lit: 'no'
+    operator: NCC
     network: Pine Grove
     super_network: capital-pathway
+    mtb: true
+  - name: Trans Canada Trail Trails
+    type: network
+    _parkName: null
+    members:
+      - trans-canada-trail
+      - trans-canada-trail-ottawa
+      - the-beast-trail
+      - jinx-link
+      - forest-walk
+      - oh-deer
+    anchors:
+      - - -76.1086887
+        - 45.147819
+      - - -75.8451241
+        - 45.3174462
+    osm_names:
+      - Trans Canada Trail
+      - Trans-Canada Trail Ottawa
+      - The Beast Trail
+      - Jinx Link
+      - forest walk
+      - Oh-deer!
+    surface: ground
+    highway: path
+    lit: 'no'
+    width: '3'
+    smoothness: good
     mtb: true
   - name: Chief William Commanda Bridge Network
     type: network
