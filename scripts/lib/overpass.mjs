@@ -23,21 +23,54 @@ function cacheKey(query) {
   return hash.slice(0, 40);
 }
 
+function normQ(q) {
+  return q.replace(/\s+/g, ' ').trim();
+}
+
+/**
+ * Hash-based cassette format. Each query is stored by its content hash.
+ * Adding a query never invalidates existing entries. Missing queries
+ * are fetched from the API automatically when RECORD_OVERPASS is set,
+ * or throw an error in replay-only mode so tests fail loudly.
+ */
+function loadCassette(name) {
+  const cassettePath = join(CACHE_DIR, `cassette-${name}.json`);
+  if (!existsSync(cassettePath)) return {};
+  const raw = JSON.parse(readFileSync(cassettePath, 'utf8'));
+  // Migrate: old format was [{query, data}], new format is {hash: {query, data}}
+  if (Array.isArray(raw)) {
+    const migrated = {};
+    for (const entry of raw) {
+      const key = cacheKey(normQ(entry.query));
+      migrated[key] = { query: entry.query, data: entry.data };
+    }
+    return migrated;
+  }
+  return raw;
+}
+
+function saveCassette(name, entries) {
+  const cassettePath = join(CACHE_DIR, `cassette-${name}.json`);
+  mkdirSync(CACHE_DIR, { recursive: true });
+  writeFileSync(cassettePath, JSON.stringify(entries));
+}
+
 /**
  * Create a recording wrapper around queryOverpass.
  * Saves all queries/responses to a cassette file in .cache/ (gitignored).
+ * Uses content-hash keys — adding new queries never invalidates existing ones.
  *
  * Record: RECORD_OVERPASS=ottawa node scripts/build-bikepaths.mjs --city ottawa
- * Replay: createPlayer('ottawa') in tests — skips if cassette not found.
+ * Replay: createPlayer('ottawa') in tests — hard fails if query not found.
  */
 export function createRecorder(name) {
-  const cassettePath = join(CACHE_DIR, `cassette-${name}.json`);
-  mkdirSync(CACHE_DIR, { recursive: true });
-  const calls = [];
+  const entries = loadCassette(name);
   const recorder = async (query) => {
+    const key = cacheKey(normQ(query));
+    if (entries[key]) return entries[key].data;
     const data = await queryOverpass(query);
-    calls.push({ query, data });
-    writeFileSync(cassettePath, JSON.stringify(calls));
+    entries[key] = { query, data };
+    saveCassette(name, entries);
     return data;
   };
   return recorder;
@@ -46,20 +79,20 @@ export function createRecorder(name) {
 /**
  * Create a replay function from a recorded cassette in .cache/.
  * Returns null if cassette doesn't exist (test should skip).
+ * Throws on cache miss — never silently returns empty data.
  */
 export function createPlayer(name) {
   const cassettePath = join(CACHE_DIR, `cassette-${name}.json`);
   if (!existsSync(cassettePath)) return null;
-  const calls = JSON.parse(readFileSync(cassettePath, 'utf8'));
-  const byQuery = new Map(calls.map(c => [c.query, c.data]));
+  const entries = loadCassette(name);
+
   return async (query) => {
-    const data = byQuery.get(query);
-    if (data) return data;
-    const normalized = query.replace(/\s+/g, ' ').trim();
-    for (const [q, d] of byQuery) {
-      if (q.replace(/\s+/g, ' ').trim() === normalized) return d;
-    }
-    return { elements: [] };
+    const key = cacheKey(normQ(query));
+    if (entries[key]) return entries[key].data;
+    throw new Error(
+      `Cassette miss for query (hash ${key}). Re-record with: RECORD_OVERPASS=${name} node scripts/build-bikepaths.mjs --city ${name}\n` +
+      `Query: ${query.slice(0, 120)}...`
+    );
   };
 }
 

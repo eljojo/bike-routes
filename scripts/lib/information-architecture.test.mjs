@@ -593,6 +593,22 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       expect(entry).toBeDefined();
     });
 
+    it('way/509010455: Ben Franklin Park East is the closest park by real geometry', async () => {
+      // Same function the pipeline uses for naming — rankParksByGeomDistance
+      const { rankParksByGeomDistance } = await import('./nearest-park.mjs');
+
+      const pathData = await player(`[out:json][timeout:15];(way(509010455););out geom;`);
+      const pathGeom = pathData.elements[0].geometry;
+      expect(pathGeom.length).toBeGreaterThan(0);
+
+      const parkData = await player(`[out:json][timeout:15];way(509010455)->.chain;(way["leisure"="park"]["name"](around.chain:500);relation["leisure"="park"]["name"](around.chain:500);way["natural"="wood"]["name"](around.chain:500);relation["natural"="wood"]["name"](around.chain:500););out geom tags;`);
+      expect(parkData.elements.length).toBeGreaterThan(0);
+
+      const ranked = rankParksByGeomDistance(pathGeom, parkData.elements);
+      expect(ranked[0].name).toBe('Ben Franklin Park East');
+      expect(ranked[0].dist).toBeLessThan(50);
+    });
+
     it('way/509010455 is correctly named Ben Franklin Park East', () => {
       const entry = entries.find(e =>
         e.name?.includes('Ben Franklin') && !e.type

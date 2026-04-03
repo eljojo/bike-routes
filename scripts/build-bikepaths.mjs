@@ -51,6 +51,7 @@ import { autoGroupNearbyPaths, computeSlugs } from './lib/auto-group.mjs';
 import { discoverNetworks, discoverRouteSystemNetworks } from './lib/discover-networks.mjs';
 import { enrichWithWikidata } from './lib/wikidata.mjs';
 import { detectMtb } from './lib/detect-mtb.mjs';
+import { rankParksByGeomDistance } from './lib/nearest-park.mjs';
 
 // ---------------------------------------------------------------------------
 // CLI (only when run directly, not when imported)
@@ -1259,45 +1260,63 @@ out geom tags;`;
     for (const i of indices) totalLen += wayLength(unchainedWays[i].geometry);
     if (totalLen < MIN_CHAIN_LENGTH_M) continue;
 
-    const longest = indices.reduce((a, b) =>
-      wayLength(unchainedWays[a].geometry) > wayLength(unchainedWays[b].geometry) ? a : b
-    );
-    const mid = unchainedWays[longest].geometry[Math.floor(unchainedWays[longest].geometry.length / 2)];
+    // All naming queries use the chain's real geometry, never a midpoint.
+    const chainWayIds = indices.map(i => unchainedWays[i].id).join(',');
+    const chainPts = indices.flatMap(i => unchainedWays[i].geometry);
 
-    // Name from containing park via is_in
+    // Name from containing park via is_in (sample multiple points along chain)
     let chainName = null;
     try {
-      const isInQ = `[out:json][timeout:15];
-is_in(${mid.lat},${mid.lon})->.a;
+      // Sample start, middle, and end of each way in the chain
+      const samplePts = [];
+      for (const i of indices) {
+        const g = unchainedWays[i].geometry;
+        samplePts.push(g[0], g[Math.floor(g.length / 2)], g[g.length - 1]);
+      }
+      for (const pt of samplePts) {
+        if (chainName) break;
+        const isInQ = `[out:json][timeout:15];
+is_in(${pt.lat},${pt.lon})->.a;
 area.a["leisure"~"park|nature_reserve"]["name"]->.b;
 area.a["landuse"~"recreation_ground"]["name"]->.c;
-(.b; .c;);
+area.a["natural"="wood"]["name"]->.d;
+(.b; .c; .d;);
 out tags;`;
-      const isInData = await qo(isInQ);
-      if (isInData.elements.length > 0) {
-        chainName = isInData.elements[0].tags?.name;
+        try {
+          const isInData = await qo(isInQ);
+          if (isInData.elements.length > 0) {
+            chainName = isInData.elements[0].tags?.name;
+          }
+        } catch {}
       }
     } catch {}
 
-    // Fallback: nearby park within 500m
+    // Fallback: nearby park or wooded area within 500m of the chain's
+    // real geometry. Uses Overpass around with way references — searches
+    // within 500m of the actual way shapes, not a single point.
     if (!chainName) {
       try {
         const nearParkQ = `[out:json][timeout:15];
-(way["leisure"="park"]["name"](around:500,${mid.lat},${mid.lon});
-relation["leisure"="park"]["name"](around:500,${mid.lat},${mid.lon}););
-out tags;`;
+way(id:${chainWayIds})->.chain;
+(way["leisure"="park"]["name"](around.chain:500);
+relation["leisure"="park"]["name"](around.chain:500);
+way["natural"="wood"]["name"](around.chain:500);
+relation["natural"="wood"]["name"](around.chain:500););
+out geom tags;`;
         const nearParkData = await qo(nearParkQ);
         if (nearParkData.elements.length > 0) {
-          chainName = nearParkData.elements[0].tags?.name;
+          const ranked = rankParksByGeomDistance(chainPts, nearParkData.elements);
+          if (ranked.length > 0) chainName = ranked[0].name;
         }
       } catch {}
     }
 
-    // Fallback: nearby named road
+    // Fallback: nearby named road (search along chain geometry, not a point)
     if (!chainName) {
       try {
         const roadQ = `[out:json][timeout:15];
-way["highway"~"^(primary|secondary|tertiary|residential)$"]["name"](around:100,${mid.lat},${mid.lon});
+way(id:${chainWayIds})->.chain;
+way["highway"~"^(primary|secondary|tertiary|residential)$"]["name"](around.chain:100);
 out tags;`;
         const roadData = await qo(roadQ);
         if (roadData.elements.length > 0) {
