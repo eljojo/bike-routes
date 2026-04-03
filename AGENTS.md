@@ -113,3 +113,23 @@ bikepaths.yml is regenerated from scratch on every build. No incremental merge �
 The Astro app references this repo via `CONTENT_DIR` env var (defaults to `../bike-routes`). The `CITY` env var selects which city folder to build (defaults to `ottawa`). The app uses custom content loaders to parse routes (GPX + media.yml), computes place-route proximity at build time, and generates static HTML. Changes to this repo trigger rebuilds via GitHub `repository_dispatch`.
 
 GPX files are tracked with Git LFS.
+
+---
+
+## Context
+
+This repo uses a two-tier context system mirroring `~/code/bike-app-astro`. The rules and conventions above are always active. The `_ctx/` files below contain detail for specific tasks — read the one-line description to decide if you need the full file.
+
+### Rules
+- [spatial-reasoning](_ctx/spatial-reasoning.md) — NEVER use midpoints, centers, anchors, or bboxes as proxy for real geometry
+
+### Patterns
+- [pipeline-overview](_ctx/pipeline-overview.md) — how build-bikepaths.mjs discovers, names, clusters, and networks cycling infrastructure
+- [naming-unnamed-chains](_ctx/naming-unnamed-chains.md) — how Step 2c names unnamed chains from nearby parks/roads
+- [markdown-overrides](_ctx/markdown-overrides.md) — how markdown frontmatter overrides pipeline-computed values
+
+### Guides
+- [context-system](_ctx/context-system.md) — how the _ctx/ system works, mirrors bike-app-astro
+
+### Cross-Repo Context
+- `~/code/bike-app-astro/_ctx/bike-paths.md` — how the Astro app consumes bikepaths.yml and markdown (overlay model, network pages, enrichment)
