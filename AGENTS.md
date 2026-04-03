@@ -8,6 +8,8 @@ This is the **data repository** for [Ottawa by Bike](https://ottawabybike.ca) �
 
 The vision is a "Wikipedia of bike routes" — community-driven, openly licensed, forkable.
 
+**Trust is binary.** The app serves real people planning real bike rides. A cyclist looking at "Beechcliffe Park Path" when they're standing on a path that obviously parallels Greenbank Road thinks the app is broken. Not "slightly wrong" — broken. One wrong name and the user questions every other name. `bikepaths.yml` is the deliverable. The code, the tests, the pipeline — all exist to produce correct data. If you changed code but didn't regenerate and commit the data, the work isn't done.
+
 ## Repository Structure
 
 ```
