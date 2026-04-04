@@ -1758,6 +1758,11 @@ async function main() {
     }
     console.log(`\nTotal: ${entries.length} entries (${networkEntries.length} networks, ${memberEntries.length} members, ${superNetworks.length} super-networks)`);
   } else {
+    // Store slugs as first-class data — eliminates runtime slug derivation
+    for (const entry of entries) {
+      const slug = slugMap.get(entry);
+      if (slug) entry.slug = slug;
+    }
     for (const entry of entries) {
       delete entry._ways;
       delete entry._member_relations;
