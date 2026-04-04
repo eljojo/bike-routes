@@ -6,6 +6,27 @@
   height: 1599
   cover: true
   handle: cover
+- type: photo
+  key: demo-photo-geo-1
+  caption: Puente sobre el río
+  width: 1200
+  height: 800
+  lat: -36.6190
+  lng: -72.1120
+- type: photo
+  key: demo-photo-geo-2
+  caption: Sendero junto al río
+  width: 1200
+  height: 800
+  lat: -36.6200
+  lng: -72.1080
+- type: photo
+  key: demo-photo-geo-3
+  caption: Vista del valle
+  width: 1200
+  height: 800
+  lat: -36.6210
+  lng: -72.1050
 - type: video
   key: oxk14xfu79tt3kpki495dv7gujbw
   title: Paseo en bici
