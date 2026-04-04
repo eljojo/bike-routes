@@ -13,6 +13,6 @@ Bien que cette sortie puisse être assez exigeante, même pour les cyclistes exp
 ### Il y a plus!
 Le parc de la Gatineau est en soi une destination de classe mondiale, et le lac Pink est un excellent point de départ pour explorer ses nombreuses attractions.
 
-- Profitez du [**belvédère Champlain** et du **lac Meech**](/routes/8-gatineau-meech-champlain)
-- Faites du camping au [**lac Taylor**](/tours/4-taylor-lake-camping)
-- Passez une [**journée amusante à Wakefield**](/routes/13-wakefield)
+- Profitez du [**belvédère Champlain** et du **lac Meech**](/routes/gatineau-meech-champlain)
+- Faites du camping au [**lac Taylor**](https://eljojo.bike/tours/taylor-lake-camping/)
+- Passez une [**journée amusante à Wakefield**](/routes/wakefield)
