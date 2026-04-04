@@ -1042,6 +1042,14 @@ out tags;`;
   }));
   console.log(`  Found ${osmRelations.length} cycling relations`);
 
+  // Step 1b: Resolve relation base names for ghost entry removal in step 8c.
+  // Named ways sometimes duplicate relation entries (e.g. "Ottawa River Pathway"
+  // ways create ghost entries alongside "Ottawa River Pathway (east)" relations).
+  // We collect the base names here and remove the ghosts after the full pipeline.
+  const relationBaseNames = new Set(osmRelations.map(r =>
+    r.name.replace(/\s*\(.*?\)\s*$/, '').toLowerCase()
+  ));
+
   // Step 2: Discover named cycling ways (with junction trail expansion)
   console.log('Discovering named cycling ways from OSM...');
   const namedWayQueries = a.namedWayQueries(b);
@@ -1701,6 +1709,36 @@ out geom tags;`;
     if (meta._entryRef) {
       meta.slug = slugMap.get(meta._entryRef);
       delete meta._entryRef;
+    }
+  }
+
+  // Step 9b: Remove ghost entries — named-way entries that duplicate relation
+  // entries with parenthetical variants. E.g., named ways "Ottawa River Pathway"
+  // create entries alongside relation entries "Ottawa River Pathway (east)".
+  // The ghost entry has no osm_relations and its name matches a relation's base name.
+  // We remove it and clean up any network member references to it.
+  if (relationBaseNames.size > 0) {
+    const before = grouped.length;
+    for (let i = grouped.length - 1; i >= 0; i--) {
+      const e = grouped[i];
+      if (e.type === 'network') continue;
+      if (e.osm_relations?.length > 0) continue; // keep relation entries
+      const baseName = e.name?.toLowerCase();
+      if (!baseName || !relationBaseNames.has(baseName)) continue;
+      // This entry's name matches a relation's base name but has no relation IDs
+      // — it's a ghost from named-way discovery. Remove it.
+      const slug = e.slug;
+      grouped.splice(i, 1);
+      // Clean up network member references
+      for (const net of grouped) {
+        if (net.members && slug) {
+          const idx = net.members.indexOf(slug);
+          if (idx !== -1) net.members.splice(idx, 1);
+        }
+      }
+    }
+    if (grouped.length < before) {
+      console.log(`  Removed ${before - grouped.length} ghost entries (named-way duplicates of relations)`);
     }
   }
 

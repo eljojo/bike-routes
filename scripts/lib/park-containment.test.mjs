@@ -195,14 +195,40 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
   });
 
   // -----------------------------------------------------------------------
-  // Ottawa River Pathway: 79% of geometry is outside any park.
-  // It should NOT be adopted into the Greenbelt just because 9% passes through it.
+  // Ottawa River Pathway: named ways already in a relation must NOT create
+  // separate ghost entries. The pipeline discovers ways named "Ottawa River
+  // Pathway" that are members of the east/west/TCT relations AND ~11 orphan
+  // ways that share nodes with those relations. None of these should become
+  // standalone entries — the relation entries already cover them.
   // -----------------------------------------------------------------------
 
-  it('Ottawa River Pathway is NOT in the Greenbelt (mostly outside any park)', () => {
-    const orp = entries.find(e => e.name === 'Ottawa River Pathway' && !e.osm_relations);
-    if (orp) {
-      expect(orp.member_of || '(none)').not.toMatch(/greenbelt/i);
+  it('no ghost entries duplicate Ottawa River Pathway relations', () => {
+    // The network entry and the relation-based members (east/west/TCT) are correct.
+    // But the pipeline also discovers named ways "Ottawa River Pathway" and creates
+    // entries like ottawa-river-pathway-2, ottawa-river-pathway-1. These are ghost
+    // entries whose geometry overlaps with the relation-based entries.
+    const orpGhosts = entries.filter(e =>
+      e.name === 'Ottawa River Pathway' &&
+      e.type !== 'network' &&
+      !e.osm_relations?.length
+    );
+    expect(
+      orpGhosts.length,
+      `Found ${orpGhosts.length} ghost ORP entries (way-based duplicates of relation members): ` +
+      orpGhosts.map(e => JSON.stringify({ osm_names: e.osm_names, anchors: e.anchors?.[0] })).join(', ')
+    ).toBe(0);
+  });
+
+  it('Ottawa River Pathway network only has relation-based members (no ghost slugs)', () => {
+    const orpNetwork = entries.find(e => e.type === 'network' && e.name === 'Ottawa River Pathway');
+    expect(orpNetwork, 'ORP network should exist').toBeDefined();
+    // Members should be named segments (east/west/TCT) + markdown overrides,
+    // NOT numbered ghost slugs from duplicate named way discovery
+    for (const memberSlug of orpNetwork.members || []) {
+      expect(
+        memberSlug,
+        `Network member "${memberSlug}" looks like a ghost slug from duplicate way discovery`
+      ).not.toMatch(/^ottawa-river-pathway-\d+$/);
     }
   });
 
@@ -253,6 +279,121 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
     expect(watts, 'Watts Creek Pathway should exist').toBeDefined();
     expect(watts.member_of, 'Watts Creek should be in a network').toBeDefined();
     expect(watts.member_of).toMatch(/greenbelt/i);
+  });
+
+  // -----------------------------------------------------------------------
+  // Relation-based entries must survive named-way filtering.
+  // The pipeline filters named ways whose names match a relation's base name
+  // (to prevent ghost entries). But the relation entries themselves must still
+  // exist and retain their member_of assignments.
+  // -----------------------------------------------------------------------
+
+  it('Rideau River Eastern Pathway exists (trace where it gets lost)', () => {
+    // Relation 7369735 is the main Rideau River Eastern Pathway cycling route.
+    // Relation 10990512 is its parent superroute.
+    // Both are discovered as cycling relations in step 1.
+    const byRel7369735 = entries.find(e => e.osm_relations?.includes(7369735));
+    const byRel10990512 = entries.find(e => e.osm_relations?.includes(10990512));
+    const byName = entries.filter(e => e.name === 'Rideau River Eastern Pathway');
+    const byNameIncludes = entries.filter(e => e.name?.includes('Rideau River Eastern'));
+    // Check if a network absorbed relation 7369735
+    const networkWithRel = entries.find(e =>
+      e.type === 'network' && e.osm_relations?.includes(7369735)
+    );
+    // Check ALL networks for these relation IDs
+    const netsWithEither = entries.filter(e =>
+      e.type === 'network' && (e.osm_relations?.includes(7369735) || e.osm_relations?.includes(10990512))
+    );
+    // Check if the entry was absorbed into a group or renamed
+    const allWithRideau = entries.filter(e =>
+      e.osm_relations?.includes(7369735) || e.osm_relations?.includes(10990512) ||
+      e._member_relations?.some(r => r.id === 7369735 || r.id === 10990512)
+    );
+    // Check the "same-named entries absorbed into networks" logic:
+    // is there a NETWORK named "Rideau River Eastern Pathway"?
+    const rreNetwork = entries.find(e =>
+      e.type === 'network' && e.name?.toLowerCase().includes('rideau river eastern')
+    );
+    expect(byName.length,
+      `Exact name: ${byName.length}. ` +
+      `Partial: ${byNameIncludes.map(e => `"${e.name}" (type=${e.type||'path'}, rels=${e.osm_relations})`).join('; ')}. ` +
+      `Rel 7369735 on: ${byRel7369735 ? `"${byRel7369735.name}" (type=${byRel7369735.type||'path'})` : 'NOWHERE'}. ` +
+      `Rel 10990512 on: ${byRel10990512 ? `"${byRel10990512.name}" (type=${byRel10990512.type||'path'})` : 'NOWHERE'}. ` +
+      `Any entry with either rel: ${allWithRideau.map(e => `"${e.name}" type=${e.type||'path'} rels=${e.osm_relations}`).join('; ') || 'NONE'}. ` +
+      `RRE network exists: ${rreNetwork ? `"${rreNetwork.name}" rels=${rreNetwork.osm_relations}` : 'NO'}. ` +
+      `Total entries named "Rideau River Eastern Pathway" (any type): ${entries.filter(e => e.name === 'Rideau River Eastern Pathway').length}`
+    ).toBeGreaterThan(0);
+
+    // Separate assertion: the 2 path entries (7369735 and 10990512) should
+    // NOT both exist as buildEntries creates both from osmRelations.
+    // If one has type=superroute, step 8a's same-name dedup would eat the other.
+    // Let's just verify what we have.
+  });
+
+  it('relation 7369735 is not swallowed by the same-name dedup (step 8a)', () => {
+    // Step 8a removes path entries when a same-named NETWORK exists and
+    // has absorbed all of the path's relation IDs. For this to eat
+    // "Rideau River Eastern Pathway" (7369735), there must be a network
+    // named "Rideau River Eastern Pathway" whose osm_relations includes 7369735.
+    //
+    // The bug: if 10990512 (a superroute) is discovered as BOTH a cycling
+    // relation (step 1, creating a path entry) AND as a superroute (step 5),
+    // then discoverNetworks might create a network entry for it that absorbs
+    // 7369735. Even if that network is "skipped", the intermediate processing
+    // might leave artifacts.
+    const networks = entries.filter(e => e.type === 'network');
+    const rreNets = networks.filter(n => n.name?.toLowerCase().includes('rideau river eastern'));
+    const capitalPathway = networks.find(n => n.name === 'Capital Pathway');
+
+    expect(rreNets.length,
+      `Found ${rreNets.length} networks matching "Rideau River Eastern": ` +
+      rreNets.map(n => `"${n.name}" rels=${n.osm_relations}`).join('; ')
+    ).toBe(0); // Should be 0 — the sub-superroute is skipped
+
+    // Capital Pathway should include rideau-river-eastern-pathway as a member
+    expect(capitalPathway, 'Capital Pathway network must exist').toBeDefined();
+    expect(capitalPathway.members,
+      `Capital Pathway members: ${capitalPathway?.members?.join(', ')}`
+    ).toContain('rideau-river-eastern-pathway');
+  });
+
+  it('Rideau River Eastern Pathway was not absorbed by auto-grouping', () => {
+    // Check if any group entry has "rideau-river-eastern" in grouped_from
+    const groupsWithRRE = entries.filter(e =>
+      e.grouped_from?.some(slug => slug.includes('rideau-river-eastern'))
+    );
+    // Also check _absorbedRelations
+    const absorbedRRE = entries.filter(e =>
+      e._absorbedRelations?.includes(7369735) || e._absorbedRelations?.includes(10990512)
+    );
+    // Check if the raw entry count before slug computation is right
+    const allRRE = entries.filter(e =>
+      e.name?.includes('Rideau River Eastern') ||
+      e.osm_relations?.includes(7369735) ||
+      e.osm_relations?.includes(10990512) ||
+      e.osm_names?.some(n => n.includes('Rideau River Eastern'))
+    );
+    // Force-print what we found regardless of pass/fail
+    const traceInfo =
+      `Any trace: ${allRRE.map(e => `"${e.name}" type=${e.type||'path'} rels=${e.osm_relations} grouped_from=${e.grouped_from} member_of=${e.member_of}`).join('; ') || 'NONE'}. ` +
+      `Groups: ${groupsWithRRE.map(e => `"${e.name}" grouped_from=${e.grouped_from}`).join('; ') || 'NONE'}`;
+    // Expect the original entry to exist under its own name (not absorbed into a group)
+    const byExactName = allRRE.filter(e => e.name === 'Rideau River Eastern Pathway');
+    expect(byExactName.length, traceInfo).toBeGreaterThan(0);
+  });
+
+  it('Experimental Farm Pathway relation entry gets highway from relation ways, not named ways', () => {
+    // The Experimental Farm Pathway has highway=cycleway ways in its relation.
+    // Named ways with the same name might have highway=path. The relation entry
+    // should reflect the relation's ways, not be overwritten by named way tags.
+    const all = entries.filter(e => e.name === 'Experimental Farm Pathway');
+    expect(all.length).toBeGreaterThan(0);
+    const entry = all.find(e => e.osm_relations?.length > 0);
+    expect(entry, 'Should have a relation-based entry').toBeDefined();
+    // Before: highway=cycleway (from relation ways). After our filtering: highway=path
+    // (from remaining named ways that are highway=path). This tells us whether
+    // the named way merge is overwriting the relation entry's tags.
+    expect(entry.highway).toBe('cycleway');
   });
 
   // -----------------------------------------------------------------------

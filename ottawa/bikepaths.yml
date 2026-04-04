@@ -568,7 +568,7 @@ bike_paths:
     network: ncn
     ref: TCT
     description: The Trans Canada Trail follows Sussex Drive
-    member_of: trans-canada-trail-ottawa-area
+    member_of: ottawa-river-pathway
     slug: trans-canada-trail-sussex-drive
   - name: Sawmill Creek Pathway
     osm_relations:
@@ -957,30 +957,6 @@ bike_paths:
     bicycle: designated
     access: 'yes'
     slug: chief-william-commanda-bridge
-  - name: Ottawa River Pathway
-    osm_names:
-      - Ottawa River Pathway
-      - Rockliffe Pathway
-    anchors:
-      - - -75.8125194
-        - 45.3519888
-      - - -75.6850488
-        - 45.4560536
-    name_fr: Sentier de la Rivière des Outaouais
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    incline: 0%
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    operator: NCC
-    network: Kichi Sibi
-    cycleway: crossing
-    description: 'Summer: cycle, walk, hike Winter: @skiheritageeast skate and classic grooming fat bike, xc ski'
-    member_of: ottawa-river-pathway
-    slug: ottawa-river-pathway-2
   - name: Sentier de la Rivière Gatineau Pathway
     osm_names:
       - Sentier de la Rivière Gatineau Pathway
@@ -1033,24 +1009,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     slug: chemin-du-lac-leamy
-  - name: Trans Canada Trail
-    osm_names:
-      - Trans Canada Trail
-    anchors:
-      - - -75.9203476
-        - 45.2584337
-      - - -75.8451241
-        - 45.3174462
-    surface: fine_gravel
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-    bicycle: designated
-    member_of: trans-canada-trail-trails
-    slug: trans-canada-trail
   - name: Ottawa Valley Recreational Trail
     osm_names:
       - Ottawa Valley Recreational Trail
@@ -10033,24 +9991,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     slug: lytle-park
-  - name: Ottawa River Pathway
-    osm_names:
-      - Ottawa River Pathway
-    anchors:
-      - - -75.522705
-        - 45.4885961
-      - - -75.5047314
-        - 45.4899593
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    network: Ski Heritage East Trail
-    member_of: ottawa-river-pathway
-    slug: ottawa-river-pathway-1
   - name: Invention Boulevard
     osm_names:
       - Invention Boulevard
@@ -12407,7 +12347,6 @@ bike_paths:
     smoothness: good
     mtb: true
     members:
-      - trans-canada-trail
       - trans-canada-trail-ottawa
       - the-beast-trail
       - jinx-link
@@ -12880,8 +12819,7 @@ bike_paths:
       - ottawa-river-pathway-east
       - ottawa-river-pathway-trans-canada-trail
       - ottawa-river-pathway-west
-      - ottawa-river-pathway-2
-      - ottawa-river-pathway-1
+      - trans-canada-trail-sussex-drive
     slug: ottawa-river-pathway
   - name: Sentier Trans-Canadien (Québec)
     type: network
@@ -12901,7 +12839,6 @@ bike_paths:
     network: ncn
     members:
       - ottawa-carleton-trailway
-      - trans-canada-trail-sussex-drive
     slug: trans-canada-trail-ottawa-area
   - name: Capital Pathway
     type: network
