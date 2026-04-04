@@ -34,7 +34,9 @@ function isTrailType(entry) {
 }
 
 function isDesignatedCycling(entry) {
-  return entry.bicycle === 'designated' || entry.bicycle === 'yes';
+  // bicycle=designated means a specifically designated cycling route (MUP, bike path).
+  // bicycle=yes just means "bikes permitted" — a dirt trail with bicycle=yes is still MTB terrain.
+  return entry.bicycle === 'designated';
 }
 
 function isPaved(entry) {

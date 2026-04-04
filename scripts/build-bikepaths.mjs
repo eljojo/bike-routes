@@ -51,6 +51,7 @@ import { autoGroupNearbyPaths, computeSlugs } from './lib/auto-group.mjs';
 import { discoverNetworks, discoverRouteSystemNetworks } from './lib/discover-networks.mjs';
 import { enrichWithWikidata } from './lib/wikidata.mjs';
 import { detectMtb } from './lib/detect-mtb.mjs';
+import { derivePathType } from './lib/path-type.mjs';
 import { rankByGeomDistance } from './lib/nearest-park.mjs';
 
 // ---------------------------------------------------------------------------
@@ -1633,6 +1634,12 @@ out geom tags;`;
   detectMtb(grouped);
   const mtbCount = grouped.filter(e => e.mtb).length;
   if (mtbCount > 0) console.log(`  Labelled ${mtbCount} entries as MTB`);
+
+  // Step 7b: Derive path_type from OSM tags (depends on mtb from step 7)
+  for (const entry of grouped) {
+    const pt = derivePathType(entry);
+    if (pt) entry.path_type = pt;
+  }
 
   // Step 8a: Remove standalone entries that duplicate a same-named network.
   // e.g. "Crosstown Bikeway 2" route (relation 10986223) is redundant with

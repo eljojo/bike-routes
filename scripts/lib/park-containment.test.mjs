@@ -472,4 +472,52 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
       `La Boucle trails split into ${networks.size} networks: ${[...networks].join(', ')}. Should be 1.`
     ).toBe(1);
   });
+
+  // -----------------------------------------------------------------------
+  // path_type derivation
+  // -----------------------------------------------------------------------
+
+  it('every non-network entry has a path_type', () => {
+    const nonNetwork = entries.filter(e => e.type !== 'network');
+    const missing = nonNetwork.filter(e => !e.path_type);
+    expect(missing.length,
+      `${missing.length} entries missing path_type: ${missing.slice(0, 5).map(e => e.name).join(', ')}...`
+    ).toBe(0);
+  });
+
+  it('path_type values are from the allowed set', () => {
+    const allowed = new Set(['mup', 'separated-lane', 'bike-lane', 'paved-shoulder', 'mtb-trail', 'trail']);
+    const nonNetwork = entries.filter(e => e.type !== 'network');
+    const invalid = nonNetwork.filter(e => !allowed.has(e.path_type));
+    expect(invalid.length,
+      `${invalid.length} entries with invalid path_type: ${invalid.slice(0, 5).map(e => `${e.name}=${e.path_type}`).join(', ')}`
+    ).toBe(0);
+  });
+
+  it('network entries do NOT have path_type', () => {
+    const networks = entries.filter(e => e.type === 'network');
+    const withType = networks.filter(e => e.path_type);
+    expect(withType.length).toBe(0);
+  });
+
+  it('Ottawa River Pathway (east) is a mup', () => {
+    const orp = entries.find(e => e.name === 'Ottawa River Pathway (east)');
+    expect(orp?.path_type).toBe('mup');
+  });
+
+  it('parallel lanes are bike-lane or separated-lane', () => {
+    const parallel = entries.filter(e => e.parallel_to);
+    expect(parallel.length).toBeGreaterThan(50);
+    for (const e of parallel) {
+      expect(
+        ['bike-lane', 'separated-lane', 'paved-shoulder'].includes(e.path_type),
+        `${e.name} has parallel_to but path_type=${e.path_type}`
+      ).toBe(true);
+    }
+  });
+
+  it('La Boucle MTB trails are mtb-trail', () => {
+    const boucle = entries.find(e => e.name === 'La Boucle');
+    expect(boucle?.path_type).toBe('mtb-trail');
+  });
 });
