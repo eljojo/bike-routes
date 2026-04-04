@@ -1,6 +1,7 @@
 ---
 name: Greenbelt Pathway
 wikipedia: en:Capital Pathway
+website: https://ncc-ccn.gc.ca/places/cycling-greenbelt
 vibe: "A ring of gravel trail through forest, wetland, and farmland encircling the city"
 featured: true
 ---
