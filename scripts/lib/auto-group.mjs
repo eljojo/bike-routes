@@ -31,12 +31,19 @@ export function computeSlugs(entries) {
     if (group.length === 1) {
       slugMap.set(group[0].entry, base);
     } else {
+      // Network entries get the clean slug (no suffix) — they sort first.
+      // Among same-type entries, sort by relation ID / anchor / name.
       group.sort((a, b) => {
+        const aNet = a.entry.type === 'network' ? 0 : 1;
+        const bNet = b.entry.type === 'network' ? 0 : 1;
+        if (aNet !== bNet) return aNet - bNet;
         const ka = sortKey(a.entry), kb = sortKey(b.entry);
         return ka.localeCompare(kb);
       });
-      for (let i = 0; i < group.length; i++) {
-        slugMap.set(group[i].entry, `${base}-${i + 1}`);
+      // First entry (network if present) gets the clean slug
+      slugMap.set(group[0].entry, base);
+      for (let i = 1; i < group.length; i++) {
+        slugMap.set(group[i].entry, `${base}-${i}`);
       }
     }
   }
@@ -119,7 +126,7 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
     const slug = slugMap.get(entry);
     if (markdownSlugs.has(slug)) return false;
     if (!entry.anchors || entry.anchors.length === 0) return false;
-    if (entry.member_of) return false;
+    if (entry._networkRef) return false;
     if (entry.parallel_to) return false;
     // Roads with bike lanes are not trail systems — exclude from clustering
     const hw = entry.highway;
@@ -264,14 +271,19 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
 
   for (const cluster of allClustersToProcess) {
     if (cluster.existingGroup) {
-      // Extend existing network
+      // Extend existing network — resolve grouped_from slugs to entry refs
       const group = cluster.existingGroup;
-      const existingMembers = new Set(group.members || group.grouped_from || []);
+      if (!group._memberRefs) {
+        group._memberRefs = [];
+        for (const slug of group.grouped_from || []) {
+          const entry = entries.find(e => slugMap.get(e) === slug);
+          if (entry) group._memberRefs.push(entry);
+        }
+      }
+      const existingMemberSet = new Set(group._memberRefs);
       for (const member of cluster.newMembers) {
-        const slug = slugMap.get(member);
-        if (!existingMembers.has(slug)) {
-          if (!group.members) group.members = [...(group.grouped_from || [])];
-          group.members.push(slug);
+        if (!existingMemberSet.has(member)) {
+          group._memberRefs.push(member);
           const memberOsmNames = member.osm_names || [member.name];
           group.osm_names = [...new Set([...(group.osm_names || []), ...memberOsmNames])];
           if (member.osm_relations) {
@@ -279,11 +291,7 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
           }
           group.anchors = bboxAnchors([...(group.anchors || []), ...(member.anchors || [])]);
         }
-        member.member_of = slugMap.get(group);
-      }
-      // Migrate grouped_from → members if not already done
-      if (group.grouped_from && !group.members) {
-        group.members = group.grouped_from;
+        member._networkRef = group;
       }
       delete group.grouped_from;
       if (!group.type) group.type = 'network';
@@ -295,16 +303,12 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
       let networkName = cluster.resolvedName;
       let networkSlug = slugifyBikePathName(networkName);
 
-      // If the network slug collides with a member slug (exact or disambiguated),
+      // If the network base slug collides with a member's base slug,
       // the member would be filtered as a self-reference. Disambiguate by
-      // appending "Trails". Check both exact match and base-slug match
-      // (e.g. network "La Boucle" → slug "la-boucle" collides with member
-      // slug "la-boucle" which might be disambiguated to "la-boucle-1").
-      const memberSlugsRaw = cluster.members
-        .filter(m => m.type !== 'network')
-        .map(m => slugMap.get(m));
-      const hasCollision = memberSlugsRaw.some(s => s === networkSlug) ||
-        cluster.members.some(m => slugifyBikePathName(m.name) === networkSlug);
+      // appending "Trails" or "Network".
+      const hasCollision = cluster.members.some(m =>
+        m.type !== 'network' && slugifyBikePathName(m.name) === networkSlug
+      );
       if (hasCollision) {
         // Use "Trails" for trail-type clusters, "Network" for urban/paved
         const types = cluster.members.map(m => pathType(m));
@@ -313,13 +317,13 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
         networkSlug = slugifyBikePathName(networkName);
       }
 
-      const memberSlugs = memberSlugsRaw.filter(s => s && s !== networkSlug);
+      const memberRefs = cluster.members.filter(m => m.type !== 'network');
 
       const networkEntry = {
         name: networkName,
         type: 'network',
         _parkName: cluster._parkName || null,
-        members: memberSlugs,
+        _memberRefs: memberRefs,
         anchors: bboxAnchors(cluster.members.flatMap(m => m.anchors || [])),
       };
 
@@ -333,9 +337,9 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
         if (val) networkEntry[key] = val;
       }
 
-      // Assign member_of on each member (skip other networks)
+      // Assign _networkRef on each member (skip other networks)
       for (const m of cluster.members) {
-        if (m.type !== 'network') m.member_of = networkSlug;
+        if (m.type !== 'network') m._networkRef = networkEntry;
       }
 
       newNetworkEntries.push(networkEntry);
@@ -348,25 +352,15 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
   // Greenbelt, connectors inside Gatineau Park, etc. Park is the stronger
   // signal — if you're in the park, you're in the network regardless of type.
   if (parks.length > 0) {
-    // Build lookup: park name → network slug
-    const parkToNetworkSlug = new Map();
-    for (const cluster of allClustersToProcess) {
-      if (cluster._parkName && !cluster.existingGroup) {
-        const networkSlug = slugifyBikePathName(cluster.resolvedName);
-        parkToNetworkSlug.set(cluster._parkName, networkSlug);
-      }
-    }
-
-    // Find the network entry for each park
-    const networkBySlug = new Map();
+    // Build lookup: park name → network entry ref
+    const parkToNetwork = new Map();
     for (const net of newNetworkEntries) {
-      const slug = slugifyBikePathName(net.name);
-      networkBySlug.set(slug, net);
+      if (net._parkName) parkToNetwork.set(net._parkName, net);
     }
 
     let adopted = 0;
     for (const entry of entries) {
-      if (entry.member_of) continue; // already in a network
+      if (entry._networkRef) continue; // already in a network
       if (entry.type === 'network') continue;
       // Classify by actual geometry only — never use anchors for spatial
       // reasoning (see AGENTS.md). Entries without _ways can't be classified.
@@ -374,21 +368,15 @@ export async function autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpa
       const park = classifyByPark(entry, parks);
       if (!park) continue;
 
-      const networkSlug = parkToNetworkSlug.get(park);
-      if (!networkSlug) continue;
-
-      const network = networkBySlug.get(networkSlug);
+      const network = parkToNetwork.get(park);
       if (!network) continue;
 
-      const entrySlug = slugMap.get(entry);
-      // Skip if the entry's slug matches the network slug — adopting it
-      // would create a self-referencing network (entry named after the park
-      // gets adopted into a network with the same park name)
-      if (entrySlug === networkSlug) continue;
+      // Skip if entry has same base slug as network — self-reference guard
+      if (slugifyBikePathName(entry.name) === slugifyBikePathName(network.name)) continue;
 
-      entry.member_of = networkSlug;
-      if (entrySlug && !network.members.includes(entrySlug)) {
-        network.members.push(entrySlug);
+      entry._networkRef = network;
+      if (!network._memberRefs.includes(entry)) {
+        network._memberRefs.push(entry);
       }
       adopted++;
     }

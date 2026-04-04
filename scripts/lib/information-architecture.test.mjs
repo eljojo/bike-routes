@@ -51,6 +51,86 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
   }
 
   // =====================================================================
+  // DIAGNOSTIC: understand current pipeline state after refactoring
+  // =====================================================================
+
+  describe('single-pass refactoring diagnostics', () => {
+    it('all entries have slug field set by resolution pass', () => {
+      const withoutSlug = entries.filter(e => !e.slug);
+      expect(withoutSlug.length, `${withoutSlug.length} entries missing slug: ${withoutSlug.slice(0, 5).map(e => e.name)}`).toBe(0);
+    });
+
+    it('no entries have transient ref fields after resolution', () => {
+      const withRefs = entries.filter(e => e._networkRef || e._memberRefs || e._superNetworkRef);
+      expect(withRefs.length, 'transient refs should be stripped').toBe(0);
+    });
+
+    it('all member_of values resolve to an existing network slug', () => {
+      const networkSlugs = new Set(networks.map(n => n.slug));
+      const broken = entries.filter(e => e.member_of && !networkSlugs.has(e.member_of));
+      expect(broken.map(e => `${e.name} → ${e.member_of}`)).toEqual([]);
+    });
+
+    it('all network members resolve to an existing entry slug', () => {
+      const entrySlugs = new Set(entries.map(e => e.slug));
+      for (const net of networks) {
+        const missing = (net.members || []).filter(s => !entrySlugs.has(s));
+        expect(missing, `${net.name} has dangling member slugs`).toEqual([]);
+      }
+    });
+
+    it('CB2 diagnostic: entries named Crosstown Bikeway 2', () => {
+      const cb2All = entries.filter(e => e.name === 'Crosstown Bikeway 2');
+      const cb2Types = cb2All.map(e => ({
+        type: e.type || 'path',
+        slug: e.slug,
+        member_of: e.member_of,
+        members: e.members?.length,
+        osm_relations: e.osm_relations,
+      }));
+      // Check if CB2 exists as a network member of something
+      const cb2AsMembers = entries.filter(e =>
+        e.name === 'Crosstown Bikeway 2' && e.member_of
+      );
+      const info = {
+        total: cb2All.length,
+        entries: cb2Types,
+        asMembers: cb2AsMembers.map(e => `${e.slug} → ${e.member_of}`),
+        // Check if CB2 slug appears in any network's members
+        inNetworks: networks.filter(n => n.members?.some(s => s.includes('crosstown-bikeway-2'))).map(n => n.name),
+      };
+      expect(cb2All.length, `CB2 entries: ${JSON.stringify(cb2Types)}`).toBeGreaterThanOrEqual(1);
+    });
+
+    it('NCC Greenbelt diagnostic: member latitudes', () => {
+      const gb = network('NCC Greenbelt');
+      expect(gb, 'NCC Greenbelt network should exist').toBeDefined();
+      // Check using stored slug (correct)
+      const memberBySlug = (gb.members || [])
+        .map(slug => entries.find(e => e.slug === slug))
+        .filter(Boolean);
+      // Check using base-name slug (what the failing test does)
+      const baseSlugMap = new Map();
+      for (const e of entries) {
+        const slug = e.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-');
+        baseSlugMap.set(slug, e);
+      }
+      const memberByName = (gb.members || [])
+        .map(slug => baseSlugMap.get(slug))
+        .filter(Boolean);
+      // How many resolve by stored slug vs base name?
+      const memberCount = gb.members?.length || 0;
+      const resolvedBySlug = memberBySlug.length;
+      const resolvedByName = memberByName.length;
+      expect(resolvedBySlug, `${resolvedBySlug}/${memberCount} members resolve by stored slug`).toBe(memberCount);
+      // Find Gatineau trails using stored slugs
+      const gatineauBySlug = memberBySlug.filter(e => e.anchors?.[0]?.[1] > 45.50);
+      expect(gatineauBySlug.map(e => e.name), 'NCC Greenbelt should not contain Gatineau Park trails').toEqual([]);
+    });
+  });
+
+  // =====================================================================
   // 1. CAPITAL PATHWAY — should be a real network with ~15 member paths
   // =====================================================================
 
@@ -546,17 +626,15 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
     });
 
     it('no network mixes Gatineau Park and Greenbelt trails', () => {
-      const slugMap = new Map();
-      for (const e of entries) {
-        const slug = e.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-          .toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-');
-        slugMap.set(slug, e);
-      }
+      // Use stored slugs for reliable lookup (names like "Trail 20" exist in
+      // both parks — base-name matching would resolve to the wrong entry)
+      const bySlug = new Map();
+      for (const e of entries) bySlug.set(e.slug, e);
 
       for (const net of networks) {
         if (!net.members || net.members.length === 0) continue;
         const memberLats = net.members
-          .map(slug => slugMap.get(slug))
+          .map(slug => bySlug.get(slug))
           .filter(Boolean)
           .map(e => e.anchors?.[0]?.[1])
           .filter(Boolean);

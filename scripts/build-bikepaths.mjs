@@ -787,7 +787,7 @@ async function enrichOutOfBoundsRelations(entries, discoveredRelationIds) {
 // Members that are already in an auto-group network stay there —
 // the auto-group network gets a super_network attribute for index grouping.
 // Only orphaned paths (not in any network) become direct members.
-function addSuperrouteNetworks(entries, slugMap, networks) {
+function addSuperrouteNetworks(entries, networks) {
   const byRelation = new Map();
   for (const entry of entries) {
     for (const relId of entry.osm_relations ?? []) {
@@ -798,16 +798,13 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
   // Snapshot: entries in park-based networks should not be reassigned.
   // Park containment is the strongest signal. Auto-group networks CAN be
   // flattened into superroute networks.
-  const parkNetworkSlugs = new Set();
+  const parkNetworks = new Set();
   for (const entry of entries) {
-    if (entry.type === 'network' && entry._parkName) {
-      const slug = slugMap.get(entry) || slugify(entry.name);
-      parkNetworkSlugs.add(slug);
-    }
+    if (entry.type === 'network' && entry._parkName) parkNetworks.add(entry);
   }
   const parkMembers = new Set();
   for (const entry of entries) {
-    if (entry.member_of && parkNetworkSlugs.has(entry.member_of)) {
+    if (entry._networkRef && parkNetworks.has(entry._networkRef)) {
       parkMembers.add(entry);
     }
   }
@@ -829,124 +826,12 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
 
   for (const network of sortedNetworks) {
     const name = network.name;
-    const networkSlug = slugify(name);
 
-    // Resolve members: paths NOT already in another network.
-    // If a relation maps to a type: network entry (e.g. Rideau Canal Western
-    // became an auto-group), flatten through its non-network members.
-    // Also tag existing networks with super_network for index grouping.
-    const memberSlugs = [];
-    for (const relId of network._member_relations || []) {
-      const member = byRelation.get(relId);
-      if (!member) continue;
-
-      if (member.type === 'network') {
-        // This superroute member became an auto-group network.
-        // Flatten: adopt its members into this superroute network.
-        const memberNetSlug = slugMap.get(member) || slugify(member.name);
-        for (const subSlug of member.members || []) {
-          const subEntry = entries.find(e => slugMap.get(e) === subSlug);
-          if (!subEntry || subEntry.type === 'network') continue;
-          // Don't reassign entries that were in a network before superroute resolution
-          if (parkMembers.has(subEntry)) continue;
-          if (subEntry.member_of === memberNetSlug || !subEntry.member_of) {
-            memberSlugs.push(subSlug);
-            subEntry.member_of = networkSlug;
-            // Remove from old network's members list
-            if (member.members) {
-              member.members = member.members.filter(s => s !== subSlug);
-            }
-          }
-        }
-        // Tag the sub-network with super_network (most specific wins —
-        // networks are sorted largest-first so smaller overwrites larger)
-        member.super_network = networkSlug;
-        continue;
-      }
-
-      if (member.member_of) {
-        // Already in a network (auto-group or park) — tag that network
-        // with super_network for index grouping. Don't reassign.
-        const memberNetwork = entries.find(e =>
-          e.type === 'network' &&
-          e.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-            .toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-') === member.member_of
-        );
-        if (memberNetwork) {
-          memberNetwork.super_network = networkSlug;
-        }
-        member.super_network = networkSlug;
-        continue;
-      }
-
-      // Don't reassign entries that were already in a network before this step
-      if (parkMembers.has(member)) {
-        member.super_network = networkSlug;
-        continue;
-      }
-      const memberSlug = slugMap.get(member);
-      if (memberSlug) {
-        memberSlugs.push(memberSlug);
-        member.member_of = networkSlug;
-      }
-    }
-
-    // Fallback: adopt orphaned paths with matching operator.
-    // Catches paths like Pinecrest Creek (NCC, cycleway) that aren't in
-    // the OSM superroute member list but clearly belong to the system.
-    if (network.operator) {
-      for (const entry of entries) {
-        if (entry.member_of || entry.type === 'network') continue;
-        // Operator must match (handles NCC variants)
-        const op = entry.operator || '';
-        const netOp = network.operator || '';
-        if (!op || (!op.includes(netOp) && !netOp.includes(op))) continue;
-        // Must be cycling infrastructure
-        if (entry.highway !== 'cycleway' && entry.highway !== 'path') continue;
-        const entrySlug = slugMap.get(entry);
-        if (entrySlug && !memberSlugs.includes(entrySlug)) {
-          memberSlugs.push(entrySlug);
-          entry.member_of = networkSlug;
-        }
-      }
-    }
-
-    // Ref matching: orphaned entries sharing a `ref` tag with existing members
-    // belong to the same route system. E.g., ref: GPW ties Greenbelt Pathway
-    // West (Barrhaven) to the Greenbelt network. More specific than operator.
-    const memberRefs = new Set();
-    for (const slug of memberSlugs) {
-      const memberEntry = entries.find(e => slugMap.get(e) === slug);
-      if (memberEntry?.ref) memberRefs.add(memberEntry.ref);
-    }
-    if (memberRefs.size > 0) {
-      for (const entry of entries) {
-        if (entry.member_of || entry.type === 'network') continue;
-        if (parkMembers.has(entry)) continue;
-        if (!entry.ref || !memberRefs.has(entry.ref)) continue;
-        // Exclude roads — they have ref tags (route numbers) that would
-        // cause false matches. Allow entries without highway (relation-only).
-        const roadHw = ['primary', 'secondary', 'tertiary', 'residential', 'unclassified'];
-        if (entry.highway && roadHw.includes(entry.highway)) continue;
-        const entrySlug = slugMap.get(entry);
-        if (entrySlug && entrySlug !== networkSlug && !memberSlugs.includes(entrySlug)) {
-          memberSlugs.push(entrySlug);
-          entry.member_of = networkSlug;
-          console.log(`    ref match: ${entry.name} (ref: ${entry.ref}) → ${networkSlug}`);
-        }
-      }
-    }
-
-    if (memberSlugs.length === 0) {
-      console.log(`  Skipping superroute network "${name}": no orphaned members`);
-      continue;
-    }
-
-    // Create the network entry
+    // Create network entry shell — _memberRefs populated below
     const networkEntry = {
       name,
       type: 'network',
-      members: memberSlugs,
+      _memberRefs: [],
       osm_relations: network.osm_relations,
     };
     if (network.name_fr) networkEntry.name_fr = network.name_fr;
@@ -957,11 +842,107 @@ function addSuperrouteNetworks(entries, slugMap, networks) {
     if (network.wikipedia) networkEntry.wikipedia = network.wikipedia;
     if (network.cycle_network) networkEntry.cycle_network = network.cycle_network;
 
-    entries.push(networkEntry);
-    console.log(`  Superroute network: ${name} (${memberSlugs.length} members)`);
+    // Resolve members: paths NOT already in another network.
+    // If a relation maps to a type: network entry (e.g. Rideau Canal Western
+    // became an auto-group), flatten through its non-network members.
+    // Also tag existing networks with _superNetworkRef for index grouping.
+    for (const relId of network._member_relations || []) {
+      const member = byRelation.get(relId);
+      if (!member) continue;
 
-    // Store metadata for YAML output
-    const meta = { name, slug: networkSlug };
+      if (member.type === 'network') {
+        // Flatten: adopt its _memberRefs into this superroute network.
+        // Only auto-group networks get flattened — they're intermediaries.
+        // byRelation was built at function start, so networks created by
+        // earlier iterations of THIS loop won't be in it. Cross-call
+        // flattening is prevented by combining all networks into one call.
+        for (const sub of [...(member._memberRefs || [])]) {
+          if (sub.type === 'network') continue;
+          if (parkMembers.has(sub)) continue;
+          if (sub._networkRef === member || !sub._networkRef) {
+            networkEntry._memberRefs.push(sub);
+            sub._networkRef = networkEntry;
+            if (member._memberRefs) {
+              member._memberRefs = member._memberRefs.filter(m => m !== sub);
+            }
+          }
+        }
+        // Tag the sub-network with _superNetworkRef (most specific wins —
+        // networks are sorted largest-first so smaller overwrites larger)
+        member._superNetworkRef = networkEntry;
+        continue;
+      }
+
+      if (member._networkRef) {
+        // Already in a network (auto-group or park) — tag that network
+        // with _superNetworkRef for index grouping. Don't reassign.
+        member._networkRef._superNetworkRef = networkEntry;
+        member._superNetworkRef = networkEntry;
+        continue;
+      }
+
+      // Don't reassign entries that were already in a network before this step
+      if (parkMembers.has(member)) {
+        member._superNetworkRef = networkEntry;
+        continue;
+      }
+      networkEntry._memberRefs.push(member);
+      member._networkRef = networkEntry;
+    }
+
+    // Fallback: adopt orphaned paths with matching operator.
+    // Catches paths like Pinecrest Creek (NCC, cycleway) that aren't in
+    // the OSM superroute member list but clearly belong to the system.
+    if (network.operator) {
+      for (const entry of entries) {
+        if (entry._networkRef || entry.type === 'network') continue;
+        // Operator must match (handles NCC variants)
+        const op = entry.operator || '';
+        const netOp = network.operator || '';
+        if (!op || (!op.includes(netOp) && !netOp.includes(op))) continue;
+        // Must be cycling infrastructure
+        if (entry.highway !== 'cycleway' && entry.highway !== 'path') continue;
+        if (!networkEntry._memberRefs.includes(entry)) {
+          networkEntry._memberRefs.push(entry);
+          entry._networkRef = networkEntry;
+        }
+      }
+    }
+
+    // Ref matching: orphaned entries sharing a `ref` tag with existing members
+    // belong to the same route system. E.g., ref: GPW ties Greenbelt Pathway
+    // West (Barrhaven) to the Greenbelt network. More specific than operator.
+    const refTags = new Set();
+    for (const memberEntry of networkEntry._memberRefs) {
+      if (memberEntry.ref) refTags.add(memberEntry.ref);
+    }
+    if (refTags.size > 0) {
+      for (const entry of entries) {
+        if (entry._networkRef || entry.type === 'network') continue;
+        if (parkMembers.has(entry)) continue;
+        if (!entry.ref || !refTags.has(entry.ref)) continue;
+        // Exclude roads — they have ref tags (route numbers) that would
+        // cause false matches. Allow entries without highway (relation-only).
+        const roadHw = ['primary', 'secondary', 'tertiary', 'residential', 'unclassified'];
+        if (entry.highway && roadHw.includes(entry.highway)) continue;
+        if (!networkEntry._memberRefs.includes(entry)) {
+          networkEntry._memberRefs.push(entry);
+          entry._networkRef = networkEntry;
+          console.log(`    ref match: ${entry.name} (ref: ${entry.ref}) → ${name}`);
+        }
+      }
+    }
+
+    if (networkEntry._memberRefs.length === 0) {
+      console.log(`  Skipping superroute network "${name}": no orphaned members`);
+      continue;
+    }
+
+    entries.push(networkEntry);
+    console.log(`  Superroute network: ${name} (${networkEntry._memberRefs.length} members)`);
+
+    // Store metadata for YAML output (slug resolved in final pass)
+    const meta = { name, _entryRef: networkEntry };
     if (network.wikidata) meta.wikidata = network.wikidata;
     if (network.operator) meta.operator = network.operator;
     if (network.name_fr) meta.name_fr = network.name_fr;
@@ -1511,11 +1492,9 @@ out geom tags;`;
   // Step 4: Auto-group nearby trail segments (with park containment)
   const grouped = await autoGroupNearbyPaths({ entries, markdownSlugs, queryOverpass: qo, bbox: b });
 
-  // Step 5: Centralized slug computation
-  let slugMap = computeSlugs(grouped);
-
-  // Step 6: Super-network attributes (from OSM superroutes)
+  // Step 5: Super-network attributes (from OSM superroutes)
   let superNetworks = [];
+  let allNetSources = [];
   if (a.discoverNetworks) {
     console.log('Discovering super-networks (OSM superroutes)...');
     const networks = await discoverNetworks({ bbox: b, queryOverpass: qo });
@@ -1523,7 +1502,7 @@ out geom tags;`;
       // Promoted sub-superroutes (like Ottawa River Pathway) become real
       // network entries with members. Top-level superroutes become attributes.
       const promoted = networks.filter(n => n._promoted);
-      const superNets = networks.filter(n => !n._promoted);
+      allNetSources.push(...networks.filter(n => !n._promoted));
 
       // Add promoted networks as type: network entries
       for (const net of promoted) {
@@ -1531,32 +1510,22 @@ out geom tags;`;
         for (const entry of grouped) {
           for (const relId of entry.osm_relations ?? []) byRelation.set(relId, entry);
         }
-        const memberSlugs = [];
+        const memberRefs = [];
         for (const relId of net._member_relations || []) {
           const member = byRelation.get(relId);
           if (member && member.type !== 'network') {
-            const memberSlug = slugMap.get(member);
-            if (memberSlug) {
-              memberSlugs.push(memberSlug);
-              // Remove from old network's members if reassigning
-              if (member.member_of) {
-                const oldNet = grouped.find(e =>
-                  e.type === 'network' && e.members?.includes(memberSlug)
-                );
-                if (oldNet) {
-                  oldNet.members = oldNet.members.filter(s => s !== memberSlug);
-                }
-              }
-              member.member_of = slugify(net.name);
+            // Remove from old network's _memberRefs if reassigning
+            if (member._networkRef && member._networkRef._memberRefs) {
+              member._networkRef._memberRefs = member._networkRef._memberRefs.filter(m => m !== member);
             }
+            memberRefs.push(member);
           }
         }
         // Absorb same-named entries and merge same-named auto-group networks.
-        // Standalone fragments get member_of. Auto-group networks with the
+        // Standalone fragments get _networkRef. Auto-group networks with the
         // same base name (e.g. "Ottawa River Pathway Network") get their
-        // members transferred and the auto-group network is emptied.
+        // _memberRefs transferred and the auto-group network is emptied.
         const netNameLower = net.name.toLowerCase();
-        const netSlug = slugify(net.name);
 
         // First: merge any auto-group network with the same base name
         for (const entry of grouped) {
@@ -1564,35 +1533,30 @@ out geom tags;`;
           if (entry === net) continue;
           const entryNameLower = entry.name?.toLowerCase().replace(/ (trails|network)$/i, '');
           if (entryNameLower !== netNameLower) continue;
-          // Transfer members from auto-group network to promoted network
-          for (const mSlug of entry.members || []) {
-            if (!memberSlugs.includes(mSlug)) {
-              memberSlugs.push(mSlug);
-              const mEntry = grouped.find(e => slugMap.get(e) === mSlug);
-              if (mEntry) mEntry.member_of = netSlug;
+          // Transfer _memberRefs from auto-group network to promoted network
+          for (const sub of entry._memberRefs || []) {
+            if (!memberRefs.includes(sub)) {
+              memberRefs.push(sub);
             }
           }
-          entry.members = []; // will be cleaned up as zombie
+          entry._memberRefs = []; // will be cleaned up as zombie
         }
 
         // Then: absorb orphaned same-named entries
         for (const entry of grouped) {
           if (entry.type === 'network') continue;
-          if (entry.member_of) continue;
+          if (entry._networkRef) continue;
           if (entry.name?.toLowerCase() !== netNameLower) continue;
-          const entrySlug = slugMap.get(entry);
-          if (entrySlug === netSlug) continue;
-          if (entrySlug && !memberSlugs.includes(entrySlug)) {
-            memberSlugs.push(entrySlug);
-            entry.member_of = netSlug;
+          if (!memberRefs.includes(entry)) {
+            memberRefs.push(entry);
           }
         }
 
-        if (memberSlugs.length >= 2) {
+        if (memberRefs.length >= 2) {
           const networkEntry = {
             name: net.name,
             type: 'network',
-            members: memberSlugs,
+            _memberRefs: memberRefs,
             osm_relations: net.osm_relations,
           };
           if (net.name_fr) networkEntry.name_fr = net.name_fr;
@@ -1600,42 +1564,43 @@ out geom tags;`;
           if (net.wikidata) networkEntry.wikidata = net.wikidata;
           if (net.wikipedia) networkEntry.wikipedia = net.wikipedia;
           grouped.push(networkEntry);
-          console.log(`  Added promoted network: ${net.name} (${memberSlugs.length} members)`);
+          // Assign _networkRef on all members
+          for (const m of memberRefs) {
+            m._networkRef = networkEntry;
+          }
+          console.log(`  Added promoted network: ${net.name} (${memberRefs.length} members)`);
         }
         delete net._promoted;
         delete net._member_relations;
       }
 
-      // Turn remaining superroutes into real networks
-      if (superNets.length > 0) {
-        console.log('Creating superroute networks...');
-        superNetworks = addSuperrouteNetworks(grouped, slugMap, superNets);
-      }
-      slugMap = computeSlugs(grouped);
     }
 
     // Discover route-system networks (e.g. Crosstown Bikeways from cycle_network tags)
     const routeSystemNets = await discoverRouteSystemNetworks({ bbox: b, queryOverpass: qo });
     if (routeSystemNets.length > 0) {
-      console.log('Creating route-system networks...');
-      // Use the same addSuperrouteNetworks logic — it resolves members by relation ID
-      const rsMeta = addSuperrouteNetworks(grouped, slugMap, routeSystemNets);
-      superNetworks.push(...rsMeta);
-      slugMap = computeSlugs(grouped);
+      allNetSources.push(...routeSystemNets);
+    }
+
+    // Create all superroute + route-system networks in one call so byRelation
+    // is built once. This prevents the second batch from flattening the first.
+    if (allNetSources.length > 0) {
+      console.log('Creating superroute & route-system networks...');
+      superNetworks = addSuperrouteNetworks(grouped, allNetSources);
     }
   }
 
-  // Step 7: Wikidata enrichment
+  // Step 6: Wikidata enrichment
   console.log('Enriching with Wikidata...');
   const wdCount = await enrichWithWikidata(grouped);
   if (wdCount > 0) console.log(`  Enriched ${wdCount} entries`);
 
-  // Step 8: MTB detection
+  // Step 7: MTB detection
   detectMtb(grouped);
   const mtbCount = grouped.filter(e => e.mtb).length;
   if (mtbCount > 0) console.log(`  Labelled ${mtbCount} entries as MTB`);
 
-  // Step 9a: Remove standalone entries that duplicate a same-named network.
+  // Step 8a: Remove standalone entries that duplicate a same-named network.
   // e.g. "Crosstown Bikeway 2" route (relation 10986223) is redundant with
   // the "Crosstown Bikeway 2" network (which absorbed 10986223 into its osm_relations).
   {
@@ -1648,32 +1613,34 @@ out geom tags;`;
     for (let i = grouped.length - 1; i >= 0; i--) {
       const e = grouped[i];
       if (e.type === 'network') continue;
-      if (e.member_of) continue;
       if (!e.osm_relations?.length) continue;
       const net = networksByName.get(e.name.toLowerCase());
       if (!net) continue;
       const netRelIds = new Set(net.osm_relations ?? []);
       if (e.osm_relations.every(id => netRelIds.has(id))) {
+        // Remove from its network's _memberRefs before splicing
+        if (e._networkRef && e._networkRef._memberRefs) {
+          e._networkRef._memberRefs = e._networkRef._memberRefs.filter(m => m !== e);
+        }
         grouped.splice(i, 1);
       }
     }
     if (grouped.length < before) {
       console.log(`  Removed ${before - grouped.length} same-named entries absorbed into networks`);
-      slugMap = computeSlugs(grouped);
     }
   }
 
-  // Step 9b: Apply markdown member_of overrides
+  // Step 8b: Apply markdown member_of overrides
   if (markdownOverrides.size > 0) {
     for (const [mdSlug, override] of markdownOverrides) {
       if (!override.member_of) continue;
 
-      const entry = grouped.find(e => slugMap.get(e) === mdSlug);
-      if (!entry || entry.type === 'network') continue;
+      // Find entry by base slug match
+      const entry = grouped.find(e => e.type !== 'network' && slugify(e.name) === mdSlug);
+      if (!entry) continue;
 
       const targetNet = grouped.find(e =>
-        e.type === 'network' &&
-        (slugMap.get(e) === override.member_of || slugify(e.name) === override.member_of)
+        e.type === 'network' && slugify(e.name) === override.member_of
       );
       if (!targetNet) {
         throw new Error(
@@ -1682,40 +1649,59 @@ out geom tags;`;
         );
       }
 
-      // Remove from old network's member list
-      if (entry.member_of) {
-        const oldNet = grouped.find(e =>
-          e.type === 'network' &&
-          (slugMap.get(e) === entry.member_of || slugify(e.name) === entry.member_of)
-        );
-        if (oldNet?.members) {
-          oldNet.members = oldNet.members.filter(s => s !== mdSlug);
-        }
+      // Remove from old network's _memberRefs
+      if (entry._networkRef && entry._networkRef._memberRefs) {
+        entry._networkRef._memberRefs = entry._networkRef._memberRefs.filter(m => m !== entry);
       }
 
-      entry.member_of = override.member_of;
-      if (!targetNet.members.includes(mdSlug)) {
-        targetNet.members.push(mdSlug);
+      entry._networkRef = targetNet;
+      if (!targetNet._memberRefs) targetNet._memberRefs = [];
+      if (!targetNet._memberRefs.includes(entry)) {
+        targetNet._memberRefs.push(entry);
       }
     }
   }
 
-  // Scrub self-references: a network's member list must not contain its own slug.
-  // This can happen when slug disambiguation changes which entry gets the clean slug.
+  // Scrub self-references: a network's _memberRefs must not contain itself
   for (const e of grouped) {
-    if (e.type !== 'network' || !e.members) continue;
-    const netSlug = slugMap.get(e) || slugify(e.name);
-    e.members = e.members.filter(s => s !== netSlug);
+    if (e.type !== 'network' || !e._memberRefs) continue;
+    e._memberRefs = e._memberRefs.filter(m => m !== e);
   }
 
   // Cleanup: remove zombie networks with 0 members (flattened into superroute)
-  const zombies = grouped.filter(e => e.type === 'network' && (!e.members || e.members.length === 0));
+  const zombies = grouped.filter(e => e.type === 'network' && (!e._memberRefs || e._memberRefs.length === 0));
   if (zombies.length > 0) {
     for (const z of zombies) {
       const idx = grouped.indexOf(z);
       if (idx !== -1) grouped.splice(idx, 1);
     }
     console.log(`  Removed ${zombies.length} empty networks`);
+  }
+
+  // Step 9: Final resolution — compute slugs once, resolve all refs to strings
+  const slugMap = computeSlugs(grouped);
+  for (const entry of grouped) {
+    if (entry._networkRef) {
+      entry.member_of = slugMap.get(entry._networkRef);
+      delete entry._networkRef;
+    }
+    if (entry._superNetworkRef) {
+      entry.super_network = slugMap.get(entry._superNetworkRef);
+      delete entry._superNetworkRef;
+    }
+    if (entry._memberRefs) {
+      entry.members = entry._memberRefs.map(ref => slugMap.get(ref)).filter(Boolean);
+      delete entry._memberRefs;
+    }
+    entry.slug = slugMap.get(entry);
+  }
+
+  // Resolve superNetworks metadata slugs from final slugMap
+  for (const meta of superNetworks) {
+    if (meta._entryRef) {
+      meta.slug = slugMap.get(meta._entryRef);
+      delete meta._entryRef;
+    }
   }
 
   return { entries: grouped, superNetworks, slugMap };
@@ -1758,14 +1744,11 @@ async function main() {
     }
     console.log(`\nTotal: ${entries.length} entries (${networkEntries.length} networks, ${memberEntries.length} members, ${superNetworks.length} super-networks)`);
   } else {
-    // Store slugs as first-class data — eliminates runtime slug derivation
-    for (const entry of entries) {
-      const slug = slugMap.get(entry);
-      if (slug) entry.slug = slug;
-    }
+    // Slugs already set by the resolution pass — strip transient fields
     for (const entry of entries) {
       delete entry._ways;
       delete entry._member_relations;
+      delete entry._parkName;
     }
     for (const entry of entries) {
       if (entry.anchors?.length > 2) {
