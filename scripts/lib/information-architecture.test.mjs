@@ -64,6 +64,14 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       expect(cp?.members?.length).toBeGreaterThanOrEqual(10);
     });
 
+    it('Ottawa River Pathway network gets the clean slug (no -3 suffix)', () => {
+      const orp = network('Ottawa River Pathway');
+      expect(orp).toBeDefined();
+      const slug = entries.find(e => e === orp);
+      // The stored slug should be 'ottawa-river-pathway', not '-1' or '-3'
+      expect(orp.slug).toBe('ottawa-river-pathway');
+    });
+
     it('Crosstown Bikeway 2 has no standalone duplicate (same-named route absorbed into network)', () => {
       // The CB2 superroute (10986224) absorbed CB2 route (10986223) into
       // its osm_relations, but the standalone route entry still exists.
