@@ -16,9 +16,9 @@ variants:
     strava_url: https://www.strava.com/activities/3798658451
 ---
 
-Looking for an all-star ride that showcases the best of Ottawa's natural beauty? Look no further than this loopy variation of [Britannia](/routes/3-britannia), which takes you through the Experimental Farm and Carlington Woods.
+Looking for an all-star ride that showcases the best of Ottawa's natural beauty? Look no further than this loopy variation of [Britannia](/routes/britannia), which takes you through the Experimental Farm and Carlington Woods.
 
-If you prefer a less touristy route, you can opt for [the Carlington Woods portion](/routes/27-experimental-farm-and-carlington-woods) alone. Regardless of which version you choose, this ride is particularly enjoyable in the summer, when [NCC closes the Kichi Zībī Mīkan Parkway (prev. Sir John A. Macdonald)](https://ncc-ccn.gc.ca/events/weekend-bikedays) during Weekend Bikedays. And if you're lucky, Queen Elizabeth Driveway might also be closed!
+If you prefer a less touristy route, you can opt for [the Carlington Woods portion](/routes/experimental-farm-and-carlington-woods) alone. Regardless of which version you choose, this ride is particularly enjoyable in the summer, when [NCC closes the Kichi Zībī Mīkan Parkway (prev. Sir John A. Macdonald)](https://ncc-ccn.gc.ca/events/weekend-bikedays) during Weekend Bikedays. And if you're lucky, Queen Elizabeth Driveway might also be closed!
 
 Along the way, you'll also have the opportunity to explore the [Trans Canada Trail](https://tctrail.ca/explore-the-map/) and take in some stunning views of the surrounding landscape. For more insights and tips, be sure to check out [GoBiking's review](https://gobiking.ca/local-rides/the-big-loop/).
 
