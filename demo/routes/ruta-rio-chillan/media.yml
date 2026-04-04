@@ -9,6 +9,7 @@
 - type: photo
   key: demo-photo-geo-1
   caption: Puente sobre el río
+  score: 8
   width: 1200
   height: 800
   lat: -36.6190
@@ -16,6 +17,7 @@
 - type: photo
   key: demo-photo-geo-2
   caption: Sendero junto al río
+  score: 7
   width: 1200
   height: 800
   lat: -36.6200
@@ -23,6 +25,7 @@
 - type: photo
   key: demo-photo-geo-3
   caption: Vista del valle
+  score: 6
   width: 1200
   height: 800
   lat: -36.6210
