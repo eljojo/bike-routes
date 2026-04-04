@@ -1700,6 +1700,14 @@ out geom tags;`;
     }
   }
 
+  // Scrub self-references: a network's member list must not contain its own slug.
+  // This can happen when slug disambiguation changes which entry gets the clean slug.
+  for (const e of grouped) {
+    if (e.type !== 'network' || !e.members) continue;
+    const netSlug = slugMap.get(e) || slugify(e.name);
+    e.members = e.members.filter(s => s !== netSlug);
+  }
+
   // Cleanup: remove zombie networks with 0 members (flattened into superroute)
   const zombies = grouped.filter(e => e.type === 'network' && (!e.members || e.members.length === 0));
   if (zombies.length > 0) {
