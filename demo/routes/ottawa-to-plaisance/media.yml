@@ -1,0 +1,8 @@
+- type: photo
+  key: demo-ottawa-plaisance-cover
+  caption: Ottawa River
+  score: 10
+  width: 1200
+  height: 800
+  cover: true
+  handle: cover
