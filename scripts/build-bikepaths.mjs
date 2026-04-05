@@ -1014,6 +1014,13 @@ function loadMarkdownSlugs() {
  * Parse markdown frontmatter overrides into a structured map.
  * Currently supports: member_of.
  */
+// Fields that markdown frontmatter can override on bikepaths.yml entries.
+// member_of has special handling (network reassignment). Everything else
+// is a simple field overwrite — if a human puts it in markdown, it wins.
+const MARKDOWN_OVERRIDE_FIELDS = [
+  'member_of', 'operator', 'path_type',
+];
+
 export function parseMarkdownOverrides(bikePathsDir) {
   const overrides = new Map();
   if (!bikePathsDir || !fs.existsSync(bikePathsDir)) return overrides;
@@ -1025,7 +1032,9 @@ export function parseMarkdownOverrides(bikePathsDir) {
     try { fm = yaml.load(fmMatch[1]); } catch { continue; }
     const mdSlug = f.replace('.md', '');
     const override = {};
-    if (fm?.member_of) override.member_of = fm.member_of;
+    for (const field of MARKDOWN_OVERRIDE_FIELDS) {
+      if (fm?.[field] != null) override[field] = fm[field];
+    }
     if (Object.keys(override).length > 0) overrides.set(mdSlug, override);
   }
   return overrides;
@@ -1671,14 +1680,21 @@ out geom tags;`;
     }
   }
 
-  // Step 8b: Apply markdown member_of overrides
+  // Step 8b: Apply markdown overrides.
+  // member_of has special handling (network reassignment). All other fields
+  // are simple overwrites — the human value replaces the pipeline value.
   if (markdownOverrides.size > 0) {
     for (const [mdSlug, override] of markdownOverrides) {
-      if (!override.member_of) continue;
-
-      // Find entry by base slug match
       const entry = grouped.find(e => e.type !== 'network' && slugify(e.name) === mdSlug);
       if (!entry) continue;
+
+      // Simple field overwrites (path_type, operator, etc.)
+      for (const [field, value] of Object.entries(override)) {
+        if (field === 'member_of') continue; // handled below
+        entry[field] = value;
+      }
+
+      if (!override.member_of) continue;
 
       const targetNet = grouped.find(e =>
         e.type === 'network' && slugify(e.name) === override.member_of

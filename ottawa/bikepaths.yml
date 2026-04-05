@@ -136,7 +136,7 @@ bike_paths:
       - 222700
     name_fr: Sentier de la Rivière-Gatineau
     name_en: Gatineau River Pathway
-    operator: CCN NCC
+    operator: Commission de la capitale nationale / National Capital Commission
     network: lcn
     surface: asphalt
     smoothness: intermediate
@@ -5629,7 +5629,7 @@ bike_paths:
     bicycle: 'yes'
     ref: '73'
     parallel_to: Prince Of Wales Drive
-    path_type: bike-lane
+    path_type: paved-shoulder
     slug: prince-of-wales-drive
   - name: Lyon Street North
     osm_names:

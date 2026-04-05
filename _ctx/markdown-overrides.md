@@ -22,6 +22,7 @@ The build script (`scripts/build-bikepaths.mjs`) reads markdown frontmatter duri
 | `member_of` | Entry gets network membership in YAML | `member_of: capital-pathway` |
 | `includes` | Claimed entries excluded from auto-grouping | `includes: [trail-a, trail-b]` |
 | `operator` | Written to YAML, overrides OSM value | `operator: Commission de la capitale nationale` |
+| `path_type` | Overrides computed path_type (see `_ctx/path-types.md`) | `path_type: paved-shoulder` |
 
 The pipeline runs occasionally (when infrastructure changes) and commits the result to bikepaths.yml.
 
