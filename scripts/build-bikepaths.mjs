@@ -52,6 +52,7 @@ import { discoverNetworks, discoverRouteSystemNetworks } from './lib/discover-ne
 import { enrichWithWikidata } from './lib/wikidata.mjs';
 import { detectMtb } from './lib/detect-mtb.mjs';
 import { derivePathType } from './lib/path-type.mjs';
+import { deriveEntryType } from './lib/entry-type.mjs';
 import { rankByGeomDistance } from './lib/nearest-park.mjs';
 
 // ---------------------------------------------------------------------------
@@ -1018,7 +1019,7 @@ function loadMarkdownSlugs() {
 // member_of has special handling (network reassignment). Everything else
 // is a simple field overwrite — if a human puts it in markdown, it wins.
 const MARKDOWN_OVERRIDE_FIELDS = [
-  'member_of', 'operator', 'path_type',
+  'member_of', 'operator', 'path_type', 'type',
 ];
 
 export function parseMarkdownOverrides(bikePathsDir) {
@@ -1648,6 +1649,14 @@ out geom tags;`;
   for (const entry of grouped) {
     const pt = derivePathType(entry);
     if (pt) entry.path_type = pt;
+  }
+
+  // Step 7c: Derive entry type (destination/infrastructure/connector)
+  // Depends on path_type and _ways (still available, stripped later).
+  // Networks already have type: 'network' — deriveEntryType skips them.
+  for (const entry of grouped) {
+    const et = deriveEntryType(entry);
+    if (et) entry.type = et;
   }
 
   // Step 8a: Remove standalone entries that duplicate a same-named network.
