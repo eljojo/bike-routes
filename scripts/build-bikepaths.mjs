@@ -1766,6 +1766,8 @@ out geom tags;`;
   // create entries alongside relation entries "Ottawa River Pathway (east)".
   // The ghost entry has no osm_relations and its name matches a relation's base name.
   // We remove it and clean up any network member references to it.
+  // NOTE: this does NOT remove entries matching park network names — those are
+  // legitimate unnamed chains (e.g. "Parc de la Gatineau" cycleway within the park).
   if (relationBaseNames.size > 0) {
     const before = grouped.length;
     for (let i = grouped.length - 1; i >= 0; i--) {
