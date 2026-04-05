@@ -129,6 +129,7 @@ This repo uses a two-tier context system mirroring `~/code/bike-app-astro`. The 
 - [naming-unnamed-chains](_ctx/naming-unnamed-chains.md) — how Step 2c names unnamed chains from nearby parks/roads
 - [markdown-overrides](_ctx/markdown-overrides.md) — how markdown frontmatter overrides pipeline-computed values
 - [path-types](_ctx/path-types.md) — `path_type` field: classifies infrastructure by safety and bike requirements
+- [entry-types](_ctx/entry-types.md) — `type` field: network, destination, infrastructure, connector
 
 ### Guides
 - [context-system](_ctx/context-system.md) — how the _ctx/ system works, mirrors bike-app-astro
