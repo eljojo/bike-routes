@@ -1,6 +1,7 @@
 ---
 name: Québec Bikepacking Traverse — Segment II
 name_fr: Traversée bikepacking du Québec — Segment II
+type: long-distance
 vibe: "Gravel and forest roads from Gatineau Park to Mont-Tremblant — the local gateway to Canada's longest bikepacking route"
 ---
 
