@@ -15,7 +15,7 @@ Markdown is read by two systems with different purposes:
 
 ### 1. Pipeline reads markdown → affects bikepaths.yml generation
 
-The build script (`scripts/build-bikepaths.mjs`) reads markdown frontmatter during pipeline execution. These fields steer the algorithm:
+The build script (`~/code/bike-app-astro/scripts/pipeline/build-bikepaths.mjs`, run via `make bikepaths`) reads markdown frontmatter during pipeline execution. These fields steer the algorithm:
 
 | Field | Effect on pipeline | Example |
 |-------|-------------------|---------|

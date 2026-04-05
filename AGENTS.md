@@ -66,26 +66,24 @@ ottawa/
 - Media: per-file licensing
 - Everything else (YAML, scripts, tooling): Apache 2.0
 
-## Bikepaths Pipeline (`scripts/build-bikepaths.mjs`)
+## Bikepaths Data Conventions
+
+The bikepaths pipeline lives in `~/code/bike-app-astro/scripts/pipeline/` (run via `make bikepaths` from that repo). See `~/code/bike-app-astro/_ctx/pipeline-overview.md` for how it works. This section covers what you need to know when **editing data** in this repo.
 
 ### Anchors are NOT coordinates
 
-`anchors` in bikepaths.yml are 1-2 bbox corner points used **only** for geographic scope in Overpass name lookups (`generate-route.mjs:fetchNamedWays`). They are NOT geometry. They are NOT suitable for:
+`anchors` in bikepaths.yml are 1-2 bbox corner points used **only** for geographic scope in Overpass name lookups. They are NOT geometry. They are NOT suitable for:
 - Determining if two entries are near each other
 - Determining if an entry is "in" a park, neighbourhood, or region
 - Any spatial analysis, distance calculation, or geographic reasoning
 
-**If you need to know where something actually is, query Overpass for its real geometry.** The way coordinates from `out geom` queries are the source of truth. Anchors are a lossy summary that exists only to scope name-based lookups.
+**If you need to know where something actually is, query Overpass for its real geometry.** The way coordinates from `out geom` queries are the source of truth.
 
 This is not a suggestion. Every time an AI has used anchors for spatial reasoning in this project, the result has been wrong. Do not do it.
 
-### `_ways` is transient
+### bikepaths.yml is fully rewritten
 
-The `_ways` field (full way geometry from Overpass) exists only in memory during the build. It is stripped before writing bikepaths.yml. It is never persisted. If you need way geometry after the build, query Overpass again.
-
-### Clustering uses connectivity, not proximity
-
-The auto-grouping in `scripts/lib/cluster-entries.mjs` merges entries whose OSM ways share nodes or have endpoints within ~10m. It does NOT use anchor distance. Guards: operator compatibility, path type (trail/paved/road), corridor width (2km).
+bikepaths.yml is regenerated from scratch on every pipeline run. Never hand-edit it — your changes will be overwritten. Manual additions (out-of-bounds relations not discoverable by bbox queries) go in `manual-entries.yml`. Human overrides (names, descriptions, operator labels) go in the markdown layer (`bike-paths/*.md`).
 
 ### Markdown is the human override layer
 
@@ -93,21 +91,10 @@ The auto-grouping in `scripts/lib/cluster-entries.mjs` merges entries whose OSM 
 - `name` in frontmatter overrides the auto-generated group name
 - `includes` lists bikepaths.yml slugs that should be shown on this page — use this to merge things the algorithm split (e.g. disconnected trail clusters that are conceptually one system)
 - `member_of` assigns an entry to a network the algorithm didn't discover
+- `path_type` overrides the computed infrastructure type
+- `type` overrides the computed entry type (destination/infrastructure/connector)
 - The algorithm does 80% of the work. Humans do the 20% via markdown.
 - `includes` assignments must be verified geographically by querying Overpass for real way coordinates — never by name-matching, never by using anchors from bikepaths.yml
-
-### Taxonomy: Networks vs Paths
-
-- **Path** — a single named cycling corridor with its own geometry (a `bike_paths` entry in bikepaths.yml). Gets a page if it meets the destination rule.
-- **Network** — a collection of paths forming a coherent system (`type: network` in bikepaths.yml, with a `members` array of path slugs). Comes from OSM `type=superroute` relations. Members keep their own pages; the network is an additional layer above them.
-- **`members` vs `grouped_from`** — `members` (networks) is additive: children keep their pages. `grouped_from` (trail clusters) is reductive: children lose their pages, absorbed into the group. Auto-grouping skips network members to prevent collision.
-- **Destination rule** — a path gets a standalone page only if length >= 1km. Below 1km, it appears on its parent network page but not as a standalone page. Markdown overrides both ways: a `.md` file forces a page; `hidden: true` suppresses one.
-- **Primary network** — when a path belongs to multiple superroutes, the most specific/local one is primary. The path's URL nests under its primary network.
-- **Only top-level superroutes become networks.** A sub-superroute (child of another superroute) is NOT a network — it's a path split into sections by OSM mappers. Example: Ottawa River Pathway is a sub-superroute of Capital Pathway with east/west/TCT children. To a cyclist it's one path. Its children get flattened into Capital Pathway as direct members. Minimum 2 members in the bbox to qualify as a network.
-
-### bikepaths.yml is fully rewritten
-
-bikepaths.yml is regenerated from scratch on every build. No incremental merge — the pipeline discovers all data from OSM, computes networks and groups, enriches with Wikidata, and writes the complete file. Manual additions (out-of-bounds relations not discoverable by bbox queries) are stored in `manual-entries.yml` and merged into the pipeline input. Human overrides (names, descriptions, operator labels) belong in the markdown layer, not in bikepaths.yml.
 
 ## Relationship to the Astro App
 
