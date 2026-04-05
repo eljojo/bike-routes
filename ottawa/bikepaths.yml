@@ -405,6 +405,7 @@ bike_paths:
       - O'Connor Bikeway
     path_type: mup
     type: destination
+    operator: City of Ottawa
     member_of: ottawa-bikeways
     slug: oconnor-bikeway
   - name: Rideau Canal Western Pathway
@@ -4028,25 +4029,6 @@ bike_paths:
         - 45.3392756
     surface: ground
     width: '1'
-    lit: 'no'
-    highway: path
-    mtb:scale: '3'
-    bicycle: designated
-    mtb: true
-    path_type: mtb-trail
-    type: destination
-    member_of: monk-environmental-park
-    slug: shadows-ridge-1
-  - name: Shadows Ridge
-    osm_names:
-      - Shadows Ridge
-    anchors:
-      - - -75.9309877
-        - 45.3392309
-      - - -75.9273676
-        - 45.3392751
-    surface: ground
-    width: '0.5'
     lit: 'no'
     highway: path
     mtb:scale: '3'
@@ -14562,9 +14544,8 @@ bike_paths:
       - Trillium Woods Trail
       - Shirleys Brook
       - Shadow's Ridge
-      - Shadows Ridge
       - Richcraft
-    surface: ground
+    surface: gravel
     highway: path
     lit: 'no'
     width: '2'
@@ -14573,7 +14554,6 @@ bike_paths:
       - trillium
       - trillium-woods-trail
       - shirleys-brook
-      - shadows-ridge-1
       - shadows-ridge
       - richcraft
     slug: monk-environmental-park
