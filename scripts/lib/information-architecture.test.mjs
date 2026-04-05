@@ -544,19 +544,16 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       }
     });
 
-    it('no path is a member of two different networks', () => {
-      const memberCounts = new Map();
-      for (const net of networks) {
-        for (const slug of net.members || []) {
-          if (!memberCounts.has(slug)) memberCounts.set(slug, []);
-          memberCounts.get(slug).push(net.name);
-        }
-      }
-      for (const [slug, netNames] of memberCounts) {
+    it('every path has exactly one primary network (member_of)', () => {
+      // A path can appear in multiple networks' members arrays (e.g. Watts
+      // Creek is in both NCC Greenbelt and Capital Pathway). But member_of
+      // must point to exactly one — the primary network that determines its URL.
+      const nonNetwork = entries.filter(e => e.type !== 'network' && e.member_of);
+      for (const entry of nonNetwork) {
         expect(
-          netNames.length,
-          `"${slug}" is in ${netNames.length} networks: ${netNames.join(', ')}`
-        ).toBe(1);
+          typeof entry.member_of,
+          `"${entry.name}" has non-string member_of: ${entry.member_of}`
+        ).toBe('string');
       }
     });
 

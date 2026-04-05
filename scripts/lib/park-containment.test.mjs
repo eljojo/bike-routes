@@ -400,6 +400,56 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
   // La Boucle MTB network
   // -----------------------------------------------------------------------
 
+  // -----------------------------------------------------------------------
+  // Dual network membership: some paths belong to both a park network
+  // (NCC Greenbelt) and a superroute network (Capital Pathway). The NCC
+  // themselves list these paths on both pages. Each path has one primary
+  // network (member_of, determines URL) but should appear in BOTH
+  // networks' members arrays.
+  // -----------------------------------------------------------------------
+
+  it('Watts Creek Pathway is in both NCC Greenbelt and Capital Pathway', () => {
+    const watts = entries.find(e => e.name === 'Watts Creek Pathway' && e.type !== 'network');
+    expect(watts, 'Watts Creek Pathway should exist').toBeDefined();
+    // Primary: Greenbelt (from park containment)
+    expect(watts.member_of).toBe('ncc-greenbelt');
+
+    const greenbelt = entries.find(e => e.type === 'network' && e.name === 'NCC Greenbelt');
+    const capitalPathway = entries.find(e => e.type === 'network' && e.name === 'Capital Pathway');
+    expect(greenbelt?.members, 'Greenbelt should list Watts Creek').toContain('watts-creek-pathway');
+    expect(capitalPathway?.members, 'Capital Pathway should list Watts Creek').toContain('watts-creek-pathway');
+  });
+
+  it('Greenbelt Pathway West is in both NCC Greenbelt and Capital Pathway', () => {
+    const gpw = entries.find(e => e.name?.includes('Greenbelt Pathway West') && e.type !== 'network');
+    expect(gpw, 'Greenbelt Pathway West should exist').toBeDefined();
+    expect(gpw.member_of).toBe('ncc-greenbelt');
+
+    const greenbelt = entries.find(e => e.type === 'network' && e.name === 'NCC Greenbelt');
+    const capitalPathway = entries.find(e => e.type === 'network' && e.name === 'Capital Pathway');
+    expect(greenbelt?.members).toContain(gpw.slug);
+    expect(capitalPathway?.members,
+      `Capital Pathway members: ${capitalPathway?.members?.join(', ')}`
+    ).toContain(gpw.slug);
+  });
+
+  it('Greenbelt Pathway East is in both NCC Greenbelt and Capital Pathway', () => {
+    const gpe = entries.find(e => e.name === 'Greenbelt Pathway East' && e.type !== 'network');
+    expect(gpe, 'Greenbelt Pathway East should exist').toBeDefined();
+    expect(gpe.member_of).toBe('ncc-greenbelt');
+
+    const greenbelt = entries.find(e => e.type === 'network' && e.name === 'NCC Greenbelt');
+    const capitalPathway = entries.find(e => e.type === 'network' && e.name === 'Capital Pathway');
+    expect(greenbelt?.members).toContain(gpe.slug);
+    expect(capitalPathway?.members,
+      `Capital Pathway members: ${capitalPathway?.members?.join(', ')}`
+    ).toContain(gpe.slug);
+  });
+
+  // -----------------------------------------------------------------------
+  // La Boucle MTB network
+  // -----------------------------------------------------------------------
+
   it('La Boucle area MTB trails are all in one network', () => {
     const trailNames = [
       'La Boucle', 'Extreme', "Rocky's", 'Molo', 'M&M', 'Major',

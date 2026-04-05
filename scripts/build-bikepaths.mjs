@@ -842,7 +842,11 @@ function addSuperrouteNetworks(entries, networks) {
     if (network.wikipedia) networkEntry.wikipedia = network.wikipedia;
     if (network.cycle_network) networkEntry.cycle_network = network.cycle_network;
 
-    // Resolve members: paths NOT already in another network.
+    // Resolve members: assign paths to this network.
+    // A path can belong to multiple networks (e.g. Watts Creek is in both
+    // NCC Greenbelt and Capital Pathway). member_of (from _networkRef) is
+    // the PRIMARY network (determines URL). But the path also appears in
+    // secondary networks' members arrays for display on those pages.
     // If a relation maps to a type: network entry (e.g. Rideau Canal Western
     // became an auto-group), flatten through its non-network members.
     // Also tag existing networks with _superNetworkRef for index grouping.
@@ -851,6 +855,19 @@ function addSuperrouteNetworks(entries, networks) {
       if (!member) continue;
 
       if (member.type === 'network') {
+        // Park networks are NOT intermediaries — don't flatten them.
+        // Their members stay primary to the park. Just add them as
+        // secondary members of this superroute network.
+        if (parkNetworks.has(member)) {
+          member._superNetworkRef = networkEntry;
+          for (const sub of (member._memberRefs || [])) {
+            if (sub.type === 'network') continue;
+            if (!networkEntry._memberRefs.includes(sub)) {
+              networkEntry._memberRefs.push(sub);
+            }
+          }
+          continue;
+        }
         // Flatten: adopt its _memberRefs into this superroute network.
         // Only auto-group networks get flattened — they're intermediaries.
         // byRelation was built at function start, so networks created by
@@ -858,13 +875,16 @@ function addSuperrouteNetworks(entries, networks) {
         // flattening is prevented by combining all networks into one call.
         for (const sub of [...(member._memberRefs || [])]) {
           if (sub.type === 'network') continue;
-          if (parkMembers.has(sub)) continue;
           if (sub._networkRef === member || !sub._networkRef) {
             networkEntry._memberRefs.push(sub);
             sub._networkRef = networkEntry;
             if (member._memberRefs) {
               member._memberRefs = member._memberRefs.filter(m => m !== sub);
             }
+          } else if (!networkEntry._memberRefs.includes(sub)) {
+            // Already in another network — add as secondary member
+            // (appears in members array, but member_of stays as-is)
+            networkEntry._memberRefs.push(sub);
           }
         }
         // Tag the sub-network with _superNetworkRef (most specific wins —
@@ -874,16 +894,22 @@ function addSuperrouteNetworks(entries, networks) {
       }
 
       if (member._networkRef) {
-        // Already in a network (auto-group or park) — tag that network
-        // with _superNetworkRef for index grouping. Don't reassign.
+        // Already in a network (auto-group or park) — add as secondary
+        // member and tag with _superNetworkRef for index grouping.
         member._networkRef._superNetworkRef = networkEntry;
         member._superNetworkRef = networkEntry;
+        if (!networkEntry._memberRefs.includes(member)) {
+          networkEntry._memberRefs.push(member);
+        }
         continue;
       }
 
-      // Don't reassign entries that were already in a network before this step
+      // Park members keep their primary network but join this one too
       if (parkMembers.has(member)) {
         member._superNetworkRef = networkEntry;
+        if (!networkEntry._memberRefs.includes(member)) {
+          networkEntry._memberRefs.push(member);
+        }
         continue;
       }
       networkEntry._memberRefs.push(member);
