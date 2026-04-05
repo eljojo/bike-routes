@@ -158,13 +158,13 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // There should be exactly one CB2: the network.
       const cb2 = entries.filter(e => e.name === 'Crosstown Bikeway 2');
       const cb2Network = cb2.filter(e => e.type === 'network');
-      const cb2Standalone = cb2.filter(e => !e.type);
+      const cb2Standalone = cb2.filter(e => e.type !== 'network');
       expect(cb2Network.length, 'Should have 1 CB2 network').toBe(1);
       expect(cb2Standalone.length, 'Should have 0 standalone CB2 entries').toBe(0);
     });
 
     it('Trillium Pathway is a member of Capital Pathway (markdown member_of override)', () => {
-      const tp = entries.find(e => e.name === 'Trillium Pathway' && !e.type);
+      const tp = entries.find(e => e.name === 'Trillium Pathway' && e.type !== 'network');
       expect(tp).toBeDefined();
       expect(tp.member_of).toBe('capital-pathway');
       const cp = network('Capital Pathway');
@@ -176,7 +176,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // Either directly (member_of: capital-pathway) or via ORP network
       // which itself is under Capital Pathway.
       const orpNet = network('Ottawa River Pathway');
-      const orpEast = entries.find(e => e.name === 'Ottawa River Pathway (east)' && !e.type);
+      const orpEast = entries.find(e => e.name === 'Ottawa River Pathway (east)' && e.type !== 'network');
       expect(orpEast?.member_of).toBe('ottawa-river-pathway');
       // ORP network must be under Capital Pathway for this to work
       expect(orpNet?.super_network || orpNet?.member_of).toMatch(/capital-pathway/i);
@@ -319,7 +319,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
 
     it('all "Ottawa River Pathway" path entries are members of the ORP network', () => {
       const orpPaths = entries.filter(e =>
-        e.name === 'Ottawa River Pathway' && !e.type
+        e.name === 'Ottawa River Pathway' && e.type !== 'network'
       );
       for (const p of orpPaths) {
         expect(
@@ -334,7 +334,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // named "Ottawa River Pathway" that weren't picked up by relation
       // discovery. They should be absorbed into the ORP network.
       const standalones = entries.filter(e =>
-        e.name === 'Ottawa River Pathway' && !e.type
+        e.name === 'Ottawa River Pathway' && e.type !== 'network'
       );
       for (const s of standalones) {
         expect(s.osm_names, 'Should have osm_names').toBeDefined();
@@ -347,7 +347,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // of any OSM relation. They should be absorbed into the ORP network
       // by name matching during superroute resolution.
       const standalones = entries.filter(e =>
-        e.name === 'Ottawa River Pathway' && !e.type
+        e.name === 'Ottawa River Pathway' && e.type !== 'network'
       );
       for (const s of standalones) {
         expect(
@@ -416,7 +416,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // OVRT is a continuous 30km rail trail. Its ways chain via shared
       // nodes. splitWaysByConnectivity should keep it as one entry.
       const ovrt = entries.filter(e =>
-        e.name === 'Ottawa Valley Recreational Trail' && !e.type
+        e.name === 'Ottawa Valley Recreational Trail' && e.type !== 'network'
       );
       expect(ovrt.length, `OVRT has ${ovrt.length} entries, should be 1`).toBe(1);
     });
@@ -425,7 +425,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // These share a name but are in different parks with no geometric
       // connection. splitWaysByConnectivity should keep them separate.
       const trail20 = entries.filter(e =>
-        e.name === 'Trail 20' && !e.type
+        e.name === 'Trail 20' && e.type !== 'network'
       );
       expect(trail20.length, 'Trail 20 should have 2 entries (Greenbelt + Gatineau)').toBe(2);
     });
@@ -464,18 +464,18 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       const gatineauEntries = entries.filter(e => e.name === 'Parc de la Gatineau');
       expect(gatineauEntries.length).toBe(2);
       expect(gatineauEntries.filter(e => e.type === 'network').length).toBe(1);
-      expect(gatineauEntries.filter(e => !e.type).length).toBe(1);
+      expect(gatineauEntries.filter(e => e.type !== 'network').length).toBe(1);
     });
 
     it('the non-network Parc de la Gatineau came from unnamed chain discovery (osm_names includes the park name)', () => {
-      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && !e.type);
+      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && e.type !== 'network');
       expect(pathEntry).toBeDefined();
       expect(pathEntry.osm_names).toContain('Parc de la Gatineau');
       expect(pathEntry.osm_relations).toBeUndefined();
     });
 
     it('the non-network Parc de la Gatineau is not a parallel lane', () => {
-      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && !e.type);
+      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && e.type !== 'network');
       expect(pathEntry).toBeDefined();
       expect(pathEntry.parallel_to).toBeUndefined();
     });
@@ -489,13 +489,13 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
     it('the Cité-des-Jeunes parallel lane exists (proving Step 2b found that cycleway)', () => {
       const citeEntry = entries.find(e =>
         (e.name?.includes('Cité-des-Jeunes') || e.name?.includes('Cite-des-Jeunes')) &&
-        !e.type
+        e.type !== 'network'
       );
       expect(citeEntry, 'Should have a Cité-des-Jeunes entry').toBeDefined();
     });
 
     it('the non-network Parc de la Gatineau is NOT adopted into the park network (guard prevents self-ref)', () => {
-      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && !e.type);
+      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && e.type !== 'network');
       expect(pathEntry).toBeDefined();
       expect(pathEntry.member_of).toBeUndefined();
     });
@@ -503,13 +503,13 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
     it('way 53309796 should be in a Cité-des-Jeunes entry (parallel lane)', () => {
       const citeEntry = entries.find(e =>
         (e.name?.includes('Cité-des-Jeunes') || e.name?.includes('Cite-des-Jeunes')) &&
-        !e.type
+        e.type !== 'network'
       );
       expect(citeEntry, 'way 53309796 should be in a Cité-des-Jeunes entry').toBeDefined();
     });
 
     it('the non-network Parc de la Gatineau path entry has 6 anchors (= 3 ways in the chain)', () => {
-      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && !e.type);
+      const pathEntry = entries.find(e => e.name === 'Parc de la Gatineau' && e.type !== 'network');
       expect(pathEntry).toBeDefined();
       // Step 2c adds 2 anchor points per way. 6 anchors = 3 ways.
       // This is a multi-way chain mixing cycleway and path ways.
@@ -531,7 +531,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // The rest were tiny spurs — absorbed into the dominant member.
       const bpNet = networks.find(n => n.name === 'Beaverpond Park');
       expect(bpNet, 'Should not be a network — only 1 page-worthy member').toBeUndefined();
-      const bpPath = entries.find(e => e.name === 'Beaverpond Park' && !e.type);
+      const bpPath = entries.find(e => e.name === 'Beaverpond Park' && e.type !== 'network');
       expect(bpPath, 'Should still exist as a path entry').toBeDefined();
     });
 
@@ -563,7 +563,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // Not a network — one trail with minor offshoots.
       const noExitNetwork = networks.find(n => n.name?.includes('No Exit'));
       expect(noExitNetwork, 'No Exit should not be a network').toBeUndefined();
-      const cbt = entries.find(e => e.name === 'Carp Barrens Trail' && !e.type);
+      const cbt = entries.find(e => e.name === 'Carp Barrens Trail' && e.type !== 'network');
       expect(cbt, 'Carp Barrens Trail should exist').toBeDefined();
     });
 
@@ -573,7 +573,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // Park containment classified it as Bruce Pit because GPW's geometry
       // intersects Bruce Pit's polygon. But the trail is much larger than
       // the park — it should be in the NCC Greenbelt network.
-      const gpw = entries.find(e => e.name === 'Greenbelt Pathway West' && !e.type);
+      const gpw = entries.find(e => e.name === 'Greenbelt Pathway West' && e.type !== 'network');
       expect(gpw).toBeDefined();
       expect(gpw.member_of, 'GPW should be in NCC Greenbelt, not Bruce Pit').toBe('ncc-greenbelt');
     });
@@ -658,7 +658,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // 8 ways, asphalt, 45.51,-75.67 — parallel to Rue Davidson Ouest
       const entry = entries.find(e =>
         e.name?.toLowerCase().includes('davidson') &&
-        !e.type
+        e.type !== 'network'
       );
       expect(entry, 'Should have a Davidson area path').toBeDefined();
     });
@@ -667,7 +667,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // 6 ways, ground+asphalt, 45.41,-75.88
       const entry = entries.find(e =>
         e.name?.toLowerCase().includes('queen') &&
-        !e.type
+        e.type !== 'network'
       );
       expect(entry, 'Should have a Parc Queen path').toBeDefined();
     });
@@ -676,7 +676,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // 13 ways, 45.27,-75.76
       const entry = entries.find(e =>
         e.name?.toLowerCase().includes('houlahan') &&
-        !e.type
+        e.type !== 'network'
       );
       expect(entry, 'Should have a Houlahan area path').toBeDefined();
     });
@@ -686,7 +686,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // 7 ways, gravel+asphalt, 45.28,-75.80
       const entry = entries.find(e =>
         e.name?.toLowerCase().includes('lytle') &&
-        !e.type
+        e.type !== 'network'
       );
       expect(entry, 'Should have a Lytle area path').toBeDefined();
     });
@@ -695,7 +695,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // 1 way, asphalt, 45.31,-75.77
       const entry = entries.find(e =>
         e.name?.toLowerCase().includes('greenbank') &&
-        !e.type &&
+        e.type !== 'network' &&
         !e.parallel_to
       );
       expect(entry, 'Should have a Greenbank area path (not parallel lane)').toBeDefined();
@@ -706,7 +706,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // https://www.openstreetmap.org/way/69630903
       const entry = entries.find(e =>
         (e.name?.toLowerCase().includes('tweed') || e.name?.toLowerCase().includes('conservation')) &&
-        !e.type
+        e.type !== 'network'
       );
       expect(entry, 'Should have a J. Henry Tweed Conservation Area path').toBeDefined();
     });
@@ -726,7 +726,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // 4 ways, asphalt, 45.49,-75.62
       const entry = entries.find(e =>
         e.name?.toLowerCase().includes('beauchamp') &&
-        !e.type
+        e.type !== 'network'
       );
       expect(entry, 'Should have a Lac-Beauchamp path').toBeDefined();
     });
@@ -735,7 +735,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // 31 ways, 45.41,-75.67
       const entry = entries.find(e =>
         e.name?.toLowerCase().includes('springhurst') &&
-        !e.type
+        e.type !== 'network'
       );
       expect(entry, 'Should have a Springhurst Park path').toBeDefined();
     });
@@ -747,7 +747,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // ["Mooney's Bay Park", "Moffatt Farm Veterans Park"]. Pipeline
       // picks first. Correct park is second in the list.
       const entry = entries.find(e =>
-        e.name?.toLowerCase().includes('moffat') && !e.type
+        e.name?.toLowerCase().includes('moffat') && e.type !== 'network'
       );
       expect(entry, 'Should have a Moffat Park path').toBeDefined();
     });
@@ -760,14 +760,14 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // and the parallel-to-existing check was too aggressive (killed
       // legitimate chains like Ben Franklin). Needs a more targeted fix.
       const entry = entries.find(e =>
-        e.name === 'National Capital Commission Driveway' && !e.type
+        e.name === 'National Capital Commission Driveway' && e.type !== 'network'
       );
       expect(entry, 'Should not exist as a standalone NCC Driveway entry').toBeUndefined();
     });
 
     it('Experimental Farm Pathway exists as an entry', () => {
       const entry = entries.find(e =>
-        e.name?.includes('Experimental Farm') && !e.type
+        e.name?.includes('Experimental Farm') && e.type !== 'network'
       );
       expect(entry, 'Experimental Farm Pathway should exist').toBeDefined();
       expect(entry.osm_relations).toContain(7206821);
@@ -777,7 +777,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // If Experimental Farm is 'paved' and way/160958126 is 'trail',
       // the type guard in clustering prevents them from merging.
       const entry = entries.find(e =>
-        e.name?.includes('Experimental Farm') && !e.type
+        e.name?.includes('Experimental Farm') && e.type !== 'network'
       );
       expect(entry).toBeDefined();
       // highway=cycleway + surface=asphalt → paved
@@ -791,7 +791,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // is 'paved'. The type guard prevents trail↔paved clustering.
       // This is the root cause: they CAN'T cluster because of type mismatch.
       const nccEntry = entries.find(e =>
-        e.name === 'National Capital Commission Driveway' && !e.type
+        e.name === 'National Capital Commission Driveway' && e.type !== 'network'
       );
       expect(nccEntry).toBeDefined();
       expect(nccEntry.highway || 'path').toBe('path');
@@ -801,7 +801,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // If the relation entry has no _ways, clustering can't connect
       // anything to it — the unnamed path can't find it
       const entry = entries.find(e =>
-        e.name?.includes('Experimental Farm') && !e.type
+        e.name?.includes('Experimental Farm') && e.type !== 'network'
       );
       expect(entry).toBeDefined();
       // _ways is stripped before YAML output but should exist during pipeline
@@ -855,7 +855,7 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // searches leisure=park, so it finds Parc du Drakkar instead.
       // Fix: broaden the nearby query to include natural=wood areas.
       const entry = entries.find(e =>
-        e.name?.toLowerCase().includes('blanche') && !e.type
+        e.name?.toLowerCase().includes('blanche') && e.type !== 'network'
       );
       expect(entry, 'Should have a Parc de la Blanche path').toBeDefined();
     });
@@ -867,14 +867,14 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
       // issue, not a naming issue. The chain should connect to ORP
       // during auto-grouping.
       const entry = entries.find(e =>
-        e.name === 'Petrie Island Park' && !e.type
+        e.name === 'Petrie Island Park' && e.type !== 'network'
       );
       expect(entry, 'Should not exist as standalone Petrie Island Park entry').toBeUndefined();
     });
 
     it('way/68609629 is correctly named Beaverpond Park', () => {
       const entry = entries.find(e =>
-        e.name === 'Beaverpond Park' && !e.type
+        e.name === 'Beaverpond Park' && e.type !== 'network'
       );
       expect(entry).toBeDefined();
     });
@@ -897,14 +897,14 @@ describeWithCassette('information architecture — Ottawa bike path index', () =
 
     it('way/509010455 is correctly named Ben Franklin Park East', () => {
       const entry = entries.find(e =>
-        e.name?.includes('Ben Franklin') && !e.type
+        e.name?.includes('Ben Franklin') && e.type !== 'network'
       );
       expect(entry).toBeDefined();
     });
 
     it('way/544451389 is correctly named Limebank Road', () => {
       const entry = entries.find(e =>
-        e.name?.includes('Limebank') && !e.type
+        e.name?.includes('Limebank') && e.type !== 'network'
       );
       expect(entry).toBeDefined();
     });
