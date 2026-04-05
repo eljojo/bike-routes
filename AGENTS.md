@@ -109,7 +109,7 @@ GPX files are tracked with Git LFS.
 This repo uses a two-tier context system mirroring `~/code/bike-app-astro`. The rules and conventions above are always active. The `_ctx/` files below contain detail for specific tasks — read the one-line description to decide if you need the full file.
 
 ### Rules
-- [spatial-reasoning](_ctx/spatial-reasoning.md) — NEVER use midpoints, centers, anchors, or bboxes as proxy for real geometry
+- [spatial-reasoning](~/code/bike-app-astro/_ctx/spatial-reasoning.md) — NEVER use midpoints, centers, anchors, or bboxes as proxy for real geometry
 
 ### Guides
 - [context-system](_ctx/context-system.md) — how the _ctx/ system works, mirrors bike-app-astro
