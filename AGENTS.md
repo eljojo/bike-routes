@@ -125,14 +125,13 @@ This repo uses a two-tier context system mirroring `~/code/bike-app-astro`. The 
 - [spatial-reasoning](_ctx/spatial-reasoning.md) — NEVER use midpoints, centers, anchors, or bboxes as proxy for real geometry
 
 ### Patterns
-- [pipeline-overview](_ctx/pipeline-overview.md) — how build-bikepaths.mjs discovers, names, clusters, and networks cycling infrastructure
-- [naming-unnamed-chains](_ctx/naming-unnamed-chains.md) — how Step 2c names unnamed chains from nearby parks/roads
 - [markdown-overrides](_ctx/markdown-overrides.md) — how markdown frontmatter overrides pipeline-computed values
-- [path-types](_ctx/path-types.md) — `path_type` field: classifies infrastructure by safety and bike requirements
-- [entry-types](_ctx/entry-types.md) — `type` field: network, destination, infrastructure, connector
 
 ### Guides
 - [context-system](_ctx/context-system.md) — how the _ctx/ system works, mirrors bike-app-astro
 
 ### Cross-Repo Context
 - `~/code/bike-app-astro/_ctx/bike-paths.md` — how the Astro app consumes bikepaths.yml and markdown (overlay model, network pages, enrichment)
+- `~/code/bike-app-astro/_ctx/pipeline-overview.md` — bikepaths pipeline (moved to monorepo)
+- `~/code/bike-app-astro/_ctx/path-types.md` — path_type field spec
+- `~/code/bike-app-astro/_ctx/entry-types.md` — entry type field spec
