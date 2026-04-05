@@ -525,4 +525,45 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
     const boucle = entries.find(e => e.name === 'La Boucle');
     expect(boucle?.path_type).toBe('mtb-trail');
   });
+
+  // -----------------------------------------------------------------------
+  // entry type derivation (destination / infrastructure / connector)
+  // -----------------------------------------------------------------------
+
+  it('every non-network entry has a type from the allowed set', () => {
+    const allowed = new Set(['destination', 'infrastructure', 'connector']);
+    const nonNetwork = entries.filter(e => e.type !== 'network');
+    const invalid = nonNetwork.filter(e => !allowed.has(e.type));
+    expect(invalid.length,
+      `${invalid.length} entries with missing/invalid type: ${invalid.slice(0, 5).map(e => `${e.name}=${e.type}`).join(', ')}...`
+    ).toBe(0);
+  });
+
+  it('Sawmill Creek Path (relation) is a destination', () => {
+    const entry = entries.find(e => e.name === 'Sawmill Creek Path');
+    expect(entry?.type).toBe('destination');
+  });
+
+  it('Ottawa River Pathway (east) is a destination', () => {
+    const entry = entries.find(e => e.name === 'Ottawa River Pathway (east)');
+    expect(entry?.type).toBe('destination');
+  });
+
+  it('La Boucle MTB trail is a destination', () => {
+    const entry = entries.find(e => e.name === 'La Boucle');
+    expect(entry?.type).toBe('destination');
+  });
+
+  it('no bike-lane is a destination', () => {
+    const lanes = entries.filter(e => e.path_type === 'bike-lane');
+    const destinations = lanes.filter(e => e.type === 'destination');
+    expect(destinations.length,
+      `${destinations.length} bike-lanes are destinations: ${destinations.slice(0, 5).map(e => e.name).join(', ')}`
+    ).toBe(0);
+  });
+
+  it('networks still have type: network', () => {
+    const networks = entries.filter(e => e.type === 'network');
+    expect(networks.length).toBeGreaterThan(10);
+  });
 });
