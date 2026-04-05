@@ -1,20 +1,46 @@
 bike_paths:
+  # Rich member path — exercises all fact rows, has markdown, member of network
   - name: Ciclovía Avenida Ecuador
     osm_names: [Ciclovía Avenida Ecuador]
+    osm_relations: [99001]
     highway: cycleway
-    surface: paved
+    surface: asphalt
+    smoothness: good
+    width: "3"
     lit: "yes"
+    segregated: "yes"
+    path_type: mup
+    parallel_to: Avenida Ecuador
     member_of: red-de-ciclovias
+    operator: Municipalidad
+    network: lcn
+    ref: CE-1
+    type: destination
+    wikipedia: es:Ciclovía Avenida Ecuador
+    wikidata: Q99999901
+    wikidata_meta:
+      description_en: Urban cycling path along Avenida Ecuador
+      description_es: Ciclovía urbana a lo largo de la Avenida Ecuador
+      website: https://ciclovias.chillan.cl
+      inception: "2015"
+      length_km: 3.2
     anchors:
       - [-72.12, -36.59]
       - [-72.09, -36.60]
+
+  # Second member — shorter, minimal
   - name: Ciclovía Avenida Brasil
+    osm_names: [Ciclovía Avenida Brasil]
     highway: cycleway
     surface: asphalt
+    path_type: separated-lane
     member_of: red-de-ciclovias
+    type: destination
     anchors:
       - [-72.11, -36.60]
       - [-72.10, -36.61]
+
+  # Network page — exercises network sections
   - name: Red de Ciclovías
     type: network
     highway: cycleway
@@ -26,4 +52,19 @@ bike_paths:
     wikidata_meta:
       description_en: Urban cycling network in Chillán
       length_km: 8
-      inception: 2010s
+      inception: "2010s"
+
+  # Standalone longer path nearby — exercises "nearest major path" for Avenida Ecuador
+  - name: Ruta Río Chillán
+    osm_names: [Ruta Río Chillán]
+    osm_way_ids: [88001, 88002, 88003]
+    highway: cycleway
+    surface: fine_gravel
+    width: "2.5"
+    lit: "no"
+    path_type: trail
+    type: destination
+    seasonal: summer
+    anchors:
+      - [-72.11, -36.595]
+      - [-72.08, -36.61]
