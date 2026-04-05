@@ -111,13 +111,11 @@ This repo uses a two-tier context system mirroring `~/code/bike-app-astro`. The 
 ### Rules
 - [spatial-reasoning](_ctx/spatial-reasoning.md) — NEVER use midpoints, centers, anchors, or bboxes as proxy for real geometry
 
-### Patterns
-- [markdown-overrides](_ctx/markdown-overrides.md) — how markdown frontmatter overrides pipeline-computed values
-
 ### Guides
 - [context-system](_ctx/context-system.md) — how the _ctx/ system works, mirrors bike-app-astro
 
 ### Cross-Repo Context
+- `~/code/bike-app-astro/_ctx/markdown-overrides.md` — how markdown frontmatter is consumed by pipeline and app
 - `~/code/bike-app-astro/_ctx/bike-paths.md` — how the Astro app consumes bikepaths.yml and markdown (overlay model, network pages, enrichment)
 - `~/code/bike-app-astro/_ctx/pipeline-overview.md` — bikepaths pipeline (moved to monorepo)
 - `~/code/bike-app-astro/_ctx/path-types.md` — path_type field spec
