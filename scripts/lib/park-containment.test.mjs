@@ -505,13 +505,18 @@ describeWithCassette('pipeline park containment — real Ottawa data', () => {
     expect(orp?.path_type).toBe('mup');
   });
 
-  it('parallel lanes are bike-lane or separated-lane', () => {
-    const parallel = entries.filter(e => e.parallel_to);
-    expect(parallel.length).toBeGreaterThan(50);
-    for (const e of parallel) {
+  it('parallel lanes on roads are bike-lane or separated-lane', () => {
+    // Entries with parallel_to AND a road-class highway are on-road infra.
+    // Entries with parallel_to AND highway=cycleway are standalone MUPs
+    // that happen to run alongside a road (e.g. QED canal path).
+    const roadParallel = entries.filter(e =>
+      e.parallel_to && e.highway !== 'cycleway'
+    );
+    expect(roadParallel.length).toBeGreaterThan(50);
+    for (const e of roadParallel) {
       expect(
         ['bike-lane', 'separated-lane', 'paved-shoulder'].includes(e.path_type),
-        `${e.name} has parallel_to but path_type=${e.path_type}`
+        `${e.name} has parallel_to + highway=${e.highway} but path_type=${e.path_type}`
       ).toBe(true);
     }
   });

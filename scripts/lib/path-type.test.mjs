@@ -65,4 +65,35 @@ describe('derivePathType', () => {
   it('network entries return undefined', () => {
     expect(derivePathType({ type: 'network', name: 'Capital Pathway' })).toBeUndefined();
   });
+
+  // -----------------------------------------------------------------------
+  // Real-world spot checks: entries must match what a cyclist sees on the ground
+  // -----------------------------------------------------------------------
+
+  it('road with cycleway=lane but no parallel_to → bike-lane (Lyon Street)', () => {
+    // Lyon Street North is a road (highway=secondary) with a painted bike
+    // lane (cycleway=lane). The pipeline discovers it as a named way, not
+    // as a parallel lane, so it has no parallel_to. Still a bike lane.
+    expect(derivePathType({
+      highway: 'secondary', cycleway: 'lane', surface: 'asphalt', lit: 'yes',
+    })).toBe('bike-lane');
+  });
+
+  it('highway=cycleway with parallel_to → mup, not bike-lane (Queen Elizabeth Driveway)', () => {
+    // The MUP along the Rideau Canal parallels QED but it's a standalone
+    // 3m-wide cycleway, not a painted lane. highway=cycleway means
+    // the way itself IS the cycling infrastructure, not a feature on a road.
+    expect(derivePathType({
+      highway: 'cycleway', parallel_to: 'Queen Elizabeth Driveway',
+      surface: 'asphalt', width: '3', smoothness: 'excellent',
+    })).toBe('mup');
+  });
+
+  it('road with cycleway=lane + parallel_to → bike-lane (normal case)', () => {
+    // A road with a parallel lane — the standard case. parallel_to is set
+    // AND highway is a road class. This is a painted lane.
+    expect(derivePathType({
+      highway: 'primary', cycleway: 'lane', parallel_to: 'Some Road',
+    })).toBe('bike-lane');
+  });
 });
