@@ -11,14 +11,11 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
-    operator: NCC
     anchors:
       - - -75.8729741
         - 45.379769
       - - -75.7014385
         - 45.456289
-    name_fr: Pont Mãwandòseg
-    name_en: Mãwandòseg bridge
     path_type: mup
     type: destination
     member_of: capital-pathway
@@ -327,7 +324,6 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
-    ref: '27'
     anchors:
       - - -75.7871841
         - 45.4641933
@@ -335,6 +331,12 @@ bike_paths:
         - 45.4731249
     path_type: mup
     type: destination
+    overlapping_relations:
+      - id: 10752235
+        name: From the City to the Wilderness
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
     slug: sentier-du-ruisseau-leamy
     osm_way_ids:
       - 34317299
@@ -419,7 +421,6 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    ref: '5'
     anchors:
       - - -75.7928928
         - 45.4224904
@@ -428,6 +429,12 @@ bike_paths:
     cycleway: lane
     path_type: mup
     type: destination
+    overlapping_relations:
+      - id: 10752235
+        name: From the City to the Wilderness
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
     member_of: capital-pathway
     slug: sentier-du-parc-de-la-gatineau
     osm_way_ids:
@@ -470,13 +477,54 @@ bike_paths:
         - 45.5239149
     cycleway: crossing
     lit: 'no'
-    name_en: Clarendon Street
     name_fr: route Verte 1
+    name_en: Route Verte 1
     wikidata_meta:
       description_fr: route cyclable au Québec (Canada)
       inception: '2007'
     path_type: mup
     type: long-distance
+    overlapping_relations:
+      - id: 1279273
+        name: Sentier de l'Estrie, Zone Orford
+        route: hiking
+        operator: Parc national du Mont Orford SEPAQ
+        network: nwn
+      - id: 1282500
+        name: Sentier de l'Estrie, Zone Richmond
+        route: hiking
+        operator: Les Sentiers de l'Estrie inc.
+        network: nwn
+      - id: 1299034
+        name: Sentier de l'Estrie, Zone Orford, Accès
+        route: hiking
+        operator: Parc national du Mont Orford SEPAQ
+        network: nwn
+      - id: 14406008
+        name: Circuit d'entrainement
+        route: piste
+        operator: MRC Argenteuil
+      - id: 8729330
+        name: Tronçon Littoral Basque
+        route: hiking
+        operator: Sentier national Bas-Saint-Laurent
+        network: lwn
+      - id: 9318807
+        name: SIA, 3-Haute Gaspésie
+        route: hiking
+        network: nwn
+      - id: 11295264
+        name: SIA, 6-Vallée de la Matapedia
+        route: hiking
+        network: nwn
+      - id: 11295376
+        name: SIA, 7-Avignon
+        route: hiking
+        network: nwn
+      - id: 11296135
+        name: SIA, 6-Route d'accès Lac-au-Saumon
+        route: hiking
+        network: lwn
     slug: route-verte-1
     osm_way_ids:
       - 13039605
@@ -3811,14 +3859,38 @@ bike_paths:
     smoothness: very_bad
     width: '2'
     lit: 'no'
-    alt_name: Trail 73
     segregated: 'no'
-    description: Meech Lake Outlet Bridge
     incline: up
     member_of: parc-de-la-gatineau
     mtb: true
     path_type: mtb-trail
     type: long-distance
+    overlapping_relations:
+      - id: 10752235
+        name: From the City to the Wilderness
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+      - id: 10752245
+        name: A Prime Minister's Backyard
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+      - id: 10752247
+        name: The Heart of the Network
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+      - id: 11867879
+        name: Confederation Boulevard
+        route: foot
+        operator: NCC
+        ref: CB
+        network: lwn
+      - id: 14446447
+        name: Les parcours Boomerang
+        route: foot
+        ref: LPB
     super_network: sentier-trans-canadien-quebec
     slug: sentier-trans-canada-gatineau-montreal
     osm_way_ids:
@@ -4563,14 +4635,12 @@ bike_paths:
       - 2890360
     name_en: Champlain Corridor Pathway
     network: lcn
-    name_fr: Sentier du Corridor-Champlain
     surface: asphalt
     smoothness: good
     width: '2'
     lit: 'no'
     highway: path
     bicycle: designated
-    operator: National Capital Commission
     anchors:
       - - -75.786709
         - 45.4140708
@@ -4624,7 +4694,6 @@ bike_paths:
     highway: cycleway
     mtb:scale: '2'
     bicycle: designated
-    ref: '56'
     anchors:
       - - -75.9234036
         - 45.5274735
@@ -4633,15 +4702,31 @@ bike_paths:
     smoothness: bad
     width: '1.5'
     lit: 'no'
-    name_en: Trail 25
     segregated: 'no'
-    name_fr: Sentier 51
     incline: down
-    network: mtb
     member_of: parc-de-la-gatineau
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 10752235
+        name: From the City to the Wilderness
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+      - id: 10752245
+        name: A Prime Minister's Backyard
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+      - id: 10752247
+        name: The Heart of the Network
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+      - id: 4504059
+        name: '9'
+        route: piste
     slug: sentier-velo-de-montagne-parc-de-la-gatineau
     osm_way_ids:
       - 37859187
@@ -4753,13 +4838,11 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
-    description: 'Summer: cycle, walk, hike Winter: @skiheritageeast skate and classic grooming fat bike, xc ski'
     anchors:
       - - -75.6887549
         - 45.4460476
       - - -75.4832853
         - 45.4972344
-    name_en: Princess Avenue
     path_type: mup
     type: long-distance
     member_of: ottawa-river-pathway
@@ -4844,7 +4927,6 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    operator: NCC
     anchors:
       - - -75.8892601
         - 45.3265621
@@ -4902,7 +4984,6 @@ bike_paths:
     highway: cycleway
     mtb:scale: '0'
     bicycle: designated
-    operator: City of Ottawa
     anchors:
       - - -75.7249039
         - 45.3961412
@@ -5445,7 +5526,6 @@ bike_paths:
     operator: Rideau Trail Association
     network: rwn
     ref: RTO
-    name_fr: Sentier de la Rivière des Outaouais
     surface: asphalt
     smoothness: good
     width: '3'
@@ -5462,6 +5542,12 @@ bike_paths:
     member_of: rideau-trail-ottawa-section-network
     path_type: mup
     type: destination
+    overlapping_relations:
+      - id: 7677697
+        name: RT Lime Kiln Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     slug: rideau-trail-ottawa-section
     osm_way_ids:
       - 5248455
@@ -5802,7 +5888,6 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    operator: NCC
     anchors:
       - - -75.6972126
         - 45.3707591
@@ -5988,8 +6073,6 @@ bike_paths:
     network: ncn
     ref: TCT
     description: The Trans Canada Trail follows Sussex Drive
-    name_fr: promenade Sussex
-    name_en: Sussex Drive
     surface: asphalt
     lit: 'yes'
     cycleway: lane
@@ -6001,6 +6084,13 @@ bike_paths:
         - 45.444516
     path_type: bike-lane
     type: long-distance
+    overlapping_relations:
+      - id: 11867879
+        name: Confederation Boulevard
+        route: foot
+        operator: NCC
+        ref: CB
+        network: lwn
     member_of: ottawa-river-pathway
     slug: trans-canada-trail-sussex-drive
     osm_way_ids:
@@ -6498,7 +6588,6 @@ bike_paths:
     operator: NCC/CCN
     network: lwn
     ref: '62'
-    alt_name: Sentier 62
     website: https://s3.amazonaws.com/ncc-ccn/documents/gp_trailfactsheet-2014_e3_wolf.pdf
     surface: ground
     smoothness: very_bad
@@ -6548,8 +6637,6 @@ bike_paths:
       - 9423923
     operator: NCC/CCN
     network: lwn
-    name_fr: Sentier de la Chute-de-Luskville
-    name_en: Luskville Falls Trail
     website: http://s3.amazonaws.com/ncc-ccn/documents/gp_trailfactsheet-2014_e2_luskvillefalls.pdf
     surface: ground
     highway: path
@@ -6812,6 +6899,13 @@ bike_paths:
     ref: TCT
     path_type: mup
     type: long-distance
+    overlapping_relations:
+      - id: 11867879
+        name: Confederation Boulevard
+        route: foot
+        operator: NCC
+        ref: CB
+        network: lwn
     member_of: ottawa-river-pathway
     super_network: capital-pathway
     slug: ottawa-river-pathway-trans-canada-trail
@@ -6968,10 +7062,14 @@ bike_paths:
       - - -75.7238598
         - 45.3557672
     segregated: 'no'
-    name_fr: boulevard Farlane
-    name_en: Farlane Boulevard
     path_type: mup
     type: destination
+    overlapping_relations:
+      - id: 7677698
+        name: RT Bells Corners Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     slug: nepean-trail
     osm_way_ids:
       - 8157527
@@ -7124,7 +7222,6 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: 'yes'
-    ref: NCC 10
     anchors:
       - - -75.873912
         - 45.352571
@@ -7171,6 +7268,12 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 7644270
+        name: RT Mud Lake Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     slug: mud-lake-trail
     osm_way_ids:
       - 25941609
@@ -7231,10 +7334,6 @@ bike_paths:
     network: lcn
     ref: '3'
     cycle_network: CA:ON:Ottawa
-    name_fr: passerelle Adàwe
-    name_en: Adàwe crossing
-    wikipedia: en:Adàwe Crossing
-    wikidata: Q48796246
     surface: concrete
     smoothness: good
     width: '4'
@@ -7242,15 +7341,12 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
-    operator: City of Ottawa
     anchors:
       - - -75.6353965
         - 45.4164912
       - - -75.6024075
         - 45.4247094
     cycleway: lane
-    wikidata_meta:
-      description_en: Canadian bridge across the Rideau River in Ottawa
     path_type: mup
     type: destination
     member_of: ottawa-bikeways
@@ -7419,8 +7515,6 @@ bike_paths:
     network: lcn
     ref: '2'
     cycle_network: CA:ON:Ottawa
-    name_fr: avenue Laurier Ouest
-    name_en: Laurier Avenue West
     surface: asphalt
     cycleway: lane
     highway: secondary
@@ -7519,10 +7613,6 @@ bike_paths:
     network: lcn
     ref: '5'
     cycle_network: CA:ON:Ottawa
-    name_fr: Passerelle Flora
-    name_en: Flora Footbridge
-    wikipedia: en:Passerelle Flora Footbridge
-    wikidata: Q56282907
     surface: concrete
     width: '5'
     lit: 'yes'
@@ -7535,12 +7625,9 @@ bike_paths:
       - - -75.682662
         - 45.4092192
     cycleway: lane
-    wikidata_meta:
-      description_en: bridge in Ottawa, Canada
-      description_fr: Passerelle pour piétons et vélos à Ottawa, Ontario, Canada
     path_type: mup
     type: destination
-    member_of: capital-pathway
+    member_of: crosstown-bikeway-5
     super_network: ottawa-bikeways
     slug: crosstown-bikeway-5-1
     osm_way_ids:
@@ -7617,6 +7704,12 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: long-distance
+    overlapping_relations:
+      - id: 7677698
+        name: RT Bells Corners Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     super_network: capital-pathway
     slug: greenbelt-pathway-west-barrhaven
     osm_way_ids:
@@ -8389,7 +8482,6 @@ bike_paths:
       - 15061552
     network: lcn
     ref: VVC
-    name_en: Voie Verte Chelsea
     surface: fine_gravel
     smoothness: intermediate
     width: '2.5'
@@ -8492,6 +8584,13 @@ bike_paths:
     distance: '695'
     path_type: mup
     type: long-distance
+    overlapping_relations:
+      - id: 7300742
+        name: Sentier National
+        route: hiking
+        operator: Fédération Québécoise de la Marche
+        ref: SNQ
+        network: nwn
     slug: quebec-bikepacking-traverse-segment-ii
     osm_way_ids:
       - 38267810
@@ -10085,6 +10184,12 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 7677698
+        name: RT Bells Corners Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     slug: trail-24
     osm_way_ids:
       - 35674288
@@ -10143,6 +10248,12 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 7677697
+        name: RT Lime Kiln Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     slug: trail-25
     osm_way_ids:
       - 35674295
@@ -10168,6 +10279,12 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 7677697
+        name: RT Lime Kiln Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     slug: chipmunk-trail
     osm_way_ids:
       - 35674298
@@ -10193,6 +10310,12 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 7677697
+        name: RT Lime Kiln Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     slug: beaver-trail
     osm_way_ids:
       - 35674299
@@ -10219,6 +10342,12 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 7677697
+        name: RT Lime Kiln Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     slug: trail-26
     osm_way_ids:
       - 35674302
@@ -10309,6 +10438,12 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 7677697
+        name: RT Lime Kiln Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     slug: lime-kiln-trail
     osm_way_ids:
       - 56137837
@@ -10924,6 +11059,12 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 10752245
+        name: A Prime Minister's Backyard
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
     slug: trail-7
     osm_way_ids:
       - 190284534
@@ -11064,6 +11205,10 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 4504059
+        name: '9'
+        route: piste
     slug: piste-9
     osm_way_ids:
       - 278995440
@@ -20706,6 +20851,10 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 4504034
+        name: '8'
+        route: piste
     slug: sentiertrail-8
     osm_way_ids:
       - 256793948
@@ -20784,6 +20933,10 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: destination
+    overlapping_relations:
+      - id: 4504059
+        name: '9'
+        route: piste
     slug: trail-9
     osm_way_ids:
       - 278992290
@@ -25583,7 +25736,7 @@ bike_paths:
       inception: 1970s
       website: https://ncc-ccn.gc.ca/places/capital-pathway
     mtb: true
-    super_network: ottawa-bikeways
+    super_network: rideau-river-eastern-pathway
     members:
       - sentier-des-voyageurs-pathway
       - sentier-des-pionniers-pathway
@@ -25603,7 +25756,6 @@ bike_paths:
       - sentier-de-la-riviere-gatineau
       - pinecrest-creek-pathway
       - mackenzie-cycle-track
-      - crosstown-bikeway-5-1
       - trillium-pathway
     slug: capital-pathway
   - name: Crosstown Bikeway 2
@@ -25650,6 +25802,211 @@ bike_paths:
       - crosstown-bikeway-2-1
       - crosstown-bikeway-5-1
     slug: ottawa-bikeways
+  - name: CheminDuQuébec - 5 - St-Jean--Farnham
+    osm_relations:
+      - 9754976
+    osm_way_ids:
+      - 119327560
+      - 269097866
+      - 269097869
+      - 790727771
+      - 987764190
+      - 987764192
+      - 987764193
+      - 987764194
+      - 987765035
+      - 987765036
+      - 987765037
+      - 1066160914
+      - 1066160915
+      - 1066160916
+      - 1066160917
+      - 1206407526
+      - 1206407536
+      - 1206407537
+      - 1206407541
+      - 1206407544
+      - 1206436139
+      - 1206436140
+      - 1206531205
+      - 1206531206
+      - 1206531207
+      - 1206531209
+      - 1206531212
+      - 1206531215
+      - 1206531217
+    route_type: foot
+    slug: cheminduquebec-5-st-jean-farnham
+  - name: Le P'tit Train du Nord
+    osm_relations:
+      - 6871774
+    osm_way_ids:
+      - 135054890
+      - 135054893
+      - 202220588
+      - 202220650
+      - 435213793
+      - 435213794
+      - 435213795
+      - 435213796
+      - 441308703
+      - 441308706
+      - 445487255
+      - 465268593
+      - 597516825
+      - 597516826
+      - 865260488
+      - 918127759
+      - 918127760
+      - 918127761
+      - 918127762
+      - 1059548136
+      - 1059548137
+      - 1060323923
+      - 1060504244
+      - 1060504245
+      - 1060504252
+      - 1064906962
+      - 1064930113
+      - 1064930114
+      - 1064948600
+      - 1217763127
+      - 1217763128
+      - 1217763155
+      - 1217763177
+      - 1219377267
+      - 1219377268
+      - 1219377274
+      - 1219377275
+      - 1219990563
+      - 1219990564
+      - 1219990565
+      - 1219990566
+      - 1219990567
+      - 1219990568
+      - 1220270869
+      - 1220270870
+      - 1220406735
+      - 1220406736
+      - 1220511075
+      - 1220511076
+      - 1220968431
+      - 1220968432
+      - 1220976164
+      - 1220976165
+      - 1220976166
+      - 1220976167
+      - 1221005799
+      - 1221005800
+      - 1221005801
+      - 1221005802
+      - 1221013983
+      - 1221013984
+    route_type: piste
+    slug: le-ptit-train-du-nord
+  - name: Sentier le Portage
+    osm_relations:
+      - 9337775
+    osm_way_ids:
+      - 226417710
+      - 226431463
+      - 226431464
+      - 226431465
+      - 226431466
+      - 226431467
+      - 226431468
+      - 1012165127
+      - 1379397624
+      - 1379398328
+    route_type: hiking
+    network: lwn
+    slug: sentier-le-portage
+  - name: Nature and Tranquility
+    osm_relations:
+      - 10752251
+    osm_way_ids:
+      - 71572115
+      - 80391067
+      - 279252402
+      - 380250817
+      - 622927966
+      - 632011953
+      - 632011954
+      - 776370832
+    route_type: piste
+    operator: NCC
+    network: Gatineau Park Ski Routes
+    slug: nature-and-tranquility
+  - name: SIA, 6-Route d'accès Amqui
+    osm_relations:
+      - 11296134
+    osm_way_ids:
+      - 33086874
+      - 33090365
+      - 33091271
+      - 33091645
+      - 135636285
+      - 509475444
+      - 509475445
+      - 509475446
+    route_type: hiking
+    network: lwn
+    slug: sia-6-route-dacces-amqui
+  - name: Fatbike Mont-Tremblant
+    osm_relations:
+      - 19802661
+    osm_way_ids:
+      - 225708391
+      - 228670133
+      - 228670134
+      - 228670135
+      - 228670136
+      - 228670138
+      - 228670139
+      - 228670140
+      - 228723930
+      - 605392667
+      - 605392668
+      - 605721870
+      - 1068004277
+      - 1068004278
+      - 1236506075
+      - 1339709740
+    route_type: piste
+    slug: fatbike-mont-tremblant
+  - name: Watts East
+    osm_relations:
+      - 13745151
+    osm_way_ids:
+      - 5248455
+      - 435571827
+      - 486462186
+      - 486462187
+      - 516689543
+      - 585178198
+      - 996738936
+      - 1190646087
+      - 1190646090
+      - 1190646091
+    route_type: piste
+    network: Ottawa West Winter Trail
+    slug: watts-east
+  - name: Greenbelt South
+    osm_relations:
+      - 13745152
+    osm_way_ids:
+      - 35674294
+      - 67268716
+      - 493733922
+      - 727317489
+      - 1020717186
+      - 1133538674
+      - 1284461092
+      - 1284461093
+      - 1284461094
+    route_type: piste
+    network: Ottawa West Winter Trail
+    slug: greenbelt-south
 super_networks:
   - name: Sentier Trans-Canadien (Québec)
     name_fr: Sentier Trans-Canadien (Québec)
