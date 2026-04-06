@@ -483,7 +483,7 @@ bike_paths:
       description_fr: route cyclable au Québec (Canada)
       inception: '2007'
     path_type: mup
-    type: long-distance
+    type: destination
     overlapping_relations:
       - id: 1279273
         name: Sentier de l'Estrie, Zone Orford
@@ -3861,9 +3861,10 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     incline: up
+    member_of: parc-de-la-gatineau
     mtb: true
     path_type: mtb-trail
-    type: long-distance
+    type: destination
     overlapping_relations:
       - id: 10752235
         name: From the City to the Wilderness
@@ -3890,6 +3891,7 @@ bike_paths:
         name: Les parcours Boomerang
         route: foot
         ref: LPB
+    super_network: sentier-trans-canadien-quebec
     slug: sentier-trans-canada-gatineau-montreal
     osm_way_ids:
       - 25228211
@@ -6081,7 +6083,7 @@ bike_paths:
       - - -75.6927101
         - 45.444516
     path_type: bike-lane
-    type: long-distance
+    type: destination
     overlapping_relations:
       - id: 11867879
         name: Confederation Boulevard
@@ -6233,7 +6235,8 @@ bike_paths:
     ref: TCT
     member_of: ncc-greenbelt
     path_type: mup
-    type: long-distance
+    type: destination
+    super_network: trans-canada-trail-ottawa-area
     slug: trans-canada-trail-bells-cornerswatts-creek
     osm_way_ids:
       - 5248455
@@ -6825,7 +6828,8 @@ bike_paths:
       - - -75.8451241
         - 45.3174462
     path_type: trail
-    type: long-distance
+    type: destination
+    member_of: trans-canada-trail-ottawa-area
     slug: ottawa-carleton-trailway
     osm_way_ids:
       - 35674291
@@ -6892,7 +6896,7 @@ bike_paths:
     network: ncn
     ref: TCT
     path_type: mup
-    type: long-distance
+    type: destination
     overlapping_relations:
       - id: 11867879
         name: Confederation Boulevard
@@ -6901,6 +6905,7 @@ bike_paths:
         ref: CB
         network: lwn
     member_of: ottawa-river-pathway
+    super_network: capital-pathway
     slug: ottawa-river-pathway-trans-canada-trail
     osm_way_ids:
       - 23190439
@@ -25326,6 +25331,7 @@ bike_paths:
       - '10'
       - trail-70
     mtb: true
+    super_network: sentier-trans-canadien-quebec
     slug: parc-de-la-gatineau
   - name: NCC Greenbelt
     type: network
@@ -25679,6 +25685,28 @@ bike_paths:
       - ottawa-river-pathway-west
       - trans-canada-trail-sussex-drive
     slug: ottawa-river-pathway
+  - name: Sentier Trans-Canadien (Québec)
+    type: network
+    osm_relations:
+      - 8274591
+    name_fr: Sentier Trans-Canadien (Québec)
+    name_en: Trans Canada Trail (Quebec)
+    network: ncn
+    cycle_network: CA:CA
+    mtb: true
+    members:
+      - sentier-trans-canada-gatineau-montreal
+    slug: sentier-trans-canadien-quebec
+  - name: Trans Canada Trail (Ottawa area)
+    type: network
+    osm_relations:
+      - 9502450
+    network: ncn
+    members:
+      - trans-canada-trail-bells-cornerswatts-creek
+      - ottawa-carleton-trailway
+      - ottawa-river-pathway-trans-canada-trail
+    slug: trans-canada-trail-ottawa-area
   - name: Capital Pathway
     type: network
     osm_relations:
@@ -25710,6 +25738,7 @@ bike_paths:
       - aviation-pathway
       - greenbelt-pathway-east
       - ottawa-river-pathway-east
+      - ottawa-river-pathway-trans-canada-trail
       - ottawa-river-pathway-west
       - greenbelt-pathway-west
       - greenbelt-pathway-west-barrhaven
@@ -25968,6 +25997,11 @@ bike_paths:
     network: Ottawa West Winter Trail
     slug: greenbelt-south
 super_networks:
+  - name: Sentier Trans-Canadien (Québec)
+    name_fr: Sentier Trans-Canadien (Québec)
+    slug: sentier-trans-canadien-quebec
+  - name: Trans Canada Trail (Ottawa area)
+    slug: trans-canada-trail-ottawa-area
   - name: Capital Pathway
     wikidata: Q5035630
     operator: NCC
