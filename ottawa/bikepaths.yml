@@ -214,7 +214,6 @@ bike_paths:
         - 45.436377
     path_type: mup
     type: long-distance
-    member_of: capital-pathway
     slug: sentier-des-pionniers-pathway
     osm_way_ids:
       - 28309447
@@ -3891,7 +3890,6 @@ bike_paths:
         name: Les parcours Boomerang
         route: foot
         ref: LPB
-    super_network: sentier-trans-canadien-quebec
     slug: sentier-trans-canada-gatineau-montreal
     osm_way_ids:
       - 25228211
@@ -4846,7 +4844,6 @@ bike_paths:
     path_type: mup
     type: long-distance
     member_of: ottawa-river-pathway
-    super_network: capital-pathway
     slug: ottawa-river-pathway-east
     osm_way_ids:
       - 26719847
@@ -4935,7 +4932,6 @@ bike_paths:
     member_of: ncc-greenbelt
     path_type: mup
     type: long-distance
-    super_network: capital-pathway
     slug: watts-creek-pathway
     osm_way_ids:
       - 5248455
@@ -5484,7 +5480,6 @@ bike_paths:
     mtb: true
     path_type: mtb-trail
     type: long-distance
-    super_network: capital-pathway
     slug: greenbelt-pathway-west
     osm_way_ids:
       - 35674294
@@ -6236,7 +6231,6 @@ bike_paths:
     member_of: ncc-greenbelt
     path_type: mup
     type: long-distance
-    super_network: trans-canada-trail-ottawa-area
     slug: trans-canada-trail-bells-cornerswatts-creek
     osm_way_ids:
       - 5248455
@@ -6458,7 +6452,6 @@ bike_paths:
     ref: AL
     path_type: mup
     type: long-distance
-    member_of: ottawa-valley-recreation-trail
     slug: algonquin-trail
     osm_way_ids:
       - 3476758
@@ -6547,8 +6540,7 @@ bike_paths:
         - 45.4266719
     path_type: trail
     type: long-distance
-    member_of: ottawa-valley-recreation-trail
-    slug: ottawa-valley-recreation-trail-1
+    slug: ottawa-valley-recreation-trail
     osm_way_ids:
       - 70195165
       - 70196719
@@ -6831,7 +6823,6 @@ bike_paths:
         - 45.3174462
     path_type: trail
     type: long-distance
-    member_of: trans-canada-trail-ottawa-area
     slug: ottawa-carleton-trailway
     osm_way_ids:
       - 35674291
@@ -6907,7 +6898,6 @@ bike_paths:
         ref: CB
         network: lwn
     member_of: ottawa-river-pathway
-    super_network: capital-pathway
     slug: ottawa-river-pathway-trans-canada-trail
     osm_way_ids:
       - 23190439
@@ -7019,7 +7009,6 @@ bike_paths:
     member_of: ottawa-river-pathway
     path_type: mup
     type: long-distance
-    super_network: capital-pathway
     slug: ottawa-river-pathway-west
     osm_way_ids:
       - 37563459
@@ -7710,7 +7699,6 @@ bike_paths:
         route: hiking
         operator: Rideau Trail
         network: lwn
-    super_network: capital-pathway
     slug: greenbelt-pathway-west-barrhaven
     osm_way_ids:
       - 39695027
@@ -25333,7 +25321,6 @@ bike_paths:
       - '10'
       - trail-70
     mtb: true
-    super_network: sentier-trans-canadien-quebec
     slug: parc-de-la-gatineau
   - name: NCC Greenbelt
     type: network
@@ -25680,44 +25667,12 @@ bike_paths:
     osm_relations:
       - 9502635
     name_fr: Sentier de la Rivière des Outaouais
-    super_network: capital-pathway
     members:
       - ottawa-river-pathway-east
       - ottawa-river-pathway-trans-canada-trail
       - ottawa-river-pathway-west
       - trans-canada-trail-sussex-drive
     slug: ottawa-river-pathway
-  - name: Sentier Trans-Canadien (Québec)
-    type: network
-    osm_relations:
-      - 8274591
-    name_fr: Sentier Trans-Canadien (Québec)
-    name_en: Trans Canada Trail (Quebec)
-    network: ncn
-    cycle_network: CA:CA
-    mtb: true
-    members:
-      - sentier-trans-canada-gatineau-montreal
-    slug: sentier-trans-canadien-quebec
-  - name: Trans Canada Trail (Ottawa area)
-    type: network
-    osm_relations:
-      - 9502450
-    network: ncn
-    members:
-      - trans-canada-trail-bells-cornerswatts-creek
-      - ottawa-carleton-trailway
-      - ottawa-river-pathway-trans-canada-trail
-    slug: trans-canada-trail-ottawa-area
-  - name: Ottawa Valley Recreation Trail
-    type: network
-    osm_relations:
-      - 9352030
-    network: rcn
-    members:
-      - algonquin-trail
-      - ottawa-valley-recreation-trail-1
-    slug: ottawa-valley-recreation-trail
   - name: Capital Pathway
     type: network
     osm_relations:
@@ -25739,21 +25694,14 @@ bike_paths:
     super_network: rideau-river-eastern-pathway
     members:
       - sentier-des-voyageurs-pathway
-      - sentier-des-pionniers-pathway
       - sentier-du-parc-de-la-gatineau
-      - watts-creek-pathway
-      - rideau-canal-western-pathway
-      - rideau-canal-eastern-pathway
-      - experimental-farm-pathway
       - rideau-river-eastern-pathway-1
       - aviation-pathway
       - greenbelt-pathway-east
-      - ottawa-river-pathway-east
-      - ottawa-river-pathway-trans-canada-trail
-      - ottawa-river-pathway-west
-      - greenbelt-pathway-west
-      - greenbelt-pathway-west-barrhaven
       - sentier-de-la-riviere-gatineau
+      - rideau-canal-western-pathway
+      - rideau-canal-eastern-pathway
+      - experimental-farm-pathway
       - pinecrest-creek-pathway
       - mackenzie-cycle-track
       - trillium-pathway
@@ -26008,13 +25956,6 @@ bike_paths:
     network: Ottawa West Winter Trail
     slug: greenbelt-south
 super_networks:
-  - name: Sentier Trans-Canadien (Québec)
-    name_fr: Sentier Trans-Canadien (Québec)
-    slug: sentier-trans-canadien-quebec
-  - name: Trans Canada Trail (Ottawa area)
-    slug: trans-canada-trail-ottawa-area
-  - name: Ottawa Valley Recreation Trail
-    slug: ottawa-valley-recreation-trail
   - name: Capital Pathway
     wikidata: Q5035630
     operator: NCC
