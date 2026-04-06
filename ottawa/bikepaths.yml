@@ -213,7 +213,8 @@ bike_paths:
       - - -75.7311378
         - 45.436377
     path_type: mup
-    type: long-distance
+    type: destination
+    member_of: capital-pathway
     slug: sentier-des-pionniers-pathway
     osm_way_ids:
       - 28309447
@@ -3860,7 +3861,6 @@ bike_paths:
     lit: 'no'
     segregated: 'no'
     incline: up
-    member_of: parc-de-la-gatineau
     mtb: true
     path_type: mtb-trail
     type: long-distance
@@ -4672,7 +4672,7 @@ bike_paths:
       - - -75.2367483
         - 45.4356278
     path_type: trail
-    type: long-distance
+    type: destination
     slug: prescott-russell-trail-link
     osm_way_ids:
       - 40556602
@@ -4842,8 +4842,9 @@ bike_paths:
       - - -75.4832853
         - 45.4972344
     path_type: mup
-    type: long-distance
+    type: destination
     member_of: ottawa-river-pathway
+    super_network: capital-pathway
     slug: ottawa-river-pathway-east
     osm_way_ids:
       - 26719847
@@ -4931,7 +4932,8 @@ bike_paths:
         - 45.3518061
     member_of: ncc-greenbelt
     path_type: mup
-    type: long-distance
+    type: destination
+    super_network: capital-pathway
     slug: watts-creek-pathway
     osm_way_ids:
       - 5248455
@@ -5098,7 +5100,7 @@ bike_paths:
       - - -75.6818665
         - 45.4229488
     path_type: mup
-    type: long-distance
+    type: destination
     member_of: capital-pathway
     slug: rideau-canal-western-pathway
     osm_way_ids:
@@ -5150,7 +5152,7 @@ bike_paths:
       - - -75.6805887
         - 45.4244887
     path_type: mup
-    type: long-distance
+    type: destination
     member_of: capital-pathway
     slug: rideau-canal-eastern-pathway
     osm_way_ids:
@@ -5188,7 +5190,7 @@ bike_paths:
       - - -75.7110847
         - 45.3890728
     path_type: mup
-    type: long-distance
+    type: destination
     member_of: capital-pathway
     slug: experimental-farm-pathway
     osm_way_ids:
@@ -5479,7 +5481,8 @@ bike_paths:
     member_of: ncc-greenbelt
     mtb: true
     path_type: mtb-trail
-    type: long-distance
+    type: destination
+    super_network: capital-pathway
     slug: greenbelt-pathway-west
     osm_way_ids:
       - 35674294
@@ -7008,7 +7011,8 @@ bike_paths:
     network: rcn
     member_of: ottawa-river-pathway
     path_type: mup
-    type: long-distance
+    type: destination
+    super_network: capital-pathway
     slug: ottawa-river-pathway-west
     osm_way_ids:
       - 37563459
@@ -7692,13 +7696,14 @@ bike_paths:
     member_of: ncc-greenbelt
     mtb: true
     path_type: mtb-trail
-    type: long-distance
+    type: destination
     overlapping_relations:
       - id: 7677698
         name: RT Bells Corners Blue Loop
         route: hiking
         operator: Rideau Trail
         network: lwn
+    super_network: capital-pathway
     slug: greenbelt-pathway-west-barrhaven
     osm_way_ids:
       - 39695027
@@ -25667,6 +25672,7 @@ bike_paths:
     osm_relations:
       - 9502635
     name_fr: Sentier de la Rivière des Outaouais
+    super_network: capital-pathway
     members:
       - ottawa-river-pathway-east
       - ottawa-river-pathway-trans-canada-trail
@@ -25694,14 +25700,20 @@ bike_paths:
     super_network: rideau-river-eastern-pathway
     members:
       - sentier-des-voyageurs-pathway
+      - sentier-des-pionniers-pathway
       - sentier-du-parc-de-la-gatineau
-      - rideau-river-eastern-pathway-1
-      - aviation-pathway
-      - greenbelt-pathway-east
-      - sentier-de-la-riviere-gatineau
+      - watts-creek-pathway
       - rideau-canal-western-pathway
       - rideau-canal-eastern-pathway
       - experimental-farm-pathway
+      - rideau-river-eastern-pathway-1
+      - aviation-pathway
+      - greenbelt-pathway-east
+      - ottawa-river-pathway-east
+      - ottawa-river-pathway-west
+      - greenbelt-pathway-west
+      - greenbelt-pathway-west-barrhaven
+      - sentier-de-la-riviere-gatineau
       - pinecrest-creek-pathway
       - mackenzie-cycle-track
       - trillium-pathway
