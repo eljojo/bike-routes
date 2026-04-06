@@ -3787,7 +3787,7 @@ bike_paths:
     network: lcn
     ref: PPJ 2
     path_type: mup
-    type: destination
+    type: long-distance
     slug: le-tour-des-plages
     osm_way_ids:
       - 54440093
