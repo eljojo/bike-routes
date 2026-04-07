@@ -152,7 +152,7 @@ bike_paths:
       - 215130
     network: lcn
     surface: asphalt
-    width: '2'
+    width: '3'
     lit: 'yes'
     segregated: 'no'
     cycleway: crossing
@@ -288,10 +288,10 @@ bike_paths:
     width: '4'
     lit: 'yes'
     segregated: 'no'
-    cycleway: crossing
     highway: cycleway
     bicycle: designated
     foot: designated
+    cycleway: crossing
     anchors:
       - - -75.7253592
         - 45.4322958
@@ -323,7 +323,7 @@ bike_paths:
     network: lcn
     surface: asphalt
     smoothness: good
-    width: '2.5'
+    width: '2'
     lit: 'no'
     segregated: 'no'
     cycleway: crossing
@@ -426,6 +426,7 @@ bike_paths:
     width: '2.5'
     lit: 'no'
     segregated: 'no'
+    cycleway: 'yes'
     highway: cycleway
     bicycle: designated
     foot: designated
@@ -434,7 +435,6 @@ bike_paths:
         - 45.4224904
       - - -75.7420488
         - 45.4775348
-    cycleway: lane
     path_type: mup
     member_of: parc-de-la-gatineau
     type: destination
@@ -476,17 +476,21 @@ bike_paths:
     cycle_network: ca:qc:rv
     surface: asphalt
     smoothness: good
-    width: '2.5'
+    width: '2'
+    lit: 'yes'
+    incline: '>10%'
     segregated: 'no'
+    cycleway: lane
     highway: cycleway
+    tracktype: grade1
+    seasonal: spring;summer;autumn
+    access: 'yes'
     foot: designated
     anchors:
       - - -75.4976917
         - 45.5214507
       - - -75.4864046
         - 45.5239149
-    cycleway: crossing
-    lit: 'no'
     path_type: mup
     name_fr: route Verte 1
     name_en: Route Verte 1
@@ -3745,6 +3749,14 @@ bike_paths:
     website: http://www.cycloparcppj.org/
     network: lcn
     ref: PPJ 1
+    surface: fine_gravel
+    smoothness: intermediate
+    width: '3'
+    segregated: 'no'
+    cycleway: lane
+    highway: cycleway
+    bicycle: designated
+    foot: designated
     path_type: trail
     type: long-distance
     slug: cycloparc-ppj
@@ -3796,7 +3808,10 @@ bike_paths:
     name_en: Beaches Tour
     network: lcn
     ref: PPJ 2
-    path_type: trail
+    surface: paved
+    highway: tertiary
+    bicycle: designated
+    path_type: mup
     type: long-distance
     slug: le-tour-des-plages
     osm_way_ids:
@@ -3835,7 +3850,12 @@ bike_paths:
       - 1803929
     network: lcn
     ref: '2'
-    path_type: trail
+    surface: asphalt
+    lit: 'yes'
+    cycleway: separate
+    highway: secondary
+    bicycle: 'yes'
+    path_type: bike-lane
     type: destination
     member_of: crosstown-bikeway-2
     slug: laurier-segregated-bikelane
@@ -3857,21 +3877,24 @@ bike_paths:
     name_en: Trans Canada Trail (Montréal to Gatineau)
     network: ncn
     ref: STC
-    surface: ground
+    surface: asphalt
+    smoothness: good
+    width: '2'
+    lit: 'no'
+    incline: 0%
+    segregated: 'no'
+    cycleway: crossing
     highway: cycleway
-    mtb:scale: '1'
+    tracktype: grade2
+    mtb:scale: '2'
     bicycle: designated
+    access: designated
     foot: designated
     anchors:
       - - -75.8444047
         - 45.4720156
       - - -75.7928928
         - 45.4831944
-    smoothness: very_bad
-    width: '2'
-    lit: 'no'
-    segregated: 'no'
-    incline: up
     mtb: true
     path_type: mtb-trail
     type: long-distance
@@ -4613,7 +4636,8 @@ bike_paths:
     surface: asphalt
     smoothness: good
     width: '2.5'
-    lit: 'yes'
+    lit: 'no'
+    incline: up
     segregated: 'no'
     highway: cycleway
     bicycle: designated
@@ -4702,8 +4726,13 @@ bike_paths:
   - name: Sentier vélo de Montagne - Parc de la Gatineau
     osm_relations:
       - 6198284
-    surface: gravel
-    highway: cycleway
+    surface: ground
+    smoothness: very_bad
+    width: '2'
+    lit: 'no'
+    incline: down
+    segregated: 'no'
+    highway: path
     mtb:scale: '2'
     bicycle: designated
     foot: designated
@@ -4712,11 +4741,6 @@ bike_paths:
         - 45.5274735
       - - -75.8995751
         - 45.5369834
-    smoothness: bad
-    width: '1.5'
-    lit: 'no'
-    segregated: 'no'
-    incline: down
     mtb: true
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
@@ -4940,6 +4964,7 @@ bike_paths:
     width: '3'
     lit: 'no'
     segregated: 'no'
+    cycleway: crossing
     highway: cycleway
     bicycle: designated
     foot: designated
@@ -5110,6 +5135,7 @@ bike_paths:
     smoothness: good
     width: '3'
     lit: 'yes'
+    incline: up
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
@@ -5204,8 +5230,9 @@ bike_paths:
     width: '3'
     lit: 'no'
     segregated: 'no'
+    cycleway: lane
     highway: cycleway
-    bicycle: designated
+    bicycle: 'yes'
     foot: designated
     anchors:
       - - -75.763713
@@ -5332,7 +5359,18 @@ bike_paths:
     operator: City of Ottawa
     network: lcn
     ref: '2'
-    path_type: trail
+    surface: asphalt
+    smoothness: good
+    width: '1.5'
+    lit: 'yes'
+    incline: 0%
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    mtb:scale: '0'
+    bicycle: designated
+    foot: 'no'
+    path_type: mup
     type: destination
     member_of: crosstown-bikeway-2
     slug: eastwest-crosstown-bikeway
@@ -5555,7 +5593,9 @@ bike_paths:
     lit: 'no'
     incline: 0%
     segregated: 'no'
+    cycleway: crossing
     highway: cycleway
+    tracktype: grade4
     bicycle: designated
     foot: designated
     anchors:
@@ -5872,6 +5912,7 @@ bike_paths:
     width: '3'
     lit: 'no'
     segregated: 'no'
+    cycleway: crossing
     highway: cycleway
     mtb:scale: '0'
     bicycle: designated
@@ -5932,6 +5973,7 @@ bike_paths:
     width: '3'
     lit: 'no'
     segregated: 'no'
+    cycleway: crossing
     highway: cycleway
     bicycle: designated
     foot: designated
@@ -6022,7 +6064,7 @@ bike_paths:
     width: '3'
     lit: 'yes'
     segregated: 'no'
-    highway: cycleway
+    highway: footway
     bicycle: designated
     foot: designated
     anchors:
@@ -6061,8 +6103,10 @@ bike_paths:
     network: lcn
     ref: GPE
     surface: fine_gravel
-    width: '2.5'
+    smoothness: good
+    width: '3'
     lit: 'no'
+    cycleway: crossing
     highway: cycleway
     bicycle: designated
     foot: designated
@@ -6071,8 +6115,6 @@ bike_paths:
         - 45.4348053
       - - -75.5725034
         - 45.4697494
-    smoothness: good
-    cycleway: crossing
     path_type: trail
     member_of: ncc-greenbelt
     type: destination
@@ -6122,10 +6164,14 @@ bike_paths:
     ref: TCT
     description: The Trans Canada Trail follows Sussex Drive
     surface: asphalt
+    smoothness: good
+    width: '1.5'
     lit: 'yes'
+    segregated: 'no'
     cycleway: lane
     highway: secondary
-    foot: use_sidepath
+    bicycle: 'yes'
+    foot: 'yes'
     anchors:
       - - -75.699367
         - 45.4263086
@@ -6209,7 +6255,7 @@ bike_paths:
       - 7369960
     network: lcn
     surface: asphalt
-    smoothness: excellent
+    smoothness: good
     width: '3'
     lit: 'yes'
     segregated: 'no'
@@ -6250,7 +6296,7 @@ bike_paths:
     network: lcn
     surface: asphalt
     smoothness: intermediate
-    width: '1.5'
+    width: '2'
     incline: 0%
     segregated: 'no'
     highway: path
@@ -6284,7 +6330,16 @@ bike_paths:
       - 7371889
     network: ncn
     ref: TCT
-    path_type: trail
+    surface: asphalt
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    bicycle: designated
+    foot: designated
+    path_type: mup
     member_of: ncc-greenbelt
     type: destination
     super_network: trans-canada-trail-ottawa-area
@@ -6358,7 +6413,12 @@ bike_paths:
     osm_relations:
       - 7655244
     network: lwn
-    path_type: trail
+    surface: ground
+    highway: footway
+    bicycle: 'no'
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
     type: destination
     slug: crazy-horse-trail
     osm_way_ids:
@@ -6377,10 +6437,12 @@ bike_paths:
     operator: Ottawa
     network: lcn
     distance: '10'
-    surface: concrete
+    surface: asphalt
     width: '2'
-    highway: footway
+    lit: 'yes'
+    highway: residential
     bicycle: 'yes'
+    foot: 'yes'
     anchors:
       - - -75.5591993
         - 45.2611395
@@ -6456,7 +6518,16 @@ bike_paths:
     osm_relations:
       - 8450027
     network: lcn
-    path_type: trail
+    surface: ground
+    smoothness: intermediate
+    width: '1'
+    lit: 'no'
+    highway: path
+    bicycle: 'yes'
+    access: 'yes'
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
     type: destination
     slug: bill-holland-trail
     osm_way_ids:
@@ -6482,10 +6553,11 @@ bike_paths:
       - 9334473
     network: lcn
     surface: asphalt
-    smoothness: good
+    smoothness: excellent
     width: '3'
     lit: 'no'
     segregated: 'no'
+    cycleway: crossing
     highway: cycleway
     bicycle: designated
     foot: designated
@@ -6520,6 +6592,15 @@ bike_paths:
       - 9351875
     network: rcn
     ref: AL
+    surface: gravel
+    smoothness: bad
+    width: '3'
+    lit: 'no'
+    incline: 0%
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+    foot: designated
     path_type: trail
     type: long-distance
     slug: algonquin-trail
@@ -6655,6 +6736,7 @@ bike_paths:
     surface: ground
     smoothness: very_bad
     width: '1'
+    lit: 'no'
     highway: path
     bicycle: 'no'
     access: 'yes'
@@ -6703,6 +6785,8 @@ bike_paths:
     network: lwn
     website: http://s3.amazonaws.com/ncc-ccn/documents/gp_trailfactsheet-2014_e2_luskvillefalls.pdf
     surface: ground
+    width: '1'
+    incline: down
     highway: path
     bicycle: 'no'
     foot: 'yes'
@@ -6726,7 +6810,14 @@ bike_paths:
       - 9423924
     operator: NCC/CCN
     network: lwn
-    path_type: trail
+    surface: ground
+    width: '1'
+    lit: 'no'
+    highway: path
+    bicycle: 'no'
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
     member_of: parc-de-la-gatineau
     type: destination
     slug: champlain-trail
@@ -6746,7 +6837,14 @@ bike_paths:
       - 9423925
     operator: NCC/CCN
     network: lwn
-    path_type: trail
+    surface: ground
+    incline: down
+    highway: path
+    mtb:scale: '5'
+    bicycle: 'no'
+    foot: 'yes'
+    mtb: true
+    path_type: mtb-trail
     member_of: parc-de-la-gatineau
     type: destination
     slug: king-mountain-trail
@@ -6775,7 +6873,14 @@ bike_paths:
       - 9423926
     operator: NCC/CCN
     network: lwn
-    path_type: trail
+    surface: ground
+    width: '1'
+    incline: down
+    highway: path
+    bicycle: 'no'
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
     member_of: parc-de-la-gatineau
     type: destination
     slug: waterfall-and-lauriault-trail
@@ -6800,6 +6905,11 @@ bike_paths:
       - 9423927
     operator: NCC/CCN
     network: lwn
+    surface: fine_gravel
+    width: '2'
+    highway: path
+    bicycle: 'no'
+    foot: 'yes'
     path_type: trail
     member_of: parc-de-la-gatineau
     type: destination
@@ -6815,7 +6925,16 @@ bike_paths:
       - 9423928
     operator: NCC/CCN
     network: lwn
-    path_type: trail
+    surface: wood
+    smoothness: good
+    width: '1.5'
+    lit: 'no'
+    incline: up
+    highway: footway
+    bicycle: 'no'
+    access: 'yes'
+    foot: 'yes'
+    path_type: mup
     member_of: parc-de-la-gatineau
     type: destination
     slug: pink-lake-trail
@@ -6870,6 +6989,9 @@ bike_paths:
       - 9423929
     operator: NCC/CCN
     network: lwn
+    surface: fine_gravel
+    width: '2'
+    highway: footway
     path_type: trail
     member_of: parc-de-la-gatineau
     type: destination
@@ -6963,7 +7085,17 @@ bike_paths:
     name_fr: Sentier de la Rivière des Outaouais (Sentier Transcanadien)
     network: ncn
     ref: TCT
-    path_type: trail
+    surface: asphalt
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    incline: 0%
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    bicycle: designated
+    foot: designated
+    path_type: mup
     type: destination
     overlapping_relations:
       - id: 11867879
@@ -7082,7 +7214,15 @@ bike_paths:
       - 9502634
     name_fr: Sentier de la Rivière des Outaouais (Ouest)
     network: rcn
-    path_type: trail
+    surface: asphalt
+    smoothness: good
+    width: '2'
+    lit: 'yes'
+    segregated: 'no'
+    highway: path
+    bicycle: 'yes'
+    foot: 'yes'
+    path_type: mup
     member_of: ottawa-river-pathway
     type: destination
     super_network: capital-pathway
@@ -7116,10 +7256,11 @@ bike_paths:
       - 9599180
     network: lcn
     surface: asphalt
-    smoothness: excellent
+    smoothness: good
     width: '3'
     lit: 'yes'
-    cycleway: crossing
+    segregated: 'no'
+    cycleway: shared_lane
     highway: cycleway
     bicycle: designated
     foot: designated
@@ -7128,7 +7269,6 @@ bike_paths:
         - 45.3376973
       - - -75.7238598
         - 45.3557672
-    segregated: 'no'
     path_type: mup
     type: destination
     overlapping_relations:
@@ -7238,7 +7378,16 @@ bike_paths:
       - 10155166
     name_fr: Sentier de la Confédération
     network: lcn
-    path_type: trail
+    surface: asphalt
+    smoothness: excellent
+    width: '3'
+    lit: 'yes'
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    bicycle: designated
+    foot: designated
+    path_type: mup
     type: destination
     slug: confederation-pathway
     osm_way_ids:
@@ -7288,6 +7437,7 @@ bike_paths:
     smoothness: bad
     width: '2'
     lit: 'no'
+    segregated: 'no'
     highway: path
     bicycle: 'yes'
     foot: 'yes'
@@ -7328,6 +7478,7 @@ bike_paths:
     lit: 'no'
     highway: footway
     bicycle: 'no'
+    foot: 'yes'
     anchors:
       - - -75.7972648
         - 45.3662425
@@ -7361,7 +7512,15 @@ bike_paths:
     osm_relations:
       - 10434447
     network: lcn
-    path_type: trail
+    surface: asphalt
+    smoothness: intermediate
+    width: '3'
+    lit: 'yes'
+    segregated: 'no'
+    highway: path
+    bicycle: 'yes'
+    foot: designated
+    path_type: mup
     type: destination
     slug: greenboro-pathway
     osm_way_ids:
@@ -7402,12 +7561,13 @@ bike_paths:
     network: lcn
     ref: '3'
     cycle_network: CA:ON:Ottawa
-    surface: concrete
+    surface: asphalt
     smoothness: good
-    width: '4'
+    width: '3'
     lit: 'yes'
     segregated: 'no'
-    highway: cycleway
+    cycleway: lane
+    highway: secondary
     bicycle: designated
     foot: designated
     anchors:
@@ -7415,11 +7575,9 @@ bike_paths:
         - 45.4164912
       - - -75.6024075
         - 45.4247094
-    cycleway: lane
-    path_type: mup
-    member_of: crosstown-bikeway-3-network
+    path_type: bike-lane
     type: destination
-    super_network: ottawa-bikeways
+    member_of: ottawa-bikeways
     slug: crosstown-bikeway-3
     osm_way_ids:
       - 4322072
@@ -7586,15 +7744,16 @@ bike_paths:
     ref: '2'
     cycle_network: CA:ON:Ottawa
     surface: asphalt
+    width: '2'
+    lit: 'yes'
     cycleway: lane
     highway: secondary
+    foot: 'yes'
     anchors:
       - - -75.6819526
         - 45.4302333
       - - -75.6762486
         - 45.4361233
-    foot: 'yes'
-    lit: 'yes'
     path_type: bike-lane
     type: destination
     member_of: crosstown-bikeway-2
@@ -7684,19 +7843,20 @@ bike_paths:
     network: lcn
     ref: '5'
     cycle_network: CA:ON:Ottawa
-    surface: concrete
-    width: '5'
+    surface: asphalt
+    smoothness: excellent
+    width: '3'
     lit: 'yes'
     segregated: 'no'
+    cycleway: lane
     highway: cycleway
     bicycle: designated
-    foot: designated
+    foot: 'yes'
     anchors:
       - - -75.6882715
         - 45.4014347
       - - -75.682662
         - 45.4092192
-    cycleway: lane
     path_type: mup
     type: destination
     member_of: crosstown-bikeway-5
@@ -7743,7 +7903,15 @@ bike_paths:
     osm_relations:
       - 10990510
     network: lcn
-    path_type: trail
+    surface: asphalt
+    smoothness: good
+    width: '3'
+    lit: 'yes'
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+    foot: designated
+    path_type: mup
     type: destination
     member_of: rideau-river-eastern-pathway
     slug: rideau-river-eastern-pathway-city-section
@@ -7760,10 +7928,12 @@ bike_paths:
     operator: NCC
     network: rcn
     ref: GPW
-    surface: fine_gravel
+    surface: asphalt
     smoothness: good
     width: '3'
-    lit: 'no'
+    lit: 'yes'
+    segregated: 'no'
+    cycleway: crossing
     highway: cycleway
     tracktype: grade2
     bicycle: designated
@@ -7773,7 +7943,7 @@ bike_paths:
         - 45.3025008
       - - -75.6991722
         - 45.3213109
-    path_type: trail
+    path_type: mup
     member_of: ncc-greenbelt
     type: destination
     overlapping_relations:
@@ -7868,7 +8038,16 @@ bike_paths:
     website: https://www.facebook.com/BritanniaWinterTrail
     description: Volunteer-run urban winter trail for cross-country skiing, snow shoeing, winter biking and walking
     seasonal: winter
-    path_type: trail
+    surface: asphalt
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    incline: 0%
+    segregated: 'no'
+    highway: path
+    bicycle: 'yes'
+    foot: designated
+    path_type: mup
     type: destination
     slug: britannia-winter-trail
     osm_way_ids:
@@ -7987,7 +8166,16 @@ bike_paths:
     website: https://owwt.wordpress.com/
     operator: Kanata Nordic
     seasonal: winter
-    path_type: trail
+    surface: asphalt
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    bicycle: designated
+    foot: designated
+    path_type: mup
     member_of: ncc-greenbelt
     type: destination
     slug: ottawa-west-winter-trail
@@ -8026,7 +8214,15 @@ bike_paths:
     website: https://www.rideauwintertrail.ca/
     description: Volunteer-run urban winter trail for cross-country skiing, snow shoeing, winter biking and walking
     seasonal: winter
-    path_type: trail
+    surface: asphalt
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+    foot: designated
+    path_type: mup
     type: destination
     slug: rideau-winter-trail
     osm_way_ids:
@@ -8084,12 +8280,13 @@ bike_paths:
     description: Volunteer-run urban winter trail for cross-country skiing, snow shoeing, winter biking and walking
     seasonal: winter
     surface: asphalt
-    smoothness: bad
-    width: '2'
+    smoothness: good
+    width: '3'
     lit: 'no'
     incline: 0%
     segregated: 'no'
     highway: cycleway
+    mtb:scale: '0'
     bicycle: designated
     foot: designated
     anchors:
@@ -8200,7 +8397,16 @@ bike_paths:
     description: Volunteer-run urban winter trail for cross-country skiing, snow shoeing, winter biking and walking
     seasonal: winter
     operator: Ski Heritage East
-    path_type: trail
+    surface: asphalt
+    smoothness: good
+    width: '3'
+    lit: 'no'
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    bicycle: designated
+    foot: designated
+    path_type: mup
     type: destination
     slug: ski-heritage-east-trail
     osm_way_ids:
@@ -8283,7 +8489,18 @@ bike_paths:
       - 13608788
     ref: QcBT1
     distance: '695'
-    path_type: trail
+    surface: unpaved
+    smoothness: intermediate
+    width: '3'
+    segregated: 'no'
+    cycleway: lane
+    highway: tertiary
+    tracktype: grade2
+    mtb:scale: '1'
+    bicycle: designated
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
     type: long-distance
     slug: quebec-bikepacking-traverse-segment-i
     osm_way_ids:
@@ -8581,9 +8798,10 @@ bike_paths:
     width: '2.5'
     segregated: 'no'
     highway: cycleway
-    mtb:scale: '1'
     bicycle: designated
+    access: private
     foot: designated
+    mtb:scale: '1'
     anchors:
       - - -75.8992252
         - 45.4778974
@@ -8614,7 +8832,15 @@ bike_paths:
       - 15446553
     seasonal: winter
     foot: 'yes'
-    path_type: trail
+    surface: asphalt
+    smoothness: good
+    width: '2.5'
+    lit: 'no'
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    bicycle: designated
+    path_type: mup
     type: destination
     slug: sentier-du-lac-leamy-skiing-trail
     osm_way_ids:
@@ -8665,7 +8891,17 @@ bike_paths:
     osm_relations:
       - 16770188
     network: lcn
-    path_type: trail
+    surface: asphalt
+    smoothness: good
+    width: '2'
+    incline: 0%
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    bicycle: designated
+    access: 'no'
+    foot: designated
+    path_type: mup
     type: destination
     slug: montreal-road-bike-detour
     osm_way_ids:
@@ -8678,7 +8914,18 @@ bike_paths:
       - 18357979
     ref: QcBT2
     distance: '695'
-    path_type: trail
+    surface: unpaved
+    smoothness: very_bad
+    width: '2'
+    lit: 'no'
+    segregated: 'no'
+    cycleway: 'yes'
+    highway: tertiary
+    mtb:scale: '1'
+    bicycle: designated
+    foot: 'yes'
+    mtb: true
+    path_type: mtb-trail
     type: long-distance
     overlapping_relations:
       - id: 7300742
@@ -8867,6 +9114,14 @@ bike_paths:
     osm_relations:
       - 18517643
     network: lcn
+    surface: fine_gravel
+    smoothness: good
+    width: '2'
+    lit: 'no'
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+    foot: designated
     path_type: trail
     member_of: ncc-greenbelt
     type: destination
@@ -8879,7 +9134,15 @@ bike_paths:
     osm_relations:
       - 18537716
     network: lcn
-    path_type: trail
+    surface: fine_gravel
+    smoothness: intermediate
+    width: '2'
+    lit: 'no'
+    incline: down
+    highway: path
+    mtb:scale: '1'
+    mtb: true
+    path_type: mtb-trail
     type: destination
     slug: stonebridge-trail-beryl-gaffney-park
     osm_way_ids:
@@ -8929,7 +9192,11 @@ bike_paths:
     osm_relations:
       - 20166048
     ref: '21'
-    path_type: trail
+    surface: ground
+    highway: path
+    mtb:scale:imba: '2'
+    mtb: true
+    path_type: mtb-trail
     member_of: parc-de-la-gatineau
     type: destination
     slug: monkey-trail
@@ -19179,7 +19446,6 @@ bike_paths:
     surface: asphalt
     highway: pedestrian
     path_type: mup
-    member_of: crosstown-bikeway-3-network
     type: infrastructure
     slug: jean-jacques-lussier-private
     osm_way_ids:
@@ -22952,7 +23218,6 @@ bike_paths:
     bicycle: designated
     foot: designated
     path_type: mup
-    member_of: crosstown-bikeway-3-network
     type: destination
     slug: strathcona-park
     osm_way_ids:
@@ -26057,7 +26322,6 @@ bike_paths:
     osm_names:
       - Greenbelt Pathway West
       - Shirley Bay Ski trail
-      - Greenbelt Pathway West (Barrhaven)
       - Trail 27
       - Trail 23
       - Trail 24
@@ -26069,7 +26333,6 @@ bike_paths:
       - Trail 12
       - Jack Pine Trail
       - Lime Kiln Trail
-      - '31'
       - Trail 1
       - Old Quarry Trail
       - Trail 12a
@@ -26104,7 +26367,6 @@ bike_paths:
     members:
       - greenbelt-pathway-west
       - shirley-bay-ski-trail
-      - greenbelt-pathway-west-barrhaven
       - trail-27-1
       - trail-23
       - trail-24
@@ -26116,7 +26378,6 @@ bike_paths:
       - trail-12
       - jack-pine-trail
       - lime-kiln-trail
-      - '31'
       - trail-1-1
       - old-quarry-trail
       - trail-12a
@@ -26143,9 +26404,11 @@ bike_paths:
       - dewberry-trail
       - watts-creek-pathway
       - trans-canada-trail-bells-cornerswatts-creek
+      - greenbelt-pathway-west-barrhaven
       - ottawa-west-winter-trail
       - ottawa-carleton-trailway-east
       - greens-creek-bridge
+      - '31'
       - sir-george-etienne-cartier-parkway
       - cedarview-road
       - bruin-road
@@ -26160,29 +26423,6 @@ bike_paths:
     mtb: true
     super_network: capital-pathway
     slug: ncc-greenbelt
-  - name: Crosstown Bikeway 3 Network
-    type: network
-    anchors:
-      - - -75.6828042
-        - 45.4153761
-      - - -75.6024075
-        - 45.4297593
-    osm_names:
-      - Crosstown Bikeway 3
-      - Jean-Jacques-Lussier Private
-      - Strathcona Park
-    surface: asphalt
-    highway: cycleway
-    lit: 'yes'
-    width: '2'
-    smoothness: good
-    network: lcn
-    members:
-      - crosstown-bikeway-3
-      - jean-jacques-lussier-private
-      - strathcona-park
-    super_network: ottawa-bikeways
-    slug: crosstown-bikeway-3-network
   - name: Kizell Pond Trail North Trails
     type: network
     anchors:
