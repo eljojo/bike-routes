@@ -14,6 +14,10 @@ location: Rack à bécik, 135 rue Eddy, Gatineau, QC
 tags:
   - workshop
 organizer: rack-a-becik
+poster_key: pdvfcwsw
+poster_content_type: image/jpeg
+poster_width: 2560
+poster_height: 1742
 ---
 
 Formation intermédiaire qui approfondit les compétences acquises dans la formation 1. Passez au niveau supérieur en réparation et entretien de vélo. À partir de 50 $.
