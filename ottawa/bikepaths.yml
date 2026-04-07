@@ -12,6 +12,20 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 74
+      - value: wood
+        km: 5
+      - value: paving_stones
+        km: 2
+      - value: concrete
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 36
+      - value: 'yes'
+        km: 12
     anchors:
       - - -75.8729741
         - 45.379769
@@ -159,6 +173,13 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 18
+      - value: wood
+        km: 2
+      - value: paving_stones
+        km: 1
     anchors:
       - - -75.72988
         - 45.4245687
@@ -211,6 +232,18 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 42
+      - value: paving_stones
+        km: 5
+      - value: concrete
+        km: 2
+    lit_mix:
+      - value: 'yes'
+        km: 23
+      - value: 'no'
+        km: 9
     anchors:
       - - -75.8672581
         - 45.4084931
@@ -339,6 +372,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 22
+      - value: wood
+        km: 1
     anchors:
       - - -75.7871841
         - 45.4641933
@@ -393,6 +431,16 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 19
+      - value: wood
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 15
+      - value: 'yes'
+        km: 1
     anchors:
       - - -75.7364732
         - 45.4542123
@@ -495,6 +543,40 @@ bike_paths:
     seasonal: spring;summer;autumn
     access: 'yes'
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 1889
+      - value: paved
+        km: 525
+      - value: fine_gravel
+        km: 129
+      - value: gravel
+        km: 94
+      - value: unpaved
+        km: 64
+      - value: concrete
+        km: 38
+      - value: wood
+        km: 30
+      - value: paving_stones
+        km: 21
+      - value: compacted
+        km: 19
+      - value: metal
+        km: 4
+      - value: ground
+        km: 2
+      - value: sett
+        km: 1
+      - value: grass_paver
+        km: 1
+      - value: dirt
+        km: 1
+    lit_mix:
+      - value: 'yes'
+        km: 239
+      - value: 'no'
+        km: 75
     anchors:
       - - -75.4976917
         - 45.5214507
@@ -3766,6 +3848,15 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: fine_gravel
+        km: 16
+      - value: asphalt
+        km: 8
+      - value: unpaved
+        km: 8
+      - value: wood
+        km: 2
     path_type: trail
     type: long-distance
     slug: cycloparc-ppj
@@ -3820,6 +3911,13 @@ bike_paths:
     surface: paved
     highway: tertiary
     bicycle: designated
+    surface_mix:
+      - value: paved
+        km: 14
+      - value: asphalt
+        km: 12
+      - value: wood
+        km: 1
     path_type: mup
     type: long-distance
     slug: le-tour-des-plages
@@ -3899,6 +3997,36 @@ bike_paths:
     bicycle: designated
     access: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 531
+      - value: compacted
+        km: 41
+      - value: paved
+        km: 26
+      - value: wood
+        km: 22
+      - value: ground
+        km: 18
+      - value: unpaved
+        km: 13
+      - value: gravel
+        km: 11
+      - value: concrete
+        km: 7
+      - value: fine_gravel
+        km: 6
+      - value: paving_stones
+        km: 2
+      - value: pebblestone
+        km: 1
+      - value: metal
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 49
+      - value: 'yes'
+        km: 9
     anchors:
       - - -75.9041589
         - 45.5272457
@@ -4651,6 +4779,16 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 12
+      - value: wood
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 4
+      - value: 'yes'
+        km: 4
     anchors:
       - - -75.753363
         - 45.4239564
@@ -4745,6 +4883,17 @@ bike_paths:
     mtb:scale: '2'
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: ground
+        km: 45
+      - value: gravel
+        km: 28
+      - value: wood
+        km: 8
+      - value: fine_gravel
+        km: 3
+      - value: asphalt
+        km: 1
     anchors:
       - - -75.9234036
         - 45.5274735
@@ -4885,6 +5034,20 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 53
+      - value: fine_gravel
+        km: 9
+      - value: wood
+        km: 1
+      - value: concrete
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 37
+      - value: 'yes'
+        km: 10
     anchors:
       - - -75.6887549
         - 45.4460476
@@ -4977,6 +5140,16 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 25
+      - value: wood
+        km: 3
+    lit_mix:
+      - value: 'no'
+        km: 18
+      - value: 'yes'
+        km: 1
     anchors:
       - - -75.8892601
         - 45.3265621
@@ -5035,6 +5208,11 @@ bike_paths:
     mtb:scale: '0'
     bicycle: designated
     foot: designated
+    lit_mix:
+      - value: 'yes'
+        km: 16
+      - value: 'no'
+        km: 3
     anchors:
       - - -75.7249039
         - 45.3961412
@@ -5150,6 +5328,20 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 20
+      - value: concrete
+        km: 6
+      - value: paving_stones
+        km: 2
+      - value: wood
+        km: 1
+    lit_mix:
+      - value: 'yes'
+        km: 21
+      - value: 'no'
+        km: 4
     anchors:
       - - -75.7068065
         - 45.3840285
@@ -5203,6 +5395,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 11
+      - value: concrete
+        km: 2
     anchors:
       - - -75.6984672
         - 45.3698546
@@ -5243,6 +5440,18 @@ bike_paths:
     highway: cycleway
     bicycle: 'yes'
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 42
+      - value: fine_gravel
+        km: 1
+      - value: concrete
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 11
+      - value: 'yes'
+        km: 2
     anchors:
       - - -75.763713
         - 45.353173
@@ -5314,6 +5523,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 31
+      - value: wood
+        km: 1
     anchors:
       - - -75.7864285
         - 45.3483954
@@ -5379,6 +5593,11 @@ bike_paths:
     mtb:scale: '0'
     bicycle: designated
     foot: 'no'
+    surface_mix:
+      - value: asphalt
+        km: 141
+      - value: concrete
+        km: 2
     path_type: mup
     type: destination
     member_of: crosstown-bikeway-2
@@ -5545,6 +5764,15 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: fine_gravel
+        km: 20
+      - value: asphalt
+        km: 13
+      - value: unpaved
+        km: 1
+      - value: wood
+        km: 1
     anchors:
       - - -75.8759034
         - 45.3196511
@@ -5607,6 +5835,30 @@ bike_paths:
     tracktype: grade4
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 146
+      - value: unpaved
+        km: 32
+      - value: ground
+        km: 30
+      - value: fine_gravel
+        km: 14
+      - value: paved
+        km: 12
+      - value: wood
+        km: 11
+      - value: grass
+        km: 4
+      - value: gravel
+        km: 2
+      - value: sand
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 87
+      - value: 'yes'
+        km: 19
     anchors:
       - - -75.8125194
         - 45.3519888
@@ -5926,6 +6178,13 @@ bike_paths:
     mtb:scale: '0'
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: fine_gravel
+        km: 10
+      - value: asphalt
+        km: 7
+      - value: concrete
+        km: 1
     anchors:
       - - -75.6541333
         - 45.1444871
@@ -5986,6 +6245,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    lit_mix:
+      - value: 'no'
+        km: 32
+      - value: 'yes'
+        km: 6
     anchors:
       - - -75.6972126
         - 45.3707591
@@ -6076,6 +6340,16 @@ bike_paths:
     highway: footway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 14
+      - value: concrete
+        km: 4
+    lit_mix:
+      - value: 'yes'
+        km: 2
+      - value: 'no'
+        km: 1
     anchors:
       - - -75.6475
         - 45.4226087
@@ -6119,6 +6393,17 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: fine_gravel
+        km: 22
+      - value: asphalt
+        km: 8
+      - value: ground
+        km: 2
+      - value: concrete
+        km: 1
+      - value: wood
+        km: 1
     anchors:
       - - -75.577949
         - 45.4348053
@@ -6181,6 +6466,13 @@ bike_paths:
     highway: secondary
     bicycle: 'yes'
     foot: 'yes'
+    surface_mix:
+      - value: asphalt
+        km: 54
+      - value: concrete
+        km: 3
+      - value: paving_stones
+        km: 1
     anchors:
       - - -75.699367
         - 45.4263086
@@ -6271,6 +6563,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    lit_mix:
+      - value: 'yes'
+        km: 6
+      - value: 'no'
+        km: 1
     anchors:
       - - -75.6798125
         - 45.353173
@@ -6311,6 +6608,11 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     foot: 'yes'
+    surface_mix:
+      - value: asphalt
+        km: 11
+      - value: fine_gravel
+        km: 1
     anchors:
       - - -75.7695207
         - 45.3824786
@@ -6348,6 +6650,18 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 22
+      - value: fine_gravel
+        km: 12
+      - value: wood
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 26
+      - value: 'yes'
+        km: 1
     path_type: mup
     member_of: ncc-greenbelt
     type: destination
@@ -6400,6 +6714,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    lit_mix:
+      - value: 'no'
+        km: 5
+      - value: 'yes'
+        km: 1
     anchors:
       - - -75.3861166
         - 45.2628911
@@ -6452,6 +6771,17 @@ bike_paths:
     highway: residential
     bicycle: 'yes'
     foot: 'yes'
+    surface_mix:
+      - value: asphalt
+        km: 46
+      - value: unpaved
+        km: 3
+      - value: fine_gravel
+        km: 2
+      - value: concrete
+        km: 1
+      - value: ground
+        km: 1
     anchors:
       - - -75.5591993
         - 45.2611395
@@ -6535,6 +6865,15 @@ bike_paths:
     bicycle: 'yes'
     access: 'yes'
     foot: 'yes'
+    surface_mix:
+      - value: ground
+        km: 8
+      - value: fine_gravel
+        km: 6
+      - value: unpaved
+        km: 2
+      - value: grass
+        km: 1
     path_type: mtb-trail
     mtb: true
     type: destination
@@ -6610,6 +6949,20 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: gravel
+        km: 34
+      - value: fine_gravel
+        km: 30
+      - value: wood
+        km: 1
+      - value: compacted
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 3
+      - value: 'yes'
+        km: 1
     path_type: trail
     type: long-distance
     slug: algonquin-trail
@@ -6694,6 +7047,15 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: fine_gravel
+        km: 23
+      - value: asphalt
+        km: 5
+      - value: wood
+        km: 1
+      - value: concrete
+        km: 1
     anchors:
       - - -76.3518819
         - 45.1488563
@@ -6750,6 +7112,11 @@ bike_paths:
     bicycle: 'no'
     access: 'yes'
     foot: 'yes'
+    surface_mix:
+      - value: ground
+        km: 22
+      - value: wood
+        km: 3
     anchors:
       - - -75.9490601
         - 45.5301593
@@ -6825,6 +7192,11 @@ bike_paths:
     highway: path
     bicycle: 'no'
     foot: 'yes'
+    surface_mix:
+      - value: ground
+        km: 7
+      - value: wood
+        km: 3
     path_type: mtb-trail
     mtb: true
     member_of: parc-de-la-gatineau
@@ -6852,6 +7224,13 @@ bike_paths:
     mtb:scale: '5'
     bicycle: 'no'
     foot: 'yes'
+    surface_mix:
+      - value: ground
+        km: 16
+      - value: fine_gravel
+        km: 2
+      - value: wood
+        km: 1
     mtb: true
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
@@ -6888,6 +7267,11 @@ bike_paths:
     highway: path
     bicycle: 'no'
     foot: 'yes'
+    surface_mix:
+      - value: ground
+        km: 10
+      - value: wood
+        km: 5
     path_type: mtb-trail
     mtb: true
     member_of: parc-de-la-gatineau
@@ -6919,6 +7303,15 @@ bike_paths:
     highway: path
     bicycle: 'no'
     foot: 'yes'
+    surface_mix:
+      - value: fine_gravel
+        km: 2
+      - value: metal
+        km: 1
+      - value: ground
+        km: 1
+      - value: asphalt
+        km: 1
     path_type: trail
     member_of: parc-de-la-gatineau
     type: destination
@@ -6943,6 +7336,15 @@ bike_paths:
     bicycle: 'no'
     access: 'yes'
     foot: 'yes'
+    surface_mix:
+      - value: wood
+        km: 19
+      - value: ground
+        km: 15
+      - value: unpaved
+        km: 2
+      - value: dirt
+        km: 1
     path_type: mup
     member_of: parc-de-la-gatineau
     type: destination
@@ -7021,6 +7423,20 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: fine_gravel
+        km: 27
+      - value: asphalt
+        km: 22
+      - value: concrete
+        km: 2
+      - value: paving_stones
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 7
+      - value: 'yes'
+        km: 3
     anchors:
       - - -75.9203476
         - 45.2584337
@@ -7104,6 +7520,22 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 91
+      - value: wood
+        km: 5
+      - value: concrete
+        km: 2
+      - value: ground
+        km: 1
+      - value: concrete:plates
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 64
+      - value: 'yes'
+        km: 18
     path_type: mup
     type: destination
     overlapping_relations:
@@ -7273,6 +7705,20 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 79
+      - value: fine_gravel
+        km: 5
+      - value: concrete
+        km: 3
+      - value: wood
+        km: 1
+    lit_mix:
+      - value: 'yes'
+        km: 16
+      - value: 'no'
+        km: 10
     anchors:
       - - -75.7324975
         - 45.3376973
@@ -7397,6 +7843,18 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 25
+      - value: concrete
+        km: 8
+      - value: paving_stones
+        km: 4
+    lit_mix:
+      - value: 'yes'
+        km: 14
+      - value: 'no'
+        km: 1
     path_type: mup
     type: destination
     slug: confederation-pathway
@@ -7451,6 +7909,15 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     foot: 'yes'
+    surface_mix:
+      - value: fine_gravel
+        km: 8
+      - value: ground
+        km: 4
+      - value: wood
+        km: 3
+      - value: gravel
+        km: 1
     anchors:
       - - -75.873912
         - 45.352571
@@ -7489,6 +7956,11 @@ bike_paths:
     highway: footway
     bicycle: 'no'
     foot: 'yes'
+    surface_mix:
+      - value: ground
+        km: 12
+      - value: wood
+        km: 1
     anchors:
       - - -75.7972648
         - 45.3662425
@@ -7530,6 +8002,11 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 29
+      - value: paving_stones
+        km: 1
     anchors:
       - - -75.6476998
         - 45.3606002
@@ -7589,6 +8066,13 @@ bike_paths:
     highway: secondary
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 152
+      - value: concrete
+        km: 2
+      - value: paving_stones
+        km: 2
     anchors:
       - - -75.6353965
         - 45.4164912
@@ -7883,6 +8367,13 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: 'yes'
+    surface_mix:
+      - value: asphalt
+        km: 30
+      - value: concrete
+        km: 1
+      - value: paving_stones
+        km: 1
     anchors:
       - - -75.6882715
         - 45.4014347
@@ -7942,6 +8433,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    lit_mix:
+      - value: 'yes'
+        km: 3
+      - value: 'no'
+        km: 2
     path_type: mup
     type: destination
     member_of: rideau-river-eastern-pathway
@@ -7969,6 +8465,20 @@ bike_paths:
     tracktype: grade2
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 57
+      - value: fine_gravel
+        km: 9
+      - value: wood
+        km: 3
+      - value: concrete
+        km: 3
+    lit_mix:
+      - value: 'yes'
+        km: 15
+      - value: 'no'
+        km: 14
     anchors:
       - - -75.7332362
         - 45.3025008
@@ -8078,6 +8588,26 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 77
+      - value: fine_gravel
+        km: 6
+      - value: wood
+        km: 5
+      - value: ground
+        km: 5
+      - value: paving_stones
+        km: 2
+      - value: unpaved
+        km: 2
+      - value: grass
+        km: 2
+    lit_mix:
+      - value: 'no'
+        km: 40
+      - value: 'yes'
+        km: 11
     path_type: mup
     type: destination
     slug: britannia-winter-trail
@@ -8206,6 +8736,13 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 14
+      - value: fine_gravel
+        km: 13
+      - value: wood
+        km: 2
     path_type: mup
     member_of: ncc-greenbelt
     type: destination
@@ -8253,6 +8790,18 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 28
+      - value: ground
+        km: 6
+      - value: gravel
+        km: 2
+    lit_mix:
+      - value: 'no'
+        km: 32
+      - value: 'yes'
+        km: 2
     path_type: mup
     type: destination
     slug: rideau-winter-trail
@@ -8320,6 +8869,18 @@ bike_paths:
     mtb:scale: '0'
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 58
+      - value: ground
+        km: 4
+      - value: wood
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 59
+      - value: 'yes'
+        km: 1
     anchors:
       - - -75.7610733
         - 45.3927134
@@ -8437,6 +8998,19 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 26
+      - value: fine_gravel
+        km: 13
+      - value: ground
+        km: 2
+      - value: gravel
+        km: 2
+      - value: wood
+        km: 1
+      - value: concrete
+        km: 1
     path_type: mup
     type: destination
     slug: ski-heritage-east-trail
@@ -8530,6 +9104,31 @@ bike_paths:
     mtb:scale: '1'
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: unpaved
+        km: 107
+      - value: gravel
+        km: 39
+      - value: asphalt
+        km: 30
+      - value: paved
+        km: 23
+      - value: pebblestone
+        km: 17
+      - value: fine_gravel
+        km: 12
+      - value: wood
+        km: 5
+      - value: sand
+        km: 4
+      - value: mud
+        km: 4
+      - value: compacted
+        km: 2
+      - value: dirt
+        km: 1
+      - value: earth
+        km: 1
     mtb: true
     path_type: mtb-trail
     type: long-distance
@@ -8832,6 +9431,17 @@ bike_paths:
     bicycle: designated
     access: private
     foot: designated
+    surface_mix:
+      - value: fine_gravel
+        km: 8
+      - value: unpaved
+        km: 3
+      - value: wood
+        km: 1
+      - value: ground
+        km: 1
+      - value: dirt
+        km: 1
     mtb:scale: '1'
     anchors:
       - - -75.8992252
@@ -8871,6 +9481,16 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    surface_mix:
+      - value: asphalt
+        km: 42
+      - value: concrete
+        km: 1
+    lit_mix:
+      - value: 'no'
+        km: 24
+      - value: 'yes'
+        km: 1
     path_type: mup
     type: destination
     slug: sentier-du-lac-leamy-skiing-trail
@@ -8955,6 +9575,27 @@ bike_paths:
     mtb:scale: '1'
     bicycle: designated
     foot: 'yes'
+    surface_mix:
+      - value: unpaved
+        km: 76
+      - value: asphalt
+        km: 39
+      - value: paved
+        km: 17
+      - value: fine_gravel
+        km: 5
+      - value: wood
+        km: 4
+      - value: ground
+        km: 3
+      - value: gravel
+        km: 2
+      - value: dirt
+        km: 2
+      - value: metal
+        km: 1
+      - value: compacted
+        km: 1
     mtb: true
     path_type: mtb-trail
     type: long-distance
@@ -9153,6 +9794,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: fine_gravel
+        km: 2
+      - value: asphalt
+        km: 1
     path_type: trail
     member_of: ncc-greenbelt
     type: destination
@@ -9172,6 +9818,17 @@ bike_paths:
     incline: down
     highway: path
     mtb:scale: '1'
+    surface_mix:
+      - value: fine_gravel
+        km: 20
+      - value: wood
+        km: 4
+      - value: asphalt
+        km: 2
+      - value: ground
+        km: 1
+      - value: gravel
+        km: 1
     mtb: true
     path_type: mtb-trail
     type: destination
@@ -9732,6 +10389,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 1
+      - value: fine_gravel
+        km: 1
     path_type: mup
     type: destination
     slug: cardinal-creek-trail
@@ -10534,6 +11196,11 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     ref: '23'
+    surface_mix:
+      - value: ground
+        km: 3
+      - value: gravel
+        km: 3
     path_type: mtb-trail
     mtb: true
     member_of: ncc-greenbelt
@@ -10558,6 +11225,11 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: 'yes'
+    surface_mix:
+      - value: gravel
+        km: 5
+      - value: ground
+        km: 4
     path_type: mtb-trail
     mtb: true
     member_of: ncc-greenbelt
@@ -10886,6 +11558,11 @@ bike_paths:
     network: Mer Bleue
     ref: '50'
     foot: 'yes'
+    surface_mix:
+      - value: ground
+        km: 10
+      - value: gravel
+        km: 4
     path_type: mtb-trail
     mtb: true
     member_of: ncc-greenbelt
@@ -11137,6 +11814,11 @@ bike_paths:
     highway: path
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: gravel
+        km: 1
+      - value: ground
+        km: 1
     path_type: mtb-trail
     member_of: monk-environmental-park
     mtb: true
@@ -11222,6 +11904,11 @@ bike_paths:
     highway: path
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: ground
+        km: 3
+      - value: rock
+        km: 1
     path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
     mtb: true
@@ -11269,6 +11956,11 @@ bike_paths:
     bicycle: 'yes'
     access: 'no'
     foot: 'yes'
+    surface_mix:
+      - value: fine_gravel
+        km: 1
+      - value: ground
+        km: 1
     path_type: mtb-trail
     mtb: true
     type: destination
@@ -12023,6 +12715,11 @@ bike_paths:
     bicycle: 'yes'
     network: Mer Bleue
     foot: 'yes'
+    surface_mix:
+      - value: ground
+        km: 6
+      - value: wood
+        km: 1
     path_type: mtb-trail
     mtb: true
     member_of: ncc-greenbelt
@@ -12382,6 +13079,11 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     ref: '11'
+    surface_mix:
+      - value: gravel
+        km: 1
+      - value: ground
+        km: 1
     path_type: mtb-trail
     mtb: true
     member_of: ncc-greenbelt
@@ -17750,6 +18452,11 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '59'
+    lit_mix:
+      - value: 'no'
+        km: 1
+      - value: 'yes'
+        km: 1
     parallel_to: Old Richmond Road
     path_type: bike-lane
     member_of: ncc-greenbelt
@@ -23261,6 +23968,11 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: 'yes'
+    surface_mix:
+      - value: gravel
+        km: 1
+      - value: ground
+        km: 1
     path_type: mtb-trail
     mtb: true
     member_of: ncc-greenbelt
@@ -23324,6 +24036,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    lit_mix:
+      - value: 'yes'
+        km: 1
+      - value: 'no'
+        km: 1
     path_type: mup
     type: destination
     slug: corridor-du-ruisseau-des-fees
@@ -23348,6 +24065,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    lit_mix:
+      - value: 'yes'
+        km: 1
+      - value: 'no'
+        km: 1
     path_type: mup
     type: destination
     slug: strathcona-park
@@ -23449,6 +24171,11 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     foot: designated
+    surface_mix:
+      - value: asphalt
+        km: 1
+      - value: fine_gravel
+        km: 1
     path_type: mup
     type: destination
     slug: beaverpond-park
@@ -23481,6 +24208,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
+    surface_mix:
+      - value: fine_gravel
+        km: 3
+      - value: asphalt
+        km: 2
     path_type: mup
     type: destination
     slug: lytle-park
