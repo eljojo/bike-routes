@@ -10,15 +10,19 @@ organizer: ottawa-womens-cycling-club
 series:
   schedule:
     - date: "2026-05-02"
-      name: "Bike Handling & Group Riding (1/4)"
+      name: Bike Handling & Group Riding (1/4)
     - date: "2026-05-09"
-      name: "Bike Handling & Group Riding (2/4) + Refresher Group Riding"
+      name: Bike Handling & Group Riding (2/4) + Refresher Group Riding
     - date: "2026-05-16"
-      name: "Bike Handling & Group Riding (3/4)"
+      name: Bike Handling & Group Riding (3/4)
     - date: "2026-05-17"
-      name: "Refresher Group Riding"
+      name: Refresher Group Riding
     - date: "2026-05-23"
-      name: "Bike Handling & Group Riding (4/4)"
+      name: Bike Handling & Group Riding (4/4)
+poster_key: k0hcg2pi
+poster_content_type: image/png
+poster_width: 2298
+poster_height: 1584
 ---
 
 Two clinic tracks for new and returning members:
