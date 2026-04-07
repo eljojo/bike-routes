@@ -34,9 +34,7 @@ location: Various locations
 event_url: https://www.instagram.com/p/DWwcBqqlhqN/
 poster_key: dbote4wm
 poster_content_type: image/jpeg
-organizer:
-  name: "#OttBike Social"
-  instagram: ottbikesocial
+organizer: ottbikesocial
 start_time: "19:00"
 meet_time: "18:45"
 tags:
