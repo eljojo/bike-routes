@@ -26312,6 +26312,7 @@ bike_paths:
     mtb: true
     super_network: capital-pathway
     slug: parc-de-la-gatineau
+    park: Parc de la Gatineau
   - name: NCC Greenbelt
     type: network
     anchors:
@@ -26423,6 +26424,7 @@ bike_paths:
     mtb: true
     super_network: capital-pathway
     slug: ncc-greenbelt
+    park: NCC Greenbelt
   - name: Kizell Pond Trail North Trails
     type: network
     anchors:
@@ -26530,6 +26532,7 @@ bike_paths:
       - confederation-bridge
     mtb: true
     slug: south-march-highlands-conservation-forest
+    park: South March Highlands Conservation Forest
   - name: Monk Environmental Park
     type: network
     anchors:
@@ -26555,6 +26558,7 @@ bike_paths:
       - richcraft
     mtb: true
     slug: monk-environmental-park
+    park: Monk Environmental Park
   - name: Rotary Centennial Trail Trails
     type: network
     anchors:
@@ -26684,6 +26688,7 @@ bike_paths:
       - connector-path
     mtb: true
     slug: landsdowne-natural-heritage-park
+    park: Landsdowne Natural Heritage Park
   - name: Coulicou Trails
     type: network
     anchors:
