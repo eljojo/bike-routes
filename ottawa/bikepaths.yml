@@ -258,6 +258,7 @@ bike_paths:
       - 584768749
       - 584768750
       - 737618568
+      - 792935593
       - 793638071
       - 793638072
       - 808105848
@@ -266,6 +267,10 @@ bike_paths:
       - 813218899
       - 961704209
       - 961704211
+      - 1263541424
+      - 1263541426
+      - 1263541427
+      - 1273164697
       - 1278947153
       - 1278947154
       - 1278947155
@@ -279,6 +284,10 @@ bike_paths:
       - 1443604784
       - 1443604785
       - 1443605501
+      - 1443605502
+      - 1443608549
+      - 1443608560
+      - 1443608562
   - name: Sentier de l'Île
     osm_relations:
       - 218656
@@ -3891,10 +3900,10 @@ bike_paths:
     access: designated
     foot: designated
     anchors:
-      - - -75.8444047
-        - 45.4720156
-      - - -75.7928928
-        - 45.4831944
+      - - -75.9041589
+        - 45.5272457
+      - - -75.8643952
+        - 45.5672289
     mtb: true
     path_type: mtb-trail
     type: long-distance
@@ -7340,6 +7349,7 @@ bike_paths:
       - 690782563
       - 734601328
       - 734601329
+      - 734605383
       - 738995059
       - 738995114
       - 746414253
@@ -7520,11 +7530,18 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     foot: designated
+    anchors:
+      - - -75.6476998
+        - 45.3606002
+      - - -75.6347504
+        - 45.3628981
     path_type: mup
     type: destination
     slug: greenboro-pathway
     osm_way_ids:
       - 29100331
+      - 68587282
+      - 135584719
       - 135584720
       - 585757233
       - 585757235
@@ -7551,6 +7568,8 @@ bike_paths:
       - 756665563
       - 756667361
       - 756668736
+      - 756787343
+      - 756787344
       - 756787348
       - 756787349
       - 785228203
@@ -7582,19 +7601,28 @@ bike_paths:
     osm_way_ids:
       - 4322072
       - 56104395
+      - 76434181
+      - 76434485
+      - 76434799
       - 76435005
       - 76435007
       - 76435013
+      - 76435145
+      - 76435148
       - 76435198
       - 76435233
       - 76435284
       - 76435301
+      - 76435503
       - 76435533
       - 76435603
       - 76435634
       - 76435647
+      - 76435671
       - 76435810
       - 76435916
+      - 76436046
+      - 76436054
       - 76436129
       - 76436153
       - 76436172
@@ -7672,6 +7700,7 @@ bike_paths:
       - 494508596
       - 494508598
       - 504494545
+      - 504494546
       - 504495153
       - 504495155
       - 509702054
@@ -7703,6 +7732,8 @@ bike_paths:
       - 604437461
       - 604437466
       - 609845335
+      - 609845370
+      - 609845373
       - 609845376
       - 609845378
       - 609848055
@@ -9440,7 +9471,24 @@ bike_paths:
     mtb: true
     member_of: ncc-greenbelt
     type: destination
+    overlapping_relations:
+      - id: 7677698
+        name: RT Bells Corners Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     slug: trail-27-1
+    osm_way_ids:
+      - 36614003
+      - 36614142
+      - 36614148
+      - 36622295
+      - 102698226
+      - 534900447
+      - 534900448
+      - 750955579
+      - 1274215750
+      - 1301559010
   - name: Sentier du Vallon
     osm_names:
       - Sentier du Vallon
@@ -9965,44 +10013,6 @@ bike_paths:
       - 1317404583
       - 1443997846
       - 1443997851
-  - name: Boulevard des Allumettières
-    osm_names:
-      - Boulevard des Allumettières
-    anchors:
-      - - -75.7311378
-        - 45.4321141
-      - - -75.7257834
-        - 45.432427
-    surface: asphalt
-    smoothness: good
-    width: '4'
-    lit: 'yes'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-    bicycle: designated
-    foot: designated
-    parallel_to: Boulevard des Allumettières
-    path_type: mup
-    type: infrastructure
-    slug: boulevard-des-allumettieres
-    osm_way_ids:
-      - 792935593
-      - 1263541424
-      - 1263541426
-      - 1263541427
-      - 1273164697
-      - 1278947153
-      - 1278947154
-      - 1278947155
-      - 1443604775
-      - 1443604776
-      - 1443604783
-      - 1443605501
-      - 1443605502
-      - 1443608549
-      - 1443608560
-      - 1443608562
   - name: Rue de Turin
     osm_names:
       - Rue de Turin
@@ -12129,6 +12139,15 @@ bike_paths:
     member_of: ncc-greenbelt
     type: destination
     slug: trail-1-1
+    osm_way_ids:
+      - 553292672
+      - 727339902
+      - 759321434
+      - 759321435
+      - 759321436
+      - 759321437
+      - 759321439
+      - 1245414430
   - name: Trail 1
     osm_names:
       - Trail 1
@@ -12147,6 +12166,10 @@ bike_paths:
     mtb: true
     type: destination
     slug: trail-1-2
+    osm_way_ids:
+      - 727305105
+      - 1319747408
+      - 1319747411
   - name: Major
     osm_names:
       - Major
@@ -13472,6 +13495,8 @@ bike_paths:
     path_type: mup
     type: infrastructure
     slug: sir-george-etienne-cartier-parkway-1
+    osm_way_ids:
+      - 76452921
   - name: Kanata Avenue
     osm_names:
       - Kanata Avenue
@@ -14463,6 +14488,10 @@ bike_paths:
     path_type: mup
     type: infrastructure
     slug: baseline-road
+    osm_way_ids:
+      - 129928405
+      - 302135077
+      - 456347282
   - name: Richmond Road
     osm_names:
       - Richmond Road
@@ -15485,47 +15514,6 @@ bike_paths:
       - 609257695
       - 673208336
       - 673208337
-  - name: Coventry Road
-    osm_names:
-      - Coventry Road
-    anchors:
-      - - -75.6474051
-        - 45.4214849
-      - - -75.6373848
-        - 45.4242875
-    name_fr: chemin Coventry
-    name_en: Coventry Road
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: secondary
-    ref: '50'
-    parallel_to: Coventry Road
-    path_type: bike-lane
-    type: infrastructure
-    slug: coventry-road
-    osm_way_ids:
-      - 76434181
-      - 76434485
-      - 76434799
-      - 76435145
-      - 76435148
-      - 76435284
-      - 76435503
-      - 76435533
-      - 76435671
-      - 76436046
-      - 76436054
-      - 457874390
-      - 504494546
-      - 609845370
-      - 609845373
-      - 609845376
-      - 609845378
-      - 609848055
-      - 692108415
-      - 692108416
-      - 790798247
   - name: Trainyards Drive
     osm_names:
       - Trainyards Drive
@@ -15927,6 +15915,23 @@ bike_paths:
     path_type: bike-lane
     type: infrastructure
     slug: st-joseph-boulevard
+    osm_way_ids:
+      - 76535319
+      - 109585940
+      - 109585957
+      - 475003462
+      - 475003463
+      - 475003464
+      - 476669368
+      - 477011107
+      - 477011560
+      - 477011561
+      - 479745390
+      - 553543320
+      - 574891942
+      - 584741806
+      - 606491977
+      - 606491978
   - name: St-Laurent Boulevard
     osm_names:
       - St-Laurent Boulevard
@@ -15986,6 +15991,12 @@ bike_paths:
     path_type: bike-lane
     type: infrastructure
     slug: st-laurent-boulevard
+    osm_way_ids:
+      - 313464445
+      - 393067907
+      - 603551416
+      - 706721610
+      - 1342311868
   - name: Belcourt Boulevard
     osm_names:
       - Belcourt Boulevard
@@ -17252,6 +17263,11 @@ bike_paths:
     path_type: mup
     type: infrastructure
     slug: bank-street
+    osm_way_ids:
+      - 472946431
+      - 482493198
+      - 599518670
+      - 1283380997
   - name: Monk Street
     osm_names:
       - Monk Street
@@ -18885,6 +18901,22 @@ bike_paths:
     path_type: mup
     type: destination
     slug: riverside-drive-1
+    osm_way_ids:
+      - 76504110
+      - 76504321
+      - 76504328
+      - 76504431
+      - 211956708
+      - 211956714
+      - 301135376
+      - 306466906
+      - 397098970
+      - 397098971
+      - 458453092
+      - 458453093
+      - 472275428
+      - 1322611769
+      - 1337843492
   - name: Mer Bleue Road
     osm_names:
       - Mer Bleue Road
@@ -18966,6 +18998,81 @@ bike_paths:
     path_type: mup
     type: destination
     slug: trim-road-1
+    osm_way_ids:
+      - 76534929
+      - 76535360
+      - 87478656
+      - 153995486
+      - 335070559
+      - 362487371
+      - 362494147
+      - 362494193
+      - 362588789
+      - 413047229
+      - 413047230
+      - 413126262
+      - 413126263
+      - 418086137
+      - 418086138
+      - 419272202
+      - 454977634
+      - 472207009
+      - 476987834
+      - 476987835
+      - 476987836
+      - 476987837
+      - 476987838
+      - 479765232
+      - 515911139
+      - 517742385
+      - 521810651
+      - 546640947
+      - 587065538
+      - 587065539
+      - 587065540
+      - 587065541
+      - 606493721
+      - 606493722
+      - 606493723
+      - 606493724
+      - 606493725
+      - 606493726
+      - 606493727
+      - 606493729
+      - 606773632
+      - 606773633
+      - 606778111
+      - 606778112
+      - 606780460
+      - 606780464
+      - 606780469
+      - 606780474
+      - 606780479
+      - 606780484
+      - 606780486
+      - 629551837
+      - 629551839
+      - 629551842
+      - 678526473
+      - 678526476
+      - 738296493
+      - 738297624
+      - 738297625
+      - 738297626
+      - 738303842
+      - 738303843
+      - 738303844
+      - 738303848
+      - 738528079
+      - 738534954
+      - 738534955
+      - 738537360
+      - 738537361
+      - 738537362
+      - 738537363
+      - 738539682
+      - 738539683
+      - 738546313
   - name: Rue Jos-Montferrand
     osm_names:
       - Rue Jos-Montferrand
@@ -19158,6 +19265,25 @@ bike_paths:
     path_type: mup
     type: destination
     slug: carling-avenue
+    osm_way_ids:
+      - 76404323
+      - 112013370
+      - 112228601
+      - 305323418
+      - 305323573
+      - 309856722
+      - 309856724
+      - 309856744
+      - 432380925
+      - 432380926
+      - 464075974
+      - 464075975
+      - 534675747
+      - 539330323
+      - 539564564
+      - 539564565
+      - 597909671
+      - 736620146
   - name: Legget Drive
     osm_names:
       - Legget Drive
@@ -20432,6 +20558,9 @@ bike_paths:
     path_type: mup
     type: infrastructure
     slug: walkley-road-1
+    osm_way_ids:
+      - 316826740
+      - 397099083
   - name: Heatherington Road
     osm_names:
       - Heatherington Road
@@ -21749,6 +21878,8 @@ bike_paths:
     member_of: parc-de-la-gatineau
     type: destination
     slug: trail-20-1
+    osm_way_ids:
+      - 631671700
   - name: '#41 (de la Mine)'
     osm_names:
       - '#41 (de la Mine)'
@@ -23302,33 +23433,6 @@ bike_paths:
       - 769155001
       - 769155002
       - 769155005
-  - name: Greenboro Park
-    osm_names:
-      - Greenboro Park
-    anchors:
-      - - -75.6476998
-        - 45.3606002
-      - - -75.6347504
-        - 45.3628981
-    surface: asphalt
-    smoothness: intermediate
-    width: '3'
-    lit: 'yes'
-    segregated: 'no'
-    highway: path
-    bicycle: 'yes'
-    foot: designated
-    path_type: mup
-    type: destination
-    slug: greenboro-park
-    osm_way_ids:
-      - 68587282
-      - 135584719
-      - 135584720
-      - 585757235
-      - 743107047
-      - 756787343
-      - 756787344
   - name: Beaverpond Park
     osm_names:
       - Beaverpond Park
@@ -23645,6 +23749,8 @@ bike_paths:
     member_of: ncc-greenbelt
     type: destination
     slug: greenbank-road-1
+    osm_way_ids:
+      - 524518539
   - name: Parc de la Blanche
     osm_names:
       - Parc de la Blanche
@@ -23811,6 +23917,20 @@ bike_paths:
     path_type: mup
     type: connector
     slug: boulevard-saint-raymond
+  - name: Boulevard des Allumettières
+    parallel_to: Boulevard des Allumettières
+    highway: cycleway
+    anchors:
+      - - -75.7170195
+        - 45.4316516
+      - - -75.7085487
+        - 45.432605
+    surface: asphalt
+    width: '3'
+    smoothness: good
+    path_type: mup
+    type: connector
+    slug: boulevard-des-allumettieres
   - name: Pont du Portage
     parallel_to: Pont du Portage
     highway: cycleway
@@ -24309,6 +24429,20 @@ bike_paths:
     path_type: mup
     type: connector
     slug: holly-acres-road
+  - name: Coventry Road
+    parallel_to: Coventry Road
+    highway: cycleway
+    anchors:
+      - - -75.6514701
+        - 45.4211162
+      - - -75.6470483
+        - 45.4214778
+    surface: asphalt
+    lit: 'yes'
+    width: '1.5'
+    path_type: mup
+    type: connector
+    slug: coventry-road
   - name: Jockvale Road
     parallel_to: Jockvale Road
     highway: cycleway
@@ -25140,6 +25274,19 @@ bike_paths:
     path_type: mup
     type: connector
     slug: rue-saint-sauveur
+  - name: Woodfield Drive
+    parallel_to: Woodfield Drive
+    highway: cycleway
+    anchors:
+      - - -75.726706
+        - 45.3377775
+      - - -75.7262486
+        - 45.3378484
+    surface: asphalt
+    width: '1.5'
+    path_type: mup
+    type: connector
+    slug: woodfield-drive
   - name: Wàbisheshì Private
     parallel_to: Wàbisheshì Private
     highway: cycleway
@@ -26148,7 +26295,6 @@ bike_paths:
       - 'Trail #54'
       - 'Trail #52 Parc de la Gatineau Pathway'
       - Trail 47
-      - 'Trail #36 Trans Canada Trail'
       - '#79B'
       - Trail 74
       - Trail 7
@@ -26774,7 +26920,6 @@ bike_paths:
       length_km: 220
       inception: 1970s
       website: https://ncc-ccn.gc.ca/places/capital-pathway
-    super_network: rideau-river-eastern-pathway
     members:
       - sentier-des-voyageurs-pathway
       - sentier-des-pionniers-pathway
@@ -26802,7 +26947,6 @@ bike_paths:
       - 10986224
     network: lcn
     cycle_network: CA:ON:Ottawa
-    super_network: ottawa-bikeways
     members:
       - laurier-segregated-bikelane
       - eastwest-crosstown-bikeway
@@ -26814,7 +26958,6 @@ bike_paths:
       - 10986756
     network: lcn
     cycle_network: CA:ON:Ottawa
-    super_network: ottawa-bikeways
     members:
       - oconnor-bikeway
       - crosstown-bikeway-5-1
