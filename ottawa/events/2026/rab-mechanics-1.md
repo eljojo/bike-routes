@@ -12,6 +12,10 @@ location: Rack à bécik, 135 rue Eddy, Gatineau, QC
 tags:
   - workshop
 organizer: rack-a-becik
+poster_key: bkzmzff6
+poster_content_type: image/jpeg
+poster_width: 2560
+poster_height: 1742
 ---
 
 Formation pour débutant·es couvrant les bases de l'entretien et de la réparation de vélo. Apprenez à bien entretenir votre vélo et à reconnaître les problèmes courants. À partir de 40 $.
