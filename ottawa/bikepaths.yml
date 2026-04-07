@@ -11,6 +11,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.8729741
         - 45.379769
@@ -123,6 +124,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.7231577
         - 45.4472972
@@ -156,6 +158,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.72988
         - 45.4245687
@@ -207,6 +210,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.8672581
         - 45.4084931
@@ -287,6 +291,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.7253592
         - 45.4322958
@@ -324,6 +329,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.7871841
         - 45.4641933
@@ -377,6 +383,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.7364732
         - 45.4542123
@@ -421,6 +428,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.7928928
         - 45.4224904
@@ -471,6 +479,7 @@ bike_paths:
     width: '2.5'
     segregated: 'no'
     highway: cycleway
+    foot: designated
     anchors:
       - - -75.4976917
         - 45.5214507
@@ -3852,6 +3861,7 @@ bike_paths:
     highway: cycleway
     mtb:scale: '1'
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.8444047
         - 45.4720156
@@ -4607,6 +4617,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.753363
         - 45.4239564
@@ -4640,6 +4651,7 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: designated
+    foot: 'yes'
     anchors:
       - - -75.786709
         - 45.4140708
@@ -4667,6 +4679,7 @@ bike_paths:
     highway: cycleway
     tracktype: grade2
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.5920165
         - 45.4130879
@@ -4693,6 +4706,7 @@ bike_paths:
     highway: cycleway
     mtb:scale: '2'
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.9234036
         - 45.5274735
@@ -4837,6 +4851,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.6887549
         - 45.4460476
@@ -4853,6 +4868,7 @@ bike_paths:
       - 35555563
       - 76449825
       - 76456158
+      - 80205794
       - 88778045
       - 88778046
       - 151442747
@@ -4926,6 +4942,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.8892601
         - 45.3265621
@@ -4983,6 +5000,7 @@ bike_paths:
     highway: cycleway
     mtb:scale: '0'
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.7249039
         - 45.3961412
@@ -5030,6 +5048,7 @@ bike_paths:
     lit: 'yes'
     cycleway: crossing
     highway: cycleway
+    foot: 'no'
     anchors:
       - - -75.6972643
         - 45.4092192
@@ -5095,6 +5114,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.7068065
         - 45.3840285
@@ -5147,6 +5167,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.6984672
         - 45.3698546
@@ -5185,6 +5206,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.763713
         - 45.353173
@@ -5255,6 +5277,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.7864285
         - 45.3483954
@@ -5474,14 +5497,14 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.8759034
         - 45.3196511
       - - -75.8522551
         - 45.3621251
-    path_type: mtb-trail
+    path_type: trail
     member_of: ncc-greenbelt
-    mtb: true
     type: destination
     super_network: capital-pathway
     slug: greenbelt-pathway-west
@@ -5491,6 +5514,7 @@ bike_paths:
       - 231875519
       - 231875520
       - 255858996
+      - 302155892
       - 352172663
       - 486421075
       - 493733922
@@ -5533,6 +5557,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.8125194
         - 45.3519888
@@ -5647,6 +5672,7 @@ bike_paths:
       - 300854269
       - 300854270
       - 372978047
+      - 400310665
       - 435571827
       - 437772431
       - 465317945
@@ -5671,6 +5697,7 @@ bike_paths:
       - 503585436
       - 503624492
       - 503624495
+      - 503624497
       - 504076441
       - 504076447
       - 504076450
@@ -5723,6 +5750,8 @@ bike_paths:
       - 642385755
       - 642385758
       - 647120908
+      - 662745283
+      - 662745284
       - 667307235
       - 667307236
       - 681757424
@@ -5836,6 +5865,7 @@ bike_paths:
   - name: Osgoode Link Pathway
     osm_relations:
       - 7364422
+      - 18537256
     network: lcn
     surface: fine_gravel
     smoothness: good
@@ -5845,32 +5875,50 @@ bike_paths:
     highway: cycleway
     mtb:scale: '0'
     bicycle: designated
+    foot: designated
     anchors:
-      - - -75.6331653
+      - - -75.6541333
         - 45.1444871
       - - -75.611515
-        - 45.3162109
+        - 45.3514225
     path_type: trail
     type: destination
     slug: osgoode-link-pathway
     osm_way_ids:
+      - 68586974
+      - 85048922
       - 138332671
       - 287865980
       - 479358889
+      - 511802966
       - 556371310
+      - 556389068
+      - 651625507
       - 775453382
       - 775453383
+      - 860432244
+      - 860432245
+      - 860432246
       - 1120479375
       - 1120479376
+      - 1267571367
       - 1279665141
       - 1279665143
       - 1279665144
+      - 1279665150
+      - 1279665151
+      - 1279665152
       - 1279665154
+      - 1279665156
+      - 1279665157
       - 1283295124
       - 1287687966
       - 1289209862
       - 1337296193
+      - 1339655269
       - 1341144183
+      - 1350421113
+      - 1377540545
       - 1377546763
       - 1441700660
   - name: Rideau River Eastern Pathway
@@ -5886,6 +5934,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.6972126
         - 45.3707591
@@ -5975,6 +6024,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.6475
         - 45.4226087
@@ -6015,6 +6065,7 @@ bike_paths:
     lit: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.577949
         - 45.4348053
@@ -6022,9 +6073,8 @@ bike_paths:
         - 45.4697494
     smoothness: good
     cycleway: crossing
-    path_type: mtb-trail
+    path_type: trail
     member_of: ncc-greenbelt
-    mtb: true
     type: destination
     super_network: capital-pathway
     slug: greenbelt-pathway-east
@@ -6075,6 +6125,7 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: secondary
+    foot: use_sidepath
     anchors:
       - - -75.699367
         - 45.4263086
@@ -6164,6 +6215,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.6798125
         - 45.353173
@@ -6203,6 +6255,7 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     anchors:
       - - -75.7695207
         - 45.3824786
@@ -6276,7 +6329,19 @@ bike_paths:
       - 7410754
     operator: Russell Township
     network: lcn
-    path_type: trail
+    surface: asphalt
+    width: '2.5'
+    lit: 'no'
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+    foot: designated
+    anchors:
+      - - -75.3861166
+        - 45.2628911
+      - - -75.3402412
+        - 45.2730537
+    path_type: mup
     type: destination
     slug: new-york-central-fitness-trail
     osm_way_ids:
@@ -6423,6 +6488,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.4822684
         - 45.4587182
@@ -6537,6 +6603,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -76.3518819
         - 45.1488563
@@ -6591,14 +6658,15 @@ bike_paths:
     highway: path
     bicycle: 'no'
     access: 'yes'
+    foot: 'yes'
     anchors:
       - - -75.9490601
         - 45.5301593
       - - -75.9299829
         - 45.5384105
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: sentier-du-loup
     osm_way_ids:
@@ -6637,14 +6705,15 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: 'no'
+    foot: 'yes'
     anchors:
       - - -75.987679
         - 45.540599
       - - -75.995643
         - 45.5443893
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: luskville-falls-trail
     osm_way_ids:
@@ -6820,6 +6889,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.9203476
         - 45.2584337
@@ -7052,6 +7122,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.7324975
         - 45.3376973
@@ -7127,6 +7198,7 @@ bike_paths:
       - 690782561
       - 690782562
       - 690782563
+      - 734601328
       - 734601329
       - 738995059
       - 738995114
@@ -7218,14 +7290,14 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     anchors:
       - - -75.873912
         - 45.352571
       - - -75.8599589
         - 45.3614822
-    path_type: mtb-trail
+    path_type: trail
     member_of: ncc-greenbelt
-    mtb: true
     type: destination
     slug: shirley-bay-ski-trail
     osm_way_ids:
@@ -7337,6 +7409,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.6353965
         - 45.4164912
@@ -7520,6 +7593,7 @@ bike_paths:
         - 45.4302333
       - - -75.6762486
         - 45.4361233
+    foot: 'yes'
     lit: 'yes'
     path_type: bike-lane
     type: destination
@@ -7616,6 +7690,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.6882715
         - 45.4014347
@@ -7692,14 +7767,14 @@ bike_paths:
     highway: cycleway
     tracktype: grade2
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.7332362
         - 45.3025008
       - - -75.6991722
         - 45.3213109
-    path_type: mtb-trail
+    path_type: trail
     member_of: ncc-greenbelt
-    mtb: true
     type: destination
     overlapping_relations:
       - id: 7677698
@@ -8008,19 +8083,37 @@ bike_paths:
     website: https://www.wintertrail.ca/
     description: Volunteer-run urban winter trail for cross-country skiing, snow shoeing, winter biking and walking
     seasonal: winter
-    path_type: trail
+    surface: asphalt
+    smoothness: bad
+    width: '2'
+    lit: 'no'
+    incline: 0%
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+    foot: designated
+    anchors:
+      - - -75.7610733
+        - 45.3927134
+      - - -75.7522834
+        - 45.4022732
+    path_type: mup
     type: destination
     slug: kichi-sibi-winter-trail
     osm_way_ids:
       - 23211941
       - 39662612
+      - 44227076
       - 150788050
+      - 150910108
+      - 196313150
       - 373219423
       - 407470001
       - 407470002
       - 466431343
       - 486454215
       - 489289274
+      - 504076456
       - 540293596
       - 540293597
       - 583485035
@@ -8041,6 +8134,7 @@ bike_paths:
       - 997050216
       - 1012875672
       - 1013864231
+      - 1013864232
       - 1013864234
       - 1013864238
       - 1013864240
@@ -8075,6 +8169,8 @@ bike_paths:
       - 1135492552
       - 1135492553
       - 1135492557
+      - 1135492558
+      - 1135492559
       - 1135492560
       - 1136005210
       - 1136005212
@@ -8087,6 +8183,7 @@ bike_paths:
       - 1144377994
       - 1144841932
       - 1267820526
+      - 1268244561
       - 1268244563
       - 1268244564
       - 1283023567
@@ -8486,6 +8583,7 @@ bike_paths:
     highway: cycleway
     mtb:scale: '1'
     bicycle: designated
+    foot: designated
     anchors:
       - - -75.8992252
         - 45.4778974
@@ -8515,6 +8613,7 @@ bike_paths:
     osm_relations:
       - 15446553
     seasonal: winter
+    foot: 'yes'
     path_type: trail
     type: destination
     slug: sentier-du-lac-leamy-skiing-trail
@@ -8776,30 +8875,6 @@ bike_paths:
       - 498431421
       - 502239517
       - 535391141
-  - name: relation-18537256
-    osm_relations:
-      - 18537256
-    network: lcn
-    path_type: trail
-    type: destination
-    slug: relation-18537256
-    osm_way_ids:
-      - 68586974
-      - 85048922
-      - 511802966
-      - 556389068
-      - 651625507
-      - 860432244
-      - 860432245
-      - 860432246
-      - 1267571367
-      - 1279665151
-      - 1279665152
-      - 1279665156
-      - 1279665157
-      - 1339655269
-      - 1350421113
-      - 1377540545
   - name: Stonebridge Trail - Beryl Gaffney Park
     osm_relations:
       - 18537716
@@ -8879,6 +8954,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     access: 'yes'
+    foot: designated
     path_type: mup
     type: destination
     slug: chief-william-commanda-bridge
@@ -8903,6 +8979,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: chemin-du-lac-leamy
@@ -8928,6 +9005,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     parallel_to: Chemin de Masson
     path_type: mup
     type: destination
@@ -8954,6 +9032,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     parallel_to: Boulevard de la Gappe
     path_type: mup
     type: destination
@@ -9010,6 +9089,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     parallel_to: Boulevard La Vérendrye Ouest
     path_type: mup
     type: infrastructure
@@ -9041,6 +9121,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     parallel_to: Boulevard des Hautes-Plaines
     path_type: mup
     type: infrastructure
@@ -9067,6 +9148,7 @@ bike_paths:
     segregated: 'yes'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     member_of: parc-de-la-gatineau
     type: infrastructure
@@ -9088,8 +9170,8 @@ bike_paths:
     bicycle: 'yes'
     ref: '27'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-27-1
   - name: Sentier du Vallon
@@ -9105,6 +9187,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: sentier-du-vallon
@@ -9127,6 +9210,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     ref: '57'
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -9150,6 +9234,7 @@ bike_paths:
     cycleway: lane
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: pont-lady-aberdeen
@@ -9169,6 +9254,7 @@ bike_paths:
     width: '3'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: highbury-park-drive-bypass
@@ -9192,6 +9278,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     operator: City of Ottawa
+    foot: designated
     path_type: mup
     name_fr: Passerelle Corktown
     name_en: Corktown Footbridge
@@ -9213,6 +9300,7 @@ bike_paths:
     surface: ground
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -9232,6 +9320,7 @@ bike_paths:
     surface: ground
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -9251,6 +9340,7 @@ bike_paths:
     mtb:scale: '1'
     bicycle: designated
     ref: '54'
+    foot: designated
     mtb: true
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
@@ -9275,6 +9365,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: juno-beach-memorial-bridge
@@ -9296,6 +9387,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     parallel_to: Boulevard de la Cité-des-Jeunes
     path_type: mup
     type: destination
@@ -9324,6 +9416,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: cardinal-creek-trail
@@ -9346,6 +9439,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: chemin-de-la-vallee-de-wakefield
@@ -9372,6 +9466,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     ref: '105'
+    foot: designated
     parallel_to: Route 105
     path_type: mup
     type: infrastructure
@@ -9431,6 +9526,7 @@ bike_paths:
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
+    foot: 'yes'
     path_type: mup
     type: infrastructure
     slug: portage-bridge-cycle-track
@@ -9457,6 +9553,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     network: Rideau Winter Trail
+    foot: designated
     path_type: mup
     type: destination
     slug: hospital-link-multi-use-pathway
@@ -9486,6 +9583,7 @@ bike_paths:
         - 45.6007009
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     member_of: parc-de-la-gatineau
     type: infrastructure
@@ -9506,6 +9604,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     parallel_to: Rue Atawe
     path_type: mup
     type: infrastructure
@@ -9533,6 +9632,7 @@ bike_paths:
     width: '2'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: pont-couvert-brabant-philippe
@@ -9549,6 +9649,7 @@ bike_paths:
     surface: asphalt
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: pont-couvert-roland-houet
@@ -9566,6 +9667,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: pont-couvert-des-benevoles
@@ -9585,6 +9687,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     parallel_to: Boulevard Alexandre-Taché
     path_type: mup
     type: infrastructure
@@ -9611,6 +9714,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     parallel_to: Boulevard des Allumettières
     path_type: mup
     type: infrastructure
@@ -9646,6 +9750,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: rue-de-turin
@@ -9666,6 +9771,7 @@ bike_paths:
     lit: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -9687,6 +9793,7 @@ bike_paths:
     lit: 'yes'
     cycleway: crossing
     highway: cycleway
+    foot: 'no'
     parallel_to: Rue Laurier
     path_type: mup
     type: infrastructure
@@ -9717,6 +9824,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: belfasttrainyards-pathway
@@ -9735,6 +9843,7 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     ref: '47'
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -9754,6 +9863,7 @@ bike_paths:
       - - -75.4207644
         - 45.5880783
     highway: cycleway
+    foot: 'yes'
     path_type: mup
     type: infrastructure
     slug: chris-tdl-bridge
@@ -9772,6 +9882,7 @@ bike_paths:
     lit: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: trail
     type: destination
     slug: mill-of-kintail-conservation-area
@@ -9792,6 +9903,7 @@ bike_paths:
     highway: secondary
     bicycle: designated
     ref: '366'
+    foot: designated
     path_type: bike-lane
     member_of: parc-de-la-gatineau
     type: infrastructure
@@ -9818,9 +9930,10 @@ bike_paths:
     width: '0.5'
     highway: cycleway
     bicycle: 'yes'
+    foot: 'no'
     path_type: mtb-trail
     mtb: true
-    type: destination
+    type: connector
     slug: community-pump-track
     osm_way_ids:
       - 1396223415
@@ -9836,6 +9949,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     member_of: ncc-greenbelt
     type: infrastructure
@@ -9855,6 +9969,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     parallel_to: Avenue Gatineau
     path_type: mup
     type: infrastructure
@@ -9878,6 +9993,7 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: rue-de-sillery
@@ -9897,6 +10013,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     parallel_to: Rue des Flandres
     path_type: mup
     type: infrastructure
@@ -9919,6 +10036,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: 'no'
     parallel_to: Boulevard Gréber
     path_type: mup
     type: infrastructure
@@ -9942,6 +10060,7 @@ bike_paths:
     cycleway: crossing
     highway: tertiary
     bicycle: designated
+    foot: designated
     path_type: bike-lane
     type: infrastructure
     slug: chemin-de-la-savane
@@ -9968,6 +10087,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     parallel_to: Boulevard Maloney Ouest
     path_type: mup
     type: infrastructure
@@ -9986,6 +10106,7 @@ bike_paths:
     surface: asphalt
     cycleway: crossing
     highway: cycleway
+    foot: 'no'
     path_type: mup
     type: infrastructure
     slug: rue-morin
@@ -10005,6 +10126,7 @@ bike_paths:
     cycleway: crossing
     highway: tertiary
     bicycle: designated
+    foot: use_sidepath
     parallel_to: Boulevard de la Carrière
     path_type: bike-lane
     type: infrastructure
@@ -10037,6 +10159,7 @@ bike_paths:
     cycleway: crossing
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: rue-dedmonton
@@ -10056,6 +10179,7 @@ bike_paths:
     cycleway: lane
     highway: tertiary
     bicycle: designated
+    foot: use_sidepath
     parallel_to: Chemin Old Chelsea
     path_type: bike-lane
     type: infrastructure
@@ -10097,6 +10221,27 @@ bike_paths:
       - 1446388725
       - 1447303332
       - 1447303333
+  - name: Blue Heron Trail
+    osm_names:
+      - Blue Heron Trail
+    anchors:
+      - - -75.9243287
+        - 45.3377637
+      - - -75.9199569
+        - 45.3423153
+    surface: fine_gravel
+    smoothness: intermediate
+    width: '2'
+    lit: 'no'
+    highway: path
+    bicycle: 'yes'
+    foot: designated
+    path_type: trail
+    member_of: kizell-pond-trail-north-trails
+    type: infrastructure
+    slug: blue-heron-trail
+    osm_way_ids:
+      - 34807575
   - name: Trail 23
     osm_names:
       - Trail 23
@@ -10113,8 +10258,8 @@ bike_paths:
     bicycle: 'yes'
     ref: '23'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-23
     osm_way_ids:
@@ -10137,8 +10282,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     overlapping_relations:
       - id: 7677698
@@ -10175,8 +10320,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-21
     osm_way_ids:
@@ -10201,8 +10346,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     overlapping_relations:
       - id: 7677697
@@ -10232,8 +10377,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     overlapping_relations:
       - id: 7677697
@@ -10263,8 +10408,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     overlapping_relations:
       - id: 7677697
@@ -10295,8 +10440,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     overlapping_relations:
       - id: 7677697
@@ -10334,8 +10479,8 @@ bike_paths:
     network: KanataNordicCampground
     ref: '12'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-12
     osm_way_ids:
@@ -10362,8 +10507,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: jack-pine-trail
     osm_way_ids:
@@ -10391,8 +10536,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     overlapping_relations:
       - id: 7677697
@@ -10423,9 +10568,10 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: '31'
     osm_way_ids:
@@ -10462,9 +10608,10 @@ bike_paths:
     bicycle: 'yes'
     network: Mer Bleue
     ref: '50'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: '50'
     osm_way_ids:
@@ -10501,6 +10648,7 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mup
     type: infrastructure
     slug: marianne-wilkinson-bridge
@@ -10518,9 +10666,10 @@ bike_paths:
     width: '1'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 79b
     osm_way_ids:
@@ -10537,9 +10686,9 @@ bike_paths:
     width: '3'
     highway: path
     bicycle: 'yes'
-    path_type: mtb-trail
-    mtb: true
-    type: destination
+    foot: 'yes'
+    path_type: trail
+    type: infrastructure
     slug: moore-farm-estate-pathway
     osm_way_ids:
       - 121504795
@@ -10555,6 +10704,7 @@ bike_paths:
     width: '3'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mup
     type: infrastructure
     slug: campus-walkway
@@ -10574,6 +10724,7 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: designated
+    foot: designated
     path_type: trail
     member_of: rotary-centennial-trail-trails
     type: destination
@@ -10593,9 +10744,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: klondike
     osm_way_ids:
       - 160489446
@@ -10615,9 +10768,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: porcupine
     osm_way_ids:
       - 160512529
@@ -10633,9 +10788,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: brady
     osm_way_ids:
       - 160512534
@@ -10651,8 +10808,10 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
+    mtb: true
     type: destination
     slug: coconut-tree
     osm_way_ids:
@@ -10671,8 +10830,10 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
+    mtb: true
     type: destination
     slug: north-dogsled
     osm_way_ids:
@@ -10698,6 +10859,7 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: monk-environmental-park
     mtb: true
@@ -10718,9 +10880,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: south-dogsled
     osm_way_ids:
       - 161270383
@@ -10738,6 +10902,7 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: monk-environmental-park
     mtb: true
@@ -10759,9 +10924,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: m-line
     osm_way_ids:
       - 161270385
@@ -10777,8 +10944,10 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
+    mtb: true
     type: destination
     slug: rockhopper
     osm_way_ids:
@@ -10798,9 +10967,10 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: monk-environmental-park
     mtb: true
+    member_of: monk-environmental-park
     type: destination
     slug: shirleys-brook
     osm_way_ids:
@@ -10821,6 +10991,7 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: 'no'
+    foot: 'yes'
     path_type: mtb-trail
     mtb: true
     type: destination
@@ -10842,9 +11013,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: bailout
     osm_way_ids:
       - 163511867
@@ -10860,9 +11033,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: beartree
     osm_way_ids:
       - 163511868
@@ -10878,9 +11053,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: deerdrop-baypass
     osm_way_ids:
       - 163511869
@@ -10896,9 +11073,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: fastout
     osm_way_ids:
       - 163511870
@@ -10917,9 +11096,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: imba
     osm_way_ids:
       - 163511871
@@ -10935,8 +11116,10 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
+    mtb: true
     type: destination
     slug: outback
     osm_way_ids:
@@ -10956,8 +11139,10 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
+    mtb: true
     type: destination
     slug: pwt
     osm_way_ids:
@@ -10974,12 +11159,54 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
+    mtb: true
     type: destination
     slug: ridgetop
     osm_way_ids:
       - 163511876
+  - name: Northwest Passage
+    osm_names:
+      - Northwest Passage
+    anchors:
+      - - -75.9428547
+        - 45.3262973
+      - - -75.9395984
+        - 45.3282383
+    surface: ground
+    width: '0.5'
+    highway: path
+    bicycle: 'yes'
+    foot: designated
+    path_type: mtb-trail
+    mtb: true
+    member_of: kizell-pond-trail-north-trails
+    type: destination
+    slug: northwest-passage
+    osm_way_ids:
+      - 163534606
+  - name: Lumberjack
+    osm_names:
+      - Lumberjack
+    anchors:
+      - - -75.9399772
+        - 45.3257659
+      - - -75.9395984
+        - 45.3282383
+    surface: ground
+    width: '0.5'
+    highway: path
+    bicycle: 'yes'
+    foot: designated
+    path_type: mtb-trail
+    mtb: true
+    member_of: kizell-pond-trail-north-trails
+    type: destination
+    slug: lumberjack
+    osm_way_ids:
+      - 163763214
   - name: Trail 74
     osm_names:
       - Trail 74
@@ -10992,9 +11219,10 @@ bike_paths:
     width: '2'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-74
     osm_way_ids:
@@ -11011,6 +11239,7 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -11036,6 +11265,7 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -11055,9 +11285,10 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-65
     osm_way_ids:
@@ -11074,6 +11305,7 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: designated
+    foot: 'yes'
     path_type: trail
     member_of: rotary-centennial-trail-trails
     type: infrastructure
@@ -11096,8 +11328,8 @@ bike_paths:
     bicycle: 'yes'
     network: Pine Grove
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-44
     osm_way_ids:
@@ -11120,6 +11352,7 @@ bike_paths:
     highway: path
     bicycle: designated
     ref: '71'
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -11138,6 +11371,7 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -11157,6 +11391,7 @@ bike_paths:
     surface: gravel
     highway: path
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -11180,8 +11415,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 76-skyridge
     osm_way_ids:
@@ -11198,9 +11433,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: origins
     osm_way_ids:
       - 282431136
@@ -11219,6 +11456,7 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mup
     type: infrastructure
     slug: linear-park
@@ -11240,8 +11478,8 @@ bike_paths:
     bicycle: 'yes'
     network: Mer Bleue
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: moe-anderson-trail
     osm_way_ids:
@@ -11257,6 +11495,7 @@ bike_paths:
     surface: gravel
     highway: path
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -11275,9 +11514,10 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 79-bresilienne
     osm_way_ids:
@@ -11298,6 +11538,7 @@ bike_paths:
     lit: 'yes'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mup
     type: infrastructure
     slug: max-keeping-bridge
@@ -11318,8 +11559,8 @@ bike_paths:
     bicycle: 'yes'
     network: Pine Grove
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: pine-grove-forestry-trail
     osm_way_ids:
@@ -11341,9 +11582,10 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     network: Pine Grove
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-43-pine-grove-forestry-trail
     osm_way_ids:
@@ -11361,9 +11603,10 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-66
     osm_way_ids:
@@ -11381,8 +11624,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 68-missing-link
     osm_way_ids:
@@ -11402,6 +11645,7 @@ bike_paths:
     lit: 'yes'
     highway: path
     bicycle: 'yes'
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: hickory-street-pedestrian-bridge
@@ -11419,8 +11663,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-68
     osm_way_ids:
@@ -11439,6 +11683,7 @@ bike_paths:
     width: '2'
     highway: path
     bicycle: designated
+    foot: designated
     path_type: mup
     member_of: south-march-highlands-conservation-forest
     type: infrastructure
@@ -11461,7 +11706,7 @@ bike_paths:
     bicycle: 'yes'
     mtb: true
     path_type: mtb-trail
-    type: destination
+    type: connector
     slug: flooding-detour
     osm_way_ids:
       - 489697215
@@ -11477,9 +11722,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: cannonball-run
     osm_way_ids:
       - 495491916
@@ -11498,9 +11745,10 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     network: Mer Bleue
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: '51'
     osm_way_ids:
@@ -11547,12 +11795,32 @@ bike_paths:
     network: Green Creek
     ref: '61'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-61
     osm_way_ids:
       - 545104135
+  - name: Marathon NW
+    osm_names:
+      - Marathon NW
+    anchors:
+      - - -75.9436259
+        - 45.3262973
+      - - -75.9428547
+        - 45.3269187
+    surface: ground
+    width: '0.5'
+    highway: path
+    bicycle: 'yes'
+    foot: designated
+    path_type: mtb-trail
+    mtb: true
+    member_of: kizell-pond-trail-north-trails
+    type: destination
+    slug: marathon-nw
+    osm_way_ids:
+      - 545593970
   - name: Garter Belt
     osm_names:
       - Garter Belt
@@ -11565,9 +11833,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: garter-belt
     osm_way_ids:
       - 545952075
@@ -11588,8 +11858,8 @@ bike_paths:
     network: KanataNordicCampground
     ref: '1'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-1-1
   - name: Trail 1
@@ -11605,6 +11875,7 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     ref: '1'
+    foot: 'yes'
     path_type: mtb-trail
     mtb: true
     type: destination
@@ -11620,9 +11891,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: major
     osm_way_ids:
@@ -11638,6 +11910,7 @@ bike_paths:
     surface: asphalt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mup
     type: infrastructure
     slug: grande-allee
@@ -11677,10 +11950,10 @@ bike_paths:
     width: '2'
     highway: path
     bicycle: designated
-    path_type: mtb-trail
+    foot: designated
+    path_type: trail
     member_of: monk-environmental-park
-    mtb: true
-    type: destination
+    type: infrastructure
     slug: richcraft
     osm_way_ids:
       - 639856102
@@ -11698,10 +11971,9 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: 'yes'
-    path_type: mtb-trail
+    path_type: trail
     member_of: ncc-greenbelt
-    mtb: true
-    type: destination
+    type: infrastructure
     slug: old-quarry-trail
     osm_way_ids:
       - 647539432
@@ -11719,9 +11991,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: autobahn
     osm_way_ids:
       - 668486288
@@ -11735,6 +12009,7 @@ bike_paths:
         - 45.6127145
     highway: path
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -11754,9 +12029,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: beaver-bridge
     osm_way_ids:
       - 720680367
@@ -11772,9 +12049,10 @@ bike_paths:
     surface: gravel
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
     mtb: true
-    type: destination
+    type: connector
     slug: trappers-trail
     osm_way_ids:
       - 724476031
@@ -11793,8 +12071,8 @@ bike_paths:
     network: KanataNordicCampground
     ref: 12A
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-12a
     osm_way_ids:
@@ -11815,8 +12093,8 @@ bike_paths:
     bicycle: 'yes'
     ref: '11'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-11
     osm_way_ids:
@@ -11843,8 +12121,8 @@ bike_paths:
     network: KanataNordicCampground
     ref: 12B
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-12b
     osm_way_ids:
@@ -11864,13 +12142,30 @@ bike_paths:
     network: KanataNordicCampground
     ref: '8'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-8
     osm_way_ids:
       - 727339904
       - 1008667223
+  - name: Riverwalk
+    osm_names:
+      - Riverwalk
+    anchors:
+      - - -76.1996552
+        - 45.227248
+      - - -76.1981948
+        - 45.2288191
+    surface: fine_gravel
+    highway: path
+    bicycle: 'yes'
+    path_type: trail
+    member_of: mississippi-valley-trail-art-section-trails
+    type: infrastructure
+    slug: riverwalk
+    osm_way_ids:
+      - 734887118
   - name: Rideau Canal Locks Crossing
     osm_names:
       - Rideau Canal Locks Crossing
@@ -11884,6 +12179,7 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: 'no'
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: rideau-canal-locks-crossing
@@ -11899,6 +12195,7 @@ bike_paths:
         - 45.6115375
     highway: path
     bicycle: designated
+    foot: designated
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
     mtb: true
@@ -11920,6 +12217,7 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     description: mountain bike path
+    foot: 'yes'
     path_type: mtb-trail
     mtb: true
     type: destination
@@ -11940,8 +12238,8 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 76-jesses-girl
     osm_way_ids:
@@ -11959,9 +12257,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: 'yes'
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: impaler
     osm_way_ids:
       - 859815613
@@ -11976,9 +12276,11 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: waterfall
     osm_way_ids:
       - 975706942
@@ -11995,9 +12297,11 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: 'yes'
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: waterfall-climb
     osm_way_ids:
       - 975706943
@@ -12013,9 +12317,10 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: permissive
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: la-boucle
     osm_way_ids:
@@ -12035,9 +12340,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: '417'
     osm_way_ids:
@@ -12058,6 +12364,7 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: 'no'
+    foot: 'yes'
     path_type: mtb-trail
     mtb: true
     type: destination
@@ -12077,9 +12384,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: staycation
     osm_way_ids:
       - 1132460121
@@ -12094,9 +12403,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: molo-3
     osm_way_ids:
@@ -12113,6 +12423,7 @@ bike_paths:
     width: '2.5'
     highway: path
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: sumac-footbridge
@@ -12151,9 +12462,10 @@ bike_paths:
     smoothness: bad
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: la-tour
     osm_way_ids:
@@ -12169,9 +12481,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: molo
     osm_way_ids:
@@ -12187,9 +12500,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: mm
     osm_way_ids:
@@ -12206,9 +12520,10 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     seasonal: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: houleuse
     osm_way_ids:
@@ -12224,9 +12539,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: jl-speciale
     osm_way_ids:
@@ -12242,9 +12558,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: rentre-a-maison
     osm_way_ids:
@@ -12260,9 +12577,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: extreme
     osm_way_ids:
@@ -12278,9 +12596,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: rockys
     osm_way_ids:
@@ -12296,9 +12615,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: molo-2
     osm_way_ids:
@@ -12316,9 +12636,10 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: pont
     osm_way_ids:
@@ -12335,9 +12656,10 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: montee
     osm_way_ids:
@@ -12353,9 +12675,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: la-crete
     osm_way_ids:
@@ -12371,9 +12694,11 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: railway-bypass
     osm_way_ids:
       - 1428321061
@@ -12390,9 +12715,11 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: beluga
     osm_way_ids:
       - 1429621588
@@ -12408,9 +12735,11 @@ bike_paths:
     width: '0.5'
     highway: path
     bicycle: designated
-    path_type: trail
+    foot: designated
+    path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
-    type: infrastructure
+    mtb: true
+    type: destination
     slug: forestbrook
     osm_way_ids:
       - 1429621592
@@ -12426,9 +12755,10 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: 'no'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: new-path
     osm_way_ids:
@@ -12444,9 +12774,10 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: silly
     osm_way_ids:
@@ -12463,9 +12794,10 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     seasonal: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: marais
     osm_way_ids:
@@ -12482,9 +12814,10 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     access: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: castor
     osm_way_ids:
@@ -12500,9 +12833,10 @@ bike_paths:
     surface: dirt/sand
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: dos-dane
     osm_way_ids:
@@ -12637,6 +12971,7 @@ bike_paths:
     surface: asphalt
     cycleway: lane
     highway: tertiary
+    foot: use_sidepath
     parallel_to: Chemin Scott
     path_type: bike-lane
     type: infrastructure
@@ -12866,6 +13201,7 @@ bike_paths:
     surface: asphalt
     lit: 'yes'
     highway: primary
+    foot: 'no'
     path_type: mup
     type: infrastructure
     slug: sir-george-etienne-cartier-parkway-1
@@ -13788,6 +14124,7 @@ bike_paths:
     cycleway: lane
     highway: primary
     ref: '16'
+    foot: 'no'
     parallel_to: Baseline Road
     path_type: bike-lane
     type: infrastructure
@@ -13942,6 +14279,7 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     ref: '32'
+    foot: 'no'
     parallel_to: West Hunt Club Road
     path_type: bike-lane
     type: infrastructure
@@ -14428,6 +14766,7 @@ bike_paths:
     cycleway: shared_lane
     highway: secondary
     ref: '91'
+    foot: 'yes'
     path_type: bike-lane
     type: infrastructure
     slug: elgin-street
@@ -14473,6 +14812,7 @@ bike_paths:
     cycleway: lane
     highway: residential
     bicycle: 'yes'
+    foot: 'yes'
     parallel_to: Percy Street
     path_type: bike-lane
     type: infrastructure
@@ -14578,6 +14918,7 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     ref: '73'
+    foot: 'yes'
     parallel_to: Prince Of Wales Drive
     path_type: paved-shoulder
     type: infrastructure
@@ -14795,6 +15136,7 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     ref: '79'
+    foot: 'no'
     parallel_to: Bronson Avenue
     path_type: paved-shoulder
     wikidata_meta:
@@ -15915,6 +16257,7 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '12'
+    foot: 'no'
     parallel_to: Fallowfield Road
     path_type: bike-lane
     type: infrastructure
@@ -16738,6 +17081,7 @@ bike_paths:
     cycleway: lane
     highway: secondary
     bicycle: 'yes'
+    foot: 'yes'
     path_type: bike-lane
     type: infrastructure
     slug: boulevard-wilfrid-lavigne
@@ -16792,6 +17136,7 @@ bike_paths:
     highway: secondary
     bicycle: 'yes'
     access: 'yes'
+    foot: 'yes'
     parallel_to: Booth Street
     path_type: bike-lane
     type: connector
@@ -17153,6 +17498,7 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: primary
+    foot: 'no'
     path_type: bike-lane
     type: infrastructure
     slug: place-samuel-de-champlain
@@ -17430,6 +17776,7 @@ bike_paths:
     lit: 'yes'
     cycleway: lane
     highway: secondary
+    foot: use_sidepath
     parallel_to: Boulevard Montclair
     path_type: bike-lane
     type: infrastructure
@@ -17695,6 +18042,7 @@ bike_paths:
     cycleway: lane
     highway: secondary
     ref: '15'
+    foot: 'no'
     parallel_to: Woodroffe Avenue
     path_type: bike-lane
     type: infrastructure
@@ -17868,6 +18216,7 @@ bike_paths:
     cycleway: lane
     highway: secondary
     bicycle: 'yes'
+    foot: 'yes'
     parallel_to: Cambrian Road
     path_type: bike-lane
     type: infrastructure
@@ -17948,21 +18297,19 @@ bike_paths:
     osm_names:
       - Leitrim Road
     anchors:
-      - - -75.6436545
-        - 45.3163065
-      - - -75.6332177
-        - 45.3339077
+      - - -75.677783
+        - 45.2980631
+      - - -75.6766545
+        - 45.2984021
     name_fr: chemin Leitrim
     name_en: Leitrim Road
     surface: asphalt
     cycleway: lane
     highway: secondary
     ref: '14'
-    width: '0.5'
-    bicycle: designated
     parallel_to: Leitrim Road
     path_type: bike-lane
-    type: infrastructure
+    type: connector
     slug: leitrim-road
     osm_way_ids:
       - 509355681
@@ -17981,11 +18328,6 @@ bike_paths:
     cycleway: lane
     highway: primary
     ref: '36'
-    smoothness: good
-    width: '3'
-    segregated: 'no'
-    bicycle: designated
-    network: Ottawa West Winter Trail
     parallel_to: Robertson Road
     path_type: bike-lane
     member_of: ncc-greenbelt
@@ -18545,6 +18887,7 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     ref: '38'
+    foot: 'yes'
     path_type: mup
     type: destination
     slug: carling-avenue
@@ -18770,6 +19113,7 @@ bike_paths:
     lit: 'yes'
     highway: secondary
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mup
     wikidata_meta:
       description_en: bridge in Canada
@@ -19496,6 +19840,7 @@ bike_paths:
     smoothness: good
     width: '1.5'
     bicycle: designated
+    foot: 'no'
     parallel_to: Strandherd Drive
     path_type: bike-lane
     type: infrastructure
@@ -19616,9 +19961,10 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     ref: '32'
-    width: '0.5'
     smoothness: good
+    width: '3'
     segregated: 'no'
+    foot: designated
     path_type: mup
     type: destination
     slug: hunt-club-road
@@ -19934,6 +20280,7 @@ bike_paths:
     bicycle: 'yes'
     smoothness: excellent
     width: '3'
+    foot: 'yes'
     parallel_to: Limebank Road
     path_type: bike-lane
     type: infrastructure
@@ -20360,12 +20707,8 @@ bike_paths:
   - name: Coulicou
     osm_names:
       - Coulicou
-      - Piranga - Sentier d'hiver
-      - Carouge
-      - Vireo
-      - Faucon
     anchors:
-      - - -75.8339463
+      - - -75.8296319
         - 45.4191359
       - - -75.8206589
         - 45.4265982
@@ -20375,17 +20718,11 @@ bike_paths:
     ref: '2'
     path_type: mtb-trail
     mtb: true
+    member_of: coulicou-trails
     type: destination
-    member_of: crosstown-bikeway-2
     slug: coulicou
     osm_way_ids:
       - 68609618
-      - 411524165
-      - 411524737
-      - 411524738
-      - 572501916
-      - 1118439013
-      - 1118439015
   - name: Deauville trail
     osm_names:
       - Deauville trail
@@ -20398,6 +20735,7 @@ bike_paths:
     surface: ground
     highway: footway
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
     mtb: true
     type: destination
@@ -20425,6 +20763,46 @@ bike_paths:
     slug: pont-macdonald-cartier-bridge
     osm_way_ids:
       - 139570913
+  - name: Cow Path
+    osm_names:
+      - Cow Path
+    anchors:
+      - - -75.9378406
+        - 45.3263531
+      - - -75.9438974
+        - 45.3256467
+    surface: woodchips
+    width: '0.5'
+    highway: footway
+    bicycle: 'yes'
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
+    member_of: kizell-pond-trail-north-trails
+    type: destination
+    slug: cow-path
+    osm_way_ids:
+      - 163534605
+  - name: Skid Row
+    osm_names:
+      - Skid Row
+    anchors:
+      - - -75.9377877
+        - 45.3270284
+      - - -75.9419301
+        - 45.3260844
+    surface: woodchips
+    width: '0.5'
+    highway: footway
+    bicycle: 'yes'
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
+    member_of: kizell-pond-trail-north-trails
+    type: destination
+    slug: skid-row
+    osm_way_ids:
+      - 163534610
   - name: M.O.
     osm_names:
       - M.O.
@@ -20437,8 +20815,8 @@ bike_paths:
     highway: footway
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: mo
     osm_way_ids:
@@ -20461,71 +20839,68 @@ bike_paths:
     slug: lovers-lane
     osm_way_ids:
       - 361926989
+  - name: Richardson Ridge Nature Trail
+    osm_names:
+      - Richardson Ridge Nature Trail
+    anchors:
+      - - -75.9380992
+        - 45.3174432
+      - - -75.9328856
+        - 45.3217128
+    surface: ground
+    width: '0.5'
+    lit: 'no'
+    highway: footway
+    bicycle: 'yes'
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
+    member_of: kizell-pond-trail-north-trails
+    type: destination
+    slug: richardson-ridge-nature-trail
+    osm_way_ids:
+      - 463285437
+      - 463285442
   - name: Kizell Pond Trail North
     osm_names:
       - Kizell Pond Trail North
-      - Blue Heron Trail
-      - Northwest Passage
-      - Lumberjack
-      - Marathon NW
-      - Cow Path
-      - Skid Row
-      - Richardson Ridge Nature Trail
-      - Kizell Pond Trail South
     anchors:
-      - - -75.9450007
-        - 45.3174432
-      - - -75.9199569
-        - 45.3423153
+      - - -75.9377193
+        - 45.3263182
+      - - -75.9312187
+        - 45.3291081
     surface: gravel
     width: '0.5'
     highway: footway
     bicycle: 'yes'
     path_type: mtb-trail
     mtb: true
+    member_of: kizell-pond-trail-north-trails
     type: destination
     slug: kizell-pond-trail-north
     osm_way_ids:
-      - 34807575
-      - 163534605
-      - 163534606
-      - 163534610
-      - 163763214
-      - 463285437
-      - 463285442
-      - 545593970
       - 545947085
       - 997606642
-      - 997608070
       - 1423465364
   - name: Mississippi Valley Trail - ART Section
     osm_names:
       - Mississippi Valley Trail - ART Section
-      - Riverwalk
-      - Spingbank trail
-      - Veterans Memorial Walkway
-      - Mississippi Valley Trail - Bob's Run loop (Black)
     anchors:
+      - - -76.2056516
+        - 45.2309516
       - - -76.2072213
-        - 45.2191602
-      - - -76.195028
-        - 45.2358246
+        - 45.2338654
     surface: ground
     lit: 'no'
     highway: footway
     bicycle: 'yes'
     path_type: mtb-trail
     mtb: true
+    member_of: mississippi-valley-trail-art-section-trails
     type: destination
     slug: mississippi-valley-trail-art-section
     osm_way_ids:
-      - 392009510
       - 566737301
-      - 734298731
-      - 734887118
-      - 736292590
-      - 736292591
-      - 738376206
   - name: Hendrick Park Bridge
     osm_names:
       - Hendrick Park Bridge
@@ -20543,34 +20918,103 @@ bike_paths:
     slug: hendrick-park-bridge
     osm_way_ids:
       - 607586916
-  - name: Landsdowne Natural Heritage Park
+  - name: Spingbank trail
+    osm_names:
+      - Spingbank trail
+    anchors:
+      - - -76.2052068
+        - 45.2331243
+      - - -76.2022547
+        - 45.2358246
+    surface: ground
+    width: '2'
+    highway: footway
+    bicycle: 'yes'
+    access: private
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
+    member_of: mississippi-valley-trail-art-section-trails
+    type: destination
+    slug: spingbank-trail
+    osm_way_ids:
+      - 734298731
+      - 736292590
+      - 736292591
+  - name: Middle footpath
+    osm_names:
+      - Middle footpath
+    anchors:
+      - - -76.2034764
+        - 45.2360488
+      - - -76.2059803
+        - 45.2379493
+    surface: ground
+    highway: footway
+    bicycle: 'yes'
+    path_type: mtb-trail
+    mtb: true
+    member_of: landsdowne-natural-heritage-park
+    type: destination
+    slug: middle-footpath
+    osm_way_ids:
+      - 734881394
+  - name: Lower path
+    osm_names:
+      - Lower path
+    anchors:
+      - - -76.2051023
+        - 45.2359954
+      - - -76.2048477
+        - 45.2362663
+    surface: ground
+    highway: footway
+    bicycle: 'yes'
+    path_type: mtb-trail
+    mtb: true
+    member_of: landsdowne-natural-heritage-park
+    type: destination
+    slug: lower-path
+    osm_way_ids:
+      - 734889615
+      - 734889616
+  - name: Lower footpath
+    osm_names:
+      - Lower footpath
+    anchors:
+      - - -76.2059803
+        - 45.2379493
+      - - -76.2048477
+        - 45.2362663
+    surface: ground
+    highway: footway
+    bicycle: 'yes'
+    path_type: mtb-trail
+    mtb: true
+    member_of: landsdowne-natural-heritage-park
+    type: destination
+    slug: lower-footpath
+    osm_way_ids:
+      - 734889617
+  - name: Uppoer Footpath
     osm_names:
       - Uppoer Footpath
-      - Middle footpath
-      - Lower path
-      - Lower footpath
-      - Connector path
     anchors:
-      - - -76.2064321
-        - 45.2359954
-      - - -76.2034764
-        - 45.2382299
+      - - -76.205572
+        - 45.2381372
+      - - -76.204281
+        - 45.2367972
     surface: ground
     width: '1'
     highway: footway
     bicycle: 'yes'
     path_type: mtb-trail
     mtb: true
+    member_of: landsdowne-natural-heritage-park
     type: destination
-    slug: landsdowne-natural-heritage-park
+    slug: uppoer-footpath
     osm_way_ids:
-      - 734881394
-      - 734889615
-      - 734889616
-      - 734889617
-      - 734896639
       - 738378252
-      - 738378259
   - name: Jackie Holzman Bridge
     osm_names:
       - Jackie Holzman Bridge
@@ -20585,11 +21029,31 @@ bike_paths:
     segregated: 'no'
     highway: footway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: infrastructure
     slug: jackie-holzman-bridge
     osm_way_ids:
       - 833687643
+  - name: Kizell Pond Trail South
+    osm_names:
+      - Kizell Pond Trail South
+    anchors:
+      - - -75.9393931
+        - 45.3228933
+      - - -75.9450007
+        - 45.3198691
+    surface: woodchips
+    highway: footway
+    bicycle: 'yes'
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
+    member_of: kizell-pond-trail-north-trails
+    type: destination
+    slug: kizell-pond-trail-south
+    osm_way_ids:
+      - 997608070
   - name: La Pente
     osm_names:
       - La Pente
@@ -20601,9 +21065,10 @@ bike_paths:
     surface: dirt
     highway: footway
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: la-pente
     osm_way_ids:
@@ -20635,6 +21100,7 @@ bike_paths:
     surface: ground
     highway: footway
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
     mtb: true
     type: destination
@@ -20709,8 +21175,8 @@ bike_paths:
     highway: path
     bicycle: 'no'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-73
     osm_way_ids:
@@ -20731,8 +21197,8 @@ bike_paths:
     highway: path
     bicycle: 'no'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: sentier-des-caryers-hickory-trail
     osm_way_ids:
@@ -20747,10 +21213,9 @@ bike_paths:
         - 45.5270143
     surface: fine_gravel
     highway: footway
-    path_type: mtb-trail
+    path_type: trail
     member_of: parc-de-la-gatineau
-    mtb: true
-    type: destination
+    type: infrastructure
     slug: obrien-beach-path
     osm_way_ids:
       - 180899317
@@ -20765,9 +21230,10 @@ bike_paths:
     name_en: Snowshoe Trail 60
     highway: path
     bicycle: 'no'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: piste-60-raquette
     osm_way_ids:
@@ -20784,8 +21250,8 @@ bike_paths:
     highway: path
     ref: '38'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-38
     osm_way_ids:
@@ -20804,6 +21270,7 @@ bike_paths:
     highway: path
     mtb:scale: '5'
     bicycle: 'no'
+    foot: 'yes'
     mtb: true
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
@@ -20828,8 +21295,8 @@ bike_paths:
     highway: path
     ref: '28'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-28
     osm_way_ids:
@@ -20849,8 +21316,8 @@ bike_paths:
     bicycle: 'no'
     ref: '18'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-18
     osm_way_ids:
@@ -20865,8 +21332,8 @@ bike_paths:
         - 45.4745357
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: hermit
     osm_way_ids:
@@ -20887,8 +21354,8 @@ bike_paths:
     bicycle: 'no'
     ref: '9'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     overlapping_relations:
       - id: 4504059
@@ -20908,8 +21375,8 @@ bike_paths:
     name_en: Trail 12
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: piste-12
     osm_way_ids:
@@ -20928,8 +21395,8 @@ bike_paths:
     bicycle: mtb
     description: Named after Harry Arthur Thomson whose family had a cabin at the east end from1960 to ~1973. Harry cut the trail as way for them to reach Meech Lake.
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: hat
     osm_way_ids:
@@ -20949,9 +21416,10 @@ bike_paths:
     highway: path
     network: Mer Bleue
     ref: '50'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: dewberry-trail
     osm_way_ids:
@@ -20970,8 +21438,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: piste-31
     osm_way_ids:
@@ -20991,8 +21459,8 @@ bike_paths:
     highway: path
     ref: '20'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-20
     osm_way_ids:
@@ -21011,8 +21479,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-20-1
   - name: '#41 (de la Mine)'
@@ -21026,8 +21494,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 41-de-la-mine
     osm_way_ids:
@@ -21043,8 +21511,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-22
     osm_way_ids:
@@ -21060,8 +21528,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: bypass
     osm_way_ids:
@@ -21079,9 +21547,10 @@ bike_paths:
     surface: ground
     highway: path
     bicycle: 'no'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: sentiertrail-17
     osm_way_ids:
@@ -21098,9 +21567,10 @@ bike_paths:
         - 45.5049838
     highway: path
     bicycle: 'no'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: snowshoe-trail-61
     osm_way_ids:
@@ -21120,6 +21590,7 @@ bike_paths:
     highway: path
     mtb:scale: '5'
     bicycle: 'no'
+    foot: 'yes'
     mtb: true
     path_type: mtb-trail
     member_of: parc-de-la-gatineau
@@ -21137,12 +21608,88 @@ bike_paths:
         - 45.502511
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-34
     osm_way_ids:
       - 380169614
+  - name: Veterans Memorial Walkway
+    osm_names:
+      - Veterans Memorial Walkway
+    anchors:
+      - - -76.195028
+        - 45.2191602
+      - - -76.1959793
+        - 45.2202512
+    width: '2'
+    highway: footway
+    path_type: mtb-trail
+    mtb: true
+    member_of: mississippi-valley-trail-art-section-trails
+    type: destination
+    slug: veterans-memorial-walkway
+    osm_way_ids:
+      - 392009510
+  - name: Piranga - Sentier d'hiver
+    osm_names:
+      - Piranga - Sentier d'hiver
+    anchors:
+      - - -75.8265886
+        - 45.4221433
+      - - -75.8339463
+        - 45.4234698
+    surface: ground
+    lit: 'no'
+    highway: footway
+    ref: '11'
+    seasonal: winter
+    path_type: mtb-trail
+    mtb: true
+    member_of: coulicou-trails
+    type: destination
+    slug: piranga-sentier-dhiver
+    osm_way_ids:
+      - 411524165
+  - name: Carouge
+    osm_names:
+      - Carouge
+    anchors:
+      - - -75.8237153
+        - 45.4203607
+      - - -75.826602
+        - 45.4224265
+    surface: ground
+    lit: 'no'
+    highway: footway
+    ref: '5'
+    path_type: mtb-trail
+    mtb: true
+    member_of: coulicou-trails
+    type: destination
+    slug: carouge
+    osm_way_ids:
+      - 411524737
+  - name: Vireo
+    osm_names:
+      - Vireo
+    anchors:
+      - - -75.8266772
+        - 45.4227528
+      - - -75.8261671
+        - 45.4262873
+    surface: ground
+    lit: 'no'
+    highway: footway
+    ref: '7'
+    path_type: mtb-trail
+    mtb: true
+    member_of: coulicou-trails
+    type: destination
+    slug: vireo
+    osm_way_ids:
+      - 411524738
+      - 1118439015
   - name: Whale
     osm_names:
       - Whale
@@ -21154,8 +21701,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: whale
     osm_way_ids:
@@ -21172,9 +21719,10 @@ bike_paths:
     highway: footway
     bicycle: 'no'
     access: 'no'
+    foot: designated
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 78-monique
     osm_way_ids:
@@ -21191,8 +21739,8 @@ bike_paths:
     surface: dirt
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: la-chica
     osm_way_ids:
@@ -21208,8 +21756,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 77-happy-valley
     osm_way_ids:
@@ -21228,8 +21776,8 @@ bike_paths:
     highway: path
     bicycle: 'no'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: '10'
     osm_way_ids:
@@ -21248,8 +21796,8 @@ bike_paths:
     highway: path
     bicycle: 'no'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: sentier-trail-11
     osm_way_ids:
@@ -21269,8 +21817,8 @@ bike_paths:
     lit: 'no'
     highway: path
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: ncc29
     osm_way_ids:
@@ -21311,8 +21859,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-67
     osm_way_ids:
@@ -21330,8 +21878,8 @@ bike_paths:
     highway: path
     ref: '11'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: kanata-nordic-trail-11
     osm_way_ids:
@@ -21350,8 +21898,8 @@ bike_paths:
     network: Green Creek
     ref: '63'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-63
     osm_way_ids:
@@ -21368,8 +21916,8 @@ bike_paths:
     width: '1'
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-36b
     osm_way_ids:
@@ -21386,8 +21934,8 @@ bike_paths:
     lit: 'no'
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: carman-lake-lookout-trail
     osm_way_ids:
@@ -21404,8 +21952,8 @@ bike_paths:
     highway: path
     ref: '70'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-70
     osm_way_ids:
@@ -21425,12 +21973,31 @@ bike_paths:
     highway: path
     ref: '19'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-19
     osm_way_ids:
       - 543198528
+  - name: Faucon
+    osm_names:
+      - Faucon
+    anchors:
+      - - -75.8283204
+        - 45.4234481
+      - - -75.8269489
+        - 45.4248756
+    surface: ground
+    highway: footway
+    ref: '6'
+    path_type: mtb-trail
+    mtb: true
+    member_of: coulicou-trails
+    type: destination
+    slug: faucon
+    osm_way_ids:
+      - 572501916
+      - 1118439013
   - name: Boulevard Sacré-Coeur
     osm_names:
       - Boulevard Sacré-Coeur
@@ -21461,8 +22028,8 @@ bike_paths:
     highway: path
     bicycle: 'no'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-54-73
     osm_way_ids:
@@ -21479,8 +22046,8 @@ bike_paths:
     surface: dirt
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: gay-beach-trail
     osm_way_ids:
@@ -21495,8 +22062,8 @@ bike_paths:
         - 45.4995216
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-22b
     osm_way_ids:
@@ -21513,8 +22080,8 @@ bike_paths:
     width: '1'
     highway: path
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: arboretum-loop
     osm_way_ids:
@@ -21532,8 +22099,8 @@ bike_paths:
     highway: path
     description: mountain biking trail
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 53b-bench
     osm_way_ids:
@@ -21548,8 +22115,8 @@ bike_paths:
         - 45.6190931
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 58-konnektor
     osm_way_ids:
@@ -21564,8 +22131,8 @@ bike_paths:
         - 45.6236004
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 58-glazer
     osm_way_ids:
@@ -21582,8 +22149,8 @@ bike_paths:
     highway: path
     bicycle: 'no'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: cross-over
     osm_way_ids:
@@ -21599,8 +22166,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 59-moonshine
     osm_way_ids:
@@ -21618,12 +22185,51 @@ bike_paths:
     highway: footway
     bicycle: 'no'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: kanata-nordic-snowshoe-trail
     osm_way_ids:
       - 727339899
+  - name: Connector path
+    osm_names:
+      - Connector path
+    anchors:
+      - - -76.2064321
+        - 45.2367379
+      - - -76.2042886
+        - 45.2382299
+    surface: ground
+    width: '1'
+    highway: footway
+    path_type: mtb-trail
+    mtb: true
+    member_of: landsdowne-natural-heritage-park
+    type: destination
+    slug: connector-path
+    osm_way_ids:
+      - 734896639
+      - 738378259
+  - name: Mississippi Valley Trail - Bob's Run loop (Black)
+    osm_names:
+      - Mississippi Valley Trail - Bob's Run loop (Black)
+    anchors:
+      - - -76.2056516
+        - 45.2309516
+      - - -76.2072213
+        - 45.2338654
+    surface: ground
+    width: '1'
+    highway: path
+    mtb:scale: '2'
+    mtb:scale:imba: '2'
+    mtb: true
+    path_type: mtb-trail
+    member_of: mississippi-valley-trail-art-section-trails
+    type: destination
+    slug: mississippi-valley-trail-bobs-run-loop-black
+    osm_way_ids:
+      - 738376206
   - name: Rue Saint-Louis
     osm_names:
       - Rue Saint-Louis
@@ -21635,13 +22241,9 @@ bike_paths:
     surface: asphalt
     highway: footway
     bicycle: dismount
-    smoothness: excellent
-    width: '3'
-    lit: 'yes'
-    segregated: 'no'
     parallel_to: Rue Saint-Louis
     path_type: bike-lane
-    type: infrastructure
+    type: connector
     slug: rue-saint-louis
     osm_way_ids:
       - 793327894
@@ -21672,8 +22274,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: 43-boreale
     osm_way_ids:
@@ -21705,8 +22307,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: the-beast-trail-trails
     mtb: true
+    member_of: the-beast-trail-trails
     type: destination
     slug: the-beast-trail
     osm_way_ids:
@@ -21723,8 +22325,8 @@ bike_paths:
     width: '0.5'
     highway: path
     path_type: mtb-trail
-    member_of: the-beast-trail-trails
     mtb: true
+    member_of: the-beast-trail-trails
     type: destination
     slug: jinx-link
     osm_way_ids:
@@ -21743,8 +22345,8 @@ bike_paths:
     lit: 'no'
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: sentier-52-du-parc-de-la-gatineau-parkway
     osm_way_ids:
@@ -21761,8 +22363,8 @@ bike_paths:
     segregated: 'no'
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: trail-to-fire-tower
     osm_way_ids:
@@ -21796,7 +22398,7 @@ bike_paths:
     highway: footway
     path_type: mtb-trail
     mtb: true
-    type: destination
+    type: connector
     slug: rue-marston
     osm_way_ids:
       - 942863961
@@ -21813,8 +22415,8 @@ bike_paths:
     width: '0.5'
     highway: path
     path_type: mtb-trail
-    member_of: the-beast-trail-trails
     mtb: true
+    member_of: the-beast-trail-trails
     type: destination
     slug: forest-walk
     osm_way_ids:
@@ -21830,8 +22432,8 @@ bike_paths:
     highway: path
     network: KanataNordicCampground
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
     slug: trail-12-training-circle
     osm_way_ids:
@@ -21848,8 +22450,8 @@ bike_paths:
     width: '0.5'
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: the-sweet-line
     osm_way_ids:
@@ -21865,8 +22467,8 @@ bike_paths:
     highway: path
     access: 'no'
     path_type: mtb-trail
-    member_of: south-march-highlands-conservation-forest
     mtb: true
+    member_of: south-march-highlands-conservation-forest
     type: destination
     slug: dark-side
     osm_way_ids:
@@ -21882,8 +22484,8 @@ bike_paths:
     surface: ground
     highway: path
     path_type: mtb-trail
-    member_of: the-beast-trail-trails
     mtb: true
+    member_of: the-beast-trail-trails
     type: destination
     slug: oh-deer
     osm_way_ids:
@@ -21900,8 +22502,8 @@ bike_paths:
     highway: footway
     bicycle: 'no'
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: foreplay
     osm_way_ids:
@@ -21920,7 +22522,7 @@ bike_paths:
     highway: path
     path_type: mtb-trail
     mtb: true
-    type: destination
+    type: connector
     slug: chemin-pinetrail
     osm_way_ids:
       - 1223663828
@@ -21969,8 +22571,8 @@ bike_paths:
     smoothness: bad
     highway: footway
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: rocheuse
     osm_way_ids:
@@ -21986,8 +22588,8 @@ bike_paths:
     surface: unpaved
     highway: path
     path_type: mtb-trail
-    member_of: parc-de-la-gatineau
     mtb: true
+    member_of: parc-de-la-gatineau
     type: destination
     slug: chemin-cafferty
     osm_way_ids:
@@ -22008,6 +22610,7 @@ bike_paths:
     incline: 'yes'
     segregated: 'no'
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: rue-de-cannes
@@ -22139,9 +22742,42 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     network: Rideau Winter Trail
+    foot: designated
     path_type: mup
     type: destination
     slug: springhurst-park
+    osm_way_ids:
+      - 4059946
+      - 40645183
+      - 206475422
+      - 220191750
+      - 220191754
+      - 410932171
+      - 412957488
+      - 440901207
+      - 496832111
+      - 496832112
+      - 500976456
+      - 500976457
+      - 516758535
+      - 604027500
+      - 610083075
+      - 610083076
+      - 638071794
+      - 683545974
+      - 690344051
+      - 690344052
+      - 690496635
+      - 690496636
+      - 734501663
+      - 734501664
+      - 734505621
+      - 734521112
+      - 768626992
+      - 768626993
+      - 1273523122
+      - 1277975694
+      - 1277975695
   - name: West Houlahan Park
     osm_names:
       - West Houlahan Park
@@ -22157,9 +22793,24 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: west-houlahan-park
+    osm_way_ids:
+      - 5001625
+      - 39593721
+      - 231461623
+      - 432130779
+      - 524518540
+      - 594715635
+      - 643122493
+      - 643122496
+      - 643122498
+      - 644407546
+      - 647580028
+      - 751438925
+      - 751439053
   - name: Beauclaire Park
     osm_names:
       - Beauclaire Park
@@ -22173,29 +22824,32 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     network: Ski Heritage East Trail
+    foot: 'yes'
     path_type: mup
     type: destination
     slug: beauclaire-park
-  - name: Mill Hill Road
-    osm_names:
-      - Mill Hill Road
-    anchors:
-      - - -75.853701
-        - 45.308744
-      - - -75.8392624
-        - 45.3175441
-    surface: ground
-    smoothness: intermediate
-    width: '1'
-    lit: 'no'
-    segregated: 'no'
-    highway: path
-    bicycle: 'yes'
-    path_type: mtb-trail
-    member_of: ncc-greenbelt
-    mtb: true
-    type: destination
-    slug: mill-hill-road
+    osm_way_ids:
+      - 27806926
+      - 80207516
+      - 80207517
+      - 189117046
+      - 189117048
+      - 189117049
+      - 484749660
+      - 527932936
+      - 572681272
+      - 767737721
+      - 767737722
+      - 767737723
+      - 767737724
+      - 767737725
+      - 767737726
+      - 767737727
+      - 767737728
+      - 767737729
+      - 767737730
+      - 767737731
+      - 1014094207
   - name: NCC Aubrey Moodie Park
     osm_names:
       - NCC Aubrey Moodie Park
@@ -22211,10 +22865,21 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: ncc-greenbelt
     mtb: true
+    member_of: ncc-greenbelt
     type: destination
+    overlapping_relations:
+      - id: 7677698
+        name: RT Bells Corners Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
     slug: ncc-aubrey-moodie-park
+    osm_way_ids:
+      - 36613997
+      - 36614151
+      - 655128946
+      - 655128947
   - name: Rockcliffe Park
     osm_names:
       - Rockcliffe Park
@@ -22231,9 +22896,21 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     network: Ski Heritage East Trail
+    foot: designated
     path_type: trail
     type: destination
     slug: rockcliffe-park
+    osm_way_ids:
+      - 38517642
+      - 38517667
+      - 38517669
+      - 38517670
+      - 38517671
+      - 165880774
+      - 701936977
+      - 701936978
+      - 894020181
+      - 1127816609
   - name: Corridor du Ruisseau-des-Fées
     osm_names:
       - Corridor du Ruisseau-des-Fées
@@ -22249,26 +22926,15 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: corridor-du-ruisseau-des-fees
-  - name: Foxmeadow Lane
-    osm_names:
-      - Foxmeadow Lane
-    anchors:
-      - - -75.7488733
-        - 45.3291845
-      - - -75.7291741
-        - 45.33642
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    path_type: mup
-    type: destination
-    slug: foxmeadow-lane
+    osm_way_ids:
+      - 39453396
+      - 301416531
+      - 808086400
+      - 808110930
   - name: Strathcona Park
     osm_names:
       - Strathcona Park
@@ -22284,30 +22950,38 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     member_of: crosstown-bikeway-3-network
     type: destination
     slug: strathcona-park
-  - name: Workman Avenue
-    osm_names:
-      - Workman Avenue
-    anchors:
-      - - -75.7610733
-        - 45.3927134
-      - - -75.7522834
-        - 45.4022732
-    surface: asphalt
-    smoothness: bad
-    width: '2'
-    lit: 'no'
-    incline: 0%
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    network: Kichi Sibi
-    path_type: mup
-    type: destination
-    slug: workman-avenue
+    osm_way_ids:
+      - 43031916
+      - 43032145
+      - 165789702
+      - 169289035
+      - 207092320
+      - 220076860
+      - 220076863
+      - 310228897
+      - 310243393
+      - 377301555
+      - 494508597
+      - 504494532
+      - 504494533
+      - 504494534
+      - 504494535
+      - 516758512
+      - 547938589
+      - 703976499
+      - 743444681
+      - 743444682
+      - 745475183
+      - 745475184
+      - 994908483
+      - 1278300243
+      - 1278300550
+      - 1278790215
   - name: Parc de la Gatineau
     osm_names:
       - Parc de la Gatineau
@@ -22322,9 +22996,14 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: parc-de-la-gatineau-1
+    osm_way_ids:
+      - 53309796
+      - 136996020
+      - 1054509913
   - name: Father Richard Ward Park
     osm_names:
       - Father Richard Ward Park
@@ -22340,9 +23019,24 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     network: Ski Heritage East Trail
+    foot: 'yes'
     path_type: mup
     type: destination
     slug: father-richard-ward-park
+    osm_way_ids:
+      - 54568578
+      - 54568642
+      - 54568852
+      - 394730545
+      - 530564188
+      - 548404455
+      - 583525870
+      - 769154994
+      - 769154995
+      - 769154996
+      - 769155001
+      - 769155002
+      - 769155005
   - name: Greenboro Park
     osm_names:
       - Greenboro Park
@@ -22358,9 +23052,18 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: 'yes'
+    foot: designated
     path_type: mup
     type: destination
     slug: greenboro-park
+    osm_way_ids:
+      - 68587282
+      - 135584719
+      - 135584720
+      - 585757235
+      - 743107047
+      - 756787343
+      - 756787344
   - name: Beaverpond Park
     osm_names:
       - Beaverpond Park
@@ -22376,28 +23079,23 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: 'yes'
+    foot: designated
     path_type: mup
     type: destination
     slug: beaverpond-park
-  - name: J. Henry Tweed Conservation Area
-    osm_names:
-      - J. Henry Tweed Conservation Area
-    anchors:
-      - - -75.3861166
-        - 45.2628911
-      - - -75.3402412
-        - 45.2730537
-    name_fr: Sentier récréatif New York Central
-    name_en: New York Central Recreational Trail
-    surface: asphalt
-    width: '2.5'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    path_type: mup
-    type: destination
-    slug: j-henry-tweed-conservation-area
+    osm_way_ids:
+      - 68609629
+      - 161232189
+      - 161269750
+      - 161269757
+      - 161269764
+      - 434743579
+      - 643413398
+      - 643413399
+      - 643414207
+      - 755678884
+      - 755678885
+      - 755678886
   - name: Lytle Park
     osm_names:
       - Lytle Park
@@ -22413,9 +23111,18 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: lytle-park
+    osm_way_ids:
+      - 79142383
+      - 435999553
+      - 638785608
+      - 638785610
+      - 1270682602
+      - 1287790985
+      - 1287790986
   - name: Invention Boulevard
     osm_names:
       - Invention Boulevard
@@ -22431,8 +23138,10 @@ bike_paths:
     bicycle: 'yes'
     path_type: mtb-trail
     mtb: true
-    type: destination
+    type: infrastructure
     slug: invention-boulevard
+    osm_way_ids:
+      - 87372213
   - name: Parc Lattion
     osm_names:
       - Parc Lattion
@@ -22447,10 +23156,18 @@ bike_paths:
     lit: 'no'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
     mtb: true
-    type: destination
+    type: infrastructure
     slug: parc-lattion
+    osm_way_ids:
+      - 101403633
+      - 261897526
+      - 780976032
+      - 962461885
+      - 1278949817
+      - 1321609945
   - name: Rue Lafrance
     osm_names:
       - Rue Lafrance
@@ -22464,25 +23181,19 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: rue-lafrance
-  - name: Rue Riviera
-    osm_names:
-      - Rue Riviera
-    anchors:
-      - - -75.6624335
-        - 45.4836806
-      - - -75.646079
-        - 45.4769941
-    surface: asphalt
-    width: '2.5'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    path_type: mup
-    type: destination
-    slug: rue-riviera
+    osm_way_ids:
+      - 117884500
+      - 117885574
+      - 163146843
+      - 179377458
+      - 179377459
+      - 343494807
+      - 793476899
+      - 793480583
   - name: St. James Woods
     osm_names:
       - St. James Woods
@@ -22494,10 +23205,13 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
-    member_of: rotary-centennial-trail-trails
     mtb: true
+    member_of: rotary-centennial-trail-trails
     type: destination
     slug: st-james-woods
+    osm_way_ids:
+      - 155344264
+      - 1005955370
   - name: National Capital Commission Driveway
     osm_names:
       - National Capital Commission Driveway
@@ -22512,9 +23226,12 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mup
     type: destination
     slug: national-capital-commission-driveway
+    osm_way_ids:
+      - 160958126
   - name: Montana Way
     osm_names:
       - Montana Way
@@ -22530,9 +23247,16 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: montana-way
+    osm_way_ids:
+      - 218747906
+      - 218747915
+      - 638875514
+      - 638875515
+      - 1320513827
   - name: Holitzner Way
     osm_names:
       - Holitzner Way
@@ -22547,9 +23271,14 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mup
     type: destination
     slug: holitzner-way
+    osm_way_ids:
+      - 220197178
+      - 220197180
+      - 220197182
   - name: Moffatt Farm Veterans Park
     osm_names:
       - Moffatt Farm Veterans Park
@@ -22563,10 +23292,11 @@ bike_paths:
     width: '3'
     highway: path
     bicycle: 'yes'
-    path_type: mtb-trail
-    mtb: true
+    path_type: trail
     type: destination
     slug: moffatt-farm-veterans-park
+    osm_way_ids:
+      - 310874848
   - name: Conover Street
     osm_names:
       - Conover Street
@@ -22581,9 +23311,13 @@ bike_paths:
     lit: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: conover-street
+    osm_way_ids:
+      - 361211635
+      - 361211774
   - name: Parc du Lac-Beauchamp
     osm_names:
       - Parc du Lac-Beauchamp
@@ -22596,26 +23330,15 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: parc-du-lac-beauchamp
-  - name: Ben Franklin Park East
-    osm_names:
-      - Ben Franklin Park East
-    anchors:
-      - - -75.7718979
-        - 45.3230283
-      - - -75.7493879
-        - 45.3288212
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    path_type: mup
-    type: destination
-    slug: ben-franklin-park-east
+    osm_way_ids:
+      - 367257480
+      - 499884395
+      - 835381435
+      - 1202675751
   - name: Blanding Street
     osm_names:
       - Blanding Street
@@ -22631,9 +23354,12 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: blanding-street
+    osm_way_ids:
+      - 518064710
   - name: Greenbank Road
     osm_names:
       - Greenbank Road
@@ -22649,6 +23375,7 @@ bike_paths:
     segregated: 'no'
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mup
     member_of: ncc-greenbelt
     type: destination
@@ -22666,9 +23393,16 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: trail
     type: destination
     slug: parc-de-la-blanche
+    osm_way_ids:
+      - 672322811
+      - 672322812
+      - 1287764685
+      - 1287764686
+      - 1287764687
   - name: Montée Dalton
     osm_names:
       - Montée Dalton
@@ -22683,10 +23417,13 @@ bike_paths:
     highway: cycleway
     tracktype: grade2
     bicycle: designated
+    foot: designated
     parallel_to: Montée Dalton
     path_type: trail
     type: destination
     slug: montee-dalton
+    osm_way_ids:
+      - 701678585
   - name: Rue des Pins
     osm_names:
       - Rue des Pins
@@ -22698,9 +23435,12 @@ bike_paths:
     surface: asphalt
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: rue-des-pins
+    osm_way_ids:
+      - 1042078554
   - name: May Street
     osm_names:
       - May Street
@@ -22713,9 +23453,12 @@ bike_paths:
     width: '1.5'
     highway: cycleway
     bicycle: 'yes'
+    foot: 'no'
     path_type: mup
     type: destination
     slug: may-street
+    osm_way_ids:
+      - 1126824853
   - name: Trillium Park
     osm_names:
       - Trillium Park
@@ -22729,9 +23472,18 @@ bike_paths:
     segregated: 'no'
     highway: cycleway
     bicycle: designated
+    foot: designated
     path_type: mup
     type: destination
     slug: trillium-park
+    osm_way_ids:
+      - 1342562096
+      - 1342562097
+      - 1342562098
+      - 1342562099
+      - 1342562100
+      - 1342562101
+      - 1342562102
   - name: Rue de la Tire
     osm_names:
       - Rue de la Tire
@@ -22743,11 +23495,14 @@ bike_paths:
     surface: dirt
     highway: path
     bicycle: 'yes'
+    foot: 'yes'
     path_type: mtb-trail
-    member_of: la-boucle-trails
     mtb: true
+    member_of: la-boucle-trails
     type: destination
     slug: rue-de-la-tire
+    osm_way_ids:
+      - 1357892320
   - name: Pickwick Drive
     parallel_to: Pickwick Drive
     highway: cycleway
@@ -25326,7 +26081,6 @@ bike_paths:
       - Kanata Nordic Trail 11
       - Kanata Nordic Snowshoe Trail
       - Trail 12 Training Circle
-      - Mill Hill Road
       - NCC Aubrey Moodie Park
       - Greenbelt Pathway East
       - Trail 44
@@ -25374,7 +26128,6 @@ bike_paths:
       - kanata-nordic-trail-11
       - kanata-nordic-snowshoe-trail
       - trail-12-training-circle
-      - mill-hill-road
       - ncc-aubrey-moodie-park
       - greenbelt-pathway-east
       - trail-44
@@ -25430,6 +26183,40 @@ bike_paths:
       - strathcona-park
     super_network: ottawa-bikeways
     slug: crosstown-bikeway-3-network
+  - name: Kizell Pond Trail North Trails
+    type: network
+    anchors:
+      - - -75.9450007
+        - 45.3174432
+      - - -75.9199569
+        - 45.3423153
+    osm_names:
+      - Blue Heron Trail
+      - Northwest Passage
+      - Lumberjack
+      - Marathon NW
+      - Cow Path
+      - Skid Row
+      - Richardson Ridge Nature Trail
+      - Kizell Pond Trail North
+      - Kizell Pond Trail South
+    surface: ground
+    highway: footway
+    lit: 'no'
+    width: '0.5'
+    smoothness: intermediate
+    members:
+      - blue-heron-trail
+      - northwest-passage
+      - lumberjack
+      - marathon-nw
+      - cow-path
+      - skid-row
+      - richardson-ridge-nature-trail
+      - kizell-pond-trail-north
+      - kizell-pond-trail-south
+    mtb: true
+    slug: kizell-pond-trail-north-trails
   - name: South March Highlands Conservation Forest
     type: network
     anchors:
@@ -25545,7 +26332,6 @@ bike_paths:
       - rotary-centennial-trail
       - mississippi-riverwalk-trail
       - st-james-woods
-    mtb: true
     slug: rotary-centennial-trail-trails
   - name: La Boucle Trails
     type: network
@@ -25609,6 +26395,79 @@ bike_paths:
       - rue-de-la-tire
     mtb: true
     slug: la-boucle-trails
+  - name: Mississippi Valley Trail - ART Section Trails
+    type: network
+    anchors:
+      - - -76.2072213
+        - 45.2191602
+      - - -76.195028
+        - 45.2358246
+    osm_names:
+      - Riverwalk
+      - Mississippi Valley Trail - ART Section
+      - Spingbank trail
+      - Veterans Memorial Walkway
+      - Mississippi Valley Trail - Bob's Run loop (Black)
+    surface: ground
+    highway: footway
+    lit: 'no'
+    width: '2'
+    members:
+      - riverwalk
+      - mississippi-valley-trail-art-section
+      - spingbank-trail
+      - veterans-memorial-walkway
+      - mississippi-valley-trail-bobs-run-loop-black
+    mtb: true
+    slug: mississippi-valley-trail-art-section-trails
+  - name: Landsdowne Natural Heritage Park
+    type: network
+    anchors:
+      - - -76.2064321
+        - 45.2359954
+      - - -76.2034764
+        - 45.2382299
+    osm_names:
+      - Middle footpath
+      - Lower path
+      - Lower footpath
+      - Uppoer Footpath
+      - Connector path
+    surface: ground
+    highway: footway
+    width: '1'
+    members:
+      - middle-footpath
+      - lower-path
+      - lower-footpath
+      - uppoer-footpath
+      - connector-path
+    mtb: true
+    slug: landsdowne-natural-heritage-park
+  - name: Coulicou Trails
+    type: network
+    anchors:
+      - - -75.8339463
+        - 45.4191359
+      - - -75.8206589
+        - 45.4265982
+    osm_names:
+      - Coulicou
+      - Piranga - Sentier d'hiver
+      - Carouge
+      - Vireo
+      - Faucon
+    surface: ground
+    highway: footway
+    lit: 'no'
+    members:
+      - coulicou
+      - piranga-sentier-dhiver
+      - carouge
+      - vireo
+      - faucon
+    mtb: true
+    slug: coulicou-trails
   - name: The Beast Trail Trails
     type: network
     anchors:
@@ -25670,7 +26529,6 @@ bike_paths:
       length_km: 220
       inception: 1970s
       website: https://ncc-ccn.gc.ca/places/capital-pathway
-    mtb: true
     super_network: rideau-river-eastern-pathway
     members:
       - sentier-des-voyageurs-pathway
@@ -25704,7 +26562,6 @@ bike_paths:
       - laurier-segregated-bikelane
       - eastwest-crosstown-bikeway
       - crosstown-bikeway-2-1
-      - coulicou
     slug: crosstown-bikeway-2
   - name: Crosstown Bikeway 5
     type: network
