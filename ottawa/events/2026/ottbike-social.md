@@ -1,5 +1,5 @@
 ---
-name: OttBike Social
+name: OttBike Social - Spring Calendar
 start_date: "2026-04-16"
 end_date: "2026-06-25"
 series:
@@ -37,8 +37,16 @@ poster_content_type: image/jpeg
 organizer:
   name: "#OttBike Social"
   instagram: ottbikesocial
+start_time: "19:00"
+meet_time: "18:45"
+tags:
+  - group-rides
+  - slow-riding
+  - social
 ---
 
 ## Slow Bike Rides with Nice People
 
 #OttBikeSocial is a great opportunity to meet new people while exploring the capital at a relaxed pace.
+
+Meet every Thursday in a different gathering point. Check [on Instagram](https://www.instagram.com/ottbikesocial/) for the newest updates!
