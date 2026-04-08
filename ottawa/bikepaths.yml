@@ -210,8 +210,8 @@ bike_paths:
     network: rcn
     surface: asphalt
     smoothness: good
-    width: '3'
-    lit: 'yes'
+    width: '2.5'
+    lit: 'no'
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
@@ -343,7 +343,7 @@ bike_paths:
     network: lcn
     surface: asphalt
     smoothness: good
-    width: '2'
+    width: '2.5'
     lit: 'no'
     segregated: 'no'
     cycleway: crossing
@@ -447,7 +447,7 @@ bike_paths:
     width: '2.5'
     lit: 'no'
     segregated: 'no'
-    cycleway: 'yes'
+    cycleway: lane
     highway: cycleway
     bicycle: designated
     foot: designated
@@ -498,12 +498,12 @@ bike_paths:
     cycle_network: ca:qc:rv
     surface: asphalt
     smoothness: good
-    width: '2'
-    lit: 'yes'
+    width: '3'
+    lit: 'no'
     incline: '>10%'
     segregated: 'no'
     cycleway: lane
-    highway: cycleway
+    highway: primary
     tracktype: grade1
     seasonal: spring;summer;autumn
     access: 'yes'
@@ -537,7 +537,7 @@ bike_paths:
         - 45.5214507
       - - -75.4864046
         - 45.5239149
-    path_type: mup
+    path_type: bike-lane
     name_fr: route Verte 1
     name_en: Route Verte 1
     wikidata_meta:
@@ -3946,18 +3946,18 @@ bike_paths:
     network: ncn
     ref: STC
     surface: asphalt
-    smoothness: good
+    smoothness: excellent
     width: '2'
     lit: 'no'
-    incline: 0%
+    incline: up
     segregated: 'no'
-    cycleway: crossing
+    cycleway: shared
     highway: cycleway
-    tracktype: grade2
-    mtb:scale: '2'
+    tracktype: grade1
+    mtb:scale: '1'
     bicycle: designated
     access: designated
-    foot: designated
+    foot: 'yes'
     surface_mix:
       - value: asphalt
         km: 301
@@ -4765,7 +4765,7 @@ bike_paths:
     network: lcn
     surface: asphalt
     smoothness: good
-    width: '2'
+    width: '2.5'
     lit: 'no'
     highway: path
     bicycle: designated
@@ -5182,7 +5182,7 @@ bike_paths:
     cycle_network: CA:ON:NCC
     surface: asphalt
     smoothness: intermediate
-    width: '3'
+    width: '2.5'
     lit: 'yes'
     segregated: 'no'
     highway: cycleway
@@ -5231,7 +5231,7 @@ bike_paths:
     segregated: 'no'
     cycleway: lane
     highway: cycleway
-    bicycle: 'yes'
+    bicycle: designated
     foot: designated
     lit_mix:
       - value: 'no'
@@ -5779,11 +5779,11 @@ bike_paths:
       - 7369758
     network: lcn
     surface: asphalt
-    smoothness: good
+    smoothness: excellent
     width: '3'
-    lit: 'yes'
+    lit: 'no'
     segregated: 'no'
-    highway: footway
+    highway: cycleway
     bicycle: designated
     foot: designated
     lit_mix:
@@ -5901,7 +5901,7 @@ bike_paths:
     description: The Trans Canada Trail follows Sussex Drive
     surface: asphalt
     smoothness: good
-    width: '1.5'
+    width: '5'
     lit: 'yes'
     segregated: 'no'
     cycleway: lane
@@ -5993,7 +5993,7 @@ bike_paths:
     surface: asphalt
     smoothness: good
     width: '3'
-    lit: 'yes'
+    lit: 'no'
     segregated: 'no'
     highway: cycleway
     bicycle: designated
@@ -6260,7 +6260,7 @@ bike_paths:
       - 9334473
     network: lcn
     surface: asphalt
-    smoothness: excellent
+    smoothness: good
     width: '3'
     lit: 'no'
     segregated: 'no'
@@ -6706,7 +6706,7 @@ bike_paths:
     network: rcn
     surface: asphalt
     smoothness: good
-    width: '2'
+    width: '3'
     lit: 'yes'
     segregated: 'no'
     highway: path
@@ -6748,7 +6748,7 @@ bike_paths:
     surface: asphalt
     smoothness: good
     width: '3'
-    lit: 'yes'
+    lit: 'no'
     segregated: 'no'
     cycleway: shared_lane
     highway: cycleway
@@ -6994,7 +6994,7 @@ bike_paths:
     cycle_network: CA:ON:Ottawa
     surface: asphalt
     smoothness: good
-    width: '3'
+    width: '1.5'
     lit: 'yes'
     segregated: 'no'
     cycleway: lane
@@ -7290,16 +7290,16 @@ bike_paths:
     width: '3'
     lit: 'yes'
     segregated: 'no'
-    cycleway: lane
-    highway: cycleway
+    cycleway: shared_lane
+    highway: residential
     bicycle: designated
-    foot: 'yes'
+    foot: designated
     anchors:
       - - -75.6882715
         - 45.4014347
       - - -75.682662
         - 45.4092192
-    path_type: mup
+    path_type: bike-lane
     type: destination
     member_of: ottawa-bikeways
     slug: crosstown-bikeway-5
@@ -7371,7 +7371,7 @@ bike_paths:
     surface: asphalt
     smoothness: good
     width: '3'
-    lit: 'yes'
+    lit: 'no'
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
@@ -8095,7 +8095,7 @@ bike_paths:
     network: lcn
     surface: fine_gravel
     smoothness: good
-    width: '2'
+    width: '3'
     lit: 'no'
     segregated: 'no'
     highway: cycleway
@@ -8204,7 +8204,7 @@ bike_paths:
         - 45.440651
       - - -75.7272738
         - 45.4486758
-    surface: asphalt
+    surface: concrete
     smoothness: excellent
     width: '3'
     segregated: 'no'
@@ -8514,7 +8514,7 @@ bike_paths:
     segregated: 'no'
     cycleway: lane
     highway: cycleway
-    bicycle: designated
+    bicycle: dismount
     foot: designated
     path_type: mup
     type: infrastructure
@@ -8791,9 +8791,9 @@ bike_paths:
         - 45.4778392
       - - -75.4587439
         - 45.4854795
-    surface: asphalt
+    surface: fine_gravel
     smoothness: good
-    width: '3'
+    width: '2.5'
     lit: 'no'
     segregated: 'no'
     highway: cycleway
@@ -8804,7 +8804,7 @@ bike_paths:
         km: 1
       - value: fine_gravel
         km: 1
-    path_type: mup
+    path_type: trail
     type: destination
     slug: cardinal-creek-trail
     osm_way_ids:
@@ -8823,7 +8823,7 @@ bike_paths:
         - 45.6276498
     surface: asphalt
     segregated: 'no'
-    cycleway: crossing
+    cycleway: separate
     highway: cycleway
     bicycle: designated
     foot: designated
@@ -8849,13 +8849,13 @@ bike_paths:
         - 45.6271649
     surface: asphalt
     segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
+    cycleway: lane
+    highway: primary
     bicycle: designated
     ref: '105'
     foot: designated
     parallel_to: Route 105
-    path_type: mup
+    path_type: bike-lane
     type: infrastructure
     slug: route-105
     osm_way_ids:
@@ -9140,7 +9140,7 @@ bike_paths:
     smoothness: excellent
     width: '1.5'
     lit: 'yes'
-    cycleway: crossing
+    cycleway: lane
     highway: cycleway
     foot: 'no'
     parallel_to: Rue Laurier
@@ -9209,7 +9209,7 @@ bike_paths:
         - 45.568983
     surface: ground
     width: '0.5'
-    highway: cycleway
+    highway: path
     bicycle: designated
     ref: '47'
     foot: designated
@@ -9335,12 +9335,12 @@ bike_paths:
         - 45.4888655
     surface: asphalt
     segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
+    cycleway: lane
+    highway: tertiary
     bicycle: designated
     foot: designated
     parallel_to: Avenue Gatineau
-    path_type: mup
+    path_type: bike-lane
     type: infrastructure
     slug: avenue-gatineau
     osm_way_ids:
@@ -9404,7 +9404,7 @@ bike_paths:
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
-    bicycle: designated
+    bicycle: 'yes'
     foot: 'no'
     parallel_to: Boulevard Gréber
     path_type: mup
@@ -9426,10 +9426,10 @@ bike_paths:
         - 45.4742429
     surface: asphalt
     segregated: 'no'
-    cycleway: crossing
+    cycleway: lane
     highway: tertiary
     bicycle: designated
-    foot: designated
+    foot: use_sidepath
     path_type: bike-lane
     type: infrastructure
     slug: chemin-de-la-savane
@@ -9451,7 +9451,7 @@ bike_paths:
         - 45.473898
       - - -75.7079382
         - 45.4740027
-    surface: concrete
+    surface: asphalt
     segregated: 'no'
     cycleway: crossing
     highway: cycleway
@@ -9621,7 +9621,7 @@ bike_paths:
         - 45.3109272
     surface: ground
     smoothness: intermediate
-    width: '1'
+    width: '2'
     lit: 'no'
     highway: path
     bicycle: 'yes'
@@ -9649,7 +9649,7 @@ bike_paths:
         - 45.2940019
       - - -75.8367827
         - 45.3131568
-    surface: ground
+    surface: gravel
     smoothness: intermediate
     width: '2'
     lit: 'no'
@@ -9700,7 +9700,7 @@ bike_paths:
         - 45.3196511
     surface: ground
     smoothness: bad
-    width: '1'
+    width: '0.5'
     lit: 'no'
     highway: path
     bicycle: 'yes'
@@ -9764,7 +9764,7 @@ bike_paths:
         - 45.2998547
     surface: ground
     smoothness: intermediate
-    width: '2'
+    width: '1'
     highway: path
     bicycle: 'yes'
     path_type: mtb-trail
@@ -9825,8 +9825,8 @@ bike_paths:
       - - -75.8052537
         - 45.3065218
     surface: ground
-    smoothness: intermediate
-    width: '1'
+    smoothness: bad
+    width: '0.5'
     lit: 'no'
     highway: path
     bicycle: 'yes'
@@ -9964,7 +9964,7 @@ bike_paths:
         - 45.2942169
     surface: ground
     smoothness: bad
-    width: '2'
+    width: '1'
     lit: 'no'
     highway: path
     bicycle: 'yes'
@@ -10487,8 +10487,8 @@ bike_paths:
         - 45.3352507
       - - -75.9258959
         - 45.3392801
-    surface: gravel
-    width: '2'
+    surface: ground
+    width: '1.5'
     lit: 'no'
     highway: path
     bicycle: designated
@@ -10536,7 +10536,7 @@ bike_paths:
       - - -75.9311439
         - 45.3392801
     surface: ground
-    width: '2'
+    width: '0.5'
     lit: 'no'
     highway: path
     bicycle: designated
@@ -10627,21 +10627,20 @@ bike_paths:
         - 45.3295731
       - - -75.9184089
         - 45.3331874
-    surface: ground
+    surface: fine_gravel
     smoothness: intermediate
-    width: '0.5'
+    width: '2.5'
     lit: 'no'
     highway: path
     bicycle: 'yes'
-    access: 'no'
-    foot: 'yes'
+    access: permissive
+    foot: designated
     surface_mix:
       - value: fine_gravel
         km: 1
       - value: ground
         km: 1
-    path_type: mtb-trail
-    mtb: true
+    path_type: trail
     type: destination
     slug: beaverpond-park-1
     osm_way_ids:
@@ -10992,7 +10991,7 @@ bike_paths:
         - 45.353398
     surface: ground
     smoothness: good
-    width: '2'
+    width: '3'
     lit: 'no'
     highway: path
     bicycle: 'yes'
@@ -11242,11 +11241,11 @@ bike_paths:
     name_fr: Chemin Ridge
     name_en: Ridge Road
     surface: gravel
-    smoothness: intermediate
+    smoothness: bad
     width: '3'
     lit: 'no'
     highway: path
-    mtb:scale: '1'
+    mtb:scale: '2'
     bicycle: designated
     network: mtb
     ref: '1'
@@ -11889,7 +11888,7 @@ bike_paths:
         - 45.3382114
     surface: gravel
     smoothness: good
-    width: '1'
+    width: '2'
     lit: 'no'
     highway: path
     bicycle: 'yes'
@@ -14022,7 +14021,7 @@ bike_paths:
     surface: asphalt
     lit: 'yes'
     cycleway: lane
-    highway: secondary
+    highway: primary
     ref: '36'
     parallel_to: Richmond Road
     path_type: bike-lane
@@ -15019,7 +15018,7 @@ bike_paths:
     name_en: Cumberland Street
     surface: asphalt
     lit: 'yes'
-    cycleway: opposite_lane
+    cycleway: lane
     highway: unclassified
     parallel_to: Cumberland Street
     path_type: bike-lane
@@ -15319,7 +15318,7 @@ bike_paths:
     surface: asphalt
     lit: 'yes'
     cycleway: lane
-    highway: secondary
+    highway: residential
     ref: '91'
     parallel_to: Hawthorne Avenue
     path_type: bike-lane
@@ -15345,7 +15344,7 @@ bike_paths:
     surface: asphalt
     lit: 'yes'
     cycleway: lane
-    highway: secondary
+    highway: tertiary
     ref: '27'
     path_type: bike-lane
     type: infrastructure
@@ -15822,7 +15821,7 @@ bike_paths:
     name_fr: promenade Sunview
     name_en: Sunview Drive
     surface: asphalt
-    width: '10'
+    width: '9.5'
     lit: 'yes'
     cycleway: lane
     highway: tertiary
@@ -16132,7 +16131,7 @@ bike_paths:
     name_en: Longfields Drive
     surface: asphalt
     cycleway: lane
-    highway: tertiary
+    highway: secondary
     ref: '13'
     parallel_to: Longfields Drive
     path_type: bike-lane
@@ -16492,7 +16491,7 @@ bike_paths:
     name_fr: avenue Orchardview
     name_en: Orchardview Avenue
     surface: asphalt
-    width: '11'
+    width: '9.5'
     cycleway: lane
     highway: tertiary
     path_type: bike-lane
@@ -16843,7 +16842,7 @@ bike_paths:
     name_fr: boulevard Clémentine
     name_en: Clémentine Boulevard
     surface: asphalt
-    cycleway: shared_lane
+    cycleway: lane
     highway: residential
     path_type: bike-lane
     type: infrastructure
@@ -17292,7 +17291,7 @@ bike_paths:
     name_fr: chemin Old Richmond
     name_en: Old Richmond Road
     surface: asphalt
-    lit: 'yes'
+    lit: 'no'
     cycleway: lane
     highway: secondary
     ref: '59'
@@ -18033,7 +18032,7 @@ bike_paths:
     name_fr: chemin Renaud
     name_en: Renaud Road
     surface: asphalt
-    cycleway: shared_lane
+    cycleway: lane
     highway: tertiary
     parallel_to: Renaud Road
     path_type: bike-lane
@@ -18084,10 +18083,10 @@ bike_paths:
         - 45.4410598
     surface: asphalt
     lit: 'yes'
-    cycleway: lane
+    cycleway: track
     highway: secondary
     parallel_to: Boulevard Saint-Joseph
-    path_type: bike-lane
+    path_type: separated-lane
     type: infrastructure
     slug: boulevard-saint-joseph
     osm_way_ids:
@@ -19928,7 +19927,7 @@ bike_paths:
     highway: primary
     bicycle: 'yes'
     ref: '32'
-    smoothness: good
+    smoothness: intermediate
     width: '3'
     segregated: 'no'
     foot: designated
@@ -20839,7 +20838,7 @@ bike_paths:
         - 45.3263182
       - - -75.9312187
         - 45.3291081
-    surface: gravel
+    surface: woodchips
     width: '0.5'
     highway: footway
     bicycle: 'yes'
@@ -21088,7 +21087,7 @@ bike_paths:
         - 45.369012
     surface: ground
     smoothness: intermediate
-    width: '1'
+    width: '0.5'
     lit: 'no'
     highway: footway
     bicycle: 'no'
@@ -21210,7 +21209,7 @@ bike_paths:
       - - -75.981025
         - 45.6053752
     surface: ground
-    width: '3'
+    width: '2'
     highway: path
     bicycle: 'no'
     path_type: mtb-trail
@@ -22307,7 +22306,7 @@ bike_paths:
         - 45.461658
       - - -75.7209715
         - 45.4624414
-    surface: asphalt
+    surface: concrete
     highway: footway
     bicycle: dismount
     parallel_to: Rue Saint-Louis
@@ -22932,9 +22931,9 @@ bike_paths:
         - 45.308744
       - - -75.8392624
         - 45.3175441
-    surface: ground
-    smoothness: intermediate
-    width: '1'
+    surface: fine_gravel
+    smoothness: good
+    width: '3'
     lit: 'no'
     segregated: 'no'
     highway: path
@@ -22945,8 +22944,7 @@ bike_paths:
         km: 1
       - value: ground
         km: 1
-    path_type: mtb-trail
-    mtb: true
+    path_type: trail
     member_of: ncc-greenbelt
     type: destination
     overlapping_relations:
@@ -22976,7 +22974,7 @@ bike_paths:
         - 45.307776
       - - -75.8172527
         - 45.314046
-    surface: gravel
+    surface: ground
     smoothness: intermediate
     width: '1'
     lit: 'no'
@@ -23047,7 +23045,7 @@ bike_paths:
     width: '3'
     lit: 'no'
     segregated: 'no'
-    highway: cycleway
+    highway: path
     bicycle: designated
     foot: designated
     lit_mix:
@@ -23073,7 +23071,7 @@ bike_paths:
         - 45.4297593
     surface: asphalt
     smoothness: good
-    width: '2'
+    width: '2.5'
     lit: 'no'
     segregated: 'no'
     highway: cycleway
@@ -23179,7 +23177,7 @@ bike_paths:
         - 45.4697842
     surface: asphalt
     smoothness: excellent
-    width: '2'
+    width: '2.5'
     segregated: 'no'
     highway: cycleway
     bicycle: designated
@@ -23269,9 +23267,9 @@ bike_paths:
         - 45.2741016
       - - -75.7801036
         - 45.2933637
-    surface: asphalt
-    smoothness: intermediate
-    width: '2.5'
+    surface: fine_gravel
+    smoothness: good
+    width: '3'
     lit: 'no'
     segregated: 'no'
     highway: cycleway
@@ -23282,7 +23280,7 @@ bike_paths:
         km: 3
       - value: asphalt
         km: 2
-    path_type: mup
+    path_type: trail
     type: destination
     slug: lytle-park
     osm_way_ids:
@@ -23436,7 +23434,7 @@ bike_paths:
       - - -75.7080846
         - 45.291987
     surface: asphalt
-    smoothness: intermediate
+    smoothness: good
     width: '3'
     segregated: 'no'
     highway: path
@@ -26295,7 +26293,7 @@ bike_paths:
     surface: ground
     highway: path
     lit: 'no'
-    width: '1'
+    width: '2'
     smoothness: very_bad
     network: mtb
     members:
@@ -26520,10 +26518,10 @@ bike_paths:
       - Shirleys Brook
       - Shadow's Ridge
       - Richcraft
-    surface: gravel
+    surface: ground
     highway: path
     lit: 'no'
-    width: '2'
+    width: '1'
     members:
       - trillium
       - trillium-woods-trail
@@ -26817,7 +26815,7 @@ bike_paths:
       - 1206531215
       - 1206531217
     route_type: foot
-    path_type: mup
+    path_type: bike-lane
     type: destination
     slug: cheminduquebec-5-st-jean-farnham
   - name: Sentier du lac Leamy Skiing Trail
@@ -26955,7 +26953,7 @@ bike_paths:
       - 1379398328
     route_type: hiking
     network: lwn
-    path_type: mup
+    path_type: bike-lane
     type: destination
     slug: sentier-le-portage
   - name: Nature and Tranquility
@@ -26990,7 +26988,7 @@ bike_paths:
       - 509475446
     route_type: hiking
     network: lwn
-    path_type: mup
+    path_type: bike-lane
     type: destination
     slug: sia-6-route-dacces-amqui
   - name: Fatbike Mont-Tremblant
