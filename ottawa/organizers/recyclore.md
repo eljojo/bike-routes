@@ -7,6 +7,7 @@ featured: true
 social_links:
   - platform: website
     url: https://recyclore.org
+hidden: false
 ---
 
 Recyclore is an all-volunteer registered not-for-profit dedicated to keeping bicycles out of the landfill and putting them back on the street. They accept donations of old bicycles in any condition, recondition them, and offer the used bikes for sale at affordable prices.
