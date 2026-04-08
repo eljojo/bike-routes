@@ -3919,7 +3919,7 @@ bike_paths:
     bicycle: 'yes'
     path_type: bike-lane
     type: destination
-    member_of: crosstown-bikeway-2
+    member_of: ottawa-bikeways
     slug: laurier-segregated-bikelane
     osm_way_ids:
       - 76422495
@@ -4149,6 +4149,7 @@ bike_paths:
       - 130725957
       - 130726151
       - 130753545
+      - 130753551
       - 130894341
       - 132471945
       - 132471948
@@ -4807,151 +4808,6 @@ bike_paths:
       - 580669684
       - 1348742007
       - 1348742008
-  - name: Sentier vélo de Montagne - Parc de la Gatineau
-    osm_relations:
-      - 6198284
-    surface: ground
-    smoothness: very_bad
-    width: '2'
-    lit: 'no'
-    incline: down
-    segregated: 'no'
-    highway: path
-    mtb:scale: '2'
-    bicycle: designated
-    foot: designated
-    surface_mix:
-      - value: ground
-        km: 51
-      - value: gravel
-        km: 36
-      - value: fine_gravel
-        km: 4
-    anchors:
-      - - -75.9234036
-        - 45.5274735
-      - - -75.8995751
-        - 45.5369834
-    mtb: true
-    path_type: mtb-trail
-    member_of: parc-de-la-gatineau
-    type: destination
-    overlapping_relations:
-      - id: 10752235
-        name: From the City to the Wilderness
-        route: piste
-        operator: NCC
-        network: Gatineau Park Ski Routes
-      - id: 10752245
-        name: A Prime Minister's Backyard
-        route: piste
-        operator: NCC
-        network: Gatineau Park Ski Routes
-      - id: 10752247
-        name: The Heart of the Network
-        route: piste
-        operator: NCC
-        network: Gatineau Park Ski Routes
-      - id: 4504059
-        name: '9'
-        route: piste
-    slug: sentier-velo-de-montagne-parc-de-la-gatineau
-    osm_way_ids:
-      - 37859187
-      - 41411191
-      - 65584340
-      - 80371938
-      - 80390881
-      - 80390883
-      - 80390887
-      - 80390889
-      - 101403292
-      - 101403732
-      - 101403839
-      - 101403883
-      - 130725957
-      - 130726151
-      - 130753545
-      - 130753551
-      - 130894341
-      - 135273504
-      - 137265319
-      - 137281068
-      - 151174864
-      - 153292689
-      - 190367377
-      - 190910771
-      - 218391307
-      - 218548947
-      - 229841615
-      - 229841895
-      - 229841896
-      - 278786590
-      - 278787033
-      - 278994262
-      - 278994273
-      - 278999360
-      - 279251839
-      - 279252027
-      - 279252399
-      - 295313587
-      - 311604378
-      - 323062271
-      - 328592847
-      - 365814333
-      - 365814342
-      - 371415127
-      - 380171605
-      - 380177424
-      - 380177430
-      - 380177435
-      - 380177436
-      - 380252440
-      - 380256120
-      - 423181831
-      - 543406582
-      - 543406583
-      - 622927958
-      - 622927961
-      - 623239483
-      - 625480924
-      - 626038179
-      - 636425416
-      - 636425417
-      - 636440833
-      - 636440834
-      - 636602417
-      - 636602429
-      - 636971732
-      - 636971733
-      - 636971735
-      - 636971736
-      - 636971737
-      - 636971738
-      - 636971740
-      - 636971741
-      - 640411788
-      - 642384162
-      - 671385211
-      - 690085502
-      - 722960911
-      - 722960912
-      - 722960914
-      - 722960915
-      - 722960919
-      - 727340298
-      - 727340300
-      - 776369509
-      - 776370201
-      - 776370202
-      - 776370203
-      - 832689888
-      - 832689890
-      - 1146673890
-      - 1264660566
-      - 1275395547
-      - 1280065428
-      - 1339362992
   - name: Ottawa River Pathway (east)
     osm_relations:
       - 7174864
@@ -5204,8 +5060,7 @@ bike_paths:
     path_type: mup
     type: destination
     operator: City of Ottawa
-    member_of: crosstown-bikeway-5
-    super_network: ottawa-bikeways
+    member_of: ottawa-bikeways
     slug: oconnor-bikeway
     osm_way_ids:
       - 490235590
@@ -5513,7 +5368,7 @@ bike_paths:
     foot: 'no'
     path_type: mup
     type: destination
-    member_of: crosstown-bikeway-2
+    member_of: ottawa-bikeways
     slug: eastwest-crosstown-bikeway
     osm_way_ids:
       - 206515892
@@ -7325,9 +7180,8 @@ bike_paths:
         - 45.4361233
     path_type: bike-lane
     type: destination
-    member_of: crosstown-bikeway-2
-    super_network: ottawa-bikeways
-    slug: crosstown-bikeway-2-1
+    member_of: ottawa-bikeways
+    slug: crosstown-bikeway-2
     osm_way_ids:
       - 76421365
       - 76423871
@@ -7428,9 +7282,8 @@ bike_paths:
         - 45.4092192
     path_type: mup
     type: destination
-    member_of: crosstown-bikeway-5
-    super_network: ottawa-bikeways
-    slug: crosstown-bikeway-5-1
+    member_of: ottawa-bikeways
+    slug: crosstown-bikeway-5
     osm_way_ids:
       - 76423077
       - 76444306
@@ -7646,6 +7499,11 @@ bike_paths:
         km: 1
       - value: earth
         km: 1
+    anchors:
+      - - -76.0970316
+        - 45.5983821
+      - - -76.0558609
+        - 45.6041123
     mtb: true
     path_type: mtb-trail
     type: long-distance
@@ -8490,6 +8348,38 @@ bike_paths:
       - 1445759993
       - 1445759994
       - 1445763795
+  - name: 'Trail #52'
+    osm_names:
+      - 'Trail #52'
+    anchors:
+      - - -75.964203
+        - 45.582498
+      - - -75.9386218
+        - 45.6329522
+    surface: ground
+    smoothness: bad
+    width: '1.5'
+    lit: 'no'
+    highway: cycleway
+    mtb:scale: '2'
+    bicycle: designated
+    ref: '52'
+    foot: designated
+    surface_mix:
+      - value: ground
+        km: 7
+      - value: fine_gravel
+        km: 1
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    slug: trail-52
+    osm_way_ids:
+      - 130725957
+      - 380177424
+      - 832689888
+      - 832689890
   - name: Trail 27
     osm_names:
       - Trail 27
@@ -8614,6 +8504,32 @@ bike_paths:
       - 39451352
       - 207281598
       - 302447797
+  - name: Piste 25
+    osm_names:
+      - Piste 25
+    anchors:
+      - - -75.797603
+        - 45.4679188
+      - - -75.7911695
+        - 45.474561
+    name_en: Trail 25
+    surface: gravel
+    width: '2'
+    lit: 'no'
+    segregated: 'no'
+    highway: cycleway
+    mtb:scale: '2'
+    bicycle: designated
+    ref: '25'
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    slug: piste-25
+    osm_way_ids:
+      - 218391307
+      - 690085502
   - name: Highbury Park Drive Bypass
     osm_names:
       - Highbury Park Drive Bypass
@@ -8707,6 +8623,53 @@ bike_paths:
     slug: 44-mo
     osm_way_ids:
       - 278784265
+  - name: 'Sentier / Trail #51'
+    osm_names:
+      - 'Sentier / Trail #51'
+    anchors:
+      - - -76.0136666
+        - 45.6151579
+      - - -76.0100417
+        - 45.6246695
+    name_fr: Sentier 51
+    name_en: Trail 51
+    surface: ground
+    highway: cycleway
+    mtb:scale: '1'
+    bicycle: designated
+    ref: '51'
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    slug: sentier-trail-51
+    osm_way_ids:
+      - 279251839
+  - name: 'Trail #53'
+    osm_names:
+      - 'Trail #53'
+    anchors:
+      - - -76.0111283
+        - 45.6256973
+      - - -75.943028
+        - 45.6433735
+    surface: ground
+    highway: cycleway
+    mtb:scale: '1'
+    bicycle: designated
+    ref: '53'
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    slug: trail-53
+    osm_way_ids:
+      - 279252027
+      - 380177430
+      - 380177436
+      - 622927961
   - name: 'Trail #54'
     osm_names:
       - 'Trail #54'
@@ -8780,6 +8743,27 @@ bike_paths:
       - 1445977655
       - 1445977656
       - 1445977658
+  - name: 'Trail #55'
+    osm_names:
+      - 'Trail #55'
+    anchors:
+      - - -76.049404
+        - 45.606254
+      - - -76.0136666
+        - 45.6151579
+    highway: cycleway
+    mtb:scale: '1'
+    bicycle: designated
+    ref: '55'
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    slug: trail-55
+    osm_way_ids:
+      - 380177435
+      - 380252440
   - name: Cardinal Creek Trail
     osm_names:
       - Cardinal Creek Trail
@@ -9176,6 +9160,26 @@ bike_paths:
     slug: belfasttrainyards-pathway
     osm_way_ids:
       - 1132976707
+  - name: 'Trail #56B'
+    osm_names:
+      - 'Trail #56B'
+    anchors:
+      - - -76.0708694
+        - 45.590701
+      - - -76.067874
+        - 45.5983821
+    highway: cycleway
+    mtb:scale: '2'
+    bicycle: designated
+    ref: 56B
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    slug: trail-56b
+    osm_way_ids:
+      - 1146673890
   - name: Trail 47
     osm_names:
       - Trail 47
@@ -9817,7 +9821,7 @@ bike_paths:
         route: hiking
         operator: Rideau Trail
         network: lwn
-    slug: trail-26
+    slug: trail-26-1
     osm_way_ids:
       - 35674302
       - 52429775
@@ -9832,6 +9836,40 @@ bike_paths:
       - 1284432013
       - 1284432014
       - 1301543263
+  - name: Trail 26
+    osm_names:
+      - Trail 26
+    anchors:
+      - - -75.7869037
+        - 45.4556737
+      - - -75.7716122
+        - 45.4609
+    surface: ground
+    smoothness: intermediate
+    width: '2'
+    lit: 'no'
+    segregated: 'no'
+    highway: path
+    mtb:scale: '1'
+    bicycle: designated
+    ref: '26'
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    overlapping_relations:
+      - id: 10752235
+        name: From the City to the Wilderness
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+    slug: trail-26
+    osm_way_ids:
+      - 101403883
+      - 137281068
+      - 371415127
+      - 776369509
   - name: Trail 12
     osm_names:
       - Trail 12
@@ -9860,6 +9898,40 @@ bike_paths:
       - 1008667224
       - 1245398407
       - 1245398408
+  - name: 'Piste #35'
+    osm_names:
+      - 'Piste #35'
+    anchors:
+      - - -75.816986
+        - 45.4688841
+      - - -75.8120889
+        - 45.472483
+    name_en: Trail 35
+    surface: ground
+    width: '2'
+    highway: path
+    mtb:scale: '2'
+    bicycle: designated
+    ref: '35'
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    overlapping_relations:
+      - id: 10752235
+        name: From the City to the Wilderness
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+      - id: 10752245
+        name: A Prime Minister's Backyard
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+    slug: piste-35
+    osm_way_ids:
+      - 41411191
   - name: Jack Pine Trail
     osm_names:
       - Jack Pine Trail
@@ -10012,6 +10084,29 @@ bike_paths:
       - 526261486
       - 526261487
       - 526261488
+  - name: Trail 50
+    osm_names:
+      - Trail 50
+    anchors:
+      - - -75.9039558
+        - 45.5672289
+      - - -75.885638
+        - 45.5723603
+    name_en: Trail 50
+    surface: ground
+    segregated: 'no'
+    highway: path
+    bicycle: designated
+    ref: '50'
+    foot: designated
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    mtb: true
+    type: destination
+    slug: trail-50
+    osm_way_ids:
+      - 80371938
+      - 229841896
   - name: Marianne Wilkinson Bridge
     osm_names:
       - Marianne Wilkinson Bridge
@@ -10071,6 +10166,27 @@ bike_paths:
       - 746703105
       - 749670981
       - 1301542728
+  - name: 'Trail #33'
+    osm_names:
+      - 'Trail #33'
+    anchors:
+      - - -75.9191572
+        - 45.5212935
+      - - -75.9133243
+        - 45.5284488
+    surface: ground
+    highway: path
+    mtb:scale: '2'
+    bicycle: designated
+    ref: '33'
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    slug: trail-33
+    osm_way_ids:
+      - 101403292
   - name: '#79B'
     osm_names:
       - '#79B'
@@ -10091,6 +10207,34 @@ bike_paths:
     slug: 79b
     osm_way_ids:
       - 101403578
+  - name: 'Trail #2'
+    osm_names:
+      - 'Trail #2'
+    anchors:
+      - - -75.9173211
+        - 45.5141058
+      - - -75.9124752
+        - 45.5212935
+    surface: gravel
+    lit: 'no'
+    highway: path
+    mtb:scale: '2'
+    bicycle: designated
+    ref: '2'
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    overlapping_relations:
+      - id: 10752247
+        name: The Heart of the Network
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+    slug: trail-2
+    osm_way_ids:
+      - 101403839
   - name: Moore Farm Estate Pathway
     osm_names:
       - Moore Farm Estate Pathway
@@ -10152,6 +10296,32 @@ bike_paths:
     slug: greenbelt-trail
     osm_way_ids:
       - 143670795
+  - name: 'Trail #40'
+    osm_names:
+      - 'Trail #40'
+    anchors:
+      - - -75.9234036
+        - 45.5274735
+      - - -75.8995751
+        - 45.5369834
+    surface: ground
+    lit: 'no'
+    incline: down
+    highway: path
+    mtb:scale: '2'
+    bicycle: designated
+    ref: '40'
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    slug: trail-40
+    osm_way_ids:
+      - 151174864
+      - 543406582
+      - 636971738
+      - 636971740
   - name: Rotary Centennial Trail
     osm_names:
       - Rotary Centennial Trail
@@ -10166,7 +10336,7 @@ bike_paths:
     bicycle: designated
     foot: designated
     path_type: trail
-    member_of: rotary-centennial-trail-trails
+    member_of: st-james-woods-trails
     type: destination
     slug: rotary-centennial-trail
     osm_way_ids:
@@ -10709,6 +10879,27 @@ bike_paths:
     osm_way_ids:
       - 190284534
       - 280873360
+  - name: 'Sentier/Trail #1'
+    osm_names:
+      - 'Sentier/Trail #1'
+    anchors:
+      - - -75.8166134
+        - 45.5016415
+      - - -75.8124556
+        - 45.5059189
+    surface: fine_gravel
+    smoothness: intermediate
+    width: '1.5'
+    highway: path
+    bicycle: designated
+    foot: designated
+    path_type: trail
+    member_of: parc-de-la-gatineau
+    type: infrastructure
+    slug: sentiertrail-1
+    osm_way_ids:
+      - 190367377
+      - 190910771
   - name: Trail 72
     osm_names:
       - Trail 72
@@ -10762,7 +10953,7 @@ bike_paths:
     bicycle: designated
     foot: 'yes'
     path_type: trail
-    member_of: rotary-centennial-trail-trails
+    member_of: st-james-woods-trails
     type: infrastructure
     slug: mississippi-riverwalk-trail
     osm_way_ids:
@@ -10834,6 +11025,28 @@ bike_paths:
     slug: chemin-cowden
     osm_way_ids:
       - 249442373
+  - name: 'Trail #24'
+    osm_names:
+      - 'Trail #24'
+    anchors:
+      - - -75.930827
+        - 45.5206133
+      - - -75.9189272
+        - 45.5265359
+    surface: ground
+    smoothness: very_bad
+    highway: path
+    mtb:scale: '1'
+    bicycle: designated
+    ref: '24'
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    slug: trail-24-1
+    osm_way_ids:
+      - 278994273
   - name: Piste 9
     osm_names:
       - Piste 9
@@ -10858,6 +11071,36 @@ bike_paths:
     slug: piste-9
     osm_way_ids:
       - 278995440
+  - name: 'Trail #1B'
+    osm_names:
+      - 'Trail #1B'
+    anchors:
+      - - -75.9124752
+        - 45.5104357
+      - - -75.9099314
+        - 45.5191981
+    surface: ground
+    smoothness: very_bad
+    width: '1.5'
+    lit: 'no'
+    highway: path
+    mtb:scale: '1'
+    bicycle: designated
+    ref: 1B
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    overlapping_relations:
+      - id: 10752247
+        name: The Heart of the Network
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+    slug: trail-1b
+    osm_way_ids:
+      - 278999360
   - name: '# 76 (Skyridge)'
     osm_names:
       - '# 76 (Skyridge)'
@@ -10917,6 +11160,30 @@ bike_paths:
     slug: linear-park
     osm_way_ids:
       - 284745664
+  - name: 'Trail #3'
+    osm_names:
+      - 'Trail #3'
+    anchors:
+      - - -75.9041018
+        - 45.5056662
+      - - -75.87127
+        - 45.5186529
+    surface: gravel
+    highway: path
+    mtb:scale: '2'
+    bicycle: designated
+    ref: '3'
+    foot: designated
+    name_en: Trail 3
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    slug: trail-3
+    osm_way_ids:
+      - 295313587
+      - 636425417
+      - 636602417
   - name: Moe Anderson Trail
     osm_names:
       - Moe Anderson Trail
@@ -10939,6 +11206,42 @@ bike_paths:
     slug: moe-anderson-trail
     osm_way_ids:
       - 315039301
+  - name: 'Trail #1 Ridge Road'
+    osm_names:
+      - 'Trail #1 Ridge Road'
+    anchors:
+      - - -75.995643
+        - 45.4998209
+      - - -75.8604502
+        - 45.5443893
+    name_fr: Chemin Ridge
+    name_en: Ridge Road
+    surface: gravel
+    smoothness: intermediate
+    width: '3'
+    lit: 'no'
+    highway: path
+    mtb:scale: '1'
+    bicycle: designated
+    network: mtb
+    ref: '1'
+    foot: designated
+    mtb: true
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    type: destination
+    overlapping_relations:
+      - id: 10752247
+        name: The Heart of the Network
+        route: piste
+        operator: NCC
+        network: Gatineau Park Ski Routes
+    slug: trail-1-ridge-road
+    osm_way_ids:
+      - 323062271
+      - 671385211
+      - 776370202
+      - 776370203
   - name: Trail 14
     osm_names:
       - Trail 14
@@ -11681,7 +11984,7 @@ bike_paths:
     slug: 72b-irish-whiskey
     osm_way_ids:
       - 759052923
-  - name: No Exit
+  - name: Carp Barrens Trail
     osm_names:
       - Carp Barrens Trail
       - No Exit
@@ -11699,7 +12002,7 @@ bike_paths:
     path_type: mtb-trail
     mtb: true
     type: destination
-    slug: no-exit
+    slug: carp-barrens-trail
     osm_way_ids:
       - 802052756
       - 802052775
@@ -22125,7 +22428,7 @@ bike_paths:
       - 942674693
       - 942863940
       - 942863956
-  - name: Rue Marston
+  - name: Rue Isidore-Ostiguy
     osm_names:
       - Rue Isidore-Ostiguy
       - Rue Marston
@@ -22138,7 +22441,7 @@ bike_paths:
     path_type: mtb-trail
     mtb: true
     type: connector
-    slug: rue-marston
+    slug: rue-isidore-ostiguy
     osm_way_ids:
       - 942863961
       - 947538258
@@ -23044,7 +23347,7 @@ bike_paths:
     bicycle: 'yes'
     path_type: mtb-trail
     mtb: true
-    member_of: rotary-centennial-trail-trails
+    member_of: st-james-woods-trails
     type: destination
     slug: st-james-woods
     osm_way_ids:
@@ -25747,179 +26050,6 @@ bike_paths:
     path_type: mup
     type: connector
     slug: rue-de-la-fregate
-  - name: Parc de la Gatineau
-    type: network
-    anchors:
-      - - -76.0202864
-        - 45.4471744
-      - - -75.7645085
-        - 45.631685
-    osm_names:
-      - Sentier vélo de Montagne - Parc de la Gatineau
-      - Trail 57
-      - '#45 (Powerline)'
-      - '#44 (M.O.)'
-      - 'Trail #54'
-      - 'Trail #52 Parc de la Gatineau Pathway'
-      - Trail 47
-      - '#79B'
-      - Trail 74
-      - Trail 7
-      - Trail 72
-      - Trail 65
-      - 'Trail #1'
-      - Trail 71
-      - Chemin Cowden
-      - Piste 9
-      - '# 76 (Skyridge)'
-      - Trail 14
-      - '#79 (Brésilienne)'
-      - Trail 66
-      - '# 68 (Missing Link)'
-      - Trail 68
-      - '32'
-      - '#72B (Irish Cream)'
-      - '#72B (Irish Whiskey)'
-      - '# 76 (Jesse''s Girl)'
-      - M.O.
-      - Sentier des Loups
-      - Trail 73
-      - Sentier des Caryers - Hickory Trail
-      - O'Brien Beach Path
-      - Piste 60 (Raquette)
-      - Trail 38
-      - 'Sentier/Trail #8'
-      - Trail 28
-      - Trail 18
-      - Hermit
-      - 'Trail #9'
-      - Piste 12
-      - H.A.T.
-      - Piste 31
-      - Trail 20
-      - '#41 (de la Mine)'
-      - Trail 22
-      - Bypass
-      - 'Sentier/Trail #17'
-      - Snowshoe Trail 61
-      - Sentier Horizon
-      - Trail 34
-      - Sentier de la Chute-de-Luskville
-      - Whale
-      - '#78 (Monique)'
-      - La Chica
-      - '# 77 (Happy Valley)'
-      - '10'
-      - 'Sentier / Trail #11'
-      - Trail 67
-      - Trail 36b
-      - Carman Lake Lookout Trail
-      - Trail 19
-      - Trail 54, 73
-      - Gay Beach Trail
-      - Trail 22B
-      - '#53B (Bench)'
-      - '# 58 (Konnektor)'
-      - '#58 (Glazer)'
-      - Cross Over
-      - '# 59 (Moonshine)'
-      - '#43 (Boréale)'
-      - Sentier 52 du Parc de la Gatineau Parkway
-      - Trail to Fire Tower
-      - The Sweet Line
-      - Foreplay
-      - Chemin Cafferty
-    surface: ground
-    highway: path
-    lit: 'no'
-    width: '1'
-    smoothness: very_bad
-    network: mtb
-    members:
-      - sentier-velo-de-montagne-parc-de-la-gatineau
-      - trail-57
-      - 45-powerline
-      - 44-mo
-      - trail-54
-      - trail-52-parc-de-la-gatineau-pathway
-      - trail-47
-      - 79b
-      - trail-74
-      - trail-7
-      - trail-72
-      - trail-65
-      - trail-71
-      - chemin-cowden
-      - piste-9
-      - 76-skyridge
-      - trail-14
-      - 79-bresilienne
-      - trail-66
-      - 68-missing-link
-      - trail-68
-      - 72b-irish-cream
-      - 72b-irish-whiskey
-      - 76-jesses-girl
-      - mo
-      - sentier-des-loups
-      - trail-73
-      - sentier-des-caryers-hickory-trail
-      - obrien-beach-path
-      - piste-60-raquette
-      - trail-38
-      - sentiertrail-8
-      - trail-28
-      - trail-18
-      - hermit
-      - trail-9
-      - piste-12
-      - hat
-      - piste-31
-      - trail-20-1
-      - 41-de-la-mine
-      - trail-22
-      - bypass
-      - sentiertrail-17
-      - snowshoe-trail-61
-      - sentier-horizon
-      - trail-34
-      - sentier-de-la-chute-de-luskville
-      - whale
-      - 78-monique
-      - la-chica
-      - 77-happy-valley
-      - '10'
-      - sentier-trail-11
-      - trail-67
-      - trail-36b
-      - carman-lake-lookout-trail
-      - trail-19
-      - trail-54-73
-      - gay-beach-trail
-      - trail-22b
-      - 53b-bench
-      - 58-konnektor
-      - 58-glazer
-      - cross-over
-      - 59-moonshine
-      - 43-boreale
-      - sentier-52-du-parc-de-la-gatineau-parkway
-      - trail-to-fire-tower
-      - the-sweet-line
-      - foreplay
-      - chemin-cafferty
-      - sentier-du-parc-de-la-gatineau
-      - salamander
-      - trail-27
-      - '54'
-      - chemin-de-ste-cecile-de-masham
-      - chemin-kingsmere
-      - chemin-du-lac-meech
-      - trail-70
-    mtb: true
-    super_network: capital-pathway
-    slug: parc-de-la-gatineau
-    park: Parc de la Gatineau
   - name: NCC Greenbelt
     type: network
     anchors:
@@ -25983,7 +26113,7 @@ bike_paths:
       - trail-25
       - chipmunk-trail
       - beaver-trail
-      - trail-26
+      - trail-26-1
       - trail-12
       - jack-pine-trail
       - lime-kiln-trail
@@ -26036,6 +26166,210 @@ bike_paths:
     super_network: capital-pathway
     slug: ncc-greenbelt
     park: NCC Greenbelt
+  - name: Parc de la Gatineau
+    type: network
+    anchors:
+      - - -76.049404
+        - 45.4471744
+      - - -75.7645085
+        - 45.6433735
+    osm_names:
+      - 'Trail #52'
+      - Trail 57
+      - 'Sentier / Trail #51'
+      - 'Trail #53'
+      - 'Trail #54'
+      - 'Trail #55'
+      - 'Trail #52 Parc de la Gatineau Pathway'
+      - Trail 74
+      - Trail 72
+      - Trail 71
+      - '#72B (Irish Cream)'
+      - '#72B (Irish Whiskey)'
+      - Trail 73
+      - Carman Lake Lookout Trail
+      - Trail 54, 73
+      - '#53B (Bench)'
+      - '# 58 (Konnektor)'
+      - '#58 (Glazer)'
+      - Cross Over
+      - '# 59 (Moonshine)'
+      - Sentier 52 du Parc de la Gatineau Parkway
+      - The Sweet Line
+      - Chemin Cafferty
+      - Piste 25
+      - Trail 26
+      - 'Piste #35'
+      - 'Trail #33'
+      - '#79B'
+      - 'Trail #2'
+      - 'Trail #40'
+      - Trail 7
+      - 'Sentier/Trail #1'
+      - Trail 65
+      - 'Trail #1'
+      - 'Trail #24'
+      - Piste 9
+      - 'Trail #1B'
+      - '# 76 (Skyridge)'
+      - 'Trail #3'
+      - 'Trail #1 Ridge Road'
+      - Trail 14
+      - '#79 (Brésilienne)'
+      - Trail 66
+      - '# 68 (Missing Link)'
+      - Trail 68
+      - '32'
+      - '# 76 (Jesse''s Girl)'
+      - Sentier des Loups
+      - Sentier des Caryers - Hickory Trail
+      - Piste 60 (Raquette)
+      - Trail 38
+      - 'Sentier/Trail #8'
+      - Trail 28
+      - Trail 18
+      - Hermit
+      - 'Trail #9'
+      - Piste 12
+      - Piste 31
+      - Trail 20
+      - '#41 (de la Mine)'
+      - Trail 22
+      - 'Sentier/Trail #17'
+      - Snowshoe Trail 61
+      - Sentier Horizon
+      - Trail 34
+      - Sentier de la Chute-de-Luskville
+      - Whale
+      - '#78 (Monique)'
+      - La Chica
+      - '# 77 (Happy Valley)'
+      - '10'
+      - 'Sentier / Trail #11'
+      - Trail 67
+      - Trail 19
+      - Trail 22B
+      - '#43 (Boréale)'
+      - Trail to Fire Tower
+      - '#45 (Powerline)'
+      - '#44 (M.O.)'
+      - Trail 47
+      - Trail 50
+      - Chemin Cowden
+      - M.O.
+      - O'Brien Beach Path
+      - H.A.T.
+      - Bypass
+      - Trail 36b
+      - Gay Beach Trail
+      - Foreplay
+    surface: ground
+    highway: path
+    lit: 'no'
+    width: '1'
+    smoothness: very_bad
+    network: mtb
+    members:
+      - trail-52
+      - trail-57
+      - sentier-trail-51
+      - trail-53
+      - trail-54
+      - trail-55
+      - trail-52-parc-de-la-gatineau-pathway
+      - trail-74
+      - trail-72
+      - trail-71
+      - 72b-irish-cream
+      - 72b-irish-whiskey
+      - trail-73
+      - carman-lake-lookout-trail
+      - trail-54-73
+      - 53b-bench
+      - 58-konnektor
+      - 58-glazer
+      - cross-over
+      - 59-moonshine
+      - sentier-52-du-parc-de-la-gatineau-parkway
+      - the-sweet-line
+      - chemin-cafferty
+      - piste-25
+      - trail-26
+      - piste-35
+      - trail-33
+      - 79b
+      - trail-2
+      - trail-40
+      - trail-7
+      - sentiertrail-1
+      - trail-65
+      - trail-24-1
+      - piste-9
+      - trail-1b
+      - 76-skyridge
+      - trail-3
+      - trail-1-ridge-road
+      - trail-14
+      - 79-bresilienne
+      - trail-66
+      - 68-missing-link
+      - trail-68
+      - 76-jesses-girl
+      - sentier-des-loups
+      - sentier-des-caryers-hickory-trail
+      - piste-60-raquette
+      - trail-38
+      - sentiertrail-8
+      - trail-28
+      - trail-18
+      - hermit
+      - trail-9
+      - piste-12
+      - piste-31
+      - trail-20-1
+      - 41-de-la-mine
+      - trail-22
+      - sentiertrail-17
+      - snowshoe-trail-61
+      - sentier-horizon
+      - trail-34
+      - sentier-de-la-chute-de-luskville
+      - whale
+      - 78-monique
+      - la-chica
+      - 77-happy-valley
+      - '10'
+      - sentier-trail-11
+      - trail-67
+      - trail-19
+      - trail-22b
+      - 43-boreale
+      - trail-to-fire-tower
+      - 45-powerline
+      - 44-mo
+      - trail-47
+      - trail-50
+      - chemin-cowden
+      - mo
+      - obrien-beach-path
+      - hat
+      - bypass
+      - trail-36b
+      - gay-beach-trail
+      - foreplay
+      - sentier-du-parc-de-la-gatineau
+      - salamander
+      - trail-27
+      - '54'
+      - trail-56b
+      - chemin-de-ste-cecile-de-masham
+      - chemin-kingsmere
+      - chemin-du-lac-meech
+      - trail-70
+    mtb: true
+    super_network: capital-pathway
+    slug: parc-de-la-gatineau
+    park: Parc de la Gatineau
   - name: Kizell Pond Trail North Trails
     type: network
     anchors:
@@ -26170,7 +26504,7 @@ bike_paths:
     mtb: true
     slug: monk-environmental-park
     park: Monk Environmental Park
-  - name: Rotary Centennial Trail Trails
+  - name: St. James Woods Trails
     type: network
     anchors:
       - - -76.158343
@@ -26187,7 +26521,7 @@ bike_paths:
       - rotary-centennial-trail
       - mississippi-riverwalk-trail
       - st-james-woods
-    slug: rotary-centennial-trail-trails
+    slug: st-james-woods-trails
   - name: La Boucle Trails
     type: network
     anchors:
@@ -26408,35 +26742,16 @@ bike_paths:
       - trans-canada-trail-sussex-drive
       - trillium-pathway
     slug: capital-pathway
-  - name: Crosstown Bikeway 2
-    type: network
-    osm_relations:
-      - 10986224
-    network: lcn
-    cycle_network: CA:ON:Ottawa
-    members:
-      - laurier-segregated-bikelane
-      - eastwest-crosstown-bikeway
-      - crosstown-bikeway-2-1
-    slug: crosstown-bikeway-2
-  - name: Crosstown Bikeway 5
-    type: network
-    osm_relations:
-      - 10986756
-    network: lcn
-    cycle_network: CA:ON:Ottawa
-    members:
-      - oconnor-bikeway
-      - crosstown-bikeway-5-1
-    slug: crosstown-bikeway-5
   - name: Ottawa Bikeways
     type: network
     cycle_network: CA:ON:Ottawa
     members:
       - oconnor-bikeway
       - crosstown-bikeway-3
-      - crosstown-bikeway-2-1
-      - crosstown-bikeway-5-1
+      - crosstown-bikeway-2
+      - crosstown-bikeway-5
+      - laurier-segregated-bikelane
+      - eastwest-crosstown-bikeway
     slug: ottawa-bikeways
   - name: CheminDuQuébec - 5 - St-Jean--Farnham
     osm_relations:
@@ -26741,9 +27056,5 @@ super_networks:
     operator: NCC
     name_fr: Sentier de la capitale
     slug: capital-pathway
-  - name: Crosstown Bikeway 2
-    slug: crosstown-bikeway-2
-  - name: Crosstown Bikeway 5
-    slug: crosstown-bikeway-5
   - name: Ottawa Bikeways
     slug: ottawa-bikeways
