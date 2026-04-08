@@ -363,6 +363,7 @@ bike_paths:
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
     slug: sentier-du-ruisseau-leamy
     osm_way_ids:
       - 34317299
@@ -464,6 +465,7 @@ bike_paths:
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
     super_network: capital-pathway
     slug: sentier-du-parc-de-la-gatineau
     osm_way_ids:
@@ -554,16 +556,19 @@ bike_paths:
         route: hiking
         operator: Parc national du Mont Orford SEPAQ
         network: nwn
+        website: https://www.lessentiersdelestrie.qc.ca/sentiers/orford.html
       - id: 1282500
         name: Sentier de l'Estrie, Zone Richmond
         route: hiking
         operator: Les Sentiers de l'Estrie inc.
         network: nwn
+        website: https://www.lessentiersdelestrie.qc.ca/sentiers/richmond.html
       - id: 1299034
         name: Sentier de l'Estrie, Zone Orford, Accès
         route: hiking
         operator: Parc national du Mont Orford SEPAQ
         network: nwn
+        website: https://www.lessentiersdelestrie.qc.ca/sentiers/orford.html
       - id: 14406008
         name: Circuit d'entrainement
         route: piste
@@ -573,6 +578,7 @@ bike_paths:
         route: hiking
         operator: Sentier national Bas-Saint-Laurent
         network: lwn
+        website: http://sentiernationalbsl.com/
       - id: 9318807
         name: SIA, 3-Haute Gaspésie
         route: hiking
@@ -3988,16 +3994,19 @@ bike_paths:
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
       - id: 10752245
         name: A Prime Minister's Backyard
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
       - id: 10752247
         name: The Heart of the Network
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
       - id: 11867879
         name: Confederation Boulevard
         route: foot
@@ -4844,6 +4853,7 @@ bike_paths:
       - id: 12165309
         name: Ski Heritage East Trail
         route: piste
+        website: https://www.skiheritageeast.ca/
     member_of: capital-pathway
     slug: ottawa-river-pathway-east
     osm_way_ids:
@@ -4948,6 +4958,7 @@ bike_paths:
         name: Ottawa West Winter Trail
         route: piste
         operator: Kanata Nordic
+        website: https://owwt.wordpress.com/
     super_network: capital-pathway
     slug: watts-creek-pathway
     osm_way_ids:
@@ -5011,6 +5022,7 @@ bike_paths:
       - id: 12162594
         name: Kichi Sibi Winter Trail
         route: piste
+        website: https://www.wintertrail.ca/
     member_of: capital-pathway
     slug: trillium-pathway
     osm_way_ids:
@@ -5308,6 +5320,7 @@ bike_paths:
       - id: 12138512
         name: Britannia Winter Trail
         route: piste
+        website: https://www.facebook.com/BritanniaWinterTrail
     member_of: capital-pathway
     slug: pinecrest-creek-pathway
     osm_way_ids:
@@ -5556,6 +5569,7 @@ bike_paths:
         name: Ottawa West Winter Trail
         route: piste
         operator: Kanata Nordic
+        website: https://owwt.wordpress.com/
     super_network: capital-pathway
     slug: greenbelt-pathway-west
     osm_way_ids:
@@ -5689,6 +5703,7 @@ bike_paths:
       - id: 12161928
         name: Rideau Winter Trail
         route: piste
+        website: https://www.rideauwintertrail.ca/
     member_of: capital-pathway
     slug: rideau-river-eastern-pathway
     osm_way_ids:
@@ -5838,6 +5853,7 @@ bike_paths:
       - id: 12165309
         name: Ski Heritage East Trail
         route: piste
+        website: https://www.skiheritageeast.ca/
     super_network: capital-pathway
     slug: greenbelt-pathway-east
     osm_way_ids:
@@ -6083,6 +6099,7 @@ bike_paths:
         name: Ottawa West Winter Trail
         route: piste
         operator: Kanata Nordic
+        website: https://owwt.wordpress.com/
     super_network: trans-canada-trail-ottawa-area
     slug: trans-canada-trail-bells-cornerswatts-creek
     osm_way_ids:
@@ -6564,9 +6581,11 @@ bike_paths:
       - id: 12138512
         name: Britannia Winter Trail
         route: piste
+        website: https://www.facebook.com/BritanniaWinterTrail
       - id: 12162594
         name: Kichi Sibi Winter Trail
         route: piste
+        website: https://www.wintertrail.ca/
     super_network: capital-pathway
     slug: ottawa-river-pathway-trans-canada-trail
     osm_way_ids:
@@ -9864,6 +9883,7 @@ bike_paths:
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
     slug: trail-26
     osm_way_ids:
       - 101403883
@@ -9924,11 +9944,13 @@ bike_paths:
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
       - id: 10752245
         name: A Prime Minister's Backyard
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
     slug: piste-35
     osm_way_ids:
       - 41411191
@@ -10232,6 +10254,7 @@ bike_paths:
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
     slug: trail-2
     osm_way_ids:
       - 101403839
@@ -10875,6 +10898,7 @@ bike_paths:
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
     slug: trail-7
     osm_way_ids:
       - 190284534
@@ -11098,6 +11122,7 @@ bike_paths:
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
     slug: trail-1b
     osm_way_ids:
       - 278999360
@@ -11236,6 +11261,7 @@ bike_paths:
         route: piste
         operator: NCC
         network: Gatineau Park Ski Routes
+        website: https://ncc-ccn.gc.ca/places/ski-conditions
     slug: trail-1-ridge-road
     osm_way_ids:
       - 323062271
@@ -14489,6 +14515,7 @@ bike_paths:
         - Q537127
       social: []
       operator: National Capital Commission
+      operator_website: http://www.ncc-ccn.gc.ca
       wikipedia_extract_en: "The Champlain Bridge crosses the Ottawa River about 5\_km (3.1\_mi) west of Parliament Hill, joining the communities of Ottawa, Ontario and Gatineau, Quebec. It is the westernmost link between the two cities."
       wikipedia_extract_fr: "Le Pont Champlain est un pont qui traverse la rivière des Outaouais à environ 5\_km à l'ouest de la Colline du Parlement reliant les villes de Gatineau, au Québec et la capitale canadienne d'Ottawa, en Ontario. Il est le plus à l'ouest des 5 ponts qui relient ces deux villes."
     type: infrastructure
@@ -22791,6 +22818,7 @@ bike_paths:
       - id: 12161928
         name: Rideau Winter Trail
         route: piste
+        website: https://www.rideauwintertrail.ca/
     slug: springhurst-park
     osm_way_ids:
       - 4059946
@@ -23117,6 +23145,7 @@ bike_paths:
       - id: 12162594
         name: Kichi Sibi Winter Trail
         route: piste
+        website: https://www.wintertrail.ca/
     slug: workman-avenue
     osm_way_ids:
       - 44227076
@@ -26719,6 +26748,7 @@ bike_paths:
           username: bikeinottawa
           url: https://www.reddit.com/r/bikeinottawa
       operator: National Capital Commission
+      operator_website: http://www.ncc-ccn.gc.ca
       wikipedia_extract_en: "The Capital Pathway, also known informally as the Bike Path, is a 220-kilometre (140\_mi) recreational pathway interlinking many parks, waterways and sites in Ottawa, Ontario and Gatineau, Quebec. Most of the pathway is paved, and allows an almost continuous route through the National Capital Region."
     members:
       - sentier-des-voyageurs-pathway
