@@ -1,3 +1,3 @@
 ---
-member_of: ottawa-river-pathway
+member_of: capital-pathway
 ---

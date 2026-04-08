@@ -12,20 +12,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 74
-      - value: wood
-        km: 5
-      - value: paving_stones
-        km: 2
-      - value: concrete
-        km: 1
     lit_mix:
       - value: 'no'
-        km: 36
+        km: 15
       - value: 'yes'
-        km: 12
+        km: 4
     anchors:
       - - -75.8729741
         - 45.379769
@@ -115,6 +106,7 @@ bike_paths:
       - 1271825888
       - 1272745793
       - 1273475815
+      - 1355842002
       - 1442936857
       - 1443195668
       - 1443195669
@@ -173,13 +165,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 18
-      - value: wood
-        km: 2
-      - value: paving_stones
-        km: 1
     anchors:
       - - -75.72988
         - 45.4245687
@@ -232,18 +217,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 42
-      - value: paving_stones
-        km: 5
-      - value: concrete
-        km: 2
     lit_mix:
-      - value: 'yes'
-        km: 23
       - value: 'no'
         km: 9
+      - value: 'yes'
+        km: 2
     anchors:
       - - -75.8672581
         - 45.4084931
@@ -372,11 +350,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 22
-      - value: wood
-        km: 1
     anchors:
       - - -75.7871841
         - 45.4641933
@@ -431,16 +404,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 19
-      - value: wood
-        km: 1
-    lit_mix:
-      - value: 'no'
-        km: 15
-      - value: 'yes'
-        km: 1
     anchors:
       - - -75.7364732
         - 45.4542123
@@ -545,38 +508,28 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: asphalt
-        km: 1889
+        km: 1077
       - value: paved
-        km: 525
+        km: 404
       - value: fine_gravel
-        km: 129
+        km: 232
       - value: gravel
-        km: 94
+        km: 85
       - value: unpaved
-        km: 64
-      - value: concrete
-        km: 38
-      - value: wood
-        km: 30
-      - value: paving_stones
-        km: 21
+        km: 66
       - value: compacted
-        km: 19
-      - value: metal
+        km: 20
+      - value: concrete
         km: 4
-      - value: ground
-        km: 2
-      - value: sett
-        km: 1
-      - value: grass_paver
+      - value: wood
         km: 1
       - value: dirt
         km: 1
     lit_mix:
-      - value: 'yes'
-        km: 239
       - value: 'no'
-        km: 75
+        km: 53
+      - value: 'yes'
+        km: 43
     anchors:
       - - -75.4976917
         - 45.5214507
@@ -588,6 +541,12 @@ bike_paths:
     wikidata_meta:
       description_fr: route cyclable au Québec (Canada)
       inception: '2007'
+      commons_image: Route verte 1.JPG
+      commons_category: Route verte 1
+      instance_of:
+        - Q353027
+      social: []
+      wikipedia_extract_fr: La Route Verte 1 est un itinéraire cyclable du réseau québécois de la Route Verte. L'axe longe de Gatineau à Gaspé en passant par Montréal, Longueuil, Saint-Jean-sur-Richelieu, Granby, Magog, Sherbrooke, Victoriaville, Lévis, Rivière-du-Loup, Rimouski et Carleton-sur-Mer.
     type: long-distance
     overlapping_relations:
       - id: 1279273
@@ -3850,13 +3809,11 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: fine_gravel
-        km: 16
+        km: 81
       - value: asphalt
-        km: 8
+        km: 14
       - value: unpaved
-        km: 8
-      - value: wood
-        km: 2
+        km: 3
     path_type: trail
     type: long-distance
     slug: cycloparc-ppj
@@ -3913,11 +3870,9 @@ bike_paths:
     bicycle: designated
     surface_mix:
       - value: paved
-        km: 14
+        km: 30
       - value: asphalt
-        km: 12
-      - value: wood
-        km: 1
+        km: 11
     path_type: mup
     type: long-distance
     slug: le-tour-des-plages
@@ -3999,34 +3954,26 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: asphalt
-        km: 531
+        km: 301
       - value: compacted
-        km: 41
+        km: 43
       - value: paved
-        km: 26
-      - value: wood
-        km: 22
-      - value: ground
-        km: 18
-      - value: unpaved
-        km: 13
-      - value: gravel
-        km: 11
-      - value: concrete
-        km: 7
+        km: 39
       - value: fine_gravel
-        km: 6
-      - value: paving_stones
+        km: 33
+      - value: unpaved
+        km: 26
+      - value: ground
+        km: 26
+      - value: gravel
+        km: 19
+      - value: wood
         km: 2
-      - value: pebblestone
-        km: 1
-      - value: metal
-        km: 1
     lit_mix:
       - value: 'no'
-        km: 49
+        km: 85
       - value: 'yes'
-        km: 9
+        km: 1
     anchors:
       - - -75.9041589
         - 45.5272457
@@ -4779,16 +4726,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 12
-      - value: wood
-        km: 1
-    lit_mix:
-      - value: 'no'
-        km: 4
-      - value: 'yes'
-        km: 4
     anchors:
       - - -75.753363
         - 45.4239564
@@ -4885,15 +4822,11 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: ground
-        km: 45
+        km: 51
       - value: gravel
-        km: 28
-      - value: wood
-        km: 8
+        km: 36
       - value: fine_gravel
-        km: 3
-      - value: asphalt
-        km: 1
+        km: 4
     anchors:
       - - -75.9234036
         - 45.5274735
@@ -5036,18 +4969,14 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: asphalt
-        km: 53
+        km: 17
       - value: fine_gravel
-        km: 9
-      - value: wood
-        km: 1
-      - value: concrete
-        km: 1
+        km: 6
     lit_mix:
       - value: 'no'
-        km: 37
+        km: 20
       - value: 'yes'
-        km: 10
+        km: 2
     anchors:
       - - -75.6887549
         - 45.4460476
@@ -5055,13 +4984,17 @@ bike_paths:
         - 45.4972344
     path_type: mup
     type: destination
-    member_of: ottawa-river-pathway
-    super_network: capital-pathway
+    overlapping_relations:
+      - id: 12165309
+        name: Ski Heritage East Trail
+        route: piste
+    member_of: capital-pathway
     slug: ottawa-river-pathway-east
     osm_way_ids:
       - 26719847
       - 35555561
       - 35555563
+      - 35555564
       - 76449825
       - 76456158
       - 80205794
@@ -5140,16 +5073,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 25
-      - value: wood
-        km: 3
-    lit_mix:
-      - value: 'no'
-        km: 18
-      - value: 'yes'
-        km: 1
     anchors:
       - - -75.8892601
         - 45.3265621
@@ -5158,6 +5081,17 @@ bike_paths:
     path_type: mup
     member_of: ncc-greenbelt
     type: destination
+    overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
+      - id: 12153548
+        name: Ottawa West Winter Trail
+        route: piste
+        operator: Kanata Nordic
     super_network: capital-pathway
     slug: watts-creek-pathway
     osm_way_ids:
@@ -5165,6 +5099,7 @@ bike_paths:
       - 32856873
       - 55761411
       - 132471938
+      - 167023141
       - 352172679
       - 352172680
       - 435571827
@@ -5182,6 +5117,7 @@ bike_paths:
       - 717272451
       - 717272452
       - 775325810
+      - 793124268
       - 793124269
       - 813439914
       - 996738936
@@ -5208,11 +5144,6 @@ bike_paths:
     mtb:scale: '0'
     bicycle: designated
     foot: designated
-    lit_mix:
-      - value: 'yes'
-        km: 16
-      - value: 'no'
-        km: 3
     anchors:
       - - -75.7249039
         - 45.3961412
@@ -5220,6 +5151,10 @@ bike_paths:
         - 45.4117816
     path_type: mup
     type: destination
+    overlapping_relations:
+      - id: 12162594
+        name: Kichi Sibi Winter Trail
+        route: piste
     member_of: capital-pathway
     slug: trillium-pathway
     osm_way_ids:
@@ -5328,20 +5263,11 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 20
-      - value: concrete
-        km: 6
-      - value: paving_stones
-        km: 2
-      - value: wood
-        km: 1
     lit_mix:
       - value: 'yes'
-        km: 21
+        km: 7
       - value: 'no'
-        km: 4
+        km: 1
     anchors:
       - - -75.7068065
         - 45.3840285
@@ -5397,9 +5323,9 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: asphalt
-        km: 11
+        km: 8
       - value: concrete
-        km: 2
+        km: 1
     anchors:
       - - -75.6984672
         - 45.3698546
@@ -5440,18 +5366,11 @@ bike_paths:
     highway: cycleway
     bicycle: 'yes'
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 42
-      - value: fine_gravel
-        km: 1
-      - value: concrete
-        km: 1
     lit_mix:
       - value: 'no'
-        km: 11
+        km: 6
       - value: 'yes'
-        km: 2
+        km: 1
     anchors:
       - - -75.763713
         - 45.353173
@@ -5523,11 +5442,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 31
-      - value: wood
-        km: 1
     anchors:
       - - -75.7864285
         - 45.3483954
@@ -5535,6 +5449,10 @@ bike_paths:
         - 45.3719227
     path_type: mup
     type: destination
+    overlapping_relations:
+      - id: 12138512
+        name: Britannia Winter Trail
+        route: piste
     member_of: capital-pathway
     slug: pinecrest-creek-pathway
     osm_way_ids:
@@ -5593,11 +5511,6 @@ bike_paths:
     mtb:scale: '0'
     bicycle: designated
     foot: 'no'
-    surface_mix:
-      - value: asphalt
-        km: 141
-      - value: concrete
-        km: 2
     path_type: mup
     type: destination
     member_of: crosstown-bikeway-2
@@ -5766,13 +5679,9 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: fine_gravel
-        km: 20
+        km: 8
       - value: asphalt
-        km: 13
-      - value: unpaved
-        km: 1
-      - value: wood
-        km: 1
+        km: 2
     anchors:
       - - -75.8759034
         - 45.3196511
@@ -5781,6 +5690,17 @@ bike_paths:
     path_type: trail
     member_of: ncc-greenbelt
     type: destination
+    overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
+      - id: 12153548
+        name: Ottawa West Winter Trail
+        route: piste
+        operator: Kanata Nordic
     super_network: capital-pathway
     slug: greenbelt-pathway-west
     osm_way_ids:
@@ -5818,351 +5738,6 @@ bike_paths:
       - 1284461094
       - 1284461095
       - 1284495146
-  - name: Rideau Trail - Ottawa Section
-    osm_relations:
-      - 7360383
-    operator: Rideau Trail Association
-    network: rwn
-    ref: RTO
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    incline: 0%
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-    tracktype: grade4
-    bicycle: designated
-    foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 146
-      - value: unpaved
-        km: 32
-      - value: ground
-        km: 30
-      - value: fine_gravel
-        km: 14
-      - value: paved
-        km: 12
-      - value: wood
-        km: 11
-      - value: grass
-        km: 4
-      - value: gravel
-        km: 2
-      - value: sand
-        km: 1
-    lit_mix:
-      - value: 'no'
-        km: 87
-      - value: 'yes'
-        km: 19
-    anchors:
-      - - -75.8125194
-        - 45.3519888
-      - - -75.698028
-        - 45.4290479
-    path_type: mup
-    type: long-distance
-    overlapping_relations:
-      - id: 7677697
-        name: RT Lime Kiln Blue Loop
-        route: hiking
-        operator: Rideau Trail
-        network: lwn
-    slug: rideau-trail-ottawa-section
-    osm_way_ids:
-      - 5248455
-      - 24311838
-      - 24311841
-      - 24311853
-      - 31965279
-      - 32856873
-      - 34153604
-      - 34153616
-      - 34153686
-      - 34153873
-      - 34154762
-      - 34155256
-      - 34155272
-      - 35674294
-      - 35674295
-      - 39662612
-      - 41183365
-      - 41216815
-      - 42760121
-      - 42760122
-      - 42806005
-      - 56137837
-      - 67268716
-      - 69604928
-      - 76289708
-      - 76371004
-      - 76371444
-      - 76628022
-      - 76628594
-      - 76628704
-      - 77185254
-      - 83496770
-      - 83496778
-      - 84820869
-      - 84821526
-      - 84821607
-      - 84821964
-      - 84821968
-      - 84821988
-      - 84822005
-      - 84822180
-      - 84822552
-      - 84822767
-      - 84822798
-      - 84822817
-      - 84823048
-      - 84823063
-      - 84823119
-      - 84823123
-      - 84823233
-      - 84830519
-      - 84830567
-      - 87644722
-      - 87644737
-      - 87644761
-      - 87644779
-      - 87644781
-      - 87644785
-      - 87644799
-      - 87644804
-      - 87644820
-      - 87644827
-      - 87644861
-      - 87644865
-      - 87644867
-      - 87644912
-      - 87644929
-      - 87644933
-      - 87644938
-      - 87644960
-      - 87644962
-      - 87645001
-      - 87645014
-      - 94610978
-      - 94610992
-      - 94610995
-      - 107633321
-      - 107633339
-      - 132471938
-      - 137277079
-      - 137277080
-      - 137277084
-      - 155150166
-      - 164125661
-      - 187060116
-      - 196309525
-      - 207117107
-      - 207121441
-      - 225289955
-      - 231835265
-      - 243195731
-      - 275038634
-      - 275038635
-      - 277230913
-      - 300852438
-      - 300852440
-      - 300854269
-      - 300854270
-      - 372978047
-      - 400310665
-      - 435571827
-      - 437772431
-      - 465317945
-      - 486462186
-      - 486462187
-      - 488605282
-      - 489289274
-      - 491823906
-      - 491823908
-      - 491823909
-      - 491823910
-      - 491823911
-      - 491823912
-      - 491823913
-      - 493733922
-      - 499523458
-      - 502980604
-      - 502980605
-      - 502990973
-      - 502990974
-      - 502990977
-      - 503585436
-      - 503624492
-      - 503624495
-      - 503624497
-      - 504076441
-      - 504076447
-      - 504076450
-      - 504076452
-      - 504076455
-      - 504076464
-      - 504076467
-      - 504080024
-      - 504080026
-      - 504080031
-      - 504080033
-      - 504080034
-      - 504080037
-      - 504080041
-      - 504246694
-      - 504246695
-      - 504246709
-      - 504246712
-      - 504246721
-      - 504246723
-      - 504247548
-      - 516689543
-      - 516689544
-      - 523927651
-      - 534715118
-      - 534909663
-      - 546866052
-      - 546866057
-      - 546866059
-      - 546866062
-      - 547533606
-      - 552433274
-      - 552433278
-      - 554922970
-      - 554922972
-      - 554922975
-      - 554922979
-      - 558630898
-      - 558630899
-      - 583485035
-      - 583485036
-      - 585178197
-      - 585178198
-      - 586002331
-      - 586749491
-      - 586749492
-      - 593539705
-      - 595625643
-      - 638799882
-      - 642385755
-      - 642385758
-      - 647120908
-      - 662745283
-      - 662745284
-      - 667307235
-      - 667307236
-      - 681757424
-      - 684883244
-      - 713437184
-      - 720504464
-      - 724724615
-      - 727313421
-      - 727317489
-      - 732804058
-      - 732804060
-      - 741090558
-      - 741090567
-      - 741090591
-      - 741090592
-      - 752137819
-      - 752137820
-      - 755086158
-      - 757733659
-      - 775325810
-      - 827437399
-      - 854088608
-      - 854088609
-      - 854088613
-      - 854088621
-      - 854088622
-      - 892413806
-      - 943631233
-      - 943631234
-      - 986150479
-      - 986150480
-      - 986150490
-      - 986150491
-      - 996738936
-      - 1008667220
-      - 1008667222
-      - 1010007994
-      - 1010007995
-      - 1010007997
-      - 1010007999
-      - 1013864235
-      - 1013864238
-      - 1013864242
-      - 1013864243
-      - 1013864244
-      - 1013864265
-      - 1013864266
-      - 1013864267
-      - 1013864272
-      - 1020717186
-      - 1022980657
-      - 1023801373
-      - 1023801374
-      - 1023801375
-      - 1023801376
-      - 1023801377
-      - 1025327942
-      - 1025327944
-      - 1025327945
-      - 1025327948
-      - 1124879537
-      - 1124879538
-      - 1126128542
-      - 1130736328
-      - 1132948786
-      - 1133538673
-      - 1135492547
-      - 1135492548
-      - 1135492552
-      - 1135492553
-      - 1137375134
-      - 1137375139
-      - 1137375140
-      - 1144841932
-      - 1182359536
-      - 1190646087
-      - 1190646090
-      - 1190646091
-      - 1190646092
-      - 1190646094
-      - 1190646095
-      - 1192176880
-      - 1239912627
-      - 1239912628
-      - 1239979142
-      - 1248305830
-      - 1268244556
-      - 1268244559
-      - 1271623096
-      - 1271623097
-      - 1271832574
-      - 1274215766
-      - 1274215767
-      - 1274215768
-      - 1278571388
-      - 1283023566
-      - 1283023567
-      - 1283023570
-      - 1284432015
-      - 1284432016
-      - 1284454549
-      - 1284454550
-      - 1284461092
-      - 1284461093
-      - 1284461095
-      - 1284495146
-      - 1292916763
-      - 1297746420
-      - 1300117918
-      - 1321653763
   - name: Osgoode Link Pathway
     osm_relations:
       - 7364422
@@ -6180,10 +5755,8 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: fine_gravel
-        km: 10
+        km: 20
       - value: asphalt
-        km: 7
-      - value: concrete
         km: 1
     anchors:
       - - -75.6541333
@@ -6247,9 +5820,9 @@ bike_paths:
     foot: designated
     lit_mix:
       - value: 'no'
-        km: 32
+        km: 8
       - value: 'yes'
-        km: 6
+        km: 1
     anchors:
       - - -75.6972126
         - 45.3707591
@@ -6257,9 +5830,12 @@ bike_paths:
         - 45.4418518
     path_type: mup
     type: destination
+    overlapping_relations:
+      - id: 12161928
+        name: Rideau Winter Trail
+        route: piste
     member_of: capital-pathway
-    super_network: rideau-river-eastern-pathway
-    slug: rideau-river-eastern-pathway-1
+    slug: rideau-river-eastern-pathway
     osm_way_ids:
       - 27695559
       - 43932541
@@ -6340,15 +5916,10 @@ bike_paths:
     highway: footway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 14
-      - value: concrete
-        km: 4
     lit_mix:
-      - value: 'yes'
-        km: 2
       - value: 'no'
+        km: 2
+      - value: 'yes'
         km: 1
     anchors:
       - - -75.6475
@@ -6395,14 +5966,10 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: fine_gravel
-        km: 22
+        km: 12
       - value: asphalt
-        km: 8
-      - value: ground
-        km: 2
-      - value: concrete
         km: 1
-      - value: wood
+      - value: ground
         km: 1
     anchors:
       - - -75.577949
@@ -6412,6 +5979,10 @@ bike_paths:
     path_type: trail
     member_of: ncc-greenbelt
     type: destination
+    overlapping_relations:
+      - id: 12165309
+        name: Ski Heritage East Trail
+        route: piste
     super_network: capital-pathway
     slug: greenbelt-pathway-east
     osm_way_ids:
@@ -6466,13 +6037,6 @@ bike_paths:
     highway: secondary
     bicycle: 'yes'
     foot: 'yes'
-    surface_mix:
-      - value: asphalt
-        km: 54
-      - value: concrete
-        km: 3
-      - value: paving_stones
-        km: 1
     anchors:
       - - -75.699367
         - 45.4263086
@@ -6487,7 +6051,7 @@ bike_paths:
         operator: NCC
         ref: CB
         network: lwn
-    member_of: ottawa-river-pathway
+    member_of: capital-pathway
     slug: trans-canada-trail-sussex-drive
     osm_way_ids:
       - 76419292
@@ -6565,7 +6129,7 @@ bike_paths:
     foot: designated
     lit_mix:
       - value: 'yes'
-        km: 6
+        km: 1
       - value: 'no'
         km: 1
     anchors:
@@ -6608,11 +6172,6 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     foot: 'yes'
-    surface_mix:
-      - value: asphalt
-        km: 11
-      - value: fine_gravel
-        km: 1
     anchors:
       - - -75.7695207
         - 45.3824786
@@ -6652,19 +6211,23 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: asphalt
-        km: 22
+        km: 6
       - value: fine_gravel
-        km: 12
-      - value: wood
-        km: 1
-    lit_mix:
-      - value: 'no'
-        km: 26
-      - value: 'yes'
-        km: 1
+        km: 5
     path_type: mup
     member_of: ncc-greenbelt
     type: destination
+    overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
+      - id: 12153548
+        name: Ottawa West Winter Trail
+        route: piste
+        operator: Kanata Nordic
     super_network: trans-canada-trail-ottawa-area
     slug: trans-canada-trail-bells-cornerswatts-creek
     osm_way_ids:
@@ -6714,11 +6277,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    lit_mix:
-      - value: 'no'
-        km: 5
-      - value: 'yes'
-        km: 1
     anchors:
       - - -75.3861166
         - 45.2628911
@@ -6737,28 +6295,6 @@ bike_paths:
       - 535395556
       - 923847180
       - 923847181
-  - name: Crazy Horse Trail
-    osm_relations:
-      - 7655244
-    network: lwn
-    surface: ground
-    highway: footway
-    bicycle: 'no'
-    foot: 'yes'
-    path_type: mtb-trail
-    mtb: true
-    type: destination
-    slug: crazy-horse-trail
-    osm_way_ids:
-      - 528455312
-      - 528455313
-      - 532850984
-      - 532850989
-      - 532850992
-      - 532851005
-      - 532851009
-      - 532851014
-      - 532851154
   - name: The Greely Loop
     osm_relations:
       - 8186590
@@ -6773,14 +6309,8 @@ bike_paths:
     foot: 'yes'
     surface_mix:
       - value: asphalt
-        km: 46
+        km: 9
       - value: unpaved
-        km: 3
-      - value: fine_gravel
-        km: 2
-      - value: concrete
-        km: 1
-      - value: ground
         km: 1
     anchors:
       - - -75.5591993
@@ -6853,49 +6383,6 @@ bike_paths:
       - 1340905669
       - 1358884896
       - 1358884898
-  - name: Bill Holland Trail
-    osm_relations:
-      - 8450027
-    network: lcn
-    surface: ground
-    smoothness: intermediate
-    width: '1'
-    lit: 'no'
-    highway: path
-    bicycle: 'yes'
-    access: 'yes'
-    foot: 'yes'
-    surface_mix:
-      - value: ground
-        km: 8
-      - value: fine_gravel
-        km: 6
-      - value: unpaved
-        km: 2
-      - value: grass
-        km: 1
-    path_type: mtb-trail
-    mtb: true
-    type: destination
-    slug: bill-holland-trail
-    osm_way_ids:
-      - 154897216
-      - 154897511
-      - 154898513
-      - 164370844
-      - 164370860
-      - 164383000
-      - 164383439
-      - 165884628
-      - 165885187
-      - 165885195
-      - 608128070
-      - 608128085
-      - 608128094
-      - 608128096
-      - 608128097
-      - 608128098
-      - 608128099
   - name: Trans Orléans Pathway
     osm_relations:
       - 9334473
@@ -6951,17 +6438,10 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: gravel
-        km: 34
+        km: 72
       - value: fine_gravel
-        km: 30
-      - value: wood
-        km: 1
+        km: 59
       - value: compacted
-        km: 1
-    lit_mix:
-      - value: 'no'
-        km: 3
-      - value: 'yes'
         km: 1
     path_type: trail
     type: long-distance
@@ -7049,12 +6529,8 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: fine_gravel
-        km: 23
+        km: 35
       - value: asphalt
-        km: 5
-      - value: wood
-        km: 1
-      - value: concrete
         km: 1
     anchors:
       - - -76.3518819
@@ -7095,320 +6571,6 @@ bike_paths:
       - 1121131284
       - 1287267187
       - 1287272435
-  - name: Sentier du loup
-    osm_relations:
-      - 9423919
-    name_fr: Sentier du loup
-    name_en: Wolf Trail
-    operator: NCC/CCN
-    network: lwn
-    ref: '62'
-    website: https://s3.amazonaws.com/ncc-ccn/documents/gp_trailfactsheet-2014_e3_wolf.pdf
-    surface: ground
-    smoothness: very_bad
-    width: '1'
-    lit: 'no'
-    highway: path
-    bicycle: 'no'
-    access: 'yes'
-    foot: 'yes'
-    surface_mix:
-      - value: ground
-        km: 22
-      - value: wood
-        km: 3
-    anchors:
-      - - -75.9490601
-        - 45.5301593
-      - - -75.9299829
-        - 45.5384105
-    path_type: mtb-trail
-    mtb: true
-    member_of: parc-de-la-gatineau
-    type: destination
-    slug: sentier-du-loup
-    osm_way_ids:
-      - 51010825
-      - 51010826
-      - 365814336
-      - 365814337
-      - 365814338
-      - 365814339
-      - 365814340
-      - 365814341
-      - 380171607
-      - 605332096
-      - 605332099
-      - 676435339
-      - 676435340
-      - 1282247733
-      - 1392833243
-      - 1392833246
-      - 1392833247
-      - 1392833249
-      - 1392833250
-      - 1392833251
-      - 1392833253
-      - 1392833255
-      - 1392833256
-      - 1392833257
-      - 1392833259
-      - 1392833260
-  - name: Luskville Falls Trail
-    osm_relations:
-      - 9423923
-    operator: NCC/CCN
-    network: lwn
-    website: http://s3.amazonaws.com/ncc-ccn/documents/gp_trailfactsheet-2014_e2_luskvillefalls.pdf
-    surface: ground
-    width: '1'
-    incline: down
-    highway: path
-    bicycle: 'no'
-    foot: 'yes'
-    anchors:
-      - - -75.987679
-        - 45.540599
-      - - -75.995643
-        - 45.5443893
-    path_type: mtb-trail
-    mtb: true
-    member_of: parc-de-la-gatineau
-    type: destination
-    slug: luskville-falls-trail
-    osm_way_ids:
-      - 65156046
-      - 185734513
-      - 378850751
-      - 384773942
-  - name: Champlain Trail
-    osm_relations:
-      - 9423924
-    operator: NCC/CCN
-    network: lwn
-    surface: ground
-    width: '1'
-    lit: 'no'
-    highway: path
-    bicycle: 'no'
-    foot: 'yes'
-    surface_mix:
-      - value: ground
-        km: 7
-      - value: wood
-        km: 3
-    path_type: mtb-trail
-    mtb: true
-    member_of: parc-de-la-gatineau
-    type: destination
-    slug: champlain-trail
-    osm_way_ids:
-      - 345805814
-      - 686524347
-      - 686524348
-      - 686524349
-      - 686524350
-      - 686524351
-      - 686524352
-      - 686524353
-      - 686524354
-      - 814026495
-  - name: King Mountain Trail
-    osm_relations:
-      - 9423925
-    operator: NCC/CCN
-    network: lwn
-    surface: ground
-    incline: down
-    highway: path
-    mtb:scale: '5'
-    bicycle: 'no'
-    foot: 'yes'
-    surface_mix:
-      - value: ground
-        km: 16
-      - value: fine_gravel
-        km: 2
-      - value: wood
-        km: 1
-    mtb: true
-    path_type: mtb-trail
-    member_of: parc-de-la-gatineau
-    type: destination
-    slug: king-mountain-trail
-    osm_way_ids:
-      - 68609723
-      - 379490338
-      - 379490339
-      - 379490340
-      - 685537277
-      - 685537280
-      - 685537281
-      - 685537282
-      - 685537283
-      - 685537284
-      - 685537285
-      - 685537286
-      - 685537287
-      - 685537288
-      - 685537289
-      - 685537290
-      - 685537291
-      - 685537292
-      - 685537293
-  - name: Waterfall and Lauriault Trail
-    osm_relations:
-      - 9423926
-    operator: NCC/CCN
-    network: lwn
-    surface: ground
-    width: '1'
-    incline: down
-    highway: path
-    bicycle: 'no'
-    foot: 'yes'
-    surface_mix:
-      - value: ground
-        km: 10
-      - value: wood
-        km: 5
-    path_type: mtb-trail
-    mtb: true
-    member_of: parc-de-la-gatineau
-    type: destination
-    slug: waterfall-and-lauriault-trail
-    osm_way_ids:
-      - 365814335
-      - 622152649
-      - 622152650
-      - 633484055
-      - 633484056
-      - 633484057
-      - 633484058
-      - 633484059
-      - 633484060
-      - 647548056
-      - 647548057
-      - 647548058
-      - 647548059
-      - 653504835
-      - 653504836
-  - name: Sugarbush Trail
-    osm_relations:
-      - 9423927
-    operator: NCC/CCN
-    network: lwn
-    surface: fine_gravel
-    width: '2'
-    highway: path
-    bicycle: 'no'
-    foot: 'yes'
-    surface_mix:
-      - value: fine_gravel
-        km: 2
-      - value: metal
-        km: 1
-      - value: ground
-        km: 1
-      - value: asphalt
-        km: 1
-    path_type: trail
-    member_of: parc-de-la-gatineau
-    type: destination
-    slug: sugarbush-trail
-    osm_way_ids:
-      - 178067477
-      - 191660399
-      - 191660405
-      - 191660407
-      - 678738333
-  - name: Pink Lake Trail
-    osm_relations:
-      - 9423928
-    operator: NCC/CCN
-    network: lwn
-    surface: wood
-    smoothness: good
-    width: '1.5'
-    lit: 'no'
-    incline: up
-    highway: footway
-    bicycle: 'no'
-    access: 'yes'
-    foot: 'yes'
-    surface_mix:
-      - value: wood
-        km: 19
-      - value: ground
-        km: 15
-      - value: unpaved
-        km: 2
-      - value: dirt
-        km: 1
-    path_type: mup
-    member_of: parc-de-la-gatineau
-    type: destination
-    slug: pink-lake-trail
-    osm_way_ids:
-      - 121185504
-      - 121185505
-      - 121185506
-      - 121185508
-      - 544247655
-      - 544247656
-      - 544247657
-      - 544247658
-      - 544247659
-      - 544247660
-      - 544247661
-      - 544247662
-      - 544247663
-      - 544247664
-      - 544247665
-      - 544247666
-      - 544247668
-      - 544247673
-      - 544247678
-      - 544247684
-      - 544247686
-      - 678738335
-      - 753707447
-      - 753707448
-      - 753707449
-      - 753707450
-      - 814028344
-      - 817269906
-      - 817269907
-      - 1284901179
-      - 1284901180
-      - 1284901181
-      - 1284901182
-      - 1284901183
-      - 1284901184
-      - 1284901186
-      - 1284901187
-      - 1284901188
-      - 1284901190
-      - 1284901191
-      - 1284901192
-      - 1284901193
-      - 1284901194
-      - 1284901196
-      - 1284901197
-  - name: Pioneers Trail
-    osm_relations:
-      - 9423929
-    operator: NCC/CCN
-    network: lwn
-    surface: fine_gravel
-    width: '2'
-    highway: footway
-    path_type: trail
-    member_of: parc-de-la-gatineau
-    type: destination
-    slug: pioneers-trail
-    osm_way_ids:
-      - 279692209
   - name: Ottawa-Carleton Trailway
     osm_relations:
       - 9502449
@@ -7425,18 +6587,9 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: fine_gravel
-        km: 27
+        km: 29
       - value: asphalt
-        km: 22
-      - value: concrete
         km: 2
-      - value: paving_stones
-        km: 1
-    lit_mix:
-      - value: 'no'
-        km: 7
-      - value: 'yes'
-        km: 3
     anchors:
       - - -75.9203476
         - 45.2584337
@@ -7444,6 +6597,13 @@ bike_paths:
         - 45.3174462
     path_type: trail
     type: long-distance
+    overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
     member_of: trans-canada-trail-ottawa-area
     slug: ottawa-carleton-trailway
     osm_way_ids:
@@ -7520,23 +6680,18 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 91
-      - value: wood
-        km: 5
-      - value: concrete
-        km: 2
-      - value: ground
-        km: 1
-      - value: concrete:plates
-        km: 1
     lit_mix:
       - value: 'no'
-        km: 64
+        km: 10
       - value: 'yes'
-        km: 18
+        km: 2
+    anchors:
+      - - -75.8125194
+        - 45.3519888
+      - - -75.698028
+        - 45.4290479
     path_type: mup
+    member_of: trans-canada-trail-ottawa-area
     type: destination
     overlapping_relations:
       - id: 11867879
@@ -7545,19 +6700,34 @@ bike_paths:
         operator: NCC
         ref: CB
         network: lwn
-    member_of: ottawa-river-pathway
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
+      - id: 12138512
+        name: Britannia Winter Trail
+        route: piste
+      - id: 12162594
+        name: Kichi Sibi Winter Trail
+        route: piste
     super_network: capital-pathway
     slug: ottawa-river-pathway-trans-canada-trail
     osm_way_ids:
       - 23190439
       - 23200843
+      - 23211941
       - 39635225
       - 39636369
       - 39662612
       - 40485145
+      - 107633321
       - 150700653
       - 150700655
+      - 164125661
       - 210647734
+      - 231835265
       - 337986838
       - 337986839
       - 337986843
@@ -7565,6 +6735,7 @@ bike_paths:
       - 365121283
       - 486454215
       - 489289274
+      - 499523458
       - 499523459
       - 499523460
       - 504076441
@@ -7584,6 +6755,7 @@ bike_paths:
       - 667307236
       - 684883242
       - 684883243
+      - 684883244
       - 733764875
       - 741090558
       - 741090591
@@ -7603,6 +6775,9 @@ bike_paths:
       - 1013864242
       - 1013864243
       - 1013864244
+      - 1013864262
+      - 1013864263
+      - 1013864264
       - 1013864265
       - 1013864266
       - 1013864267
@@ -7664,7 +6839,7 @@ bike_paths:
     bicycle: 'yes'
     foot: 'yes'
     path_type: mup
-    member_of: ottawa-river-pathway
+    member_of: ncc-greenbelt
     type: destination
     super_network: capital-pathway
     slug: ottawa-river-pathway-west
@@ -7707,18 +6882,14 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: asphalt
-        km: 79
+        km: 13
       - value: fine_gravel
-        km: 5
-      - value: concrete
         km: 3
-      - value: wood
-        km: 1
     lit_mix:
-      - value: 'yes'
-        km: 16
       - value: 'no'
-        km: 10
+        km: 4
+      - value: 'yes'
+        km: 3
     anchors:
       - - -75.7324975
         - 45.3376973
@@ -7843,18 +7014,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 25
-      - value: concrete
-        km: 8
-      - value: paving_stones
-        km: 4
-    lit_mix:
-      - value: 'yes'
-        km: 14
-      - value: 'no'
-        km: 1
     path_type: mup
     type: destination
     slug: confederation-pathway
@@ -7897,99 +7056,6 @@ bike_paths:
       - 1278293619
       - 1278293620
       - 1278293623
-  - name: Shirley Bay Ski trail
-    osm_relations:
-      - 10267022
-    seasonal: winter
-    surface: fine_gravel
-    smoothness: bad
-    width: '2'
-    lit: 'no'
-    segregated: 'no'
-    highway: path
-    bicycle: 'yes'
-    foot: 'yes'
-    surface_mix:
-      - value: fine_gravel
-        km: 8
-      - value: ground
-        km: 4
-      - value: wood
-        km: 3
-      - value: gravel
-        km: 1
-    anchors:
-      - - -75.873912
-        - 45.352571
-      - - -75.8599589
-        - 45.3614822
-    path_type: trail
-    member_of: ncc-greenbelt
-    type: destination
-    slug: shirley-bay-ski-trail
-    osm_way_ids:
-      - 97547217
-      - 97547584
-      - 143670795
-      - 255858996
-      - 352174065
-      - 618615770
-      - 618615775
-      - 746702109
-      - 746702112
-      - 746702113
-      - 746702115
-      - 746702116
-      - 746703104
-      - 746703105
-      - 749670981
-      - 1301542728
-  - name: Mud Lake Trail
-    osm_relations:
-      - 10334901
-    operator: NCC
-    network: lwn
-    surface: ground
-    smoothness: intermediate
-    width: '1'
-    lit: 'no'
-    highway: footway
-    bicycle: 'no'
-    foot: 'yes'
-    surface_mix:
-      - value: ground
-        km: 12
-      - value: wood
-        km: 1
-    anchors:
-      - - -75.7972648
-        - 45.3662425
-      - - -75.7916288
-        - 45.369012
-    path_type: mtb-trail
-    mtb: true
-    type: destination
-    overlapping_relations:
-      - id: 7644270
-        name: RT Mud Lake Blue Loop
-        route: hiking
-        operator: Rideau Trail
-        network: lwn
-    slug: mud-lake-trail
-    osm_way_ids:
-      - 25941609
-      - 37605433
-      - 40453921
-      - 376723995
-      - 376724127
-      - 503257814
-      - 503257815
-      - 531142112
-      - 531143330
-      - 531862624
-      - 531869185
-      - 531869186
-      - 548577756
   - name: Greenboro Pathway
     osm_relations:
       - 10434447
@@ -8002,11 +7068,6 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 29
-      - value: paving_stones
-        km: 1
     anchors:
       - - -75.6476998
         - 45.3606002
@@ -8066,13 +7127,6 @@ bike_paths:
     highway: secondary
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 152
-      - value: concrete
-        km: 2
-      - value: paving_stones
-        km: 2
     anchors:
       - - -75.6353965
         - 45.4164912
@@ -8367,13 +7421,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: 'yes'
-    surface_mix:
-      - value: asphalt
-        km: 30
-      - value: concrete
-        km: 1
-      - value: paving_stones
-        km: 1
     anchors:
       - - -75.6882715
         - 45.4014347
@@ -8433,14 +7480,8 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    lit_mix:
-      - value: 'yes'
-        km: 3
-      - value: 'no'
-        km: 2
     path_type: mup
     type: destination
-    member_of: rideau-river-eastern-pathway
     slug: rideau-river-eastern-pathway-city-section
     osm_way_ids:
       - 44316906
@@ -8467,18 +7508,14 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: asphalt
-        km: 57
+        km: 10
       - value: fine_gravel
-        km: 9
-      - value: wood
-        km: 3
-      - value: concrete
-        km: 3
+        km: 7
     lit_mix:
-      - value: 'yes'
-        km: 15
       - value: 'no'
-        km: 14
+        km: 8
+      - value: 'yes'
+        km: 2
     anchors:
       - - -75.7332362
         - 45.3025008
@@ -8573,522 +7610,6 @@ bike_paths:
       - 1302757009
       - 1302757010
       - 1302757011
-  - name: Britannia Winter Trail
-    osm_relations:
-      - 12138512
-    website: https://www.facebook.com/BritanniaWinterTrail
-    description: Volunteer-run urban winter trail for cross-country skiing, snow shoeing, winter biking and walking
-    seasonal: winter
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    incline: 0%
-    segregated: 'no'
-    highway: path
-    bicycle: 'yes'
-    foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 77
-      - value: fine_gravel
-        km: 6
-      - value: wood
-        km: 5
-      - value: ground
-        km: 5
-      - value: paving_stones
-        km: 2
-      - value: unpaved
-        km: 2
-      - value: grass
-        km: 2
-    lit_mix:
-      - value: 'no'
-        km: 40
-      - value: 'yes'
-        km: 11
-    path_type: mup
-    type: destination
-    slug: britannia-winter-trail
-    osm_way_ids:
-      - 44227209
-      - 44227210
-      - 60932418
-      - 60932420
-      - 60932469
-      - 60932501
-      - 60932503
-      - 68587815
-      - 68587842
-      - 68899522
-      - 80898438
-      - 94610978
-      - 94611005
-      - 102808985
-      - 132471940
-      - 147571476
-      - 147576044
-      - 157633075
-      - 164199162
-      - 164199356
-      - 164199637
-      - 166003014
-      - 166003345
-      - 166003912
-      - 166049456
-      - 168353565
-      - 191413662
-      - 191416424
-      - 191416617
-      - 191417541
-      - 191417548
-      - 218671403
-      - 218713242
-      - 218814174
-      - 218814942
-      - 218814943
-      - 219477881
-      - 219477882
-      - 219477883
-      - 308983792
-      - 500827754
-      - 500827758
-      - 504076441
-      - 504076447
-      - 504076449
-      - 515579353
-      - 541461039
-      - 541461044
-      - 541461047
-      - 585178197
-      - 626243183
-      - 713838556
-      - 713838557
-      - 713838558
-      - 713838559
-      - 733921288
-      - 738354698
-      - 752137818
-      - 752137819
-      - 755086158
-      - 828227981
-      - 828227982
-      - 887595762
-      - 892413796
-      - 892413797
-      - 892413799
-      - 892413804
-      - 892413805
-      - 1010007991
-      - 1010007994
-      - 1010007995
-      - 1010007996
-      - 1010007997
-      - 1010007999
-      - 1013915547
-      - 1013915548
-      - 1013915549
-      - 1013915550
-      - 1013915551
-      - 1013915552
-      - 1013915553
-      - 1013915554
-      - 1013915555
-      - 1013915556
-      - 1013915557
-      - 1013915558
-      - 1013915561
-      - 1013915566
-      - 1013915568
-      - 1013915569
-      - 1023801373
-      - 1023801374
-      - 1023801375
-      - 1023801376
-      - 1023801377
-      - 1023801378
-      - 1025277979
-      - 1124879537
-      - 1124879538
-      - 1190646092
-      - 1190646094
-      - 1190646095
-      - 1192176880
-      - 1239912627
-      - 1239912628
-      - 1239979142
-      - 1240886611
-      - 1341984191
-      - 1341984192
-  - name: Ottawa West Winter Trail
-    osm_relations:
-      - 12153548
-    website: https://owwt.wordpress.com/
-    operator: Kanata Nordic
-    seasonal: winter
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-    bicycle: designated
-    foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 14
-      - value: fine_gravel
-        km: 13
-      - value: wood
-        km: 2
-    path_type: mup
-    member_of: ncc-greenbelt
-    type: destination
-    slug: ottawa-west-winter-trail
-    osm_way_ids:
-      - 52959217
-      - 52959843
-      - 167023141
-      - 231875519
-      - 352155798
-      - 352172663
-      - 352172679
-      - 352172680
-      - 486421075
-      - 610543323
-      - 610543329
-      - 647120908
-      - 717272451
-      - 717272452
-      - 793124268
-      - 1008667220
-      - 1008667222
-      - 1009994039
-      - 1020717181
-      - 1020717182
-      - 1020717185
-      - 1022455969
-      - 1026530422
-      - 1118906692
-      - 1133538673
-      - 1248305830
-      - 1284461095
-  - name: Rideau Winter Trail
-    osm_relations:
-      - 12161928
-    name_fr: Piste d'hiver Rideau
-    website: https://www.rideauwintertrail.ca/
-    description: Volunteer-run urban winter trail for cross-country skiing, snow shoeing, winter biking and walking
-    seasonal: winter
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    highway: cycleway
-    bicycle: designated
-    foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 28
-      - value: ground
-        km: 6
-      - value: gravel
-        km: 2
-    lit_mix:
-      - value: 'no'
-        km: 32
-      - value: 'yes'
-        km: 2
-    path_type: mup
-    type: destination
-    slug: rideau-winter-trail
-    osm_way_ids:
-      - 68710309
-      - 220191735
-      - 220191737
-      - 220191739
-      - 220191741
-      - 220191744
-      - 220191749
-      - 220191751
-      - 220194050
-      - 407463848
-      - 608001422
-      - 638065598
-      - 638071795
-      - 647954655
-      - 647954656
-      - 690344052
-      - 734501666
-      - 893586861
-      - 893586863
-      - 893872005
-      - 893872006
-      - 1013171999
-      - 1013172007
-      - 1013172008
-      - 1013172009
-      - 1013172010
-      - 1013172011
-      - 1013172014
-      - 1013172015
-      - 1013172016
-      - 1020955649
-      - 1020955653
-      - 1022429020
-      - 1022429021
-      - 1022714794
-      - 1025657401
-      - 1036892706
-      - 1036892710
-      - 1124310953
-      - 1124310957
-      - 1124310959
-      - 1124310960
-      - 1124310961
-      - 1124310962
-      - 1124310963
-      - 1124310964
-      - 1273523122
-  - name: Kichi Sibi Winter Trail
-    osm_relations:
-      - 12162594
-    website: https://www.wintertrail.ca/
-    description: Volunteer-run urban winter trail for cross-country skiing, snow shoeing, winter biking and walking
-    seasonal: winter
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    incline: 0%
-    segregated: 'no'
-    highway: cycleway
-    mtb:scale: '0'
-    bicycle: designated
-    foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 58
-      - value: ground
-        km: 4
-      - value: wood
-        km: 1
-    lit_mix:
-      - value: 'no'
-        km: 59
-      - value: 'yes'
-        km: 1
-    anchors:
-      - - -75.7610733
-        - 45.3927134
-      - - -75.7522834
-        - 45.4022732
-    path_type: mup
-    type: destination
-    slug: kichi-sibi-winter-trail
-    osm_way_ids:
-      - 23211941
-      - 39662612
-      - 44227076
-      - 150788050
-      - 150910108
-      - 196313150
-      - 373219423
-      - 407470001
-      - 407470002
-      - 466431343
-      - 486454215
-      - 489289274
-      - 504076456
-      - 540293596
-      - 540293597
-      - 583485035
-      - 583485036
-      - 647935879
-      - 674480574
-      - 813527194
-      - 893877534
-      - 893877536
-      - 893877537
-      - 893877538
-      - 893877541
-      - 997050207
-      - 997050209
-      - 997050213
-      - 997050214
-      - 997050215
-      - 997050216
-      - 1012875672
-      - 1013864231
-      - 1013864232
-      - 1013864234
-      - 1013864238
-      - 1013864240
-      - 1013864241
-      - 1013864242
-      - 1013864243
-      - 1013864244
-      - 1013864246
-      - 1013864247
-      - 1013864250
-      - 1013864255
-      - 1013864259
-      - 1013864262
-      - 1013864263
-      - 1013864264
-      - 1013864265
-      - 1013864266
-      - 1013864267
-      - 1013864268
-      - 1013864269
-      - 1013864272
-      - 1025327937
-      - 1025327942
-      - 1025327944
-      - 1025327945
-      - 1025327947
-      - 1025327948
-      - 1130736328
-      - 1132948788
-      - 1135492547
-      - 1135492548
-      - 1135492552
-      - 1135492553
-      - 1135492557
-      - 1135492558
-      - 1135492559
-      - 1135492560
-      - 1136005210
-      - 1136005212
-      - 1136005213
-      - 1136005216
-      - 1137357089
-      - 1137375138
-      - 1137375139
-      - 1137375140
-      - 1144377994
-      - 1144841932
-      - 1267820526
-      - 1268244561
-      - 1268244563
-      - 1268244564
-      - 1283023567
-      - 1302393713
-      - 1302393714
-      - 1302393715
-      - 1303812680
-      - 1419999906
-  - name: Ski Heritage East Trail
-    osm_relations:
-      - 12165309
-      - 14756039
-    website: https://www.skiheritageeast.ca/
-    description: Volunteer-run urban winter trail for cross-country skiing, snow shoeing, winter biking and walking
-    seasonal: winter
-    operator: Ski Heritage East
-    surface: asphalt
-    smoothness: good
-    width: '3'
-    lit: 'no'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-    bicycle: designated
-    foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 26
-      - value: fine_gravel
-        km: 13
-      - value: ground
-        km: 2
-      - value: gravel
-        km: 2
-      - value: wood
-        km: 1
-      - value: concrete
-        km: 1
-    path_type: mup
-    type: destination
-    slug: ski-heritage-east-trail
-    osm_way_ids:
-      - 35555561
-      - 35555563
-      - 35555564
-      - 54584584
-      - 54584585
-      - 151442747
-      - 151449573
-      - 172866560
-      - 189408963
-      - 189409017
-      - 394729782
-      - 479744017
-      - 479744018
-      - 498810022
-      - 498810025
-      - 504501323
-      - 504501325
-      - 504501328
-      - 537472427
-      - 537472433
-      - 537472436
-      - 537472437
-      - 537472440
-      - 537472441
-      - 537472443
-      - 554977423
-      - 572755334
-      - 572755337
-      - 652427369
-      - 741303969
-      - 744798485
-      - 877630719
-      - 877630722
-      - 877630723
-      - 878427948
-      - 878427951
-      - 878427952
-      - 886621416
-      - 886621417
-      - 886621418
-      - 889955245
-      - 889955246
-      - 889984114
-      - 889984115
-      - 893668125
-      - 893668126
-      - 894020180
-      - 894022766
-      - 926402546
-      - 926402547
-      - 1010028349
-      - 1010028350
-      - 1010028351
-      - 1010028352
-      - 1010028353
-      - 1010028354
-      - 1010028355
-      - 1010028356
-      - 1010028357
-      - 1014092731
-      - 1021515306
-      - 1021515307
-      - 1021515308
-      - 1021804109
-      - 1022335280
-      - 1022335281
-      - 1022335282
-      - 1022335284
-      - 1022335285
-      - 1022335286
-      - 1108795308
-      - 1284516745
-      - 1284516746
-      - 1419474739
   - name: Québec bikepacking traverse Segment I
     osm_relations:
       - 13608788
@@ -9106,25 +7627,21 @@ bike_paths:
     foot: designated
     surface_mix:
       - value: unpaved
-        km: 107
+        km: 328
       - value: gravel
-        km: 39
-      - value: asphalt
-        km: 30
-      - value: paved
-        km: 23
-      - value: pebblestone
-        km: 17
+        km: 108
       - value: fine_gravel
-        km: 12
-      - value: wood
-        km: 5
-      - value: sand
-        km: 4
-      - value: mud
-        km: 4
+        km: 67
+      - value: pebblestone
+        km: 56
+      - value: asphalt
+        km: 45
       - value: compacted
-        km: 2
+        km: 37
+      - value: paved
+        km: 34
+      - value: sand
+        km: 7
       - value: dirt
         km: 1
       - value: earth
@@ -9431,17 +7948,6 @@ bike_paths:
     bicycle: designated
     access: private
     foot: designated
-    surface_mix:
-      - value: fine_gravel
-        km: 8
-      - value: unpaved
-        km: 3
-      - value: wood
-        km: 1
-      - value: ground
-        km: 1
-      - value: dirt
-        km: 1
     mtb:scale: '1'
     anchors:
       - - -75.8992252
@@ -9468,76 +7974,6 @@ bike_paths:
       - 1315980274
       - 1315980275
       - 1373860314
-  - name: Sentier du lac Leamy Skiing Trail
-    osm_relations:
-      - 15446553
-    seasonal: winter
-    foot: 'yes'
-    surface: asphalt
-    smoothness: good
-    width: '2.5'
-    lit: 'no'
-    segregated: 'no'
-    cycleway: crossing
-    highway: cycleway
-    bicycle: designated
-    surface_mix:
-      - value: asphalt
-        km: 42
-      - value: concrete
-        km: 1
-    lit_mix:
-      - value: 'no'
-        km: 24
-      - value: 'yes'
-        km: 1
-    path_type: mup
-    type: destination
-    slug: sentier-du-lac-leamy-skiing-trail
-    osm_way_ids:
-      - 28223848
-      - 37122497
-      - 39451259
-      - 39451260
-      - 39451334
-      - 39451336
-      - 39451337
-      - 39451338
-      - 39662047
-      - 39662048
-      - 39685495
-      - 53373211
-      - 116974514
-      - 116974515
-      - 283537363
-      - 283537364
-      - 374378791
-      - 499524725
-      - 531142401
-      - 531142407
-      - 531142408
-      - 534150617
-      - 574572382
-      - 637344101
-      - 701841601
-      - 768837392
-      - 1103235275
-      - 1284736161
-      - 1355842002
-      - 1442904886
-      - 1442904887
-      - 1442904890
-      - 1442904891
-      - 1442936854
-      - 1442936857
-      - 1444541662
-      - 1444541663
-      - 1444541664
-      - 1444544193
-      - 1444544197
-      - 1444675085
-      - 1444678189
-      - 1444678200
   - name: Montreal Road Bike Detour
     osm_relations:
       - 16770188
@@ -9577,25 +8013,19 @@ bike_paths:
     foot: 'yes'
     surface_mix:
       - value: unpaved
-        km: 76
+        km: 120
       - value: asphalt
-        km: 39
+        km: 40
       - value: paved
-        km: 17
+        km: 34
       - value: fine_gravel
-        km: 5
-      - value: wood
-        km: 4
-      - value: ground
-        km: 3
+        km: 32
       - value: gravel
-        km: 2
+        km: 11
+      - value: ground
+        km: 6
       - value: dirt
-        km: 2
-      - value: metal
-        km: 1
-      - value: compacted
-        km: 1
+        km: 3
     mtb: true
     path_type: mtb-trail
     type: long-distance
@@ -9794,11 +8224,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: fine_gravel
-        km: 2
-      - value: asphalt
-        km: 1
     path_type: trail
     member_of: ncc-greenbelt
     type: destination
@@ -9818,17 +8243,6 @@ bike_paths:
     incline: down
     highway: path
     mtb:scale: '1'
-    surface_mix:
-      - value: fine_gravel
-        km: 20
-      - value: wood
-        km: 4
-      - value: asphalt
-        km: 2
-      - value: ground
-        km: 1
-      - value: gravel
-        km: 1
     mtb: true
     path_type: mtb-trail
     type: destination
@@ -9875,20 +8289,6 @@ bike_paths:
     slug: salamander
     osm_way_ids:
       - 874688085
-      - 1473701129
-  - name: Monkey Trail
-    osm_relations:
-      - 20166048
-    ref: '21'
-    surface: ground
-    highway: path
-    mtb:scale:imba: '2'
-    mtb: true
-    path_type: mtb-trail
-    member_of: parc-de-la-gatineau
-    type: destination
-    slug: monkey-trail
-    osm_way_ids:
       - 1473701129
   - name: Chief William Commanda Bridge
     osm_names:
@@ -10257,6 +8657,13 @@ bike_paths:
     wikidata_meta:
       description_en: footbridge in Ottawa, Canada
       description_fr: pont pour piétons et vélos à Ottawa, Ontario, Canada
+      commons_image: PedestrianBridge.JPG
+      commons_category: Corktown Footbridge
+      instance_of:
+        - Q1068842
+      social: []
+      wikipedia_extract_en: "The Corktown Footbridge is a pedestrian footbridge over the Rideau Canal in Ottawa, Ontario, Canada. The 70-metre (230\_ft) bridge is located about 400\_m (1,300\_ft) south of the Laurier Avenue Bridge and connects the University of Ottawa campus with the Golden Triangle neighbourhood. It was opened on 21 September 2006."
+      wikipedia_extract_fr: "La Passerelle Corktown est une passerelle pour piétons et vélos qui enjambe le canal Rideau à Ottawa, Ontario, Canada. La passerelle de 70\_mètres est situé à environ 400\_m (1\_300\_pi) au sud du pont de l'avenue Laurier et relie le campus de l'Université d'Ottawa au quartier du Triangle d'or. Elle a été inaugurée le 21 septembre 2006."
     type: infrastructure
     slug: corktown-footbridge
     osm_way_ids:
@@ -11235,6 +9642,12 @@ bike_paths:
     member_of: ncc-greenbelt
     type: destination
     overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
       - id: 7677698
         name: RT Bells Corners Blue Loop
         route: hiking
@@ -11299,6 +9712,12 @@ bike_paths:
     member_of: ncc-greenbelt
     type: destination
     overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
       - id: 7677697
         name: RT Lime Kiln Blue Loop
         route: hiking
@@ -11489,6 +9908,12 @@ bike_paths:
     member_of: ncc-greenbelt
     type: destination
     overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
       - id: 7677697
         name: RT Lime Kiln Blue Loop
         route: hiking
@@ -11608,6 +10033,44 @@ bike_paths:
     slug: marianne-wilkinson-bridge
     osm_way_ids:
       - 80875225
+  - name: Trail 10
+    osm_names:
+      - Trail 10
+    anchors:
+      - - -75.873912
+        - 45.352571
+      - - -75.8599589
+        - 45.3614822
+    surface: fine_gravel
+    smoothness: bad
+    width: '2'
+    lit: 'no'
+    highway: path
+    bicycle: 'yes'
+    ref: NCC 10
+    foot: 'yes'
+    surface_mix:
+      - value: fine_gravel
+        km: 4
+      - value: ground
+        km: 1
+    path_type: trail
+    member_of: ncc-greenbelt
+    type: destination
+    slug: trail-10
+    osm_way_ids:
+      - 97547217
+      - 352174065
+      - 618615770
+      - 618615775
+      - 746702109
+      - 746702112
+      - 746702113
+      - 746702116
+      - 746703104
+      - 746703105
+      - 749670981
+      - 1301542728
   - name: '#79B'
     osm_names:
       - '#79B'
@@ -11666,6 +10129,29 @@ bike_paths:
       - 130335835
       - 437658890
       - 729960764
+  - name: Greenbelt Trail
+    osm_names:
+      - Greenbelt Trail
+    anchors:
+      - - -75.865773
+        - 45.3554083
+      - - -75.8607719
+        - 45.361192
+    surface: ground
+    smoothness: bad
+    width: '1'
+    lit: 'no'
+    highway: path
+    bicycle: 'yes'
+    ref: NCC 10
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
+    member_of: ncc-greenbelt
+    type: destination
+    slug: greenbelt-trail
+    osm_way_ids:
+      - 143670795
   - name: Rotary Centennial Trail
     osm_names:
       - Rotary Centennial Trail
@@ -15693,6 +14179,15 @@ bike_paths:
     wikidata_meta:
       description_en: bridge across Ottawa River, near Ottawa, Ontario, Canada
       description_fr: pont traversant la rivière des Outaouais à Ottawa, Ontario, Canada
+      commons_image: Champlain Bridge Ottawa-Aylmer.JPG
+      commons_category: Champlain Bridge (Ottawa)
+      operator_qid: Q613449
+      instance_of:
+        - Q537127
+      social: []
+      operator: National Capital Commission
+      wikipedia_extract_en: "The Champlain Bridge crosses the Ottawa River about 5\_km (3.1\_mi) west of Parliament Hill, joining the communities of Ottawa, Ontario and Gatineau, Quebec. It is the westernmost link between the two cities."
+      wikipedia_extract_fr: "Le Pont Champlain est un pont qui traverse la rivière des Outaouais à environ 5\_km à l'ouest de la Colline du Parlement reliant les villes de Gatineau, au Québec et la capitale canadienne d'Ottawa, en Ontario. Il est le plus à l'ouest des 5 ponts qui relient ces deux villes."
     type: infrastructure
     slug: pont-champlain-bridge
     osm_way_ids:
@@ -16074,6 +14569,12 @@ bike_paths:
     wikidata_meta:
       description_en: street in Ottawa, Canada
       description_fr: rue d'Ottawa (Canada)
+      commons_category: Wellington Street, Ottawa
+      instance_of:
+        - Q79007
+      social: []
+      wikipedia_extract_en: Wellington Street is a major street in Ottawa, Canada. It is notable for being the main street of the Parliamentary Precinct of the Parliament of Canada. It is one of the first two streets laid out in Bytown in 1826. The street runs from Vimy Place, just west of Booth Street, to the Rideau Canal where it connects with Rideau Street and delimits the northern border of the downtown core. It is named after the Duke of Wellington, in recognition of his role in the creation of the Rideau Canal, and therefore of Ottawa.
+      wikipedia_extract_fr: La rue Wellington est une voie de circulation importante d'Ottawa, la capitale du Canada. Il s'agit de la rue principale de la Cité parlementaire du Canada. C'est aussi l'une des deux premières rues tracées à Bytown en 1826. D'ouest en est, la rue s'étend de la place Vimy, au croisement du Kichi Zībī Mīkan et de la rue Booth, jusqu'au canal Rideau, où elle rejoint la rue Rideau. Son parcours délimite la frontière nord du centre-ville. Elle doit son nom au duc de Wellington, en reconnaissance de son rôle dans la création du canal Rideau, et donc d'Ottawa.
     type: infrastructure
     slug: wellington-street
     osm_way_ids:
@@ -16140,6 +14641,13 @@ bike_paths:
     wikidata_meta:
       description_en: street in Ottawa, Canada
       description_fr: avenue à Ottawa, Ontario
+      commons_image: Bronson Ave-facing downtown.jpg
+      commons_category: Bronson Avenue, Ottawa
+      instance_of:
+        - Q79007
+      social: []
+      wikipedia_extract_en: Bronson Avenue is a major north-south arterial road in Ottawa, Ontario, Canada. It starts at the south end as a continuation of the Airport Parkway, which is an expressway to the Macdonald-Cartier International Airport. It continues past Carleton University, the Glebe, north through Centretown, and ends downtown at Sparks Street.
+      wikipedia_extract_fr: L'avenue Bronson est une artère majeure nord-sud de la ville d'Ottawa, Ontario, au Canada. Elle commence à l'extrémité sud comme prolongement de la promenade de l’Aéroport, la voie express menant à l'aéroport international Macdonald-Cartier. Le chemin continue au-delà de l'Université Carleton, du Glebe, vers le nord à travers le centre-ville et se termine au centre-ville au croisement avec la rue Sparks.
     type: infrastructure
     slug: bronson-avenue
     osm_way_ids:
@@ -17921,6 +16429,12 @@ bike_paths:
     wikidata_meta:
       description_en: bridge in Canada
       description_fr: pont canadien
+      commons_image: OldBillingsBridge23.jpg
+      commons_category: Billings Bridge
+      instance_of:
+        - Q12280
+      social: []
+      wikipedia_extract_en: Billings Bridge is a bridge over the Rideau River in Ottawa. Bank Street passes over the river by way of this bridge. The bridge was named after Braddish Billings, who settled in this area and established a farm nearby in 1812. The first bridge, originally called Farmers Bridge, was built over the river here in 1830. The current bridge was built in 1916.
     type: infrastructure
     slug: bank-street-1
     osm_way_ids:
@@ -18461,6 +16975,13 @@ bike_paths:
     path_type: bike-lane
     member_of: ncc-greenbelt
     type: infrastructure
+    overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
     slug: old-richmond-road
     osm_way_ids:
       - 258202112
@@ -20218,6 +18739,12 @@ bike_paths:
     wikidata_meta:
       description_en: bridge in Canada
       description_fr: pont canadien
+      commons_image: Mackenzie King bridge.JPG
+      commons_category: Mackenzie King Bridge
+      instance_of:
+        - Q12280
+      social: []
+      wikipedia_extract_en: The Mackenzie King Bridge is a bridge over the Rideau Canal in Ottawa, Ontario, Canada. Just a few blocks away from Parliament Hill, south of the Plaza Bridge, it runs in a generally east–west direction, with the east end at the Rideau Centre and Department of National Defence Headquarters. The west end runs between the National Arts Centre and Confederation Park. It was named for William Lyon Mackenzie King (1874–1950), Canada's longest-serving prime minister and was opened to traffic in 1951. A major restoration effort was completed in 1996–1998.
     type: infrastructure
     slug: mackenzie-king-bridge
     osm_way_ids:
@@ -20428,6 +18955,11 @@ bike_paths:
     wikidata_meta:
       description_en: bridge in Ottawa
       description_fr: pont à Ottawa
+      commons_image: RideauRV.JPG
+      instance_of:
+        - Q12280
+      social: []
+      wikipedia_extract_en: The Cummings Bridge in Ottawa, Ontario, Canada, crosses the Rideau River, connecting Rideau Street to Montreal Road in Vanier. It is a multi-span open spandrel arch bridge, constructed in 1921 and renovated in 1996.
     type: infrastructure
     slug: cummings-bridge
     osm_way_ids:
@@ -20693,6 +19225,12 @@ bike_paths:
     wikidata_meta:
       description_en: bridge in Canada
       description_fr: pont canadien
+      commons_image: Heron Road Bridge.JPG
+      commons_category: Heron Road Workers Memorial Bridge
+      instance_of:
+        - Q12280
+      social: []
+      wikipedia_extract_en: The Heron Road Workers Memorial Bridge is a bridge in Ottawa, Ontario, Canada. It connects Baseline Road to Heron Road and allows east–west traffic to cross both the Rideau River and the Rideau Canal just south of Carleton University. The current bridge was finished in 1967, one year after a bridge collapse killed nine workers and injured over sixty others in the worst construction accident in both Ottawa and Ontario history. It was renamed in 2016 to commemorate the victims of that accident.
     type: infrastructure
     slug: heron-road
     osm_way_ids:
@@ -22210,6 +20748,75 @@ bike_paths:
     osm_way_ids:
       - 1455534785
       - 1455796154
+  - name: Mud Lake Trail
+    osm_names:
+      - Mud Lake Trail
+    anchors:
+      - - -75.7972648
+        - 45.3662425
+      - - -75.7916288
+        - 45.369012
+    surface: ground
+    smoothness: intermediate
+    width: '1'
+    lit: 'no'
+    highway: footway
+    bicycle: 'no'
+    path_type: mtb-trail
+    mtb: true
+    type: connector
+    overlapping_relations:
+      - id: 7644270
+        name: RT Mud Lake Blue Loop
+        route: hiking
+        operator: Rideau Trail
+        network: lwn
+      - id: 10334901
+        name: Mud Lake Trail
+        route: hiking
+        operator: NCC
+        network: lwn
+    slug: mud-lake-trail
+    osm_way_ids:
+      - 25941609
+      - 531869186
+  - name: Sentier des Loups
+    osm_names:
+      - Sentier des Loups
+    anchors:
+      - - -75.9490601
+        - 45.5301593
+      - - -75.9299829
+        - 45.5384105
+    name_fr: Sentier des Loups
+    name_en: Wolf Trail
+    alt_name: Sentier 62
+    website: https://s3.amazonaws.com/ncc-ccn/documents/gp_trailfactsheet-2014_e3_wolf.pdf
+    surface: ground
+    smoothness: very_bad
+    width: '1'
+    highway: path
+    bicycle: 'no'
+    ref: '62'
+    access: 'yes'
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
+    member_of: parc-de-la-gatineau
+    type: destination
+    overlapping_relations:
+      - id: 9423919
+        name: Sentier du loup
+        route: hiking
+        operator: NCC/CCN
+        ref: '62'
+        network: lwn
+    slug: sentier-des-loups
+    osm_way_ids:
+      - 51010826
+      - 365814336
+      - 380171607
+      - 1392833251
   - name: Barberry Lane
     osm_names:
       - Barberry Lane
@@ -22718,6 +21325,34 @@ bike_paths:
     slug: trail-34
     osm_way_ids:
       - 380169614
+  - name: Sentier de la Chute-de-Luskville
+    osm_names:
+      - Sentier de la Chute-de-Luskville
+    anchors:
+      - - -75.987679
+        - 45.540599
+      - - -75.995643
+        - 45.5443893
+    name_fr: Sentier de la Chute-de-Luskville
+    name_en: Luskville Falls Trail
+    website: http://s3.amazonaws.com/ncc-ccn/documents/gp_trailfactsheet-2014_e2_luskvillefalls.pdf
+    surface: ground
+    highway: path
+    bicycle: 'no'
+    foot: 'yes'
+    path_type: mtb-trail
+    mtb: true
+    member_of: parc-de-la-gatineau
+    type: destination
+    overlapping_relations:
+      - id: 9423923
+        name: Luskville Falls Trail
+        route: hiking
+        operator: NCC/CCN
+        network: lwn
+    slug: sentier-de-la-chute-de-luskville
+    osm_way_ids:
+      - 384773942
   - name: Veterans Memorial Walkway
     osm_names:
       - Veterans Memorial Walkway
@@ -23849,6 +22484,10 @@ bike_paths:
     foot: designated
     path_type: mup
     type: destination
+    overlapping_relations:
+      - id: 12161928
+        name: Rideau Winter Trail
+        route: piste
     slug: springhurst-park
     osm_way_ids:
       - 4059946
@@ -23954,6 +22593,50 @@ bike_paths:
       - 767737730
       - 767737731
       - 1014094207
+  - name: Mill Hill Road
+    osm_names:
+      - Mill Hill Road
+    anchors:
+      - - -75.853701
+        - 45.308744
+      - - -75.8392624
+        - 45.3175441
+    surface: ground
+    smoothness: intermediate
+    width: '1'
+    lit: 'no'
+    segregated: 'no'
+    highway: path
+    bicycle: 'yes'
+    foot: designated
+    surface_mix:
+      - value: fine_gravel
+        km: 1
+      - value: ground
+        km: 1
+    path_type: mtb-trail
+    mtb: true
+    member_of: ncc-greenbelt
+    type: destination
+    overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
+    slug: mill-hill-road
+    osm_way_ids:
+      - 35674291
+      - 300852438
+      - 400310665
+      - 503624497
+      - 552433274
+      - 552433278
+      - 662745283
+      - 662745284
+      - 1284454549
+      - 1284454550
   - name: NCC Aubrey Moodie Park
     osm_names:
       - NCC Aubrey Moodie Park
@@ -24100,6 +22783,60 @@ bike_paths:
       - 1278300243
       - 1278300550
       - 1278790215
+  - name: Workman Avenue
+    osm_names:
+      - Workman Avenue
+    anchors:
+      - - -75.7610733
+        - 45.3927134
+      - - -75.7522834
+        - 45.4022732
+    surface: asphalt
+    smoothness: bad
+    width: '2'
+    lit: 'no'
+    incline: 0%
+    segregated: 'no'
+    highway: cycleway
+    bicycle: designated
+    network: Kichi Sibi
+    foot: designated
+    path_type: mup
+    member_of: trans-canada-trail-ottawa-area
+    type: destination
+    overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
+      - id: 12162594
+        name: Kichi Sibi Winter Trail
+        route: piste
+    slug: workman-avenue
+    osm_way_ids:
+      - 44227076
+      - 150788050
+      - 150910108
+      - 196313150
+      - 504076455
+      - 504076456
+      - 647935879
+      - 1013864231
+      - 1013864232
+      - 1013864246
+      - 1013864247
+      - 1013864255
+      - 1132948788
+      - 1135492558
+      - 1135492559
+      - 1137357089
+      - 1267820526
+      - 1268244561
+      - 1268244564
+      - 1303812680
+      - 1419999906
   - name: Parc de la Gatineau
     osm_names:
       - Parc de la Gatineau
@@ -27019,8 +25756,6 @@ bike_paths:
         - 45.631685
     osm_names:
       - Sentier vélo de Montagne - Parc de la Gatineau
-      - Sentier du loup
-      - Luskville Falls Trail
       - Trail 57
       - '#45 (Powerline)'
       - '#44 (M.O.)'
@@ -27047,6 +25782,7 @@ bike_paths:
       - '#72B (Irish Whiskey)'
       - '# 76 (Jesse''s Girl)'
       - M.O.
+      - Sentier des Loups
       - Trail 73
       - Sentier des Caryers - Hickory Trail
       - O'Brien Beach Path
@@ -27068,6 +25804,7 @@ bike_paths:
       - Snowshoe Trail 61
       - Sentier Horizon
       - Trail 34
+      - Sentier de la Chute-de-Luskville
       - Whale
       - '#78 (Monique)'
       - La Chica
@@ -27097,12 +25834,9 @@ bike_paths:
     lit: 'no'
     width: '1'
     smoothness: very_bad
-    operator: NCC/CCN
-    network: lwn
+    network: mtb
     members:
       - sentier-velo-de-montagne-parc-de-la-gatineau
-      - sentier-du-loup
-      - luskville-falls-trail
       - trail-57
       - 45-powerline
       - 44-mo
@@ -27127,6 +25861,7 @@ bike_paths:
       - 72b-irish-whiskey
       - 76-jesses-girl
       - mo
+      - sentier-des-loups
       - trail-73
       - sentier-des-caryers-hickory-trail
       - obrien-beach-path
@@ -27148,6 +25883,7 @@ bike_paths:
       - snowshoe-trail-61
       - sentier-horizon
       - trail-34
+      - sentier-de-la-chute-de-luskville
       - whale
       - 78-monique
       - la-chica
@@ -27173,14 +25909,7 @@ bike_paths:
       - foreplay
       - chemin-cafferty
       - sentier-du-parc-de-la-gatineau
-      - champlain-trail
-      - king-mountain-trail
-      - waterfall-and-lauriault-trail
-      - sugarbush-trail
-      - pink-lake-trail
-      - pioneers-trail
       - salamander
-      - monkey-trail
       - trail-27
       - '54'
       - chemin-de-ste-cecile-de-masham
@@ -27200,7 +25929,6 @@ bike_paths:
         - 45.4697494
     osm_names:
       - Greenbelt Pathway West
-      - Shirley Bay Ski trail
       - Trail 27
       - Trail 23
       - Trail 24
@@ -27212,6 +25940,8 @@ bike_paths:
       - Trail 12
       - Jack Pine Trail
       - Lime Kiln Trail
+      - Trail 10
+      - Greenbelt Trail
       - Trail 1
       - Old Quarry Trail
       - Trail 12a
@@ -27223,6 +25953,7 @@ bike_paths:
       - Kanata Nordic Trail 11
       - Kanata Nordic Snowshoe Trail
       - Trail 12 Training Circle
+      - Mill Hill Road
       - NCC Aubrey Moodie Park
       - Greenbelt Pathway East
       - Trail 44
@@ -27245,7 +25976,6 @@ bike_paths:
     network: KanataNordicCampground
     members:
       - greenbelt-pathway-west
-      - shirley-bay-ski-trail
       - trail-27-1
       - trail-23
       - trail-24
@@ -27257,6 +25987,8 @@ bike_paths:
       - trail-12
       - jack-pine-trail
       - lime-kiln-trail
+      - trail-10
+      - greenbelt-trail
       - trail-1-1
       - old-quarry-trail
       - trail-12a
@@ -27268,6 +26000,7 @@ bike_paths:
       - kanata-nordic-trail-11
       - kanata-nordic-snowshoe-trail
       - trail-12-training-circle
+      - mill-hill-road
       - ncc-aubrey-moodie-park
       - greenbelt-pathway-east
       - trail-44
@@ -27283,8 +26016,8 @@ bike_paths:
       - dewberry-trail
       - watts-creek-pathway
       - trans-canada-trail-bells-cornerswatts-creek
+      - ottawa-river-pathway-west
       - greenbelt-pathway-west-barrhaven
-      - ottawa-west-winter-trail
       - ottawa-carleton-trailway-east
       - greens-creek-bridge
       - '31'
@@ -27613,18 +26346,6 @@ bike_paths:
       - oh-deer
     mtb: true
     slug: the-beast-trail-trails
-  - name: Ottawa River Pathway
-    type: network
-    osm_relations:
-      - 9502635
-    name_fr: Sentier de la Rivière des Outaouais
-    super_network: capital-pathway
-    members:
-      - ottawa-river-pathway-east
-      - ottawa-river-pathway-trans-canada-trail
-      - ottawa-river-pathway-west
-      - trans-canada-trail-sussex-drive
-    slug: ottawa-river-pathway
   - name: Trans Canada Trail (Ottawa area)
     type: network
     osm_relations:
@@ -27633,6 +26354,7 @@ bike_paths:
     members:
       - trans-canada-trail-bells-cornerswatts-creek
       - ottawa-river-pathway-trans-canada-trail
+      - workman-avenue
       - ottawa-carleton-trailway
     slug: trans-canada-trail-ottawa-area
   - name: Capital Pathway
@@ -27652,6 +26374,18 @@ bike_paths:
       length_km: 220
       inception: 1970s
       website: https://ncc-ccn.gc.ca/places/capital-pathway
+      commons_image: Ottawa Sept 09 2006 068.jpg
+      commons_category: Capital Pathway
+      operator_qid: Q613449
+      instance_of:
+        - Q221722
+        - Q12670591
+      social:
+        - platform: reddit
+          username: bikeinottawa
+          url: https://www.reddit.com/r/bikeinottawa
+      operator: National Capital Commission
+      wikipedia_extract_en: "The Capital Pathway, also known informally as the Bike Path, is a 220-kilometre (140\_mi) recreational pathway interlinking many parks, waterways and sites in Ottawa, Ontario and Gatineau, Quebec. Most of the pathway is paved, and allows an almost continuous route through the National Capital Region."
     members:
       - sentier-des-voyageurs-pathway
       - sentier-des-pionniers-pathway
@@ -27660,7 +26394,7 @@ bike_paths:
       - rideau-canal-western-pathway
       - rideau-canal-eastern-pathway
       - experimental-farm-pathway
-      - rideau-river-eastern-pathway-1
+      - rideau-river-eastern-pathway
       - aviation-pathway
       - greenbelt-pathway-east
       - ottawa-river-pathway-east
@@ -27671,6 +26405,7 @@ bike_paths:
       - sentier-de-la-riviere-gatineau
       - pinecrest-creek-pathway
       - mackenzie-cycle-track
+      - trans-canada-trail-sussex-drive
       - trillium-pathway
     slug: capital-pathway
   - name: Crosstown Bikeway 2
@@ -27694,17 +26429,6 @@ bike_paths:
       - oconnor-bikeway
       - crosstown-bikeway-5-1
     slug: crosstown-bikeway-5
-  - name: Rideau River Eastern Pathway
-    type: network
-    osm_relations:
-      - 10990512
-    name_fr: Sentier de l'Est de la rivière Rideau
-    name_en: Rideau River Eastern Pathway
-    network: lcn
-    members:
-      - rideau-river-eastern-pathway-1
-      - rideau-river-eastern-pathway-city-section
-    slug: rideau-river-eastern-pathway
   - name: Ottawa Bikeways
     type: network
     cycle_network: CA:ON:Ottawa
@@ -27748,7 +26472,59 @@ bike_paths:
       - 1206531215
       - 1206531217
     route_type: foot
+    path_type: mup
+    type: destination
     slug: cheminduquebec-5-st-jean-farnham
+  - name: Sentier du lac Leamy Skiing Trail
+    osm_relations:
+      - 15446553
+    osm_way_ids:
+      - 28223848
+      - 37122497
+      - 39451259
+      - 39451260
+      - 39451334
+      - 39451336
+      - 39451337
+      - 39451338
+      - 39662047
+      - 39662048
+      - 39685495
+      - 53373211
+      - 116974514
+      - 116974515
+      - 283537363
+      - 283537364
+      - 374378791
+      - 499524725
+      - 531142401
+      - 531142407
+      - 531142408
+      - 534150617
+      - 574572382
+      - 701841601
+      - 768837392
+      - 1103235275
+      - 1284736161
+      - 1355842002
+      - 1442904886
+      - 1442904887
+      - 1442904890
+      - 1442904891
+      - 1442936854
+      - 1442936857
+      - 1444541662
+      - 1444541663
+      - 1444541664
+      - 1444544193
+      - 1444544197
+      - 1444675085
+      - 1444678189
+      - 1444678200
+    route_type: piste
+    path_type: mup
+    type: destination
+    slug: sentier-du-lac-leamy-skiing-trail
   - name: Le P'tit Train du Nord
     osm_relations:
       - 6871774
@@ -27815,6 +26591,8 @@ bike_paths:
       - 1221013983
       - 1221013984
     route_type: piste
+    path_type: mtb-trail
+    type: destination
     slug: le-ptit-train-du-nord
   - name: Sentier le Portage
     osm_relations:
@@ -27832,6 +26610,8 @@ bike_paths:
       - 1379398328
     route_type: hiking
     network: lwn
+    path_type: mup
+    type: destination
     slug: sentier-le-portage
   - name: Nature and Tranquility
     osm_relations:
@@ -27848,6 +26628,8 @@ bike_paths:
     route_type: piste
     operator: NCC
     network: Gatineau Park Ski Routes
+    path_type: mtb-trail
+    type: destination
     slug: nature-and-tranquility
   - name: SIA, 6-Route d'accès Amqui
     osm_relations:
@@ -27863,6 +26645,8 @@ bike_paths:
       - 509475446
     route_type: hiking
     network: lwn
+    path_type: mup
+    type: destination
     slug: sia-6-route-dacces-amqui
   - name: Fatbike Mont-Tremblant
     osm_relations:
@@ -27885,6 +26669,8 @@ bike_paths:
       - 1236506075
       - 1339709740
     route_type: piste
+    path_type: mtb-trail
+    type: destination
     slug: fatbike-mont-tremblant
   - name: Watts East
     osm_relations:
@@ -27902,6 +26688,15 @@ bike_paths:
       - 1190646091
     route_type: piste
     network: Ottawa West Winter Trail
+    path_type: mup
+    type: destination
+    overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
     slug: watts-east
   - name: Greenbelt South
     osm_relations:
@@ -27918,7 +26713,26 @@ bike_paths:
       - 1284461094
     route_type: piste
     network: Ottawa West Winter Trail
+    path_type: trail
+    type: destination
+    overlapping_relations:
+      - id: 7360383
+        name: Rideau Trail - Ottawa Section
+        route: hiking
+        operator: Rideau Trail Association
+        ref: RTO
+        network: rwn
     slug: greenbelt-south
+  - name: Monkey Trail
+    osm_relations:
+      - 20166048
+    osm_way_ids:
+      - 1473701129
+    route_type: piste
+    ref: '21'
+    path_type: mtb-trail
+    type: destination
+    slug: monkey-trail
 super_networks:
   - name: Trans Canada Trail (Ottawa area)
     slug: trans-canada-trail-ottawa-area
@@ -27931,8 +26745,5 @@ super_networks:
     slug: crosstown-bikeway-2
   - name: Crosstown Bikeway 5
     slug: crosstown-bikeway-5
-  - name: Rideau River Eastern Pathway
-    name_fr: Sentier de l'Est de la rivière Rideau
-    slug: rideau-river-eastern-pathway
   - name: Ottawa Bikeways
     slug: ottawa-bikeways
