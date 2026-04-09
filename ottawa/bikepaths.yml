@@ -25472,10 +25472,6 @@ bike_paths:
       - st-joseph-boulevard-1
       - trans-canada-trail-bells-cornerswatts-creek
       - watts-creek-pathway
-      - '31'
-      - '50'
-      - '51'
-      - ncc29
       - trail-1-1
       - trail-8
       - trail-10
@@ -25490,9 +25486,13 @@ bike_paths:
       - trail-25
       - trail-26-1
       - trail-27-1
+      - ncc29
+      - '31'
       - trail-42
       - trail-43-pine-grove-forestry-trail
       - trail-44
+      - '50'
+      - '51'
       - trail-61
     mtb: true
     super_network: capital-pathway
@@ -25591,56 +25591,56 @@ bike_paths:
       - the-sweet-line
       - trail-to-fire-tower
       - whale
-      - 41-de-la-mine
-      - 43-boreale
-      - 44-mo
-      - 45-powerline
-      - 53b-bench
-      - '54'
-      - 58-glazer
-      - 58-konnektor
-      - 59-moonshine
-      - 68-missing-link
-      - 72b-irish-cream
-      - 72b-irish-whiskey
-      - 76-jesses-girl
-      - 76-skyridge
-      - 77-happy-valley
-      - 79-bresilienne
-      - 79b
-      - piste-9
-      - piste-25
-      - piste-35
-      - sentier-trail-51
       - sentiertrail-1
       - trail-1-ridge-road
       - trail-1b
       - trail-2
       - trail-3
       - trail-7
+      - piste-9
       - trail-14
       - trail-20-1
       - trail-22b
       - trail-24-1
+      - piste-25
       - trail-26
       - trail-27
       - trail-33
+      - piste-35
       - trail-40
+      - 41-de-la-mine
+      - 43-boreale
+      - 44-mo
+      - 45-powerline
       - trail-47
       - trail-50
+      - sentier-trail-51
       - trail-52
       - trail-52-parc-de-la-gatineau-pathway
+      - 53b-bench
       - trail-53
+      - '54'
       - trail-54
       - trail-55
       - trail-56b
       - trail-57
+      - 58-konnektor
+      - 58-glazer
+      - 59-moonshine
       - trail-65
       - trail-66
+      - 68-missing-link
       - trail-68
       - trail-71
+      - 72b-irish-cream
+      - 72b-irish-whiskey
       - trail-72
       - trail-74
+      - 76-jesses-girl
+      - 76-skyridge
+      - 77-happy-valley
+      - 79-bresilienne
+      - 79b
     mtb: true
     super_network: capital-pathway
     slug: parc-de-la-gatineau
@@ -25854,9 +25854,9 @@ bike_paths:
       - rockys
       - rue-de-la-tire
       - silly
-      - '417'
       - molo-2
       - molo-3
+      - '417'
     mtb: true
     slug: la-boucle-trails
   - name: Mississippi Valley Trail - ART Section Trails
