@@ -60,6 +60,7 @@ bike_paths:
     osm_way_ids: [88001, 88002, 88003]
     highway: cycleway
     surface: fine_gravel
+    smoothness: bad
     width: "2.5"
     lit: "no"
     path_type: trail
