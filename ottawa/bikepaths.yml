@@ -25441,59 +25441,59 @@ bike_paths:
     operator: NCC
     network: KanataNordicCampground
     members:
-      - greenbelt-pathway-west
-      - trail-27-1
-      - trail-23
-      - trail-24
-      - trail-21
-      - trail-25
-      - chipmunk-trail
+      - arboretum-loop
+      - bearbrook-road
       - beaver-trail
-      - trail-26-1
-      - trail-12
+      - bruin-road
+      - carling-avenue-1
+      - cedarview-road
+      - chipmunk-trail
+      - dewberry-trail
+      - greens-creek-bridge
+      - greenbank-road-1
+      - greenbelt-pathway-east
+      - greenbelt-pathway-west
+      - greenbelt-pathway-west-barrhaven
+      - greenbelt-trail
       - jack-pine-trail
       - lime-kiln-trail
-      - trail-10
-      - greenbelt-trail
-      - trail-1-1
-      - old-quarry-trail
-      - trail-12a
-      - trail-11
-      - trail-12b
-      - trail-8
-      - trail-20
-      - ncc29
       - mill-hill-road
-      - ncc-aubrey-moodie-park
-      - greenbelt-pathway-east
-      - trail-44
-      - pine-grove-forestry-trail
-      - trail-43-pine-grove-forestry-trail
-      - trail-61
-      - trail-42
-      - arboretum-loop
-      - '50'
       - moe-anderson-trail
-      - '51'
-      - watts-creek-pathway
-      - trans-canada-trail-bells-cornerswatts-creek
-      - ottawa-river-pathway-west
-      - greenbelt-pathway-west-barrhaven
-      - ottawa-carleton-trailway-east
-      - greens-creek-bridge
-      - '31'
-      - sir-george-etienne-cartier-parkway
-      - cedarview-road
-      - bruin-road
-      - st-joseph-boulevard-1
-      - river-road
-      - old-richmond-road
       - moodie-drive
+      - ncc-aubrey-moodie-park
+      - old-quarry-trail
+      - old-richmond-road
+      - ottawa-river-pathway-west
+      - ottawa-carleton-trailway-east
+      - pine-grove-forestry-trail
+      - river-road
       - robertson-road
-      - carling-avenue-1
-      - bearbrook-road
-      - dewberry-trail
-      - greenbank-road-1
+      - sir-george-etienne-cartier-parkway
+      - st-joseph-boulevard-1
+      - trans-canada-trail-bells-cornerswatts-creek
+      - watts-creek-pathway
+      - '31'
+      - '50'
+      - '51'
+      - ncc29
+      - trail-1-1
+      - trail-8
+      - trail-10
+      - trail-11
+      - trail-12
+      - trail-12a
+      - trail-12b
+      - trail-20
+      - trail-21
+      - trail-23
+      - trail-24
+      - trail-25
+      - trail-26-1
+      - trail-27-1
+      - trail-42
+      - trail-43-pine-grove-forestry-trail
+      - trail-44
+      - trail-61
     mtb: true
     super_network: capital-pathway
     slug: ncc-greenbelt
@@ -25574,73 +25574,73 @@ bike_paths:
     smoothness: bad
     network: mtb
     members:
-      - trail-52
-      - trail-57
+      - bypass
+      - carman-lake-lookout-trail
+      - chemin-cowden
+      - chemin-de-ste-cecile-de-masham
+      - chemin-du-lac-meech
+      - chemin-kingsmere
+      - gay-beach-trail
+      - hat
+      - hermit
+      - la-chica
+      - mo
+      - obrien-beach-path
+      - salamander
+      - sentier-du-parc-de-la-gatineau
+      - the-sweet-line
+      - trail-to-fire-tower
+      - whale
+      - 41-de-la-mine
+      - 43-boreale
+      - 44-mo
+      - 45-powerline
+      - 53b-bench
+      - '54'
+      - 58-glazer
+      - 58-konnektor
+      - 59-moonshine
+      - 68-missing-link
+      - 72b-irish-cream
+      - 72b-irish-whiskey
+      - 76-jesses-girl
+      - 76-skyridge
+      - 77-happy-valley
+      - 79-bresilienne
+      - 79b
+      - piste-9
+      - piste-25
+      - piste-35
       - sentier-trail-51
+      - sentiertrail-1
+      - trail-1-ridge-road
+      - trail-1b
+      - trail-2
+      - trail-3
+      - trail-7
+      - trail-14
+      - trail-20-1
+      - trail-22b
+      - trail-24-1
+      - trail-26
+      - trail-27
+      - trail-33
+      - trail-40
+      - trail-47
+      - trail-50
+      - trail-52
+      - trail-52-parc-de-la-gatineau-pathway
       - trail-53
       - trail-54
       - trail-55
-      - trail-52-parc-de-la-gatineau-pathway
-      - trail-74
-      - trail-72
-      - trail-71
-      - 72b-irish-cream
-      - 72b-irish-whiskey
-      - carman-lake-lookout-trail
-      - 53b-bench
-      - 58-konnektor
-      - 58-glazer
-      - 59-moonshine
-      - the-sweet-line
-      - piste-25
-      - trail-26
-      - piste-35
-      - trail-65
-      - 76-skyridge
-      - trail-66
-      - 68-missing-link
-      - trail-68
-      - 76-jesses-girl
-      - hermit
-      - 41-de-la-mine
-      - whale
-      - la-chica
-      - 77-happy-valley
-      - 43-boreale
-      - 45-powerline
-      - 44-mo
-      - trail-47
-      - trail-50
-      - chemin-cowden
-      - mo
-      - obrien-beach-path
-      - hat
-      - bypass
-      - gay-beach-trail
-      - trail-33
-      - 79b
-      - trail-2
-      - trail-40
-      - trail-7
-      - sentiertrail-1
-      - trail-24-1
-      - piste-9
-      - trail-1b
-      - trail-3
-      - trail-1-ridge-road
-      - trail-14
-      - 79-bresilienne
-      - trail-20-1
-      - trail-22b
-      - trail-to-fire-tower
-      - sentier-du-parc-de-la-gatineau
-      - salamander
-      - trail-27
-      - '54'
       - trail-56b
-      - chemin-de-ste-cecile-de-masham
-      - chemin-kingsmere
-      - chemin-du-lac-meech
+      - trail-57
+      - trail-65
+      - trail-66
+      - trail-68
+      - trail-71
+      - trail-72
+      - trail-74
     mtb: true
     super_network: capital-pathway
     slug: parc-de-la-gatineau
@@ -25669,14 +25669,14 @@ bike_paths:
     smoothness: intermediate
     members:
       - blue-heron-trail
-      - northwest-passage
-      - lumberjack
-      - marathon-nw
       - cow-path
-      - skid-row
-      - richardson-ridge-nature-trail
       - kizell-pond-trail-north
       - kizell-pond-trail-south
+      - lumberjack
+      - marathon-nw
+      - northwest-passage
+      - richardson-ridge-nature-trail
+      - skid-row
     mtb: true
     slug: kizell-pond-trail-north-trails
   - name: South March Highlands Conservation Forest
@@ -25720,36 +25720,36 @@ bike_paths:
     highway: path
     width: '0.5'
     members:
-      - klondike
-      - porcupine
-      - brady
-      - coconut-tree
-      - north-dogsled
-      - south-dogsled
-      - m-line
-      - rockhopper
+      - autobahn
       - bailout
       - beartree
+      - beaver-bridge
+      - beluga
+      - brady
+      - cannonball-run
+      - coconut-tree
+      - confederation-bridge
+      - dark-side
       - deerdrop-baypass
       - fastout
-      - imba
-      - outback
-      - pwt
-      - ridgetop
-      - origins
-      - cannonball-run
+      - forestbrook
       - garter-belt
-      - autobahn
-      - beaver-bridge
+      - imba
       - impaler
+      - klondike
+      - m-line
+      - north-dogsled
+      - origins
+      - outback
+      - porcupine
+      - pwt
+      - railway-bypass
+      - ridgetop
+      - rockhopper
+      - south-dogsled
+      - staycation
       - waterfall
       - waterfall-climb
-      - staycation
-      - railway-bypass
-      - beluga
-      - forestbrook
-      - dark-side
-      - confederation-bridge
     mtb: true
     slug: south-march-highlands-conservation-forest
     park: South March Highlands Conservation Forest
@@ -25771,11 +25771,11 @@ bike_paths:
     lit: 'no'
     width: '1'
     members:
+      - richcraft
+      - shadows-ridge
+      - shirleys-brook
       - trillium
       - trillium-woods-trail
-      - shirleys-brook
-      - shadows-ridge
-      - richcraft
     mtb: true
     slug: monk-environmental-park
     park: Monk Environmental Park
@@ -25793,8 +25793,8 @@ bike_paths:
     surface: fine_gravel
     highway: path
     members:
-      - rotary-centennial-trail
       - mississippi-riverwalk-trail
+      - rotary-centennial-trail
       - st-james-woods
     slug: st-james-woods-trails
   - name: La Boucle Trails
@@ -25833,30 +25833,30 @@ bike_paths:
     highway: path
     smoothness: bad
     members:
-      - major
-      - la-boucle
-      - '417'
-      - molo-3
-      - la-tour
-      - molo
-      - mm
-      - houleuse
-      - jl-speciale
-      - rentre-a-maison
-      - extreme
-      - rockys
-      - molo-2
-      - pont
-      - montee
-      - la-crete
-      - new-path
-      - silly
-      - marais
       - castor
       - dos-dane
+      - extreme
+      - houleuse
+      - jl-speciale
+      - la-boucle
+      - la-crete
       - la-pente
+      - la-tour
+      - mm
+      - major
+      - marais
+      - molo
+      - montee
+      - new-path
+      - pont
+      - rentre-a-maison
       - rocheuse
+      - rockys
       - rue-de-la-tire
+      - silly
+      - '417'
+      - molo-2
+      - molo-3
     mtb: true
     slug: la-boucle-trails
   - name: Mississippi Valley Trail - ART Section Trails
@@ -25877,11 +25877,11 @@ bike_paths:
     lit: 'no'
     width: '2'
     members:
-      - riverwalk
       - mississippi-valley-trail-art-section
+      - mississippi-valley-trail-bobs-run-loop-black
+      - riverwalk
       - spingbank-trail
       - veterans-memorial-walkway
-      - mississippi-valley-trail-bobs-run-loop-black
     mtb: true
     slug: mississippi-valley-trail-art-section-trails
   - name: Landsdowne Natural Heritage Park
@@ -25901,11 +25901,11 @@ bike_paths:
     highway: footway
     width: '1'
     members:
-      - middle-footpath
-      - lower-path
-      - lower-footpath
-      - uppoer-footpath
       - connector-path
+      - lower-footpath
+      - lower-path
+      - middle-footpath
+      - uppoer-footpath
     mtb: true
     slug: landsdowne-natural-heritage-park
     park: Landsdowne Natural Heritage Park
@@ -25926,11 +25926,11 @@ bike_paths:
     highway: footway
     lit: 'no'
     members:
-      - coulicou
-      - piranga-sentier-dhiver
       - carouge
-      - vireo
+      - coulicou
       - faucon
+      - piranga-sentier-dhiver
+      - vireo
     mtb: true
     slug: coulicou-trails
   - name: The Beast Trail Trails
@@ -25949,10 +25949,10 @@ bike_paths:
     highway: path
     width: '0.5'
     members:
-      - the-beast-trail
-      - jinx-link
       - forest-walk
+      - jinx-link
       - oh-deer
+      - the-beast-trail
     mtb: true
     slug: the-beast-trail-trails
   - name: Trans Canada Trail (Ottawa area)
@@ -25961,10 +25961,10 @@ bike_paths:
       - 9502450
     network: ncn
     members:
-      - trans-canada-trail-bells-cornerswatts-creek
       - ottawa-river-pathway-trans-canada-trail
-      - workman-avenue
       - ottawa-carleton-trailway
+      - trans-canada-trail-bells-cornerswatts-creek
+      - workman-avenue
     slug: trans-canada-trail-ottawa-area
   - name: Capital Pathway
     type: network
@@ -25997,37 +25997,37 @@ bike_paths:
       operator_website: http://www.ncc-ccn.gc.ca
       wikipedia_extract_en: "The Capital Pathway, also known informally as the Bike Path, is a 220-kilometre (140\_mi) recreational pathway interlinking many parks, waterways and sites in Ottawa, Ontario and Gatineau, Quebec. Most of the pathway is paved, and allows an almost continuous route through the National Capital Region."
     members:
-      - sentier-des-voyageurs-pathway
-      - sentier-des-pionniers-pathway
-      - sentier-du-parc-de-la-gatineau
-      - watts-creek-pathway
-      - rideau-canal-western-pathway
-      - rideau-canal-eastern-pathway
-      - experimental-farm-pathway
-      - rideau-river-eastern-pathway
       - aviation-pathway
+      - experimental-farm-pathway
       - greenbelt-pathway-east
+      - greenbelt-pathway-west
+      - greenbelt-pathway-west-barrhaven
+      - mackenzie-cycle-track
       - ottawa-river-pathway-east
       - ottawa-river-pathway-trans-canada-trail
       - ottawa-river-pathway-west
-      - greenbelt-pathway-west
-      - greenbelt-pathway-west-barrhaven
-      - sentier-de-la-riviere-gatineau
       - pinecrest-creek-pathway
-      - mackenzie-cycle-track
+      - rideau-canal-eastern-pathway
+      - rideau-canal-western-pathway
+      - rideau-river-eastern-pathway
+      - sentier-de-la-riviere-gatineau
+      - sentier-des-pionniers-pathway
+      - sentier-des-voyageurs-pathway
+      - sentier-du-parc-de-la-gatineau
       - trans-canada-trail-sussex-drive
       - trillium-pathway
+      - watts-creek-pathway
     slug: capital-pathway
   - name: Ottawa Bikeways
     type: network
     cycle_network: CA:ON:Ottawa
     members:
-      - oconnor-bikeway
-      - crosstown-bikeway-3
-      - crosstown-bikeway-2
-      - crosstown-bikeway-5
-      - laurier-segregated-bikelane
       - eastwest-crosstown-bikeway
+      - laurier-segregated-bikelane
+      - oconnor-bikeway
+      - crosstown-bikeway-2
+      - crosstown-bikeway-3
+      - crosstown-bikeway-5
     slug: ottawa-bikeways
   - name: CheminDuQuébec - 5 - St-Jean--Farnham
     osm_relations:
