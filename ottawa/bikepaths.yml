@@ -299,6 +299,10 @@ bike_paths:
       - 1443608549
       - 1443608560
       - 1443608562
+      - 1498685352
+      - 1498685353
+      - 1498685354
+      - 1498685355
   - name: Sentier de l'Île
     osm_relations:
       - 218656
@@ -14940,66 +14944,6 @@ bike_paths:
       - 1355702039
       - 1468971554
       - 1468971555
-  - name: Bronson Avenue
-    osm_names:
-      - Bronson Avenue
-    anchors:
-      - - -75.6963429
-        - 45.3803447
-      - - -75.6866599
-        - 45.3951202
-    name_fr: avenue Bronson
-    name_en: Bronson Avenue
-    wikipedia: en:Bronson Avenue
-    wikidata: Q4097051
-    surface: asphalt
-    lit: 'yes'
-    cycleway: shoulder
-    highway: primary
-    bicycle: 'yes'
-    ref: '79'
-    foot: 'no'
-    parallel_to: Bronson Avenue
-    path_type: paved-shoulder
-    wikidata_meta:
-      description_en: street in Ottawa, Canada
-      description_fr: avenue à Ottawa, Ontario
-      commons_image: Bronson Ave-facing downtown.jpg
-      commons_category: Bronson Avenue, Ottawa
-      instance_of:
-        - Q79007
-      social: []
-      wikipedia_extract_en: Bronson Avenue is a major north-south arterial road in Ottawa, Ontario, Canada. It starts at the south end as a continuation of the Airport Parkway, which is an expressway to the Macdonald-Cartier International Airport. It continues past Carleton University, the Glebe, north through Centretown, and ends downtown at Sparks Street.
-      wikipedia_extract_fr: L'avenue Bronson est une artère majeure nord-sud de la ville d'Ottawa, Ontario, au Canada. Elle commence à l'extrémité sud comme prolongement de la promenade de l’Aéroport, la voie express menant à l'aéroport international Macdonald-Cartier. Le chemin continue au-delà de l'Université Carleton, du Glebe, vers le nord à travers le centre-ville et se termine au centre-ville au croisement avec la rue Sparks.
-    type: infrastructure
-    slug: bronson-avenue
-    osm_way_ids:
-      - 76419247
-      - 76419257
-      - 76420651
-      - 76420937
-      - 76420969
-      - 76421025
-      - 76421346
-      - 76421407
-      - 76421531
-      - 76421585
-      - 305214469
-      - 305214579
-      - 305214619
-      - 305214700
-      - 305214701
-      - 305214720
-      - 432365103
-      - 486631865
-      - 490908991
-      - 490908992
-      - 539766954
-      - 584503151
-      - 880435926
-      - 880435927
-      - 1283505590
-      - 1283505594
   - name: Cumberland Street
     osm_names:
       - Cumberland Street
@@ -19464,6 +19408,66 @@ bike_paths:
       - 1015923521
       - 1015923524
       - 1038388381
+  - name: Bronson Avenue
+    osm_names:
+      - Bronson Avenue
+    anchors:
+      - - -75.6963429
+        - 45.3803447
+      - - -75.6866599
+        - 45.3951202
+    name_fr: avenue Bronson
+    name_en: Bronson Avenue
+    wikipedia: en:Bronson Avenue
+    wikidata: Q4097051
+    surface: asphalt
+    lit: 'yes'
+    cycleway: shoulder
+    highway: primary
+    bicycle: 'yes'
+    ref: '79'
+    foot: 'no'
+    parallel_to: Bronson Avenue
+    path_type: paved-shoulder
+    wikidata_meta:
+      description_en: street in Ottawa, Canada
+      description_fr: avenue à Ottawa, Ontario
+      commons_image: Bronson Ave-facing downtown.jpg
+      commons_category: Bronson Avenue, Ottawa
+      instance_of:
+        - Q79007
+      social: []
+      wikipedia_extract_en: Bronson Avenue is a major north-south arterial road in Ottawa, Ontario, Canada. It starts at the south end as a continuation of the Airport Parkway, which is an expressway to the Macdonald-Cartier International Airport. It continues past Carleton University, the Glebe, north through Centretown, and ends downtown at Sparks Street.
+      wikipedia_extract_fr: L'avenue Bronson est une artère majeure nord-sud de la ville d'Ottawa, Ontario, au Canada. Elle commence à l'extrémité sud comme prolongement de la promenade de l’Aéroport, la voie express menant à l'aéroport international Macdonald-Cartier. Le chemin continue au-delà de l'Université Carleton, du Glebe, vers le nord à travers le centre-ville et se termine au centre-ville au croisement avec la rue Sparks.
+    type: infrastructure
+    slug: bronson-avenue
+    osm_way_ids:
+      - 76419247
+      - 76419257
+      - 76420651
+      - 76420937
+      - 76420969
+      - 76421025
+      - 76421346
+      - 76421407
+      - 76421531
+      - 76421585
+      - 305214469
+      - 305214579
+      - 305214619
+      - 305214700
+      - 305214701
+      - 305214720
+      - 432365103
+      - 486631865
+      - 490908991
+      - 490908992
+      - 539766954
+      - 584503151
+      - 880435926
+      - 880435927
+      - 1283505590
+      - 1283505594
   - name: Waller Street
     osm_names:
       - Waller Street
@@ -23401,10 +23405,10 @@ bike_paths:
     parallel_to: Chemin McConnell
     highway: cycleway
     anchors:
-      - - -75.8014388
-        - 45.4128353
-      - - -75.8014388
-        - 45.4128353
+      - - -75.8014435
+        - 45.4128384
+      - - -75.8014435
+        - 45.4128384
     surface: asphalt
     lit: 'yes'
     width: '2.5'
@@ -24639,10 +24643,10 @@ bike_paths:
     parallel_to: Chemin Allen
     highway: cycleway
     anchors:
-      - - -75.7841044
-        - 45.4112371
-      - - -75.7841044
-        - 45.4112371
+      - - -75.7841418
+        - 45.4112323
+      - - -75.7841418
+        - 45.4112323
     surface: asphalt
     width: '2.5'
     smoothness: good
