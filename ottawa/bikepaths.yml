@@ -354,7 +354,7 @@ bike_paths:
       - - -75.7871841
         - 45.4641933
       - - -75.7385699
-        - 45.4731249
+        - 45.4715792
     path_type: mup
     type: destination
     overlapping_relations:
@@ -4196,6 +4196,7 @@ bike_paths:
       - 300555544
       - 310490054
       - 310643759
+      - 311604378
       - 313543217
       - 327171298
       - 328592847
@@ -4291,6 +4292,7 @@ bike_paths:
       - 636440834
       - 638081272
       - 640411785
+      - 640411788
       - 654089075
       - 656620151
       - 656620152
@@ -6044,10 +6046,10 @@ bike_paths:
     bicycle: 'yes'
     foot: 'yes'
     anchors:
-      - - -75.7695207
-        - 45.3824786
       - - -75.7585336
         - 45.3896106
+      - - -75.7695207
+        - 45.3824786
     path_type: mup
     type: destination
     slug: byron-richmond-path
@@ -8711,6 +8713,25 @@ bike_paths:
       - 279252402
       - 380250817
       - 632011953
+  - name: Trail 47 (Hope Trail)
+    osm_names:
+      - Trail 47 (Hope Trail)
+    anchors:
+      - - -75.8824459
+        - 45.5578264
+      - - -75.8833688
+        - 45.5397017
+    surface: ground
+    highway: cycleway
+    bicycle: designated
+    foot: designated
+    path_type: mtb-trail
+    member_of: parc-de-la-gatineau
+    mtb: true
+    type: destination
+    slug: trail-47-hope-trail
+    osm_way_ids:
+      - 279357109
   - name: Juno Beach Memorial Bridge
     osm_names:
       - Juno Beach Memorial Bridge
@@ -8799,11 +8820,6 @@ bike_paths:
     highway: cycleway
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: asphalt
-        km: 1
-      - value: fine_gravel
-        km: 1
     path_type: trail
     type: destination
     slug: cardinal-creek-trail
@@ -9204,7 +9220,7 @@ bike_paths:
       - Trail 47
     anchors:
       - - -75.891423
-        - 45.5397017
+        - 45.557394
       - - -75.8824459
         - 45.568983
     surface: ground
@@ -9594,10 +9610,10 @@ bike_paths:
     osm_names:
       - Blue Heron Trail
     anchors:
-      - - -75.9243287
-        - 45.3377637
       - - -75.9199569
         - 45.3423153
+      - - -75.9243287
+        - 45.3377637
     surface: fine_gravel
     smoothness: intermediate
     width: '2'
@@ -9628,9 +9644,9 @@ bike_paths:
     ref: '23'
     surface_mix:
       - value: ground
-        km: 3
+        km: 2
       - value: gravel
-        km: 3
+        km: 1
     path_type: mtb-trail
     mtb: true
     member_of: ncc-greenbelt
@@ -9657,9 +9673,9 @@ bike_paths:
     bicycle: 'yes'
     surface_mix:
       - value: gravel
-        km: 5
+        km: 2
       - value: ground
-        km: 4
+        km: 2
     path_type: mtb-trail
     mtb: true
     member_of: ncc-greenbelt
@@ -9922,9 +9938,9 @@ bike_paths:
     osm_names:
       - 'Piste #35'
     anchors:
-      - - -75.816986
-        - 45.4688841
       - - -75.8120889
+        - 45.4688841
+      - - -75.816986
         - 45.472483
     name_en: Trail 35
     surface: ground
@@ -10079,9 +10095,9 @@ bike_paths:
     foot: 'yes'
     surface_mix:
       - value: ground
-        km: 10
+        km: 5
       - value: gravel
-        km: 4
+        km: 2
     path_type: mtb-trail
     mtb: true
     member_of: ncc-greenbelt
@@ -10134,9 +10150,9 @@ bike_paths:
       - Marianne Wilkinson Bridge
     anchors:
       - - -75.8964434
-        - 45.3144525
-      - - -75.8954066
         - 45.3153648
+      - - -75.8954066
+        - 45.3144525
     surface: concrete
     smoothness: excellent
     width: '4'
@@ -10168,7 +10184,7 @@ bike_paths:
     foot: 'yes'
     surface_mix:
       - value: fine_gravel
-        km: 4
+        km: 2
       - value: ground
         km: 1
     path_type: trail
@@ -10193,9 +10209,9 @@ bike_paths:
       - 'Trail #33'
     anchors:
       - - -75.9191572
-        - 45.5212935
-      - - -75.9133243
         - 45.5284488
+      - - -75.9133243
+        - 45.5212935
     surface: ground
     highway: path
     mtb:scale: '2'
@@ -10214,9 +10230,9 @@ bike_paths:
       - '#79B'
     anchors:
       - - -75.8313006
-        - 45.493177
-      - - -75.822986
         - 45.4931855
+      - - -75.822986
+        - 45.493177
     surface: ground
     width: '1'
     highway: path
@@ -10263,9 +10279,9 @@ bike_paths:
       - Moore Farm Estate Pathway
     anchors:
       - - -75.7590822
-        - 45.4198176
-      - - -75.755636
         - 45.4266943
+      - - -75.755636
+        - 45.4198176
     surface: fine_gravel
     width: '3'
     highway: path
@@ -10285,8 +10301,8 @@ bike_paths:
       - - -75.6953269
         - 45.3834548
     surface: asphalt
-    width: '3'
-    highway: path
+    width: '1'
+    highway: footway
     bicycle: 'yes'
     foot: 'yes'
     path_type: mup
@@ -10300,9 +10316,9 @@ bike_paths:
     osm_names:
       - Greenbelt Trail
     anchors:
-      - - -75.865773
-        - 45.3554083
       - - -75.8607719
+        - 45.3554083
+      - - -75.865773
         - 45.361192
     surface: ground
     smoothness: bad
@@ -10394,9 +10410,9 @@ bike_paths:
       - Porcupine
     anchors:
       - - -75.9468054
-        - 45.3388683
-      - - -75.9433993
         - 45.3392664
+      - - -75.9433993
+        - 45.3388683
     surface: ground
     width: '0.5'
     highway: path
@@ -10493,11 +10509,6 @@ bike_paths:
     highway: path
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: gravel
-        km: 1
-      - value: ground
-        km: 1
     path_type: mtb-trail
     member_of: monk-environmental-park
     mtb: true
@@ -10553,10 +10564,10 @@ bike_paths:
     osm_names:
       - M Line
     anchors:
-      - - -75.945815
-        - 45.3372117
       - - -75.9428821
         - 45.3391171
+      - - -75.945815
+        - 45.3372117
     alt_name: Mario's Line
     surface: ground
     width: '0.5'
@@ -10583,11 +10594,6 @@ bike_paths:
     highway: path
     bicycle: designated
     foot: designated
-    surface_mix:
-      - value: ground
-        km: 3
-      - value: rock
-        km: 1
     path_type: mtb-trail
     member_of: south-march-highlands-conservation-forest
     mtb: true
@@ -10602,9 +10608,9 @@ bike_paths:
       - Shirleys Brook
     anchors:
       - - -75.9251194
-        - 45.3356305
-      - - -75.9214109
         - 45.3380221
+      - - -75.9214109
+        - 45.3356305
     surface: gravel
     width: '1'
     lit: 'no'
@@ -10652,9 +10658,9 @@ bike_paths:
     osm_names:
       - Bailout
     anchors:
-      - - -75.9589273
-        - 45.3348035
       - - -75.9567953
+        - 45.3348035
+      - - -75.9589273
         - 45.3361963
     surface: ground
     width: '0.5'
@@ -10672,9 +10678,9 @@ bike_paths:
     osm_names:
       - Beartree
     anchors:
-      - - -75.9478928
-        - 45.3395005
       - - -75.942383
+        - 45.3395005
+      - - -75.9478928
         - 45.3452532
     surface: ground
     width: '0.5'
@@ -10692,10 +10698,10 @@ bike_paths:
     osm_names:
       - DeerDrop Baypass
     anchors:
-      - - -75.9487606
-        - 45.3394198
       - - -75.9478662
         - 45.3395719
+      - - -75.9487606
+        - 45.3394198
     surface: ground
     width: '0.5'
     highway: path
@@ -10735,10 +10741,10 @@ bike_paths:
     osm_names:
       - IMBA
     anchors:
-      - - -75.9571835
-        - 45.334216
       - - -75.9547801
         - 45.3351544
+      - - -75.9571835
+        - 45.334216
     surface: ground
     width: '0.5'
     highway: path
@@ -10798,10 +10804,10 @@ bike_paths:
     osm_names:
       - Ridgetop
     anchors:
-      - - -75.967713
-        - 45.331215
       - - -75.9548641
         - 45.3351036
+      - - -75.967713
+        - 45.331215
     surface: ground
     width: '0.5'
     highway: path
@@ -10818,10 +10824,10 @@ bike_paths:
     osm_names:
       - Northwest Passage
     anchors:
-      - - -75.9428547
-        - 45.3262973
       - - -75.9395984
         - 45.3282383
+      - - -75.9428547
+        - 45.3262973
     surface: ground
     width: '0.5'
     highway: path
@@ -10838,10 +10844,10 @@ bike_paths:
     osm_names:
       - Lumberjack
     anchors:
-      - - -75.9399772
-        - 45.3257659
       - - -75.9395984
         - 45.3282383
+      - - -75.9399772
+        - 45.3257659
     surface: ground
     width: '0.5'
     highway: path
@@ -10928,9 +10934,9 @@ bike_paths:
       - Trail 72
     anchors:
       - - -75.942415
-        - 45.6126438
-      - - -75.9301976
         - 45.6305641
+      - - -75.9301976
+        - 45.6126438
     surface: ground
     highway: path
     bicycle: designated
@@ -10946,10 +10952,10 @@ bike_paths:
     osm_names:
       - Trail 65
     anchors:
-      - - -75.7748829
-        - 45.4578193
       - - -75.7748377
         - 45.4624505
+      - - -75.7748829
+        - 45.4578193
     name_en: Trail 65
     surface: ground
     highway: path
@@ -10967,9 +10973,9 @@ bike_paths:
       - Mississippi Riverwalk Trail
     anchors:
       - - -76.1375598
-        - 45.1477864
-      - - -76.1315257
         - 45.1486838
+      - - -76.1315257
+        - 45.1477864
     surface: fine_gravel
     segregated: 'no'
     highway: path
@@ -11013,10 +11019,10 @@ bike_paths:
     osm_names:
       - Trail 71
     anchors:
-      - - -75.9191177
-        - 45.5980693
       - - -75.9173535
         - 45.6028674
+      - - -75.9191177
+        - 45.5980693
     surface: ground
     highway: path
     bicycle: designated
@@ -11034,9 +11040,9 @@ bike_paths:
       - Chemin Cowden
     anchors:
       - - -75.8822303
-        - 45.5654494
-      - - -75.8774008
         - 45.5721159
+      - - -75.8774008
+        - 45.5654494
     surface: ground
     highway: path
     bicycle: designated
@@ -11052,9 +11058,9 @@ bike_paths:
     osm_names:
       - 'Trail #24'
     anchors:
-      - - -75.930827
-        - 45.5206133
       - - -75.9189272
+        - 45.5206133
+      - - -75.930827
         - 45.5265359
     surface: ground
     smoothness: very_bad
@@ -11074,9 +11080,9 @@ bike_paths:
     osm_names:
       - Piste 9
     anchors:
-      - - -75.86026
-        - 45.5059683
       - - -75.8598281
+        - 45.5059683
+      - - -75.86026
         - 45.5074272
     name_en: Trail 9
     surface: gravel
@@ -11098,9 +11104,9 @@ bike_paths:
     osm_names:
       - 'Trail #1B'
     anchors:
-      - - -75.9124752
-        - 45.5104357
       - - -75.9099314
+        - 45.5104357
+      - - -75.9124752
         - 45.5191981
     surface: ground
     smoothness: very_bad
@@ -11129,9 +11135,9 @@ bike_paths:
     osm_names:
       - '# 76 (Skyridge)'
     anchors:
-      - - -75.806576
-        - 45.4609278
       - - -75.8024799
+        - 45.4609278
+      - - -75.806576
         - 45.46405
     surface: ground
     highway: path
@@ -11147,9 +11153,9 @@ bike_paths:
     osm_names:
       - Origins
     anchors:
-      - - -75.9537097
-        - 45.3326174
       - - -75.9515649
+        - 45.3326174
+      - - -75.9537097
         - 45.3345219
     surface: ground
     width: '0.5'
@@ -11168,9 +11174,9 @@ bike_paths:
       - Linear park
     anchors:
       - - -75.7386197
-        - 45.3686801
-      - - -75.736797
         - 45.3701461
+      - - -75.736797
+        - 45.3686801
     surface: asphalt
     smoothness: good
     width: '3'
@@ -11212,10 +11218,10 @@ bike_paths:
     osm_names:
       - Moe Anderson Trail
     anchors:
-      - - -75.5659828
-        - 45.4075182
       - - -75.5641894
         - 45.4102104
+      - - -75.5659828
+        - 45.4075182
     name_fr: Sentier Moe Anderson
     name_en: Moe Anderson Trail
     surface: ground
@@ -11310,9 +11316,9 @@ bike_paths:
       - Max Keeping Bridge
     anchors:
       - - -75.6535649
-        - 45.4180282
-      - - -75.6525744
         - 45.419309
+      - - -75.6525744
+        - 45.4180282
     name_fr: Pont Max Keeping
     name_en: Max Keeping Bridge
     surface: concrete
@@ -11400,9 +11406,9 @@ bike_paths:
       - '# 68 (Missing Link)'
     anchors:
       - - -75.8024799
-        - 45.4591952
-      - - -75.7996867
         - 45.4609278
+      - - -75.7996867
+        - 45.4591952
     surface: ground
     highway: path
     bicycle: 'yes'
@@ -11458,10 +11464,10 @@ bike_paths:
     osm_names:
       - Confederation Bridge
     anchors:
-      - - -75.9468479
-        - 45.3366706
       - - -75.9466745
         - 45.3368671
+      - - -75.9468479
+        - 45.3366706
     surface: wood
     width: '2'
     highway: path
@@ -11529,11 +11535,6 @@ bike_paths:
     bicycle: 'yes'
     network: Mer Bleue
     foot: 'yes'
-    surface_mix:
-      - value: ground
-        km: 6
-      - value: wood
-        km: 1
     path_type: mtb-trail
     mtb: true
     member_of: ncc-greenbelt
@@ -11573,9 +11574,9 @@ bike_paths:
       - Trail 61
     anchors:
       - - -75.5778032
-        - 45.4418737
-      - - -75.5776635
         - 45.4421997
+      - - -75.5776635
+        - 45.4418737
     surface: ground
     width: '2'
     highway: path
@@ -11594,9 +11595,9 @@ bike_paths:
       - Marathon NW
     anchors:
       - - -75.9436259
-        - 45.3262973
-      - - -75.9428547
         - 45.3269187
+      - - -75.9428547
+        - 45.3262973
     surface: ground
     width: '0.5'
     highway: path
@@ -11613,10 +11614,10 @@ bike_paths:
     osm_names:
       - Garter Belt
     anchors:
-      - - -75.956074
-        - 45.334426
       - - -75.9551641
         - 45.3348768
+      - - -75.956074
+        - 45.334426
     surface: ground
     width: '0.5'
     highway: path
@@ -11649,7 +11650,7 @@ bike_paths:
     mtb: true
     member_of: ncc-greenbelt
     type: destination
-    slug: trail-1-1
+    slug: trail-1
     osm_way_ids:
       - 553292672
       - 727339902
@@ -11676,7 +11677,7 @@ bike_paths:
     path_type: mtb-trail
     mtb: true
     type: destination
-    slug: trail-1-2
+    slug: trail-1-1
     osm_way_ids:
       - 727305105
       - 1319747408
@@ -11744,9 +11745,9 @@ bike_paths:
       - Richcraft
     anchors:
       - - -75.9312522
-        - 45.3392751
-      - - -75.9309877
         - 45.3403815
+      - - -75.9309877
+        - 45.3392751
     surface: fine_gravel
     width: '2'
     highway: path
@@ -11804,9 +11805,9 @@ bike_paths:
     osm_names:
       - '#72B (Irish Cream)'
     anchors:
-      - - -75.9298861
-        - 45.6115375
       - - -75.9235871
+        - 45.6115375
+      - - -75.9298861
         - 45.6127145
     highway: path
     bicycle: designated
@@ -11823,9 +11824,9 @@ bike_paths:
       - Beaver Bridge
     anchors:
       - - -75.9613669
-        - 45.3352446
-      - - -75.9612065
         - 45.3352497
+      - - -75.9612065
+        - 45.3352446
     surface: ground
     width: '0.5'
     highway: path
@@ -11861,9 +11862,9 @@ bike_paths:
     osm_names:
       - Trail 12a
     anchors:
-      - - -75.8688577
-        - 45.3379064
       - - -75.8681111
+        - 45.3379064
+      - - -75.8688577
         - 45.3383429
     surface: ground
     width: '1'
@@ -11893,11 +11894,6 @@ bike_paths:
     highway: path
     bicycle: 'yes'
     ref: '11'
-    surface_mix:
-      - value: gravel
-        km: 1
-      - value: ground
-        km: 1
     path_type: mtb-trail
     mtb: true
     member_of: ncc-greenbelt
@@ -11917,9 +11913,9 @@ bike_paths:
       - Trail 12b
     anchors:
       - - -75.8661861
-        - 45.337382
-      - - -75.865801
         - 45.3382293
+      - - -75.865801
+        - 45.337382
     surface: ground
     width: '1'
     highway: path
@@ -11959,9 +11955,9 @@ bike_paths:
     osm_names:
       - Riverwalk
     anchors:
-      - - -76.1996552
-        - 45.227248
       - - -76.1981948
+        - 45.227248
+      - - -76.1996552
         - 45.2288191
     surface: fine_gravel
     highway: path
@@ -11976,9 +11972,9 @@ bike_paths:
     osm_names:
       - Rideau Canal Locks Crossing
     anchors:
-      - - -75.7001322
-        - 45.3839982
       - - -75.6999656
+        - 45.3839982
+      - - -75.7001322
         - 45.3840171
     surface: wood
     width: '1'
@@ -11995,9 +11991,9 @@ bike_paths:
     osm_names:
       - '#72B (Irish Whiskey)'
     anchors:
-      - - -75.9235871
-        - 45.6063738
       - - -75.9186868
+        - 45.6063738
+      - - -75.9235871
         - 45.6115375
     highway: path
     bicycle: designated
@@ -12056,9 +12052,9 @@ bike_paths:
       - Impaler
     anchors:
       - - -75.9556171
-        - 45.3379145
-      - - -75.9544989
         - 45.3379223
+      - - -75.9544989
+        - 45.3379145
     surface: ground
     width: '0.5'
     highway: path
@@ -12180,10 +12176,10 @@ bike_paths:
     osm_names:
       - Staycation
     anchors:
-      - - -75.9515649
-        - 45.3326174
       - - -75.9467849
         - 45.3365526
+      - - -75.9515649
+        - 45.3326174
     surface: ground
     width: '0.5'
     highway: path
@@ -12201,9 +12197,9 @@ bike_paths:
       - Molo 3
     anchors:
       - - -75.7601739
-        - 45.5108532
-      - - -75.7541631
         - 45.5113093
+      - - -75.7541631
+        - 45.5108532
     surface: dirt
     highway: path
     bicycle: 'yes'
@@ -12238,9 +12234,9 @@ bike_paths:
       - Corkstown Road
     anchors:
       - - -75.8210818
-        - 45.3488845
-      - - -75.8210817
         - 45.3489478
+      - - -75.8210817
+        - 45.3488845
     name_fr: chemin Corkstown
     name_en: Corkstown Road
     surface: asphalt
@@ -12258,10 +12254,10 @@ bike_paths:
     osm_names:
       - La Tour
     anchors:
-      - - -75.7655466
-        - 45.516032
       - - -75.7593707
         - 45.5164611
+      - - -75.7655466
+        - 45.516032
     surface: dirt
     smoothness: bad
     highway: path
@@ -12278,9 +12274,9 @@ bike_paths:
     osm_names:
       - Molo
     anchors:
-      - - -75.741149
-        - 45.5046771
       - - -75.7358534
+        - 45.5046771
+      - - -75.741149
         - 45.5051864
     surface: dirt
     highway: path
@@ -12297,9 +12293,9 @@ bike_paths:
     osm_names:
       - M&M
     anchors:
-      - - -75.7397084
-        - 45.5033535
       - - -75.7313225
+        - 45.5033535
+      - - -75.7397084
         - 45.5060428
     surface: dirt
     highway: path
@@ -12317,9 +12313,9 @@ bike_paths:
       - Houleuse
     anchors:
       - - -75.7520425
-        - 45.5070072
-      - - -75.7460532
         - 45.5076595
+      - - -75.7460532
+        - 45.5070072
     surface: dirt
     highway: path
     bicycle: 'yes'
@@ -12337,9 +12333,9 @@ bike_paths:
       - JL Speciale
     anchors:
       - - -75.7372261
-        - 45.5016179
-      - - -75.7359839
         - 45.5029991
+      - - -75.7359839
+        - 45.5016179
     surface: dirt
     highway: path
     bicycle: 'yes'
@@ -12355,9 +12351,9 @@ bike_paths:
     osm_names:
       - Rentre a Maison
     anchors:
-      - - -75.7377379
-        - 45.5033254
       - - -75.7353315
+        - 45.5033254
+      - - -75.7377379
         - 45.503952
     surface: dirt
     highway: path
@@ -12393,9 +12389,9 @@ bike_paths:
     osm_names:
       - Rocky's
     anchors:
-      - - -75.7351325
-        - 45.5032604
       - - -75.7326038
+        - 45.5032604
+      - - -75.7351325
         - 45.5044325
     surface: dirt
     highway: path
@@ -12431,9 +12427,9 @@ bike_paths:
     osm_names:
       - Pont
     anchors:
-      - - -75.7460532
-        - 45.5055511
       - - -75.743567
+        - 45.5055511
+      - - -75.7460532
         - 45.5070072
     surface: dirt
     smoothness: bad
@@ -12452,9 +12448,9 @@ bike_paths:
     osm_names:
       - Montee
     anchors:
-      - - -75.746233
-        - 45.5077938
       - - -75.7458221
+        - 45.5077938
+      - - -75.746233
         - 45.5097531
     surface: dirt
     highway: path
@@ -12472,9 +12468,9 @@ bike_paths:
     osm_names:
       - La Crete
     anchors:
-      - - -75.7467706
-        - 45.5042493
       - - -75.7432536
+        - 45.5042493
+      - - -75.7467706
         - 45.5048201
     surface: dirt
     highway: path
@@ -12551,10 +12547,10 @@ bike_paths:
     osm_names:
       - New Path
     anchors:
-      - - -75.7592048
-        - 45.5035765
       - - -75.7587259
         - 45.504401
+      - - -75.7592048
+        - 45.5035765
     surface: gravel
     highway: path
     bicycle: 'yes'
@@ -12572,9 +12568,9 @@ bike_paths:
       - Silly
     anchors:
       - - -75.7632874
-        - 45.5127053
-      - - -75.7623598
         - 45.51405
+      - - -75.7623598
+        - 45.5127053
     surface: dirt
     highway: path
     bicycle: 'yes'
@@ -12591,9 +12587,9 @@ bike_paths:
       - Marais
     anchors:
       - - -75.7541131
-        - 45.5076595
-      - - -75.7520425
         - 45.5099384
+      - - -75.7520425
+        - 45.5076595
     surface: dirt
     highway: path
     bicycle: 'yes'
@@ -12630,9 +12626,9 @@ bike_paths:
     osm_names:
       - Dos d'Ane
     anchors:
-      - - -75.739248
-        - 45.5039625
       - - -75.7381484
+        - 45.5039625
+      - - -75.739248
         - 45.5040593
     surface: dirt/sand
     highway: path
@@ -18317,7 +18313,7 @@ bike_paths:
         - 45.4323315
       - - -75.4941136
         - 45.446796
-    name_fr: boulevard Brian Coburn
+    name_fr: boulevard Brian-Coburn
     name_en: Brian Coburn Boulevard
     surface: asphalt
     width: '7'
@@ -24340,10 +24336,10 @@ bike_paths:
     parallel_to: Avenue du Cheval-Blanc
     highway: cycleway
     anchors:
-      - - -75.5818123
-        - 45.5009136
-      - - -75.5812863
-        - 45.5051193
+      - - -75.581947
+        - 45.5029719
+      - - -75.581622
+        - 45.5062193
     surface: asphalt
     path_type: mup
     type: connector
@@ -25472,7 +25468,7 @@ bike_paths:
       - st-joseph-boulevard-1
       - trans-canada-trail-bells-cornerswatts-creek
       - watts-creek-pathway
-      - trail-1-1
+      - trail-1
       - trail-8
       - trail-10
       - trail-11
@@ -25541,6 +25537,7 @@ bike_paths:
       - '#43 (Boréale)'
       - '#45 (Powerline)'
       - '#44 (M.O.)'
+      - Trail 47 (Hope Trail)
       - Trail 47
       - Trail 50
       - Chemin Cowden
@@ -25550,23 +25547,20 @@ bike_paths:
       - Bypass
       - Gay Beach Trail
       - 'Trail #33'
-      - '#79B'
       - 'Trail #2'
       - 'Trail #40'
-      - Trail 7
-      - 'Sentier/Trail #1'
-      - 'Trail #1'
       - 'Trail #24'
       - Piste 9
       - 'Trail #1B'
       - 'Trail #3'
       - 'Trail #1 Ridge Road'
       - Trail 14
-      - '#79 (Brésilienne)'
-      - '32'
       - Trail 20
       - Trail 22B
       - Trail to Fire Tower
+      - '#79B'
+      - Trail 7
+      - '#79 (Brésilienne)'
     surface: ground
     highway: path
     lit: 'no'
@@ -25613,6 +25607,7 @@ bike_paths:
       - 44-mo
       - 45-powerline
       - trail-47
+      - trail-47-hope-trail
       - trail-50
       - sentier-trail-51
       - trail-52
