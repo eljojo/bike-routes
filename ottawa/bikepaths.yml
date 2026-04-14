@@ -269,7 +269,6 @@ bike_paths:
       - 584768749
       - 584768750
       - 737618568
-      - 792935593
       - 793638071
       - 793638072
       - 808105848
@@ -278,10 +277,6 @@ bike_paths:
       - 813218899
       - 961704209
       - 961704211
-      - 1263541424
-      - 1263541426
-      - 1263541427
-      - 1273164697
       - 1278947153
       - 1278947154
       - 1278947155
@@ -295,10 +290,6 @@ bike_paths:
       - 1443604784
       - 1443604785
       - 1443605501
-      - 1443605502
-      - 1443608549
-      - 1443608560
-      - 1443608562
       - 1498685352
       - 1498685353
       - 1498685354
@@ -4763,6 +4754,7 @@ bike_paths:
       - 194704615
       - 745992234
       - 745992235
+      - 1278943742
       - 1278943743
   - name: Sentier du Corridor-Champlain
     osm_relations:
@@ -7209,7 +7201,9 @@ bike_paths:
     slug: crosstown-bikeway-2
     osm_way_ids:
       - 76421365
+      - 76423335
       - 76423871
+      - 76424480
       - 76424504
       - 76441141
       - 76441495
@@ -7217,6 +7211,7 @@ bike_paths:
       - 76441772
       - 76442246
       - 76442626
+      - 76442960
       - 76443176
       - 76443312
       - 76443634
@@ -7627,6 +7622,7 @@ bike_paths:
       - 117085566
       - 117085567
       - 130911390
+      - 152167560
       - 153292689
       - 167247369
       - 167247372
@@ -8286,6 +8282,7 @@ bike_paths:
       - 1342312247
       - 1442188783
       - 1442188784
+      - 1442188803
       - 1442208404
       - 1442208405
       - 1442208417
@@ -8293,6 +8290,7 @@ bike_paths:
       - 1442208420
       - 1442208424
       - 1442208425
+      - 1442249412
       - 1442251074
       - 1442251075
       - 1442251717
@@ -8370,6 +8368,7 @@ bike_paths:
       - 587966362
       - 1445636705
       - 1445636706
+      - 1445759992
       - 1445759993
       - 1445759994
       - 1445763795
@@ -8452,15 +8451,20 @@ bike_paths:
     slug: trail-27-1
     osm_way_ids:
       - 36614003
+      - 36614010
       - 36614142
       - 36614148
       - 36622295
       - 102698226
+      - 280168528
       - 534900447
       - 534900448
+      - 534900453
+      - 618122196
       - 750955579
       - 1274215750
       - 1301559010
+      - 1421155309
   - name: Sentier du Vallon
     osm_names:
       - Sentier du Vallon
@@ -8484,6 +8488,7 @@ bike_paths:
       - 1066520732
       - 1066521534
       - 1077425429
+      - 1287825620
       - 1287825622
   - name: Trail 57
     osm_names:
@@ -8716,6 +8721,7 @@ bike_paths:
     osm_way_ids:
       - 279252402
       - 380250817
+      - 400855254
       - 632011953
   - name: Trail 47 (Hope Trail)
     osm_names:
@@ -8736,6 +8742,7 @@ bike_paths:
     slug: trail-47-hope-trail
     osm_way_ids:
       - 279357109
+      - 1280346011
   - name: Juno Beach Memorial Bridge
     osm_names:
       - Juno Beach Memorial Bridge
@@ -8782,11 +8789,15 @@ bike_paths:
       - 296053186
       - 348071662
       - 1445637644
+      - 1445759988
+      - 1445760005
       - 1445977647
+      - 1445977649
       - 1445977652
       - 1445977655
       - 1445977656
       - 1445977658
+      - 1445977663
   - name: 'Trail #55'
     osm_names:
       - 'Trail #55'
@@ -9025,6 +9036,7 @@ bike_paths:
       - 1444541738
       - 1444541739
       - 1444541741
+      - 1444549156
       - 1444549158
       - 1444549159
   - name: Pont couvert Brabant-Philippe
@@ -9104,7 +9116,51 @@ bike_paths:
       - 728831554
       - 1317404583
       - 1443997846
+      - 1443997847
       - 1443997851
+  - name: Boulevard des Allumettières
+    osm_names:
+      - Boulevard des Allumettières
+    anchors:
+      - - -75.7311378
+        - 45.4321141
+      - - -75.7257834
+        - 45.432427
+    surface: asphalt
+    smoothness: good
+    width: '4'
+    lit: 'yes'
+    segregated: 'no'
+    cycleway: crossing
+    highway: cycleway
+    bicycle: designated
+    foot: 'no'
+    parallel_to: Boulevard des Allumettières
+    path_type: mup
+    type: infrastructure
+    slug: boulevard-des-allumettieres
+    osm_way_ids:
+      - 792935593
+      - 792935595
+      - 1263541424
+      - 1263541426
+      - 1263541427
+      - 1263541428
+      - 1273164697
+      - 1278947153
+      - 1278947154
+      - 1278947155
+      - 1443604775
+      - 1443604776
+      - 1443604777
+      - 1443604783
+      - 1443605501
+      - 1443605502
+      - 1443605503
+      - 1443608549
+      - 1443608550
+      - 1443608560
+      - 1443608562
   - name: Rue de Turin
     osm_names:
       - Rue de Turin
@@ -9243,6 +9299,7 @@ bike_paths:
       - 1171435927
       - 1171435928
       - 1171435930
+      - 1171435931
   - name: Chris TDL Bridge
     osm_names:
       - Chris TDL Bridge
@@ -9276,8 +9333,11 @@ bike_paths:
     type: destination
     slug: mill-of-kintail-conservation-area
     osm_way_ids:
+      - 572202848
       - 572206573
+      - 1326334175
       - 1326334176
+      - 1326334177
   - name: Chemin de Ste-Cécile-de-Masham
     osm_names:
       - Chemin de Ste-Cécile-de-Masham
@@ -9364,6 +9424,7 @@ bike_paths:
     type: infrastructure
     slug: avenue-gatineau
     osm_way_ids:
+      - 1441862543
       - 1441875776
       - 1441875777
       - 1441875778
@@ -9387,6 +9448,7 @@ bike_paths:
     type: infrastructure
     slug: rue-de-sillery
     osm_way_ids:
+      - 1442188779
       - 1442188780
   - name: Rue des Flandres
     osm_names:
@@ -9436,6 +9498,8 @@ bike_paths:
       - 1442698951
       - 1442698952
       - 1442698953
+      - 1442698954
+      - 1442698956
   - name: Chemin de la Savane
     osm_names:
       - Chemin de la Savane
@@ -9461,6 +9525,7 @@ bike_paths:
       - 1442698958
       - 1442698959
       - 1442698960
+      - 1442698961
       - 1442698965
       - 1442698968
   - name: Boulevard Maloney Ouest
@@ -9500,6 +9565,7 @@ bike_paths:
     type: infrastructure
     slug: rue-morin
     osm_way_ids:
+      - 1443608555
       - 1443608559
       - 1443608561
   - name: Boulevard de la Carrière
@@ -9526,14 +9592,18 @@ bike_paths:
       - 458085614
       - 1217868358
       - 1217868360
+      - 1444413092
       - 1444413093
+      - 1444413286
       - 1444414619
       - 1444414620
+      - 1444541653
       - 1444541675
       - 1444541676
       - 1444541677
       - 1444541678
       - 1444541681
+      - 1444541719
       - 1444541731
   - name: Rue d'Edmonton
     osm_names:
@@ -9553,6 +9623,7 @@ bike_paths:
     type: infrastructure
     slug: rue-dedmonton
     osm_way_ids:
+      - 1444413285
       - 1444541729
       - 1444541740
   - name: Chemin Old Chelsea
@@ -9699,7 +9770,9 @@ bike_paths:
     slug: trail-24
     osm_way_ids:
       - 35674288
+      - 187060116
       - 224441393
+      - 503624485
       - 503624489
       - 503624492
       - 503624495
@@ -9772,8 +9845,10 @@ bike_paths:
       - 35674297
       - 284120470
       - 284122470
+      - 284122975
       - 412954995
       - 554922975
+      - 1274215766
   - name: Chipmunk Trail
     osm_names:
       - Chipmunk Trail
@@ -9800,6 +9875,10 @@ bike_paths:
     slug: chipmunk-trail
     osm_way_ids:
       - 35674298
+      - 276034561
+      - 276034562
+      - 276034767
+      - 284120790
       - 284120791
       - 284122018
       - 534900441
@@ -9831,6 +9910,7 @@ bike_paths:
     slug: beaver-trail
     osm_way_ids:
       - 35674299
+      - 284120433
       - 284121888
       - 284121889
       - 284122017
@@ -9868,6 +9948,7 @@ bike_paths:
       - 275989103
       - 275991091
       - 276033222
+      - 276033223
       - 284121109
       - 639559488
       - 1284432011
@@ -10070,13 +10151,16 @@ bike_paths:
       - 168281051
       - 168281831
       - 514899581
+      - 515688010
       - 525722206
       - 525722207
       - 525722208
+      - 525722209
       - 525722210
       - 530338922
       - 530338923
       - 533043559
+      - 758276765
       - 1395502511
       - 1395502512
   - name: '50'
@@ -10118,7 +10202,9 @@ bike_paths:
       - 313108228
       - 526261466
       - 526261468
+      - 526261470
       - 526261473
+      - 526261474
       - 526261482
       - 526261483
       - 526261484
@@ -10197,12 +10283,14 @@ bike_paths:
     slug: trail-10
     osm_way_ids:
       - 97547217
+      - 97547584
       - 352174065
       - 618615770
       - 618615775
       - 746702109
       - 746702112
       - 746702113
+      - 746702115
       - 746702116
       - 746703104
       - 746703105
@@ -10409,6 +10497,7 @@ bike_paths:
       - 545952087
       - 545952088
       - 545952089
+      - 1284472944
   - name: Porcupine
     osm_names:
       - Porcupine
@@ -10521,6 +10610,7 @@ bike_paths:
     osm_way_ids:
       - 161232184
       - 161232186
+      - 1429760503
   - name: South Dogsled
     osm_names:
       - South Dogsled
@@ -11012,6 +11102,7 @@ bike_paths:
     type: destination
     slug: trail-44
     osm_way_ids:
+      - 204015571
       - 248464254
       - 504503862
       - 531561791
@@ -11058,6 +11149,7 @@ bike_paths:
     slug: chemin-cowden
     osm_way_ids:
       - 249442373
+      - 1280065429
   - name: 'Trail #24'
     osm_names:
       - 'Trail #24'
@@ -11104,6 +11196,7 @@ bike_paths:
     slug: piste-9
     osm_way_ids:
       - 278995440
+      - 1130989840
   - name: 'Trail #1B'
     osm_names:
       - 'Trail #1B'
@@ -11314,6 +11407,7 @@ bike_paths:
     type: destination
     slug: 79-bresilienne
     osm_way_ids:
+      - 192330570
       - 365814345
   - name: Max Keeping Bridge
     osm_names:
@@ -11382,6 +11476,7 @@ bike_paths:
     type: destination
     slug: trail-43-pine-grove-forestry-trail
     osm_way_ids:
+      - 136879975
       - 386714627
       - 1216348792
   - name: Trail 66
@@ -11658,10 +11753,12 @@ bike_paths:
     osm_way_ids:
       - 553292672
       - 727339902
+      - 727339903
       - 759321434
       - 759321435
       - 759321436
       - 759321437
+      - 759321438
       - 759321439
       - 1245414430
   - name: Trail 1
@@ -11782,6 +11879,7 @@ bike_paths:
     type: infrastructure
     slug: old-quarry-trail
     osm_way_ids:
+      - 514833667
       - 647539432
       - 1301567828
       - 1313867703
@@ -11955,6 +12053,7 @@ bike_paths:
     osm_way_ids:
       - 727339904
       - 1008667223
+      - 1245414431
   - name: Riverwalk
     osm_names:
       - Riverwalk
@@ -11971,6 +12070,7 @@ bike_paths:
     type: infrastructure
     slug: riverwalk
     osm_way_ids:
+      - 314015586
       - 734887118
   - name: Rideau Canal Locks Crossing
     osm_names:
@@ -12032,6 +12132,7 @@ bike_paths:
       - 802052756
       - 802052775
       - 1285041921
+      - 1285621062
   - name: '# 76 (Jesse''s Girl)'
     osm_names:
       - '# 76 (Jesse''s Girl)'
@@ -12175,7 +12276,11 @@ bike_paths:
     type: connector
     slug: chelsea-creek-path
     osm_way_ids:
+      - 1113725673
+      - 1113727404
       - 1113732305
+      - 1282529683
+      - 1282529686
   - name: Staycation
     osm_names:
       - Staycation
@@ -12487,6 +12592,7 @@ bike_paths:
     slug: la-crete
     osm_way_ids:
       - 1357892319
+      - 1467799159
   - name: Railway Bypass
     osm_names:
       - Railway Bypass
@@ -12811,9 +12917,13 @@ bike_paths:
       - 1446887113
       - 1446887114
       - 1446887115
+      - 1446887141
       - 1446887142
+      - 1446887144
       - 1446887145
       - 1446887146
+      - 1446887160
+      - 1446887161
       - 1446887162
       - 1446887163
       - 1446887164
@@ -14944,30 +15054,6 @@ bike_paths:
       - 1355702039
       - 1468971554
       - 1468971555
-  - name: Cumberland Street
-    osm_names:
-      - Cumberland Street
-    anchors:
-      - - -75.6880815
-        - 45.4245486
-      - - -75.6847465
-        - 45.4287163
-    name_fr: rue Cumberland
-    name_en: Cumberland Street
-    surface: asphalt
-    lit: 'yes'
-    cycleway: lane
-    highway: unclassified
-    parallel_to: Cumberland Street
-    path_type: bike-lane
-    type: infrastructure
-    slug: cumberland-street
-    osm_way_ids:
-      - 76423335
-      - 76424480
-      - 76442960
-      - 76443312
-      - 465196763
   - name: Belfast Road
     osm_names:
       - Belfast Road
@@ -17578,6 +17664,7 @@ bike_paths:
       - 461319378
       - 490009492
       - 490009495
+      - 792937319
       - 1423141705
       - 1443681631
       - 1443681632
@@ -17585,6 +17672,7 @@ bike_paths:
       - 1443684507
       - 1443684508
       - 1443684509
+      - 1443691337
   - name: Uplands Drive
     osm_names:
       - Uplands Drive
@@ -20690,6 +20778,7 @@ bike_paths:
     slug: coulicou
     osm_way_ids:
       - 68609618
+      - 411524164
   - name: Deauville trail
     osm_names:
       - Deauville trail
@@ -20849,6 +20938,8 @@ bike_paths:
       - 545947085
       - 997606642
       - 1423465364
+      - 1423465367
+      - 1423465368
   - name: Mississippi Valley Trail - ART Section
     osm_names:
       - Mississippi Valley Trail - ART Section
@@ -20867,7 +20958,9 @@ bike_paths:
     type: destination
     slug: mississippi-valley-trail-art-section
     osm_way_ids:
+      - 314016143
       - 566737301
+      - 738376205
   - name: Hendrick Park Bridge
     osm_names:
       - Hendrick Park Bridge
@@ -21074,6 +21167,7 @@ bike_paths:
     slug: rue-du-plein-air
     osm_way_ids:
       - 1445977650
+      - 1445977651
   - name: RIP
     osm_names:
       - RIP
@@ -21091,8 +21185,11 @@ bike_paths:
     type: destination
     slug: rip
     osm_way_ids:
+      - 835379304
       - 1455534785
+      - 1455796153
       - 1455796154
+      - 1455796488
   - name: Barberry Lane
     osm_names:
       - Barberry Lane
@@ -23030,20 +23127,6 @@ bike_paths:
     path_type: mup
     type: connector
     slug: boulevard-saint-raymond
-  - name: Boulevard des Allumettières
-    parallel_to: Boulevard des Allumettières
-    highway: cycleway
-    anchors:
-      - - -75.7170195
-        - 45.4316516
-      - - -75.7085487
-        - 45.432605
-    surface: asphalt
-    width: '3'
-    smoothness: good
-    path_type: mup
-    type: connector
-    slug: boulevard-des-allumettieres
   - name: Pont du Portage
     parallel_to: Pont du Portage
     highway: cycleway
@@ -25299,6 +25382,19 @@ bike_paths:
     path_type: mup
     type: connector
     slug: ahearn-avenue
+  - name: Cumberland Street
+    parallel_to: Cumberland Street
+    highway: cycleway
+    anchors:
+      - - -75.6857146
+        - 45.4258355
+      - - -75.6857146
+        - 45.4258355
+    surface: asphalt
+    width: '1.5'
+    path_type: mup
+    type: connector
+    slug: cumberland-street
   - name: Tauvette Street
     parallel_to: Tauvette Street
     highway: cycleway
