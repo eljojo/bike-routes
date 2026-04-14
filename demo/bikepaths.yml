@@ -55,6 +55,28 @@ bike_paths:
       inception: "2010s"
 
   # Standalone longer path nearby — exercises "nearest major path" for Avenida Ecuador
+  # Two paths grouped by a markdown includes: page (waterfront-network.md)
+  - name: Sendero del Lago
+    osm_names: [Sendero del Lago]
+    highway: cycleway
+    surface: asphalt
+    path_type: mup
+    type: destination
+    slug: sendero-del-lago
+    anchors:
+      - [-72.13, -36.58]
+      - [-72.11, -36.59]
+  - name: Sendero del Parque
+    osm_names: [Sendero del Parque]
+    highway: cycleway
+    surface: asphalt
+    path_type: mup
+    type: destination
+    slug: sendero-del-parque
+    anchors:
+      - [-72.11, -36.59]
+      - [-72.09, -36.60]
+
   - name: Ruta Río Chillán
     osm_names: [Ruta Río Chillán]
     osm_way_ids: [88001, 88002, 88003]
