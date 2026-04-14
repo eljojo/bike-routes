@@ -12,4 +12,8 @@ poster_height: 1366
 organizer:
   name: FQSC
   website: https://fqsc.net
+tags:
+  - race
+  - youth
+  - road
 ---
