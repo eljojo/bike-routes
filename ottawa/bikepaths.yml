@@ -12172,7 +12172,7 @@ bike_paths:
     foot: 'yes'
     path_type: mtb-trail
     mtb: true
-    type: destination
+    type: connector
     slug: chelsea-creek-path
     osm_way_ids:
       - 1113732305
