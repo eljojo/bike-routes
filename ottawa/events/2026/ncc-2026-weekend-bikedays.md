@@ -3,7 +3,7 @@ name: NCC Weekend Bikedays
 start_date: "2026-05-09"
 end_date: "2026-10-12"
 registration_url: https://ncc-ccn.gc.ca/events/weekend-bikedays
-previous_event: ncc-2025-weekend-bikedays
+previous_event: 2026/ncc-2026-weekend-bikedays
 tags:
   - seasonal
   - advocacy
@@ -17,6 +17,10 @@ linked_routes:
     label: Queen Elizabeth Driveway (2.4km, Sat/Sun 8am–8pm)
   - route: east-end-petrie-island
     label: Sir George-Étienne Cartier Parkway (8km, Sat/Sun 8am–4pm)
+poster_key: tvjdrbax
+poster_content_type: image/jpeg
+poster_width: 1080
+poster_height: 1080
 ---
 
 ## Confirmed for 2026! 🎉
