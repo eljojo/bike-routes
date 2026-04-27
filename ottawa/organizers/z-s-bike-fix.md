@@ -11,6 +11,8 @@ social_links:
     url: https://zsbikes.ca
   - platform: instagram
     url: https://instagram.com/zbikefix
+  - platform: booking
+    url: https://zsbikes.ca/Booking-Page
 photo_key: 4zm83bi5
 photo_width: 778
 photo_height: 778
@@ -21,3 +23,5 @@ updated_at: "2026-04-27"
 featured: false
 hidden: false
 ---
+
+https://www.youtube.com/watch?v=JcNCRm00_Mo
