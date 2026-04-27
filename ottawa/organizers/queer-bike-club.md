@@ -25,6 +25,7 @@ social_links:
     url: https://qbcottawa.eo.page/1y5dy
   - platform: website
     url: https://qbcottawa.org/
+ics_url: https://calendar.google.com/calendar/ical/cd39cbcc43556e2547f02536313b1e9e8fcf8f85c52871ac1f9a7dc3c9ed35f9%40group.calendar.google.com/public/basic.ics
 ---
 
 We’re an all-genders LGBTQ+ social bicycle club based in Ottawa, Canada.
