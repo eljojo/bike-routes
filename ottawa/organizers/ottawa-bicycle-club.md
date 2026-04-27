@@ -12,4 +12,12 @@ tags:
   - road
   - social
   - racing
+featured: false
+hidden: false
+social_links:
+  - platform: instagram
+    url: https://instagram.com/ottawabicycleclub
+  - platform: website
+    url: https://ottawabicycleclub.ca/
+ics_url: https://calendar.google.com/calendar/ical/obc.clubwebmaster%40gmail.com/public/basic.ics
 ---
