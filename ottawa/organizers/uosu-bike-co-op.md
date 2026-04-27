@@ -7,6 +7,12 @@ social_links:
     url: bikes-velos@seuo-uosu.com
   - platform: website
     url: https://www.seuo-uosu.com/services/bike-coop
+  - platform: instagram
+    url: https://instagram.com/bikecoopvelo
+  - platform: facebook
+    url: https://www.facebook.com/bikecoopvelo
+  - platform: booking
+    url: https://booking.appointy.com/BikeCoopVelo
 photo_key: wynsraua
 photo_width: 436
 photo_height: 312
@@ -14,6 +20,9 @@ photo_content_type: image/png
 status: published
 created_at: "2026-04-27"
 updated_at: "2026-04-27"
+tagline: DIY Bicycle Repair
+featured: false
+hidden: false
 ---
 
 The Bike Co-op is an inclusive DIY space for beginners as well as experts, well-equipped tools and expertise needed to repair or build a bicycle.
