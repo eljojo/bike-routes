@@ -5,6 +5,7 @@ tags:
   - bike-shop
   - repairs
   - workshop
+  - mechanic-school
 social_links:
   - platform: website
     url: https://k2oschoolofbicyclemechanics.com/
