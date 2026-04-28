@@ -25,6 +25,7 @@ photo_height: 320
 tags:
   - social
   - group-ride
+  - party-pace
 hidden: false
 media:
   - key: 6nyte6rc
