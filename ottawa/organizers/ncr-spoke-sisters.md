@@ -18,6 +18,14 @@ photo_content_type: image/png
 status: published
 created_at: "2026-04-28"
 updated_at: "2026-04-28"
+featured: false
+hidden: false
+media:
+  - key: 26wtlm3u
+    type: photo
+    width: 576
+    height: 268
+    cover: true
 ---
 
 Where beginner cyclists are welcomed, and experienced cyclists are challenged.
