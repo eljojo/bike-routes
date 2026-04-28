@@ -8,10 +8,7 @@ registration_url: https://booking.biblioottawalibrary.ca/en/event/urban-cycling-
 event_url: https://booking.biblioottawalibrary.ca/en/event/urban-cycling-tips-infrastructure-le-v%C3%A9lo-en-ville-conseils-et-infrastructure
 tags:
   - workshop
-organizer:
-  name: Let's Bike Month
-  website: https://letsbike.ca/
-  instagram: letsbikeottawa
+organizer: letsbikeottawa
 ---
 
 Delivered by a friendly, experienced cyclist from EnviroCentre, this workshop will provide participants with answers to commonly asked questions. You’ll learn about how to navigate Ottawa by bike: tips, infrastructure and general best practices with lots of time for questions and answers! 
