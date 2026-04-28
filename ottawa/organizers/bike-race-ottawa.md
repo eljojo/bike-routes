@@ -24,3 +24,5 @@ media:
     height: 1076
     cover: true
 ---
+
+Bike Race Ottawa is the passionate driving force behind the exhilarating Preston Street Crit. As a dedicated group of cycling enthusiasts, we're committed to fostering the vibrant cycling community in Ottawa and beyond. With a shared love for the thrill of the race and the camaraderie it inspires, our organization works tirelessly to organize and execute high-energy, competitive events like the Preston Street Crit. Through our dedication to promoting cycling as both a sport and a lifestyle, we aim to create memorable experiences for racers, spectators, and supporters alike. Join us as we pedal towards a brighter, more dynamic future for cycling in our community.
