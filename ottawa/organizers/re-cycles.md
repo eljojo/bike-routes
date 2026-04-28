@@ -20,6 +20,12 @@ photo_key: m8vttwba
 photo_width: 1080
 photo_height: 1080
 photo_content_type: image/jpeg
+media:
+  - key: f6wsxd5h
+    type: photo
+    width: 600
+    height: 593
+    cover: true
 ---
 
 re-Cycles is a volunteer-run bike co-op on Catherine Street, just west of the Percy Street bike path. They take in donated bicycles — any condition, even rusty — repair the ones they can, and sell them back to the community at low cost. What can't be saved gets stripped for parts and recycled as scrap. Nothing goes to waste.
