@@ -11,6 +11,9 @@ map_url: https://maps.app.goo.gl/9oC2U2cN7mj63BHk6
 tags:
   - social
   - group-ride
-organizer:
-  name: One Cycling - Ottawa Cycling Group
+organizer: one-cycling-ottawa-cycling-group
+poster_key: mtq7qbnh
+poster_content_type: image/webp
+poster_width: 5712
+poster_height: 3213
 ---
