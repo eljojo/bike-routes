@@ -22,6 +22,12 @@ photo_key: cy1bvrhp
 photo_width: 1080
 photo_height: 1080
 photo_content_type: image/jpeg
+media:
+  - key: b7sbhgk6
+    type: photo
+    width: 2016
+    height: 1512
+    cover: true
 ---
 
 A complete mobile bike shop servicing Ottawa, Orleans, and surrounding areas. Road, mountain, gravel, commuter, triathlon, tandem, trikes, electric, and kids' bikes.
