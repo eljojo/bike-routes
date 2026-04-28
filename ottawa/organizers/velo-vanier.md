@@ -23,6 +23,10 @@ media:
     width: 1928
     height: 888
     cover: true
+photo_key: fsa7gaa7
+photo_width: 1200
+photo_height: 1200
+photo_content_type: image/jpeg
 ---
 
 Vélo Vanier is a free bicycle lending program run by the Vanier Community Services Centre. If you live in Vanier (postal code starts with K1L), you can borrow a bike for free from May to October — no catch. They have a fleet of over 200 recycled bicycles in all sizes, so there's something for everyone.
