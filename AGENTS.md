@@ -106,15 +106,23 @@ GPX files are tracked with Git LFS.
 
 ## Context
 
-This repo uses a two-tier context system mirroring `~/code/bike-app-astro`. The rules and conventions above are always active. The `_ctx/` files below contain detail for specific tasks — read the one-line description to decide if you need the full file.
+This repo uses a two-tier context system mirroring `~/code/bike-app-astro`. The rules and conventions above are always active. The mandatory files below are read at the start of every session. The triggered files after that are loaded only when their topic matches the task — read the one-line description to decide.
 
-### Rules
-- [spatial-reasoning](~/code/bike-app-astro/_ctx/spatial-reasoning.md) — NEVER use midpoints, centers, anchors, or bboxes as proxy for real geometry
+### Always Read
 
-### Guides
+**Read these four files at the start of every session. This is not optional.** They prevent catastrophic mistakes and establish the shared vocabulary used by both repos. Three live in the sibling app repo because the rules are repo-agnostic — there's no point in maintaining two copies.
+
+- [protocol-destructive-actions](~/code/bike-app-astro/_ctx/protocol-destructive-actions.md) — before any git command that modifies the working tree: list files, explain, confirm
+- [git-conventions](~/code/bike-app-astro/_ctx/git-conventions.md) — commit granularity, message style, no co-author lines, no auto-commit, no push unless told
+- [spatial-reasoning](~/code/bike-app-astro/_ctx/spatial-reasoning.md) — never use midpoints, centers, anchors, or bboxes as a proxy for real geometry
+- [domain-model](~/code/bike-app-astro/_ctx/domain-model.md) — the cycling domain: routes, rides, events, places, waypoints, organisers, bike paths
+
+### Triggered — This Repo
 - [context-system](_ctx/context-system.md) — how the _ctx/ system works, mirrors bike-app-astro
+- [events](_ctx/events.md) — series patterns (recurrence vs schedule), ICS UIDs, deduping auto-imported `slug-2`/`slug-3` files, name hygiene
 
-### Cross-Repo Context
+### Triggered — Sibling App Repo
+- `~/code/bike-app-astro/_ctx/event-series.md` — event series schema and consumer code (series-utils, calendar-suggestions dedupe)
 - `~/code/bike-app-astro/_ctx/markdown-overrides.md` — how markdown frontmatter is consumed by pipeline and app
 - `~/code/bike-app-astro/_ctx/bike-paths.md` — how the Astro app consumes bikepaths.yml and markdown (overlay model, network pages, enrichment)
 - `~/code/bike-app-astro/_ctx/pipeline-overview.md` — bikepaths pipeline (moved to monorepo)
