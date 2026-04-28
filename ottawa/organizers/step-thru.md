@@ -8,6 +8,16 @@ social_links:
     url: https://www.youtube.com/@bike.breath
   - platform: rwgps
     url: https://ridewithgps.com/clubs/15840-step-thru/collections
+  - platform: website
+    url: https://stepthrucc.com
+  - platform: email
+    url: stepthrucc@gmail.com
+  - platform: telephone
+    url: 438-372-2654
+  - platform: rwgps
+    url: https://ridewithgps.com/clubs/15840-step-thru/collections
+  - platform: instagram
+    url: https://instagram.com/step.thruu
 photo_key: hkkj8x4w
 photo_content_type: image/jpeg
 photo_width: 320
@@ -15,6 +25,8 @@ photo_height: 320
 tags:
   - social
   - group-ride
+hidden: false
+media: []
 ---
 
 https://www.youtube.com/watch?v=U4jfhYa_7jY
