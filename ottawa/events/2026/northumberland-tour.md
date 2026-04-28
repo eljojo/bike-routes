@@ -13,6 +13,8 @@ poster_content_type: image/jpeg
 poster_width: 234
 poster_height: 176
 organizer: ottawa-bicycle-club
+tags:
+  - tour
 ---
 
 **More information about this event is available on the [out-of-town tours page](https://ottawabicycleclub.ca/tours/).**
