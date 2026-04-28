@@ -2,6 +2,8 @@
 name: UOSU Bike Co-op
 tags:
   - bike-shop
+  - workshop
+  - repairs
 social_links:
   - platform: email
     url: bikes-velos@seuo-uosu.com
