@@ -15,6 +15,12 @@ hidden: false
 social_links:
   - platform: instagram
     url: https://instagram.com/ottbikesocial
+media:
+  - key: bkl5qb9s
+    type: photo
+    width: 1658
+    height: 928
+    cover: true
 ---
 
 Thursday rides at a chill pace!
