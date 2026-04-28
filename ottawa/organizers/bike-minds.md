@@ -20,3 +20,5 @@ media:
     height: 442
     cover: true
 ---
+
+BIKE MINDS is a storytelling event where positive and inspiring bike-related stories are shared in front of a live audience from a diverse range of storytellers. Our mission is to change the way you think about people who ride bikes.
