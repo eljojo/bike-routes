@@ -14,6 +14,7 @@ poster_height: 1519
 tags:
   - road
   - gravel
+  - women-only
 organizer:
   name: 100% Féminin
   website: https://ride100feminin.com/en
