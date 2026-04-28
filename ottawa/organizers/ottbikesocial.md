@@ -9,6 +9,7 @@ tagline: Slow bike rides with nice people
 tags:
   - social
   - group-ride
+  - slow-riding
 featured: true
 hidden: false
 social_links:
