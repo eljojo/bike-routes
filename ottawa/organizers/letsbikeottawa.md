@@ -1,5 +1,5 @@
 ---
-name: Let's Bike Ottawa
+name: Let's Bike Month
 website: https://letsbike.ca/
 instagram: letsbikeottawa
 tagline: Workshops and bike month events to help more people ride
@@ -17,4 +17,19 @@ photo_key: cy9aaxca
 photo_width: 512
 photo_height: 512
 photo_content_type: image/jpeg
+media:
+  - key: icpofkul
+    type: photo
+    width: 1946
+    height: 720
+    cover: true
 ---
+
+## Let’s Bike Month is an annual campaign that encourages people to try cycling as a fun and healthy transportation option.
+
+Participants in the campaign can:
+- Win prizes
+- Save money
+- Get access to free resources
+- See the GHG averted by choosing to bike
+- Have fun!
