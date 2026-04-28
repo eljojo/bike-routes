@@ -31,6 +31,7 @@ tags:
   - mtb
   - youth
   - family-friendly
+  - workshop
 poster_key: 8k1yquv8
 poster_content_type: image/jpeg
 poster_width: 2632
