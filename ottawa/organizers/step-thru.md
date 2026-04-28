@@ -32,6 +32,7 @@ media:
     width: 2400
     height: 1317
     cover: true
+tagline: Feel the Party Pace!
 ---
 
 https://www.youtube.com/watch?v=U4jfhYa_7jY
