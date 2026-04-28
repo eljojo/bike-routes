@@ -13,6 +13,16 @@ social_links:
     url: info@dinardoskis.com
 featured: false
 hidden: false
+photo_key: gh2n2ap0
+photo_width: 245
+photo_height: 45
+photo_content_type: image/png
+media:
+  - key: 35zxsvbm
+    type: photo
+    width: 1536
+    height: 1024
+    cover: true
 ---
 
 Bell's Corners shop best known for custom ski boot fitting in winter, with a bike side carrying Orbea, Genesis, KHS, Opus, and BMX brands plus Tecnica hiking footwear in summer.
