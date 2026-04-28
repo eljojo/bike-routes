@@ -22,10 +22,7 @@ location: Ottawa / Gatineau area
 tags:
   - race
   - mtb
-organizer:
-  name: Bakkers Trailblazers
-  website: https://www.bakkerstrailblazers.ca/race
-  instagram: bt_twilight_mtb
+organizer: bakkers-trailblazers
 ---
 
 A six-stage recreational mountain bike series hosted at Domaine Kanawe, Vorlage, and Wesley Clover Parks. The Twilight series is designed to encourage mountain bike participation across the Ottawa/Gatineau region, with courses ranging from beginner to advanced — over 25 categories for riders aged 5 to 70.

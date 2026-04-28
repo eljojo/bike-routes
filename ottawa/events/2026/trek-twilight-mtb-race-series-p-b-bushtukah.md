@@ -24,10 +24,7 @@ tags:
   - family-friendly
   - racing
   - mountain-biking
-organizer:
-  name: Bakkers Trailblazers
-  website: https://www.bakkerstrailblazers.ca/
-  instagram: bt_twilight_mtb
+organizer: bakkers-trailblazers
 ---
 
 The Trek Twilight Series powered by Bushtukah is a six-event recreational mountain bike series hosted at Domaine Kanawe, Vorlage, and Wesley Clover. 

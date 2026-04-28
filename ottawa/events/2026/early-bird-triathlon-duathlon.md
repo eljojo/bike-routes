@@ -9,9 +9,7 @@ poster_key: enxi1cum
 poster_width: 1280
 poster_height: 480
 poster_content_type: image/jpeg
-organizer:
-  name: Somersault Events
-  website: https://www.somersault.ca
+organizer: somersault-events
 tags:
   - triathlon
 ---

@@ -7,8 +7,7 @@ registration_url: https://www.eventbrite.ca/e/kidical-mass-ottawa-bike-ride-new-
 event_url: https://www.eventbrite.ca/e/kidical-mass-ottawa-bike-ride-new-edinburgh-bike-day-tickets-1987106386694
 tags:
   - kidical mass
-organizer:
-  name: Kidical Mass Ottawa
+organizer: for-our-kids
 ---
 
 A joy-filled bike ride with a purpose: safe streets for kids.

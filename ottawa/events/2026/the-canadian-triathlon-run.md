@@ -14,8 +14,5 @@ poster_height: 480
 tags:
   - triathlon
   - charity-ride
-organizer:
-  name: Somersault Events
-  website: https://www.somersault.ca
-  instagram: somersault_ca
+organizer: somersault-events
 ---

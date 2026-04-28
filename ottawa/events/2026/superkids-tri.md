@@ -12,10 +12,7 @@ poster_key: sxcabqb3
 poster_width: 1600
 poster_height: 896
 poster_content_type: image/jpeg
-organizer:
-  name: Somersault Events
-  website: https://www.somersault.ca
-  instagram: somersault_ca
+organizer: somersault-events
 tags:
   - triathlon
 ---
