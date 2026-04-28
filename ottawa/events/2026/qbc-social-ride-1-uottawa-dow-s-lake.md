@@ -16,6 +16,7 @@ tags:
   - social-ride
   - slow-riding
 organizer: queer-bike-club
+event_url: https://www.instagram.com/p/DXKUtPAkRiH/?img_index=1
 ---
 
 Meet 18h15, ride 18h30.
