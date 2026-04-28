@@ -16,6 +16,16 @@ social_links:
     url: https://www.facebook.com/K2OBicycleServices/
 featured: false
 hidden: false
+photo_key: eo37im8e
+photo_width: 480
+photo_height: 480
+photo_content_type: image/png
+media:
+  - key: hma2jzoh
+    type: photo
+    width: 1366
+    height: 768
+    cover: true
 ---
 
 A bicycle mechanics school first, repair shop second. Founder John Wilson — 30 years in the British Army, certified UK bike mechanic since 2014, working as a pro mechanic since 2016 — opened K2O in 2024 to teach what he learned. Course offerings range from a one-day maintenance and on-the-ride repair class to a two-week advanced mechanic program, with a dedicated wheel-building day in between. Alongside the training, the shop handles repairs and tune-ups, x-country ski waxing, and custom bicycle and wheel builds.
