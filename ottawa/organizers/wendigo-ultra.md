@@ -6,4 +6,15 @@ tags:
   - touring
   - gravel
   - race
+featured: false
+hidden: false
+social_links:
+  - platform: website
+    url: https://wendigoultra.blogspot.com/
+media:
+  - key: 44b1wv6l
+    type: photo
+    width: 1600
+    height: 1200
+    cover: true
 ---
