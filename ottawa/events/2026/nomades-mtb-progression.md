@@ -1,5 +1,5 @@
 ---
-name: Mountain Biking Progression — Nomades du Parc
+name: Mountain Biking Progression
 start_date: "2026-05-12"
 start_time: "17:30"
 end_date: "2026-06-16"
