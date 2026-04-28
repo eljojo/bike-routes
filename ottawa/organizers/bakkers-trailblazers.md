@@ -27,6 +27,8 @@ media:
     width: 2048
     height: 1365
     cover: true
+tags:
+  - family-friendly
 ---
 
 Ottawa local mountain bike ecosystem consisting of a mtb race series, development team, kids summer camps, and more.
