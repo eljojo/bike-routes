@@ -13,6 +13,7 @@ tags:
   - social
   - workshop
   - touring
+  - party-pace
 hidden: false
 social_links:
   - platform: google_form
