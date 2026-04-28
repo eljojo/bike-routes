@@ -13,6 +13,9 @@ poster_content_type: image/webp
 poster_width: 1440
 poster_height: 1440
 organizer: queer-bike-club
+tags:
+  - social-ride
+  - slow-riding
 ---
 
 Join us Tuesday, May 5th, for a ride to Hog's Back Park! This will be a loop ride, starting at the Hurdman station at 6:15pm, leaving at 6:30pm. We will then ride to Hog's Back Park take a break, and then return to Hurdman Station as a group. Your ride home could be dark, so please bring your charged bike lights.  
