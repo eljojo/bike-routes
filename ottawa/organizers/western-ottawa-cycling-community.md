@@ -7,6 +7,14 @@ tags:
 social_links:
   - platform: facebook
     url: https://www.facebook.com/groups/westernottawacyclingcommunity/
+featured: false
+hidden: false
+media:
+  - key: lpacziic
+    type: photo
+    width: 960
+    height: 540
+    cover: true
 ---
 
 A Facebook group for cyclists of all kinds who enjoy riding in the west end of Ottawa and beyond. Members share bike lean photos, group ride highlights, solo adventures, and posts related to cycling in the area.
