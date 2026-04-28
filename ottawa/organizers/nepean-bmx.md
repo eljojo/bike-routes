@@ -17,8 +17,6 @@ social_links:
     url: https://instagram.com/nepeanbmx
   - platform: facebook
     url: https://www.facebook.com/nepeanbmx
-  - platform: google_form
-    url: https://www.bmxcanada.org/membership
   - platform: website
     url: https://nepeanbmx.com
 media:
@@ -28,3 +26,5 @@ media:
     height: 1400
     cover: true
 ---
+
+Nepean BMX Association is run by dedicated volunteers (parents and riders) whose aim is to organize BMX races for kids in the Community of Barrhaven and surrounding communities.
