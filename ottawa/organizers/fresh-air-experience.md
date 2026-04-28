@@ -13,8 +13,6 @@ social_links:
     url: sales@freshairexp.com
   - platform: instagram
     url: https://instagram.com/freshairexp
-  - platform: facebook
-    url: https://www.facebook.com/FreshAirExperience/
 featured: false
 hidden: false
 photo_key: ooa6d7y6
