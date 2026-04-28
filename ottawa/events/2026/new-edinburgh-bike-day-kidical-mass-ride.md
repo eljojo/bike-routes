@@ -8,21 +8,27 @@ event_url: https://www.eventbrite.ca/e/kidical-mass-ottawa-bike-ride-new-edinbur
 tags:
   - critical-mass
 organizer: for-our-kids
+poster_key: wbh1m11l
+poster_content_type: image/webp
+poster_width: 1880
+poster_height: 1253
 ---
 
-A joy-filled bike ride with a purpose: safe streets for kids.
+## A joy-filled bike ride with a purpose: safe streets for kids.
 
 Join us for a fun-filled bike ride in New Edinburgh! This event is perfect for families or anyone looking to enjoy a slow ride. Everyone is welcome: participants of all ages, abilities, and caretaking responsibilities (that means you too grandparents, aunts, uncles, babysitters, and community members who love kids!). We will be travelling at a very slow pace. Whether your child is a pro on two wheels or just starting out, this event is perfect for riders of all ages, abilities, and skill levels.
 
 This ride is in collaboration with New Edinburgh Bike Day. Other activities include a bike sale, minor bike adjustments with Full Cycle, coffee & snacks, a Taco Truck and a screening of the film MOTHERLOAD.
 
-About Kidical Mass
+https://www.youtube.com/watch?v=ajycHJ2hznk
+
+## About Kidical Mass
 
 Kidical Mass is an international movement inspired by ‘critical mass’ events held to emphasize the number of people who want to ride bikes and to call for infrastructure improvements. Kidical Mass expands on that idea with a focus on children and families. These events celebrate the joy of biking asking cities to make streets safe for kids and therefore safe for everyone. We believe children should be able to safely and independently travel to school, parks, sports, and other destinations. With climate change already impacting the lives of children, safe streets for kids also means seriously addressing the climate emergency. There are measures – both big and small – that cities like Ottawa can pursue to make this possible (some of our ideas are below).
 
 
 
-Schedule
+### Schedule
 
 9:30 AM
 
@@ -40,7 +46,7 @@ Post-ride gathering and other Bike Day activities. Participants are encouraged t
 
 Two screenings of MOTHERLOAD, an award-winning documentary that uses the cargo bike as the vehicle for exploring parenthood in this digital age of climate change.
 
-Details
+### Details
 
 Children must be accompanied by a responsible adult and are welcome to ride their own bikes or on board with another rider.
 
@@ -56,7 +62,7 @@ We are also seeking volunteers and donations (prizes, snacks, bike decorations, 
 
 
 
-About the Event Hosts
+### About the Event Hosts
 Bike Ottawa is a not-for-profit volunteer-based advocacy group. We believe riding a bike in Ottawa should be a fun, safe, and easy choice for all ages and abilities. We are committed to advocating for a vibrant and equitable Ottawa where active transportation plays an important role in year-round mobility.
 
 For Our Kids Ottawa Gatineau is a community of parents, grandparents and families who are concerned about climate change. We organize family-friendly activism and information activities and provide a space to connect and take action together. We strive to be a welcoming place for all parents, guardians, grandparents, caregivers, and community members to connect and act together.
@@ -69,7 +75,7 @@ Questions about the event can be sent to kidicalmassottawa@gmail.com
 
 
 
-What makes streets safer for kids?
+### What makes streets safer for kids?
 A true Vision Zero strategy that focuses on proactive design action to eliminate road deaths and serious injuries. A key tenet of Vision Zero is that street design can ensure that when mistakes happen they don't cause life-changing impacts.
 Separated and wide bike lanes that provide access to children’s destinations like schools, libraries, parks, and community centres
 Traffic calming features and reduced speed limits on arterials and residential streets
