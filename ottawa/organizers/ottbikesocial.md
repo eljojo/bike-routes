@@ -10,6 +10,7 @@ tags:
   - social
   - group-ride
   - slow-riding
+  - party-pace
 featured: true
 hidden: false
 social_links:
