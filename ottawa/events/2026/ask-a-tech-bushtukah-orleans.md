@@ -2,7 +2,7 @@
 name: "Ask a Tech - Bushtukah Orleans"
 start_date: "2026-05-21"
 start_time: "17:30"
-end_date: "2026-08-20"
+end_date: "2026-09-14"
 end_time: "18:30"
 location: Bushtukah Orleans, Vantage Drive, Avalon, Orléans, Orléans South-Navan, Ottawa, Eastern Ontario, Ontario, K4A 3W3, Canada
 ics_uid: TKF/5a6b691bdf82fe3e1dc3d210/510/29656650/0/0
@@ -20,6 +20,9 @@ series:
     - date: "2026-08-20"
       uid: TKF/5a6b691bdf82fe3e1dc3d210/513/29787690/0/0
       registration_url: https://tockify.com/bushtukah.events/detail/513/1787261400000
+    - date: "2026-09-14"
+      uid: TKF/5a6b691bdf82fe3e1dc3d210/514/29823690/0/0
+      registration_url: https://tockify.com/bushtukah.events/detail/514/1789421400000
 poster_key: l755oq5r
 poster_content_type: image/jpeg
 poster_width: 1024
