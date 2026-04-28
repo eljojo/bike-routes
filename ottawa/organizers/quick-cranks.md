@@ -19,6 +19,12 @@ photo_key: 9t433x00
 photo_width: 714
 photo_height: 714
 photo_content_type: image/jpeg
+media:
+  - key: 5m09hwpl
+    type: photo
+    width: 2048
+    height: 1152
+    cover: true
 ---
 
 Three locations — Centretown (Cooper St), Hintonburg (Somerset St W), and Hull (Boulevard Saint-Joseph) — with a focus on bike service and repair for road, gravel, mountain, commuter, and e-bikes. Also handles event support and corporate tune-up clinics.
