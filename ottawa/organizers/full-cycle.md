@@ -19,6 +19,12 @@ photo_key: srcqw5zw
 photo_width: 1080
 photo_height: 1080
 photo_content_type: image/jpeg
+media:
+  - key: cm6hcayk
+    type: photo
+    width: 2048
+    height: 1365
+    cover: true
 ---
 
 Two locations in Ottawa — St. Laurent and Hintonburg. Full-service bike shop with sales, repairs, and expert advice.
