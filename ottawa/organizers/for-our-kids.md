@@ -16,4 +16,12 @@ hidden: false
 social_links:
   - platform: instagram
     url: https://instagram.com/for_our_kids_ottawa
+  - platform: website
+    url: https://www.forourkids.ca/ottawa_gatineau/
+media:
+  - key: iuk9xsah
+    type: photo
+    width: 1496
+    height: 1012
+    cover: true
 ---
