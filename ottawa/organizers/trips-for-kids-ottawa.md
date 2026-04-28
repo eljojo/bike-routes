@@ -13,6 +13,17 @@ social_links:
     url: info@tripsforkidsottawa.ca
   - platform: telephone
     url: "+16138539454"
+hidden: false
+photo_key: 1wjqxejc
+photo_width: 280
+photo_height: 266
+photo_content_type: image/png
+media:
+  - key: zy7o21od
+    type: photo
+    width: 2016
+    height: 927
+    cover: true
 ---
 
 Trips for Kids Ottawa is a registered charity that provides free outdoor recreational activities — biking, skating, and snowshoeing — to youth who are economically disadvantaged, new to Canada, at-risk, or living with disabilities. All equipment, snacks, transportation, and behavioural support are provided so that nothing stands in the way of a kid getting outside.
