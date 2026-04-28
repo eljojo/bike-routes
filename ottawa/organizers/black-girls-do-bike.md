@@ -19,4 +19,10 @@ photo_key: r26yqbro
 photo_width: 1080
 photo_height: 1080
 photo_content_type: image/jpeg
+media:
+  - key: fmrscuap
+    type: photo
+    width: 1440
+    height: 810
+    cover: true
 ---
