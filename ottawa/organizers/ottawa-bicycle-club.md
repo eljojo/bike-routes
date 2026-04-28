@@ -11,7 +11,7 @@ tags:
   - touring
   - road
   - social
-  - racing
+  - race
 featured: false
 hidden: false
 social_links:

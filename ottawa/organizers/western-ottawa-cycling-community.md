@@ -3,7 +3,7 @@ name: Western Ottawa Cycling Community
 tagline: A group for cycling enthusiasts who ride in Ottawa's west end
 tags:
   - social
-  - group-rides
+  - group-ride
 social_links:
   - platform: facebook
     url: https://www.facebook.com/groups/westernottawacyclingcommunity/

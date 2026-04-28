@@ -8,7 +8,7 @@ photo_height: 1080
 tagline: Slow bike rides with nice people
 tags:
   - social
-  - group-rides
+  - group-ride
 featured: true
 hidden: false
 social_links:

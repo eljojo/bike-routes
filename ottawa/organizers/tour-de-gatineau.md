@@ -8,6 +8,6 @@ photo_width: 1080
 photo_height: 1080
 tagline: UCI women's road racing in Gatineau
 tags:
-  - racing
+  - race
   - road
 ---

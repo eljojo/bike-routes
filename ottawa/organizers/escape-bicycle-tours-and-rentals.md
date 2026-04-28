@@ -4,7 +4,7 @@ tagline: Guided tours and bike rentals on Sparks Street
 tags:
   - bike-shop
   - rentals
-  - tours
+  - tour
 social_links:
   - platform: website
     url: https://escapebicycletours.ca/

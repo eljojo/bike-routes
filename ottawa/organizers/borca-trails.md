@@ -1,7 +1,7 @@
 ---
 name: Borca Trails
 tags:
-  - racing
-  - mountain-biking
+  - race
+  - mtb
 website: https://borcatrails.com
 ---

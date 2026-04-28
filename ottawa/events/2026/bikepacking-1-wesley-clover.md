@@ -1,5 +1,5 @@
 ---
-name: "Bikepacking #1 - Wesley Clover "
+name: "Bikepacking #1 - Wesley Clover"
 start_date: "2026-05-22"
 end_date: "2026-05-24"
 event_url: https://www.instagram.com/p/DXkiyBKESiC/

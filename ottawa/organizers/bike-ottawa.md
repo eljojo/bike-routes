@@ -4,7 +4,7 @@ instagram: bike_ottawa
 tagline: Rides and advocacy for safer cycling in Ottawa
 tags:
   - advocacy
-  - group-rides
+  - group-ride
 featured: false
 hidden: false
 social_links:

@@ -38,7 +38,7 @@ organizer: ottbikesocial
 start_time: "19:00"
 meet_time: "18:45"
 tags:
-  - group-rides
+  - group-ride
   - slow-riding
   - social
 ---

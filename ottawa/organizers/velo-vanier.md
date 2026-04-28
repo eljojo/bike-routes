@@ -2,9 +2,9 @@
 name: Vélo Vanier
 tagline: Free bike lending program for Vanier residents
 tags:
-  - bike-rental
+  - rentals
   - social
-  - group-rides
+  - group-ride
   - workshop
 featured: true
 social_links:

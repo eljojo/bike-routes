@@ -5,7 +5,7 @@ social_links:
     url: https://www.facebook.com/groups/criticalmassottawa/
 tags:
   - advocacy
-  - group-rides
+  - group-ride
   - social
 ---
 

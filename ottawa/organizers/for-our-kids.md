@@ -7,9 +7,9 @@ photo_width: 500
 photo_height: 500
 tagline: Climate-action family rides — the force behind Kidical Mass Ottawa
 tags:
-  - family
+  - family-friendly
   - advocacy
-  - group-rides
+  - group-ride
   - social
 featured: true
 hidden: false

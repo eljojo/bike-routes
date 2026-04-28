@@ -9,7 +9,7 @@ photo_height: 320
 tagline: Bike rentals and trail access at the gates of Gatineau Park
 tags:
   - gravel
-  - mountain-biking
+  - mtb
   - workshop
-  - group-rides
+  - group-ride
 ---

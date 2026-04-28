@@ -7,6 +7,6 @@ social_links:
   - platform: facebook
     url: https://www.facebook.com/groups/associationvmo/
 tags:
-  - mountain-biking
-  - group-rides
+  - mtb
+  - group-ride
 ---

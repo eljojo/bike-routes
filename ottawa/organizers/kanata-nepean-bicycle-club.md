@@ -6,7 +6,7 @@ social_links:
   - platform: facebook
     url: https://www.facebook.com/165493280144144
 tags:
-  - group-rides
+  - group-ride
   - touring
   - social
 ---

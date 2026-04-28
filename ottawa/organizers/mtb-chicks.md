@@ -6,8 +6,8 @@ social_links:
   - platform: facebook
     url: https://www.facebook.com/groups/mtbchicksottawa/
 tags:
-  - mountain-biking
-  - group-rides
+  - mtb
+  - group-ride
   - social
 ---
 

@@ -13,7 +13,7 @@ social_links:
     url: https://rides.rafuse.dev
 tags:
   - gravel
-  - group-rides
+  - group-ride
   - social
 tagline: Gravel rides that start Downtown
 hidden: false

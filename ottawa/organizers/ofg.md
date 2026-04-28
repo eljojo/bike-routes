@@ -3,7 +3,7 @@ name: Ottawa Fixed Gear
 instagram: ottawafixedgear
 tagline: Brunch rides and easy company for the fixed gear crowd
 tags:
-  - group-rides
+  - group-ride
   - social
 featured: false
 hidden: false

@@ -3,8 +3,8 @@ name: Trips for Kids Ottawa
 tagline: Outdoor recreation for Ottawa's underserved youth — biking, skating, snowshoeing
 tags:
   - social
-  - family
-  - group-rides
+  - family-friendly
+  - group-ride
 featured: true
 social_links:
   - platform: website

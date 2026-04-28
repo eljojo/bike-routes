@@ -22,8 +22,7 @@ event_url: https://www.bakkerstrailblazers.ca/race
 tags:
   - mtb
   - family-friendly
-  - racing
-  - mountain-biking
+  - race
 organizer: bakkers-trailblazers
 ---
 

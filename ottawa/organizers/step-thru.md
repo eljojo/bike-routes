@@ -14,7 +14,7 @@ photo_width: 320
 photo_height: 320
 tags:
   - social
-  - group-rides
+  - group-ride
 ---
 
 https://www.youtube.com/watch?v=U4jfhYa_7jY

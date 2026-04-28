@@ -13,7 +13,7 @@ social_links:
   - platform: website
     url: https://ottawawomenscyclingclub.ca
 tags:
-  - group-rides
+  - group-ride
   - road
   - gravel
   - social

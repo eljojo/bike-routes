@@ -17,7 +17,7 @@ linked_routes:
     label: "Queen Elizabeth Driveway (2.4km, Sat/Sun 8am–8pm)"
   - route: east-end-petrie-island
     label: "Sir George-Étienne Cartier Parkway (8km, Sat/Sun 8am–4pm)"
-previous_event: ncc-2024-weekend-bikedays
+previous_event: 2023/weekend-bike-days
 ---
 
 From May to October, the NCC reserves parkways in Ottawa for active use every Saturday, Sunday, and holiday Monday. Whether you're cycling, walking, skating, or pushing a stroller — these roads are yours.

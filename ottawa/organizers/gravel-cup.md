@@ -9,6 +9,6 @@ photo_height: 320
 tagline: Gravel races and big days out across the valley
 tags:
   - gravel
-  - racing
+  - race
   - touring
 ---

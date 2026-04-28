@@ -3,7 +3,7 @@ name: NCC Weekend Bikedays
 start_date: "2026-05-09"
 end_date: "2026-10-12"
 registration_url: https://ncc-ccn.gc.ca/events/weekend-bikedays
-previous_event: 2026/ncc-2026-weekend-bikedays
+previous_event: 2025/ncc-2025-weekend-bikedays
 tags:
   - seasonal
   - advocacy

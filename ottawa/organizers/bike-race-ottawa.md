@@ -8,6 +8,6 @@ photo_width: 1080
 photo_height: 1080
 tagline: Preston Street racing with room for every category
 tags:
-  - racing
+  - race
   - road
 ---
