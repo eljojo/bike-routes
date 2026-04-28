@@ -3,7 +3,6 @@ name: Helping with Bikes
 tagline: Registered charity providing refurbished bikes to families in need
 tags:
   - bike-shop
-  - social
 social_links:
   - platform: website
     url: https://www.hwfottawa.org/eng/give-bikes
