@@ -21,6 +21,7 @@ photo_key: 4mrdt5sg
 photo_width: 128
 photo_height: 128
 photo_content_type: image/jpeg
+ics_url: https://calendar.google.com/calendar/ical/53095fc504228e8306ee70f0242e0c57bd4daca24328f0f59afabe4cf3afb38a%40group.calendar.google.com/public/basic.ics
 ---
 
 Centretown Gravel Rides is Matt Rafuse's answer to the recurring problem of having to drive your car to the start of a gravel ride in Ottawa. All routes start and stop in or near Centretown. Rides are usually between 30 and 70 km, at least 50% gravel, and scheduled to arrive at the end shortly before or after sunset. Terrain can include gravel roads, multi-use pathways, hiking trails, barely-there divots in fields, and literal fields. At least 32mm tires recommended, 38mm or larger for harder routes.
