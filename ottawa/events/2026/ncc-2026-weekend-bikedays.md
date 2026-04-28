@@ -30,7 +30,7 @@ From May 9 to October 12, the NCC reserves parkways in Ottawa for active use eve
 
 ### The three parkways
 
-**Kichi Zībī Mīkan** — both westbound lanes, from Vimy Place to Carling Avenue (9 km). Open 8 am to noon. Runs along the south side of the Ottawa River past Remic Rapids Park, Bate Island, Westboro Beach, Deschênes Rapids Lookout and Mud Lake.
+**Kichi Zībī Mīkan** — both westbound lanes, from Vimy Place to Carling Avenue (9 km). Open 8 am to noon. Runs along the south side of the Ottawa River past Remic Rapids Park, Bate Island, Westboro Beach, Deschênes Rapids Lookout and Mud Lake. [View Route](https://ottawabybike.ca/routes/britannia-by-ottawa-river-pathway/?variant=bike-days)
 
 **Sir George-Étienne Cartier Parkway** — both lanes, from Aviation Parkway to St. Joseph Boulevard in Orléans (8 km). Open 8 am to 4 pm. Connects to the Capital Pathway network and the NCC River House.
 
