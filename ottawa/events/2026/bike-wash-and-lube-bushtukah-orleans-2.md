@@ -4,7 +4,7 @@ start_date: "2026-05-28"
 start_time: "17:30"
 end_date: "2026-05-28"
 end_time: "18:30"
-location: Bushtukah Orleans,2016 10th Line Rd unit 1, Orléans, ON K4A, Canada
+location: Bushtukah Orleans, Vantage Drive, Avalon, Orléans, Orléans South-Navan, Ottawa, Eastern Ontario, Ontario, K4A 3W3, Canada
 event_url: https://tockify.com/bushtukah.events/detail/500/1780003800000
 ics_uid: TKF/5a6b691bdf82fe3e1dc3d210/500/29666730/0/0
 poster_key: ptqrnqq8
