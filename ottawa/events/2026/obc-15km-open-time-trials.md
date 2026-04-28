@@ -18,8 +18,6 @@ series:
     - date: "2026-05-21"
       uid: https://obcrides.ca/events/3477
       event_url: https://obcrides.ca/events/3477
-    - date: "2026-05-28"
-      cancelled: true
     - date: "2026-06-04"
       uid: https://obcrides.ca/events/3610
       event_url: https://obcrides.ca/events/3610
@@ -57,6 +55,9 @@ series:
     - date: "2026-09-03"
       uid: https://obcrides.ca/events/3621
       event_url: https://obcrides.ca/events/3621
+    - date: "2026-05-28"
+      location: https://obcrides.ca/events/3478
+      note: Road Bike Night
 distances: 15km
 location: Parking Indigo Ottawa - Canada Aviation Museum
 event_url: https://ottawabicycleclub.ca/opentt/
