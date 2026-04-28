@@ -11,6 +11,7 @@ tags:
   - mtb
   - group-ride
   - social
+  - women-only
 hidden: false
 photo_key: lacq38e1
 photo_width: 200

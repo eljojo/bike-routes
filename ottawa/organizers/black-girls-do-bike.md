@@ -7,6 +7,7 @@ website: https://forms.gle/aLfPtQKWwcVqWyte8
 tags:
   - group-ride
   - social
+  - women-only
 hidden: false
 social_links:
   - platform: instagram

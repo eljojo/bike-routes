@@ -5,6 +5,7 @@ end_date: "2026-04-12"
 event_url: https://ottawawomenscyclingclub.ca/program/special-events/
 tags:
   - social
+  - women-only
 organizer: ottawa-womens-cycling-club
 ---
 

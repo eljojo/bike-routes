@@ -20,6 +20,7 @@ tags:
   - gravel
   - social
   - workshop
+  - women-only
 hidden: false
 photo_key: yj9y0gdt
 photo_width: 763

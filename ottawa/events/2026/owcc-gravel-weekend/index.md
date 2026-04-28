@@ -6,6 +6,7 @@ distances: 75-100km per day
 event_url: https://ottawawomenscyclingclub.ca/program/special-events/
 tags:
   - gravel
+  - women-only
 organizer: ottawa-womens-cycling-club
 ---
 

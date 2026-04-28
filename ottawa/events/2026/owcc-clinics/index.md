@@ -6,6 +6,7 @@ registration_url: https://ottawawomenscyclingclub.ca/join/
 event_url: https://ottawawomenscyclingclub.ca/clinics/
 tags:
   - workshop
+  - women-only
 organizer: ottawa-womens-cycling-club
 series:
   schedule:
