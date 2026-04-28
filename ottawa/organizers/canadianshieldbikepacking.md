@@ -17,4 +17,10 @@ tags:
   - social
 featured: true
 hidden: false
+media:
+  - key: 1ha3m0gb
+    type: photo
+    width: 3600
+    height: 1652
+    cover: true
 ---
