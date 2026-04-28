@@ -11,4 +11,19 @@ tags:
   - gravel
   - race
   - touring
+featured: false
+hidden: false
+social_links:
+  - platform: facebook
+    url: https://www.facebook.com/GravelCup
+  - platform: instagram
+    url: https://instagram.com/gravelcupcan
+  - platform: website
+    url: https://gravelcup.com
+media:
+  - key: zb6bftpi
+    type: photo
+    width: 1440
+    height: 1080
+    cover: true
 ---
