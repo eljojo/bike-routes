@@ -2,6 +2,7 @@
 name: Z's Bike Fix
 tags:
   - bike-shop
+  - repairs
 social_links:
   - platform: email
     url: zbikefix@gmail.com
@@ -22,6 +23,7 @@ created_at: "2026-04-27"
 updated_at: "2026-04-27"
 featured: false
 hidden: false
+media: []
 ---
 
 https://www.youtube.com/watch?v=JcNCRm00_Mo
