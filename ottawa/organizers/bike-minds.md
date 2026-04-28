@@ -4,6 +4,7 @@ website: https://bikeminds.ca/
 tagline: Stories, ideas, and bike people around a cafe table
 tags:
   - social
+  - storytelling
 photo_key: prsohplk
 photo_content_type: image/png
 photo_width: 128
