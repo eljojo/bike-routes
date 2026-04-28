@@ -12,19 +12,19 @@ series:
     - date: "2026-04-11"
       uid: https://obcrides.ca/events/3214
       location: Central Experimental Farm, Scenic Drive
-      event_url: https://obcrides.ca/events/3214
+      registration_url: https://obcrides.ca/events/3214
     - date: "2026-04-25"
       uid: https://obcrides.ca/events/3215
       location: Central Experimental Farm, Scenic Drive
-      event_url: https://obcrides.ca/events/3215
+      registration_url: https://obcrides.ca/events/3215
     - date: "2026-05-09"
       uid: https://obcrides.ca/events/3216
       location: https://maps.app.goo.gl/g27qAgzi5m8vkzwC9
-      event_url: https://obcrides.ca/events/3216
+      registration_url: https://obcrides.ca/events/3216
     - date: "2026-05-16"
       uid: https://obcrides.ca/events/3217
       location: https://maps.app.goo.gl/g27qAgzi5m8vkzwC9
-      event_url: https://obcrides.ca/events/3217
+      registration_url: https://obcrides.ca/events/3217
 ics_uid: https://obcrides.ca/events/3214
 tags:
   - workshop

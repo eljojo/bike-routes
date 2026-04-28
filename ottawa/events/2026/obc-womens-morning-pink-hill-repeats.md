@@ -13,30 +13,30 @@ series:
       uid: https://obcrides.ca/events/3378
       start_time: "08:00"
       location: https://www.google.com/maps/place/Stationnement+P3+Parc+de+la+Gatineau+%2F+Parking+Lot+P3+Gatineau+Park/data=!4m7!3m6!1s0x4cce031e372c65c9:0x8af8ead2086e95f8!8m2!3d45.4405657!4d-75.7615835!16s%2Fg%2F1
-      event_url: https://obcrides.ca/events/3378
+      registration_url: https://obcrides.ca/events/3378
     - date: "2026-05-20"
       uid: https://obcrides.ca/events/3379
       start_time: "08:00"
-      event_url: https://obcrides.ca/events/3379
+      registration_url: https://obcrides.ca/events/3379
     - date: "2026-05-27"
       uid: https://obcrides.ca/events/3380
       start_time: "08:00"
-      event_url: https://obcrides.ca/events/3380
+      registration_url: https://obcrides.ca/events/3380
     - date: "2026-06-03"
       uid: https://obcrides.ca/events/3381
-      event_url: https://obcrides.ca/events/3381
+      registration_url: https://obcrides.ca/events/3381
     - date: "2026-06-10"
       uid: https://obcrides.ca/events/3382
-      event_url: https://obcrides.ca/events/3382
+      registration_url: https://obcrides.ca/events/3382
     - date: "2026-06-17"
       uid: https://obcrides.ca/events/3383
-      event_url: https://obcrides.ca/events/3383
+      registration_url: https://obcrides.ca/events/3383
     - date: "2026-06-24"
       uid: https://obcrides.ca/events/3384
-      event_url: https://obcrides.ca/events/3384
+      registration_url: https://obcrides.ca/events/3384
     - date: "2026-07-01"
       uid: https://obcrides.ca/events/3385
-      event_url: https://obcrides.ca/events/3385
+      registration_url: https://obcrides.ca/events/3385
 location: "Gatineau Park P3 "
 ics_uid: https://obcrides.ca/events/3378
 tags:

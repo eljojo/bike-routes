@@ -11,22 +11,22 @@ series:
   overrides:
     - date: "2026-05-07"
       uid: https://obcrides.ca/events/3346
-      event_url: https://obcrides.ca/events/3346
+      registration_url: https://obcrides.ca/events/3346
     - date: "2026-05-14"
       uid: https://obcrides.ca/events/3348
-      event_url: https://obcrides.ca/events/3348
+      registration_url: https://obcrides.ca/events/3348
     - date: "2026-05-21"
       uid: https://obcrides.ca/events/3477
-      event_url: https://obcrides.ca/events/3477
+      registration_url: https://obcrides.ca/events/3477
     - date: "2026-06-04"
       uid: https://obcrides.ca/events/3610
-      event_url: https://obcrides.ca/events/3610
+      registration_url: https://obcrides.ca/events/3610
     - date: "2026-06-11"
       uid: https://obcrides.ca/events/3611
-      event_url: https://obcrides.ca/events/3611
+      registration_url: https://obcrides.ca/events/3611
     - date: "2026-06-18"
       uid: https://obcrides.ca/events/3612
-      event_url: https://obcrides.ca/events/3612
+      registration_url: https://obcrides.ca/events/3612
     - date: "2026-06-25"
       cancelled: true
     - date: "2026-07-02"
@@ -35,26 +35,26 @@ series:
       cancelled: true
     - date: "2026-07-16"
       uid: https://obcrides.ca/events/3614
-      event_url: https://obcrides.ca/events/3614
+      registration_url: https://obcrides.ca/events/3614
     - date: "2026-07-23"
       uid: https://obcrides.ca/events/3615
-      event_url: https://obcrides.ca/events/3615
+      registration_url: https://obcrides.ca/events/3615
     - date: "2026-07-30"
       cancelled: true
     - date: "2026-08-06"
       uid: https://obcrides.ca/events/3618
-      event_url: https://obcrides.ca/events/3618
+      registration_url: https://obcrides.ca/events/3618
     - date: "2026-08-13"
       uid: https://obcrides.ca/events/3619
-      event_url: https://obcrides.ca/events/3619
+      registration_url: https://obcrides.ca/events/3619
     - date: "2026-08-20"
       uid: https://obcrides.ca/events/3620
-      event_url: https://obcrides.ca/events/3620
+      registration_url: https://obcrides.ca/events/3620
     - date: "2026-08-27"
       cancelled: true
     - date: "2026-09-03"
       uid: https://obcrides.ca/events/3621
-      event_url: https://obcrides.ca/events/3621
+      registration_url: https://obcrides.ca/events/3621
     - date: "2026-05-28"
       location: https://obcrides.ca/events/3478
       note: Road Bike Night

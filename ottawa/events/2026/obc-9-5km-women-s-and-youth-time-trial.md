@@ -11,26 +11,26 @@ series:
   overrides:
     - date: "2026-05-05"
       uid: https://obcrides.ca/events/3444
-      event_url: https://obcrides.ca/events/3444
+      registration_url: https://obcrides.ca/events/3444
       note: 9.5 km Time trial for Women and Youth
     - date: "2026-05-19"
       uid: https://obcrides.ca/events/3445
-      event_url: https://obcrides.ca/events/3445
+      registration_url: https://obcrides.ca/events/3445
     - date: "2026-06-02"
       uid: https://obcrides.ca/events/3446
-      event_url: https://obcrides.ca/events/3446
+      registration_url: https://obcrides.ca/events/3446
     - date: "2026-06-16"
       cancelled: true
     - date: "2026-06-30"
       cancelled: true
     - date: "2026-07-14"
       uid: https://obcrides.ca/events/3449
-      event_url: https://obcrides.ca/events/3449
+      registration_url: https://obcrides.ca/events/3449
     - date: "2026-07-28"
       cancelled: true
     - date: "2026-08-11"
       uid: https://obcrides.ca/events/3451
-      event_url: https://obcrides.ca/events/3451
+      registration_url: https://obcrides.ca/events/3451
 distances: 9.5km
 location: Georges Etienne Parkway
 ics_uid: https://obcrides.ca/events/3444
