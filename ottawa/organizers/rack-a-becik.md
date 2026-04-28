@@ -22,6 +22,12 @@ photo_key: adt7unki
 photo_width: 1080
 photo_height: 1080
 photo_content_type: image/jpeg
+media:
+  - key: 9yavdvac
+    type: photo
+    width: 1600
+    height: 1088
+    cover: true
 ---
 
 Rack à bécik is a volunteer-run co-op in Gatineau. They sell refurbished used bikes ready to ride, accept donations of old bikes and parts, and let you fix your own bike in their workshop using their tools with guidance from volunteer mechanics. They also run hands-on bike mechanics courses if you want to really learn the craft.
