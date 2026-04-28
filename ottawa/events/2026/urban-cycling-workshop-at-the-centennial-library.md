@@ -9,6 +9,10 @@ event_url: https://booking.biblioottawalibrary.ca/en/event/urban-cycling-tips-in
 tags:
   - workshop
 organizer: letsbikeottawa
+poster_key: f8zwgxjm
+poster_content_type: image/png
+poster_width: 900
+poster_height: 300
 ---
 
 Delivered by a friendly, experienced cyclist from EnviroCentre, this workshop will provide participants with answers to commonly asked questions. You’ll learn about how to navigate Ottawa by bike: tips, infrastructure and general best practices with lots of time for questions and answers! 
