@@ -21,6 +21,12 @@ photo_key: j274sm31
 photo_width: 918
 photo_height: 918
 photo_content_type: image/jpeg
+media:
+  - key: asocnfm9
+    type: photo
+    width: 2048
+    height: 1350
+    cover: true
 ---
 
 Family-owned bike shop on Alta Vista Drive. Bicycles, accessories, parts, service, clothing, and cross-country ski gear.
