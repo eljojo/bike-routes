@@ -12,6 +12,8 @@ social_links:
     url: https://instagram.com/ottawawomenscyclingclub
   - platform: website
     url: https://ottawawomenscyclingclub.ca
+  - platform: google_form
+    url: https://ottawawomenscyclingclub.ca/join/
 tags:
   - group-ride
   - road
@@ -23,4 +25,12 @@ photo_key: yj9y0gdt
 photo_width: 763
 photo_height: 763
 photo_content_type: image/jpeg
+media:
+  - key: lf5c5zfo
+    type: photo
+    width: 2048
+    height: 1200
+    cover: true
 ---
+
+The purpose of the Ottawa Women's Cycling Club is to bring women together for rides and events, to train and even race together.
