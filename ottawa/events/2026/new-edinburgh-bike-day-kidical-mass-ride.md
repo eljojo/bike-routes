@@ -7,6 +7,7 @@ registration_url: https://www.eventbrite.ca/e/kidical-mass-ottawa-bike-ride-new-
 event_url: https://www.eventbrite.ca/e/kidical-mass-ottawa-bike-ride-new-edinburgh-bike-day-tickets-1987106386694
 tags:
   - critical-mass
+  - family-friendly
 organizer: for-our-kids
 poster_key: wbh1m11l
 poster_content_type: image/webp
