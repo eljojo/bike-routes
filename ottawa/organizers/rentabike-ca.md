@@ -19,6 +19,12 @@ photo_key: 0fp899b7
 photo_width: 252
 photo_height: 252
 photo_content_type: image/jpeg
+media:
+  - key: c8lzg1i1
+    type: photo
+    width: 1200
+    height: 801
+    cover: true
 ---
 
 Bike rentals beside the Rideau Canal, under Rideau Street.
