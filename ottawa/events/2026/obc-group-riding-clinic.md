@@ -30,8 +30,15 @@ tags:
   - workshop
   - group-ride
 organizer: ottawa-bicycle-club
+event_url: https://ottawabicycleclub.ca/group-riding-clinics/
+poster_key: dc5aulx1
+poster_content_type: image/jpeg
+poster_width: 1430
+poster_height: 953
 ---
 
-Group Riding Skills clinic, required for new members, open to all members.
+## Group Riding Skills clinic, required for new members, open to all members.
+
+If you are an OBC member and you have little or no experience riding in an organized group, you must attend a Group Riding Clinic before joining club road rides. Our experienced instructors teach practical skills so you can ride confidently in a group and in traffic.
 
 Please register on the OBC Website (🌐 Icon)
