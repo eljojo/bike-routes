@@ -13,4 +13,6 @@ tags:
 organizer: ottawa-bicycle-club
 ---
 
-At this clinic, you'll learn all you need to know to prepare for the Rideau Lakes Cycle Tour! Our team will cover all the tips & tricks about equipment, clothing, bike adjustments, training recommendations, and more so you know exactly what to expect!
+**At this clinic, you'll learn all you need to know to prepare for the Rideau Lakes Cycle Tour!**
+
+Our team will cover all the tips & tricks about equipment, clothing, bike adjustments, training recommendations, and more so you know exactly what to expect!
