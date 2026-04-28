@@ -13,6 +13,18 @@ social_links:
   - platform: email
     url: hello@gcclub.ca
 ics_url: https://calendar.google.com/calendar/ical/f55cae2f464425cf6b2e4264f27f6f2ba2a26fdad2cb465795b73d10e0fd6ac3%40group.calendar.google.com/public/basic.ics
+featured: false
+hidden: false
+photo_key: 20k4ntlu
+photo_width: 223
+photo_height: 224
+photo_content_type: image/png
+media:
+  - key: mtktev1a
+    type: photo
+    width: 1600
+    height: 1041
+    cover: true
 ---
 
 A recreational cycling club based in the Ottawa/Gatineau region. The name comes from the French word for "climbers" — a nod to the region's two languages and to the spirit of pushing through the toughest climbs.
