@@ -17,6 +17,12 @@ photo_key: eeb81nbg
 photo_width: 380
 photo_height: 376
 photo_content_type: image/webp
+media:
+  - key: c17r2nef
+    type: photo
+    width: 2880
+    height: 1580
+    cover: true
 ---
 
 Commuter bikes, cruisers, BMX, and everything in between. The Bank Street shop has been a fixture in the Glebe since 2004, with a warehouse in Carleton Place for pickups and drop-offs by appointment. Service is by appointment — book online.
