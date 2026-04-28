@@ -26,7 +26,12 @@ tags:
   - social
   - group-ride
 hidden: false
-media: []
+media:
+  - key: 6nyte6rc
+    type: photo
+    width: 2400
+    height: 1317
+    cover: true
 ---
 
 https://www.youtube.com/watch?v=U4jfhYa_7jY
