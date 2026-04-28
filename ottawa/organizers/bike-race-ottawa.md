@@ -10,4 +10,17 @@ tagline: Preston Street racing with room for every category
 tags:
   - race
   - road
+featured: false
+hidden: false
+social_links:
+  - platform: instagram
+    url: https://instagram.com/bikeraceottawa
+  - platform: website
+    url: https://www.bikeraceottawa.com
+media:
+  - key: ph87mqhq
+    type: photo
+    width: 1500
+    height: 1076
+    cover: true
 ---
