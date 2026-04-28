@@ -23,6 +23,12 @@ updated_at: "2026-04-27"
 tagline: DIY Bicycle Repair
 featured: false
 hidden: false
+media:
+  - key: ojd91dax
+    type: photo
+    width: 2048
+    height: 1536
+    cover: true
 ---
 
 The Bike Co-op is an inclusive DIY space for beginners as well as experts, well-equipped tools and expertise needed to repair or build a bicycle.
