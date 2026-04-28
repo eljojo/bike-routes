@@ -1,5 +1,5 @@
 ---
-name: " Orbea Free Flow Ride with Gully"
+name: "Orbea Free Flow Ride with Gully"
 start_date: "2026-05-31"
 start_time: "10:00"
 end_date: "2026-05-31"

@@ -1,5 +1,5 @@
 ---
-name: " Ask a Tech - Bushtukah Orleans"
+name: "Ask a Tech - Bushtukah Orleans"
 start_date: "2026-05-21"
 start_time: "17:30"
 end_date: "2026-05-21"
