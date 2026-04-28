@@ -1,5 +1,5 @@
 ---
-name: CN
+name: CN Cycle for CHEO
 website: https://cncycle.cheofoundation.com
 tagline: Ottawa's big spring ride for kids' cancer care at CHEO
 tags:
