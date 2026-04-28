@@ -19,9 +19,9 @@ series:
       uid: https://obcrides.ca/events/3477
       registration_url: https://obcrides.ca/events/3477
     - date: "2026-05-28"
+      note: Road Bike Night
       uid: https://obcrides.ca/events/3478
       registration_url: https://obcrides.ca/events/3478
-      note: Road Bike Night
     - date: "2026-06-04"
       uid: https://obcrides.ca/events/3610
       registration_url: https://obcrides.ca/events/3610
@@ -32,9 +32,9 @@ series:
       uid: https://obcrides.ca/events/3612
       registration_url: https://obcrides.ca/events/3612
     - date: "2026-06-25"
+      note: Road Bike Night
       uid: https://obcrides.ca/events/3613
       registration_url: https://obcrides.ca/events/3613
-      note: Road Bike Night
     - date: "2026-07-02"
       cancelled: true
     - date: "2026-07-09"
@@ -46,9 +46,9 @@ series:
       uid: https://obcrides.ca/events/3615
       registration_url: https://obcrides.ca/events/3615
     - date: "2026-07-30"
+      note: Road Bike Night
       uid: https://obcrides.ca/events/3616
       registration_url: https://obcrides.ca/events/3616
-      note: Road Bike Night
     - date: "2026-08-06"
       uid: https://obcrides.ca/events/3618
       registration_url: https://obcrides.ca/events/3618
@@ -59,22 +59,24 @@ series:
       uid: https://obcrides.ca/events/3620
       registration_url: https://obcrides.ca/events/3620
     - date: "2026-08-27"
+      note: Road Bike Night
       uid: https://obcrides.ca/events/3617
       registration_url: https://obcrides.ca/events/3617
-      note: Road Bike Night
     - date: "2026-09-03"
       uid: https://obcrides.ca/events/3621
       registration_url: https://obcrides.ca/events/3621
     - date: "2026-09-10"
+      note: Maybe...
       uid: https://obcrides.ca/events/3622
       registration_url: https://obcrides.ca/events/3622
-      note: Maybe...
 location: Parking Indigo Ottawa - Canada Aviation Museum
 ics_uid: https://obcrides.ca/events/3346
 tags:
   - race
   - road
 organizer: ottawa-bicycle-club
+distances: 15km
+event_url: https://ottawabicycleclub.ca/opentt/
 ---
 
 Weekly Thursday evening open TT. **Open to all 2026 OBC club members.**
