@@ -19,5 +19,5 @@ social_links:
     url: https://instagram.com/ottawabicycleclub
   - platform: website
     url: https://ottawabicycleclub.ca/
-ics_url: https://calendar.google.com/calendar/ical/obc.clubwebmaster%40gmail.com/public/basic.ics
+ics_url: https://obcrides.ca/events.ics
 ---
