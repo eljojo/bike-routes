@@ -13,6 +13,7 @@ poster_width: 1080
 poster_height: 1350
 tags:
   - gravel
+  - race
 organizer: gravel-cup
 ---
 

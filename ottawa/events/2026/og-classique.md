@@ -12,6 +12,7 @@ poster_width: 431
 poster_height: 407
 tags:
   - gravel
+  - race
 organizer:
   name: UCI Gravel World Series
   website: https://ucigravelworldseries.com/en/

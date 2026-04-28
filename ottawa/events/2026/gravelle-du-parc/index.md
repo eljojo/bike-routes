@@ -12,6 +12,7 @@ poster_width: 2410
 poster_height: 1064
 tags:
   - gravel
+  - race
 organizer: nomadesduparc
 ---
 
