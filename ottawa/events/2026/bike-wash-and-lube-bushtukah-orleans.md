@@ -32,6 +32,9 @@ series:
     - date: "2026-08-27"
       uid: TKF/5a6b691bdf82fe3e1dc3d210/506/29797770/0/0
       registration_url: https://tockify.com/bushtukah.events/detail/506/1787866200000
+    - date: "2026-09-10"
+      uid: TKF/5a6b691bdf82fe3e1dc3d210/507/29817930/0/0
+      registration_url: https://tockify.com/bushtukah.events/detail/507/1789075800000
     - date: "2026-09-24"
       uid: TKF/5a6b691bdf82fe3e1dc3d210/508/29838090/0/0
       registration_url: https://tockify.com/bushtukah.events/detail/508/1790285400000
