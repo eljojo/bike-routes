@@ -1,5 +1,5 @@
 ---
-name: "Bikepacking #5"
+name: "QBC Bikepacking #5: TBD"
 start_date: "2026-09-12"
 end_date: "2026-09-14"
 ics_uid: 0t835a6ca0gemash1rmhb9aeus@google.com
