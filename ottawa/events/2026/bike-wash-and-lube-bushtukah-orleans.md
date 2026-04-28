@@ -2,7 +2,7 @@
 name: "Bike Wash and Lube - Bushtukah Orleans"
 start_date: "2026-05-14"
 start_time: "17:30"
-end_date: "2026-06-11"
+end_date: "2026-06-25"
 end_time: "18:30"
 location: Bushtukah Orleans, Vantage Drive, Avalon, Orléans, Orléans South-Navan, Ottawa, Eastern Ontario, Ontario, K4A 3W3, Canada
 ics_uid: TKF/5a6b691bdf82fe3e1dc3d210/499/29646570/0/0
@@ -17,6 +17,9 @@ series:
     - date: "2026-06-11"
       uid: TKF/5a6b691bdf82fe3e1dc3d210/501/29686890/0/0
       registration_url: https://tockify.com/bushtukah.events/detail/501/1781213400000
+    - date: "2026-06-25"
+      uid: TKF/5a6b691bdf82fe3e1dc3d210/502/29707050/0/0
+      registration_url: https://tockify.com/bushtukah.events/detail/502/1782423000000
 tags:
   - workshop
 organizer: bushtukah
