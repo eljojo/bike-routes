@@ -8,6 +8,8 @@ location: Ottawa Tool Library, 877, Boyd Avenue, McKellar Heights, Bay, Ottawa, 
 poster_key: se7fytp1
 poster_content_type: image/jpeg
 organizer: ottawa-tool-library
+tags:
+  - workshop
 ---
 
 Learn how to tune up your bike and get it riding well this spring.
