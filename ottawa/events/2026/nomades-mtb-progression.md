@@ -17,6 +17,7 @@ poster_width: 2672
 poster_height: 1052
 tags:
   - workshop
+  - mtb
 organizer: nomadesduparc
 ---
 
