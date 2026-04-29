@@ -16,6 +16,7 @@ poster_content_type: image/png
 organizer: nomadesduparc
 tags:
   - workshop
+  - mtb
 ---
 
 Small-group intro lesson on the trails of Gatineau Park with a certified PMBIA instructor. Learn positioning, braking, climbing, and descending at your own pace. Bikes available to rent if you don't have one.
