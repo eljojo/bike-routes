@@ -5,4 +5,5 @@ location: Parc du Lac Leamy, Hull, QC
 event_url: https://www.triathlongatineau.ca/
 tags:
   - triathlon
+  - race
 ---
