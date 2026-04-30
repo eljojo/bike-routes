@@ -21,4 +21,5 @@ tags:
 organizer:
   name: Tour de Whitewater
   website: https://www.facebook.com/tourdewhitewater
+meet_time: "06:30"
 ---
