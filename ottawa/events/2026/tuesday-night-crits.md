@@ -20,25 +20,25 @@ series:
     - date: "2026-05-19"
       note: A Race
     - date: "2026-05-26"
-      note: "B Race + Women's Learn to Race (LTR 18:30, B race 19:00)"
+      note: B Race + Women's Learn to Race (LTR 18:30, B race 19:00)
     - date: "2026-06-02"
       note: A Race
     - date: "2026-06-09"
-      note: "B Race + Women's Learn to Race (LTR 18:30, B race 19:00)"
+      note: B Race + Women's Learn to Race (LTR 18:30, B race 19:00)
     - date: "2026-06-16"
       note: A Race
     - date: "2026-06-23"
-      note: "B Race + Women's Learn to Race (LTR 18:30, B race 19:00)"
+      note: B Race + Women's Learn to Race (LTR 18:30, B race 19:00)
     - date: "2026-06-30"
-      note: "Women-Only Night (45 min + 3 laps)"
+      note: Women-Only Night (45 min + 3 laps)
     - date: "2026-07-07"
       note: A Race
     - date: "2026-07-14"
-      note: "B Race + Women's Learn to Race (LTR 18:30, B race 19:00)"
+      note: B Race + Women's Learn to Race (LTR 18:30, B race 19:00)
     - date: "2026-07-21"
       note: A Race
     - date: "2026-07-28"
-      note: "B Race + Women's Learn to Race (LTR 18:30, B race 19:00)"
+      note: B Race + Women's Learn to Race (LTR 18:30, B race 19:00)
     - date: "2026-08-04"
       note: A Race
     - date: "2026-08-11"
@@ -47,6 +47,10 @@ series:
       note: A Race
     - date: "2026-08-25"
       note: B Race
+poster_key: 7c5qcmwd
+poster_content_type: image/png
+poster_width: 1080
+poster_height: 1619
 ---
 
 17 weeks of fast, fun, supportive criterium racing at Tunney's Pasture, alternating A and B events with dedicated programming for women.
