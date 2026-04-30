@@ -10,9 +10,7 @@ poster_key: 5w7qgmr8
 poster_width: 768
 poster_height: 960
 poster_content_type: image/png
-organizer:
-  name: Ride with Rendall
-  website: https://ridewithrendall.wordpress.com
+organizer: ride-with-rendall
 tags:
   - gran-fondo
 ---
