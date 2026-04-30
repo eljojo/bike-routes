@@ -18,10 +18,10 @@ linked_routes:
     label: Queen Elizabeth Driveway (2.4km, Sat/Sun 8am–8pm)
   - route: east-end-petrie-island
     label: Sir George-Étienne Cartier Parkway (8km, Sat/Sun 8am–4pm)
-poster_key: tvjdrbax
-poster_content_type: image/jpeg
-poster_width: 1080
-poster_height: 1080
+poster_key: be74rgw8
+poster_content_type: image/png
+poster_width: 1600
+poster_height: 1600
 ---
 
 ## Confirmed for 2026! 🎉
@@ -35,6 +35,8 @@ From May 9 to October 12, the NCC reserves parkways in Ottawa for active use eve
 **Sir George-Étienne Cartier Parkway** — both lanes, from Aviation Parkway to St. Joseph Boulevard in Orléans (8 km). Open 8 am to 4 pm. Connects to the Capital Pathway network and the NCC River House.
 
 **Queen Elizabeth Driveway** — both lanes, from Fifth Avenue to Somerset Street (2.4 km). Open 8 am to 8 pm. Runs along the west side of the Rideau Canal, near Patterson Creek Park and Commissioners Park.
+
+**Gatineau Park** — **May 2 to September 20, 2026** you can bike on the Parkway! -- [More details here](https://ncc-ccn.gc.ca/places/getting-around-on-the-gatineau-park-parkways)
 
 ### Good to know
 
