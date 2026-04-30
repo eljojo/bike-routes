@@ -2,13 +2,13 @@
 name: QBC Level 2 Rides
 start_date: "2026-05-11"
 start_time: "18:45"
-end_date: "2026-07-20"
+end_date: "2026-09-28"
 end_time: "20:45"
 series:
   recurrence: biweekly
   recurrence_day: monday
   season_start: "2026-05-11"
-  season_end: "2026-07-20"
+  season_end: "2026-09-28"
   overrides:
     - date: "2026-05-11"
       uid: 68rmcophcdj3ab9g71h3ib9kcgp3cbb275h3cbb165j36chj6spj0cr1cg@google.com
@@ -34,6 +34,27 @@ series:
       uid: 2epd5vno1dmqn1mdm41005he1c@google.com
       map_url: https://ridewithgps.com/routes/35268576
       note: Bruce Pit / QCH loop — 43 km, one moderate climb through Carlington, 2 km hard-packed dirt at Bruce Pit
+    - date: "2026-08-03"
+      uid: 101arvgi5s8spehreetl4t34m3@google.com
+      map_url: https://ridewithgps.com/routes/50954207
+      note: Aviation Parkway — 22 km clockwise loop, two moderate climbs over Rockcliffe
+    - date: "2026-08-17"
+      uid: 7s6m3koh2c58ta618j7pr6kgb6@google.com
+      map_url: https://ridewithgps.com/routes/51556301
+      note: Gatineau Park — 32 km, 290 m climb (Trail 5 to de la Mine), weather-dependent
+    - date: "2026-08-31"
+      uid: 7lv2t8hj86rnpv8htofol9gppb@google.com
+      map_url: https://ridewithgps.com/routes/33580200
+      note: Rideau Canal & River — 24 km, two mild climbs (Hog's Back, Vincent Massey)
+    - date: "2026-09-14"
+      uid: 3lgoqqieumctgc83p9k6j133db@google.com
+      map_url: https://ridewithgps.com/routes/35268576
+      registration_url: https://ridewithgps.com/routes/35268576
+      note: Bruce Pit / QCH loop — 43 km, one moderate climb through Carlington, 2 km hard-packed dirt at Bruce Pit
+    - date: "2026-09-28"
+      uid: 21h69one1irf7baumdddbu7uk2@google.com
+      map_url: https://ridewithgps.com/routes/50954207
+      note: Aviation Parkway — 22 km clockwise loop, two moderate climbs over Rockcliffe
 ics_uid: 68rmcophcdj3ab9g71h3ib9kcgp3cbb275h3cbb165j36chj6spj0cr1cg@google.com
 event_url: https://www.instagram.com/p/DXkiyBKESiC/
 poster_key: s42ea3f6

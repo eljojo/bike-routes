@@ -74,6 +74,7 @@ ics_uid: https://obcrides.ca/events/3346
 tags:
   - race
   - road
+  - time-trial
 organizer: ottawa-bicycle-club
 distances: 15km
 event_url: https://ottawabicycleclub.ca/opentt/

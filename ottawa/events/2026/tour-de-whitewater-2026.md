@@ -16,7 +16,8 @@ poster_width: 593
 poster_height: 768
 tags:
   - gravel
-  - tour
+  - cyclotour
+  - race
 organizer:
   name: Tour de Whitewater
   website: https://www.facebook.com/tourdewhitewater

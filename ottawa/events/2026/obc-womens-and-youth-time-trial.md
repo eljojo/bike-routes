@@ -57,6 +57,7 @@ tags:
   - women-only
   - youth
   - road
+  - time-trial
 organizer: ottawa-bicycle-club
 ---
 

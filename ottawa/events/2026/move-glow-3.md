@@ -6,6 +6,11 @@ registration_url: https://www.instagram.com/reel/DXrnVo1Ee1h/?igsh=ZW5jNDQ2bXNkY
 event_url: https://www.instagram.com/reel/DXrnVo1Ee1h/?igsh=ZW5jNDQ2bXNkY2Vp
 organizer:
   name: Ottawa Free Fitness
+previous_event: 2024/move-groove-glow-bicycle-night-ride
+tags:
+  - group-ride
+  - night-ride
+  - social
 ---
 
 If you missed it last year... consider this your official invite to MOVE & GROOVE 2026.

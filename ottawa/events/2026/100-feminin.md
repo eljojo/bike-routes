@@ -15,6 +15,7 @@ tags:
   - road
   - gravel
   - women-only
+  - gran-fondo
 organizer:
   name: 100% Féminin
   website: https://ride100feminin.com/en
