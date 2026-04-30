@@ -12,7 +12,11 @@ tags:
   - criterium
 organizer: ride-with-rendall
 series:
-  schedule:
+  recurrence: weekly
+  recurrence_day: tuesday
+  season_start: "2026-05-05"
+  season_end: "2026-08-25"
+  overrides:
     - date: "2026-05-05"
       note: A Race
     - date: "2026-05-12"
