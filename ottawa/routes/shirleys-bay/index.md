@@ -15,7 +15,7 @@ variants:
     strava_url: https://www.strava.com/activities/8068850692
 ---
 
-If you keep riding [past Britannia](/routes/3-britannia) there's a street light in Carling, if you keep going you'll slowly make your way to [Wesley Clover Parks](https://en.wikipedia.org/wiki/Wesley_Clover_Parks) ([Google Maps](https://goo.gl/maps/Lt4vVcAXx6VUq7eH7)), so far this is all really nice bike paths surrounded by trees on all sides.
+If you keep riding [past Britannia](/routes/britannia) there's a street light in Carling, if you keep going you'll slowly make your way to [Wesley Clover Parks](https://en.wikipedia.org/wiki/Wesley_Clover_Parks) ([Google Maps](https://goo.gl/maps/Lt4vVcAXx6VUq7eH7)), so far this is all really nice bike paths surrounded by trees on all sides.
 
 If you take the right turn, you'll start riding on a really fun stretch of gravel, ending in [Shirley's Bay](https://goo.gl/maps/3z3Wpy8sJhkiEKAk8). A great place to chill and have a picnic.
 

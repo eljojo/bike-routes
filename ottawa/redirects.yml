@@ -6,12 +6,16 @@ routes:
   to: shirleys-bay
 - from: 3-britannia-by-ottawa-river-pathway
   to: britannia-by-ottawa-river-pathway
+- from: 3-britannia
+  to: britannia-by-ottawa-river-pathway
 - from: 4-easy-loop-around-the-canal
   to: easy-loop-around-the-canal
 - from: 4-loop-around-the-canal
   to: easy-loop-around-the-canal
 - from: 7-vincent-massey-and-beyond
   to: vincent-massey
+- from: gatineau-meech-champlain
+  to: gatineau-meech-lake-champlain-lookout
 - from: 8-gatineau-meech-lake-champlain-lookout
   to: gatineau-meech-lake-champlain-lookout
 - from: 8-gatineau-meech-champlain
