@@ -9,6 +9,19 @@ series:
   recurrence_day: wednesday
   season_start: "2026-05-06"
   season_end: "2026-10-27"
+  overrides:
+    - date: "2026-05-06"
+      map_url: https://ridewithgps.com/routes/54876311
+      note: "Lead: Olivier — Parc du Lac Beauchamp"
+    - date: "2026-05-13"
+      map_url: https://ridewithgps.com/routes/54870144
+      note: "Lead: Mark — South-Southwest Greenbelt"
+    - date: "2026-05-20"
+      map_url: https://ridewithgps.com/routes/52047924
+      note: "Lead: Matthew — Champlain Loop"
+    - date: "2026-05-27"
+      map_url: https://ridewithgps.com/routes/52661887
+      note: "Lead: Liam — Foret-Boucher Gravel Loop"
 ics_uid: 6p9pkgonpnl0t5shbc9iqb4vid@google.com
 tags:
   - gravel
