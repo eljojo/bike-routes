@@ -12,5 +12,12 @@ series:
 ics_uid: 6p9pkgonpnl0t5shbc9iqb4vid@google.com
 tags:
   - gravel
+  - social-ride
 organizer: centretown-gravel-rides
+location: Major's Hill Park, Byward Market, Lowertown, Rideau-Vanier, Ottawa, Eastern Ontario, Ontario, Canada
+event_url: https://rides.rafuse.dev/centretown-gravel-rides-may-2026-schedule/
+poster_key: 15m73v4p
+poster_content_type: image/png
+poster_width: 1727
+poster_height: 541
 ---
