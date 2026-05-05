@@ -26,12 +26,12 @@ organizer:
   photo_height: 6240
 ---
 
-EN
+**English**
 In this series of 4 inclusive cycling clinics, riders will improve their bike handling and confidence on the bike while developing essential skills such as efficient shifting and braking, safe cornering, pace management, and effective communication.
 
 Participants will gain practical skills specifically suited to the local cycling environment, including bike path etiquette, light gravel paths, and recreational riding, while fostering connections with other women and enhancing overall enjoyment of the sport.  
 
-FR
+**Français**
 Participez à cette série de 4 séances inclusives de vélo, où les participantes amélioreront leur maîtrise du vélo et leur confiance, tout en développant des compétences essentielles telles que :le passage efficace des vitesses et le freinage, la prise de virages en toute sécurité, la gestion du rythme et la communication efficace.
 
 Les participantes acquerront des compétences pratiques adaptées à l’environnement cycliste local, notamment l’étiquette sur les pistes cyclables, les sentiers de gravier léger et le cyclisme récréatif, tout en tissant des liens avec d’autres femmes et en renforçant leur plaisir global à pratiquer ce sport.
