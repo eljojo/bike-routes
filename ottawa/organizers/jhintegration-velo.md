@@ -3,6 +3,10 @@ name: JHIntegration Velo
 social_links:
   - platform: instagram
     url: https://instagram.com/jhintegration
+  - platform: website
+    url: https://jhintegration.com/events/
+  - platform: email
+    url: info@jhintegration.com
 photo_key: vp9jpdn4
 photo_width: 995
 photo_height: 994
@@ -16,6 +20,13 @@ media:
 status: published
 created_at: "2026-05-05"
 updated_at: "2026-05-05"
+tags:
+  - women-only
+  - family-friendly
+  - slow-riding
+  - workshop
+  - road
+  - social-ride
 ---
 
 JHIntegration is a bilingual mission-driven organization dedicated to advancing accessibility, inclusion, and health through education, sport, and community-based initiatives. 
