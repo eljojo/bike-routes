@@ -7,7 +7,7 @@ distances: 16km
 registration_url: https://rides.rafuse.dev/inaugural-ride-monday-april-27th-6pm/
 map_url: https://ridewithgps.com/routes/54756051?privacy_code=w6M2leFtJPJfWE9mxcj1IADOgTDqDwP5
 tags:
-  - social
+  - social-ride
   - group-ride
 organizer: centretown-gravel-rides
 poster_key: 9wao62te

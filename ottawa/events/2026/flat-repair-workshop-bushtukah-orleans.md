@@ -25,6 +25,7 @@ series:
       registration_url: https://tockify.com/bushtukah.events/detail/497/1788471000000
 tags:
   - workshop
+  - mechanics
 organizer: bushtukah
 poster_key: d1yuqhkj
 poster_content_type: image/jpeg

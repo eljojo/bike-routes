@@ -14,6 +14,7 @@ poster_width: 300
 poster_height: 173
 tags:
   - tour
+  - road
 organizer: ottawa-bicycle-club
 ---
 

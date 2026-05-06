@@ -28,6 +28,7 @@ series:
 ics_uid: https://obcrides.ca/events/3214
 tags:
   - workshop
+  - clinic
   - group-ride
 organizer: ottawa-bicycle-club
 event_url: https://ottawabicycleclub.ca/group-riding-clinics/

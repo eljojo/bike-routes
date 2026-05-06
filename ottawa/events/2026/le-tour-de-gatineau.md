@@ -10,6 +10,7 @@ poster_width: 2770
 poster_height: 1294
 tags:
   - tour
+  - road
 organizer: tour-de-gatineau
 ---
 

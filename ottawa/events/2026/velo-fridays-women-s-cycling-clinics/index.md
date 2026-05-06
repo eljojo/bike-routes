@@ -21,6 +21,7 @@ poster_height: 1999
 tags:
   - women-only
   - workshop
+  - clinic
 organizer: jhintegration-velo
 ---
 

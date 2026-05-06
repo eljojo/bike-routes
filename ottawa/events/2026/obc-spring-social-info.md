@@ -11,7 +11,7 @@ poster_content_type: image/jpeg
 poster_width: 1536
 poster_height: 2048
 tags:
-  - social
+  - meetup
 organizer: ottawa-bicycle-club
 ---
 

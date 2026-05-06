@@ -11,6 +11,7 @@ registration_url: https://rackabecik.com/calendrier/
 location: Rack à bécik, 135 rue Eddy, Gatineau, QC
 tags:
   - workshop
+  - mechanics
 organizer: rack-a-becik
 poster_key: bkzmzff6
 poster_content_type: image/jpeg

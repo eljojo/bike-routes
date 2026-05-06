@@ -31,6 +31,7 @@ series:
       note: Gatineau Park sampler to Chelsea
 ics_uid: https://obcrides.ca/events/3510
 tags:
+  - coffee-ride
   - social-ride
   - road
 organizer: ottawa-bicycle-club

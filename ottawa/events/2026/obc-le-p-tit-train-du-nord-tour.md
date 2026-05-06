@@ -8,6 +8,7 @@ event_url: https://obcrides.ca/events/3742
 ics_uid: https://obcrides.ca/events/3742
 tags:
   - tour
+  - gravel
 organizer: ottawa-bicycle-club
 ---
 

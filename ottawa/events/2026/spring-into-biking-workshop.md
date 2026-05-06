@@ -9,6 +9,7 @@ poster_key: byuuahfe
 poster_content_type: image/jpeg
 tags:
   - workshop
+  - mechanics
 organizer: queer-bike-club
 ---
 

@@ -20,7 +20,9 @@ distances: ~10km
 poster_key: 91pzgepa
 poster_content_type: image/webp
 tags:
-  - social
+  - group-ride
+  - slow-riding
+  - social-ride
 organizer: ottbikesocial
 ---
 

@@ -11,7 +11,7 @@ poster_content_type: image/jpeg
 poster_width: 1254
 poster_height: 1254
 tags:
-  - social
+  - social-ride
   - women-only
 organizer: black-girls-do-bike
 ---

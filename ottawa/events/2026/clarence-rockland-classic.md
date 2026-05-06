@@ -13,6 +13,7 @@ poster_content_type: image/png
 organizer: ride-with-rendall
 tags:
   - gran-fondo
+  - road
 ---
 
 A cyclosportif through eastern Ontario's Clarence-Rockland Township, mixing gravel and paved roads. Now in its 14th year. Three distances: 28, 55, and 110 km.

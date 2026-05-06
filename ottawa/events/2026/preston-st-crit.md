@@ -8,6 +8,8 @@ poster_content_type: image/jpeg
 poster_width: 2500
 poster_height: 1667
 tags:
+  - race
+  - road
   - criterium
 organizer: bike-race-ottawa
 registration_url: https://ccnbikes.com/#!/events/2026-preston-street-criterium

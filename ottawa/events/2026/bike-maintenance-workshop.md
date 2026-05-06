@@ -11,6 +11,7 @@ poster_width: 1880
 poster_height: 940
 tags:
   - workshop
+  - mechanics
 organizer: ottawa-tool-library
 series:
   schedule:

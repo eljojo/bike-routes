@@ -15,6 +15,7 @@ poster_width: 3074
 poster_height: 996
 tags:
   - workshop
+  - mechanics
 organizer: nomadesduparc
 ---
 

@@ -10,7 +10,8 @@ poster_content_type: image/jpeg
 poster_width: 1080
 poster_height: 1350
 tags:
-  - social
+  - coffee-ride
+  - social-ride
   - slow-riding
 organizer: step-thru
 meet_time: "10:00"

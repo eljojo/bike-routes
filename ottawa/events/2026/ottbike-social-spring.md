@@ -40,7 +40,7 @@ meet_time: "18:45"
 tags:
   - group-ride
   - slow-riding
-  - social
+  - social-ride
 ---
 
 ## Slow Bike Rides with Nice People

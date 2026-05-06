@@ -13,7 +13,6 @@ poster_content_type: image/jpeg
 poster_width: 987
 poster_height: 740
 tags:
-  - social
   - meetup
 organizer: bike-minds
 ---

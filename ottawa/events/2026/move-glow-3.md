@@ -10,7 +10,7 @@ previous_event: 2024/move-groove-glow-bicycle-night-ride
 tags:
   - group-ride
   - night-ride
-  - social
+  - social-ride
 ---
 
 If you missed it last year... consider this your official invite to MOVE & GROOVE 2026.

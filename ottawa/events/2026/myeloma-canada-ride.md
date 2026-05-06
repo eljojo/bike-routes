@@ -12,7 +12,7 @@ poster_width: 620
 poster_height: 400
 tags:
   - charity-ride
-  - social
+  - social-ride
 organizer:
   name: Myeloma Canada
   website: https://myeloma.ca/

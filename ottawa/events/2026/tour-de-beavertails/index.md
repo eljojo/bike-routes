@@ -13,7 +13,7 @@ poster_width: 940
 poster_height: 451
 tags:
   - charity-ride
-  - social
+  - social-ride
   - family-friendly
 organizer:
   name: Killaloe and Area Lions Club

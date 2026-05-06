@@ -29,6 +29,7 @@ poster_width: 1024
 poster_height: 1280
 tags:
   - workshop
+  - mechanics
 organizer: bushtukah
 ---
 

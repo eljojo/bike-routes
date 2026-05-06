@@ -8,6 +8,7 @@ event_url: https://obcrides.ca/events/3743
 ics_uid: https://obcrides.ca/events/3743
 tags:
   - tour
+  - road
 organizer: ottawa-bicycle-club
 ---
 

@@ -16,6 +16,7 @@ poster_content_type: image/png
 organizer: nomadesduparc
 tags:
   - workshop
+  - clinic
   - mtb
 ---
 

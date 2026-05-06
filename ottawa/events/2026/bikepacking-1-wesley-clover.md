@@ -10,7 +10,7 @@ poster_width: 1440
 poster_height: 1440
 tags:
   - bikepacking
-  - social
+  - social-ride
 organizer: queer-bike-club
 ---
 

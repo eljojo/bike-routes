@@ -13,6 +13,7 @@ poster_content_type: image/webp
 poster_width: 960
 poster_height: 540
 tags:
+  - coffee-ride
   - social-ride
   - group-ride
 organizer: cycling-ottawa-gatineau-en-velo

@@ -9,7 +9,7 @@ registration_url: https://meetu.ps/e/NxmHF/1WSmg/i
 event_url: https://www.meetup.com/onecycling/events/303766562/
 map_url: https://maps.app.goo.gl/9oC2U2cN7mj63BHk6
 tags:
-  - social
+  - social-ride
   - group-ride
 organizer: one-cycling-ottawa-cycling-group
 poster_key: mtq7qbnh
