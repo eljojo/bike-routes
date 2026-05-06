@@ -17,6 +17,10 @@ media:
     width: 1200
     height: 400
     cover: true
+  - key: bbvomw9z
+    type: photo
+    width: 4160
+    height: 6240
 status: published
 created_at: "2026-05-05"
 updated_at: "2026-05-05"

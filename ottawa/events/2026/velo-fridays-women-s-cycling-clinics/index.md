@@ -18,14 +18,7 @@ poster_key: 44hbl9kl
 poster_content_type: image/png
 poster_width: 1545
 poster_height: 1999
-organizer:
-  name: JHIntegration
-  website: https://jhintegration.com/events/
-  instagram: jhintegration
-  photo_key: bbvomw9z
-  photo_content_type: image/jpeg
-  photo_width: 4160
-  photo_height: 6240
+organizer: jhintegration-velo
 ---
 
 **English**
