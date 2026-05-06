@@ -13,6 +13,7 @@ variants:
   - name: Spring ATV Ride
     gpx: main.gpx
     distance_km: 29.1
+    strava_url: https://www.strava.com/routes/3483987789595643788
 distance_km: 29.1
 ---
 
@@ -21,3 +22,5 @@ Starting from the Cartwright Springs Brewery, near Pakenham, this route takes us
 This is an advanced technical route, not for the faint-hearted!
 
 https://youtu.be/B6zpn6X4U4M
+
+Original route by [Anthony Bertrand](https://www.strava.com/routes/3483987789595643788)
