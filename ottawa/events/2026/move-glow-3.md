@@ -21,8 +21,6 @@ We ride, we vibe, we light up the night.
 
 Move & Groove 2026 by @Bekanecycles & @ottfreefit
 
-June 6th
-
 This isn't just a ride, it's a whole experience.
 
 Save the date JUNE 6TH.
@@ -30,3 +28,5 @@ Save the date JUNE 6TH.
 You don't want to hear about this one after.
 
 Shout-out to @participaction for supporting us.
+
+https://youtu.be/e7_D4JqW6Zw
