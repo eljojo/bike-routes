@@ -18,6 +18,9 @@ poster_key: 44hbl9kl
 poster_content_type: image/png
 poster_width: 1545
 poster_height: 1999
+tags:
+  - women-only
+  - workshop
 organizer: jhintegration-velo
 ---
 
