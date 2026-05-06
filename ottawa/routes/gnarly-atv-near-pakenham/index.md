@@ -23,4 +23,4 @@ This is an advanced technical route, not for the faint-hearted! Starting from th
 
 https://youtu.be/B6zpn6X4U4M
 
-Original route by [Anthony Bertrand](https://www.strava.com/routes/3483987789595643788)
+Original route and photography by [Anthony Bertrand](https://www.strava.com/routes/3483987789595643788)
