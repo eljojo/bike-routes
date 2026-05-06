@@ -17,9 +17,9 @@ variants:
 distance_km: 29.1
 ---
 
-Starting from the Cartwright Springs Brewery, near Pakenham, this route takes us through speedy descents, rolling hills, **flooded trails**, and whatever adventure the trail brings!
+This is an advanced technical route, not for the faint-hearted! Starting from the Cartwright Springs Brewery, near Pakenham, this route takes us through speedy descents, rolling hills, **flooded trails**, and whatever adventure the trail brings!
 
-This is an advanced technical route, not for the faint-hearted!
+**Tip:** Make sure to bring wide tyres, at least 40mm. Riding with low PSI is recommended.
 
 https://youtu.be/B6zpn6X4U4M
 
