@@ -1,5 +1,7 @@
 ---
 name: Velo-Fridays Women's Cycling Clinics
+past_slugs:
+  - velo-fridays-women-s-cycling-clinics-2
 start_date: "2026-05-08"
 start_time: "12:00"
 end_date: "2026-05-29"
