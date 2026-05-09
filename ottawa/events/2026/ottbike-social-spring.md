@@ -48,3 +48,5 @@ tags:
 #OttBikeSocial is a great opportunity to meet new people while exploring the capital at a relaxed pace.
 
 Meet every Thursday in a different gathering point. Check [on Instagram](https://www.instagram.com/ottbikesocial/) for the newest updates!
+
+https://youtu.be/sExmab_xG8g
