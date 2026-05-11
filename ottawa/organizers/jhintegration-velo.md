@@ -31,6 +31,8 @@ tags:
   - workshop
   - road
   - social-ride
+website: https://jhintegration.com/
+instagram: jhintegration
 ---
 
 JHIntegration is a bilingual mission-driven organization dedicated to advancing accessibility, inclusion, and health through education, sport, and community-based initiatives. 
