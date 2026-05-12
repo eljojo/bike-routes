@@ -1,5 +1,5 @@
 ---
-name: Learn to Ride
+name: Women Learn to Ride Clinics - YMCA Clarence-Rockland
 start_date: "2026-06-03"
 start_time: "18:00"
 end_date: "2026-06-24"
@@ -22,6 +22,8 @@ tags:
   - women-only
   - clinic
   - community
+  - road
+  - social
 organizer: jhintegration-velo
 ---
 
