@@ -13,6 +13,8 @@ social_links:
     url: https://instagram.com/letsbikeottawa
   - platform: website
     url: https://letsbike.ca/
+  - platform: bluesky
+    url: https://bsky.app/profile/letsbikeottawa.bsky.social
 photo_key: cy9aaxca
 photo_width: 512
 photo_height: 512
