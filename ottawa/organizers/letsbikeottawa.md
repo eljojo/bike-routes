@@ -6,6 +6,9 @@ tagline: Workshops and bike month events to help more people ride
 tags:
   - advocacy
   - workshop
+  - social-ride
+  - community
+  - ebikes
 featured: false
 hidden: false
 social_links:
