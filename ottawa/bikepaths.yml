@@ -22767,22 +22767,27 @@ bike_paths:
     slug: 43-boreale
     osm_way_ids:
       - 808420154
-  - name: Rue Hadley
-    osm_names:
-      - Rue Hadley
-    anchors:
-      - - -75.7312612
-        - 45.4235406
-      - - -75.7309851
-        - 45.4237166
-    surface: asphalt
-    highway: footway
-    path_type: mup
-    type: infrastructure
-    slug: rue-hadley
-    osm_way_ids:
-      - 815461126
-      - 815461127
+# Ways 815461126/815461127 were deleted from OSM — a live fetch returns zero
+# elements, so the geometry cache has no fallback and the build fails. OSM has
+# since redrawn this stretch as ways 1526099243/1526099246, tagged as unmarked
+# footway crossings. Re-run the path pipeline to re-derive it (and to decide
+# whether a ~20 m crossing is an entry at all).
+#  - name: Rue Hadley
+#    osm_names:
+#      - Rue Hadley
+#    anchors:
+#      - - -75.7312612
+#        - 45.4235406
+#      - - -75.7309851
+#        - 45.4237166
+#    surface: asphalt
+#    highway: footway
+#    path_type: mup
+#    type: infrastructure
+#    slug: rue-hadley
+#    osm_way_ids:
+#      - 815461126
+#      - 815461127
   - name: The Beast Trail
     osm_names:
       - The Beast Trail
