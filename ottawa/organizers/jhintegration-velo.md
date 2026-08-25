@@ -7,9 +7,9 @@ social_links:
     url: https://jhintegration.com/events/
   - platform: email
     url: info@jhintegration.com
-photo_key: vp9jpdn4
-photo_width: 995
-photo_height: 994
+photo_key: 405z40yp
+photo_width: 2000
+photo_height: 2000
 photo_content_type: image/png
 media:
   - key: nbe2was0
@@ -22,8 +22,8 @@ media:
     width: 4160
     height: 6240
 status: published
-created_at: "2026-05-05"
-updated_at: "2026-05-05"
+created_at: '2026-05-05'
+updated_at: '2026-05-05'
 tags:
   - women-only
   - family-friendly
@@ -32,7 +32,7 @@ tags:
   - road
   - social-ride
 website: https://jhintegration.com/
-instagram: jhintegration
+instagram: neurorideottawa
 ---
 
 JHIntegration is a bilingual mission-driven organization dedicated to advancing accessibility, inclusion, and health through education, sport, and community-based initiatives. 
