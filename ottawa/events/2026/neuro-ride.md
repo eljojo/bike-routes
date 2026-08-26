@@ -14,11 +14,11 @@ poster_content_type: image/png
 poster_width: 1545
 poster_height: 2000
 tags:
-  - charity-ride
-  - community
   - group-ride
   - road
   - social-ride
+  - charity-ride
+  - community
 organizer: jhintegration-velo
 ---
 
