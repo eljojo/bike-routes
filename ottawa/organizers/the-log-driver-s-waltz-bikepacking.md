@@ -1,5 +1,5 @@
 ---
-name: The Log Driver's Waltz Bikepacking
+name: The Log Driver's Waltz Bikepacking Community
 social_links:
   - platform: instagram
     url: https://instagram.com/thelogdriverswaltz
