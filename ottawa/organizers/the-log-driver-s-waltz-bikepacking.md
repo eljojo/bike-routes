@@ -26,6 +26,17 @@ media:
 status: published
 created_at: '2026-10-21'
 updated_at: '2026-10-21'
+tags:
+  - accessibility
+  - advocacy
+  - bikepacking
+  - community
+  - cyclotour
+  - gravel
+  - loop
+  - scenic
+  - workshop
+  - almonte
 ---
 
 “A ride through the Ottawa Valley and Outaouais in 3/4 time!”
