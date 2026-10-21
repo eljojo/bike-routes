@@ -58,7 +58,7 @@ A community centred around the Log Driver's Waltz Bikepacking Route that is welc
 
 
 **Grand Depart** 
-Held annually in August. Start is in Almonte. Choose from 385, 800 or 1600 kilometre options. See website for details [link text](https://www.logdriverswaltz.ca/2026-grand-depart)
+Held annually in August. Start is in Almonte. Choose from 385, 800 or 1600 kilometre options. See website for details: (https://www.logdriverswaltz.ca/2026-grand-depart)
 
 
 
