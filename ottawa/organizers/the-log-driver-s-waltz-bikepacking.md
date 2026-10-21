@@ -13,10 +13,10 @@ social_links:
     url: https://www.youtube.com/@thelogdriverswaltz
   - platform: website
     url: https://www.logdriverswaltz.ca/
-photo_key: f2v9syje
-photo_width: 923
-photo_height: 923
-photo_content_type: image/jpeg
+photo_key: ffx77hnf
+photo_width: 3496
+photo_height: 3496
+photo_content_type: image/png
 media:
   - key: zegs99it
     type: photo
